@@ -1,0 +1,11 @@
+article {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+img {
+    height: auto;
+    width: 320px;
+    max-width: 100%;
+}
