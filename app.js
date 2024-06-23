@@ -4,6 +4,7 @@ import { routes } from './global/routes/routes.js'
 import 'dotenv/config'
 
 const app = express()
+app.set('view engine', 'ejs')
 app.use(json())
 app.use(corsMiddleware())
 app.disable('x-powered-by')

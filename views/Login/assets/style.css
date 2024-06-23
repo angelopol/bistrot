@@ -1,0 +1,132 @@
+.login-container {
+    padding-bottom: 80px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+  }
+  
+  .header {
+    background-color: #013d1f;
+    width: 100%;
+    color: #fff;
+    letter-spacing: -0.24px;
+    padding: 45px 54px;
+    font: 400 24px Krona One, sans-serif;
+  }
+  
+  .login-form {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    align-self: center;
+    display: flex;
+    margin-top: 162px;
+    width: 400px;
+    max-width: 100%;
+    flex-direction: column;
+    padding: 60px;
+  }
+  
+  .logo {
+    aspect-ratio: 0.91;
+    object-fit: auto;
+    object-position: center;
+    width: 50px;
+    align-self: center;
+  }
+  
+  .login-title {
+    color: #000;
+    align-self: center;
+    margin-top: 15px;
+    font: 500 35px Montserrat, sans-serif;
+  }
+  
+  .input-label {
+    color: #000;
+    margin-top: 15px;
+    font: 400 14px Montserrat, sans-serif;
+  }
+  
+  .input-wrapper {
+    display: flex;
+    margin-top: 15px;
+    flex-direction: column;
+    font-size: 14px;
+    color: #828282;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  
+  .input-field {
+    font-family: Montserrat, sans-serif;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    padding: 8px 16px;
+  }
+  
+  .password-wrapper {
+    display: flex;
+    margin-top: 15px;
+    padding-bottom: 8px;
+    flex-direction: column;
+    line-height: 1.4;
+  }
+  
+  .password-field {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    color: #828282;
+    padding: 8px 16px;
+    font: 400 14px Montserrat, sans-serif;
+  }
+  
+  .submit-button {
+    border-radius: 8px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: #0f624a;
+    margin-top: 30px;
+    color: #fff;
+    padding: 14px 16px;
+    font: 500 16px Montserrat, sans-serif;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  @media (max-width: 991px) {
+    .header {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+  
+    .login-form {
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+  
+    .input-wrapper,
+    .password-wrapper,
+    .input-field,
+    .password-field {
+      white-space: normal;
+    }
+  
+    .submit-button {
+      padding: 14px 20px;
+    }
+  }

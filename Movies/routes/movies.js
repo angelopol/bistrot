@@ -7,11 +7,11 @@ export const createMovieRouter = () => {
   const movieController = new MovieController()
 
   moviesRouter.get('/index', async (req, res) => {
-    res.sendFile(process.cwd() + '/Movies/views/index.html')
+    res.render('Movies/index')
   })
 
   moviesRouter.get('/assets/style.css', async (req, res) => {
-    res.sendFile(process.cwd() + '/Movies/views/assets/style.css')
+    res.sendFile(process.cwd() + '/views/Movies/assets/style.css')
   })
   
   moviesRouter.get('/', movieController.getAll)
