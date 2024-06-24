@@ -40,7 +40,7 @@ export class LoginController {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 1000 * 60 * 180
-    }).send("<a href='login/home'>Home</a>")
+    }).redirect('login/home')
   }
 
   logout = async (req, res) => {
