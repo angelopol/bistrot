@@ -1,25 +1,24 @@
 import { EmpleadosModel } from "../../Register/models/empleados.js"
 import { validateEmpleado } from "../../Register/schemas/empleados.js"
+import { logged } from "../middlewares/logged.js"
 import jwt from 'jsonwebtoken'
 import bycrypt from 'bcrypt'
 import 'dotenv/config'
 
 export class LoginController {
   home = async (req, res) => {
-    const {user} = req.session
-    if (!user) return res.redirect('/login')
+    var user = logged(req, res)
+    if (!user) return
     res.render('Login/home', user)
   }
 
   show = async (req, res) => {
-    const {user} = req.session
-    if (user) return res.redirect('/login/home')
+    if (!logged(req, res, true)) return
     res.render('Login/login')
   }
 
   login = async (req, res) => {
-    var {user} = req.session
-    if (user) return res.redirect('/login/home')
+    if (!logged(req, res, true)) return
     
     const result = await validateEmpleado(req.body, false)
     if (!result.success) {

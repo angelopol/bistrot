@@ -1,7 +1,7 @@
 import express, { json } from 'express' // require -> commonJS
 import { corsMiddleware } from './global/middlewares/cors.js'
 import { routes } from './global/routes/routes.js'
-import { authenticated } from "./Modules/Login/middlewares/auth.js"
+import { authenticated } from "./global/middlewares/auth.js"
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
