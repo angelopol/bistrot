@@ -1,7 +1,7 @@
 # Bistrot Chef Remy
 
 ## Node JS
-- Install Node JS from [NodeJS download web page](**https://nodejs.org/en/download**)
+- Install Node JS from [NodeJS download web page](https://nodejs.org/en/download)
 ### Libraries (Install not required)
 - Install EJS (Motor de plantillas) using **npm install ejs**
 - Install JWT using **npm install jsonwebtoken**
