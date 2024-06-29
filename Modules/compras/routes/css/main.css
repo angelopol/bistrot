@@ -10,6 +10,12 @@
     font-weight: 500;
 }
 
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
 * {
     color: #02676F;
     margin: 0;
@@ -121,4 +127,22 @@ th {
 
 #compra-icon, #prov-icon {
     margin-right: 20px;
+}
+
+#saldo-title {
+    font-size: 0.8em;
+    font-family: 'Montserrat-Regular';
+}
+
+.box-soli {
+    margin-top: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    height: 30vh;
+}
+
+table {
+    width: 100%;
 }
