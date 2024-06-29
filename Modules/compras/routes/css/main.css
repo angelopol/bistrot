@@ -49,10 +49,6 @@ h1 {
     font-family: 'Montserrat-Extrabold';
 }
 
-#tabla-registro {
-    height: 60vh;
-}
-
 th {
     font-size: 0.8em;
 }
@@ -73,4 +69,56 @@ th {
 .registro-clase {
     color: #828282;
     padding: 10px;
+}
+
+.register {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    height: 65vh;
+    width: 30vw;
+    border-radius: 8px;
+}
+
+#prov-icon, #compra-icon {
+    width: 50px;
+}
+
+.box-saldo {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    padding: 10px;
+    width: 45vw;
+    text-align: end;
+    background-color: white;
+}
+
+.box-compra, .box-prov {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#btn-compra, #btn-prov {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    background-color: white;
+    height: 10vh;
+    font-size: 1.1em;
+    width: 40vw;
+    transition: all 0.4s;
+}
+
+#btn-compra:hover, #btn-prov:hover {
+    background-color: #0F624A;
+    color: white;
+}
+
+#compra-icon, #prov-icon {
+    margin-right: 20px;
 }
