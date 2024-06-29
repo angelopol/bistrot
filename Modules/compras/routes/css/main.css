@@ -118,6 +118,7 @@ th {
     font-size: 1.1em;
     width: 40vw;
     transition: all 0.4s;
+    cursor:pointer;
 }
 
 #btn-compra:hover, #btn-prov:hover {
