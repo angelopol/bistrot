@@ -1,3 +1,48 @@
+@font-face {
+    font-family: "Montserrat-Extrabold";
+    src: url("../resources/Fonts/Montserrat/Montserrat-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
 * {
-    font-family: 'Montserrat';
+    color: #02676F;
+    margin: 0;
+    font-family: 'Montserrat-Medium';
+}
+
+.title-bar {
+    height: 15vh;
+    background-color: #013D1F;
+}
+
+.sidebar {
+    width: 15vw;
+    height: 85vh;
+    background-color: #EDEDED;
+}
+
+main {
+    padding: 30px;
+}
+
+.box {
+    display: flex;
+}
+
+h1 {
+    font-family: 'Montserrat-Extrabold';
+}
+
+#saldo {
+    font-family: 'Montserrat-Extrabold';
+}
+
+th {
+    font-size: 0.8em;
 }
