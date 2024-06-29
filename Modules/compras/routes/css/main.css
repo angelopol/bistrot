@@ -33,7 +33,7 @@
 }
 
 main {
-    padding: 30px;
+    padding: 40px;
     display: flex;
 }
 
@@ -59,8 +59,18 @@ th {
 
 #divider {
     width: 1px;
-    height: 70vh;
+    height: 65vh;
     background-color: #0F624A;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#title-table {
+    font-size: 0.8em;
+    padding: 10px;
+}
+
+.registro-clase {
+    color: #828282;
+    padding: 10px;
 }
