@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="css/styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="restaurant-header">
+    <h1 class="restaurant-nombre">BISTROT CHEZ RÉMY</h1>
+    <div class="user-info">
+      <span class="username">Gerente0000</span>
+      <img src="css/img/flecha_hacia_abajo_usuario.png" alt="flecha_hacia_abajo_usuario" class="flecha_hacia_abajo_usuarior" />
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_inicio.png" alt="Inicio icon" class="sidebar-icon" />
+          <span class="sidebar-text">Inicio</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_ventas.png" alt="Ventas icon" class="sidebar-icon" />
+          <span class="sidebar-text">Ventas/Salon</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_compras.png" alt="Compras icon" class="sidebar-icon" />
+          <span class="sidebar-text">Compras</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_rrhh.png" alt="RRHH icon" class="sidebar-icon" />
+          <span class="sidebar-text">RRHH</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_inventario.png" alt="inventario icon" class="sidebar-icon" />
+          <span class="sidebar-text">Inventario</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_mantenimiento.png" alt="Mantenimiento icon" class="sidebar-icon" />
+          <span class="sidebar-text">Mantenimiento</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_cocina.png" alt="Cocina icon" class="sidebar-icon" />
+          <span class="sidebar-text">Cocina/Bar</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_reservas.png" alt="Reservas icon" class="sidebar-icon" />
+          <span class="sidebar-text">Reservas</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_reporte.png" alt="Reportes icon" class="sidebar-icon" />
+          <span class="sidebar-text">Reportes</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_config.png" alt="Configuraciones icon" class="sidebar-icon" />
+          <span class="sidebar-text">Configuraciones</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="css/img/icono_ayuda.png" alt="Ayuda icon" class="sidebar-icon" />
+          <span class="sidebar-text">Ayuda</span>
+        </a>
+      </nav>
+
+      <section class="main-section">
+        <div class="titulo-modulo">
+          <h2 class="titulo-modulo">Inventario</h2>
+        </div>
+        <div class="tab-container">
+          <button class="tab tab-active" id="btnInsumos" onclick="changeTab('insumos')">Insumos</button>
+          <button class="tab tab-inactive" id="btnEquipos" onclick="changeTab('equipos')">Equipos</button>
+          <button class="tab tab-inactive" id="btnMuebles" onclick="changeTab('muebles')">Muebles</button>
+          <button class="tab tab-inactive" id="btnMaquinaria" onclick="changeTab('maquinaria')">Maquinaria</button>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <table id="tablaCocinaBar" class="table table-striped table-bordered d-none" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Área</th>
+                    <th>Unidad</th>
+                    <th>Fecha de Caducidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+              <table id="tablaGeneral" class="table table-striped table-bordered d-none" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Funciona Estado</th>
+                    <th>Fecha de Mantenimiento</th>
+                    <th>Unidad</th>
+                    <th>Cantidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="table-actions">
+          <div class="action-buttons">
+            <button class="action-btn">Editar</button>
+            <button class="action-btn">Registro</button>
+          </div>
+          <div class="icon-buttons">
+            <button class="icon-btn" aria-label="Edit">
+              <img src="css/img/icono_basura.png" alt="Basura icon" class="icon-img" />
+            </button>
+            <button class="icon-btn" aria-label="Delete">
+              <img src="css/img/icono_suma.png" alt="Suma icon" class="icon-img" />
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+
+</html>
