@@ -38,6 +38,7 @@ CREATE TABLE 'bistrot'.'Proveedores'(
     'Correo' VARCHAR(200) NOT NULL, -- Correo del Proveedor
     'Nombre_resposa' VARCHAR(200) NOT NULL, -- Persona con la que se negocia
     'Tlf' VARCHAR(200) NOT NULL, -- Numero de telefono del proveedor
+    'Productos_proveedor' VARCHAR(400) NOT NULL, --Productos del proveedor
     PRIMARY KEY('Nombre_empresa'),
     UNIQUE('Nombre_empresa','Dire_fiscaL','Correo',
     'Nombre_resposa','Tlf')

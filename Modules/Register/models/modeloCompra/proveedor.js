@@ -24,13 +24,14 @@ export class ProveedoresModel{
       Dire_Fiscal,
       Correo,
       nombre_responsa,
-      Tlf
+      Tlf,
+      ProveedorProd
     } = create
 
     try{
       await connection.query(
-        'INSERT INTO Proveedores(Nombre_empresa,RIF,Dire_Fiscal,Correo,Nombre_responsa,Tlf) VALUES(?,?,?,?,?,?)',
-        [nombre_empresa,rif,Dire_Fiscal,Correo,nombre_responsa,Tlf]
+        'INSERT INTO Proveedores(Nombre_empresa,RIF,Dire_Fiscal,Correo,Nombre_responsa,Tlf,Productos_proveedor) VALUES(?,?,?,?,?,?,?)',
+        [nombre_empresa,rif,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd]
       )
     }catch(e){
       console.log(e)
@@ -67,13 +68,14 @@ export class ProveedoresModel{
       rif,
       Dire_Fiscal,
       Correo,
-      Tlf
+      Tlf,
+      ProveedorProd
     } = input
 
     try{
       await connection.query(
-        'UPDATE Proveedor SET Nombre_empresa = ?, RIF = ?, Dire_Fiscal = ?, Correo = ?, Tlf = ? WHERE Nombre_responsa = ?',
-        [nombre_empresa,rif,Dire_Fiscal,Correo,Tlf]
+        'UPDATE Proveedor SET Nombre_empresa = ?, RIF = ?, Dire_Fiscal = ?, Correo = ?, Tlf = ? WHERE Nombre_responsa = ?, Productos_proveedor = ?',
+        [nombre_empresa,rif,Dire_Fiscal,Correo,Tlf,ProveedorProd]
       )
     }catch(e){
       console.log(e)
