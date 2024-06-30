@@ -29,7 +29,7 @@ CREATE TABLE 'bistrot'.'ProductoCompras'(
     'Monto','Numero_Factura')
 );
 
---Tabla de los provvedores de las compras del restaurante
+--Tabla de los proveedores de las compras del restaurante
 
 CREATE TABLE 'bistrot'.'Proveedores'(
     'Nombre_empresa' VARCHAR(200) NOT NULL, --Nombre de la empresa
