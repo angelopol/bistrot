@@ -18,8 +18,7 @@ const connection = await mysql.createConnection(DBConfig)
 export class HistorialModel{
   // Funcion que agrega la compra
   static async Agregar({input}){
-    const[
-      id,
+    const{
       fecha,
       factura,
       Pago,
@@ -28,12 +27,12 @@ export class HistorialModel{
       Precio,
       Nombre_proveedor,
       Departamento
-    ] = input
+     } = input
 
     try{
       await connection.query(
-        'INSERT INTO Historial(ID,FECHA,Factura,Pago,Producto,Cantidad,Precio,Nombre_Proveedor,Departamento) VALUES(?,?,?,?,?,?,?,?,?)',
-        [id,fecha,factura,Pago,Producto,Cantidad,Precio,Nombre_proveedor,Departamento]
+        'INSERT INTO Historial(FECHA,Factura,Pago,Producto,Cantidad,Precio,Nombre_Proveedor,Departamento) VALUES(?,?,?,?,?,?,?,?,?)',
+        [fecha,factura,Pago,Producto,Cantidad,Precio,Nombre_proveedor,Departamento]
       )
     }catch(e){
       console.log(e)

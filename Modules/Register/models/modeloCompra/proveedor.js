@@ -54,7 +54,7 @@ export class ProveedoresModel{
   }
   // Función que encuentra al proveedor
   static async Buscar({busca}){
-    const{fila} = await connection.query(
+    const[fila] = await connection.query(
       'SELECT * FROM Proveedores WHERE Nombre_responsa = ?'
       [busca]
     )
