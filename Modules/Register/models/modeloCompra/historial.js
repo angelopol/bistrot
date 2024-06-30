@@ -12,3 +12,32 @@ const DBConfig = {
 }
 
 const connection = await mysql.createConnection(DBConfig)
+
+// Crud para la tabla del historial de compras
+
+export class HistorialModel{
+  // Funcion que agrega la compra
+  static async Agregar({input}){
+    const[
+      id,
+      fecha,
+      factura,
+      Pago,
+      Producto,
+      Cantidad,
+      Precio,
+      Nombre_proveedor,
+      Departamento
+    ] = input
+
+    try{
+      await connection.query(
+        'INSERT INTO Historial(ID,FECHA,Factura,Pago,Producto,Cantidad,Precio,Nombre_Proveedor,Departamento) VALUES(?,?,?,?,?,?,?,?,?)',
+        [id,fecha,factura,Pago,Producto,Cantidad,Precio,Nombre_proveedor,Departamento]
+      )
+    }catch(e){
+      console.log(e)
+      throw new Error("Error agregando la compra al historial")
+    }
+  }
+}
