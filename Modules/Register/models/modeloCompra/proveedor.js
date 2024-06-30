@@ -72,7 +72,7 @@ export class ProveedoresModel{
 
     try{
       await connection.query(
-        'UPDATE Proveedor SET Nombre_empresa = ?, RIF = ?, Dire_Fiscal = ?, Correo = ?, Tlf = ? WHERE Nombre_responsa = ?'
+        'UPDATE Proveedor SET Nombre_empresa = ?, RIF = ?, Dire_Fiscal = ?, Correo = ?, Tlf = ? WHERE Nombre_responsa = ?',
         [nombre_empresa,rif,Dire_Fiscal,Correo,Tlf]
       )
     }catch(e){

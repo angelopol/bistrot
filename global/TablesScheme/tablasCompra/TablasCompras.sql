@@ -1,6 +1,6 @@
 --Tabla del historial de compras
 
-CREATE TABLE 'bistrot'.'Producto'(
+CREATE TABLE 'bistrot'.'Historial'(
     'ID' INT NOT NULL AUTO_INCREMENT, -- Identificación de las compras
     'FECHA' DATETIME NOT NULL, -- Fecha General
     'Factura' VARCHAR(200) NOT NULL, -- Factura de la compra
