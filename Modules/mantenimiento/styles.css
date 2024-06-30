@@ -1,0 +1,342 @@
+body{
+    border: 0;
+    margin: 0;
+}
+
+.main-container{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column; 
+}
+
+.header{
+    background-color: #013d1f;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 150%;
+    padding: 34px 55px;
+}
+
+.restaurant-name {
+    letter-spacing: -0.24px;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+    font: 24px Krona One, sans-serif;
+}
+
+.user-info {
+    border-radius: 8px;
+    border: 1px solid #fff;
+    background-color: #013d1f;
+    display: flex; gap: 16px;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 8px 16px;
+    margin-right: 80px;
+}
+
+.user-name {
+    font-family: Inter, sans-serif;
+    flex: 1; overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-icon {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 24px;
+}
+
+.content-wrapper{
+    width: 100%;
+}
+.main-content {
+    gap: 20px;
+    display: flex;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 19%;
+    margin-left: 0;
+}
+
+.nav-menu {
+    background-color: rgba(237, 237, 237, 0.93);
+    display: flex; width: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 16px;
+    color: #02676f;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 150%;
+    margin: 0 auto;
+    padding: 10px 8px;
+}
+
+.nav-item {
+    border-radius: 8px;
+    background-color: rgba(246, 246, 246, 0.96);
+    display: flex; gap: 16px;
+    padding: 8px 16px; margin-top:
+    8px;
+}
+
+.nav-text {
+    font-family: Inter, sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav-icon {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 20px;
+    fill: #02676f;
+    margin: auto 0;
+}
+
+.help-item {
+    border-radius: 8px;
+    background-color: rgba(246, 246, 246, 0.96);
+    display: flex;
+    margin-top: 8px;
+    gap: 16px;
+    padding: 8px 16px;
+}
+
+.help-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1px 0;
+}
+
+.help-icon {
+    font-family: Inter, sans-serif;
+    stroke-width: 2px;
+    border: 2px solid #02676f;
+    background-color: #fff;
+    border-radius: 50%;
+    align-items: center;
+    width: 22px;
+    justify-content: center;
+    height: 22px;
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 81%;
+    margin-left: 20px;
+}
+
+.section-header {
+    display: flex;
+    margin-top: 31px;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.section-title {
+    color: #000;
+    letter-spacing: -0.68px;
+    align-self: flex-end;
+    margin: 10px 0;
+    margin-right: 450px;
+    font: 600 34px/110% Inter, sans-serif;
+}
+
+.action-buttons {
+    align-self: center;
+    margin-top: 0;
+    width: 586px;
+    max-width: 100%;
+}
+.button-container {
+    gap: 20px;
+    display: flex;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 50%;
+    margin-left: 0;
+}
+
+.action-button {
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex; flex-grow: 1;
+    flex-direction: column;
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 150%;
+    width: 100%;
+    padding: 22px 48px;
+}
+
+.button-icon {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 30px;
+    align-self: center;
+}
+
+.button-text {
+    font-family: Inter, sans-serif;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.maintenance-section {
+    background-color: #d9d9d9;
+    margin-top: 20px;
+    padding: 40px 40px;
+}
+
+.maintenance-content {
+    gap: 20px;
+    display: flex;
+}
+
+.maintenance-list {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 70%;
+    margin-left: 0;
+}
+
+.maintenance-table {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 16px;
+    line-height: 150%;
+    width: 100%;
+    padding: 27px;
+}
+
+.table-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    font-weight: 600;
+}
+
+.header-content {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title {
+    color: #000;
+    font-family: Inter, sans-serif;
+}
+
+.header-labels {
+    display: flex;
+    margin-top: 28px;
+    gap: 20px;
+    color: #828282;
+    white-space: nowrap;
+    justify-content: space-between;
+}
+
+.label {
+    font-family: Inter, sans-serif;
+}
+
+.date-label, .status-label {
+    color: #828282;
+    text-align: right;
+    font-family: Inter, sans-serif;
+    margin-top: 40px;
+    flex-grow: 1;
+    flex-basis: auto;
+}
+
+.table-row {
+    border-top: 1px solid #e0e0e0;
+    display: flex; width: 100%;
+    gap: 20px; color: #000;
+    justify-content: space-between;
+    padding: 14px 63px 14px 0;
+}
+
+.row-name {
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    margin: auto 0;
+}
+
+.row-details {
+    display: flex;
+    gap: 20px;
+    font-weight: 400;
+    text-align: right;
+    justify-content: space-between;
+}
+
+.row-type, .row-status {
+    font-family: Inter, sans-serif;
+}
+
+.calendar-section {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 30%;
+    margin-left: 20px;
+}
+
+.calendar-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    text-align: center;
+    line-height: 24px;
+}
+
+.calendar-widget, .schedule-button {
+    font-family: Inter, sans-serif;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff; padding: 68px 48px;
+    margin-left: 20px;
+}
+
+.schedule-button {
+    margin-top: 24px;
+    padding: 43px 48px;
+}
