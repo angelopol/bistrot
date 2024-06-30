@@ -12,3 +12,69 @@ const DBConfig = {
 }
 
 const connection = await mysql.createConnection(DBConfig)
+
+// Crud para la tabla de las solicitudes de compra
+
+export class SolicitudModel{
+  //Funcion que agrega una solicitud
+  static async agregar({input}){
+    const {
+      depar,
+      codigo_empleado,
+      fecha,
+      detalle
+    } = input
+
+    try{
+      await connection.query(
+        'INSERT INTO Solicitudes(Departamento,Codigo_empleado,FECHA,DETALLE) VALUES(?,?,?,?)',
+        [depar,codigo_empleado,fecha,detalle]
+      )
+    }catch(e){
+      console.log(e)
+      throw new Error("Error al agregar una nueva solicitud")
+    }
+  }
+  //Funcion que elimina una solicitud
+  static async eliminar({eli}){
+    const{ID} = eli
+
+    try{
+      await connection.query(
+        'DELETE FROM Solicitudes WHERE ID_Empleado = ?',
+        [ID]
+      )
+    }catch(e){
+      console.log(e)
+      throw new Error("Error al eliminar la solicitud")
+    }
+  }
+  //Funcion que modifica una solicitud
+  static async Modificar({modi}){
+    const{
+      depar,
+      codigo_empleado,
+      Id_requisión,
+      fecha,
+      detalle
+    } = modi
+
+    try{
+      await connection.query(
+        'UPDATE Solicitudes SET Departamento = ?, Codigo_Producto = ?, FECHA = ?, DETALLE = ?, ID_requisión = ? WHERE ID_Empleado = ?',
+        [depar,codigo_empleado,Id_requisión,fecha,detalle]
+      )
+    }catch(e){
+      console.log(e)
+      throw new Error("Error al modificar la solicitud")
+    }
+  }
+  //Funcion que busca una solicitud
+  static async Buscar({bus}){
+    const{fila} = await connection.query(
+      'SELECT * FROM Solicitudes WHERE ID_Empleado = ?',
+      [bus]
+    )
+    return fila[0]
+  }
+}
