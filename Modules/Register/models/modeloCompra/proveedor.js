@@ -11,3 +11,15 @@ const DBConfig = {
 }
 
 const connection = await mysql.createConnection(DBConfig)
+
+// Modelo para los proveedores
+
+//Funcion que crea un proovedor
+
+export class ProveedoresModel{
+  static async crear({create}) {
+    const {
+
+    } = create
+  }
+}

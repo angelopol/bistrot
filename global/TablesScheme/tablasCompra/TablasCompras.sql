@@ -16,7 +16,7 @@ CREATE TABLE 'bistrot'.'Producto'(
 );
 
 -- Tabla de los Productos de las compras
-CREATE TABLE 'bistrot'.'Producto'(
+CREATE TABLE 'bistrot'.'ProductoCompras'(
     'ID_Producto' INT NOT NULL AUTO_INCREMENT, -- ID del Producto
     'ID_proveedor' INT NOT NULL AUTO_INCREMENT, -- ID del proveedor
     'Nombre' VARCHAR(200) NOT NULL, -- Nombre del producto
