@@ -36,7 +36,7 @@ CREATE TABLE comida_instrumentos (
 CREATE TABLE comida_diccionario (
     comida_id INT,
     clave VARCHAR(255),
-    valor INT,
+    valor FLOAT,
     PRIMARY KEY (comida_id, clave),
     FOREIGN KEY (comida_id) REFERENCES comida(id)
 );
