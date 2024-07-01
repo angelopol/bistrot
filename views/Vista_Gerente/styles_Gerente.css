@@ -2,10 +2,18 @@
     font-family: 'Montserrat',sans-serif;   
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 70%;
+}
+
+
 .restaurant-header {
     background-color: #013d1f;
     display: flex;
-    width: 100%;
+    width: 91.8%;
     gap: 20px;
     color: #fff;
     font-weight: 400;
@@ -22,11 +30,11 @@
 }
 
 .restaurant-title {
-    letter-spacing: -0.24px;
+    letter-spacing: 1%;
     flex-grow: 1;
     flex-basis: auto;
     margin: auto 0;
-    font: 24px 'Monserratt', sans-serif;
+    font-size: 24px;
 }
 
 .user-info {
@@ -91,7 +99,8 @@
     color: #02676f;
     font-weight: 500;
     line-height: 150%;
-    padding: 72px 9px;
+    padding: 20px 9px;
+    
 }
 
 @media (max-width: 991px) {
@@ -125,15 +134,6 @@
     white-space: nowrap;
 }
 
-.sidebar-item:hover{
-    border-radius: var(--sds-size-radius-200);
-    background-color: #013d1f;
-    display: flex;
-    gap: 16px;
-    padding: 8px 16px;
-    margin-top: 8px;
-    transition: background-color 0.3s, color 0.3s;
-}
 
 .help-item {
     display: flex;
@@ -153,7 +153,7 @@
 }
 
 .main-section {
-    width: 80%;
+    width: 90%;
     margin-left: 20px;
     margin-top: 85px;
 }
@@ -179,7 +179,7 @@
 }
 
 .sales-section {
-    width: 73%;
+    width: 100%;
 }
 
 @media (max-width: 991px) {
@@ -200,16 +200,15 @@
 }
 
 .sales-chart {
-    aspect-ratio: 1.79;
+    aspect-ratio: 0;
     width: 100%;
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
-    border: 1px solid #e0e0e0;
-    margin-top: 32px;
 }
 
 .sidebar-right {
-    width: 27%;
-    margin-left: 20px;
+    width: 36%;
+    margin: 20px;
+    
 }
 
 @media (max-width: 991px) {
@@ -253,6 +252,7 @@
     position: relative;
     display: inline-block;
     align-items: safe;
+    
 }
 .dropdown-arrow {
     margin-left: 10px;
@@ -281,11 +281,13 @@
 /* Cambiar color de los links al pasar el ratón */
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+    
 }
 
 /* Mostrar el contenido del dropdown al hacer clic en el botón */
 .dropdown.show .dropdown-content {
     display: block;
+    
 }
 
 
@@ -297,9 +299,10 @@
 }
 
 .panel-title {
-    color: #000;
+    color: #02676f;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
+    text-align: center;
 }
 
 .dropdown {
@@ -326,14 +329,16 @@
     font-family: 'Montserrat', sans-serif;
     justify-content: center;
     border-radius: 8px;
+    border: none;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    background-color: #000;
-    font-size: 14px;
+    background-color: #02676f;
+    font-size: 16px;
     margin-top: 16px;
     padding: 12px 24px;
     color: #fff;
     cursor: pointer;
     border-width: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 @media (max-width: 991px) {
@@ -345,7 +350,9 @@
 .stats-container {
     display: flex;
     gap: 42px;
-    margin-top: 30px;
+    margin: 20px;
+    width: 96%;
+
   }
 
 .stats-card {
@@ -400,8 +407,10 @@
 }
 
 .action-button:hover{
-    background-color: white;
-    color: #000;
+    background-color: #02686fcc;
+    
     transition: background-color 0.3s, color 0.3s;
     border-color: rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
