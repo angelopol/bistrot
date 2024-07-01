@@ -1,0 +1,367 @@
+metodo cajas
+
+metodo 1:
+
+  /**
+   * Obtiene todas las entradas de la tabla submodulo_caja
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 2:
+
+  /**
+   * Crea una nueva entrada en la tabla submodulo_caja
+   * @param {Object} data - Datos de la nueva caja
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 3:
+
+
+  /**
+   * Actualiza una entrada existente en la tabla submodulo_caja
+   * @param {number} id - ID de la caja a actualizar
+   * @param {Object} data - Datos actualizados de la caja
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 4:
+
+  /**
+   * Elimina una entrada de la tabla submodulo_caja
+   * @param {number} id - ID de la caja a eliminar
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+
+
+Metodos Salon
+
+metodo 1:
+
+  /**
+   * Obtiene todas las entradas de la tabla submodulo_salon
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 2:
+
+  /**
+   * Crea una nueva entrada en la tabla submodulo_salon
+   * @param {Object} data - Datos del nuevo salón
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo3:
+
+  /**
+   * Actualiza una entrada existente en la tabla submodulo_salon
+   * @param {number} id - ID del salón a actualizar
+   * @param {Object} data - Datos actualizados del salón
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 4:
+
+  /**
+   * Elimina una entrada de la tabla submodulo_salon
+   * @param {number} id - ID del salón a eliminar
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+
+
+Metodos Cliente
+
+metodo 1:
+
+  /**
+   * Obtiene todas las entradas de la tabla submodulo_registro_cliente
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 2:
+
+  /**
+   * Crea una nueva entrada en la tabla submodulo_registro_cliente
+   * @param {Object} data - Datos del nuevo cliente
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 3:
+
+ /**
+   * Actualiza una entrada existente en la tabla submodulo_registro_cliente
+   * @param {number} id - ID del cliente a actualizar
+   * @param {Object} data - Datos actualizados del cliente
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 4:
+
+  /**
+   * Elimina una entrada de la tabla submodulo_registro_cliente
+   * @param {number} id - ID del cliente a eliminar
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+
+
+Metodos de Factura: 
+
+metodo 1:
+
+  /**
+   * Obtiene todas las entradas de la tabla submodulo_caja
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 2:
+
+  /**
+   * Crea una nueva entrada en la tabla submodulo_caja
+   * @param {Object} data - Datos de la nueva factura
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 3:
+
+  /**
+   * Actualiza una entrada existente en la tabla submodulo_caja
+   * @param {number} id - ID de la factura a actualizar
+   * @param {Object} data - Datos actualizados de la factura
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+metodo 4:
+
+  /**
+   * Elimina una entrada de la tabla submodulo_caja
+   * @param {number} id - ID de la factura a eliminar
+   * @param {Function} callback - Función de devolución de llamada para manejar el resultado
+   */
+
+
+
+ejemplo:
+
+import {Router} from 'express'
+import {RegisterController} from '../controller/register.js'
+// ese ultimo import es donde tengo todos mis metodos de insertar,eliminar,actualizar,get
+
+export const createSalonVenta = () => {
+        const registerRouter = Router()
+        const registerController = new RegisterController()
+
+        registerRouter.post('/', registerController.store)
+        registerRouter.get('/', registerController.create)
+
+        return registerRouter
+}
+
+// Caja
+  static async getAll(req, res) {
+    try {
+      const cajas = await VentasSalon_caja.getAll();
+      res.json(cajas);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async getById(req, res) {
+    try {
+      const caja = await VentasSalon_caja.getById(req.params.id);
+      res.json(caja);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  /*
+  static async create(req, res) {
+    try {
+      const newCaja = await VentasSalon_caja.create(req.body);
+      res.json({ id: newCaja.insertId });
+    } catch (error) {
+      console.log("Error")
+      res.status(500).json({ message: error.message });
+    }
+  }
+  */
+
+  
+  static async create(req, res) {
+    const { nombre, tipo, funciona_estado, fecha_mantenimiento, unidad, cantidad } = req.body;
+    pool.query('INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierra, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [turno_horario, tasa_del_dia, apertura, cierra, monto_inicial, monto_final, ingresos, egresos], (error, results) => {
+        if (error) {
+            return res.status(500).json({ error });
+        } else {
+            return res.status(201).send('Elemento creado correctamente');
+        }
+    });
+  };
+  
+
+  static async update(req, res) {
+    try {
+      const updatedCaja = await VentasSalon_caja.update(req.params.id, req.body);
+      res.json({ affectedRows: updatedCaja.affectedRows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async delete(req, res) {
+    try {
+      const deletedCaja = await VentasSalon_caja.delete(req.params.id);
+      res.json({ affectedRows: deletedCaja.affectedRows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+
+
+  // Salon
+  static async getAll(req, res) {
+    try {
+      const salones = await VentasSalon_salon.getAll();
+      res.json(salones);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async getById(req, res) {
+    try {
+      const salon = await VentasSalon_salon.getById(req.params.id);
+      res.json(salon);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async create(req, res) {
+    try {
+      const newSalon = await VentasSalon_salon.create(req.body);
+      res.json({ id: newSalon.insertId });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async update(req, res) {
+    try {
+      const updatedSalon = await VentasSalon_salon.update(req.params.id, req.body);
+      res.json({ affectedRows: updatedSalon.affectedRows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async delete(req, res) {
+    try {
+      const deletedSalon = await VentasSalon_salon.delete(req.params.id);
+      res.json({ affectedRows: deletedSalon.affectedRows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+
+
+  // Cliente
+  static async getAll(req, res) {
+    try {
+      const clientes = await VentasSalon_cliente.getAll();
+      res.json(clientes);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+
+  static async getById(req, res) {
+    try {
+      const cliente = await VentasSalon_cliente.getById(req.params.id);
+      res.json(cliente);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async create(req, res) {
+    try {
+      const newCliente = await VentasSalon_cliente.create(req.body);
+      res.json({ id: newCliente.insertId });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async update(req, res) {
+    try {
+      const updatedCliente = await VentasSalon_cliente.update(req.params.id, req.body);
+      res.json({ affectedRows: updatedCliente.affectedRows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async delete(req, res) {
+    try {
+      const deletedCliente = await VentasSalon_cliente.delete(req.params.id);
+      res.json({ affectedRows: deletedCliente.affectedRows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+
+
+  // Factura
+  static async getAll(req, res) {
+    try {
+      const facturas = await VentasSalon_factura.getAll();
+      res.json(facturas);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async getById(req, res) {
+    try {
+      const factura = await VentasSalon_factura.getById(req.params.id);
+      res.json(factura);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async create(req, res) {
+    try {
+      const newFactura = await VentasSalon_factura.create(req.body);
+      res.json({ id: newFactura.insertId });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async update(req, res) {
+    try {
+      const updatedFactura = await VentasSalon_factura.update(req.params.id, req.body);
+      res.json({ affectedRows: updatedFactura.affectedRows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  static async delete(req, res) {
+    try {
+      const deletedFactura = await VentasSalon_factura.delete(req.params.id);
+      res.json({ affectedRows: deletedFactura.affectedRows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
