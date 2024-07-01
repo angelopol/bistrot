@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISTROT CHEZ RÉMY</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .restaurant-header {
+            background-color: #013d1f;
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            color: #fff;
+            font-weight: 400;
+            line-height: 150%;
+            padding: 34px 55px;
+        }
+        @media (max-width: 991px) {
+            .restaurant-header {
+                max-width: 100%;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+        }
+        .restaurant-name {
+            letter-spacing: -0.24px;
+            flex-grow: 1;
+            flex-basis: auto;
+            margin: auto 0;
+            font: 24px Krona One, sans-serif;
+        }
+        .user-info {
+            border-radius: 8px;
+            border: 1px solid #fff;
+            background-color: #013d1f;
+            display: flex;
+            gap: 16px;
+            font-size: 16px;
+            white-space: nowrap;
+            padding: 8px 16px;
+        }
+        @media (max-width: 991px) {
+            .user-info {
+                white-space: initial;
+            }
+        }
+        .user-name {
+            font-family: Inter, sans-serif;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .user-avatar {
+            aspect-ratio: 1;
+            width: 24px;
+        }
+        .main-content {
+            align-self: center;
+            width: 100%;
+            max-width: 1386px;
+        }
+        @media (max-width: 991px) {
+            .main-content {
+                max-width: 100%;
+            }
+        }
+        .content-wrapper {
+            display: flex;
+            gap: 20px;
+        }
+        @media (max-width: 991px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .orders-section {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 68%;
+            margin-left: 0;
+        }
+        @media (max-width: 991px) {
+            .orders-section {
+                width: 100%;
+            }
+        }
+        .orders-container {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+            margin: auto 0;
+        }
+        @media (max-width: 991px) {
+            .orders-container {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+        }
+        .orders-header {
+            display: flex;
+            width: 100%;
+            align-items: flex-start;
+            gap: 20px;
+            color: #000;
+            font-weight: 500;
+            white-space: nowrap;
+            line-height: 150%;
+            justify-content: space-between;
+        }
+        @media (max-width: 991px) {
+            .orders-header {
+                max-width: 100%;
+                flex-wrap: wrap;
+                white-space: initial;
+            }
+        }
+        .orders-title {
+            align-self: start;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            font-size: 35px;
+            padding: 0 20px;
+        }
+        @media (max-width: 991px) {
+            .orders-title {
+                white-space: initial;
+            }
+        }
+        .orders-icon {
+            aspect-ratio: 1;
+            width: 49px;
+            align-self: start;
+        }
+        .orders-text {
+            font-family: Inter, sans-serif;
+            align-self: end;
+            margin-top: 49px;
+            flex-grow: 1;
+            flex-basis: auto;
+        }
+        @media (max-width: 991px) {
+            .orders-text {
+                margin-top: 40px;
+            }
+        }
+        .order-categories {
+            border-radius: 12px;
+            background-color: #f5f5f5;
+            align-self: end;
+            display: flex;
+            margin-top: 36px;
+            gap: 8px;
+            font-size: 16px;
+            padding: 8px;
+        }
+        @media (max-width: 991px) {
+            .order-categories {
+                white-space: initial;
+            }
+        }
+        .category-button {
+            font-family: Inter, sans-serif;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .category-button-active {
+            background-color: #fff;
+        }
+        .category-button-inactive {
+            background-color: #f5f5f5;
+        }
+        .order-grid {
+            align-self: end;
+            display: flex;
+            width: 730px;
+            max-width: 100%;
+            flex-direction: column;
+            margin: 49px 45px 0 0;
+        }
+        @media (max-width: 991px) {
+            .order-grid {
+                margin: 40px 10px 0 0;
+            }
+        }
+        .order-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        @media (max-width: 991px) {
+            .order-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .order-item {
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: flex;
+            flex-grow: 1;
+            padding-bottom: 80px;
+            flex-direction: column;
+            color: #000;
+            font-weight: 500;
+            line-height: 150%;
+            width: 100%;
+        }
+        @media (max-width: 991px) {
+            .order-item {
+                margin-top: 32px;
+            }
+        }
+        .order-item-header {
+            background-color: #f5f5f5;
+            align-items: center;
+            padding: 39px 60px 5px;
+            font: 16px Montserrat, sans-serif;
+        }
+        @media (max-width: 991px) {
+            .order-item-header {
+                padding: 0 20px;
+            }
+        }
+        .order-item-content {
+            align-self: center;
+            margin-top: 20px;
+            font: 14px Montserrat, sans-serif;
+        }
+        .order-actions {
+            align-self: start;
+            display: flex;
+            gap: 20px;
+            font-size: 16px;
+            color: #fff;
+            font-weight: 500;
+            line-height: 150%;
+            justify-content: space-between;
+            margin: 65px 0 0 23px;
+        }
+        @media (max-width: 991px) {
+            .order-actions {
+                flex-wrap: wrap;
+                margin-top: 40px;
+            }
+        }
+        .action-button {
+            font-family: Inter, sans-serif;
+            justify-content: center;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            background-color: #000;
+            padding: 12px 24px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        @media (max-width: 991px) {
+            .action-button {
+                padding: 0 20px;
+            }
+        }
+        .order-details {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 32%;
+            margin-left: 20px;
+        }
+        @media (max-width: 991px) {
+            .order-details {
+                width: 100%;
+            }
+        }
+        .order-details-container {
+            background-color: #f5f5f5;
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            font-size: 16px;
+            color: #000;
+            line-height: 150%;
+            justify-content: center;
+            width: 100%;
+            padding: 79px 23px;
+        }
+        @media (max-width: 991px) {
+            .order-details-container {
+                margin-top: 40px;
+                padding: 0 20px;
+            }
+        }
+        .order-details-content {
+            border-radius: 15px;
+            background-color: #f5f5f5;
+            display: flex;
+            margin-top: 57px;
+            width: 100%;
+            flex-direction: column;
+            padding: 77px 31px 50px;
+        }
+        @media (max-width: 991px) {
+            .order-details-content {
+                margin-top: 40px;
+                padding: 0 20px;
+            }
+        }
+        .order-number {
+            font-family: Inter, sans-serif;
+            font-weight: 500;
+            line-height: 24px;
+        }
+        .order-type {
+            margin-top: 5px;
+            font: 600 40px/110% Inter, sans-serif;
+        }
+        .order-item-row {
+            justify-content: center;
+            align-items: start;
+            border-top: 1px solid #787878;
+            display: flex;
+            margin-top: 17px;
+            gap: 20px;
+            white-space: nowrap;
+            padding: 18px 0 10px;
+        }
+        @media (max-width: 991px) {
+            .order-item-row {
+                white-space: initial;
+            }
+        }
+        .order-item-name {
+            font-family: Inter, sans-serif;
+            font-weight: 500;
+        }
+        .order-item-value {
+            text-align: right;
+            font-family: Inter, sans-serif;
+            font-weight: 400;
+        }
+        .order-ready-button {
+            font-family: Inter, sans-serif;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            background-color: #000;
+            align-self: center;
+            margin-top: 214px;
+            width: 192px;
+            max-width: 100%;
+            color: #fff;
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+        }
+        @media (max-width: 991px) {
+            .order-ready-button {
+                margin-top: 40px;
+                white-space: initial;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="restaurant-header">
+        <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
+        <div class="user-info">
+            <span class="user-name">Gerente0000</span>
+            <img loading="lazy" src="http://b.io/ext_3-" class="user-avatar" alt="User avatar" />
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="content-wrapper">
+            <section class="orders-section">
+                <div class="orders-container">
+                    <div class="orders-header">
+                        <div class="orders-title">
+                            <img loading="lazy" src="http://b.io/ext_4-" class="orders-icon" alt="Orders icon" />
+                            <h2 class="orders-text">ORDENES</h2>
+                        </div>
+                        <nav class="order-categories">
+                            <button class="category-button category-button-active">Mesas</button>
+                            <button class="category-button category-button-inactive">Bar</button>
+                            <button class="category-button category-button-inactive">Terraza</button>
+                            <button class="category-button category-button-inactive">Salon</button>
+                        </nav>
+                    </div>
+                    <div class="order-grid">
+                        <div class="order-row">
+                            <article class="order-item">
+                                <header class="order-item-header">MESA 01</header>
+                                <div class="order-item-content">ORDEN</div>
+                            </article>
+                            <article class="order-item">
+                                <header class="order-item-header">MESA 01</header>
+                                <div class="order-item-content">ORDEN</div>
+                            </article>
+                            <article class="order-item">
+                                <header class="order-item-header">MESA 01</header>
+                                <div class="order-item-content">ORDEN</div>
+                            </article>
+                        </div>
+                        <div class="order-row">
+                            <article class="order-item">
+                                <header class="order-item-header">MESA 01</header>
+                                <div class="order-item-content">ORDEN</div>
+                            </article>
+                            <article class="order-item">
+                                <header class="order-item-header">MESA 01</header>
+                                <div class="order-item-content">ORDEN</div>
+                            </article>
+                            <article class="order-item">
+                                <header class="order-item-header">MESA 01</header>
+                                <div class="order-item-content">ORDEN</div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="order-actions">
+                        <button class="action-button">devolver orden</button>
+                        <button class="action-button">hacer de nuevo</button>
+                        <button class="action-button">PROCESAR</button>
+                    </div>
+                </div>
+            </section>
+            <aside class="order-details">
+                <div class="order-details-container">
+                    <div class="order-details-content">
+                        <h3 class="order-number">MESA 00</h3>
+                        <h2 class="order-type">PEDIDO</h2>
+                        <div class="order-item-row">
+                            <span class="order-item-name">coctel</span>
+                            <span class="order-item-value">Entrada</span>
+                        </div>
+                        <div class="order-item-row">
+                            <span class="order-item-name">coctel</span>
+                            <span class="order-item-value">10min</span>
+                        </div>
+                        <div class="order-item-row">
+                            <span class="order-item-name">coctel</span>
+                            <span class="order-item-value">12:00-12:00</span>
+                        </div>
+                        <div class="order-item-row">
+                            <span class="order-item-name">coctel</span>
+                            <span class="order-item-value">00.00 $</span>
+                        </div>
+                        <button class="order-ready-button">listo</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+</html>

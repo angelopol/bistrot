@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISTROT CHEZ RÉMY</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .bistrot-header {
+            background-color: #013d1f;
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            color: #fff;
+            font-weight: 400;
+            line-height: 150%;
+            padding: 34px 55px;
+        }
+        @media (max-width: 991px) {
+            .bistrot-header {
+                max-width: 100%;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+        }
+        .bistrot-title {
+            letter-spacing: -0.24px;
+            flex-grow: 1;
+            flex-basis: auto;
+            margin: auto 0;
+            font: 24px 'Krona One', sans-serif;
+        }
+        .user-info {
+            border-radius: var(--sds-size-radius-200);
+            border: 1px solid #fff;
+            background-color: #013d1f;
+            display: flex;
+            gap: 16px;
+            font-size: 16px;
+            white-space: nowrap;
+            padding: 8px 16px;
+        }
+        @media (max-width: 991px) {
+            .user-info {
+                white-space: initial;
+            }
+        }
+        .user-name {
+            font-family: 'Inter', sans-serif;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .user-avatar {
+            aspect-ratio: 1;
+            object-fit: auto;
+            object-position: center;
+            width: 24px;
+        }
+        .main-content {
+            width: 100%;
+        }
+        @media (max-width: 991px) {
+            .main-content {
+                max-width: 100%;
+            }
+        }
+        .content-wrapper {
+            gap: 20px;
+            display: flex;
+        }
+        @media (max-width: 991px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 21%;
+            margin-left: 0;
+        }
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 100%;
+            }
+        }
+        .sidebar-menu {
+            background-color: rgba(237, 237, 237, 0.93);
+            display: flex;
+            width: 100%;
+            flex-grow: 1;
+            flex-direction: column;
+            font-size: 16px;
+            color: #02676f;
+            font-weight: 500;
+            white-space: nowrap;
+            line-height: 150%;
+            margin: 0 auto;
+            padding: 72px 9px;
+        }
+        @media (max-width: 991px) {
+            .sidebar-menu {
+                margin-top: 40px;
+                white-space: initial;
+            }
+        }
+        .menu-item {
+            border-radius: var(--sds-size-radius-200);
+            background-color: rgba(246, 246, 246, 0.96);
+            display: flex;
+            gap: 16px;
+            padding: 8px 16px;
+            margin-top: 8px;
+        }
+        @media (max-width: 991px) {
+            .menu-item {
+                white-space: initial;
+            }
+        }
+        .menu-icon {
+            aspect-ratio: 1;
+            object-fit: auto;
+            object-position: center;
+            width: 20px;
+            fill: #02676f;
+            margin: auto 0;
+        }
+        .menu-text {
+            font-family: 'Inter', sans-serif;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .help-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1px 0;
+        }
+        @media (max-width: 991px) {
+            .help-item {
+                white-space: initial;
+            }
+        }
+        .help-icon {
+            font-family: 'Inter', sans-serif;
+            border: 2px solid #02676f;
+            background-color: #fff;
+            border-radius: 50%;
+            align-items: center;
+            width: 22px;
+            justify-content: center;
+            height: 22px;
+        }
+        @media (max-width: 991px) {
+            .help-icon {
+                white-space: initial;
+            }
+        }
+        .main-section {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 79%;
+            margin-left: 20px;
+        }
+        @media (max-width: 991px) {
+            .main-section {
+                width: 100%;
+            }
+        }
+        .production-management {
+            align-content: flex-start;
+            flex-wrap: wrap;
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+            margin: auto 0;
+            padding: 0 20px 80px;
+        }
+        @media (max-width: 991px) {
+            .production-management {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+        }
+        .section-title {
+            color: #000;
+            letter-spacing: -0.68px;
+            font: 600 34px/110% 'Inter', sans-serif;
+        }
+        @media (max-width: 991px) {
+            .section-title {
+                max-width: 100%;
+            }
+        }
+        .management-grid {
+            margin-top: 35px;
+        }
+        @media (max-width: 991px) {
+            .management-grid {
+                max-width: 100%;
+                padding-right: 20px;
+            }
+        }
+        .grid-container {
+            gap: 20px;
+            display: flex;
+        }
+        @media (max-width: 991px) {
+            .grid-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 25%;
+            margin-left: 20px;
+        }
+        .grid-item:first-child {
+            margin-left: 0;
+        }
+        @media (max-width: 991px) {
+            .grid-item {
+                width: 100%;
+            }
+        }
+        .item-content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            justify-content: center;
+            align-self: stretch;
+            border-radius: var(--sds-size-radius-200);
+            overflow: hidden;
+            aspect-ratio: 0.86;
+            flex-grow: 1;
+            color: #fff;
+            white-space: nowrap;
+            text-align: center;
+            letter-spacing: -1.92px;
+            padding: 110px 21px 80px;
+            font: 600 48px/100% 'Inter', sans-serif;
+            text-decoration: none;
+        }
+        @media (max-width: 991px) {
+            .item-content {
+                font-size: 40px;
+                margin-top: 30px;
+                padding-left: 20px;
+                white-space: initial;
+            }
+        }
+        .item-image {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .item-text {
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header class="bistrot-header">
+        <h1 class="bistrot-title">BISTROT CHEZ RÉMY</h1>
+        <div class="user-info">
+            <span class="user-name">Gerente0000</span>
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bd69caf513a031a441b0ae2c28050f8e01024dfd2f15fb76144d64f2f7d9df8f?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="User avatar" class="user-avatar" />
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="content-wrapper">
+            <nav class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8aeb03e907893948abf056ea4cd71ca94895e19e6380045d3aaff552cb4b4116?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Home icon" class="menu-icon" />
+                        <span class="menu-text">Inicio</span>
+                    </li>
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/07a7b3b0c82f76b259051b3c06e22579ada99c42b0bac25e83773ec5c9c15edc?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Sales icon" class="menu-icon" />
+                        <span class="menu-text">Ventas/Salon</span>
+                    </li>
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a0fc2e002b9d26adb97ce39f9f1705d7df3e9a386ef4cbb45dc7f6a8bcff7895?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Purchases icon" class="menu-icon" />
+                        <span class="menu-text">Compras</span>
+                    </li>
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4b28cd707f6670c8eb27c51e2dc84c517381eb9a1292c051fdec16cfb5e5375b?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="HR icon" class="menu-icon" />
+                        <span class="menu-text">RRHH</span>
+                    </li>
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d06c0ce42016c9edd479c3398d1198fd645e2097b5d85e2d6008e6a588a30072?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Inventory icon" class="menu-icon" />
+                        <span class="menu-text">Inventario</span>
+                    </li>
+                    <li class="menu-item">
+                        <span class="menu-text">Mantenimiento</span>
+                    </li>
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/65420d7b2fa9eda8e903f8608c86b007d3391d54045913100876705c1962068d?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Kitchen icon" class="menu-icon" />
+                        <span class="menu-text">Cocina/Bar</span>
+                    </li>
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dc6e42d71ff47b147816c83b4b0ca04935a942e5800885d2c3605a52a7a5eb51?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Reservations icon" class="menu-icon" />
+                        <span class="menu-text">Reservas</span>
+                    </li>
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9902f1c16af56e6c7ea24d201e76d77657ebc5769994165240feb6861cdfbc7e?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Reports icon" class="menu-icon" />
+                        <span class="menu-text">Reportes</span>
+                    </li>
+                    <li class="menu-item">
+                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/24c6e997e8d79345382a5dec7f629f61217e270de7c0903529b6f377fec8320a?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Settings icon" class="menu-icon" />
+                        <span class="menu-text">Configuraciones</span>
+                    </li>
+                    <li class="menu-item">
+                        <div class="help-item">
+                            <div class="help-icon">?</div>
+                        </div>
+                        <span class="menu-text">Ayuda</span>
+                    </li>
+                </ul>
+            </nav>
+            <section class="main-section">
+                <div class="production-management">
+                    <h2 class="section-title">Gestion de Produccion</h2>
+                    <div class="management-grid">
+                        <div class="grid-container">
+                            <div class="grid-item">
+                                <a href="cocinaAbiertaProduciendo.html" class="item-content">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9901f18874d9a6c68a1a1e42286f8534db853076edf794b42dbfec9b0007f666?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Kitchen management" class="item-image"   />
+                                    <span class="item-text">COCINA</span>
+                                </a>
+                            </div>
+                            <div class="grid-item">
+                                <a href="BarAbierto.html" class="item-content">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9901f18874d9a6c68a1a1e42286f8534db853076edf794b42dbfec9b0007f666?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Bar management" class="item-image" />
+                                    <span class="item-text">BAR</span>
+                                </a>
+                            </div>
+                            <div class="grid-item">
+                                <a href="menu.html" class="item-content">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9901f18874d9a6c68a1a1e42286f8534db853076edf794b42dbfec9b0007f666?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Menu management" class="item-image" />
+                                    <span class="item-text">MENU</span>
+                                </a>
+                            </div>
+                            <div class="grid-item">
+                                <a href="inventario.html" class="item-content">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9901f18874d9a6c68a1a1e42286f8534db853076edf794b42dbfec9b0007f666?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Inventory management" class="item-image" />
+                                    <span class="item-text">Inventario</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
