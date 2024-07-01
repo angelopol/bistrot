@@ -1,4 +1,4 @@
-const pool = require('../models/conexion');
+import {pool} from '../models/conexion.js';
 
 //const {VentasSalon_caja, VentasSalon_salon, VentasSalon_cliente, VentasSalon_factura} = require('../models/ventas_salon');
 
@@ -47,7 +47,7 @@ async function initializeData() {
 //initializeData(); // esto es para inicializar datos abitrarios a las tablas
 
 
-class ControllerVentasSalon {
+export class ControllerVentasSalon {
 
   // Caja
   getAll_c = async (req, res) => {
@@ -304,5 +304,3 @@ class ControllerVentasSalon {
   }
 
 }
-
-module.exports = ControllerVentasSalon;

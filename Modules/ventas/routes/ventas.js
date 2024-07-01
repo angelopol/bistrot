@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { ControllerVentasSalon } from '../controllers/ventas_salon'
+import { ControllerVentasSalon } from '../controllers/ventas_salon.js'
 
 export const createVentasRouter = () => {
   const VentasRouter = Router()
   const controllerVentasSalon = new ControllerVentasSalon()
-  
+
   VentasRouter.use(errorMiddleware);
   // Rutas de Caja
   VentasRouter.get('/caja', controllerVentasSalon.getAll_c);
