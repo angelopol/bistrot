@@ -1,0 +1,225 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+/* Asegúrate de ajustar otras reglas específicas según sea necesario */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+/* Ajusta otras reglas específicas como .restaurant-header, .table-name, etc. */
+.restaurant-title, .Contenido {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+
+}
+
+
+.restaurant-header {
+    background-color: #013D1F;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: #fff;
+
+    line-height: 150%;
+    padding: 34px 5%;
+    box-sizing: border-box;
+}
+
+
+.restaurant-title {
+    letter-spacing: -1%;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+    font-size: 24px;
+}
+
+.user-info {
+    border-radius: 8px;
+    border: 1px solid #fff;
+    background-color: #013d1f;
+    display: flex;
+    gap: 16px;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 8px 16px;
+}
+
+
+.user-name {
+
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.user-icon {
+    width: 24px;
+    height: 24px;
+}
+
+
+.table-grid {
+    margin-left: 60px;
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 20px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+.table-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 120px; 
+    font-size: 14px; 
+    color: #000;
+    line-height: 150%;
+    margin: 10px;
+    width: 220px; 
+    padding-bottom: 50px; 
+}
+.table-header {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    padding-top: 20px; 
+}
+
+
+
+.table-info {
+    align-self: center;
+    display: flex;
+    gap: 5px;
+}
+
+.table-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.table-number {
+    margin: auto 0;
+}
+
+.table-name {
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+
+
+
+.nav-tabs {
+    border-radius: 12px;
+    border: 1px solid #5da0a6;
+    background-color: #f4f4f4;
+    align-self: flex-end;
+    display: flex;
+    gap: 12px;
+    color: #02676f;
+    white-space: nowrap;
+    border: none;
+    line-height: 150%;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.nav-tab {
+    font-size: 17px;
+    font-weight: 400;
+    justify-content: center;
+    border-radius: var(--sds-size-radius-200);
+    background-color: #F5F5F5;
+
+    padding: 10px 16px;
+    color: #02676f;
+
+    border: none;
+    cursor: pointer;
+}
+
+.nav-tab-active {
+    background-color: #02676f;
+    /* Fondo verde para el botón activo */
+    color: #fff;
+    /* Texto blanco para el botón activo */
+    border-radius: 8px;
+}
+
+.nav-tab-inactive {
+    background-color: #F5F5F5;
+    /* Color de fondo blanco para los botones desactivados */
+    color: #02676f;
+    /* Texto verde para los botones desactivados */
+}
+
+
+.action-panel {
+    
+    border-radius: 15px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+    line-height: 150%;
+    width: 120%;
+    margin: 20px;
+    padding: 30px;
+}
+
+
+.action-button {
+    font-size: 16px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #02676f;
+    color: white;
+    padding: 13px 16px;
+    margin: 15px;
+    cursor: pointer;
+    width: 80%;
+    border: none;
+}
+
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    gap: 20px;
+}
+
+.Salida{margin: 40px;}
+
+.Contenido{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 20px;
+    align-items: start;
+    
+    
+
+}
