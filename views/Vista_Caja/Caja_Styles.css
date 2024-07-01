@@ -81,7 +81,7 @@ body {
 
 .table-card {
     border-radius: 12px;
-    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.3), 0 0 15px 0 rgba(0, 0, 0, 0.3);
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -92,9 +92,10 @@ body {
     margin: 10px;
     width: 220px; 
     padding-bottom: 50px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .table-header {
-    background-color: #f5f5f5;
+    background-color: #D9D9D9;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,7 +131,7 @@ body {
 .nav-tabs {
     border-radius: 12px;
     border: 1px solid #5da0a6;
-    background-color: #f4f4f4;
+    background-color: #D9D9D9;
     align-self: flex-end;
     display: flex;
     gap: 12px;
@@ -146,8 +147,8 @@ body {
     font-size: 17px;
     font-weight: 400;
     justify-content: center;
-    border-radius: var(--sds-size-radius-200);
-    background-color: #F5F5F5;
+    border-radius: 8px;
+    background-color: #D9D9D9;
 
     padding: 10px 16px;
     color: #02676f;
@@ -161,21 +162,21 @@ body {
     /* Fondo verde para el botón activo */
     color: #fff;
     /* Texto blanco para el botón activo */
-    border-radius: 8px;
 }
 
 .nav-tab-inactive {
-    background-color: #F5F5F5;
+    background-color: #D9D9D9;
     /* Color de fondo blanco para los botones desactivados */
     color: #02676f;
     /* Texto verde para los botones desactivados */
+    border-radius: 8px;
 }
 
 
 .action-panel {
     
     border-radius: 15px;
-    background-color: #f4f4f4;
+    background-color: #D9D9D9;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -201,6 +202,8 @@ body {
     cursor: pointer;
     width: 80%;
     border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
 
 .sidebar-right {
@@ -219,7 +222,19 @@ body {
     width: 90%;
     margin: 20px;
     align-items: start;
-    
-    
+}
+.table-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.6), 0 0 20px 0 rgba(0, 0, 0, 0.6);
+}
+
+.action-button:hover{   
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav-tab-inactive:hover{
+    background-color: #bbbbbb;
+    transition:  background-color 0.3s ease;
 
 }
