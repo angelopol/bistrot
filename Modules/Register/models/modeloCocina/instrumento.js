@@ -52,7 +52,6 @@ export class InstrumentoModel{
     }
 
     static async delete({id}) {
-        const connection = await mysql.createConnection(config);
         try {
             const query = "DELETE FROM instrumento WHERE id = ?";
             const [result] = await connection.query(query, [id]);
@@ -75,8 +74,6 @@ export class InstrumentoModel{
             nombre,
             funciona
         } = input;
-
-        const connection = await mysql.createConnection(config);
 
         try {
             let updates = [];

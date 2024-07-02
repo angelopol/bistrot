@@ -67,7 +67,6 @@ export class ComidaModel{
     }
 
     static async delete({id}) {
-        const connection = await mysql.createConnection(config);
         try {
             // Consulta SQL para eliminar la comida por ID
             const query = "DELETE FROM comida WHERE id = ?";
@@ -94,8 +93,6 @@ export class ComidaModel{
             instrumentos,
             ingredientes
         } = input;
-
-        const connection = await mysql.createConnection(config);
 
         try {
             // Construir la parte de la consulta SQL para actualizar
