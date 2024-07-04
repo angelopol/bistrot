@@ -2,8 +2,12 @@
   <head>
     <title>Mantenimiento</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   </head>
   <body>
+    
+    <!-- ESTE ES EL HEADER (BARRA VERDE EN LA PARTE SUPERIOR)-->
     <header class="header">
       <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
       <div class="user-info">
@@ -11,8 +15,16 @@
         <img src="resources/iconos_barra/flecha_hacia_abajo_usuario.png" alt="User profile icon" class="user-icon" />
       </div>
     </header>
+
+
+
+
+    <!-- CONTENEDOR DE TODO EL RESTO DEL SITIO WEB-->
+
     <div class="content-wrapper">
       <div class="main-content">
+
+        <!-- ESTE ES EL SIDEBAR-->
         <nav class="sidebar">
           <ul class="nav-menu">
             <li class="nav-item">
@@ -61,15 +73,43 @@
             </li>
           </ul>
         </nav>
+
+        <!--SECCION PRINCIPAL DEL PROGRAMA-->
+        <div><h1>Mantenimiento</h1></div>
+
+        <div class="container">
+          <div class="card">
+            <i class="fas fa-user"></i>
+            <p>Contactos</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-user"></i>
+            <p>Personal</p>
+          </div>
+          <div class="card">
+            <i class="fas fa-envelope"></i>
+            <p>Reportes</p>
+          </div>
+        </div>
+      
+        <script src="https://kit.fontawesome.com/your-fontawesome-kit-id.js" crossorigin="anonymous"></script>
+        
+        <!--
         <main class="main-section">
-          <section class="section-header">
-            <h2 class="section-title">Mantenimiento</h2>
+          <!-- TITULO Y BOTONES PRINCIPALES
+          <div class="section-header">
+            <h2 class="section-title">Mantenimiento</h2><br>
+            
+            <button class="botones"> Contactos</button>
+            
+          </div>
+            
             <div class="action-buttons">
               <div class="button-container">
                 <div class="button-wrapper">
                   <button class="action-button">
                     <img src="resources/provedores.png" alt="Providers icon" class="button-icon" />
-                    <span class="button-text">Provedores</span>
+                    <span class="button-text">Contactos</span>
                   </button>
                 </div>
                 <div class="button-wrapper">
@@ -81,25 +121,36 @@
               </div>
             </div>
           </section>
+
+          <!--
+          <section class="section-header">
+            <h2 class="section-title">Mantenimiento</h2>
+            
+          </section>
+          
+          <!-- SECCION DE HISTORIAL DE MANTENIMIENTO
+          
           <section class="maintenance-section">
-            <div class="maintenance-content">
+            <div class="maintenance-content"> 
+              <!--
               <div class="maintenance-list">
                 <div class="maintenance-table">
                   <div class="table-header">
                     <div class="header-content">
-                      <h3 class="header-title">Mantenimientos en curso</h3>
+                      <h3 class="header-title">Historial de mantenimientos</h3>
                       <div class="header-labels">
-                        <span class="label">Nombre</span>
-                        <span class="label">Tipo</span>
+                        <span class="label">Mantenimiento</span>
+                        <span class="label">Responsable</span>
                       </div>
                     </div>
-                    <span class="date-label">Fecha de Revision</span>
-                    <span class="status-label">Estatus</span>
+                    <span class="date-label">Inicio</span>
+                    <span class="date-label">Fin</span>
                   </div>
                   <div class="table-row">
-                    <span class="row-name">website.net</span>
+                    <span class="row-name">Nombre 1</span>
                     <div class="row-details">
-                      <span class="row-type">4321</span>
+                      <span class ="row-type">Julio TOvar</span>
+                      <span class="row-type">02/07 8:00pm</span>
                       <span class="row-status">En proceso</span>
                     </div>
                   </div>
@@ -140,17 +191,24 @@
                   </div>
                 </div>
               </div>
+            
+              <!-- CALENDARIO Y AGENDA
               <aside class="calendar-section">
                 <div class="calendar-container">
+                  <!-- Calendario 
                   <div class="calendar-widget">Calendario de mantenimiento</div>
+
+                  <!--AGENDAR MANTENIMIENTO
                   <button class="schedule-button">Agendar Mantenimiento</button>
                 </div>
               </aside>
             </div>
-          </section>
+          
         </main>
       </div>
+
     </div></span>
                     <span class="status-label"></span>
-  </body>
+  -->
+                  </body>
 </html>

@@ -1,6 +1,7 @@
 body{
     border: 0;
     margin: 0;
+    width: 100%;
 }
 
 .main-container{
@@ -12,7 +13,7 @@ body{
 .header{
     background-color: #013d1f;
     display: flex;
-    width: 100%;
+    max-width: 100%;
     gap: 20px;
     color: #fff;
     font-weight: 400;
@@ -57,7 +58,6 @@ body{
     width: 100%;
 }
 .main-content {
-    gap: 20px;
     display: flex;
 }
 
@@ -66,7 +66,7 @@ body{
     flex-direction: column;
     line-height: normal;
     width: 19%;
-    margin-left: 0;
+    margin: 0;
 }
 
 .nav-menu {
@@ -145,21 +145,59 @@ body{
 }
 
 .section-header {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 33% 33% 33% ;
+    max-width: 100%;
+    height: 300px;
+    background-color: #02676f;
+    /*
     display: flex;
     margin-top: 31px;
     flex-direction: column;
     padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+    */
 }
 
 .section-title {
+    grid-row: 1 / 3;
+    grid-column: 1 / 1;
     color: #000;
     letter-spacing: -0.68px;
-    align-self: flex-end;
-    margin: 10px 0;
-    margin-right: 450px;
     font: 600 34px/110% Inter, sans-serif;
+    background-color: aqua;
+    }
+.botones {
+    grid-column: 2 / 2;
 }
 
+/*INTENTO BLACK BOX*/
+.container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 80px;
+    width: 150px;
+  }
+
+  .card i {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+/*FIN DEL INTENTO*/
 .action-buttons {
     align-self: center;
     margin-top: 0;
@@ -174,7 +212,7 @@ body{
 .button-wrapper {
     display: flex;
     flex-direction: column;
-    line-height: normal;
+    line-height: normal;    
     width: 50%;
     margin-left: 0;
 }
@@ -213,6 +251,7 @@ body{
     background-color: #d9d9d9;
     margin-top: 20px;
     padding: 40px 40px;
+    width: 100%;
 }
 
 .maintenance-content {
