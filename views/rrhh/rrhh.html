@@ -1,0 +1,263 @@
+<style>
+  .main-container { background-color: #fff; display: flex; flex-direction: column; }
+  .header { background-color: #013d1f; display: flex; width: 100%; gap: 20px; color: #fff; font-weight: 400; line-height: 150%; padding: 34px 55px; }
+  @media (max-width: 991px) {
+    .header { max-width: 100%; flex-wrap: wrap; padding: 0 20px; }
+  }
+  .restaurant-name { letter-spacing: -0.24px; flex-grow: 1; flex-basis: auto; margin: auto 0; font: 24px Krona One, sans-serif; }
+  .user-info { border-radius: 8px; border: 1px solid #fff; background-color: #013d1f; display: flex; gap: 16px; font-size: 16px; white-space: nowrap; padding: 8px 16px; }
+  @media (max-width: 991px) {
+    .user-info { white-space: initial; }
+  }
+  .username { font-family: Inter, sans-serif; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .user-icon { aspect-ratio: 1; object-fit: auto; object-position: center; width: 24px; }
+  .content-wrapper { width: 100%; }
+  @media (max-width: 991px) {
+    .content-wrapper { max-width: 100%; }
+  }
+  .main-content { gap: 20px; display: flex; }
+  @media (max-width: 991px) {
+    .main-content { flex-direction: column; align-items: stretch; gap: 0; }
+  }
+  .sidebar { display: flex; flex-direction: column; line-height: normal; width: 23%; margin-left: 0; }
+  @media (max-width: 991px) {
+    .sidebar { width: 100%; }
+  }
+  .nav-menu { background-color: rgba(237, 237, 237, 0.93); display: flex; width: 100%; flex-grow: 1; flex-direction: column; font-size: 16px; color: #02676f; font-weight: 500; white-space: nowrap; line-height: 150%; margin: 0 auto; padding: 72px 9px; }
+  @media (max-width: 991px) {
+    .nav-menu { margin-top: 40px; white-space: initial; }
+  }
+  .nav-item { border-radius: 8px; background-color: rgba(246, 246, 246, 0.96); display: flex; gap: 16px; padding: 8px 16px; margin-top: 8px; }
+  @media (max-width: 991px) {
+    .nav-item { white-space: initial; }
+  }
+  .nav-text { font-family: Inter, sans-serif; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .nav-icon { aspect-ratio: 1; object-fit: auto; object-position: center; width: 20px; fill: #02676f; margin: auto 0; }
+  .help-item { border-radius: 8px; background-color: rgba(246, 246, 246, 0.96); display: flex; margin-top: 8px; gap: 16px; padding: 8px 16px; }
+  @media (max-width: 991px) {
+    .help-item { white-space: initial; }
+  }
+  .help-icon-wrapper { display: flex; flex-direction: column; justify-content: center; padding: 1px 0; }
+  @media (max-width: 991px) {
+    .help-icon-wrapper { white-space: initial; }
+  }
+  .help-icon { font-family: Inter, sans-serif; stroke-width: 2px; border: 2px solid #02676f; background-color: #fff; border-radius: 50%; align-items: center; width: 22px; justify-content: center; height: 22px; }
+  @media (max-width: 991px) {
+    .help-icon { white-space: initial; }
+  }
+  .main-section { display: flex; flex-direction: column; line-height: normal; width: 77%; margin-left: 20px; }
+  @media (max-width: 991px) {
+    .main-section { width: 100%; }
+  }
+  .content-area { display: flex; flex-direction: column; align-self: stretch; margin: auto 0; padding: 0 20px; }
+  @media (max-width: 991px) {
+    .content-area { max-width: 100%; margin-top: 40px; }
+  }
+  .section-title { color: #000; letter-spacing: -0.68px; font: 600 34px/110% Inter, sans-serif; }
+  @media (max-width: 991px) {
+    .section-title { max-width: 100%; }
+  }
+  .search-bar { justify-content: end; display: flex; margin-top: 45px; width: 511px; max-width: 100%; gap: 16px; font-size: 20px; font-weight: 500; line-height: 150%; }
+  @media (max-width: 991px) {
+    .search-bar { flex-wrap: wrap; margin-top: 40px; }
+  }
+  .search-input { font-family: Inter, sans-serif; align-items: start; border-radius: 8px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); border: 1px solid #e0e0e0; background-color: #fff; color: #828282; justify-content: center; padding: 16px; }
+  @media (max-width: 991px) {
+    .search-input { padding-right: 20px; }
+  }
+  .search-button { font-family: Inter, sans-serif; justify-content: center; border-radius: 8px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); background-color: #0f624a; color: #fff; white-space: nowrap; flex: 1; padding: 24px 29px; }
+  @media (max-width: 991px) {
+    .search-button { white-space: initial; padding: 0 20px; }
+  }
+  .results-container { margin-top: 32px; }
+  @media (max-width: 991px) {
+    .results-container { max-width: 100%; }
+  }
+  .results-wrapper { gap: 20px; display: flex; }
+  @media (max-width: 991px) {
+    .results-wrapper { flex-direction: column; align-items: stretch; gap: 0; }
+  }
+  .results-table { display: flex; flex-direction: column; line-height: normal; width: 68%; margin-left: 0; }
+  @media (max-width: 991px) {
+    .results-table { width: 100%; }
+  }
+  .table-container { border-radius: 8px; box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04); border: 1px solid #e0e0e0; display: flex; flex-grow: 1; flex-direction: column; font-size: 16px; color: #000; line-height: 150%; padding: 70px 26px 40px; }
+  @media (max-width: 991px) {
+    .table-container { max-width: 100%; margin-top: 40px; padding: 0 20px; }
+  }
+  .table-header { display: flex; width: 100%; gap: 20px; color: #828282; font-weight: 600; }
+  @media (max-width: 991px) {
+    .table-header { max-width: 100%; flex-wrap: wrap; padding-right: 20px; }
+  }
+  .header-name { font-family: Inter, sans-serif; flex-grow: 1; flex-basis: auto; }
+  .header-details { display: flex; gap: 20px; white-space: nowrap; text-align: right; justify-content: space-between; flex: 1; }
+  @media (max-width: 991px) {
+    .header-details { white-space: initial; }
+  }
+  .table-row { border-top: 1px solid #e0e0e0; display: flex; width: 100%; gap: 20px; padding: 18px 78px 18px 0; }
+  @media (max-width: 991px) {
+    .table-row { max-width: 100%; flex-wrap: wrap; padding-right: 20px; }
+  }
+  .row-name { font-family: Inter, sans-serif; font-weight: 500; flex-grow: 1; flex-basis: auto; }
+  .row-details { display: flex; gap: 20px; font-weight: 400; white-space: nowrap; text-align: right; justify-content: space-between; flex: 1; }
+  @media (max-width: 991px) {
+    .row-details { white-space: initial; }
+  }
+  .table-actions { align-self: end; display: flex; gap: 11px; color: #fff; font-weight: 500; white-space: nowrap; margin: 30px 35px 0 0; }
+  @media (max-width: 991px) {
+    .table-actions { margin-right: 10px; white-space: initial; }
+  }
+  .action-add { font-family: Inter, sans-serif; justify-content: center; border-radius: 50px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); background-color: #013d1f; text-align: center; margin: auto 0; padding: 5px 11px; }
+  @media (max-width: 991px) {
+    .action-add { white-space: initial; }
+  }
+  .action-view { font-family: Inter, sans-serif; justify-content: center; border-radius: 8px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); background-color: #013d1f; padding: 7px 24px; }
+  @media (max-width: 991px) {
+    .action-view { white-space: initial; padding: 0 20px; }
+  }
+  .events-column { display: flex; flex-direction: column; line-height: normal; width: 32%; margin-left: 20px; }
+  @media (max-width: 991px) {
+    .events-column { width: 100%; }
+  }
+  .events-container { justify-content: center; border-radius: 12px; box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1); background-color: #fff; display: flex; flex-grow: 1; flex-direction: column; font-size: 16px; color: #000; font-weight: 500; white-space: nowrap; line-height: 24px; width: 100%; padding: 40px 50px 35px; }
+  @media (max-width: 991px) {
+    .events-container { margin-top: 40px; white-space: initial; padding: 0 20px; }
+  }
+  .events-title { font-family: Inter, sans-serif; align-self: center; }
+  .event-placeholder { background-color: var(--sds-color-background-disabled-default); margin-top: 7px; height: 145px; }
+  .event-item { background-color: var(--sds-color-background-disabled-default); margin-top: 10px; height: 30px; }
+  </style>
+  
+  <header class="header">
+    <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
+    <div class="user-info">
+      <span class="username">Gerente0000</span>
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bd69caf513a031a441b0ae2c28050f8e01024dfd2f15fb76144d64f2f7d9df8f?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="User profile" class="user-icon" loading="lazy">
+    </div>
+  </header>
+  <div class="content-wrapper">
+    <div class="main-content">
+      <nav class="sidebar">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8aeb03e907893948abf056ea4cd71ca94895e19e6380045d3aaff552cb4b4116?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Home icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Inicio</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/07a7b3b0c82f76b259051b3c06e22579ada99c42b0bac25e83773ec5c9c15edc?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Sales icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Ventas/Salon</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a0fc2e002b9d26adb97ce39f9f1705d7df3e9a386ef4cbb45dc7f6a8bcff7895?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Purchases icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Compras</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4b28cd707f6670c8eb27c51e2dc84c517381eb9a1292c051fdec16cfb5e5375b?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="HR icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">RRHH</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d06c0ce42016c9edd479c3398d1198fd645e2097b5d85e2d6008e6a588a30072?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Inventory icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Inventario</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-text">Mantenimiento</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/65420d7b2fa9eda8e903f8608c86b007d3391d54045913100876705c1962068d?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Kitchen icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Cocina/Bar</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dc6e42d71ff47b147816c83b4b0ca04935a942e5800885d2c3605a52a7a5eb51?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reservations icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Reservas</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9902f1c16af56e6c7ea24d201e76d77657ebc5769994165240feb6861cdfbc7e?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reports icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Reportes</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/24c6e997e8d79345382a5dec7f629f61217e270de7c0903529b6f377fec8320a?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Settings icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Configuraciones</span>
+          </li>
+          <li class="help-item">
+            <div class="help-icon-wrapper">
+              <div class="help-icon">?</div>
+            </div>
+            <span class="nav-text">Ayuda</span>
+          </li>
+        </ul>
+      </nav>
+      <main class="main-section">
+        <div class="content-area">
+          <h2 class="section-title">RRHH</h2>
+          <form class="search-bar">
+            <label for="searchInput" class="visually-hidden">Buscar por nombre o código</label>
+            <input type="text" id="searchInput" class="search-input" placeholder="nombre o codigo" aria-label="Buscar por nombre o código">
+            <button type="submit" class="search-button">Buscar</button>
+          </form>
+          <div class="results-container">
+            <div class="results-wrapper">
+              <section class="results-table">
+                <div class="table-container">
+                  <div class="table-header">
+                    <span class="header-name">Nombre y Apellido</span>
+                    <div class="header-details">
+                      <span>codigo</span>
+                      <span>Cargo</span>
+                    </div>
+                  </div>
+                  <div class="table-row">
+                    <span class="row-name">Pakita la del Barrio</span>
+                    <div class="row-details">
+                      <span>00000</span>
+                      <span>Gerente</span>
+                    </div>
+                  </div>
+                  <div class="table-row">
+                    <span class="row-name">Karina</span>
+                    <div class="row-details">
+                      <span>00000</span>
+                      <span>Gerente</span>
+                    </div>
+                  </div>
+                  <div class="table-row">
+                    <span class="row-name">Row 3</span>
+                    <div class="row-details">
+                      <span>00000</span>
+                      <span>Gerente</span>
+                    </div>
+                  </div>
+                  <div class="table-row">
+                    <span class="row-name">Row 4</span>
+                    <div class="row-details">
+                      <span>00000</span>
+                      <span>Gerente</span>
+                    </div>
+                  </div>
+                  <div class="table-row">
+                    <span class="row-name">Row 4</span>
+                    <div class="row-details">
+                      <span>00000</span>
+                      <span>Gerente</span>
+                    </div>
+                  </div>
+                  <div class="table-actions">
+                    <button class="action-add">+</button>
+                    <button class="action-view">Ver</button>
+                  </div>
+                </div>
+              </section>
+              <aside class="events-column">
+                <div class="events-container">
+                  <h3 class="events-title">EVENTOS</h3>
+                  <div class="event-placeholder"></div>
+                  <div class="event-item"></div>
+                  <div class="event-item"></div>
+                  <div class="event-item"></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
