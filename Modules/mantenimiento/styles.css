@@ -56,16 +56,28 @@ body{
 
 .content-wrapper{
     width: 100%;
-}
-.main-content {
     display: flex;
+}
+
+.container {
+    background-color: #828282;
+    padding: 25px 50px;
+    margin-bottom: 30px;
+}
+
+.principal-pag1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+    max-width: 100%;
 }
 
 .sidebar {
     display: flex;
     flex-direction: column;
     line-height: normal;
-    width: 19%;
+    width: 200px;
     margin: 0;
 }
 
@@ -150,15 +162,7 @@ body{
     grid-template-rows: 33% 33% 33% ;
     max-width: 100%;
     height: 300px;
-    background-color: #02676f;
-    /*
-    display: flex;
-    margin-top: 31px;
-    flex-direction: column;
-    padding: 0 20px;
-    justify-content: center;
-    align-items: center;
-    */
+    background-color: #02676f; 
 }
 
 .section-title {
@@ -167,16 +171,18 @@ body{
     color: #000;
     letter-spacing: -0.68px;
     font: 600 34px/110% Inter, sans-serif;
-    background-color: aqua;
     }
+
 .botones {
     grid-column: 2 / 2;
 }
 
-/*INTENTO BLACK BOX*/
-.container {
+/*DISEÑO DEL TITULO Y BOTONES */
+.container-botones-principales {
     display: flex;
     gap: 20px;
+    font-family: Inter, sans-serif;
+    margin: 20px;
   }
 
   .card {
@@ -194,10 +200,105 @@ body{
     margin-bottom: 10px;
   }
 
+/*TITULO*/
   h1 {
     margin-bottom: 20px;
+    text-align: center;
+    font-family: Inter, sans-serif;
   }
-/*FIN DEL INTENTO*/
+
+
+/*DISEÑO DEL HISTORIAL Y CALENDARIO*/
+
+.container-historial {
+    font-family: Inter, sans-serif;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 30px;
+  }
+  
+  .left-section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .right-section {
+    width: 50%;
+  }
+  
+  .historial-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .calendar {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .calendar table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar th, .calendar td {
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    width: 14.28%; /* Distribute days evenly */
+  }
+  
+  .calendar th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .calendar td {
+    height: 30px;
+  }
+  
+  .calendar td.current {
+    background-color: #e0f2f7; /* Highlight current day */
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+
+/*FIN*/
+
 .action-buttons {
     align-self: center;
     margin-top: 0;
@@ -254,9 +355,12 @@ body{
     width: 100%;
 }
 
+
+/*Contenido de la pagina*/
 .maintenance-content {
     gap: 20px;
     display: flex;
+
 }
 
 .maintenance-list {
