@@ -18,12 +18,19 @@ const comidaSchema = z.object({
   }, {
     message: 'Instrumentos debe ser una cadena con el formato "nombre,otronombre,..." o null'
   }),
-  ingredientes:  z.string().refine(value => {
-    const pairs = value.split(',');
-    return pairs.every(pair => {
-      const [nombre, numero] = pair.split(':');
-      return nombre.trim() !== '' && !isNaN(Number(numero.trim()));
-    });
+  ingredientes: z.string().refine(value => {
+    try {
+      const parsedIngredients = JSON.parse(value);
+      if (typeof parsedIngredients !== 'object') return false; // No es un objeto válido
+      for (const key in parsedIngredients) {
+        if (!/^\d+$/.test(key)) return false; // Las claves deben ser números enteros
+      }
+      return true;
+    } catch (error) {
+      return false; // No se pudo analizar como JSON válido
+    }
+  }, {
+    message: 'Ingredientes debe ser un objeto en formato JSON con claves numéricas.'
   }),
 })
 export function validateComida (input) {
