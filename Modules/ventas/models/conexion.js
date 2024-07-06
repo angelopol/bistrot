@@ -5,7 +5,7 @@ import {promisify} from 'util';
 const db = {
   host: '127.0.0.1',
   user: 'root',
-  password: 'santiago',
+  password: '',
   database: 'Ventas_Salon'
 };
 

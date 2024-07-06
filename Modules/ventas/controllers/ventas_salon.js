@@ -2,6 +2,7 @@ import {pool} from '../models/conexion.js';
 
 //const {VentasSalon_caja, VentasSalon_salon, VentasSalon_cliente, VentasSalon_factura} = require('../models/ventas_salon');
 
+/*
 async function initializeData() {
   try {
     // Datos para la tabla VentasSalon_caja
@@ -43,13 +44,15 @@ async function initializeData() {
     pool.end();
   }
 }
-
+*/
 //initializeData(); // esto es para inicializar datos abitrarios a las tablas
 
 
 export class ControllerVentasSalon {
 
-  // Caja
+
+  // CAJA
+
   getAll_c = async (req, res) => {
     pool.query('SELECT * FROM submodulo_caja', (error, results) => {
       if (error) {
@@ -112,8 +115,8 @@ export class ControllerVentasSalon {
   }
 
 
+  // SALON
 
-  // Salon
   getAll_s = async (req, res) => {
     pool.query('SELECT * FROM submodulo_salon', (error, results) => {
       if (error) {
@@ -177,7 +180,8 @@ export class ControllerVentasSalon {
 
 
 
-  // Cliente
+  // CLIENTE
+
   getAll_cl = async (req, res) => {
     pool.query('SELECT * FROM submodulo_registro_cliente', (error, results) => {
       if (error) {
@@ -241,7 +245,8 @@ export class ControllerVentasSalon {
 
 
 
-  // Factura
+  // FACTURA
+
   getAll_f = async (req, res) => {
     pool.query('SELECT * FROM submodulo_factura', (error, results) => {
       if (error) {
@@ -270,7 +275,7 @@ export class ControllerVentasSalon {
   
   create_f = async (req, res) => {
     const { monto, iva, consumo } = req.body;
-    pool.query('INSERT INTO submodulo_factura (monto, iva, consumo) VALUES (?, ?, ?)', [monto, iva, JSON.stringify(consumo)], (error, results) => {
+    pool.query('INSERT INTO submodulo_factura (monto, iva, consumo) VALUES (?, ?, ?)', [monto, iva, consumo], (error, results) => {
         if (error) {
             return res.status(500).json({ error });
         } else {
