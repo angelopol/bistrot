@@ -6,7 +6,7 @@ CREATE TABLE submodulo_caja (
     turno_horario varchar(255) NOT NULL,
     tasa_del_dia float NOT NULL,
     apertura datetime NOT NULL,
-    cierra datetime NOT NULL,
+    cierre datetime NOT NULL,
     monto_inicial float NOT NULL,
     monto_final float NOT NULL,
     ingresos float NOT NULL,
