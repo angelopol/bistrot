@@ -2,9 +2,9 @@ import z from "zod";
 
 const schema_factura = z.object({
     // valida si el monto es un numero float, positivo
-    monto : z.number().positive().float(),
+    monto : z.number().positive(),
     // valida si el iva es un numero float, positivo
-    iva : z.number().positive().float(),
+    iva : z.number().positive(),
     consumo : z.string().refine(value => {
         try {
           const parsedIngredients = JSON.parse(value);

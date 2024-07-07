@@ -1,4 +1,8 @@
 import {pool} from '../models/conexion.js';
+import {validateCaja, validatePartialCaja} from '../schemas/caja.js';
+import {validateCliente, validatePartialCliente} from '../schemas/cliente.js';
+import {validateFactura, validatePartialFactura} from '../schemas/factura.js';
+import {validateSalon, validatePartialSalon} from '../schemas/salon.js';
 
 //const {VentasSalon_caja, VentasSalon_salon, VentasSalon_cliente, VentasSalon_factura} = require('../models/ventas_salon');
 
@@ -54,64 +58,58 @@ export class ControllerVentasSalon {
   // CAJA
 
   getAll_c = async (req, res) => {
-    pool.query('SELECT * FROM submodulo_caja', (error, results) => {
-      if (error) {
-          res.status(500).json({ error });
-      } else {
-          res.status(200).json(results);
-      }
-    });
+
+    const registro_ventas = await VentasModel.getAll({})
+    if (registro_ventas) return res.json(registro_ventas)
+      res.status(404).json({ message: 'registro de ventas not found' })
   }
 
   getById_c = async (req, res) => {
-    const { id } = req.params;
-    pool.query('SELECT * FROM submodulo_caja WHERE id_empleado = ?', [id], (error, results) => {
-        if (error) {
-            res.status(500).json({ error });
-        } else {
-            if (results.length > 0) {
-                res.status(200).json(results[0]);
-            } else {
-                res.status(404).send('Elemento no encontrado');
-            }
-        }
-    });
+    const { id } = req.params
+    const ventas = await VentasModel.getById({ id })
+    if (ventas) return res.json(movie)
+    res.status(404).json({ message: 'ventas not found' })
   }
 
   
   create_c = async (req, res) => {
-    const { turno_horario, tasa_del_dia, apertura, cierra, monto_inicial, monto_final, ingresos, egresos } = req.body;
-    pool.query('INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierra, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [turno_horario, tasa_del_dia, apertura, cierra, monto_inicial, monto_final, ingresos, egresos], (error, results) => {
-        if (error) {
-            return res.status(500).json({ error });
-        } else {
-            return res.status(201).send('Elemento creado correctamente');
-        }
-    });
+    const result = validateCaja(req.body)
+
+    if (result.error){
+      return res.status(400).json({error : JSON.parse(result.error.message)})
+    }
+
+    const new_Venta = await VentasModel.create({ input: result.data })
+
+    res.status(201).json(new_Venta)
   };
   
 
   update_c = async (req, res) => {
-    const { id } = req.params;
-    const { turno_horario, tasa_del_dia, apertura, cierra, monto_inicial, monto_final, ingresos, egresos } = req.body;
-    pool.query('UPDATE submodulo_caja SET turno_horario = ?, tasa_del_dia = ?, apertura = ?, cierra = ?, monto_inicial = ?, monto_final = ?, ingresos = ?, egresos = ? WHERE id_empleado = ?', [turno_horario, tasa_del_dia, apertura, cierra, monto_inicial, monto_final, ingresos, egresos, id], (error, results) => {
-        if (error) {
-            res.status(500).json({ error });
-        } else {
-            res.status(200).send('Elemento actualizado correctamente');
-        }
-    });
+    const result = validatePartialCaja(req.body)
+
+    if (!result.success) {
+      return res.status(400).json({ error: JSON.parse(result.error.message) })
+    }
+
+    const { id } = req.params
+
+    const updated_Ventas = await VentasModel.update({ id, input: result.data })
+
+    return res.json(updated_Ventas)
   }
 
+
   delete_c = async (req, res) => {
-    const { id } = req.params;
-    pool.query('DELETE FROM submodulo_caja WHERE id_empleado = ?', [id], (error, results) => {
-        if (error) {
-            res.status(500).json({ error });
-        } else {
-            res.status(204).send('Elemento eliminado correctamente');
-        }
-    });
+    const { id } = req.params
+
+    const result = await VentasModel.delete({ id })
+
+    if (result === false) {
+      return res.status(404).json({ message: 'Venta not found' })
+    }
+
+    return res.json({ message: 'Venta deleted' })
   }
 
 
