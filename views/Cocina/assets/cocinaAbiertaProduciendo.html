@@ -411,7 +411,7 @@
                 <div class="action-buttons">
                     <button class="action-button">devolver orden</button>
                     <button class="action-button">hacer de nuevo</button>
-                    <button class="action-button">PROCESAR</button>
+                    <button class="action-button" id="botonProcesar">PROCESAR</button>
                 </div>
             </section>
             <aside class="order-details">
@@ -510,6 +510,26 @@
     actualizarPedidos();
     // Llamar a la función cada cierto tiempo para actualizar los pedidos (por ejemplo, cada 30 segundos)
     setInterval(actualizarPedidos, 15000); // Actualizar cada 15 segundos (15000 milisegundos)
+
+    //boton procesar
+    let botonProcesar = document.querySelector("#botonProcesar") // colocar este id en el boton procesar 
+
+    async function funcionBotonProcesar () {
+        let idCardSeleccionada = "2" // este id se pasaria por parametro a la funcion
+        let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`)
+        let pedido = await response.json()
+        if (pedido.status == "aceptado"){
+            let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
+            let cardMesaStatus = cardMesa.lastElementChild;
+            cardMesaStatus.textContent = `ID pedido: ${idCardSeleccionada} \nEstatus: Cocinando`;
+        }
+        else if(pedido.status == "rechazado"){
+            alert("No se cuenta con los recursos para realizar este pedido")
+            let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
+            let cardMesaStatus = cardMesa.lastElementChild;
+            cardMesaStatus.textContent = `ID pedido: ${idCardSeleccionada} \nEstatus: Rechazado`;
+        }
+    }
     </script>
 </body>
 </html>
