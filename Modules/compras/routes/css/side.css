@@ -6,7 +6,8 @@
 
 @font-face {
     font-family: "Krona-One";
-    src: url("../resources/Fonts/KronaOne-Regular.ttf") format("truetype");
+    src: url("../resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
+    font-weight: 500;
 }
 
 * {
