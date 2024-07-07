@@ -123,7 +123,8 @@ body {
 
 .label {
   display: inline-block;
-  margin-right: 100px; /* Ejemplo de margen derecho de 10px, ajusta según tus necesidades */
+  margin-right: 100px;
+  /* Ejemplo de margen derecho de 10px, ajusta según tus necesidades */
 }
 
 /* Main section styles */
@@ -272,7 +273,8 @@ div.dataTables_wrapper div.dataTables_filter input {
   width: 500px;
 }
 
-table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+table.table-bordered.dataTable tbody th,
+table.table-bordered.dataTable tbody td {
   border-bottom-width: 1px;
 }
 

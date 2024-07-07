@@ -144,7 +144,7 @@ function generateTableGeneral(tipo) {
         "columns": [
             { "data": "id_general" },
             { "data": "nombre" },
-            { "data": "tipo" },
+            { "data": "categoria" },
             {
                 "data": "funciona_estado",
                 "render": function (data, type, row) {
@@ -177,4 +177,3 @@ function generateTableGeneral(tipo) {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-

@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 // Obtener un elemento de general por su ID
 router.get('/:id', (req, res) => {
     const { id } = req.params;
-    connection.query('SELECT * FROM general WHERE id_inventario = ?', [id], (error, results) => {
+    connection.query('SELECT * FROM general WHERE id_general = ?', [id], (error, results) => {
         if (error) {
             res.status(500).json({ error });
         } else {
@@ -31,8 +31,8 @@ router.get('/:id', (req, res) => {
 
 // Agregar un nuevo elemento a general
 router.post('/', (req, res) => {
-    const { nombre, tipo, funciona_estado, fecha_mantenimiento, unidad, cantidad } = req.body;
-    connection.query('INSERT INTO general (nombre, tipo, funciona_estado, fecha_mantenimiento, unidad, cantidad) VALUES (?, ?, ?, ?, ?, ?)', [nombre, tipo, funciona_estado, fecha_mantenimiento, unidad, cantidad], (error, results) => {
+    const { nombre, tipo, categoria, funciona_estado, fecha_mantenimiento, unidad, cantidad } = req.body;
+    connection.query('INSERT INTO general (nombre, tipo, categoria, funciona_estado, fecha_mantenimiento, unidad, cantidad) VALUES (?, ?, ?, ?, ?, ?, ?)', [nombre, tipo, categoria, funciona_estado, fecha_mantenimiento, unidad, cantidad], (error, results) => {
         if (error) {
             res.status(500).json({ error });
         } else {
@@ -44,8 +44,8 @@ router.post('/', (req, res) => {
 // Actualizar un elemento de general por su ID
 router.put('/:id', (req, res) => {
     const { id } = req.params;
-    const { nombre, tipo, funciona_estado, fecha_mantenimiento, unidad, cantidad } = req.body;
-    connection.query('UPDATE general SET nombre = ?, tipo = ?, funciona_estado = ?, fecha_mantenimiento = ?, unidad = ?, cantidad = ? WHERE id_inventario = ?', [nombre, tipo, funciona_estado, fecha_mantenimiento, unidad, cantidad, id], (error, results) => {
+    const { nombre, tipo, categoria, funciona_estado, fecha_mantenimiento, unidad, cantidad } = req.body;
+    connection.query('UPDATE general SET nombre = ?, tipo = ?, categoria = ?, funciona_estado = ?, fecha_mantenimiento = ?, unidad = ?, cantidad = ? WHERE id_general = ?', [nombre, tipo, categoria, funciona_estado, fecha_mantenimiento, unidad, cantidad, id], (error, results) => {
         if (error) {
             res.status(500).json({ error });
         } else {
@@ -57,7 +57,7 @@ router.put('/:id', (req, res) => {
 // Eliminar un elemento de general por su ID
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
-    connection.query('DELETE FROM general WHERE id_inventario = ?', [id], (error, results) => {
+    connection.query('DELETE FROM general WHERE id_general = ?', [id], (error, results) => {
         if (error) {
             res.status(500).json({ error });
         } else {

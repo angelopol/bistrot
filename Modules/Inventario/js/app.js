@@ -1,26 +1,43 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
-app.use(cors());
-// Importar rutas
+// Importa rutas
 const submoduloInventarioRoutes = require('./routes/submoduloInventario');
 const cocinaBarRoutes = require('./routes/cocina_bar');
 const generalRoutes = require('./routes/general');
+const moduloCocinaRoutes = require('./routes/modulo_cocina');
 
-// Middleware para analizar el cuerpo de las solicitudes
-app.use(bodyParser.json());
+// Middleware para permitir solicitudes CORS
+app.use(cors());
 
-// Rutas API
+// Middleware para parsear el cuerpo de las peticiones JSON
+app.use(express.json());
+
+// Ruta para autenticación y generación de token 
+app.post('/api/login', (req, res) => {
+    const { usuario, contrasena } = req.body;
+
+    // Simulacion para ver su funcionalidad
+    if (usuario === 'cocina' && contrasena === 'contrasena') {
+        // Autenticación exitosa, generar token
+        const token = jwt.sign({ usuario: 'cocina' }, 'secret_key', { expiresIn: '1h' });
+        res.json({ token });
+    } else {
+        res.status(401).json({ error: 'Credenciales incorrectas' });
+    }
+});
+
+// Rutas protegidas que requieren autenticación y permisos
+app.use('/api/modulo-cocina', moduloCocinaRoutes);
+
+// Rutas para la tabla de inventario
 app.use('/api/submodulo-inventario', submoduloInventarioRoutes);
 app.use('/api/cocina-bar', cocinaBarRoutes);
 app.use('/api/general', generalRoutes);
 
-//127.0.0.1 => es lo mismo que localhost
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, '127.0.0.1', () => {
-    console.log(`Server is running on http://127.0.0.1:${PORT}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-
