@@ -129,9 +129,9 @@ main {
 
 #delete-prov-btn:hover {
     cursor: pointer;
-    background-color: #02676F;
+    background-color: #0F624A;
     color: white;
-    box-shadow: 0 0 5px 0 #02676F;
+    box-shadow: 0 0 5px 0 #0F624A;
 }
 
 #horizontal-divider {
@@ -148,7 +148,7 @@ main {
 #data-title-btn {
     padding: 15px;
     width: 40%;
-    background-color: #02676F;
+    background-color: #0F624A;
     color: white;
     font-family: 'Montserrat-Bold';
     font-size: 0.8rem;
