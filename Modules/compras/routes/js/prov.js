@@ -32,3 +32,9 @@ let tlf = document.getElementsByClassName('tlf-prov')[0]
 //Telefono Del proveedor
 let producto = document.getElementsByClassName('prod-prov')[0]
 //Producto que vende el proveedor
+
+let exit = document.getElementsByClassName('title-exit')[0]
+
+exit.onclick = function(){
+    location.href = '../html/index.html'
+}

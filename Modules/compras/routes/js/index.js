@@ -11,6 +11,13 @@ let solicitudes = document.getElementById('tabla-soli')
 let solibody = document.getElementById('tabla-soli-body')
 //Por si es necesario, directamente el body
 
+let btn_prov = document.getElementById('btn-prov')
+//Boton de View Proveedores
+
+btn_prov.onclick = function(){
+    location.href = '../html/prov.html'
+}
+
 //Modificacion del saldo
 //Dependiendo de las solicitudes que se haga el saldo van a ir disminuyendo
 

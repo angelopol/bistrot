@@ -45,6 +45,7 @@ main {
 }
 
 .title-exit {
+    cursor: pointer;
     width: 40px;
 }
 
