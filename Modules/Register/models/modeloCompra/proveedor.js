@@ -1,82 +1,84 @@
 // Agregando la conexion a la base de datos
-import mysql from 'mysql2/promise'
-import 'dotenv/config'
-
-const DBConfig = {
-  host: '127.0.0.1' || process.env.DB_HOST,
-  user: 'root' || process.env.DB_USERNAME,
-  port: 3306 || process.env.DB_PORT,
-  password: '' || process.env.DB_PASSWORD,
-  database: 'bistrot' || process.env.DB_DATABASE,
-}
-
-const connection = await mysql.createConnection(DBConfig)
-
+import connection from "../conexion.js"
 // Modelo para los proveedores
 
 
 export class ProveedoresModel{
   //Funcion que crea un proovedor
-  static async crear({create}) {
+  static async crear({input}) {
     const {
-      nombre_empresa,
       rif,
+      nombre_empresa,
       Dire_Fiscal,
       Correo,
       nombre_responsa,
       Tlf,
       ProveedorProd
-    } = create
+    } = input
 
     try{
-      await connection.query(
-        'INSERT INTO Proveedores(Nombre_empresa,RIF,Dire_Fiscal,Correo,Nombre_responsa,Tlf,Productos_proveedor) VALUES(?,?,?,?,?,?,?)',
-        [nombre_empresa,rif,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd]
+      await connection.execute(
+        'INSERT INTO Proveedores(RIF,Nombre_empresa,Dire_Fiscal,Correo,Nombre_responsa,Tlf,Productos_proveedor) VALUES(?,?,?,?,?,?,?)',
+        [rif,nombre_empresa,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd]
       )
+
+      const [proveedor] = await connection.execute("SELECT * FROM Proveedores WHERE RIF = ?",[rif]);
+      return proveedor
     }catch(e){
       console.log(e)
       throw new Error('Error creando el proveedor')
     }
   }
   // Funcion que elimina un proveedor
-  static async eliminar({Elimin}){
-    const{nombre_empresa} = Elimin
+  static async eliminar({id}){
 
     try{
-      await connection.query(
-        'DELETE FROM Proveedores WHERE Nombre_empresa = ?',
-        [nombre_empresa]
+      const [result] = await connection.execute(
+        'DELETE FROM Proveedores WHERE RIF = ?',
+        [id]
       )
+      if (result.affectedRows > 0) {
+        return { message: `Producto con id ${id} eliminado correctamente.` };
+      }else {
+        throw new Error(`No se encontró ningun producto con id ${id}.`);
+      }
     }catch(e){
       console.log(e)
       throw new Error('Error a eliminar el proveedor')
     }
 
   }
-  // Función que encuentra al proveedor
-  static async Buscar({busca}){
-    const[fila] = await connection.query(
-      'SELECT * FROM Proveedores WHERE Nombre_responsa = ?'
-      [busca]
+  // Función que encuentra al proveedor por su rif
+  static async buscar({id}){
+    console.log("Entre")
+    const[fila] = await connection.execute(
+      'SELECT * FROM Proveedores WHERE RIF = ?',
+      [id]
     )
     return fila[0]
   }
   // Función que modifica la informacion del Proveedor
-  static async Modificar({input}){
-    const{
+  static async modificar({id,result}){
+    console.log('Entre')
+    const {
       nombre_empresa,
-      rif,
       Dire_Fiscal,
       Correo,
+      nombre_responsa,
       Tlf,
       ProveedorProd
-    } = input
-
+    } = result
+    
     try{
-      await connection.query(
-        'UPDATE Proveedor SET Nombre_empresa = ?, RIF = ?, Dire_Fiscal = ?, Correo = ?, Tlf = ? WHERE Nombre_responsa = ?, Productos_proveedor = ?',
-        [nombre_empresa,rif,Dire_Fiscal,Correo,Tlf,ProveedorProd]
+      await connection.execute(
+        'UPDATE Proveedores SET  Nombre_empresa = ?, Dire_Fiscal = ?, Correo = ?,Nombre_responsa = ?, Tlf = ?, Productos_proveedor = ? WHERE  RIF = ?',
+        [nombre_empresa,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd,id]
       )
+      const[fila] = await connection.execute(
+        'SELECT * FROM Proveedores WHERE RIF = ?',
+        [id]
+      )
+      return fila[0]
     }catch(e){
       console.log(e)
       throw new Error('Error a Modificar los datos del proveedor')

@@ -1,18 +1,5 @@
 //Agregando la conexion a la base de datos
-
-import mysql from 'mysql2/promise'
-import 'dotenv/config'
-
-const DBConfig = {
-  host: '127.0.0.1' || process.env.DB_HOST,
-  user: 'root' || process.env.DB_USERNAME,
-  port: 3306 || process.env.DB_PORT,
-  password: '' || process.env.DB_PASSWORD,
-  database: 'bistrot' || process.env.DB_DATABASE,
-}
-
-const connection = await mysql.createConnection(DBConfig)
-
+import connection from "../conexion.js"
 // Crud para la tabla de las solicitudes de compra
 
 export class SolicitudModel{
@@ -21,60 +8,77 @@ export class SolicitudModel{
     const {
       depar,
       codigo_empleado,
+      codigo_producto,
+      nombre_producto,
       fecha,
       detalle
     } = input
 
+    const fechaa = new Date(fecha)
+
     try{
-      await connection.query(
-        'INSERT INTO Solicitudes(Departamento,Codigo_empleado,FECHA,DETALLE) VALUES(?,?,?,?)',
-        [depar,codigo_empleado,fecha,detalle]
+      await connection.execute(
+        'INSERT INTO Solicitudes(Departamento,ID_Empleado,Codigo_Producto,Nombre_Producto,FECHA,DETALLE) VALUES(?,?,?,?,?,?)',
+        [depar,codigo_empleado,codigo_producto,nombre_producto,fechaa,detalle]
       )
+
+      const [producto] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = LAST_INSERT_ID()")
+      return producto
     }catch(e){
       console.log(e)
       throw new Error("Error al agregar una nueva solicitud")
     }
   }
   //Funcion que elimina una solicitud
-  static async eliminar({eli}){
-    const{ID} = eli
+  static async eliminar({id}){
 
     try{
-      await connection.query(
-        'DELETE FROM Solicitudes WHERE ID_Empleado = ?',
-        [ID]
+      const [result] = await connection.query(
+        'DELETE FROM Solicitudes WHERE ID_Requisicion = ?',
+        [id]
       )
+      if (result.affectedRows > 0) {
+        return { message: `Requisicion con id ${id} eliminado correctamente.` };
+      }else {
+        throw new Error(`No se encontró ninguna requisicion con id ${id}.`);
+      }
     }catch(e){
       console.log(e)
       throw new Error("Error al eliminar la solicitud")
     }
   }
   //Funcion que modifica una solicitud
-  static async Modificar({modi}){
-    const{
+  static async modificar({id,result}){
+    const {
       depar,
       codigo_empleado,
-      Id_requisión,
+      codigo_producto,
+      nombre_producto,
       fecha,
       detalle
-    } = modi
+    } = result
+
+    const fechaa = new Date(fecha)
 
     try{
       await connection.query(
-        'UPDATE Solicitudes SET Departamento = ?, Codigo_Producto = ?, FECHA = ?, DETALLE = ?, ID_requisión = ? WHERE ID_Empleado = ?',
-        [depar,codigo_empleado,Id_requisión,fecha,detalle]
+        'UPDATE Solicitudes SET Departamento = ?,ID_Empleado=? ,Codigo_Producto = ?,Nombre_Producto=? ,FECHA = ?, DETALLE = ? WHERE  ID_Requisicion = ?',
+        [depar,codigo_empleado,codigo_producto,nombre_producto,fechaa,detalle,id]
       )
+
+      const [actualizado] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = ?",[id]);
+      return actualizado
     }catch(e){
       console.log(e)
       throw new Error("Error al modificar la solicitud")
     }
   }
   //Funcion que busca una solicitud
-  static async Buscar({bus}){
-    const{fila} = await connection.query(
-      'SELECT * FROM Solicitudes WHERE ID_Empleado = ?',
-      [bus]
+  static async buscar({id}){
+    const[solicitud] = await connection.execute(
+      'SELECT * FROM Solicitudes WHERE ID_Requisicion = ?',
+      [id]
     )
-    return fila[0]
+    return solicitud[0];
   }
 }
