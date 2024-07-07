@@ -1,4 +1,4 @@
-import { validateinstrumento, validatePartialinstrumento } from './schemas/instrumentos.js'
+import { validateInstrumento, validatePartialInstrumento } from './schemas/instrumentos.js'
 import { InstrumentoModel } from '../models/local-file-system.js/instrumento.js'
 
 export class InstrumentoController {
@@ -16,7 +16,7 @@ export class InstrumentoController {
       }
 
     static async create (req, res) {
-        const result = validateinstrumento(req.body)
+        const result = validateInstrumento(req.body)
       
         if (!result.success) {
           // 422 Unprocessable Entity
@@ -40,7 +40,7 @@ export class InstrumentoController {
       }
     
       static async update (req, res) {
-        const result = validatePartialinstrumento(req.body)
+        const result = validatePartialInstrumento(req.body)
       
         if (!result.success) {
           return res.status(400).json({ error: JSON.parse(result.error.message) })
