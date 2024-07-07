@@ -1,0 +1,43 @@
+#Global_todos{
+    padding: 20px;
+    margin: 20px 15px;
+    justify-content: center;
+}
+
+#Inicial_logo{
+    padding: 10px;
+    text-align: center;
+    margin: 10px 30px;
+    padding: 15px;
+}
+
+#Recipiente_div{
+    background-color: #828282;
+    margin: 15px 20px;
+    padding: 15px;
+    width: 1150px;
+    height: 75%;
+    text-align: center;
+}
+
+#tipo_formulario{
+    background-color: white;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#Button_formulario_Anniu{
+    margin:0px 60px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+  
+#Button_formulario_Anniu:hover {
+    background-color: #45a049;
+}
