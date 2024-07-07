@@ -18,6 +18,13 @@ btn_prov.onclick = function(){
     location.href = '../html/prov.html'
 }
 
+let btn_compra = document.getElementById('btn-compra')
+//Boton de View Realizar Compra
+
+btn_compra.onclick = function(){
+    location.href = '../html/compra.html'
+}
+
 //Modificacion del saldo
 //Dependiendo de las solicitudes que se haga el saldo van a ir disminuyendo
 
