@@ -15,4 +15,6 @@ comidasRouter.delete("/:id" , ComidaController.delete)
 
 comidasRouter.patch("/:id" , ComidaController.update)
 
-comidasRouter.get("/procesar-pedido", pedidoController.orderStatus)
+comidasRouter.get("/procesar-pedido:id", pedidoController.orderStatus)
+
+comidasRouter.get("/mostrar-pedido:id", pedidoController.getOrder)

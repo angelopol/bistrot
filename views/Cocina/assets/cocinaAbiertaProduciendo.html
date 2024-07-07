@@ -416,7 +416,7 @@
             </section>
             <aside class="order-details">
                 <div class="order-summary">
-                    <h3 class="order-number">MESA 00</h3>
+                    <h3 class="order-number" id="order-id">MESA 00</h3>
                     <div class="order-type">PEDIDO</div>
                     <div class="order-item">
                         <span class="item-name">plato</span>
@@ -475,36 +475,36 @@
         });
 
         async function actualizarPedidos() {
-    try {
+            try {
 
-        // esta ruta hay que importarla de ventas
-        const response = await fetch('RutaParaObtenerLaListaDePedidos'); /*Importar Modulo externo VENTAS*/
-        if (!response.ok) {
-            throw new Error('No se pudo obtener la lista de pedidos');
-        }
-        const pedidos = await response.json();
+                // esta ruta hay que importarla de ventas
+                const response = await fetch('RutaParaObtenerLaListaDePedidos'); /*Importar Modulo externo VENTAS*/
+                if (!response.ok) {
+                    throw new Error('No se pudo obtener la lista de pedidos');
+                }
+                const pedidos = await response.json();
 
-        // Iterar sobre los pedidos y actualizar las order-cards
-        pedidos.forEach(pedido => {
-            if (pedido.status == "pendiente") {
-                let cardsMesas = document.querySelectorAll(".order-card")
-                for (const cardMesa of cardsMesas) {
-                    if (!cardMesa.classList.contains("ocupado")) {
-                        cardMesa.id = pedido.id.toString();
-                        cardMesa.classList.add("ocupado");
-                        let carMesaStatus = cardMesa.lastElementChild;
-                        carMesaStatus.textContent = `ID pedido: ${pedido.id} \nEstatus: ${pedido.status}`;
-                        encontrado = true;
-                        break; // Detener el bucle una vez que se haya encontrado y actualizado una cardMesa
+                // Iterar sobre los pedidos y actualizar las order-cards
+                pedidos.forEach(pedido => {
+                    if (pedido.status == "pendiente") {
+                        let cardsMesas = document.querySelectorAll(".order-card")
+                        for (const cardMesa of cardsMesas) {
+                            if (!cardMesa.classList.contains("ocupado")) {
+                                cardMesa.id = pedido.id.toString();
+                                cardMesa.classList.add("ocupado");
+                                let carMesaStatus = cardMesa.lastElementChild;
+                                carMesaStatus.textContent = `ID pedido: ${pedido.id} \nEstatus: ${pedido.status}`;
+                                encontrado = true;
+                                break; // Detener el bucle una vez que se haya encontrado y actualizado una cardMesa
+                            }
+                        }
                     }
                 }
+                )
+            } catch (error) {
+                console.error('Error al actualizar los pedidos:', error);
             }
         }
-        )
-    } catch (error) {
-        console.error('Error al actualizar los pedidos:', error);
-    }
-    }
 
     // Llamar a la función para actualizar los pedidos inicialmente
     actualizarPedidos();
@@ -530,6 +530,26 @@
             cardMesaStatus.textContent = `ID pedido: ${idCardSeleccionada} \nEstatus: Rechazado`;
         }
     }
+
+    const pedidosContainers = document.getElementsByClassName("order-card")
+    pedidosContainers.forEach(container => {
+        container.addEventListener("click", async function () {
+            let idStringCardSeleccionada = this.getAtributte("id")
+            let idPedido = parseInt(idStringCardSeleccionada.replace("#", ""))
+            let response = await fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`)
+            let pedidos = await JSON.parse(response.json())
+
+            const orderId = document.getElementById("order-id") // Carta del pedido seleccionado
+            orderId.textContent = `Pedido ID: ${idPedido}` // Donde en el front va "MESA 00" debería ir el ID del pedido seleccionado, ya que a cocina no maneja mesas
+            pedidos.forEach(platoId => {
+                // Iteramos el diccionario de pedidos para encontrar sus nombres
+                let res = fetch(`http://localhost:1234/comidas/comida-id=${platoId}`) // Se busca la receta en el modelo comida
+                let nombrePlato = res.json()
+                pTag.textContent = `${pTag.textContent} ${nombrePlato.nombre}, x${pedidos[platoId]}. ` // Elemento provisional que contiene la información de los platos pedidos
+            })
+        })
+    })
+    
     </script>
 </body>
 </html>

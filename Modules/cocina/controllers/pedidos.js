@@ -92,4 +92,17 @@ export class pedidoController {
         return res.json(nuevoPedido)
         
     }
+
+    static async getOrder(req, res) {
+        /* Guiandome de la función anterior, esta función en teoría solo retorna los datos del pedido
+        tomados de la base de datos. El id recibido será tomado del frontend al clickear en uno de los pedidos
+        procesados */
+
+        const {pedido_id} = req.query // sacamos el id del pedido de la url
+
+        // hay que importar PedidoModel que es un el modelo de pedido del modulo de ventas
+        const pedido = await PedidoModel.getForId({pedido_id}) /* IMPORTAR MODULO EXTERO VENTAS*/
+
+        return res.json(pedido)
+    }
 }
