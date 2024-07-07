@@ -155,7 +155,7 @@ body {
 .main-section {
     width: 90%;
     margin-left: 20px;
-    margin-top: 85px;
+    margin-top: 25px;
 }
 
 @media (max-width: 991px) {
@@ -191,9 +191,10 @@ body {
 
 .sales-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 34px;
-    color: #000;
+    font-size: 40px;
+    color: #0F624A;
     font-weight: 600;
+    
     letter-spacing: -0.68px;
     line-height: 110%;
     padding: 0 20px;
@@ -202,12 +203,14 @@ body {
 .sales-chart {
     aspect-ratio: 0;
     width: 100%;
+    
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
 }
 
 .sidebar-right {
-    width: 36%;
+    width: 35%;
     margin: 20px;
+    
     
 }
 
@@ -218,7 +221,7 @@ body {
 }
 
 .action-panel {
-    border-radius: var(--sds-size-radius-200);
+    border-radius: 8px;
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
     border: 1px solid #e0e0e0;
     background-color: #fff;
@@ -228,8 +231,9 @@ body {
     color: #fff;
     font-weight: 500;
     line-height: 150%;
-    margin: 75px auto 0;
+    margin: 70px auto 0;
     padding: 18px;
+
 }
 
 
@@ -299,9 +303,9 @@ body {
 }
 
 .panel-title {
-    color: #02676f;
+    color: #0F624A;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     text-align: center;
 }
 
@@ -331,8 +335,9 @@ body {
     border-radius: 8px;
     border: none;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    background-color: #02676f;
-    font-size: 16px;
+    background-color: #0F624A;
+    font-size: 18px;
+    font-weight: bold;
     margin-top: 16px;
     padding: 12px 24px;
     color: #fff;
@@ -371,6 +376,8 @@ body {
 
 .stats-title {
     font-family: 'Montserrat', sans-serif;
+    color: #0F624A;
+    font-weight: 800;
 }
 
 .stats-value {
