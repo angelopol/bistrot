@@ -473,6 +473,43 @@
                 alert('Pedido marcado como listo');
             });
         });
+
+        async function actualizarPedidos() {
+    try {
+
+        // esta ruta hay que importarla de ventas
+        const response = await fetch('RutaParaObtenerLaListaDePedidos'); /*Importar Modulo externo VENTAS*/
+        if (!response.ok) {
+            throw new Error('No se pudo obtener la lista de pedidos');
+        }
+        const pedidos = await response.json();
+
+        // Iterar sobre los pedidos y actualizar las order-cards
+        pedidos.forEach(pedido => {
+            if (pedido.status == "pendiente") {
+                let cardsMesas = document.querySelectorAll(".order-card")
+                for (const cardMesa of cardsMesas) {
+                    if (!cardMesa.classList.contains("ocupado")) {
+                        cardMesa.id = pedido.id.toString();
+                        cardMesa.classList.add("ocupado");
+                        let carMesaStatus = cardMesa.lastElementChild;
+                        carMesaStatus.textContent = `ID pedido: ${pedido.id} \nEstatus: ${pedido.status}`;
+                        encontrado = true;
+                        break; // Detener el bucle una vez que se haya encontrado y actualizado una cardMesa
+                    }
+                }
+            }
+        }
+        )
+    } catch (error) {
+        console.error('Error al actualizar los pedidos:', error);
+    }
+    }
+
+    // Llamar a la función para actualizar los pedidos inicialmente
+    actualizarPedidos();
+    // Llamar a la función cada cierto tiempo para actualizar los pedidos (por ejemplo, cada 30 segundos)
+    setInterval(actualizarPedidos, 15000); // Actualizar cada 15 segundos (15000 milisegundos)
     </script>
 </body>
 </html>
