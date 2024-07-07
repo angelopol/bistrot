@@ -205,7 +205,7 @@ const connection = await mysql.createConnection(config)
             let instrumentos = comida.instrumentos.split(",")
             instrumentos.forEach(async idInstrumentos => {
                 // habria que importar esta funcion de inventario
-                let instrumentoInventario = await cocinaBarRoutes.getForId({idInstrumentos}) /*IMPORTAR MODULO EXTERNO INVENTARIO */
+                let instrumentoInventario = await generalRoutes.getForId({idInstrumentos}) /*IMPORTAR MODULO EXTERNO INVENTARIO */
                 if (instrumentoInventario.funciona_estado == false){
                     // no se cuenta con la maquinaria necesaria
 
