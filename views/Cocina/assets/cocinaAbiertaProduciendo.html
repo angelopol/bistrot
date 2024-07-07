@@ -532,10 +532,11 @@
     }
 
     const pedidosContainers = document.getElementsByClassName("order-card")
+    var idPedido = 0
     pedidosContainers.forEach(container => {
         container.addEventListener("click", async function () {
             let idStringCardSeleccionada = this.getAtributte("id")
-            let idPedido = parseInt(idStringCardSeleccionada.replace("#", ""))
+            idPedido = parseInt(idStringCardSeleccionada.replace("#", ""))
             let response = await fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`)
             let pedidos = await JSON.parse(response.json())
 
@@ -548,6 +549,20 @@
                 pTag.textContent = `${pTag.textContent} ${nombrePlato.nombre}, x${pedidos[platoId]}. ` // Elemento provisional que contiene la información de los platos pedidos
             })
         })
+    })
+
+    const listoButton = document.querySelector(".order-ready")
+    listoButton.addEventListener("click", async function (idPedido) {
+        let response = await fetch(`http://localhost:1234/comidas/pedido-listo?pedido_id=${idPedido}`)
+
+        if (response.ok) {
+            let cardPedido = document.getElementById(`${idPedido}`)
+            let cardPedidoStatus = cardPedido.lastElementChild;
+            cardPedidoStatus.textContent = `ID pedido: ${idPedido} \nEstatus: Listo`;
+        }
+        else {
+            alert("Ha ocurrido un error en la base de datos de ventas.")
+        }
     })
     
     </script>

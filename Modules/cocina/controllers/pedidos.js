@@ -105,4 +105,12 @@ export class pedidoController {
 
         return res.json(pedido)
     }
+
+    static async orderListaStatus(req, res) {
+        const {pedido_id} = req.query
+
+        const pedido = await PedidoModel.update({pedido_id, input: "Listo"})
+
+        return res.json(pedido)
+    }
 }

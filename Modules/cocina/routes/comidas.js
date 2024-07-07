@@ -18,3 +18,5 @@ comidasRouter.patch("/:id" , ComidaController.update)
 comidasRouter.get("/procesar-pedido:id", pedidoController.orderStatus)
 
 comidasRouter.get("/mostrar-pedido:id", pedidoController.getOrder)
+
+comidasRouter.get("/pedido-listo:id", pedidoController.orderListaStatus)
