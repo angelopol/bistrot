@@ -1,0 +1,149 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 800;
+}
+
+body {
+    overflow: hidden;
+}
+
+main {
+    color: #02676F;
+    margin: 0;
+    font-family: 'Montserrat-Medium';
+}
+
+#principal {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 30px;
+    width: 75vw;
+    height: 85vh;
+}
+
+.dashboard {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+}
+
+#compras-title {
+    font-family: 'Montserrat-Bold';
+    font-size: 1.5rem;
+}
+
+#title-table {
+    font-size: 0.8em;
+    padding: 10px;
+}
+
+#tabla-registro {
+    width: 100%;
+    font-size: 0.8rem;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #E0E0E0;
+}
+
+.registro-clase {
+    color: #828282;
+    padding: 10px;
+}
+
+.left-side {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    height: 65vh;
+    width: 70%;
+    border-radius: 8px;
+}
+
+.vertical-divider {
+    width: 2px;
+    background-color: #02676F;
+    height: 65vh;
+}
+
+.box-saldo {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    background-color: white;
+    width: 95%;
+    padding: 10px;
+}
+
+#saldo {
+    font-family: 'Montserrat-Bold';
+    
+}
+
+#saldo-title {
+    font-size: 0.8rem;
+    color: #828282;
+}
+
+#prov-icon, #compra-icon {
+    width: 10%;
+}
+
+.box-compra, .box-prov {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat-Bold';
+}
+
+#btn-compra, #btn-prov {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    background-color: white;
+    height: 10vh;
+    font-size: 1.1em;
+    transition: all 0.4s;
+    cursor:pointer;
+    font-family: 'Montserrat-Bold';
+    color: #02676F;
+    width: 100%;
+}
+
+#btn-compra:hover, #btn-prov:hover {
+    background-color: #0F624A;
+    color: white;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:70%;
+}
+
+.box-soli {
+    margin-top: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    height: 30vh;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
