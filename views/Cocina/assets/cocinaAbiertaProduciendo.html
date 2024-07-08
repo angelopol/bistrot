@@ -534,36 +534,59 @@
         }
     }
 
-    const pedidosContainers = document.getElementsByClassName("order-card")
+    const pedidosContainers = document.getElementsByClassName("order-card") //cartas de pedidos
     var idPedido = 0
     pedidosContainers.forEach(container => {
         container.addEventListener("click", async function () {
             let idStringCardSeleccionada = this.getAtributte("id")
-            idPedido = parseInt(idStringCardSeleccionada.replace("#", ""))
+            idPedido = parseInt(idStringCardSeleccionada.replace("#", "")) // Obtenemos el id del pedido
+
             let response = await fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`) 
             let pedidos = await JSON.parse(response.json())
+            let comidasPedido = JSON.parse(pedidos.consumo) // Obtenemos el diccionario con los id de los platos y la cantidad
 
-            const orderId = document.getElementById("order-id") // Carta del pedido seleccionado
-            orderId.textContent = `Pedido ID: ${idPedido}` // Donde en el front va "MESA 00" debería ir el ID del pedido seleccionado, ya que a cocina no maneja mesas
-            let comidasPedido = JSON.parse(pedidos.consumo)
-
-            //Aqui
             let contenedorPedido = document.querySelector(".order-summary")
-            contenedorPedido.innerHTML = ""
+            contenedorPedido.innerHTML = "" // Se borra el contenido de la carta resumen de pedidos
+
             let elementoH3 = document.createElement("h3")
-            elementoH3.className = "order-numbre"
+            elementoH3.className = "order-number"
             elementoH3.id = "order-id"
             elementoH3.textContent = `Pedido ID: ${idPedido}`
-            contenedorPedido.appendChild(elementoH3)
+            contenedorPedido.appendChild(elementoH3) // Se agrega el id del pedido 
+
+            let divPedido = document.createElement("div")
+            divPedido.className = "order-type"
+            divPedido.innerHTML = "PEDIDO"
+            contenedorPedido.appendChild(divPedido) // Se agrega el indicador "PEDIDO"
 
             // {"2":1 , "3":1}
             Object.keys(comidasPedido).forEach(platoId => {
-                comidasPedido[platoId]    
+                
                 // Iteramos el diccionario de pedidos para encontrar sus nombres
                 let res = fetch(`http://localhost:1234/comidas/${platoId}`) // Se busca la receta en el modelo comida
                 let nombrePlato = res.json()
-                pTag.textContent = `${pTag.textContent} ${nombrePlato.nombre}, x${pedidos[platoId]}. ` // Elemento provisional que contiene la información de los platos pedidos
+                pTag.textContent = `${pTag.textContent} , . ` // Elemento provisional que contiene la información de los platos pedidos
+                
+                let divItem = document.createElement("div")
+                divItem.className = "order-item" // div que almacena el nombre y cantidad de platos
+
+                let itemName = document.createElement("span")
+                itemName.className = "item-name"
+                itemName.innerHTML = `${nombrePlato.nombre}` // span con el nombre del plato
+
+                let itemDetail = document.createElement("span")
+                itemName.className = "item-detail"
+                itemName.innerHTML = `x${comidasPedido[platoId]}` // span con la cantidad del plato
+
+                divItem.appendChild(itemName)
+                divItem.appendChild(itemDetail)
+                contenedorPedido.appendChild(divItem)
             })
+
+            let listoButton = document.createElement("button")
+            listoButton.className = "order-ready"
+            listoButton.value = "Listo"
+            contenedorPedido.appendChild(listoButton)
             
         })
     })
