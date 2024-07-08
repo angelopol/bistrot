@@ -420,12 +420,12 @@ export class VentasModel {
 
     static async create_factura({input}) {
         const {
-            monto, iva, consumo
+            monto, iva, consumo, status_pedido
         } = input
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_factura (monto, iva, consumo) VALUES (?, ?, ?);", [monto, iva, consumo]
+                "INSERT INTO submodulo_factura (monto, iva, consumo) VALUES (?, ?, ?);", [monto, iva, consumo, status_pedido]
             )
         } catch (error) {
             throw new Error("Error creando un registro de factura")
@@ -437,7 +437,7 @@ export class VentasModel {
 
     static async update_factura({id , input}) {
         const {
-            monto, iva, consumo
+            monto, iva, consumo, estatus_pedido
         } = input;
 
         try {
@@ -456,6 +456,10 @@ export class VentasModel {
             if (consumo) {
                 updates.push("consumo = ?");
                 values.push(consumo);
+            }
+            if (estatus_pedido) {
+                updates.push("estatus_pedido = ?");
+                values.push(estatus_pedido);
             }
             
 

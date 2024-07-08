@@ -20,7 +20,8 @@ const schema_factura = z.object({
     }, {
         message: 'Los ingredientes deben ser un objeto en formato JSON con claves numéricas'
     }),
-})
+    status_pedido : z.number().min(1).max(4), 
+});
 
 
 export function validateFactura (input) {
