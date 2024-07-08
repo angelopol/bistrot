@@ -14,81 +14,283 @@
           <div class="form-row">
             <div class="form-group">
               <label for="position" class="form-label">Cargo</label>
-              <div class="form-input dropdown">
-                <span class="dropdown-text">Gerente</span>
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d213b32f0ab7eb3994eff505bd4556dd8f8bf112889c41bf0fc784b317cedacb?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="" class="dropdown-icon" />
-              </div>
+              
+                <select class="form-input dropdown text">Gerente
+                  <option value="Gerente">Gerente</option>
+                  <option value="Cajero">Cajero</option>
+                  <option value="Cocinero">Cocinero</option>
+                  <option value="Mesero">Mesero</option>
+                  <option value="Bartender">Bartender</option>
+                  <option value="Limpieza">Limpieza</option>
+                  
+
+                </select>
+                
+              
             </div>
             
             <div class="form-group">
               <label for="start-date" class="form-label">Fecha inicio</label>
-              <input type="date" id="start-date" class="form-input" value="0200-02-01" />
+              <input type="date" id="start-date" class="form-input"/>
             </div>
+
+            <script>
+              // Validacion de formulario, en el input de la fecha de inicio no se puede seleccionar una antes de la actual
+              document.getElementById("start-date").addEventListener("change", function () {
+                  var fechaInicio = new Date(this.value);
+                  var fechaActual = new Date();
+                  if (fechaInicio < fechaActual) {
+                      alert("No se puede seleccionar una fecha antes de la actual");
+                      this.value = "";
+                  }
+              });
+          </script>
+           
             
             <div class="form-group">
               <label for="end-date" class="form-label">Fecha culminacion</label>
-              <input type="date" id="end-date" class="form-input" value="0200-02-01" />
+              <input type="date" id="end-date" class="form-input" />
             </div>
+            <script>
+              // Validacion fecha de culminacion no puede ser antes de la fecha de inicio
+              document.getElementById("end-date").addEventListener("change", function () {
+                  var fechaInicio = new Date(document.getElementById("start-date").value);
+                  var fechaCulminacion = new Date(this.value);
+                  if (fechaCulminacion < fechaInicio) {
+                      alert("No se puede seleccionar una fecha antes de la de inicio");
+                      this.value = "";
+                  }
+              });
+            </script>
             
             <div class="form-group">
-              <label for="salary" class="form-label">Salario</label>
+              <label for="salary" class="form-label">Salario (bs)</label>
               <input type="number" id="salary" class="form-input" value="000.00" step="0.01" />
             </div>
           </div>
+        
+          <script>
+            // El user no puede ingresar un salario negativo
+            document.getElementById("salary").addEventListener("input", function () {
+                if (this.value < 0) {
+                    alert("No se puede ingresar un salario negativo");
+                    this.value = "";
+                }
+            });
+
+
+            // El user no puede ingresar letras ni caracteres especiales, solo numeros, varios puntos y comas
+            
+            document.getElementById("salary").addEventListener("input", function () {
+                var value = this.value;
+                var regex = /^[0-9.,]*$/;
+
+                if (!regex.test(value)) {
+                    this.value = value.slice(0, -1);
+                }
+            });
+
+
+          </script>
           
           <div class="form-row">
             <div class="form-group">
               <label for="hours" class="form-label">Horas</label>
-              <div class="form-input dropdown">
-                <span class="dropdown-text">4</span>
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d213b32f0ab7eb3994eff505bd4556dd8f8bf112889c41bf0fc784b317cedacb?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="" class="dropdown-icon" />
-              </div>
+              
+                <select id="hours" class="form-input dropdown">
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  
+                  
+                </select>
+                
+             
             </div>
             
             <div class="form-group">
               <label for="weekday" class="form-label">Dia de la semana</label>
-              <select id="weekday" class="form-input"></select>
+              <select id="weekday" class="form-input">
+              <option value="Lunes">Lunes</option>
+              <option value="Martes">Martes</option>
+              <option value="Miercoles">Miercoles</option>
+              <option value="Jueves">Jueves</option>
+              <option value="Viernes">Viernes</option>
+              <option value="Sabado">Sabado</option>
+              <option value="Domingo">Domingo</option>
+            </select>
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group">
               <label for="first-name" class="form-label">Nombre</label>
-              <input type="text" id="first-name" class="form-input" value="Ken" />
+              <input type="text" id="first-name" class="form-input" />
             </div>
+
+            <script>
+              // Validacion de formulario, en el input del nombre no se pueden ingresar numeros ni caracteres especiales
+
+              const firstNameInput = document.getElementById('first-name');
+
+              firstNameInput.addEventListener('input', (event) => {
+                const value = event.target.value;
+                const regex = /^[a-zA-Z\s]*$/;
+
+                if (!regex.test(value)) {
+                  event.target.value = value.slice(0, -1);
+                }
+              });
+
+              
+            </script>
             
             <div class="form-group">
               <label for="last-name" class="form-label">Apellido</label>
-              <input type="text" id="last-name" class="form-input" value="Ken" />
+              <input type="text" id="last-name" class="form-input" />
             </div>
-            
+            <script>
+              // Validacion de formulario, en el input del apellido no se pueden ingresar numeros ni caracteres especiales
+              
+              const lastNameInput = document.getElementById('last-name');
+
+              lastNameInput.addEventListener('input', (event) => {
+                const value = event.target.value;
+                const regex = /^[a-zA-Z\s]*$/;
+
+                if (!regex.test(value)) {
+                  event.target.value = value.slice(0, -1);
+                }
+              });
+             
+            </script>
             <div class="form-group">
               <label for="id-number" class="form-label">Cedula</label>
-              <input type="text" id="id-number" class="form-input" value="00.000.000" />
+              <input type="text" id="id-number" class="form-input"/>
             </div>
+
+            <script>
+              // Validacion de input de cedula, permite solo numeros y un maximo de 8 caracteres
+              // que no me deje escribir mas numeros de los que se permiten, solo 8
+              const idNumberInput = document.getElementById('id-number');
+
+              idNumberInput.addEventListener('input', (event) => {
+                const value = event.target.value;
+                const regex = /^[0-9]*$/;
+
+                if (!regex.test(value)) {
+                  event.target.value = value.slice(0, -1);
+                }
+
+                if (value.length > 8) {
+                  event.target.value = value.slice(0, 8);
+                }
+              });
+
+            </script>
             
             <div class="form-group">
               <label for="phone" class="form-label">Telefono</label>
-              <input type="tel" id="phone" class="form-input" value="0000-0000000" />
+              <input type="tel" id="phone" class="form-input"  placeholder="04120201212"/>
             </div>
+
+            <script>
+              // Validacion de input de telefono, permite solo numeros y un maximo de 11 caracteres
+              // No permitir un formato incorrecto
+              const phoneInput = document.getElementById('phone');
+
+              phoneInput.addEventListener('input', (event) => {
+                const value = event.target.value;
+                const regex = /^[0-9]*$/;
+
+                if (!regex.test(value)) {
+                  event.target.value = value.slice(0, -1);
+                }
+
+                if (value.length > 11) {
+                  event.target.value = value.slice(0, 11);
+                }
+              });
+
+
+            </script>
           </div>
           
           <div class="form-group">
             <label for="address" class="form-label">Direccion</label>
-            <input type="text" id="address" class="form-input address-input" value="polo Norte, cerca de Santa claus" />
+            <input type="text" id="address" class="form-input address-input" placeholder="Mañongo, cerca del CC Sambil calle 13" />
           </div>
-          
+          <script>
+                            // validar la direccion de residencia 
+                            // que me permita ingresar la ñ y la Ñ
+                            // no me permita ingresar caracteres especiales, solamente la , y el espacio
+                            document.getElementById("address").addEventListener("input", function () {
+                                var address = this.value;
+                                var addressPattern = /^[a-zA-Z0-9\s,ñÑ]*$/;
+                                if (!addressPattern.test(address)) {
+                                    this.value = address.slice(0, -1);
+                                }
+                            });
+            </script>
           <div class="form-row">
             <div class="form-group">
               <label for="employee-code" class="form-label">Codigo de empleado</label>
-              <input type="text" id="employee-code" class="form-input" value="M0000" />
+              <input type="text" id="employee-code" class="form-input" placeholder="M0000" />
             </div>
             
+            <script>
+              // Codigo de empleado no puede tener mas de 5 caracteres
+              // El primer caracter debe ser una letra, el resto numeros
+              document.getElementById("employee-code").addEventListener("input", function () {
+                  var code = this.value;
+                  var codePattern = /^[a-zA-Z][0-9]*$/;
+                  if (!codePattern.test(code)) {
+                      this.value = code.slice(0, -1);
+                  }
+                  if (code.length > 5) {
+                      this.value = code.slice(0, 5);
+                  }
+              });
+            </script>
             <div class="form-group">
               <label for="user-password" class="form-label">Clave de Usuario</label>
-              <input type="password" id="user-password" class="form-input" value="******" />
+              <input type="password" id="user-password" class="form-input" placeholder="****" />
             </div>
+
+            <script>
+              // Validación de contraseña, si el usuario le da al boton de registrar y la contraseña no tiene al menos 4 caracteres, se le mostrara un mensaje de error
+
+              document.querySelector('.submit-button').addEventListener('click', function (event) {
+                const password = document.getElementById('user-password').value;
+
+                if (password.length < 4) {
+                  alert('La contraseña debe tener al menos 4 caracteres');
+                  event.preventDefault();
+                }
+              });
+
+              // Si el usuario le da al boton de registrar y el numero telefonifco tiene menos de 11 caracteres, se le mostrara un mensaje de error
+
+              document.querySelector('.submit-button').addEventListener('click', function (event) {
+                const phone = document.getElementById('phone').value;
+
+                if (phone.length < 11) {
+                  alert('El numero telefonico debe tener al menos 11 caracteres');
+                  event.preventDefault();
+                }
+              });
+
+            </script>
+            
           </div>
+
+          
           
           <button type="submit" class="submit-button">Registrar</button>
         </form>
