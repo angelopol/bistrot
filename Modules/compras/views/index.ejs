@@ -80,6 +80,16 @@
                           </tr>
                         </thead>
                         <tbody id="tabla-registro-body">
+                            <% if (data) { %>
+                                <% for (var i = 0; i < data.length; i++) { %>
+                                    <tr>
+                                        <td><%= data[i].Producto %></td>
+                                        <td><%= data[i].ID %></td>
+                                        <td><%= data[i].Cantidad %></td>
+                                        <td><%= data[i].Precio %></td>
+                                    </tr>
+                                <% } %>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>

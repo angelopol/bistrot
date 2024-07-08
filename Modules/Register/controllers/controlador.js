@@ -12,6 +12,11 @@ export class HistorialController {
         const newHistorial = await this.historialModel.agregar({input: req.body})
         res.json(newHistorial)
     }
+
+    getAll = async (req,res)=>{
+        const ordenes = await this.historialModel.listar()
+        res.render('index',{data: ordenes});
+    }
 }
 
 export class ProductoController{
