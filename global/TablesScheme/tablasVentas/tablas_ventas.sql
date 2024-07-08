@@ -42,5 +42,6 @@ CREATE TABLE submodulo_factura (
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     monto float NOT NULL,
     iva float NOT NULL,
-    consumo LONGTEXT NOT NULL  -- consumo = {"id_comida" : cantidad}
+    consumo LONGTEXT NOT NULL,  -- consumo = {"id_comida" : cantidad}
+    status_pedido INT NOT NULL
 );
