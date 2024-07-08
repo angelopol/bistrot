@@ -145,7 +145,7 @@ select:hover {
     gap: 5%;
 }
 
-#btn-acept, #btn-rech {
+#btn-acept, #btn-rech, #btn-enviar {
     padding: 15px;
     width: 50%;
     background-color: #0F624A;
@@ -162,6 +162,10 @@ select:hover {
     border-color: #02676F;
     color: #02676F;
     border-style: solid;
+}
+
+#btn-enviar {
+    width: 100%;
 }
 
 .help-comp {
