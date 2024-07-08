@@ -1,40 +1,27 @@
 import z from "zod";
 
 const schema_cliente = z.object({
-    // validamos si es un string
-    nombre_cliente_empresa : z.string(),
-    // validamos si es un string
-    rif_cedula : z.string(),
-    // validamos si es un string
-    direccion : z.string(),
-    // validamos si es un string
-    tipo_estado : z.string().refine(estado => {
-        return ['natural', 'juridico'].includes(estado);
-    }, {
-        message: 'El tipo de estado debe de ser natural o juridico'
+    // Validamos si es un string
+    nombre_cliente_empresa: z.string().min(1, { message: 'El nombre del cliente o empresa no puede estar vacío' }),
+    // Validamos si es un string
+    rif_cedula: z.string().min(1, { message: 'El RIF o cédula no puede estar vacío' }),
+    // Validamos si es un string
+    direccion: z.string().min(1, { message: 'La dirección no puede estar vacía' }),
+    // Validamos si es un string y refinamos para que sea 'natural' o 'juridico'
+    tipo_estado: z.string().refine(estado => ['natural', 'juridico'].includes(estado), {
+        message: 'El tipo de estado debe ser "natural" o "juridico"'
     }),
-    // validamos si es un numero de telefono
-    telefono : z.string().refine(telefono => {
-        // Eliminar espacios en blanco y guiones
-        const phone = telefono.replace(/\s/g, '').replace(/-/g, '');
-        
-        // Verificar si el número de teléfono tiene solo dígitos
-        const tieneDigitos = /^\d+$/.test(phone);
-        if (!tieneDigitos) {
-            return false;
-        }
-        
-        // Verificar la longitud del número de teléfono
-        const longitudValida = phone.length === 10;
-        if (!longitudValida) {
-            return false;
-        }
-        
-        return true;
+    // Validamos si es un número de teléfono válido
+    telefono: z.string().refine(telefono => {
+        const phone = telefono.replace(/\s/g, '').replace(/-/g, ''); // Eliminar espacios en blanco y guiones
+        const tieneDigitos = /^\d+$/.test(phone); // Verificar si el número de teléfono tiene solo dígitos
+        const longitudValida = phone.length === 10; // Verificar la longitud del número de teléfono
+        return tieneDigitos && longitudValida;
     }, {
-        message: 'El numero de telefono es invalido'
+        message: 'El número de teléfono es inválido'
     }),
-    correo_electronico : z.string().email(),
+    // Validamos si es un correo electrónico válido
+    correo_electronico: z.string().email({ message: 'El correo electrónico no es válido' }),
 })
 
 

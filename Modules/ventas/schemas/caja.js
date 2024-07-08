@@ -8,24 +8,28 @@ const schema_caja = z.object({
         message: 'El turno del horario debe de ser un string o contener las palabras requeridas de dicha variable'
     } ),
     // valida si la tasa del dia es un numero positivo
-    tasa_del_dia : z.number().positive(),
+    tasa_del_dia : z.number().positive({ message: 'La tasa del dia debe ser un número positivo' }),
     // valida si la apertura es un datetime
-    apertura : z.string().datetime(),
+    apertura : z.string().datetime({
+        message: 'El formato de la apertura debe ser yyyy-mm-ddThh:mm:ss.sssZ'
+    }),
     // valida si el cierre de la caja es un datetime y mayor a apertura de la caja
-    cierre : z.string().datetime(),
+    cierre : z.string().datetime({
+        message: 'El formato de la apertura debe ser yyyy-mm-ddThh:mm:ss.sssZ'
+    }) ,
     // valida si el monto_inicial es un numero float, positivo
-    monto_inicial : z.number().positive(),
+    monto_inicial : z.number().positive({ message: 'El monto inicial debe ser un número positivo' }),
     // valida si el monto_final es un numero float, positivo
-    monto_final : z.number().positive(),
+    monto_final : z.number().positive({ message: 'El monto final debe ser un número positivo' }),
     // valida si el ingresos es un numero float, positivo
-    ingresos : z.number().positive(),
+    ingresos : z.number().positive({ message: 'Los ingresos debe ser un número positivo' }),
     // valida si el egresos es un numero float, positivo
-    egresos : z.number().positive(),
+    egresos : z.number().positive({ message: 'Los egresos debe ser un número positivo' }),
     }).refine(data => data.cierre > data.apertura, {
         message : 'El cierra de la caja debe de ser una variable de tipo datetime, o debe de ser mayor que tiempo de apertura de la caja',
 });
 
-/*
+
 const cajaData = {
     turno_horario : 'noche',
     tasa_del_dia : 10,
@@ -36,7 +40,6 @@ const cajaData = {
     ingresos : 1000,
     egresos : 20.5
   };
-*/
 
 
 export function validateCaja (input) {
