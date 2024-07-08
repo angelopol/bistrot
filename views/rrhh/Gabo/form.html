@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/form.css">
+    <title>Recursos Humanos</title>
+</head>
+<body>
+    <main class="employee-registration">
+        <h1 class="page-title">Registro de Empleado</h1>
+        
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="position" class="form-label">Cargo</label>
+              <div class="form-input dropdown">
+                <span class="dropdown-text">Gerente</span>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d213b32f0ab7eb3994eff505bd4556dd8f8bf112889c41bf0fc784b317cedacb?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="" class="dropdown-icon" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="start-date" class="form-label">Fecha inicio</label>
+              <input type="date" id="start-date" class="form-input" value="0200-02-01" />
+            </div>
+            
+            <div class="form-group">
+              <label for="end-date" class="form-label">Fecha culminacion</label>
+              <input type="date" id="end-date" class="form-input" value="0200-02-01" />
+            </div>
+            
+            <div class="form-group">
+              <label for="salary" class="form-label">Salario</label>
+              <input type="number" id="salary" class="form-input" value="000.00" step="0.01" />
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hours" class="form-label">Horas</label>
+              <div class="form-input dropdown">
+                <span class="dropdown-text">4</span>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d213b32f0ab7eb3994eff505bd4556dd8f8bf112889c41bf0fc784b317cedacb?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="" class="dropdown-icon" />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="weekday" class="form-label">Dia de la semana</label>
+              <select id="weekday" class="form-input"></select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name" class="form-label">Nombre</label>
+              <input type="text" id="first-name" class="form-input" value="Ken" />
+            </div>
+            
+            <div class="form-group">
+              <label for="last-name" class="form-label">Apellido</label>
+              <input type="text" id="last-name" class="form-input" value="Ken" />
+            </div>
+            
+            <div class="form-group">
+              <label for="id-number" class="form-label">Cedula</label>
+              <input type="text" id="id-number" class="form-input" value="00.000.000" />
+            </div>
+            
+            <div class="form-group">
+              <label for="phone" class="form-label">Telefono</label>
+              <input type="tel" id="phone" class="form-input" value="0000-0000000" />
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="address" class="form-label">Direccion</label>
+            <input type="text" id="address" class="form-input address-input" value="polo Norte, cerca de Santa claus" />
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="employee-code" class="form-label">Codigo de empleado</label>
+              <input type="text" id="employee-code" class="form-input" value="M0000" />
+            </div>
+            
+            <div class="form-group">
+              <label for="user-password" class="form-label">Clave de Usuario</label>
+              <input type="password" id="user-password" class="form-input" value="******" />
+            </div>
+          </div>
+          
+          <button type="submit" class="submit-button">Registrar</button>
+        </form>
+      </main>
+    
+</body>
+</html>
