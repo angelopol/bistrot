@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot - Compras</title>
+    <link rel="stylesheet" href="../css/side.css">
+    <link rel="stylesheet" href="../css/solicitud.css">
+    <link rel="shortcut icon" href="../resources/icon.jpeg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="../resources/iconos_barra/icono_inicio.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="../resources/iconos_barra/icono_ventas.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="../resources/iconos_barra/icono_compras.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="../resources/iconos_barra/icono_rrhh.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="../resources/iconos_barra/icono_inventario.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="../resources/iconos_barra/icono_mantenimiento.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="../resources/iconos_barra/icono_cocina.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="../resources/iconos_barra/icono_reservas.png">
+                <p class="side-option">Reservas</p>
+            </div>
+            <div class="side report">
+                <img class="side-foto" src="../resources/iconos_barra/icono_reporte.png">
+                <p class="side-option">Reportes</p>
+            </div>
+            <div class="side config">
+                <img class="side-foto" src="../resources/iconos_barra/icono_config.png">
+                <p class="side-option">Configuraciones</p>
+            </div>
+            <div class="side ayuda">
+                <img class="side-foto" src="../resources/iconos_barra/icono_ayuda.png">
+                <p class="side-option">Ayuda</p>
+            </div>
+        </div>
+
+        <div id="principal">
+            <div class="box-title-prov">
+                <img class="title-exit" src="../resources/Icono-Back.svg" alt="Icono - Exit">
+                <h2 id="title-prov">Solicitudes</h2>
+            </div>
+            <div class="dashboard">
+                <div class="left-side">
+                    <div class="tabla-content">
+                    <table id="tabla-prod">
+                        <h3 id="title-table">Productos</h3>
+                        <thead>
+                          <tr>
+                            <th class="comp-clase">Producto</th>
+                            <th class="comp-clase">Proveedor</th>
+                            <th class="comp-clase">Unidades</th>
+                            <th class="comp-clase">Cantidad</th>
+                            <th class="comp-clase">Precio</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tabla-prov-body">
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="tabla-content">
+                    <table id="tabla-soli">
+                        <h3 id="title-table">Solicitudes</h3>
+                        <thead>
+                          <tr>
+                            <th class="registro-clase">Producto</th>
+                            <th class="registro-clase">Cantidad</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tabla-soli-body">
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <h3 id="subtitle-comp">Proceso de Solicitud</h3>
+                    <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
+                    <div class="box-producto">
+                        <select id="select-prod">
+                            <option disabled selected>Producto</option>
+                        </select>
+                        <input id="input-cant" placeholder="Cantidad" type="text">
+                    </div>
+                    <select id="select-depa">
+                        <option disabled selected>Departamento</option>
+                        <option>Ventas/Salon</option>
+                        <option>Compras</option>
+                        <option>Inventario</option>
+                        <option>Mantenimiento</option>
+                        <option>Cocina</option>
+                    </select>
+                    <input placeholder="Descripcion" class="input-data desc" type="text">
+                    <h3 id="subtitle-pen">Pendientes</h3>
+                    <select id="select-soli">
+                        <option disabled selected>Departamento-Producto-Cantidad</option>
+                    </select>
+                    <div class="btns-acep">
+                        <button>Aceptar</button>
+                        <button>Rechazar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

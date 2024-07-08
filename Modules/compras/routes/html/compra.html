@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot - Compras</title>
+    <link rel="stylesheet" href="../css/side.css">
+    <link rel="stylesheet" href="../css/compra.css">
+    <link rel="shortcut icon" href="../resources/icon.jpeg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="../resources/iconos_barra/icono_inicio.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="../resources/iconos_barra/icono_ventas.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="../resources/iconos_barra/icono_compras.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="../resources/iconos_barra/icono_rrhh.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="../resources/iconos_barra/icono_inventario.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="../resources/iconos_barra/icono_mantenimiento.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="../resources/iconos_barra/icono_cocina.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="../resources/iconos_barra/icono_reservas.png">
+                <p class="side-option">Reservas</p>
+            </div>
+            <div class="side report">
+                <img class="side-foto" src="../resources/iconos_barra/icono_reporte.png">
+                <p class="side-option">Reportes</p>
+            </div>
+            <div class="side config">
+                <img class="side-foto" src="../resources/iconos_barra/icono_config.png">
+                <p class="side-option">Configuraciones</p>
+            </div>
+            <div class="side ayuda">
+                <img class="side-foto" src="../resources/iconos_barra/icono_ayuda.png">
+                <p class="side-option">Ayuda</p>
+            </div>
+        </div>
+        <div id="principal">
+            <div class="box-title-comp">
+                <img class="title-exit" src="../resources/Icono-Back.svg" alt="Icono-Exit">
+                <h2 id="title-comp">Realizar Compra</h2>
+            </div>
+            <div class="dashboard">
+                <div class="left-side">
+                    <table id="tabla-comp">
+                        <h3 id="title-table">Historial de Compra</h3>
+                        <thead>
+                        <tr>
+                            <th class="comp-clase">Producto</th>
+                            <th class="comp-clase">Proveedor</th>
+                            <th class="comp-clase">Unidades</th>
+                            <th class="comp-clase">Cantidad</th>
+                            <th class="comp-clase">Precio</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tabla-comp-body">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="right-side">
+                    <h3 id="subtitle-comp">Proceso de Compra</h3>
+                    <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
+                    <div class="box-producto">
+                        <select id="select-prod">
+                            <option disabled selected>Producto</option>
+                        </select>
+                        <input id="input-cant" placeholder="Cantidad" type="text">
+                    </div>
+                    <p class="help-comp">Indique el Proveedor del producto</p>
+                    <select id="select-prov">
+                        <option disabled selected>Proveedor</option>
+                    </select>
+                    <button id="confirm-compra-btn">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        //Tabla de los Producto
+        //Categorias: Producto-Unidades-Cantidad-Precio
+        let productos = document.getElementById('tabla-comp')
+        //Tabla Contiene un thead y un tbody, tbody vacio, rellenar
+        let prodbody = document.getElementById('tabla-comp-body')
+        //Por si es necesario, directamente el body
+
+        let selectproducto = document.getElementById('select-prod')
+        //ComboBox del Producto seleccionado
+        let cantidad = document.getElementById('input-cant')
+        //Input de la cantidad del producto segun la unidad
+        let selectproveedor = document.getElementById('select-prov')
+        //Combobox del Proveedor del producto
+        //Validar si el proveedor tiene ese producto
+        let btn_confirmar = document.getElementById('confirm-compra-btn')
+        //Boton que redirigira a la de Compra Exitosa
+
+        let exit = document.getElementsByClassName('title-exit')[0]
+        //Boton de Exit
+
+        exit.onclick = function(){
+            window.location.href = 'index.html'
+        }
+    </script>
+</body>
+</html>

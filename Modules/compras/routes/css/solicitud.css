@@ -1,0 +1,84 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 800;
+}
+
+body {
+    overflow: hidden;
+}
+
+main {
+    color: #02676F;
+    margin: 0;
+    font-family: 'Montserrat-Medium';
+}
+
+#principal {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 30px;
+    width: 75vw;
+    height: 85vh;
+}
+.box-title-prov {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat-Bold';
+}
+
+#title-prov {
+    font-size: 1.5rem;
+}
+
+.title-exit {
+    cursor: pointer;
+    width: 40px;
+}
+
+.dashboard {
+    display: flex;
+    height: 100%;
+    gap: 5%;
+    width: 100%;
+    padding: 20px;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 90%;
+    gap: 10px;
+}
+
+#tabla-prod, #tabla-soli {
+        width: 100%;
+        font-size: 0.8rem;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: #E0E0E0;
+        border-width: 2px;
+}
+
+.tabla-content {
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    height: 40%;
+    padding: 20px;
+}

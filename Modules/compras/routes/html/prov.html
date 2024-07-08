@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot - Compras</title>
+    <link rel="stylesheet" href="../css/side.css">
+    <link rel="stylesheet" href="../css/prov.css">
+    <link rel="shortcut icon" href="../resources/icon.jpeg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="../resources/iconos_barra/icono_inicio.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="../resources/iconos_barra/icono_ventas.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="../resources/iconos_barra/icono_compras.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="../resources/iconos_barra/icono_rrhh.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="../resources/iconos_barra/icono_inventario.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="../resources/iconos_barra/icono_mantenimiento.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="../resources/iconos_barra/icono_cocina.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="../resources/iconos_barra/icono_reservas.png">
+                <p class="side-option">Reservas</p>
+            </div>
+            <div class="side report">
+                <img class="side-foto" src="../resources/iconos_barra/icono_reporte.png">
+                <p class="side-option">Reportes</p>
+            </div>
+            <div class="side config">
+                <img class="side-foto" src="../resources/iconos_barra/icono_config.png">
+                <p class="side-option">Configuraciones</p>
+            </div>
+            <div class="side ayuda">
+                <img class="side-foto" src="../resources/iconos_barra/icono_ayuda.png">
+                <p class="side-option">Ayuda</p>
+            </div>
+        </div>
+
+        <div id="principal">
+            <div class="box-title-prov">
+                <img class="title-exit" src="../resources/Icono-Back.svg" alt="Icono - Exit">
+                <h2 id="title-prov">Proveedores</h2>
+            </div>
+            <div class="dashboard">
+                <div class="left-side">
+                    <table id="tabla-prov">
+                        <h3 id="title-table">Historial de Compra</h3>
+                        <thead>
+                          <tr>
+                            <th class="prov-clase">Empresa</th>
+                            <th class="prov-clase">RIF</th>
+                            <th class="prov-clase">Producto</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tabla-prov-body">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="right-side">
+                    <div class="prov-details">
+                        <h3 id="title-detaile-prov">Detalles</h3>
+                        <select id="select-prov">
+                            <option disabled selected>Proveedor</option>
+                        </select>
+                    </div>
+                    <button id="delete-prov-btn">Eliminar</button>
+                    <div id="horizontal-divider"></div>
+                    <div class="data">
+                        <div class="data-box-title">
+                            <h3 id="data-title">Datos del Proveedor</h3>
+                            <button id="data-title-btn">Agregar/Modificar</button>
+                        </div>
+                        <form class="form-data">
+                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text">
+                            <input placeholder="RIF" class="input-data rif-prov" type="text">
+                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text">
+                            <input placeholder="Correo" class="input-data correo-prov" type="text">
+                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text">
+                            <input placeholder="Telefono" class="input-data tlf-prov" type="text">
+                            <input placeholder="Producto" class="input-data prod-prov" type="text">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> 
+    <script >
+        let proveedores = document.getElementById('tabla-prov')
+        //Tabla Contiene un thead y un tbody, tbody vacio, rellenar
+        let provbody = document.getElementById('tabla-prov-body')
+        //Por si es necesario, directamente el body
+        //Las Caterogias de la tabla son Empresa-RIF-Producto
+
+        let listaproveedores = document.getElementById('select-prov')
+        //ComboBox-DropBox como le llamen, lista de todos proveedores, para seleccionarlo
+        //Validar que el value no sea Proveedor ya que es el valor predeterminado
+        //Cuando se seleccione uno que sus datos aparezcan en los inputs
+
+        let btn_delete = document.getElementById('delete-prov-btn')
+        //Boton que Elimina a un proveedor en el combobox
+
+        let btn_add = document.getElementById('data-title-btn')
+        //Boton que agrega o modifica un proveedor validado por los inputs
+        //Validar que si el proveedor ya existe que lo modifique
+        //Y si no existe que lo agregue
+
+        //Inputs - Datos del Proveedor
+        let nombre_prov = document.getElementsByClassName('name-prov')[0]
+        //Nombre Del proveedor
+        let rif = document.getElementsByClassName('rif-prov')[0]
+        //RIF Del proveedor
+        let direc_fis = document.getElementsByClassName('dir-prov')[0]
+        //Direccion Fiscal del Proveedor
+        let correo = document.getElementsByClassName('correo-prov')[0]
+        //Correo Del proveedor
+        let nombre_res = document.getElementsByClassName('resp-prov')[0]
+        //Nombre Del responsable
+        let tlf = document.getElementsByClassName('tlf-prov')[0]
+        //Telefono Del proveedor
+        let producto = document.getElementsByClassName('prod-prov')[0]
+        //Producto que vende el proveedor
+
+        let exit = document.getElementsByClassName('title-exit')[0]
+
+        exit.onclick = function(){
+            window.location.href = 'index.html'
+        }   
+    </script>
+</body>
+</html>
