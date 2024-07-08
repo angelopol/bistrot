@@ -220,7 +220,7 @@
             }
         }
         .order-status {
-            color: #fff;
+            color: #000;
             align-self: center;
             margin-top: 20px;
             font: 500 14px Montserrat, sans-serif;
@@ -412,7 +412,7 @@
                     </div>
                 </div>
                 <div class="action-buttons">
-                    <button class="action-button">devolver orden</button>
+                    <button class="action-button" id="botonDevolver">devolver orden</button>
                     <button class="action-button" id="botonHacerNuevo">hacer de nuevo</button>
                     <button class="action-button" id="botonProcesar">PROCESAR</button>
                 </div>
@@ -535,7 +535,6 @@
     })
 
     const pedidosContainers = document.getElementsByClassName("order-card") //cartas de pedidos
-    var idPedido = 0
     pedidosContainers.forEach(container => {
         container.addEventListener("click", async function () {
             let idStringCardSeleccionada = this.getAtributte("id")
@@ -613,6 +612,7 @@
           .then(response => {response.json})
           .then(() => {
             let cardPedido = document.getElementById(`${idPedido}`)
+            cardPedido.classList.remove("ocupado")
             let cardPedidoStatus = cardPedido.lastElementChild;
             cardPedidoStatus.textContent = `ID pedido: ${idPedido} \nEstatus: Listo`;
           })
@@ -621,6 +621,13 @@
           })
     })
     
+    let devolverBoton = document.querySelector("#botonDeolver")
+    devolverBoton.addEventListener("click" , async ()=>{
+        let cardPedido = document.getElementById(`${idPedido}`)
+        cardPedido.classList.remove("ocupado")
+        let cardPedidoStatus = cardPedido.lastElementChild;
+        cardPedidoStatus.textContent = ``;
+    })
     </script>
 </body>
 </html>
