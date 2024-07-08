@@ -517,8 +517,8 @@
     //boton procesar
     let botonProcesar = document.querySelector("#botonProcesar") // colocar este id en el boton procesar 
 
-    async function funcionBotonProcesar () {
-        let idCardSeleccionada = "2" // este id se pasaria por parametro a la funcion
+    async function funcionBotonProcesar (idPedido) {
+        let idCardSeleccionada = idPedido // este id se pasaria por parametro a la funcion
         let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`)
         let pedido = await response.json()
         if (pedido.status == "aceptado"){
@@ -546,12 +546,25 @@
             const orderId = document.getElementById("order-id") // Carta del pedido seleccionado
             orderId.textContent = `Pedido ID: ${idPedido}` // Donde en el front va "MESA 00" debería ir el ID del pedido seleccionado, ya que a cocina no maneja mesas
             let comidasPedido = JSON.parse(pedidos.consumo)
+
+            //Aqui
+            let contenedorPedido = document.querySelector(".order-summary")
+            contenedorPedido.innerHTML = ""
+            let elementoH3 = document.createElement("h3")
+            elementoH3.className = "order-numbre"
+            elementoH3.id = "order-id"
+            elementoH3.textContent = `Pedido ID: ${idPedido}`
+            contenedorPedido.appendChild(elementoH3)
+
+            // {"2":1 , "3":1}
             Object.keys(comidasPedido).forEach(platoId => {
+                comidasPedido[platoId]    
                 // Iteramos el diccionario de pedidos para encontrar sus nombres
                 let res = fetch(`http://localhost:1234/comidas/${platoId}`) // Se busca la receta en el modelo comida
                 let nombrePlato = res.json()
                 pTag.textContent = `${pTag.textContent} ${nombrePlato.nombre}, x${pedidos[platoId]}. ` // Elemento provisional que contiene la información de los platos pedidos
             })
+            
         })
     })
 
