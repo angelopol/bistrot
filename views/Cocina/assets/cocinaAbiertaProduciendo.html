@@ -353,6 +353,9 @@
             white-space: nowrap;
             border: 0;
         }
+        #botonHacerNuevo{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -410,7 +413,7 @@
                 </div>
                 <div class="action-buttons">
                     <button class="action-button">devolver orden</button>
-                    <button class="action-button">hacer de nuevo</button>
+                    <button class="action-button" id="botonHacerNuevo">hacer de nuevo</button>
                     <button class="action-button" id="botonProcesar">PROCESAR</button>
                 </div>
             </section>
@@ -537,14 +540,15 @@
         container.addEventListener("click", async function () {
             let idStringCardSeleccionada = this.getAtributte("id")
             idPedido = parseInt(idStringCardSeleccionada.replace("#", ""))
-            let response = await fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`)
+            let response = await fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`) 
             let pedidos = await JSON.parse(response.json())
 
             const orderId = document.getElementById("order-id") // Carta del pedido seleccionado
             orderId.textContent = `Pedido ID: ${idPedido}` // Donde en el front va "MESA 00" debería ir el ID del pedido seleccionado, ya que a cocina no maneja mesas
-            pedidos.forEach(platoId => {
+            let comidasPedido = JSON.parse(pedidos.consumo)
+            Object.keys(comidasPedido).forEach(platoId => {
                 // Iteramos el diccionario de pedidos para encontrar sus nombres
-                let res = fetch(`http://localhost:1234/comidas/comida-id=${platoId}`) // Se busca la receta en el modelo comida
+                let res = fetch(`http://localhost:1234/comidas/${platoId}`) // Se busca la receta en el modelo comida
                 let nombrePlato = res.json()
                 pTag.textContent = `${pTag.textContent} ${nombrePlato.nombre}, x${pedidos[platoId]}. ` // Elemento provisional que contiene la información de los platos pedidos
             })
