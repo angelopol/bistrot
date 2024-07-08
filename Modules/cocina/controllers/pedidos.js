@@ -6,11 +6,17 @@ export class pedidoController {
 
         const {pedido_id} = req.query // sacamos el id del pedido de la url
 
-        // hay que importar PedidoModel que es un el modelo de pedido del modulo de ventas
-        const pedido = await PedidoModel.getForId({pedido_id}) /* IMPORTAR MODULO EXTERO VENTAS*/
+        //Importamos el pedido con su id, Esta no es la ruta definitiva de vetnas
+        const response = await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+            if (!response.ok){
+                throw new Error('No se pudo obtener el ingrediente');
+            }
+
+
+        const pedido = await response.json() 
 
         //sacamos las comidas del pedido
-        const comidas = JSON.parse(pedido.comidas);
+        const comidas = JSON.parse(pedido.consumo);
 
         let ingredientesRequeridos = {};
 
@@ -49,10 +55,38 @@ export class pedidoController {
                 // hacen falta ingredientes
 
                 //actualizacmos el estatus de pedido a rechazado
-                let cambios = {status: "rechazado"}
-                // hay que importar PedidoModel que es un el modelo de pedido del modulo de ventas
-                let nuevoPedido = await PedidoModel.update({id: pedido_id , input: cambios}) /* IMPORTAR MODULO EXTERO VENTAS*/
-                return res.json(nuevoPedido)
+                let cambios = {status_pedido: "rechazado"}
+                const requestOptions = {
+                    method: 'PUT', // Método HTTP para actualizar (puede ser PUT o PATCH dependiendo de tu API)
+                    headers: {
+                    'Content-Type': 'application/json' // Tipo de contenido que estás enviando
+                    },
+                    body: JSON.stringify(cambios) // Convertir el objeto data a JSON
+                };
+
+                await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})` , requestOptions)
+                .then(response => {
+                    if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // Parsear la respuesta JSON si es necesario
+                })
+                .then(data => {
+                    console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
+                    // Puedes hacer lo que necesites con la respuesta de la actualización aquí
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    // Manejar el error de la solicitud
+                });
+
+                const response1 = await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+                if (!response1.ok){
+                    throw new Error('No se pudo obtener el ingrediente');
+                }
+
+                let nuevoPedido = await response1.json()
+                return res.json(nuevoPedido)   
             }
 
         })
@@ -61,25 +95,56 @@ export class pedidoController {
         // Verificamos por cada comida, si se cuenta con la maquinaria disponible para realizarla en invetario
         Object.keys(comidas).forEach( async idComida => {
             let comida = await ComidaModel.getForId({idComida})
-            let instrumentos = comida.instrumentos.split(",")
-            instrumentos.forEach(async idInstrumentos => {
-                // habria que importar esta funcion de inventario
-                const response = await fetch(`http://localhost:3000/api/general/${idInstrumentos}`); /*Importar Modulo externo Inventario*/
-                if (!response.ok){
-                    throw new Error('No se pudo obtener el ingrediente');
-                }
-                
+            if(!(comida.instrumentos == null)){
+                let instrumentos = comida.instrumentos.split(",")
+                instrumentos.forEach(async idInstrumentos => {
+                    // habria que importar esta funcion de inventario
+                    const response = await fetch(`http://localhost:3000/api/general/${idInstrumentos}`); /*Importar Modulo externo Inventario*/
+                    if (!response.ok){
+                        throw new Error('No se pudo obtener el ingrediente');
+                    }
+                    
+    
+                    let instrumentoInventario = await response.json()
+                    if (instrumentoInventario.funciona_estado == false){
+                        // no se cuenta con la maquinaria necesaria
+    
+                        //actualizacmos el estatus de pedido a rechazado
+                        let cambios = {status_pedido: "rechazado"}
+                        const requestOptions = {
+                            method: 'PUT', // Método HTTP para actualizar (puede ser PUT o PATCH dependiendo de tu API)
+                            headers: {
+                            'Content-Type': 'application/json' // Tipo de contenido que estás enviando
+                            },
+                            body: JSON.stringify(cambios) // Convertir el objeto data a JSON
+                        };
 
-                let instrumentoInventario = await response.json()
-                if (instrumentoInventario.funciona_estado == false){
-                    // no se cuenta con la maquinaria necesaria
+                        await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})` , requestOptions)
+                        .then(response => {
+                            if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                            }
+                            return response.json(); // Parsear la respuesta JSON si es necesario
+                        })
+                        .then(data => {
+                            console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
+                            // Puedes hacer lo que necesites con la respuesta de la actualización aquí
+                        })
+                        .catch(error => {
+                            console.error('Fetch error:', error);
+                            // Manejar el error de la solicitud
+                        });
+        
+                        const response1 = await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+                        if (!response1.ok){
+                            throw new Error('No se pudo obtener el ingrediente');
+                        }
 
-                    //actualizacmos el estatus de pedido a rechazado
-                    let cambios = {status: "rechazado"}
-                    let nuevoPedido = await PedidoModel.update({id: pedido_id , input: cambios})
-                    return res.json(nuevoPedido) 
-                }
-            })
+                        let nuevoPedido = await response1.json()
+                        return res.json(nuevoPedido)    
+                    }
+                })
+            }
         })
 
         // si llega a este punto, entonces si se puede realizar el pedido
@@ -130,8 +195,37 @@ export class pedidoController {
         })        
 
         // cambiamos el estado a aceptado
-        let cambios = {status: "aceptado"}
-        let nuevoPedido = await PedidoModel.update({id: pedido_id , input: cambios})
+        let cambios = {status_pedido: "aceptado"}
+        const requestOptions = {
+            method: 'PUT', // Método HTTP para actualizar (puede ser PUT o PATCH dependiendo de tu API)
+            headers: {
+            'Content-Type': 'application/json' // Tipo de contenido que estás enviando
+            },
+            body: JSON.stringify(cambios) // Convertir el objeto data a JSON
+        };
+
+        await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})` , requestOptions)
+        .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parsear la respuesta JSON si es necesario
+          })
+          .then(data => {
+            console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
+            // Puedes hacer lo que necesites con la respuesta de la actualización aquí
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+            // Manejar el error de la solicitud
+          });
+        
+        const response1 = await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+          if (!response.ok){
+              throw new Error('No se pudo obtener el ingrediente');
+          }
+
+        let nuevoPedido = await response1.json()
         return res.json(nuevoPedido)
         
     }
@@ -143,17 +237,51 @@ export class pedidoController {
 
         const {pedido_id} = req.query // sacamos el id del pedido de la url
 
-        // hay que importar PedidoModel que es un el modelo de pedido del modulo de ventas
-        const pedido = await PedidoModel.getForId({pedido_id}) /* IMPORTAR MODULO EXTERO VENTAS*/
+       
+       //Importamos el pedido con su id, Esta no es la ruta definitiva de vetnas
+       const response = await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+       if (!response.ok){
+           throw new Error('No se pudo obtener el ingrediente');
+       }
 
-        return res.json(pedido)
+        return await res.json(response)
     }
 
     static async orderListaStatus(req, res) {
         const {pedido_id} = req.query
 
-        const pedido = await PedidoModel.update({pedido_id, input: "listo"})
+        // cambiamos el estado a listo
+        let cambios = {status_pedido: "listo"}
+        const requestOptions = {
+            method: 'PUT', // Método HTTP para actualizar (puede ser PUT o PATCH dependiendo de tu API)
+            headers: {
+            'Content-Type': 'application/json' // Tipo de contenido que estás enviando
+            },
+            body: JSON.stringify(cambios) // Convertir el objeto data a JSON
+        };
 
-        return res.json(pedido)
+        await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})` , requestOptions)
+        .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parsear la respuesta JSON si es necesario
+          })
+          .then(data => {
+            console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
+            // Puedes hacer lo que necesites con la respuesta de la actualización aquí
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+            // Manejar el error de la solicitud
+          });
+        
+        const response1 = await fetch(`http://localhost:3000/modulo-ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+          if (!response1.ok){
+              throw new Error('No se pudo obtener el ingrediente');
+          }
+
+        let nuevoPedido = await response1.json()
+        return res.json(nuevoPedido)
     }
 }

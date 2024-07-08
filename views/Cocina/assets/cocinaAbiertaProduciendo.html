@@ -480,8 +480,8 @@
         async function actualizarPedidos() {
             try {
 
-                // esta ruta hay que importarla de ventas
-                const response = await fetch('RutaParaObtenerLaListaDePedidos'); /*Importar Modulo externo VENTAS*/
+                // esta ruta hay que importarla de ventas, no es la ruta definitiva
+                const response = await fetch('http://localhost:3000/modulo-ventas/factura'); /*Importar Modulo externo VENTAS*/
                 if (!response.ok) {
                     throw new Error('No se pudo obtener la lista de pedidos');
                 }
@@ -515,10 +515,10 @@
     setInterval(actualizarPedidos, 15000); // Actualizar cada 15 segundos (15000 milisegundos)
 
     //boton procesar
+    var idPedido = 1
     let botonProcesar = document.querySelector("#botonProcesar") // colocar este id en el boton procesar 
-
-    async function funcionBotonProcesar (idPedido) {
-        let idCardSeleccionada = idPedido // este id se pasaria por parametro a la funcion
+    botonProcesar.addEventListener("click" , async () => {
+        let idCardSeleccionada = idPedido 
         let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`)
         let pedido = await response.json()
         if (pedido.status == "aceptado"){
@@ -532,10 +532,9 @@
             let cardMesaStatus = cardMesa.lastElementChild;
             cardMesaStatus.textContent = `ID pedido: ${idCardSeleccionada} \nEstatus: Rechazado`;
         }
-    }
+    })
 
     const pedidosContainers = document.getElementsByClassName("order-card") //cartas de pedidos
-    var idPedido = 0
     pedidosContainers.forEach(container => {
         container.addEventListener("click", async function () {
             let idStringCardSeleccionada = this.getAtributte("id")
