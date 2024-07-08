@@ -17,7 +17,7 @@ body {
     
 }
 
-#button-abrir-modal{
+.button-abrir-modal{
     border: none;
     margin-bottom: 2px;
 }
@@ -160,7 +160,7 @@ body {
 
 .menu-item-image {
     aspect-ratio: 0.96;
-    object-fit: auto;
+    object-fit: fill;
     object-position: center;
     width: 145px;
     max-width: 100%;
@@ -260,11 +260,11 @@ body {
     border: none;
     box-shadow: rgba(0, 0, 0, 0.2);
     align-items: center;
-    max-height: 500px;
-    max-width: 500px;
+    height: 300px;
+    width:  300px;
 }
 
-#button-cerrar-modal{
+.button-cerrar-modal{
     width: 60px;
     background-color: #0f624a;
     color: #fff;
@@ -458,6 +458,6 @@ body {
     box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 
-#modal::backdrop{
+.modal::backdrop{
     background-color: rgba(0, 0, 0, 0.5);
 }
