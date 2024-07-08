@@ -119,16 +119,243 @@
         </div>
         <div class="table-actions">
           <div class="action-buttons">
-            <button class="action-btn">Editar</button>
-            <button class="action-btn">Registro</button>
+            <button id="editarBtn" class="action-btn">Editar</button>
+            <button id="showRegistroBtn" class="action-btn">Registro</button>
           </div>
           <div class="icon-buttons">
-            <button class="icon-btn" aria-label="Edit">
+            <button id="borrarBtn" class="icon-btn" aria-label="Edit">
               <img src="css/img/icono_basura.png" alt="Basura icon" class="icon-img" />
             </button>
-            <button class="icon-btn" aria-label="Delete">
+            <button id="agregarBtn" class="icon-btn" aria-label="Delete">
               <img src="css/img/icono_suma.png" alt="Suma icon" class="icon-img" />
             </button>
+          </div>
+        </div>
+
+        <!--Editar div-->
+        <div class="medio-div" id="cardContainer">
+          <div id="cardd" class="cardd">
+              <div class="card-header">
+                  <h3>Editar</h3>
+                  <button id="closeCardButton" class="close-card-btn">&times;</button>
+              </div>
+              <div class="card-body">
+                  <div class="titulo-icono-editar">
+                      <div class="card-editar">
+                        <div class="form-row">
+                          <div class="espacio">
+                            <label class="Label-idEditar" for="ID">ID: </label>
+                            <select class="Select-idEditar" name="ID" id="ID">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                          </div>
+                        </div>
+                        <form id="editForm">
+                          <div class="form-row">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre">
+                          </div>
+                          <div class="form-row">
+                            <label for="categoria">Categoría:</label>
+                            <input type="text" id="categoria" name="categoria">
+                          </div>
+                          <div class="form-row">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" name="cantidad">
+                          </div>
+                          <div class="form-row">
+                            <label for="area">Área:</label>
+                            <input type="text" id="area" name="area">
+                          </div>
+                          <div class="form-row">
+                            <label for="unidad">Unidad:</label>
+                            <input type="text" id="unidad" name="unidad">
+                          </div>
+                          <div class="form-row">
+                            <label for="fechaCaducidad">Fecha de Caducidad:</label>
+                            <input type="date" id="fechaCaducidad" name="fechaCaducidad">
+                          </div>
+                        </form>
+                        <div class="form-row">
+                          <button class="action-btn" id="cancelButtonEditar">Cancelar</button>
+                          <button class="action-btn" id="comentarCambios">Siguiente</button>
+                        </div>
+                        <div class="espacio"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!--Confirmar edición div-->
+        <div class="medio-div-commit" id="commitMessageContainer" >
+          <div id="commit" class="card3">
+              <div class="card-header">
+                  <h3>Guardar Cambios</h3>
+                  <button id="closeCommitButton" class="close-card-btn">&times;</button>
+              </div>
+              <div class="card-bodyCommit">
+                  <div class="titulo-icono-commit">
+                    <div class="card-editarCommit">
+                      <form class="editForm" id="commitForm">
+                        <div class="form-row">
+                            <label for="commitMessage">Descripción de los cambios:</label>
+                            <textarea id="commitMessage" name="commitMessage" rows="4" required></textarea>
+                        </div>
+                      </form>
+                      <div class="espacio">
+                      </div>
+                      <div class="form-row">
+                        <button class="action-btn" id="commitAtrasButton">Atrás</button>
+                        <button type="submit">Guardar</button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <!--Registros div-->
+        <div id="registroDiv" class="registro">
+          <div class="cardReg">
+            <div class="card-reg-header">
+              <h2>Registro</h2>
+              <button id="closeRegistroButton" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-body-reg">
+              <div class="card-titulo-reg">
+                <div class="prueba">
+                  <table id="historialTabla" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Acción</th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Cantidad</th>
+                            <th>Responsable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se llenarán los datos del historial -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Borrar div -->
+        <div class="medio-div-borrar" id="cardContainer2">
+          <div id="card2" class="card2">
+            <div class="card-header">
+              <h3>Borrar</h3>
+              <button id="closeCardButtonBorrar" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-bodyBorrar">
+              <div class="titulo-icono-editar">
+                <div class="card-editar">
+                  <div class="form-row">
+                    <div class="espacio">
+                      <label class="Label-idEditar" for="ID">ID: </label>
+                      <select class="Select-idEditar" name="ID" id="ID">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="espacio"></div>
+                  <div class="espacio"></div>
+                  <div class="form-row">
+                    <button class="action-btn" type="button" id="cancelButtonBorrar">Cancelar</button>
+                    <button class="action-btn" type="button" id="openCardButtonBorrar">Borrar</button>
+                  </div>
+                  <div class="espacio"></div>
+                  <div class="espacio"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirmación borrar -->
+        <div class="medio-div-commit" id="commitMessageContainerBorrar">
+          <div id="commitBorrar" class="card3">
+            <div class="card-header">
+              <h3>Confirmar Eliminación</h3>
+              <button id="closeCommitButtonBorrar" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-bodyCommit">
+              <div class="titulo-icono-commit">
+                <div class="card-editarCommit">
+                  <form class="editForm" id="commitForm">
+                    <div class="form-row">
+                      <label for="commitMessage">Descripción de la eliminación:</label>
+                      <textarea id="commitMessage" name="commitMessage" rows="4" required></textarea>
+                    </div>
+                  </form>
+                  <div class="espacio"></div>
+                  <div class="form-row">
+                    <button class="action-btn" id="atrasCommitBorrar">Atrás</button>
+                    <button type="submit">Confirmar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agregar botón div-->
+        <div class="medio-div-Agregar" id="cardContainerAgregar">
+          <div id="cardd" class="card-Agregar">
+              <div class="card-header">
+                  <h3>Añadir</h3>
+                  <button id="closeCardButtonAgregar" class="close-card-btn">&times;</button>
+              </div>
+              <div class="card-body-Agregar">
+                  <div class="titulo-icono-editar">
+                      <div class="card-editar">
+                        <form id="editForm">
+                          <div class="form-row">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre">
+                          </div>
+                          <div class="form-row">
+                            <label for="categoria">Categoría:</label>
+                            <input type="text" id="categoria" name="categoria">
+                          </div>
+                          <div class="form-row">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" name="cantidad">
+                          </div>
+                          <div class="form-row">
+                            <label for="area">Área:</label>
+                            <input type="text" id="area" name="area">
+                          </div>
+                          <div class="form-row">
+                            <label for="unidad">Unidad:</label>
+                            <input type="text" id="unidad" name="unidad">
+                          </div>
+                          <div class="form-row">
+                            <label for="fechaCaducidad">Fecha de Caducidad:</label>
+                            <input type="date" id="fechaCaducidad" name="fechaCaducidad">
+                          </div>
+                        </form>
+                        <div class="form-row">
+                          <button class="action-btn" id="cancelarAgregar">Cancelar</button>
+                          <button class="action-btn" id="AgregarBtn">Agregar</button>
+                        </div>
+                        <div class="espacio"></div>
+                      </div>
+                  </div>
+              </div>
           </div>
         </div>
       </section>

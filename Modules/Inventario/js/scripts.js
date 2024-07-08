@@ -177,3 +177,159 @@ function generateTableGeneral(tipo) {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Editar
+    const openEditarBtn = document.getElementById('editarBtn');
+    const closeCardButton = document.getElementById('closeCardButton');
+    const cardContainer = document.getElementById('cardContainer');
+    const card = document.getElementById('cardd');
+    const cancelButtonEditar = document.getElementById('cancelButtonEditar');
+
+    // Commit editar
+    const comentarBtn = document.getElementById('comentarCambios');
+    const closeCommitButton = document.getElementById('closeCommitButton');
+    const commitContainer = document.getElementById('commitMessageContainer');
+    const commit = document.getElementById('commit');
+    const atras = document.getElementById('commitAtrasButton');
+
+    // Borrar
+    const borrarBtn = document.getElementById('borrarBtn');
+    const cardContainer2 = document.getElementById('cardContainer2');
+    const card2 = document.getElementById('card2');
+    const closeCardButtonBorrar = document.getElementById('closeCardButtonBorrar');
+    const cancelButtonBorrar = document.getElementById('cancelButtonBorrar');
+
+    // Commit borrar
+    const comentarBorrarBtn = document.getElementById('openCardButtonBorrar');
+    const commitContainerBorrar = document.getElementById('commitMessageContainerBorrar');
+    const commitBorrar = document.getElementById('commitBorrar');
+    const closeCommitButtonBorrar = document.getElementById('closeCommitButtonBorrar');
+    const atrasCommitBorrar = document.getElementById('atrasCommitBorrar');
+
+    // ------- Agregar ---------
+    const agregarBtn = document.getElementById('agregarBtn');
+    const cardContainerAgregar = document.getElementById('cardContainerAgregar');
+    const cardAgregar = document.getElementById('cardAgregar');
+    const closeCardButtonAgregar = document.getElementById('closeCardButtonAgregar');
+    const cancelarAgregar = document.getElementById('cancelarAgregar');
+    const ConfirmarAgregarBtn = document.getElementById('AgregarBtn');
+
+    // ------- Edición ---------
+    // Mostrar div de edición
+    openEditarBtn.addEventListener('click', function() {
+        cardContainer.classList.add('show');
+        card.classList.add('show');
+    });
+
+    // Ocultar div de edición
+    closeCardButton.addEventListener('click', function() {
+        cardContainer.classList.remove('show');
+        card.classList.remove('show');
+    });
+
+    // Cancelar Editar
+    cancelButtonEditar.addEventListener('click', function() {
+        cardContainer.classList.remove('show');
+        card.classList.remove('show');
+    });
+
+    // Mostrar commit editar
+    comentarBtn.addEventListener('click', function() {
+        commitContainer.classList.add('show');
+        commit.classList.add('show');
+        cardContainer.classList.remove('show');
+        card.classList.remove('show');
+    });
+
+    // Ocultar commit editar
+    closeCommitButton.addEventListener('click', function() {
+        commitContainer.classList.remove('show');
+        commit.classList.remove('show');
+    });
+
+    atras.addEventListener('click', function() {
+        cardContainer.classList.add('show');
+        card.classList.add('show');
+        commitContainer.classList.remove('show');
+        commit.classList.remove('show');
+    });
+
+    // --------- Borrar --------
+    // Mostrar div para Borrar
+    borrarBtn.addEventListener('click', function() {
+        cardContainer2.classList.add('show');
+        card2.classList.add('show');
+    });
+
+    // Ocultar div para Borrar
+    closeCardButtonBorrar.addEventListener('click', function() {
+        cardContainer2.classList.remove('show');
+        card2.classList.remove('show');
+    });
+
+    // Cancelar borrar
+    cancelButtonBorrar.addEventListener('click', function() {
+        cardContainer2.classList.remove('show');
+        card2.classList.remove('show');
+    });
+
+    // Mostrar commit borrar
+    comentarBorrarBtn.addEventListener('click', function() {
+        commitContainerBorrar.classList.add('show');
+        commitBorrar.classList.add('show');
+        cardContainer2.classList.remove('show');
+        card2.classList.remove('show');
+    });
+
+    // Ocultar commit borrar
+    closeCommitButtonBorrar.addEventListener('click', function() {
+        commitContainerBorrar.classList.remove('show');
+        commitBorrar.classList.remove('show');
+    });
+
+    // Atrás commit borrar
+    atrasCommitBorrar.addEventListener('click', function() {
+        cardContainer2.classList.add('show');
+        card2.classList.add('show');
+        commitContainerBorrar.classList.remove('show');
+        commitBorrar.classList.remove('show');
+    });
+
+    //--------Registro-----------
+
+    // Mostrar el registro
+    document.getElementById('showRegistroBtn').addEventListener('click', function() {
+        document.getElementById('registroDiv').classList.add('show');
+    });
+
+    // Cerrar el registro
+    document.getElementById('closeRegistroButton').addEventListener('click', function() {
+        document.getElementById('registroDiv').classList.remove('show');
+    });
+
+    //--------Agregar-----------
+     // Mostrar div de agregar
+    agregarBtn.addEventListener('click', function() {
+        cardContainerAgregar.classList.add('show');
+        cardAgregar.classList.add('show');
+    });
+
+    // Ocultar div de agregar
+    closeCardButtonAgregar.addEventListener('click', function() {
+        cardContainerAgregar.classList.remove('show');
+        cardAgregar.classList.remove('show');
+    });
+
+    // Cancelar agregar
+    cancelarAgregar.addEventListener('click', function() {
+        cardContainerAgregar.classList.remove('show');
+        cardAgregar.classList.remove('show');
+    });
+
+    // Siguiente (puedes agregar lógica adicional aquí si es necesario)
+    ConfirmarAgregarBtn.addEventListener('click', function() {
+        // Aquí puedes agregar la lógica para manejar el botón "Siguiente"
+        console.log('Siguiente paso en el proceso de agregar');
+    });
+});
