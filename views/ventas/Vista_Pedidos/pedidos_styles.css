@@ -96,7 +96,7 @@ body {
 }
 
 .menu-nav-item {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     justify-content: center;
     border-radius: 5px;
@@ -111,9 +111,12 @@ body {
     
 }
 
+
+
+
 .menu-items{
     width: 75%;
-    display: flex;
+    display: none;
     flex-direction: column;
 }
 
@@ -461,3 +464,8 @@ body {
 .modal::backdrop{
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+.visible{
+    display: block;
+}
+
