@@ -3,6 +3,16 @@ import connection from "../conexion.js"
 // Crud para la tabla del historial de compras
 
 export class HistorialModel{
+  //Funcion para listar todas las compras hechas
+  static async listar(){
+    try {
+      const [ordenes] = await connection.execute('SELECT * FROM HISTORIAL');
+      return ordenes
+    } catch (error) {
+      throw new Error("Error mostrando el historial de compras")
+    }
+  }
+
   // Funcion que agrega la compra
   static async agregar({input}){
     //Los nombres de las variables tienen que ser igual a las del json

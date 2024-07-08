@@ -24,16 +24,16 @@ Content-Type: application/json
 DELETE http://localhost:1234/compras/producto/8
 
 ### Crear una orden de compra
-POST http://localhost:1234/compras/historial
+POST http://localhost:1234/historial
 Content-Type: application/json
 
 {
-    "FECHA" : "2024-07-06T14:30:00Z",   
+    "FECHA" : "2024-07-08T14:30:00Z",   
     "Pago" : "Contado",
-    "Producto" : "Carne",  
-    "Cantidad" : 50,
-    "Precio": 500.0,  
-    "Nombre_Proveedor" : "Boss ",  
+    "Producto" : "Pasta",  
+    "Cantidad" : 60,
+    "Precio": 220.0,  
+    "Nombre_Proveedor" : "Ronco",  
     "Autorizacion": "Gernente General: Samuel Molina" 
 }
 

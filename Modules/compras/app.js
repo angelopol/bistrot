@@ -22,12 +22,12 @@ export const createApp = ({ productoModel,historialModel,proveedoresModel,solici
     app.disable('x-powered-by')
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
-    app.use('/compras', createComprasRouter({ productoModel,historialModel, proveedoresModel,solicitudModel }))
+    app.use('/', createComprasRouter({ productoModel,historialModel, proveedoresModel,solicitudModel }))
     app.use(express.static(path.join(__dirname, 'routes')));
     //Vista para el modulo de compras
     app.get('/',(req,res)=>{
         //res.sendFile(path.join (__dirname,'routes','html','index.html'))
-        res.render('index')
+        res.render('index',{data: null})
     });
     //Vista para los proveedores en el modulo de compras
     app.get('/prov',(req,res)=>{
