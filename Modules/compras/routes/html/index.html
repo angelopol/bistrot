@@ -97,51 +97,20 @@
                         <button id="btn-prov">Proveedores</button>
                         <img id="prov-icon" alt="Icono de Proveedores" src='../resources/proveedor.png'>
                     </div>
-                    <div class="box-soli">
-                        <!--Realizar Tabla Solicitudes-->
-                        <table id="tabla-soli">
-                            <h3 id="title-table">Solicitudes</h3>
-                            <thead>
-                              <tr>
-                                <th class="registro-clase">Producto</th>
-                                <th class="registro-clase">Cantidad</th>
-                              </tr>
-                            </thead>
-                            <tbody id="tabla-soli-body">
-                            </tbody>
-                        </table>
+                    <div class="box-prov">
+                        <button id="btn-prod">Productos</button>
+                        <img id="prov-icon" alt="Icono de Proveedores" src='../resources/products.png'>
+                    </div>
+                    <div class="box-prov">
+                        <button id="btn-soli">Solicitudes</button>
+                        <img id="prov-icon" alt="Icono de Proveedores" src='../resources/request.png'>
                     </div>
                 </div>
             </div>
         </div>
     </main> 
-    <script>
-        let registro = document.getElementById('tabla-registro')
-        //Tabla Contiene un thead y un tbody, tbody vacio, rellenar
-        let regisbody = document.getElementById('tabla-registro-body')
-        //Por si es necesario, directamente el body
-    
-        let saldo = document.getElementById('saldo')
-        //Saldo a modificar
-    
-        let solicitudes = document.getElementById('tabla-soli')
-        //Tabla Contiene un thead y un tbody, tbody vacio, rellenar
-        let solibody = document.getElementById('tabla-soli-body')
-        //Por si es necesario, directamente el body
-    
-        let btn_prov = document.getElementById('btn-prov')
-        //Boton de View Proveedores
-    
-        let btn_com = document.getElementById('btn-compra')
-    
-        btn_prov.onclick = function(){
-            window.location.href = 'prov.html'
-        }
-    
-        btn_com.onclick = function(){
-            window.location.href = 'compra.html'
-        }
-    </script>
+    <script src="../js/index.js"></script>
+
 </body>
 
 </html>

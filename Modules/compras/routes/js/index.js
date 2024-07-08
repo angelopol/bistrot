@@ -25,6 +25,18 @@ btn_compra.onclick = function(){
     location.href = '../views/compra.ejs'
 }
 
+let btn_prod = document.getElementById('btn-prod')
+
+btn_prod.onclick = function(){
+    location.href = '../html/productos.html'
+}
+
+let btn_soli = document.getElementById('btn-soli')
+
+btn_soli.onclick = function(){
+    location.href = '../html/solicitud.html'
+}
+
 //Modificacion del saldo
 //Dependiendo de las solicitudes que se haga el saldo van a ir disminuyendo
 

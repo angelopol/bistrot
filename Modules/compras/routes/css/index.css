@@ -107,7 +107,7 @@ main {
     font-family: 'Montserrat-Bold';
 }
 
-#btn-compra, #btn-prov {
+#btn-compra, #btn-prov, #btn-prod, #btn-soli {
     border-width: 2px;
     border-style: solid;
     border-color: #E0E0E0;
@@ -122,7 +122,7 @@ main {
     width: 100%;
 }
 
-#btn-compra:hover, #btn-prov:hover {
+#btn-compra:hover, #btn-prov:hover, #btn-prod:hover, #btn-soli:hover {
     background-color: #0F624A;
     color: white;
 }
