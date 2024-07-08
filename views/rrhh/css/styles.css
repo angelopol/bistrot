@@ -297,12 +297,14 @@ body{
     font-family: Inter, sans-serif; 
     justify-content: center; 
     border-radius: 50px; 
+    
+    
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
-    background-color: #0f624a; 
+    background-color: #b8c5c1; 
     text-align: center; 
     margin: auto 0; 
     padding: 5px 11px; 
-    color: #fff;
+    
     cursor: pointer;
     border: none;
 }
@@ -312,7 +314,7 @@ body{
     justify-content: center; 
     border-radius: 8px; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
-    background-color: #0f624a; 
+    background-color: #b8c5c1;
     padding: 7px 24px; 
     color: #fff;
     cursor: pointer;
