@@ -15,14 +15,14 @@ let btn_prov = document.getElementById('btn-prov')
 //Boton de View Proveedores
 
 btn_prov.onclick = function(){
-    location.href = '../html/prov.html'
+    location.href = '../views/prov.ejs'
 }
 
 let btn_compra = document.getElementById('btn-compra')
 //Boton de View Realizar Compra
 
 btn_compra.onclick = function(){
-    location.href = '../html/compra.html'
+    location.href = '../views/compra.ejs'
 }
 
 //Modificacion del saldo
