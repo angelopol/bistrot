@@ -82,3 +82,89 @@ main {
     height: 40%;
     padding: 20px;
 }
+
+.right-side {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+select {
+    appearance: none;
+    width: 70%;
+    border-color: #D9D9D9;
+    color: #828282;
+    padding: 10px 5px;
+    outline: none;
+    border-width: 2px;
+    font-size: 0.8rem;
+}
+
+select:hover {
+    border-color: #02676F;
+}
+
+.desc {
+    resize: none;
+    width: 95%;
+    border-radius: 5px;
+    border: none;
+    padding: 20px 10px;
+    border-color: #D9D9D9;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 0.8rem;
+    outline: none;
+    transition: all 0.5s;
+}
+
+#select-depa, #select-soli {
+    width: 100%;
+}
+
+#input-cant {
+    border-radius: 5px;
+    border: none;
+    padding: 10px 5px;
+    border-color: #D9D9D9;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 0.8rem;
+    width: 20%;
+    outline: none;
+    transition: all 0.5s;
+}
+
+#input-cant:focus {
+    border-color: #02676F;
+}
+
+.btns-acep {
+    display: flex;
+    gap: 5%;
+}
+
+#btn-acept, #btn-rech {
+    padding: 15px;
+    width: 50%;
+    background-color: #0F624A;
+    color: white;
+    font-family: 'Montserrat-Bold';
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#btn-rech {
+    background-color: white;
+    border-color: #02676F;
+    color: #02676F;
+    border-style: solid;
+}
+
+.help-comp {
+    color: #828282;
+    font-size: 0.8rem;
+}

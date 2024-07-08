@@ -118,14 +118,16 @@
                         <option>Mantenimiento</option>
                         <option>Cocina</option>
                     </select>
-                    <input placeholder="Descripcion" class="input-data desc" type="text">
+                    <form>
+                        <textarea placeholder="Descripcion" class="input-data desc"></textarea>
+                    </form>
                     <h3 id="subtitle-pen">Pendientes</h3>
                     <select id="select-soli">
                         <option disabled selected>Departamento-Producto-Cantidad</option>
                     </select>
                     <div class="btns-acep">
-                        <button>Aceptar</button>
-                        <button>Rechazar</button>
+                        <button id="btn-acept">Aceptar</button>
+                        <button id="btn-rech">Rechazar</button>
                     </div>
                 </div>
             </div>
