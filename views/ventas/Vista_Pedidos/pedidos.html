@@ -26,7 +26,7 @@
 
             <section id="Entradas" class="menu-items visible">
                 <div class="menu-row">
-                <article class="menu-item">
+                <article class="menu-item" onclick="addToOrder('Pedido1', '$100.5', 'Menu/chocolatecake.jpg')">
                     <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
                     <div class="menu-item-details">
                         <h2 class="menu-item-name">Entrada 1</h2>
@@ -105,86 +105,7 @@
                         </div>
                     </article>
                     </div>
-                <div class="menu-row">
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                        <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
-                            <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
-                                <button class="button-abrir-modal">
-                                    <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                                </button>
-                                <dialog class="modal">
-                                    <div class="modal-content">
-                                        <h2>Nombre</h2>
-                                        <p>ingredientes</p>
-                                        <button class="button-cerrar-modal">Cerrar</button>
-                                    </div>
-                                </dialog>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                        <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
-                            <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
-                                <button class="button-abrir-modal">
-                                    <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                                </button>
-                                <dialog class="modal">
-                                    <div class="modal-content">
-                                        <h2>Nombre</h2>
-                                        <p>ingredientes</p>
-                                        <button class="button-cerrar-modal">Cerrar</button>
-                                    </div>
-                                </dialog>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="menu-row">
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                    <div class="menu-item-details">
-                    <h2 class="menu-item-name">Nombre</h2>
-                    <div class="item-information">
-                        <span class="menu-item-price">$100.5</span>
-                        <button class="button-abrir-modal">
-                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                        </button>
-                        <dialog class="modal">
-                            <div class="modal-content">
-                                <h2>Nombre</h2>
-                                <p>ingredientes</p>
-                                <button class="button-cerrar-modal">Cerrar</button>
-                            </div>
-                        </dialog>
-                    </div>
-                    </div>
-                </article>
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                    <div class="menu-item-details">
-                    <h2 class="menu-item-name">Nombre</h2>
-                    <div class="item-information">
-                        <span class="menu-item-price">$100.5</span>
-                        <button class="button-abrir-modal">
-                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                        </button>
-                        <dialog class="modal">
-                            <div class="modal-content">
-                                <h2>Nombre</h2>
-                                <p>ingredientes</p>
-                                <button class="button-cerrar-modal">Cerrar</button>
-                            </div>
-                        </dialog>
-                    </div>
-                    </div>
-                </article>
-                </div>
+                
             </section>
 
 
@@ -354,10 +275,10 @@
 
             <section id="Vegetariano" class="menu-items">
                 <div class="menu-row">
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                <article id="Veg1" class="menu-item" onclick="addToOrder('Spelt and Mushroom Salad with Garlic and Parsley','$200.5','Menu/speltandmushroomSalad.jpeg','Veg1')">
+                    <img loading="lazy" src="Menu\speltandmushroomSalad.jpeg" class="menu-item-image" alt="Menu item" />
                     <div class="menu-item-details">
-                        <h2 class="menu-item-name">Vgetariano 1</h2>
+                        <h2 class="menu-item-name">Spelt and Mushroom Salad with Garlic and Parsley</h2>
                         <div class="item-information">
                             <span class="menu-item-price">$200.5</span>
                             <button class="button-abrir-modal">
@@ -365,7 +286,7 @@
                             </button>
                             <dialog class="modal">
                                 <div class="modal-content">
-                                    <h2>Nombre</h2>
+                                    <h2>Spelt and Mushroom Salad with Garlic and Parsley</h2>
                                     <p>ingredientes</p>
                                     <button class="button-cerrar-modal">Cerrar</button>
                                 </div>
@@ -373,10 +294,11 @@
                         </div>
                     </div>
                 </article>
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+
+                <article id="Veg2" class="menu-item" onclick="addToOrder('Linguine Pasta with Tomato Sauce and Ratatouille','$100.5','Menu/linguinepastawithtomatosauce.jpeg','Veg2')">
+                    <img loading="lazy" src="Menu\linguinepastawithtomatosauce.jpeg" class="menu-item-image" alt="Menu item" />
                     <div class="menu-item-details">
-                        <h2 class="menu-item-name">Nombre</h2>
+                        <h2 class="menu-item-name">Linguine Pasta with Tomato Sauce and Ratatouille</h2>
                         <div class="item-information">
                             <span class="menu-item-price">$100.5</span>
                             <button class="button-abrir-modal">
@@ -384,7 +306,7 @@
                             </button>
                             <dialog class="modal">
                                 <div class="modal-content">
-                                    <h2>Nombre</h2>
+                                    <h2>Linguine Pasta with Tomato Sauce and Ratatouille</h2>
                                     <p>ingredientes</p>
                                     <button class="button-cerrar-modal">Cerrar</button>
                                 </div>
@@ -394,10 +316,11 @@
                 </article>
                 </div>
                 <div class="menu-row">
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+
+                    <article  id="Veg3" class="menu-item" onclick="addToOrder('Vegetable Stew with Herby Plant-Based Meatballs','$100.5','Menu/Vegetable Stew.png','Veg3')">
+                        <img loading="lazy" src="Menu\Vegetable Stew.png" class="menu-item-image" alt="Menu item" />
                         <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
+                            <h2 class="menu-item-name">Vegetable Stew with Herby Plant-Based Meatballs</h2>
                             <div class="item-information">
                                 <span class="menu-item-price">$100.5</span>
                                 <button class="button-abrir-modal">
@@ -405,7 +328,7 @@
                                 </button>
                                 <dialog class="modal">
                                     <div class="modal-content">
-                                        <h2>Nombre</h2>
+                                        <h2>Vegetable Stew with Herby Plant-Based Meatballs</h2>
                                         <p>ingredientes</p>
                                         <button class="button-cerrar-modal">Cerrar</button>
                                     </div>
@@ -413,10 +336,10 @@
                             </div>
                         </div>
                     </article>
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                    <article id="Veg3" class="menu-item" onclick="addToOrder('Courgette Soup','$100.5','Menu/courgette.png','Veg3')">
+                        <img loading="lazy" src="Menu\courgette.png" class="menu-item-image" alt="Menu item" />
                         <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
+                            <h2 class="menu-item-name">Courgette Soup</h2>
                             <div class="item-information">
                                 <span class="menu-item-price">$100.5</span>
                                 <button class="button-abrir-modal">
@@ -424,7 +347,7 @@
                                 </button>
                                 <dialog class="modal">
                                     <div class="modal-content">
-                                        <h2>Nombre</h2>
+                                        <h2>Courgette Soup</h2>
                                         <p>ingredientes</p>
                                         <button class="button-cerrar-modal">Cerrar</button>
                                     </div>
@@ -433,102 +356,23 @@
                         </div>
                     </article>
                     </div>
-                <div class="menu-row">
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                        <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
-                            <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
-                                <button class="button-abrir-modal">
-                                    <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                                </button>
-                                <dialog class="modal">
-                                    <div class="modal-content">
-                                        <h2>Nombre</h2>
-                                        <p>ingredientes</p>
-                                        <button class="button-cerrar-modal">Cerrar</button>
-                                    </div>
-                                </dialog>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                        <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
-                            <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
-                                <button class="button-abrir-modal">
-                                    <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                                </button>
-                                <dialog class="modal">
-                                    <div class="modal-content">
-                                        <h2>Nombre</h2>
-                                        <p>ingredientes</p>
-                                        <button class="button-cerrar-modal">Cerrar</button>
-                                    </div>
-                                </dialog>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="menu-row">
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                    <div class="menu-item-details">
-                    <h2 class="menu-item-name">Nombre</h2>
-                    <div class="item-information">
-                        <span class="menu-item-price">$100.5</span>
-                        <button class="button-abrir-modal">
-                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                        </button>
-                        <dialog class="modal">
-                            <div class="modal-content">
-                                <h2>Nombre</h2>
-                                <p>ingredientes</p>
-                                <button class="button-cerrar-modal">Cerrar</button>
-                            </div>
-                        </dialog>
-                    </div>
-                    </div>
-                </article>
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                    <div class="menu-item-details">
-                    <h2 class="menu-item-name">Nombre</h2>
-                    <div class="item-information">
-                        <span class="menu-item-price">$100.5</span>
-                        <button class="button-abrir-modal">
-                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                        </button>
-                        <dialog class="modal">
-                            <div class="modal-content">
-                                <h2>Nombre</h2>
-                                <p>ingredientes</p>
-                                <button class="button-cerrar-modal">Cerrar</button>
-                            </div>
-                        </dialog>
-                    </div>
-                    </div>
-                </article>
-                </div>
+                
             </section>
 
             <section id="Postres" class="menu-items">
                 <div class="menu-row">
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                <article id="Pos1" class="menu-item" onclick="addToOrder('Chocolate Mouse','$20','Menu/Chocolate mouse.jpeg','Pos1')">
+                    <img loading="lazy" src="Menu\Chocolate mouse.jpeg" class="menu-item-image" alt="Menu item" />
                     <div class="menu-item-details">
-                        <h2 class="menu-item-name">Postres 1</h2>
+                        <h2 class="menu-item-name">Chocolate Mouse</h2>
                         <div class="item-information">
-                            <span class="menu-item-price">$200.5</span>
+                            <span class="menu-item-price">$20</span>
                             <button class="button-abrir-modal">
                                 <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
                             </button>
                             <dialog class="modal">
                                 <div class="modal-content">
-                                    <h2>Nombre</h2>
+                                    <h2>Chocolate Mouse</h2>    
                                     <p>ingredientes</p>
                                     <button class="button-cerrar-modal">Cerrar</button>
                                 </div>
@@ -536,18 +380,18 @@
                         </div>
                     </div>
                 </article>
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                <article id="Pos2" class="menu-item" onclick="addToOrder('Chocolate Cake','$5','Menu/chocolatecake.jpg','Pos2')">
+                    <img loading="lazy" src="Menu\chocolatecake.jpg" class="menu-item-image" alt="Menu item" />
                     <div class="menu-item-details">
-                        <h2 class="menu-item-name">Nombre</h2>
+                        <h2 class="menu-item-name">Chocolate Cake</h2>
                         <div class="item-information">
-                            <span class="menu-item-price">$100.5</span>
+                            <span class="menu-item-price">$5</span>
                             <button class="button-abrir-modal">
                                 <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
                             </button>
                             <dialog class="modal">
                                 <div class="modal-content">
-                                    <h2>Nombre</h2>
+                                    <h2>Chocolate Cake</h2>
                                     <p>ingredientes</p>
                                     <button class="button-cerrar-modal">Cerrar</button>
                                 </div>
@@ -557,18 +401,18 @@
                 </article>
                 </div>
                 <div class="menu-row">
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                    <article id="Pos3" class="menu-item" onclick="addToOrder('Fruit Salad','$3','Menu/fruitsalad.png','Pos3')">
+                        <img loading="lazy" src="Menu\fruitsalad.png" class="menu-item-image" alt="Menu item" />
                         <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
+                            <h2 class="menu-item-name">Fruit Salad</h2>
                             <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
+                                <span class="menu-item-price">$3</span>
                                 <button class="button-abrir-modal">
                                     <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
                                 </button>
                                 <dialog class="modal">
                                     <div class="modal-content">
-                                        <h2>Nombre</h2>
+                                        <h2>Fruit Salad</h2>
                                         <p>ingredientes</p>
                                         <button class="button-cerrar-modal">Cerrar</button>
                                     </div>
@@ -576,18 +420,18 @@
                             </div>
                         </div>
                     </article>
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                    <article id="Pos4" class="menu-item" onclick="addToOrder('Apple Pie','$10','Menu/apple tart.jpg','Pos4')">
+                        <img loading="lazy" src="Menu\apple tart.jpg" class="menu-item-image" alt="Menu item" />
                         <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
+                            <h2 class="menu-item-name">Apple Pie</h2>
                             <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
+                                <span class="menu-item-price">$10</span>
                                 <button class="button-abrir-modal">
                                     <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
                                 </button>
                                 <dialog class="modal">
                                     <div class="modal-content">
-                                        <h2>Nombre</h2>
+                                        <h2>Apple Pie</h2>
                                         <p>ingredientes</p>
                                         <button class="button-cerrar-modal">Cerrar</button>
                                     </div>
@@ -596,95 +440,16 @@
                         </div>
                     </article>
                     </div>
-                <div class="menu-row">
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                        <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
-                            <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
-                                <button class="button-abrir-modal">
-                                    <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                                </button>
-                                <dialog class="modal">
-                                    <div class="modal-content">
-                                        <h2>Nombre</h2>
-                                        <p>ingredientes</p>
-                                        <button class="button-cerrar-modal">Cerrar</button>
-                                    </div>
-                                </dialog>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                        <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
-                            <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
-                                <button class="button-abrir-modal">
-                                    <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                                </button>
-                                <dialog class="modal">
-                                    <div class="modal-content">
-                                        <h2>Nombre</h2>
-                                        <p>ingredientes</p>
-                                        <button class="button-cerrar-modal">Cerrar</button>
-                                    </div>
-                                </dialog>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="menu-row">
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                    <div class="menu-item-details">
-                    <h2 class="menu-item-name">Nombre</h2>
-                    <div class="item-information">
-                        <span class="menu-item-price">$100.5</span>
-                        <button class="button-abrir-modal">
-                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                        </button>
-                        <dialog class="modal">
-                            <div class="modal-content">
-                                <h2>Nombre</h2>
-                                <p>ingredientes</p>
-                                <button class="button-cerrar-modal">Cerrar</button>
-                            </div>
-                        </dialog>
-                    </div>
-                    </div>
-                </article>
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                    <div class="menu-item-details">
-                    <h2 class="menu-item-name">Nombre</h2>
-                    <div class="item-information">
-                        <span class="menu-item-price">$100.5</span>
-                        <button class="button-abrir-modal">
-                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                        </button>
-                        <dialog class="modal">
-                            <div class="modal-content">
-                                <h2>Nombre</h2>
-                                <p>ingredientes</p>
-                                <button class="button-cerrar-modal">Cerrar</button>
-                            </div>
-                        </dialog>
-                    </div>
-                    </div>
-                </article>
-                </div>
+                
             </section>
 
 
             <section id="Infantil" class="menu-items">
                 <div class="menu-row">
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                <article id="Inf1" class="menu-item" onclick="addToOrder('Courgette Soup with The Laughing Cow','$200.5','Menu/courgettesoup.jpeg','Inf1')">
+                    <img loading="lazy" src="Menu\courgettesoup.jpeg" class="menu-item-image" alt="Menu item" />
                     <div class="menu-item-details">
-                        <h2 class="menu-item-name">Infantil 1</h2>
+                        <h2 class="menu-item-name">Courgette Soup with The Laughing Cow</h2>
                         <div class="item-information">
                             <span class="menu-item-price">$200.5</span>
                             <button class="button-abrir-modal">
@@ -692,7 +457,7 @@
                             </button>
                             <dialog class="modal">
                                 <div class="modal-content">
-                                    <h2>Nombre</h2>
+                                    <h2>Courgette Soup with The Laughing Cow</h2>
                                     <p>ingredientes</p>
                                     <button class="button-cerrar-modal">Cerrar</button>
                                 </div>
@@ -700,10 +465,10 @@
                         </div>
                     </div>
                 </article>
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                <article id="Inf2" class="menu-item" onclick="addToOrder('Sautéed Chicken and Potatoes, Mushroom Sauce and Ratatouille','$100.5','Menu/sauteed.png','Inf2')">
+                    <img loading="lazy" src="Menu\sauteed.png" class="menu-item-image" alt="Menu item" />
                     <div class="menu-item-details">
-                        <h2 class="menu-item-name">Nombre</h2>
+                        <h2 class="menu-item-name">Sautéed Chicken and Potatoes, Mushroom Sauce and Ratatouille</h2>
                         <div class="item-information">
                             <span class="menu-item-price">$100.5</span>
                             <button class="button-abrir-modal">
@@ -711,7 +476,7 @@
                             </button>
                             <dialog class="modal">
                                 <div class="modal-content">
-                                    <h2>Nombre</h2>
+                                    <h2>Sautéed Chicken and Potatoes, Mushroom Sauce and Ratatouille</h2>
                                     <p>ingredientes</p>
                                     <button class="button-cerrar-modal">Cerrar</button>
                                 </div>
@@ -721,10 +486,10 @@
                 </article>
                 </div>
                 <div class="menu-row">
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                    <article id="Inf3" class="menu-item" onclick="addToOrder('Chicken Rillettes with Toast, Mushroom Sauce and Ratatouille','$100.5','Menu/chickenratatouillemed-scaled.jpg','Inf3')">
+                        <img loading="lazy" src="Menu\chickenratatouillemed-scaled.jpg" class="menu-item-image" alt="Menu item" />
                         <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
+                            <h2 class="menu-item-name">Chicken Rillettes with Toast</h2>
                             <div class="item-information">
                                 <span class="menu-item-price">$100.5</span>
                                 <button class="button-abrir-modal">
@@ -732,7 +497,7 @@
                                 </button>
                                 <dialog class="modal">
                                     <div class="modal-content">
-                                        <h2>Nombre</h2>
+                                        <h2>Chicken Rillettes with Toast</h2>
                                         <p>ingredientes</p>
                                         <button class="button-cerrar-modal">Cerrar</button>
                                     </div>
@@ -740,10 +505,10 @@
                             </div>
                         </div>
                     </article>
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
+                    <article id="Inf4" class="menu-item" onclick="addToOrder('Linguine Pasta with Tomato Sauce and Ratatouille','$100.5','Menu/luinguinepasta.png','Inf4')">
+                        <img loading="lazy" src="Menu\luinguinepasta.png" class="menu-item-image" alt="Menu item" />
                         <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
+                            <h2 class="menu-item-name">Linguine Pasta with Tomato Sauce and Ratatouille</h2>
                             <div class="item-information">
                                 <span class="menu-item-price">$100.5</span>
                                 <button class="button-abrir-modal">
@@ -751,7 +516,7 @@
                                 </button>
                                 <dialog class="modal">
                                     <div class="modal-content">
-                                        <h2>Nombre</h2>
+                                        <h2>Linguine Pasta with Tomato Sauce and Ratatouille</h2>
                                         <p>ingredientes</p>
                                         <button class="button-cerrar-modal">Cerrar</button>
                                     </div>
@@ -760,90 +525,11 @@
                         </div>
                     </article>
                     </div>
-                <div class="menu-row">
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                        <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
-                            <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
-                                <button class="button-abrir-modal">
-                                    <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                                </button>
-                                <dialog class="modal">
-                                    <div class="modal-content">
-                                        <h2>Nombre</h2>
-                                        <p>ingredientes</p>
-                                        <button class="button-cerrar-modal">Cerrar</button>
-                                    </div>
-                                </dialog>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="menu-item">
-                        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                        <div class="menu-item-details">
-                            <h2 class="menu-item-name">Nombre</h2>
-                            <div class="item-information">
-                                <span class="menu-item-price">$100.5</span>
-                                <button class="button-abrir-modal">
-                                    <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                                </button>
-                                <dialog class="modal">
-                                    <div class="modal-content">
-                                        <h2>Nombre</h2>
-                                        <p>ingredientes</p>
-                                        <button class="button-cerrar-modal">Cerrar</button>
-                                    </div>
-                                </dialog>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="menu-row">
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                    <div class="menu-item-details">
-                    <h2 class="menu-item-name">Nombre</h2>
-                    <div class="item-information">
-                        <span class="menu-item-price">$100.5</span>
-                        <button class="button-abrir-modal">
-                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                        </button>
-                        <dialog class="modal">
-                            <div class="modal-content">
-                                <h2>Nombre</h2>
-                                <p>ingredientes</p>
-                                <button class="button-cerrar-modal">Cerrar</button>
-                            </div>
-                        </dialog>
-                    </div>
-                    </div>
-                </article>
-                <article class="menu-item">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
-                    <div class="menu-item-details">
-                    <h2 class="menu-item-name">Nombre</h2>
-                    <div class="item-information">
-                        <span class="menu-item-price">$100.5</span>
-                        <button class="button-abrir-modal">
-                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
-                        </button>
-                        <dialog class="modal">
-                            <div class="modal-content">
-                                <h2>Nombre</h2>
-                                <p>ingredientes</p>
-                                <button class="button-cerrar-modal">Cerrar</button>
-                            </div>
-                        </dialog>
-                    </div>
-                    </div>
-                </article>
-                </div>
+                
             </section>
 
 
-            <section id="Bebidas" class="menu-items">
+            <section id="Bebidas" class="menu-items" onclick="addToOrder('Bebidas 1','$100.5','Menu/luinguinepasta.png')">
                 <div class="menu-row">
                 <article class="menu-item">
                     <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Menu item" />
@@ -1009,55 +695,16 @@
 
             </div>
         </main>
+
         <aside class="order-section">
             <div class="order-container">
             <h2 class="order-title">Orden</h2>
             <p class="order-table">MESA #</p>
-            <article class="order-item">
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Ordered item" />
-                <div class="order-item-details">
-                <h3 class="order-item-name">Nombre</h3>
-                
-                <div class="order-item-quantity">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c1f478c4fa6fec527efcce0e786c3d3561745e493e4e8aab0d2dd9e573b8096a?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="quantity-icon" alt="" />
-                    <div class="quantity-controls">
-                    <button class="quantity-button decrease-button" aria-label="Decrease quantity">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-button increase-button" aria-label="Increase quantity">+</button>
-                    </div>
-                </div>
-                </div>
-            </article>
-            <article class="order-item">
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Ordered item" />
-                <div class="order-item-details">
-                <h3 class="order-item-name">Nombre</h3>
-                
-                <div class="order-item-quantity">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c1f478c4fa6fec527efcce0e786c3d3561745e493e4e8aab0d2dd9e573b8096a?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="quantity-icon" alt="" />
-                    <div class="quantity-controls">
-                    <button class="quantity-button decrease-button" aria-label="Decrease quantity">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-button increase-button" aria-label="Increase quantity">+</button>
-                    </div>
-                </div>
-                </div>
-            </article>
-            <article class="order-item">
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c60ddd3db10fe8aa9cdecb9295db890cc4b4d0060e3ef5239c2d3234881036fd?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="menu-item-image" alt="Ordered item" />
-                <div class="order-item-details">
-                <h3 class="order-item-name">Nombre</h3>
-                
-                <div class="order-item-quantity">
-                    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/c1f478c4fa6fec527efcce0e786c3d3561745e493e4e8aab0d2dd9e573b8096a?apiKey=a04e7bd234a9496eaf95e30022021dfe&" class="quantity-icon" alt="" />
-                    <div class="quantity-controls">
-                    <button class="quantity-button decrease-button" aria-label="Decrease quantity">-</button>
-                    <span class="quantity-value">1</span>
-                    <button class="quantity-button increase-button" aria-label="Increase quantity">+</button>
-                    </div>
-                </div>
-                </div>
-            </article>
+            <div class="order-items" id="order-items">
+
+
+
+            </div>
             <hr class="order-divider" />
             <div class="order-total">
                 <span class="total-label">Total</span>
@@ -1088,6 +735,49 @@
                 
             });
         }
+
+        function addToOrder(name, price, imageUrl,idCard) {
+            const orderItemsContainer = document.getElementById('order-items');
+            
+            
+            const orderItem = document.createElement('article');
+            orderItem.className = 'order-item';
+
+            orderItem.innerHTML = `
+                <img loading="lazy" src="${imageUrl}" class="menu-item-image" alt="Ordered item" />
+                <div class="order-item-details">
+                    <h3 class="order-item-name">${name}</h3>
+                    <div class="order-item-quantity">
+                        <img loading="lazy"  onclick="removeFromOrder(this)" src="Assets/iconos/remover.png" class="quantity-icon" alt="" />
+                        <div class="quantity-controls">
+                            <button class="quantity-button decrease-button" aria-label="Decrease quantity">-</button>
+                            <span class="quantity-value">1</span>
+                            <button class="quantity-button increase-button" aria-label="Increase quantity">+</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            let card = document.getElementById(idCard)
+            card.classList.add('disabled')
+            orderItemsContainer.appendChild(orderItem);
+            orderItemsContainer.scrollTop = orderItemsContainer.scrollHeight;
+            
+        }
+
+        function removeFromOrder(button) {
+            const itemToRemove = button.closest('.order-item');
+            let origen = document.querySelectorAll('.disabled')
+            origen.forEach(div => {
+                div.classList.remove('disabled');
+                
+                
+                
+            });
+            
+            itemToRemove.remove();
+        }
+
     </script>
 
 </body>
