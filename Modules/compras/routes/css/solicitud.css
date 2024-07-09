@@ -62,7 +62,7 @@ main {
     display: flex;
     flex-direction: column;
     width: 50%;
-    height: 90%;
+    height: 80%;
     gap: 10px;
 }
 
@@ -87,7 +87,7 @@ main {
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
 }
 
 select {
