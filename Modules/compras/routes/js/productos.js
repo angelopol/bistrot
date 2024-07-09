@@ -4,12 +4,12 @@ nombre = document.getElementById('name-prov')
 unid_cons = document.getElementById('cons-prov')
 //Unidades de Compra
 unid_comp = document.getElementById('comp-prov')
-//Select de Los proveedores
-proveedor = document.getElementById('select-prov')
 
 //Buttos
-//Boton de Agregar o modificar producto
+//Boton de Agregar
 registrar = document.getElementById('btn-regis')
+//Boton de Modificar
+modificar = document.getElementById('btn-modi')
 
 
 let exit = document.getElementsByClassName('title-exit')[0]

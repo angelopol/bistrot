@@ -95,7 +95,8 @@ main {
 .formulario {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
+    height: 70%;
     gap: 10px;
 }
 
@@ -113,4 +114,63 @@ main {
 
 .foto-cart {
     width: 30%;
+}
+
+#title-table {
+    font-size: 0.8em;
+    padding: 10px;
+}
+
+#tabla-comp {
+    width: 100%;
+    font-size: 0.8rem;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #E0E0E0;
+}
+
+.comp-clase {
+    color: #828282;
+    padding: 10px;
+    font-size: 0.7rem;
+}
+
+.content-prod {
+    height: 100%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 50%;
+    gap: 10px;
+}
+
+#delete-prov-btn, #btn-modi {
+    width: 100%;
+    height: 20%;
+    background-color: white;
+    border-radius: 5px;
+    border-color: #02676F;
+    border-style: solid;
+    color: #02676F;
+    font-family: 'Montserrat-Bold';
+    font-size: 1rem;
+    transition: all 0.5s;
+}
+
+#delete-prov-btn:hover, #btn-modi:hover {
+    cursor: pointer;
+    background-color: #0F624A;
+    color: white;
+}
+.carrito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
