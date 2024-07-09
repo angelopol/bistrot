@@ -101,3 +101,7 @@ main {
 .formulario p {
     font-family: 'Montserrat-Regular';
 }
+
+#tabla-soli {
+    font-size: 0.5rem;
+}

@@ -73,7 +73,7 @@ main {
     padding: 10px;
 }
 
-#tabla-comp {
+#tabla-comp, #tabla-soli {
     width: 100%;
     font-size: 0.8rem;
     border-bottom-style: solid;
@@ -154,4 +154,18 @@ option {
 .help-comp {
     color: #828282;
     font-size: 0.8rem;
+}
+
+
+#tabla-soli {
+    font-size: 0.8rem;
+}
+
+.content-soli {
+    width: 100%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    height: 40%;
 }
