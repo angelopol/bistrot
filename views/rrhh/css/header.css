@@ -1,0 +1,39 @@
+.employee-card {
+    display: flex;
+    max-width: 332px;
+    padding: 30px;
+    flex-direction: column;
+    font-size: 16px;
+    color: #000;
+    line-height: 150%;
+    font-family: Inter, sans-serif;
+    transform: translate(600px, 70px);
+    border: 1px solid;
+    border-radius: 15px;
+    box-shadow: 0px 0px 30px #0db8fff5;
+}
+
+.employee-id {
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.employee-name {
+    font: 600 40px/110% Inter, sans-serif;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(224, 224, 224, 1);
+    padding: 13px 0;
+}
+
+.info-label {
+    font-weight: 500;
+}
+
+.info-value {
+    text-align: right;
+    font-weight: 400;
+}
