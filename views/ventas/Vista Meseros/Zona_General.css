@@ -51,6 +51,22 @@ body {
 }
 
 
+.selected {
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 120px; 
+    font-size: 14px; 
+    color: #000;
+    line-height: 150%;
+    margin: 10px;
+    width: 220px; 
+    padding-bottom: 50px; 
+    transition: transform 0.3s ease;
+    transform: translateY(-7px);
+
+}
+
 .user-name {
 
     flex: 1;
@@ -79,7 +95,7 @@ body {
 
 .table-card {
     border-radius: 12px;
-    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.3), 0 0 15px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.3), 0 0 20px 0 rgba(0, 0, 0, 0.3);
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -99,6 +115,8 @@ body {
     align-items: center;
     padding: 10px;
     padding-top: 20px; 
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
 }
 
 
