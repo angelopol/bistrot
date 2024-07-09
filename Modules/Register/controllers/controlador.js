@@ -23,6 +23,18 @@ export class ProductoController{
     constructor ({productoModel}){
         this.productoModel = productoModel
     }
+    //Hice un getAll1 para mostrar los datos en dos paginas distintan ya que si lo hacia en el mismo metodo estaba
+    //renderizando dos paginas en un controlador y fallaba 
+    getAll1 = async (req,res)=>{
+        const productos = await this.productoModel.listar()
+        res.render('productos',{data: productos})
+    }
+
+    getAll2 = async (req,res)=>{
+        const productos = await this.productoModel.listar()
+        res.render('solicitud',{data: productos})
+    }
+
     create = async (req,res)=>{
         //me falta agregar las validaciones
         const {result} = req.body
@@ -103,12 +115,22 @@ export class ProveedorController{
         res.status(404).json({ message: 'Proveedor not found' })
     }
 
+    getAll = async (req,res)=>{
+        const proveedores = await this.proveedoresModel.listar()
+        
+        res.render('prov',{data: proveedores});
+         
+    }
+
 }
 
 export class SolicitudController{
     constructor ({solicitudModel}){
         this.solicitudModel = solicitudModel
     }
+
+    
+
     create = async (req,res)=>{
         //me falta agregar las validaciones
         const {result} = req.body

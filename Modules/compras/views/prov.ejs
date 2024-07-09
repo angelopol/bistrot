@@ -72,7 +72,7 @@
             <div class="dashboard">
                 <div class="left-side">
                     <table id="tabla-prov">
-                        <h3 id="title-table">Historial de Compra</h3>
+                        <h3 id="title-table">Proveedores</h3>
                         <thead>
                           <tr>
                             <th class="prov-clase">Empresa</th>
@@ -81,6 +81,15 @@
                           </tr>
                         </thead>
                         <tbody id="tabla-prov-body">
+                            <% if (data) { %>
+                                <% for (var i = 0; i < data.length; i++) { %>
+                                    <tr>
+                                        <td><%= data[i].Nombre_Empresa %></td>
+                                        <td><%= data[i].RIF %></td>
+                                        <td><%= data[i].Productos_Proveedor %></td>
+                                    </tr>
+                                <% } %>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>

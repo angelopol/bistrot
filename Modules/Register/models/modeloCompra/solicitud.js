@@ -33,7 +33,7 @@ export class SolicitudModel{
   static async eliminar({id}){
 
     try{
-      const [result] = await connection.query(
+      const [result] = await connection.execute(
         'DELETE FROM Solicitudes WHERE ID_Requisicion = ?',
         [id]
       )
@@ -61,7 +61,7 @@ export class SolicitudModel{
     const fechaa = new Date(fecha)
 
     try{
-      await connection.query(
+      await connection.execute(
         'UPDATE Solicitudes SET Departamento = ?,ID_Empleado=? ,Codigo_Producto = ?,Nombre_Producto=? ,FECHA = ?, DETALLE = ? WHERE  ID_Requisicion = ?',
         [depar,codigo_empleado,codigo_producto,nombre_producto,fechaa,detalle,id]
       )
