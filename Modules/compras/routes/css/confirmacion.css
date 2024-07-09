@@ -1,0 +1,103 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 800;
+}
+
+body {
+    overflow: hidden;
+}
+
+main {
+    font-family: 'Montserrat-Medium';
+    color: #02676F;
+}
+
+#principal {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    height: 85vh;
+    width: 75vw;
+}
+
+.box-title-prov {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat-Bold';
+}
+
+#title-prov {
+    font-size: 1.5rem;
+}
+
+.title-exit {
+    cursor: pointer;
+    width: 40px;
+}
+
+.dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 80%;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+.foto-cart {
+    width: 45%;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40%;
+}
+
+.confirmacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    gap: 20px;
+}
+
+#btn-regis {
+    padding: 15px;
+    width: 40%;
+    background-color: #0F624A;
+    color: white;
+    font-family: 'Montserrat-Bold';
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.foto-cart {
+    width: 50%;
+}
+
+.confirm-msg {
+    font-size: 1.1rem;
+}
+
+.formulario p {
+    font-family: 'Montserrat-Regular';
+}
