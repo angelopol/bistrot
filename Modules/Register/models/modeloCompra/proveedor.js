@@ -4,6 +4,17 @@ import connection from "../conexion.js"
 
 
 export class ProveedoresModel{
+  //Funcion para obtener todos los proveedores y listarlos
+  static async listar(){
+    try {
+      const [proveedores] = await connection.execute('SELECT * FROM Proveedores')
+      return proveedores
+      
+    } catch (error) {
+      throw new Error('Error al obtener proveedores')
+    }
+    
+  }
   //Funcion que crea un proovedor
   static async crear({input}) {
     const {

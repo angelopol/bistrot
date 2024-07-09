@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bistrot - Compras</title>
     <link rel="stylesheet" href="../css/side.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/confirmacion.css">
     <link rel="shortcut icon" href="../resources/icon.jpeg" type="image/x-icon">
 </head>
 <body>
@@ -65,62 +65,58 @@
         </div>
 
         <div id="principal">
-            <!--Iniciar Aqui el modulo-->
-            <h2 id="compras-title">Compras</h2>
+            <div class="box-title-prov">
+                <img class="title-exit" src="../resources/Icono-Back.svg" alt="Icono - Exit">
+                <h2 id="title-prov">Orden de Compra</h2>
+            </div>
             <div class="dashboard">
-                <div class="left-side">
-                    <table id="tabla-registro">
-                        <h3 id="title-table">Historial de Compra</h3>
-                        <thead>
-                          <tr>
-                            <th class="registro-clase">Producto</th>
-                            <th class="registro-clase">ID Orden</th>
-                            <th class="registro-clase">Cantidad</th>
-                            <th class="registro-clase">Costo</th>
-                          </tr>
-                        </thead>
-                        <tbody id="tabla-registro-body">
-                            <% if (data) { %>
-                                <% for (var i = 0; i < data.length; i++) { %>
-                                    <tr>
-                                        <td><%= data[i].Producto %></td>
-                                        <td><%= data[i].ID %></td>
-                                        <td><%= data[i].Cantidad %></td>
-                                        <td><%= data[i].Precio %></td>
-                                    </tr>
-                                <% } %>
-                            <% } %>
-                        </tbody>
-                    </table>
+                <div class="formulario">
+                    <h3 class="subtitle">Producto</h3>
+                    <p id="producto"></p>
+                    <h3 class="subtitle">Fecha de Compra</h3>
+                    <p id="fecha"></p>
+                    <h3 class="subtitle">Cantidad</h3>
+                    <p id="cantidad"></p>
+                    <h3 class="subtitle">Precio del Producto</h3>
+                    <p id="precio"></p>
+                    <h3 class="subtitle">Saldo Previo</h3>
+                    <p id="previo"></p>
+                    <h3 class="subtitle">Saldo Actual</h3>
+                    <p id="actual"></p>
+                    <h3 class="subtitle">Numero de orden</h3>
+                    <p id="orden"></p>
                 </div>
-                <div class="vertical-divider"></div>
-                <div class="right-side">
-                    <div class="box-saldo">
-                        <h2 id="saldo">00000</h2>
-                        <h3 id="saldo-title">Saldo Actual</h3>
-                    </div>
-                    <div class="box-compra">
-                        <button id="btn-compra">Realizar Compra</button>
-                        <img id="compra-icon" alt="Icono de Compra" src="../resources/comprar.png">
-                    </div>
-                    <div class="box-prov">
-                        <button id="btn-prov">Proveedores</button>
-                        <img id="prov-icon" alt="Icono de Proveedores" src='../resources/proveedor.png'>
-                    </div>
-                    <div class="box-prov">
-                        <button id="btn-prod">Productos</button>
-                        <img id="prov-icon" alt="Icono de Proveedores" src='../resources/products.png'>
-                    </div>
-                    <div class="box-prov">
-                        <button id="btn-soli">Solicitudes</button>
-                        <img id="prov-icon" alt="Icono de Proveedores" src='../resources/request.png'>
-                    </div>
+                <div class="confirmacion">
+                    <img class="foto-cart" src="../resources/check.png" alt="Carrito">
+                    <p class="confirm-msg">Compra realizada con Exito</p>
+                    <button id="btn-regis">Regresar</button>
                 </div>
+                
             </div>
         </div>
     </main> 
-    <script src="../js/index.js"></script>
+    <script>
+        //Textos donde Ingresar los datos
+        producto = document.getElementById('producto')
+        fecha = document.getElementById('fecha')
+        cantidad = document.getElementById('cantidad')
+        precio = document.getElementById('precio')
+        //Saldos Previo - Actual
+        previo = document.getElementById('previo')
+        actual = document.getElementById('actual')
+        //numero de Orden
+        orden = document.getElementById('orden')
 
+        let btn_regis = document.getElementById('btn-regis')
+        let exit = document.getElementsByClassName('title-exit')[0]
+        btn_regis.onclick = function(){
+            window.location.href = '/compra'
+        }
+
+        //Boton de Exit
+        exit.onclick = function(){
+            window.location.href = '/compra'
+        }
+    </script>
 </body>
-
 </html>

@@ -29,15 +29,32 @@ export const createApp = ({ productoModel,historialModel,proveedoresModel,solici
         //res.sendFile(path.join (__dirname,'routes','html','index.html'))
         res.render('index',{data: null})
     });
+
+    //Vista para las solicitudes en el modulo de compras
+    app.get('/soli',(req,res)=>{
+        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
+        res.render('solicitud',{data: null})
+    });
+
     //Vista para los proveedores en el modulo de compras
     app.get('/prov',(req,res)=>{
         //res.sendFile(path.join (__dirname,'routes','html','index.html'))
-        res.render('prov')
+        res.render('prov',{data: null})
     });
 
     app.get('/compra',(req,res)=>{
         //res.sendFile(path.join (__dirname,'routes','html','index.html'))
         res.render('compra')
+    });
+
+    app.get('/prod',(req,res)=>{
+        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
+        res.render('productos',{data: null})
+    });
+
+    app.get('/compra/confirmacion',(req,res)=>{
+        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
+        res.render('confirmacion')
     });
 
     //routes({ app })

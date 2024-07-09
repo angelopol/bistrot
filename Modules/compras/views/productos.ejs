@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bistrot - Compras</title>
     <link rel="stylesheet" href="../css/side.css">
-    <link rel="stylesheet" href="../css/compra.css">
+    <link rel="stylesheet" href="../css/productos.css">
     <link rel="shortcut icon" href="../resources/icon.jpeg" type="image/x-icon">
 </head>
 <body>
@@ -63,70 +63,76 @@
                 <p class="side-option">Ayuda</p>
             </div>
         </div>
+
         <div id="principal">
-            <div class="box-title-comp">
-                <img class="title-exit" src="../resources/Icono-Back.svg" alt="Icono-Exit">
-                <h2 id="title-comp">Realizar Compra</h2>
+            <div class="box-title-prov">
+                <img class="title-exit" src="../resources/Icono-Back.svg" alt="Icono - Exit">
+                <h2 id="title-prov">Productos</h2>
             </div>
             <div class="dashboard">
-                <div class="left-side">
-                    <table id="tabla-comp">
-                        <h3 id="title-table">Requisiciones</h3>
-                        <thead>
-                        <tr>
-                            <th class="comp-clase">Producto</th>
-                            <th class="comp-clase">Proveedor</th>
-                            <th class="comp-clase">Unidades</th>
-                            <th class="comp-clase">Cantidad</th>
-                            <th class="comp-clase">Precio</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tabla-comp-body">
-                        </tbody>
-                    </table>
-                </div>
-                <div class="right-side">
-                    <h3 id="subtitle-comp">Proceso de Compra</h3>
-                    <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
-                    <div class="box-producto">
-                        <select id="select-prod">
-                            <option disabled selected>Producto</option>
-                        </select>
-                        <input id="input-cant" placeholder="Cantidad" type="text">
+                <div class="formulario">
+                    <h3 id="title-detaile-prov">Detalles</h3>
+                    <input placeholder="Nombre del Producto" class="input-data name-prov" type="text">
+                    <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text">
+                    <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text">
+                    <button id="btn-regis">Agregar</button>
+                    <button id="btn-modi">Modificar</button>
+                    <div class="carrito">
+                        <img class="foto-cart" src="../resources/carrito.png" alt="Carrito">
                     </div>
-                    <p class="help-comp">Indique el Proveedor del producto</p>
+                    
+                </div>
+                <div class="data">
+                    <div class="content-prod">
+                        <table id="tabla-comp">
+                            <h3 id="title-table">Productos</h3>
+                            <thead>
+                            <tr>
+                                <th class="comp-clase">ID</th>
+                                <th class="comp-clase">Producto</th>
+                                <th class="comp-clase">uds.Compra</th>
+                                <th class="comp-clase">uds.Consumo</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tabla-comp-body">
+                                <% if (data) { %>
+                                    <% for (var i = 0; i < data.length; i++) { %>
+                                        <tr>
+                                            <td><%= data[i].ID_Producto %></td>
+                                            <td><%= data[i].NombreP %></td>
+                                            <td><%= data[i].Unidades %></td>
+                                            <td><%= data[i].Consumo %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
                     <select id="select-prov">
-                        <option disabled selected>Proveedor</option>
+                        <option disabled selected>Producto</option>
                     </select>
-                    <button id="confirm-compra-btn">Confirmar</button>
+                    <button id="delete-prov-btn">Eliminar</button>
                 </div>
             </div>
         </div>
-    </main>
-    <script>
-        //Tabla de los Producto
-        //Categorias: Producto-Unidades-Cantidad-Precio
-        let productos = document.getElementById('tabla-comp')
-        //Tabla Contiene un thead y un tbody, tbody vacio, rellenar
-        let prodbody = document.getElementById('tabla-comp-body')
-        //Por si es necesario, directamente el body
+    </main> 
+    <script >
+        //Inputs
+        nombre = document.getElementById('name-prov')
+        //Unidades de Consumo
+        unid_cons = document.getElementById('cons-prov')
+        //Unidades de Compra
+        unid_comp = document.getElementById('comp-prov')
+        //Select de Los proveedores
+        proveedor = document.getElementById('select-prov')
 
-        let selectproducto = document.getElementById('select-prod')
-        //ComboBox del Producto seleccionado
-        let cantidad = document.getElementById('input-cant')
-        //Input de la cantidad del producto segun la unidad
-        let selectproveedor = document.getElementById('select-prov')
-        //Combobox del Proveedor del producto
-        //Validar si el proveedor tiene ese producto
-        let btn_confirmar = document.getElementById('confirm-compra-btn')
-        //Boton que redirigira a la de Compra Exitosa
+        //Buttos
+        //Boton de Agregar o modificar producto
+        registrar = document.getElementById('btn-regis')
+
 
         let exit = document.getElementsByClassName('title-exit')[0]
         //Boton de Exit
-        
-        btn_confirmar.onclick = function(){
-            window.location.href = '/compra/confirmacion'
-        }
 
         exit.onclick = function(){
             window.location.href = '/'
