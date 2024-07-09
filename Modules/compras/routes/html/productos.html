@@ -72,9 +72,9 @@
             <div class="dashboard">
                 <div class="formulario">
                     <h3 id="title-detaile-prov">Detalles</h3>
-                    <input placeholder="Nombre del Producto" class="input-data name-prov" type="text">
-                    <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text">
-                    <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text">
+                    <input placeholder="Nombre del Producto" class="input-data name-prov" type="text" onkeypress="return validLetra(event)", maxlength="8">
+                    <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text" onkeypress="return validLetra(event) ", maxlength="12">
+                    <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text" onkeypress="return validLetra(event)", maxlength="12">
                     <button id="btn-regis">Agregar</button>
                     <button id="btn-modi">Modificar</button>
                     <div class="carrito">
