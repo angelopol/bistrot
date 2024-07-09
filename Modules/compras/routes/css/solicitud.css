@@ -119,7 +119,7 @@ select:hover {
     transition: all 0.5s;
 }
 
-#select-depa, #select-soli {
+#select-soli {
     width: 100%;
 }
 
