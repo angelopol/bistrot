@@ -14,6 +14,15 @@ export class ProductoModel{
     }
   }
 
+  static async getNombre(){
+    try {
+      const [nombres] = await connection.execute('SELECT NombreP FROM ProductoCompras')
+      return nombres
+    } catch (error) {
+      throw new Error("Error al obtener los nombres de los productos")
+    }
+  }
+
 
   // Metodo que crear un producto
   static async crear({input}){

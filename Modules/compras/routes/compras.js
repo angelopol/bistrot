@@ -26,7 +26,8 @@ export const createComprasRouter = ({productoModel,historialModel,proveedoresMod
   ComprasRouter.delete('/solicitud/:id',solicitudController.delete)
   ComprasRouter.patch('/solicitud/:id', solicitudController.update)
   ComprasRouter.get('/solicitud/:id',solicitudController.getById)
-  ComprasRouter.get('/soli',productoController.getAll2)
+
+  ComprasRouter.get('/soli',productoController.getAllData)
 
 
   return ComprasRouter

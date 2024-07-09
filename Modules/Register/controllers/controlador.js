@@ -30,10 +30,23 @@ export class ProductoController{
         res.render('productos',{data: productos})
     }
 
-    getAll2 = async (req,res)=>{
+    //metodo en el que llamo a varios modelos para mostrar en la pagina de solicitudes
+    getAllData = async (req,res)=>{
         const productos = await this.productoModel.listar()
-        res.render('solicitud',{data: productos})
+        const nombres = await this.productoModel.getNombre()
+        res.render('solicitud',{data: productos,data1: nombres})
     }
+
+    /*getAll2 = async (req,res)=>{
+        const productos = await this.productoModel.listar()
+        res.render('solicitud',{data: productos,data1: null})
+    }
+
+    getName = async(req,res)=>{
+        const nombres = await this.productoModel.getNombre()
+        res.render('solicitud',{data: null,data1: nombres})
+    }
+    */
 
     create = async (req,res)=>{
         //me falta agregar las validaciones
