@@ -1,0 +1,41 @@
+#Global_todos{
+    padding: 10px 20px;
+    margin: 20px 35px;
+    justify-content: center;
+}
+
+#Inicial_logo{
+    padding: 10px;
+    text-align: center;
+    margin: 10px 30px;
+    padding: 15px;
+}
+
+#Recipiente_div{
+    background-color: #828282;
+    margin: 15px 30px;
+    padding: 15px;
+    width: 1100px;
+    height: 80%;
+}
+
+#tipo_formulario{
+    background-color: white;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+
+#Modificar_1{
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#Modificar_1:hover{
+    background-color: #45a049;
+}

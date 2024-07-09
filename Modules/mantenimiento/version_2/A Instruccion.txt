@@ -1,0 +1,13 @@
+Comparando la version anterior
+Principal
+- corregido el caso padding, para al final para aquella la tabla que puede pone mas larga
+  para colocar más contenido
+- ya tiene la conexion tanto el contacto como la personal
+
+Contacto
+- mas funcionalidad en contacto, lo mas importante que tiene js respecto a la hora
+
+Personal
+- Permite hacer solo el cambio de modificar, pero no se ha realizado el codigo de modificar
+  solo permite lograr a traspasar
+- reconstruccion para la formulario
