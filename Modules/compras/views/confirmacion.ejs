@@ -95,28 +95,6 @@
             </div>
         </div>
     </main> 
-    <script>
-        //Textos donde Ingresar los datos
-        producto = document.getElementById('producto')
-        fecha = document.getElementById('fecha')
-        cantidad = document.getElementById('cantidad')
-        precio = document.getElementById('precio')
-        //Saldos Previo - Actual
-        previo = document.getElementById('previo')
-        actual = document.getElementById('actual')
-        //numero de Orden
-        orden = document.getElementById('orden')
-
-        let btn_regis = document.getElementById('btn-regis')
-        let exit = document.getElementsByClassName('title-exit')[0]
-        btn_regis.onclick = function(){
-            window.location.href = '/compra'
-        }
-
-        //Boton de Exit
-        exit.onclick = function(){
-            window.location.href = '/compra'
-        }
-    </script>
+    <script src="../routes/js/confirmacion.js"></script>
 </body>
 </html>

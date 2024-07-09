@@ -143,33 +143,6 @@
             </div>
         </div>
     </main>
-    <script>
-        //Tabla con sus bodys
-        tabla_productos = document.getElementById('tabla-prod')
-        tabla_productos_body = document.getElementById('tabla-prov-body') 
-        tabla_solicitud =  document.getElementById('tabla-soli')
-        tabla_solicitud_body = document.getElementById('tabla-soli-body')
-
-        // Inputs and Selects
-        producto =  document.getElementById('select-prod')
-        cantidad =  document.getElementById('input-cant')
-        departamento =  document.getElementById('select-depa')
-        descripcion =  document.querySelector('.input-data.desc')
-        //Select o combobox del select de solicitud
-        //Poner aqui toda solicitud que se emita
-        solicitud =  document.getElementById('select-soli')
-
-        // Buttons
-        btnAcept = document.getElementById('btn-acept')
-        btnRech = document.getElementById('btn-rech')
-        btnEnviar = document.getElementById('btn-enviar')
-
-        let exit = document.getElementsByClassName('title-exit')[0]
-        //Boton de Exit
-
-        exit.onclick = function(){
-            location.href = '/'
-        }
-    </script>
+    <script src="../routes/js/solicitud.js"></script>
 </body>
 </html>
