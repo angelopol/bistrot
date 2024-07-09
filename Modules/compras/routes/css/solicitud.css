@@ -123,7 +123,7 @@ select:hover {
     width: 100%;
 }
 
-#input-cant {
+#input-cant, #input-id {
     border-radius: 5px;
     border: none;
     padding: 10px 5px;
@@ -136,7 +136,7 @@ select:hover {
     transition: all 0.5s;
 }
 
-#input-cant:focus {
+#input-cant:focus, #input-id:focus {
     border-color: #02676F;
 }
 
