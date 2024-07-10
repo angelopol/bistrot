@@ -7,14 +7,14 @@ export class HistorialController {
         this.historialModel = historialModel
     }
     create = async (req,res)=>{
-        try{
-            const {body} = res
-            const prueba = HistorialValidaschema.parse(body)
-            const nuevoregistro = await this.historialModel.agregar({input: prueba})
-            res.json(nuevoregistro)
-        }catch(error){
-            res.status(400).json({ message: error.message })
+        const result = validarHistorial(req.body)
+
+        if(!result.success){
+            return res.status(400).json({ error: JSON.parse(result.error.message) })
         }
+        const input = result.data
+        const Historial = await historialModel.agregar({input})
+        res.status(201).json(Historial)
     }
 
     getAll = async (req,res)=>{
