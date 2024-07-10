@@ -22,12 +22,13 @@ export const createComprasRouter = ({productoModel,historialModel,proveedoresMod
   ComprasRouter.get('/proveedores/:id', proveedorController.getById)
   ComprasRouter.get('/prov',proveedorController.getAll)
 
-  ComprasRouter.post('/solicitud', solicitudController.create)
+  ComprasRouter.post('/soli', solicitudController.create)
   ComprasRouter.delete('/solicitud/:id',solicitudController.delete)
   ComprasRouter.patch('/solicitud/:id', solicitudController.update)
   ComprasRouter.get('/solicitud/:id',solicitudController.getById)
 
   ComprasRouter.get('/soli',productoController.getAllData)
+  //ComprasRouter.post('/soli',productoController.create)
 
 
   return ComprasRouter

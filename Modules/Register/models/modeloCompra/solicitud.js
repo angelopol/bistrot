@@ -7,23 +7,25 @@ export class SolicitudModel{
   static async agregar({input}){
     const {
       depar,
-      codigo_empleado,
-      codigo_producto,
+      id_emp,
+      cant,
       nombre_producto,
       fecha,
       detalle
     } = input
 
-    const fechaa = new Date(fecha)
+    const fechaa = new Date()
+
+    let aprobacion = false
 
     try{
       await connection.execute(
-        'INSERT INTO Solicitudes(Departamento,ID_Empleado,Codigo_Producto,Nombre_Producto,FECHA,DETALLE) VALUES(?,?,?,?,?,?)',
-        [depar,codigo_empleado,codigo_producto,nombre_producto,fechaa,detalle]
+        'INSERT INTO Solicitudes(Departamento,ID_Empleado,Cantidad,Nombre_Producto,FECHA,Aprobada,DETALLE) VALUES(?,?,?,?,?,?,?)',
+        [depar,id_emp,cant,nombre_producto,fechaa,aprobacion,detalle]
       )
 
-      const [producto] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = LAST_INSERT_ID()")
-      return producto
+      //const [producto] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = LAST_INSERT_ID()")
+      //return producto
     }catch(e){
       console.log(e)
       throw new Error("Error al agregar una nueva solicitud")

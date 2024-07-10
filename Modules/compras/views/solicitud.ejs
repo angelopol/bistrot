@@ -113,32 +113,36 @@
                 <div class="right-side">
                     <h3 id="subtitle-comp">Proceso de Solicitud</h3>
                     <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
-                    <div class="box-producto">
-                        <select id="select-prod">
-                            <option disabled selected>Producto</option>
-                            <% if (data1) { %>
-                                <% data1.forEach(data1 => { %>
-                                    <option value="<%= data1.NombreP %>"><%= data1.NombreP %></option>
-                                <% }); %>
-                            <% } %>
-                        </select>
-                        <input id="input-cant" placeholder="Cantidad" type="text">
-                    </div>
-                    <div class="content-other">
-                        <select id="select-depa">
-                            <option disabled selected>Departamento</option>
-                            <option>Ventas/Salon</option>
-                            <option>Compras</option>
-                            <option>Inventario</option>
-                            <option>Mantenimiento</option>
-                            <option>Cocina</option>
-                        </select>
-                        <input id="input-id" placeholder="ID Empleado" type="text">
-                    </div>
-                    <form>
-                        <textarea placeholder="Descripcion" class="input-data desc"></textarea>
+
+                    <form action="/soli" method="post">
+                        <div class="box-producto">
+                            <select id="select-prod" name="nombre_producto">
+                                <option disabled selected >Producto</option>
+                                <% if (data1) { %>
+                                    <% data1.forEach(data1 => { %>
+                                        <option value="<%= data1.NombreP %>" ><%= data1.NombreP %></option>
+                                    <% }); %>
+                                <% } %>
+                            </select>
+                            <input id="input-cant" placeholder="Cantidad" type="text" name="cant">
+                        </div>
+                        <div class="content-other">
+                            <select id="select-depa" name="depar">
+                                <option disabled selected>Departamento</option>
+                                <option>Ventas/Salon</option>
+                                <option>Compras</option>
+                                <option>Inventario</option>
+                                <option>Mantenimiento</option>
+                                <option>Cocina</option>
+                            </select>
+                            <input id="input-id" placeholder="ID Empleado" type="text" name="id_emp">
+                        </div>
+                        
+                            <textarea placeholder="Descripcion" class="input-data desc" name="detalle"></textarea>
+                        
+                        <input type="submit" id="btn-enviar" value="Enviar">
                     </form>
-                    <button id="btn-enviar">Enviar</button>
+
                     <h3 id="subtitle-pen">Pendientes</h3>
                     <select id="select-soli">
                         <option disabled selected>Departamento-Producto-Cantidad</option>

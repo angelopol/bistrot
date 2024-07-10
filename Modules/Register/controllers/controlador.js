@@ -152,8 +152,10 @@ export class SolicitudController{
 
         
 
-        const newSolicitud = await this.solicitudModel.agregar({input: req.body})
-        return res.json(newSolicitud)
+        /*const newSolicitud =*/
+        await this.solicitudModel.agregar({input: req.body})
+        //return res.json(newSolicitud)
+        res.redirect('/soli');
 
     }
     update = async (req,res)=>{
