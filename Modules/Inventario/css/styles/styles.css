@@ -455,34 +455,63 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #025157;
 }
-/* Estilos adicionales para el formulario */
-#editForm {
-  display: flex;
-  flex-direction: column;
-  padding: 5%;
-  gap: 15px; /* Espaciado entre filas */
-}
 
 .form-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between; /* Espacio entre label e input */
-  gap: 10px; /* Espaciado entre label y input */
+  gap: 70px; /* Espaciado entre label y input */
 }
 
-.form-row label {
-  flex: 1; /* Flexibilidad para ajustar el tamaño del label */
+.edit-form{
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  gap: 15px; /* Espaciado entre filas */
 }
 
-.form-row input {
-  flex: 2; /* Flexibilidad para ajustar el tamaño del input */
+.Select-CategoriaEditar{
+  width: 48%;
 }
 
-#editForm button {
-  align-self: flex-start; /* Alinear botón al inicio del formulario */
-  margin-top: 20px; /* Espaciado superior para los botones */
+.Select-AreaEditar{
+  width: 48%;
 }
+
+.Select-UnidadEditarInsumos{
+  width: 48%;
+}
+
+.Select-FechaEditar{
+  width: 200px;
+  text-align: center;
+}
+
+.Select-CategoriaEditarEquipos{
+  width: 45%;
+}
+
+.Select-FuncionaEditarEquipos{
+  width: 200px;
+}
+
+.Select-UnidadEditarEquipos{
+  width: 45%;
+}
+
+.Select-FechaMantEditarEquipos{
+  width: 200px;
+  text-align: center;
+}
+
+.add-form{
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  gap: 15px; /* Espaciado entre filas */
+}
+
 
 .medio-div-commit{
   position: fixed; /* Cambia a fixed para que se mantenga en la vista */

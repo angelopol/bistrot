@@ -382,3 +382,78 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Siguiente paso en el proceso de agregar');
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('comentarCambios').addEventListener('click', () => {
+        const id = document.getElementById('ID').value;
+        const nombre = document.getElementById('nombre').value;
+        const categoria = document.getElementById('SelectCategoriaInsumos').value;
+        const cantidad = document.getElementById('cantidad').value;
+        const area = document.getElementById('SelectAreaInsumos').value;
+        const unidad = document.getElementById('SelectUnidadEditarInsumos').value;
+        const fechaCaducidad = document.getElementById('fechaCaducidad').value;
+        const cambiosRealizados = {
+            nombre: nombre,
+            categoria: categoria,
+            cantidad: cantidad,
+            area: area,
+            unidad: unidad,
+            fecha_mantenimiento: fechaCaducidad
+        };
+
+        fetch(`http://localhost:3000/api/general/`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cambiosRealizados)
+        }).then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  alert('Cambios guardados exitosamente');
+                  document.getElementById('cardContainer').style.display = 'none';
+                  $('#tablaGeneral').DataTable().ajax.reload();
+              } else {
+                  alert('Error al guardar los cambios');
+              }
+          }).catch(error => {
+              alert('Error al guardar los cambios');
+          });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('openCardButtonBorrar').addEventListener('click', () => {
+        document.getElementById('cardContainer2').style.display = 'none';
+        document.getElementById('commitMessageContainerBorrar').style.display = 'block';
+    });
+
+    document.getElementById('atrasCommitBorrar').addEventListener('click', () => {
+        document.getElementById('commitMessageContainerBorrar').style.display = 'none';
+        document.getElementById('cardContainer2').style.display = 'block';
+    });
+
+    document.getElementById('commitFormBorrar').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const id = document.getElementById('IDBorrar').value;
+
+        fetch(`http://localhost:3000/api/general/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+          .then(data => {
+              console.log('Response data:', data);
+              if (data.success) {
+                  alert('Registro eliminado exitosamente');
+                  document.getElementById('commitMessageContainerBorrar').style.display = 'none';
+                  $('#tablaGeneral').DataTable().ajax.reload();
+              } else {
+                  alert('Error al eliminar el registro');
+              }
+          }).catch(error => {
+              alert('Error al eliminar el registro');
+          });
+    });
+});
