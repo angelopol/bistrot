@@ -210,7 +210,7 @@ body{
     margin-top: 32px; 
     transform: translateY(-100px);
     text-align: justify;
-    
+
 }
 
 .results-wrapper { 
@@ -236,7 +236,7 @@ body{
     font-size: 16px; 
     color: #000; 
     line-height: 150%; 
-    padding: 70px 90px 40px; 
+    padding: 70px 90px 40px 40px; 
     width: 100%;
 }
 
@@ -372,6 +372,20 @@ a{
     margin-top: 10px; 
     height: 30px; 
 }
+
+.ocultar-modal{
+    display: none;
+}
+
+.mostrar-modal{
+    display: block;
+}
+
+
+
+
+
+
 
 @media (max-width: 991px) {
     .header { 
