@@ -85,3 +85,8 @@ tbody tr:hover {
     background-color: #02676F40;
     cursor: pointer;
 }
+
+.content-prod, .content-soli, .left-side, .tabla-content{
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
