@@ -70,28 +70,21 @@ export class SolicitudModel{
     }
   }
   //Funcion que modifica una solicitud
-  static async modificar({id,result}){
-    const {
-      depar,
-      codigo_empleado,
-      codigo_producto,
-      nombre_producto,
-      fecha,
-      detalle
-    } = result
-
-    const fechaa = new Date(fecha)
+  static async modificar({input}){
+    const {id_req} = input
+    console.log("Entre")
+    let aprobar = 1
 
     try{
       await connection.execute(
-        'UPDATE Solicitudes SET Departamento = ?,ID_Empleado=? ,Codigo_Producto = ?,Nombre_Producto=? ,FECHA = ?, DETALLE = ? WHERE  ID_Requisicion = ?',
-        [depar,codigo_empleado,codigo_producto,nombre_producto,fechaa,detalle,id]
+        'UPDATE Solicitudes SET Aprobada=? WHERE  ID_Requisicion = ?',
+        [aprobar,id_req]
       )
 
-      const [actualizado] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = ?",[id]);
-      return actualizado
+      //const [actualizado] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = ?",[id]);
+      //return actualizado
     }catch(e){
-      console.log(e)
+      //console.log(e)
       throw new Error("Error al modificar la solicitud")
     }
   }

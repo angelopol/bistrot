@@ -157,20 +157,23 @@
                     </form>
 
                     <h3 id="subtitle-pen">Pendientes</h3>
-                    <select id="select-soli">
-                        <option disabled selected>Seleccione el ID de la requisicion</option>
-                        <% if (data2) { %>
-                            <% data2.forEach(data2 => { %>
-                                <% if (data2.Aprobada == 0) { %>
-                                    <option value="<%= data2.ID_Requisicion %>" ><%= data2.ID_Requisicion %></option>
-                                <% } %>
-                            <% }); %>
-                        <% } %>
-                    </select>
-                    <div class="btns-acep">
-                        <button id="btn-acept">Aceptar</button>
-                        <button id="btn-rech">Rechazar</button>
-                    </div>
+                    <form action="/soli/:id" method="post" id="update-form">
+                        <input type="hidden" name="_method" value="PATCH">
+                        <select id="select-soli" name="id_req">
+                            <option disabled selected>Seleccione el ID de la requisicion</option>
+                            <% if (data2) { %>
+                                <% data2.forEach(data2 => { %>
+                                    <% if (data2.Aprobada == 0) { %>
+                                        <option value="<%= data2.ID_Requisicion %>" ><%= data2.ID_Requisicion %></option>
+                                    <% } %>
+                                <% }); %>
+                            <% } %>
+                        </select>
+                        <div class="btns-acep">
+                            <input type="submit" id="btn-enviar" value="Aceptar">
+                            <button id="btn-rech">Rechazar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -200,8 +203,20 @@
         //Boton de Exit
 
         exit.onclick = function(){
-            location.href = '/'
+            window.location.href = '/'
         }
+        
+        //Evento para agregar dinamicamente el id para poder utilizar la ruta /soli/:
+        document.getElementById('update-form').addEventListener('submit', function (e) {
+            const select = document.getElementById('select-soli');
+            const selectedOption = select.options[select.selectedIndex];
+            const id = selectedOption.value;
+
+            if (id) {
+                this.action = `/soli/${id}?_method=PATCH`;
+            }
+        });
+        
     </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 import express, { json } from 'express' // require -> commonJS
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url';
-
+import methodOverride from 'method-override'
 import { corsMiddleware } from 'file:///C:/Users/Usuario/OneDrive/Documentos/modulo-compras/bistrot/global/middlewares/cors.js'
 //import { routes } from './routes/routes.js'
 import { authenticated } from 'file:///C:/Users/Usuario/OneDrive/Documentos/modulo-compras/bistrot/global/middlewares/auth.js'
@@ -15,6 +15,7 @@ export const createApp = ({ productoModel,historialModel,proveedoresModel,solici
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     app.set('view engine', 'ejs')
+    app.use(methodOverride('_method'));
     app.use(json())
     app.use(cookieParser())
     app.use(corsMiddleware())

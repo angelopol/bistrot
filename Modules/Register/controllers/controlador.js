@@ -37,6 +37,8 @@ export class ProductoController{
         const nombres = await this.productoModel.getNombre()
         //const ids = await this.solicitudModel.getId()
         const requisicion = await this.solicitudModel.getReq()
+        
+        
         res.render('solicitud',{data: productos,data1: nombres,data2: requisicion})
     }
 
@@ -163,14 +165,12 @@ export class SolicitudController{
     }
     update = async (req,res)=>{
         //me falta agregar las validaciones
-        const result = req.body
-
-        const {id} = req.params
-        console.log(result)
-        console.log(id)
-        const updatedSolicitud = await this.solicitudModel.modificar({id,result})
-
-        return res.json(updatedSolicitud)
+        
+        console.log("Entree")
+        //console.log(req.params)
+        await this.solicitudModel.modificar({input: req.body})
+        res.redirect('/soli');
+        
 
     }
     delete = async (req,res)=>{
