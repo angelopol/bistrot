@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             // Encuentra el modal correspondiente al botón clicado
+            
             const modal = button.closest('dialog');
             if (modal) {
                 modal.close();
@@ -104,3 +105,4 @@ function removeFromOrder(button) {
     // Actualizar el contenido del elemento con el nuevo valor, formateado con ceros iniciales
     totalAmountElement.textContent = total_actual.toString().padStart(6, '0');
 }
+

@@ -155,6 +155,10 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.vinos{
+    margin-bottom: 10px;
+}
+
 @media (max-width: 991px) {
     .menu-item {
     width: 100%;
@@ -494,3 +498,6 @@ body {
     display: block;
 }
 
+h3{
+    font-family: 'Montserrat',sans-serif;
+}
