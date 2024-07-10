@@ -16,9 +16,25 @@ function mostrarVista(boton){
     form = document.getElementById("formReportes");
     botonAgregar = document.getElementById("Button_formulario_Agregar");
 
+    //Cerrando ventana principal de reportes y abriendo vista del reporte
     if (form.style.display == "block"){
         form.style.display = "none"
         botonAgregar.style.display = "none"
         vista.style.display = "block"
+    }
+}
+
+function regresar(){
+    //Obtecion de elementos
+    vista = document.getElementById("vistaReportes");
+    form = document.getElementById("formReportes");
+
+    //Comprobar que elemento esta abierto para ejecutar la accion
+    if(form.style.display=="block"){
+        window.location.href = 'Pagina_principal.html';
+    }else if(vista.style.display=="block"){
+        vista.style.display = "none"
+        botonAgregar.style.display = "inline"
+        form.style.display = "block"
     }
 }
