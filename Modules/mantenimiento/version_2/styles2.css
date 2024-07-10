@@ -128,3 +128,26 @@ label {
     background-color: #45a049;
 }
 
+#vistaReportes{
+    display: none;
+}
+
+.forms{
+    background-color: white;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    gap: 4px;
+}
+
+.inputText{
+    width: 70%;
+    background-color: whitesmoke;
+    display: inline-block;
+}
+
+#textAreaVista{
+    resize: none;
+    height:200px;
+    width: 70%;
+}

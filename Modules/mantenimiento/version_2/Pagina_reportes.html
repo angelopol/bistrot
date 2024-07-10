@@ -78,7 +78,7 @@
                 </nav>
             </div>
 
-            <!--Aqui empieza la cocina para la cosa ingresar tipo Gongzuorenyuan_trabajo personal-->
+            <!--Reportes-->
             <div id="Global_todos">
                 <div id="Inicial_logo">
                     <img src="resources/reportes.png" width="35px" height="30px">
@@ -86,7 +86,8 @@
                 </div>
 
                 <div id="Recipiente_div">
-                    <div id="tipo_formulario" style="display: block;">
+
+                    <div id="formReportes" class="forms" style="display: block;">
                         <table id="Actual_tabla">
                             <tr>
                                 <th>Fecha</th>
@@ -100,10 +101,17 @@
                                 <td>13:49</td>
                                 <td>Ventas</td>
                                 <td>Arreglo de mesas</td>
-                                <td>*Boton*</td>
+                                <td><button class="button" onclick="mostrarVista(this)">Ver</button></td>
                             </tr>
                         </table>
                     </div>
+
+                    <!-- Seccion ver -->
+                    <div id="vistaReportes" class="forms" >
+                        <input type="text" disabled="true" class="inputText" id="asuntoVista">
+                        <textarea id="textAreaVista" disabled="true" class="inputText"></textarea>
+                    </div>
+
                     <div>
                         <button id="Button_formulario_Inicio" style="display: inline;">Regresar</button>
                         <button id="Button_formulario_Volver" style="display: none;">Volver</button>
@@ -114,7 +122,7 @@
             </div>
         </div>
     </div>
-    <script src="JSContacto.js"></script>
+    <script src="JSReporte.js"></script>
 </body>
 
 </html>
