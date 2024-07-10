@@ -1,113 +1,317 @@
-<div style="width: 100%; height: 100%; position: relative; background: white">
-    <div style="width: 1314px; height: 763px; left: 54px; top: 161px; position: absolute">
-        <div style="width: 1314px; height: 763px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 1px 32.5px 5px rgba(0, 0, 0, 0.10); border-radius: 15px"></div>
-        <div style="width: 267px; height: 60px; left: 232px; top: 128px; position: absolute">
-            <div style="width: 267px; height: 60px; left: 0px; top: -18px; position: absolute; background: #E9E9E9; border-radius: 15px; border: 2px #0F624A solid"></div>
-            <input style="width: 243px; height: 57px; left: 8px; top: -18px; position: absolute; color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrumentos - Bistrot Chez Rémy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        .bistrot-header {
+            background-color: #013d1f;
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            color: #fff;
+            font-weight: 400;
+            padding: 34px 55px;
+        }
+        @media (max-width: 991px) {
+            .bistrot-header {
+                max-width: 100%;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+        }
+        .bistrot-title {
+            letter-spacing: -0.24px;
+            flex-grow: 1;
+            flex-basis: auto;
+            margin: auto 0;
+            font: 24px Krona One, sans-serif;
+        }
+        .user-info {
+            border-radius: 4px;
+            border: 1px solid #fff;
+            background-color: #013d1f;
+            display: flex;
+            gap: 16px;
+            font-size: 16px;
+            white-space: nowrap;
+            padding: 8px 16px;
+        }
+        @media (max-width: 991px) {
+            .user-info {
+                white-space: initial;
+            }
+        }
+        .user-name {
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            text-overflow: ellipsis;
+            font-family: Inter, sans-serif;
+            flex: 1;
+        }
+        .user-icon {
+            aspect-ratio: 1;
+            object-fit: auto;
+            object-position: center;
+            width: 24px;
+        }
+        .main-content {
+            border-radius: 15px;
+            box-shadow: 0 1px 32.5px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            align-self: center;
+            display: flex;
+            margin-top: 53px;
+            width: 100%;
+            max-width: 1314px;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 500;
+            justify-content: center;
+            padding: 46px 60px;
+        }
+        @media (max-width: 991px) {
+            .main-content {
+                max-width: 100%;
+                margin-top: 40px;
+                padding: 0 20px;
+            }
+        }
+        .content-wrapper {
+            display: flex;
+            width: 786px;
+            max-width: 100%;
+            flex-direction: column;
+        }
+        .section-title {
+            color: #0f624a;
+            align-self: center;
+            font: 700 40px Poppins, sans-serif;
+        }
+        .search-bar {
+            display: flex;
+            margin-top: 38px;
+            align-items: start;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        @media (max-width: 991px) {
+            .search-bar {
+                max-width: 100%;
+                flex-wrap: wrap;
+            }
+        }
+        .search-input {
+            font-family: Inter, sans-serif;
+            border-radius: 15px;
+            border: 2px solid #0f624a;
+            background-color: #e9e9e9;
+            color: #000;
+            white-space: nowrap;
+            justify-content: center;
+            padding: 23px 200px 23px 10px;
+            width: 100%;
+        }
+        @media (max-width: 991px) {
+            .search-input {
+                white-space: initial;
+            }
+        }
+        .report-button {
+            font-family: Inter, sans-serif;
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            background-color: #013d1f;
+            color: #fff;
+            padding: 14px 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            fill: #fff;
+            stroke-width: 1px;
+            stroke: #0f624a;
+            filter: drop-shadow(0 4px 30px #013d1f);
+            overflow: hidden;
+            border: 1px solid #0f624a;
+            align-self: end;
+            position: relative;
+            min-height: 494px;
+            margin-top: 50px;
+            width: 753px;
+            max-width: 100%;
+            color: #000;
+            padding: 29px 39px;
+        }
+        @media (max-width: 991px) {
+            .table-container {
+                margin-top: 40px;
+                padding: 0 20px;
+            }
+        }
+        .table-background {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            position: relative;
+        }
+        .table-header {
+            position: relative;
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            padding: 10px 80px;
+        }
+        @media (max-width: 991px) {
+            .table-header {
+                max-width: 100%;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+        }
+        .header-cell {
+            font-family: Inter, sans-serif;
+            font-weight: bold;
+            text-align: left;
+        }
+        .table-row {
+            position: relative;
+            align-items: center;
+            border: 1px solid #000;
+            background-color: #fff;
+            display: flex;
+            gap: 20px;
+            padding: 0 57px 0 34px;
+        }
+        @media (max-width: 991px) {
+            .table-row {
+                max-width: 100%;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+        }
+        .row-cell {
+            font-family: Inter, sans-serif;
+            text-align: center;
+            margin: auto 0;
+            padding: 10px;
+        }
+        .row-cell-name {
+            font-family: Inter, sans-serif;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            border: 1px solid #fff;
+            align-self: center;
+            white-space: nowrap;
+            flex: 1;
+            padding: 10px;
+        }
+        @media (max-width: 991px) {
+            .row-cell-name {
+                white-space: initial;
+                padding: 0 20px;
+            }
+        }
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="bistrot-header">
+        <h1 class="bistrot-title" onclick="window.location.href = 'Produccion.html';">BISTROT CHEZ RÉMY</h1>
+        <div class="user-info">
+            <span class="user-name">Gerente0000</span>
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bd69caf513a031a441b0ae2c28050f8e01024dfd2f15fb76144d64f2f7d9df8f?apiKey=1338fe71ffab4d72840a5a38bafe941b&" alt="" class="user-icon" />
         </div>
-        <div style="width: 753px; height: 494px; left: 265px; top: 220px; position: absolute">
-            <div style="width: 753px; height: 494px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 30px #013D1F; border-radius: 15px; border: 1px #0F624A solid"></div>
-            <div style="width: 672px; left: 42px; top: 247px; position: absolute; background: white; border: 1px rgba(0, 0, 0, 0.20) solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Id</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; border: 1px black solid; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Nombre</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Estado </div>
-                </div>
+    </header>
+    <main class="main-content">
+        <section class="content-wrapper">
+            <h2 class="section-title">Instrumentos</h2>
+            <div class="search-bar">
+                <form>
+                    <label for="searchInput" class="visually-hidden">Buscar instrumentos</label>
+                    <input type="number" id="searchInput" class="search-input" placeholder="Buscar ID instrumento" />
+                </form>
+                <button class="report-button">Reportar falla</button>
             </div>
-            <div style="width: 672px; left: 42px; top: 194px; position: absolute; background: white; border: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Id</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; border: 1px black solid; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Nombre</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Estado </div>
-                </div>
+            <div class="table-container">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1763c82571c6fcc932450b875c3d27b3259ea740cc2e090e6e3e16102041c61b?apiKey=1338fe71ffab4d72840a5a38bafe941b&" alt="" class="table-background" />
+                <table>
+                    <thead>
+                        <tr class="table-header">
+                            <th class="header-cell">Id</th>
+                            <th class="header-cell">Nombre</th>
+                            <th class="header-cell">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-row">
+                            <td class="row-cell">12345</td>
+                            <td class="row-cell-name">nombre</td>
+                            <td class="row-cell">Estado</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="row-cell">Id</td>
+                            <td class="row-cell-name">Nombre</td>
+                            <td class="row-cell">Estado</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="row-cell">ID</td>
+                            <td class="row-cell-name">Nombre</td>
+                            <td class="row-cell">Estado</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="row-cell">ID</td>
+                            <td class="row-cell-name">nombre</td>
+                            <td class="row-cell">Estado</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="row-cell">id</td>
+                            <td class="row-cell-name">Nombre</td>
+                            <td class="row-cell">Estado</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="row-cell">ID</td>
+                            <td class="row-cell-name">Nombre</td>
+                            <td class="row-cell">Estado</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="row-cell">Id</td>
+                            <td class="row-cell-name">nombre</td>
+                            <td class="row-cell">Estado</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div style="width: 672px; left: 42px; top: 141px; position: absolute; background: white; border: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Id</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; border: 1px black solid; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Nombre</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Estado </div>
-                </div>
-            </div>
-            <div style="width: 672px; left: 42px; top: 406px; position: absolute; background: white; border: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Id</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; background: white; border: 1px black solid; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Nombre</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Estado </div>
-                </div>
-            </div>
-            <div style="width: 672px; left: 42px; top: 353px; position: absolute; background: white; border: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Id</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; border: 1px black solid; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Nombre</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Estado </div>
-                </div>
-            </div>
-            <div style="width: 672px; left: 42px; top: 300px; position: absolute; background: white; border: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Id</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; border: 1px black solid; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Nombre</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Estado </div>
-                </div>
-            </div>
-            <div style="width: 672px; left: 42px; top: 88px; position: absolute; background: white; border: 1px black solid; justify-content: flex-start; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">12356</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; border: 1px black solid; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Nevera</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Funciona </div>
-                </div>
-            </div>
-            <div style="width: 672px; left: 42px; top: 23px; position: absolute; justify-content: flex-start; align-items: center; display: inline-flex">
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Id</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Nombre</div>
-                </div>
-                <div style="flex: 1 1 0; height: 53px; padding: 10px; justify-content: center; align-items: center; gap: 10px; display: flex">
-                    <div style="color: black; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Estado </div>
-                </div>
-            </div>
-        </div>
-        <div style="width: 316px; height: 63px; left: 497px; top: 24px; position: absolute; color: #0F624A; font-size: 40px; font-family: Poppins; font-weight: 700; line-height: 60px; word-wrap: break-word">Instrumentos</div>
-        <div style="width: 173px; height: 60px; padding-left: 24px; padding-right: 24px; padding-top: 14px; padding-bottom: 14px; left: 845px; top: 108px; position: absolute; background: #013D1F; box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05); border-radius: 15px; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
-            <div style="color: white; font-size: 22px; font-family: Inter; font-weight: 500; line-height: 33px; word-wrap: break-word">Reportar falla</div>
-        </div>
-    </div>
-    <div style="width: 1440px; height: 108px; left: 0px; top: 0px; position: absolute; background: #013D1F">
-        <div style="width: 347px; height: 56px; left: 54px; top: 28px; position: absolute; color: white; font-size: 24px; font-family: Krona One; font-weight: 400; line-height: 36px; word-wrap: break-word">BISTROT CHEZ RÉMY</div>
-        <div style="width: 208px; height: 40px; padding-left: 16px; padding-right: 16px; padding-top: 8px; padding-bottom: 8px; left: 1176px; top: 31px; position: absolute; background: #013D1F; border-radius: 8px; border: 1px white solid; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
-            <div style="flex: 1 1 0; color: white; font-size: 16px; font-family: Inter; font-weight: 400; line-height: 24px; word-wrap: break-word">Gerente0000</div>
-            <div style="width: 24px; height: 24px; position: relative">
-                <div style="width: 12px; height: 6px; left: 6px; top: 9px; position: absolute; border: 2px white solid"></div>
-            </div>
-        </div>
-    </div>
-</div>
+        </section>
+    </main>
+</body>
+</html>
