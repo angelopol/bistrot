@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../conexion');
-const { verifyToken, checkPermission } = require('../Middleware/auth');
+const { verifyToken, checkPermission } = require('../Middleware/authCocina');
 
 // Consultar un elemento por ID en cocina_bar
 router.get('/cocina-bar/:id', verifyToken, checkPermission, (req, res) => {

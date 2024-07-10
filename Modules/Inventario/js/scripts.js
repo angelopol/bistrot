@@ -16,7 +16,56 @@ function changeTab(tab) {
 
     // Actualiza el contenido de la tabla
     updateTableContent(tab);
+
+    // Mostrar el formulario de edición correspondiente
+    showEditForm(tab);
+
+    // Mostrar el formulario de agregar correspondiente
+    showAddForm(tab);
 }
+
+function showEditForm(tab) {
+    // Ocultar todos los formularios de edición
+    document.querySelectorAll('.edit-form').forEach(form => {
+        form.classList.add('d-none');
+    });
+
+    // Mostrar el formulario correspondiente a la pestaña seleccionada
+    const editForm = document.getElementById(`edit${capitalizeFirstLetter(tab)}`);
+    if (editForm) {
+        editForm.classList.remove('d-none');
+    }
+}
+
+function showAddForm(tab) {
+    // Ocultar todos los formularios de agregar
+    document.querySelectorAll('.add-form').forEach(form => {
+        form.classList.add('d-none');
+    });
+
+    // Mostrar el formulario correspondiente a la pestaña seleccionada
+    const addForm = document.getElementById(`add${capitalizeFirstLetter(tab)}`);
+    if (addForm) {
+        addForm.classList.remove('d-none');
+    }
+}
+
+// Event listener para el botón editar
+document.getElementById('editarBtn').addEventListener('click', function() {
+    const activeTab = document.querySelector('.tab-active').id.replace('btn', '').toLowerCase();
+    showEditForm(activeTab);
+    document.getElementById('cardContainer').classList.add('show');
+    document.getElementById('cardd').classList.add('show');
+});
+
+// Event listener para el botón agregar
+document.getElementById('AgregarBtn').addEventListener('click', function() {
+    const activeTab = document.querySelector('.tab-active').id.replace('btn', '').toLowerCase();
+    showAddForm(activeTab);
+    document.getElementById('cardContainerAgregar').classList.add('show');
+    document.getElementById('cardd').classList.add('show');
+});
+
 
 function updateTableContent(tab) {
     // Destruye las tablas DataTable si ya existen

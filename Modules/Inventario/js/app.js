@@ -8,6 +8,8 @@ const submoduloInventarioRoutes = require('./routes/submoduloInventario');
 const cocinaBarRoutes = require('./routes/cocina_bar');
 const generalRoutes = require('./routes/general');
 const moduloCocinaRoutes = require('./routes/modulo_cocina');
+const moduloMantenimientoRoutes = require('./routes/modulo_mantenimiento');
+const authController = require('./controllers/authController');
 
 // Middleware para permitir solicitudes CORS
 app.use(cors());
@@ -16,21 +18,11 @@ app.use(cors());
 app.use(express.json());
 
 // Ruta para autenticación y generación de token 
-app.post('/api/login', (req, res) => {
-    const { usuario, contrasena } = req.body;
-
-    // Simulacion para ver su funcionalidad
-    if (usuario === 'cocina' && contrasena === 'contrasena') {
-        // Autenticación exitosa, generar token
-        const token = jwt.sign({ usuario: 'cocina' }, 'secret_key', { expiresIn: '1h' });
-        res.json({ token });
-    } else {
-        res.status(401).json({ error: 'Credenciales incorrectas' });
-    }
-});
+app.use('/api', authController);
 
 // Rutas protegidas que requieren autenticación y permisos
 app.use('/api/modulo-cocina', moduloCocinaRoutes);
+app.use('/api/modulo-mantenimiento', moduloMantenimientoRoutes);
 
 // Rutas para la tabla de inventario
 app.use('/api/submodulo-inventario', submoduloInventarioRoutes);
