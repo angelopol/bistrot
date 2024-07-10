@@ -121,15 +121,7 @@
       font: 700 40px Poppins, sans-serif;
     }
     
-    .edit-menu-btn {
-      justify-content: center;
-      border-radius: 8px;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-      background-color: #013d1f;
-      color: #fff;
-      padding: 14px 24px;
-      font: 500 16px Inter, sans-serif;
-    }
+
     
     @media (max-width: 991px) {
       .edit-menu-btn {
@@ -214,8 +206,9 @@
     }
     
     .category-btn:first-child {
-      margin-top: 0;
-      background-color: #02676f;
+      background-color: #fff;
+            color:#0f624a;
+             box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618);
     }
     
     .orders-icon {
@@ -327,11 +320,11 @@
         </div>
       </header>
       <main class="menu-container">
-        <img src="iconos_barra/icono_salida.png" alt="Orders icon" class="orders-icon" onclick="window.location.href = 'produccion.html';" />
+        <img src="iconos_barra/icono_salida.png" alt="Orders icon" class="orders-icon" onclick="window.history.back();" />
         <div class="menu-content">
           <div class="menu-header">
             <h2 class="menu-title">Menu</h2>
-            <button class="edit-menu-btn" onclick="window.location.href = 'creadordenuevasficha.html';" style="display: none;">EDITAR MENU</button>
+            
           </div>
           <h3 class="recipes-title">RECETAS</h3>
           <div class="menu-layout">

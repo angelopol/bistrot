@@ -135,18 +135,7 @@
             margin-top: 15px;
             font: 15px 'Poppins', sans-serif;
         }
-        .edit-menu-btn {
-            justify-content: center;
-            border-radius: 8px;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            background-color: #013d1f;
-            align-self: start;
-            color: #fff;
-            padding: 14px 24px;
-            font: 500 16px 'Inter', sans-serif;
-            border: none;
-            cursor: pointer;
-        }
+
         @media (max-width: 991px) {
             .edit-menu-btn {
                 padding: 0 20px;
@@ -204,7 +193,10 @@
         .category-button.entradas { background-color: #0f624a; }
         .category-button.platos-fuertes { background-color: #0f624a; }
         .category-button.vegetariano { background-color: #0f624a; }
-        .category-button.postres { background-color: #02676F; }
+        .category-button.postres {background-color: #fff;
+            color:#0f624a;
+            
+            box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618); }
         .category-button.menu-ninos { background-color: #0f624a; }
         .category-button.bebidas { background-color: #0f624a; }
         @media (max-width: 991px) {
@@ -305,7 +297,7 @@
                         <h2 class="menu-title">Menu</h2>
                         <p class="menu-subtitle">RECETAS</p>
                     </div>
-                    <button class="edit-menu-btn" onclick="window.location.href = 'creadordenuevasficha.html';" style="display: none;">EDITAR MENU</button>
+            
                 </div>
                 <div class="menu-content">
                     <div class="menu-layout">
