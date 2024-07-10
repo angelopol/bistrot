@@ -72,10 +72,16 @@
             <div class="dashboard">
                 <div class="formulario">
                     <h3 id="title-detaile-prov">Detalles</h3>
-                    <input placeholder="Nombre del Producto" class="input-data name-prov" type="text">
-                    <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text">
-                    <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text">
-                    <button id="btn-regis">Agregar</button>
+                    <form action="/prod" method="post">
+                    
+                        <input placeholder="Nombre del Producto" class="input-data name-prov" type="text" name="NombreP">
+                        <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text" name="Unidades">
+                        <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text" name="Consumo">
+                        
+                        <input type="submit" id="btn-regis" value="Agregar">
+                        
+                    </form>
+
                     <button id="btn-modi">Modificar</button>
                     <div class="carrito">
                         <img class="foto-cart" src="../resources/carrito.png" alt="Carrito">

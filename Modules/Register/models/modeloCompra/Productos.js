@@ -41,8 +41,6 @@ export class ProductoModel{
         [NombreP,Unidades,Consumo]
       )
 
-      const [producto] = await connection.execute("SELECT * FROM ProductoCompras WHERE ID_Producto = LAST_INSERT_ID()");
-      return producto
     }catch(e){
       console.log(e)
       throw new Error("Error al crear un producto")

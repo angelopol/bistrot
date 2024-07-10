@@ -65,8 +65,8 @@ export class ProductoController{
 
         
 
-        const newProducto = await this.productoModel.crear({input: req.body})
-        return res.json(newProducto)
+        await this.productoModel.crear({input: req.body})
+        res.redirect('/prod')
 
     }
     update = async (req,res)=>{
