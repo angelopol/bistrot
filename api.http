@@ -28,12 +28,12 @@ POST http://localhost:1234/historial
 Content-Type: application/json
 
 {
-    "FECHA" : "2024-07-08T14:30:00Z",   
+    "FECHA" : "2024-07-10T14:30:00Z",   
     "Pago" : "Contado",
-    "Producto" : "Pasta",  
+    "Producto" : "Leche",  
     "Cantidad" : 60,
-    "Precio": 220.0,  
-    "Nombre_Proveedor" : "Ronco",  
+    "Precio": 333.0,  
+    "Nombre_Proveedor" : "El Tunal",  
     "Autorizacion": "Gernente General: Samuel Molina" 
 }
 

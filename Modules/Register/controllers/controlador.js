@@ -1,6 +1,6 @@
 //import { HistorialModel } from "../models/modeloCompra/historial.js";
 //import { ProductoModel } from "../models/modeloCompra/Productos.js";
-import { HistorialValidaschema } from "../schemas/ValidacionHistorial"
+import { HistorialValidaschema } from "../schemas/ValidacionHistorial.js"
 
 export class HistorialController {
     constructor ({historialModel}){

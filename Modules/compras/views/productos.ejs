@@ -87,7 +87,7 @@
                         <table id="tabla-comp">
                             <h3 id="title-table">Productos</h3>
                             <thead>
-                            <tr>
+                            <tr style="user-select: none;">
                                 <th class="comp-clase">ID</th>
                                 <th class="comp-clase">Producto</th>
                                 <th class="comp-clase">uds.Compra</th>
@@ -110,6 +110,13 @@
                     </div>
                     <select id="select-prov">
                         <option disabled selected>Producto</option>
+                        <% if (data) { %>
+                            <% for (var i = 0; i < data.length; i++) { %>
+                                <option value="<%= data[i].NombreP %>" ><%= data[i].NombreP %></option>
+                            <% } %>
+                            
+                        <% } %>
+                        
                     </select>
                     <button id="delete-prov-btn">Eliminar</button>
                 </div>
@@ -117,6 +124,20 @@
         </div>
     </main> 
     <script>
+        //Tabla de producto
+        const tabla = document.getElementById('tabla-comp')
+        function seleccionarFila(event){
+            const filaSeleccionada = event.target.closest('tr')
+            if (filaSeleccionada ){
+                const idd = filaSeleccionada.cells[0].textContent
+                console.log(idd)
+            }
+            
+        }
+
+        //Evento para poder clickear tabla
+        tabla.addEventListener('click',seleccionarFila)
+
         //Inputs
         nombre = document.getElementsByClassName('name-prov')[0]
         //Unidades de Consumo
