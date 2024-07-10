@@ -127,7 +127,7 @@
         //Tabla de producto
         const tabla = document.getElementById('tabla-comp')
         function seleccionarFila(event){
-            const filaSeleccionada = event.target.closest('tr')
+            const filaSeleccionada = event.target.closest('tbody tr')
             if (filaSeleccionada ){
                 const idd = filaSeleccionada.cells[0].textContent
                 console.log(idd)
