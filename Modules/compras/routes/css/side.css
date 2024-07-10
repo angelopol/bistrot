@@ -76,3 +76,8 @@ main {
 .inicio {
     margin-top: 20%;
 }
+
+tr:hover {
+    background-color: #02676F40;
+    cursor: pointer;
+}
