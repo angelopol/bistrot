@@ -1,17 +1,17 @@
 //Inputs
-nombre = document.getElementsByClassName('name-prov')[0]
+let nombre = document.getElementsByClassName('name-prov')[0]
 //Unidades de Consumo
-unid_cons = document.getElementsByClassName('cons-prov')[0]
+let unid_cons = document.getElementsByClassName('cons-prov')[0]
 //Unidades de Compra
-unid_comp = document.getElementsByClassName('comp-prov')[0]
+let unid_comp = document.getElementsByClassName('comp-prov')[0]
 
 //Buttos
 //Boton de Agregar
-registrar = document.getElementById('btn-regis')
+let registrar = document.getElementById('btn-regis')
 //Boton de Modificar
-modificar = document.getElementById('btn-modi')
+let modificar = document.getElementById('btn-modi')
 //Boton de Eliminar
-eliminar = document.getElementById('delete-prov-btn')
+let eliminar = document.getElementById('delete-prov-btn')
 
 //Tabla de los Producto
 //Categorias: Producto-Unidades-Cantidad-Precio
@@ -37,6 +37,11 @@ registrar.onclick = function ocupar(event){
     }
 }
 modificar.onclick = function ocupar(event){
+    if(nombre.value.length == 0 || unid_cons.value.length == 0 || unid_comp.value.length == 0){
+        alert("Tiene que llenar los campos de texto para poder modificar un producto")
+    }
+}
+eliminar.onclick = function ocupar(event){
     if(nombre.value.length == 0 || unid_cons.value.length == 0 || unid_comp.value.length == 0){
         alert("Tiene que llenar los campos de texto para poder modificar un producto")
     }
