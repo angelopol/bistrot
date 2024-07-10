@@ -20,8 +20,9 @@ export class HistorialController {
 }
 
 export class ProductoController{
-    constructor ({productoModel}){
+    constructor ({productoModel,solicitudModel}){
         this.productoModel = productoModel
+        this.solicitudModel = solicitudModel
     }
     //Hice un getAll1 para mostrar los datos en dos paginas distintan ya que si lo hacia en el mismo metodo estaba
     //renderizando dos paginas en un controlador y fallaba 
@@ -34,7 +35,9 @@ export class ProductoController{
     getAllData = async (req,res)=>{
         const productos = await this.productoModel.listar()
         const nombres = await this.productoModel.getNombre()
-        res.render('solicitud',{data: productos,data1: nombres})
+        //const ids = await this.solicitudModel.getId()
+        const requisicion = await this.solicitudModel.getReq()
+        res.render('solicitud',{data: productos,data1: nombres,data2: requisicion})
     }
 
     /*getAll2 = async (req,res)=>{

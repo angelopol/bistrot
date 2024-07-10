@@ -4,7 +4,7 @@ import { HistorialController, ProductoController, ProveedorController, Solicitud
 export const createComprasRouter = ({productoModel,historialModel,proveedoresModel,solicitudModel}) => {
   const ComprasRouter = Router()
   const historialController = new HistorialController({historialModel})
-  const productoController = new ProductoController({productoModel})
+  const productoController = new ProductoController({productoModel,solicitudModel})
   const proveedorController = new ProveedorController({proveedoresModel})
   const solicitudController = new SolicitudController({solicitudModel})
 

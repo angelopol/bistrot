@@ -101,11 +101,24 @@
                         <h3 id="title-table">Solicitudes</h3>
                         <thead>
                           <tr>
+                            <th class="registro-clase">ID</th>
                             <th class="registro-clase">Producto</th>
                             <th class="registro-clase">Cantidad</th>
                           </tr>
                         </thead>
                         <tbody id="tabla-soli-body">
+                            <% if (data2) { %>
+                                
+                                <% for (var i = 0; i < data2.length; i++) { %>
+                                    <% if (data2[i].Aprobada == 0) { %>
+                                        <tr>
+                                            <td><%= data2[i].ID_Requisicion %></td>
+                                            <td><%= data2[i].Nombre_Producto %></td>
+                                            <td><%= data2[i].Cantidad %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
                         </tbody>
                     </table>
                     </div>
@@ -145,7 +158,14 @@
 
                     <h3 id="subtitle-pen">Pendientes</h3>
                     <select id="select-soli">
-                        <option disabled selected>Departamento-Producto-Cantidad</option>
+                        <option disabled selected>Seleccione el ID de la requisicion</option>
+                        <% if (data2) { %>
+                            <% data2.forEach(data2 => { %>
+                                <% if (data2.Aprobada == 0) { %>
+                                    <option value="<%= data2.ID_Requisicion %>" ><%= data2.ID_Requisicion %></option>
+                                <% } %>
+                            <% }); %>
+                        <% } %>
                     </select>
                     <div class="btns-acep">
                         <button id="btn-acept">Aceptar</button>

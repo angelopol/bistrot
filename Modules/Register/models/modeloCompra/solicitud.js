@@ -3,6 +3,26 @@ import connection from "../conexion.js"
 // Crud para la tabla de las solicitudes de compra
 
 export class SolicitudModel{
+  //Metodo para obtener id, nombre del producto y cantidad de la requisicion
+  static async getReq(){
+    try {
+      const [requisicion] = await connection.execute('SELECT * FROM Solicitudes')
+      return requisicion
+    } catch (error) {
+      throw new Error("Error al obtener datos de la requisicion")
+    }
+  }
+
+  //Funcion para recuperar todos los id de las requisiciones
+  static async getId (){
+    try {
+      const [ids] = await connection.execute('SELECT ID_Requisicion FROM Solicitudes')
+      return ids
+    } catch (error) {
+      throw new Error("Error al obtener los id de la requisicion")
+    }
+  }
+
   //Funcion que agrega una solicitud
   static async agregar({input}){
     const {
