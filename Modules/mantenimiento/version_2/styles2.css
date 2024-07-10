@@ -151,3 +151,12 @@ label {
     height:200px;
     width: 70%;
 }
+
+#Button_formulario_EliminarReporte{
+    background-color: #fb5252;
+    transition: all 0.3s linear;
+}
+
+#Button_formulario_EliminarReporte:hover{
+    background-color: #ff0000;
+}
