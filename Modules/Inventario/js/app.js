@@ -9,6 +9,7 @@ const cocinaBarRoutes = require('./routes/cocina_bar');
 const generalRoutes = require('./routes/general');
 const moduloCocinaRoutes = require('./routes/modulo_cocina');
 const moduloMantenimientoRoutes = require('./routes/modulo_mantenimiento');
+const moduloComprasRoutes = require('./routes/modulo_compras');
 const authController = require('./controllers/authController');
 
 // Middleware para permitir solicitudes CORS
@@ -23,6 +24,7 @@ app.use('/api', authController);
 // Rutas protegidas que requieren autenticación y permisos
 app.use('/api/modulo-cocina', moduloCocinaRoutes);
 app.use('/api/modulo-mantenimiento', moduloMantenimientoRoutes);
+app.use('/api/modulo-compras', moduloComprasRoutes);
 
 // Rutas para la tabla de inventario
 app.use('/api/submodulo-inventario', submoduloInventarioRoutes);
