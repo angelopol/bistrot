@@ -1,26 +1,50 @@
 //Tabla con sus bodys
-tabla_productos = document.getElementById('tabla-prod')
-tabla_productos_body = document.getElementById('tabla-prov-body') 
-tabla_solicitud =  document.getElementById('tabla-soli')
-tabla_solicitud_body = document.getElementById('tabla-soli-body')
+let tabla_productos = document.getElementById('tabla-prod')
+let tabla_productos_body = document.getElementById('tabla-prov-body') 
+let tabla_solicitud =  document.getElementById('tabla-soli')
+let tabla_solicitud_body = document.getElementById('tabla-soli-body')
 
 // Inputs and Selects
-producto =  document.getElementById('select-prod')
-cantidad =  document.getElementById('input-cant')
-departamento =  document.getElementById('select-depa')
-descripcion =  document.querySelector('.input-data.desc')
+let producto =  document.getElementById('select-prod')
+let cantidad =  document.getElementById('input-cant')
+let departamento =  document.getElementById('select-depa')
+let descripcion =  document.getElementsByClassName('input-data')[0]
+let Idempleado = document.getElementById('input-id')
 //Select o combobox del select de solicitud
 //Poner aqui toda solicitud que se emita
-solicitud =  document.getElementById('select-soli')
+let solicitud =  document.getElementById('select-soli')
 
 // Buttons
-btnAcept = document.getElementById('btn-acept')
-btnRech = document.getElementById('btn-rech')
-btnEnviar = document.getElementById('btn-enviar')
+let btnAcept = document.getElementById('btn-acept')
+let btnRech = document.getElementById('btn-rech')
+let btnEnviar = document.getElementById('btn-enviar')
 
 let exit = document.getElementsByClassName('title-exit')[0]
 //Boton de Exit
 
 exit.onclick = function(){
     location.href = '../html/index.html'
+}
+//Validaciones
+
+//Funcion que valida si la entrada recibe un numero
+function validarNumero(e){
+    //Funcion isNaN verifica si es numero, si es numero retornara False
+    if (isNaN(e.key)){
+        if (e.key != 'Backspace'){
+            e.preventDefault()
+        }
+    }
+}
+cantidad.addEventListener('keydown',event => validarNumero(event))
+Idempleado.addEventListener('keydown',event => validarNumero(event))
+
+btnEnviar.onclick = function validar(){
+    if(producto.selectedIndex == 0 || cantidad.value.length == 0 || departamento.selectedIndex == 0 || 
+        descripcion.value.length == 0 || Idempleado.value.length == 0){
+            alert("Tiene que llenar los campos para poder mandar la solicitud")
+        }
+}
+btnAcept.onclick = function validar(){
+    
 }
