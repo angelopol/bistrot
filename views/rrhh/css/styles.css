@@ -177,6 +177,7 @@ body{
     font-size: 20px; 
     font-weight: 500; 
     line-height: 150%; 
+    transform: translateX(550px);
 }
 
 .search-input { 
@@ -207,6 +208,9 @@ body{
 
 .results-container { 
     margin-top: 32px; 
+    transform: translateY(-100px);
+    text-align: justify;
+    
 }
 
 .results-wrapper { 
