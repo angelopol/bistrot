@@ -1,3 +1,14 @@
+//validacion del input para el id
+const input = document.getElementById('searchInput');
+    input.addEventListener('input', function () {
+        const value = input.value.trim();
+        const numericValue = parseFloat(value);
+
+        if (isNaN(numericValue) || numericValue < 1) {
+            input.value = ''; // Borra el contenido
+        }
+    });
+
 async function funcionBotonReporte(id){
     // Opciones de la solicitud fetch
     let cambio = {funciona_estado: 0}
@@ -28,19 +39,18 @@ async function funcionBotonReporte(id){
       });
     
     
-    // Actualizar la tabla 
 }
 
 async function obtenerObjetosCocina(){
+  
     const response = await fetch(`http://localhost:3000/api/general`); /*Importar Modulo externo Inventario*/
     if (!response.ok){
         throw new Error('No se pudo obtener los objetos de gneeral');
     }
 
-
     let objetos = await response.json()
     let instrumentosCocina = []
-    objetos.array.forEach(objeto => {
+    objetos.forEach(objeto => {
         if (objeto.tipo == "equipoCocina"){
             instrumentosCocina.push(objeto)
         }
@@ -54,6 +64,8 @@ reportarButton.addEventListener("click", function () {
     id = parseInt(input.value)
     funcionBotonReporte(id)
     actualizarFilas()
+    input.value = ""
+    alert("Instrumento Resportado")
 })
 
 async function actualizarFilas() {
@@ -62,35 +74,36 @@ async function actualizarFilas() {
     
     let instrumentos = obtenerObjetosCocina()
     instrumentos.forEach(instrumento => {
-        if (instrumento.tipo == "equipo_cocina") {
-            let filaTabla = document.createElement("tr")
-            filaTabla.className = "table-row" 
+      let filaTabla = document.createElement("tr")
+      filaTabla.className = "table-row" 
 
-            let celdaId = document.createElement("td") 
-            celdaId.className = "row-cell" 
-            celdaId.textContent = `${instrumento.id}`
-            filaTabla.appendChild(celdaId)
+      let celdaId = document.createElement("td") 
+      celdaId.className = "row-cell" 
+      celdaId.textContent = `${instrumento.id}`
+      filaTabla.appendChild(celdaId)
 
-            let celdaNombre = document.createElement("td") 
-            celdaNombre.className = "row-cell-name" 
-            celdaNombre.textContent = `${instrumento.nombre}`
-            filaTabla.appendChild(celdaNombre)
+      let celdaNombre = document.createElement("td") 
+      celdaNombre.className = "row-cell-name" 
+      celdaNombre.textContent = `${instrumento.nombre}`
+      filaTabla.appendChild(celdaNombre)
 
-            let celdaFunciona = document.createElement("td") 
-            celdaFunciona.className = "row-cell"
-            if (instrumento.funciona_estado === 1) {
-              celdaFunciona.textContent = `Funciona`
-            }
-            else if (instrumento.funciona_estado === 0) {
-              celdaFunciona.textContent = `No funciona`
-            }
-            filaTabla.appendChild(celdaFunciona)
+      let celdaFunciona = document.createElement("td") 
+      celdaFunciona.className = "row-cell"
+      if (instrumento.funciona_estado === 1) {
+        celdaFunciona.textContent = `Funciona`
+      }
+      else if (instrumento.funciona_estado === 0) {
+        celdaFunciona.textContent = `No funciona`
+      }
+      filaTabla.appendChild(celdaFunciona)
 
-            tableBody.appendChild(filaTabla)
-        }
+      tableBody.appendChild(filaTabla)
     })
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
-    actualizarFilas()
+  actualizarFilas()
 })
+
+setInterval(actualizarFilas, 30000); // Actualizar cada 30 segundos
