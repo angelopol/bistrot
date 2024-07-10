@@ -11,11 +11,14 @@ function mostrarVista(boton){
     //Cambiar valor del input de la vista por el asunto
     asuntoVista.value = asunto;
 
+    //Obtener elementos a cambiar
     vista = document.getElementById("vistaReportes");
     form = document.getElementById("formReportes");
+    botonAgregar = document.getElementById("Button_formulario_Agregar");
 
     if (form.style.display == "block"){
         form.style.display = "none"
+        botonAgregar.style.display = "none"
         vista.style.display = "block"
     }
 }
