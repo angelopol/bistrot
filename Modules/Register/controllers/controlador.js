@@ -1,16 +1,20 @@
 //import { HistorialModel } from "../models/modeloCompra/historial.js";
 //import { ProductoModel } from "../models/modeloCompra/Productos.js";
+import { HistorialValidaschema } from "../schemas/ValidacionHistorial"
 
 export class HistorialController {
     constructor ({historialModel}){
         this.historialModel = historialModel
     }
     create = async (req,res)=>{
-        //me falta agregar las validaciones al req.body
-        const {result} = req.body
-        console.log(req.body)
-        const newHistorial = await this.historialModel.agregar({input: req.body})
-        res.json(newHistorial)
+        try{
+            const {body} = res
+            const prueba = HistorialValidaschema.parse(body)
+            const nuevoregistro = await this.historialModel.agregar({input: prueba})
+            res.json(nuevoregistro)
+        }catch(error){
+            res.status(400).json({ message: error.message })
+        }
     }
 
     getAll = async (req,res)=>{
