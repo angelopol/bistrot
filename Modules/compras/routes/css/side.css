@@ -78,7 +78,7 @@ main {
 }
 
 thead {
-    pointer-events: none;
+    user-select: none;
 }
 
 tbody tr:hover {
