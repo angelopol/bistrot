@@ -137,16 +137,17 @@ label {
     margin: 20px;
     padding: 15px;
     border-radius: 8px;
-    gap: 4px;
 }
 
 .inputText{
     width: 70%;
-    background-color: whitesmoke;
+    background-color: white;
     display: inline-block;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-#textAreaVista{
+.textArea{
     resize: none;
     height:200px;
     width: 70%;

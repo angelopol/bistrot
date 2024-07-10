@@ -85,8 +85,8 @@
                     <p>Reportes</p>
                 </div>
 
+                <!--Seccion principal de reportes-->
                 <div id="Recipiente_div">
-
                     <div id="formReportes" class="forms" style="display: block;">
                         <table id="Actual_tabla">
                             <tr>
@@ -116,9 +116,22 @@
                     <!-- Seccion ver -->
                     <div id="vistaReportes" class="forms" >
                         <input type="text" disabled="true" class="inputText" id="asuntoVista">
-                        <textarea id="textAreaVista" disabled="true" class="inputText"></textarea>
+                        <textarea id="textAreaVista" disabled="true" class="inputText textArea"></textarea>
                     </div>
 
+                    <!-- Seccion de redaccion-->
+                    <div id="redaccionReportes" class="forms" style="display: none;"">
+                        <label for="asuntoRedaccion">Asunto</label>
+                        <input type="text" class="inputText" id="asuntoRedaccion">
+                        <label for="textAreaRedaccion">Contenido</label>
+                        <textarea id="textAreaRedaccion" class="inputText textArea"></textarea>
+                        <label for="selectorDestinatario">Destinatario</label>
+                        <select id="selectorDestinatario" class="inputText">
+                            <option value="Inventario">Inventario</option>
+                        </select>
+                    </div>
+
+                    <!-- Botones -->
                     <div>
                         <button id="Button_formulario_Inicio" style="display: inline;" onclick="regresar()">Regresar</button>
                         <button id="Button_formulario_EliminarReporte" style="display: none;" class="button">Eliminar Reporte</button>
