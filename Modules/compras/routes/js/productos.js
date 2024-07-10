@@ -1,9 +1,9 @@
 //Inputs
-nombre = document.getElementById('name-prov')
+nombre = document.getElementsByClassName('name-prov')[0]
 //Unidades de Consumo
-unid_cons = document.getElementById('cons-prov')
+unid_cons = document.getElementsByClassName('cons-prov')[0]
 //Unidades de Compra
-unid_comp = document.getElementById('comp-prov')
+unid_comp = document.getElementsByClassName('comp-prov')[0]
 
 //Buttos
 //Boton de Agregar
@@ -29,4 +29,35 @@ let exit = document.getElementsByClassName('title-exit')[0]
 
 exit.onclick = function(){
     location.href = '../html/index.html'
+}
+// Validaciones
+registrar.onclick = function ocupar(event){
+    if(nombre.value.length == 0 || unid_cons.value.length == 0 || unid_comp.value.length == 0){
+        alert("Tiene que llenar los campos de texto para poder registrar producto")
+    }
+}
+modificar.onclick = function ocupar(event){
+    if(nombre.value.length == 0 || unid_cons.value.length == 0 || unid_comp.value.length == 0){
+        alert("Tiene que llenar los campos de texto para poder modificar un producto")
+    }
+}
+
+//valdiacion para la entrada de palabras
+function validLetra(e){
+    var key = e.keyCode || e.which,
+      tecla = String.fromCharCode(key).toLowerCase(),
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+      especiales = [8, 37, 39, 46],
+      tecla_especial = false;
+
+    for (var i in especiales) {
+      if (key == especiales[i]) {
+        tecla_especial = true;
+        break;
+      }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+      return false;
+    }
 }
