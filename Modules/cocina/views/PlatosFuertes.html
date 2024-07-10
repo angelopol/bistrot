@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISTROT CHEZ RÉMY</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .div {
+            background-color: #fff;
+            display: flex;
+            padding-bottom: 63px;
+            flex-direction: column;
+        }
+        .div-2 {
+            background-color: #013d1f;
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            color: #fff;
+            font-weight: 400;
+            line-height: 150%;
+            padding: 34px 55px;
+        }
+        .div-3 {
+            letter-spacing: -0.24px;
+            flex-grow: 1;
+            flex-basis: auto;
+            margin: auto 0;
+            font: 24px Krona One, sans-serif;
+        }
+        .div-4 {
+            border-radius: var(--sds-size-radius-200);
+            border-color: rgba(255, 255, 255, 1);
+            border-style: solid;
+            border-width: 1px;
+            background-color: #013d1f;
+            display: flex;
+            gap: 16px;
+            font-size: 16px;
+            white-space: nowrap;
+            padding: 8px 16px;
+        }
+        .div-5 {
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            text-overflow: ellipsis;
+            font-family: Inter, sans-serif;
+            flex: 1;
+        }
+        .img {
+            aspect-ratio: 1;
+            object-fit: auto;
+            object-position: center;
+            width: 24px;
+        }
+        .div-6 {
+            border-radius: 15px;
+            box-shadow: 0px 1px 32.5px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            align-self: center;
+            display: flex;
+            margin-top: 49px;
+            width: 100%;
+            max-width: 1314px;
+            align-items: center;
+            justify-content: center;
+            padding: 70px 60px;
+        }
+        .div-7 {
+            display: flex;
+            margin-bottom: 21px;
+            width: 100%;
+            max-width: 1093px;
+            flex-direction: column;
+        }
+        .div-8 {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            line-height: 150%;
+            justify-content: space-between;
+        }
+        .div-9 {
+            align-self: end;
+            display: flex;
+            margin-top: 25px;
+            flex-direction: column;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .div-10 {
+            color: #0f624a;
+            font: 40px Poppins, sans-serif;
+        }
+        .div-11 {
+            color: #6c6c6c;
+            margin-top: 15px;
+            font: 15px Poppins, sans-serif;
+        }
+
+        .div-13 {
+            margin-top: 67px;
+        }
+        .div-14 {
+            gap: 20px;
+            display: flex;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 23%;
+            margin-left: 0px;
+        }
+        .div-15 {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            font-size: 22px;
+            color: #fff;
+            font-weight: 700;
+        }
+        .div-16, .div-17, .div-18, .div-19, .div-20, .div-21 {
+            font-family: Inter, sans-serif;
+            justify-content: center;
+            border-radius: 5px;
+            white-space: nowrap;
+            padding: 14px 16px;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+        }
+        .div-16, .div-18, .div-19, .div-20, .div-21 {
+            background-color: #0f624a;
+        }
+        .div-17 {
+            background-color: #fff;
+            color:#0f624a;
+            box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618);
+            
+        }
+        .column-2 {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 77%;
+            margin-left: 20px;
+        }
+        .div-22 {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+        }
+        .div-24, .div-34 {
+            gap: 20px;
+            display: flex;
+        }
+        .column-3, .column-4, .column-5, .column-6 {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 50%;
+        }
+        .column-3, .column-5 {
+            margin-left: 0px;
+        }
+        .column-4, .column-6 {
+            margin-left: 20px;
+        }
+        .div-25, .div-29, .div-35, .div-39 {
+            border-radius: 10px;
+            background-color: #efefef;
+            display: flex;
+            flex-grow: 1;
+            gap: 19px;
+            font-weight: 700;
+            white-space: nowrap;
+            line-height: 150%;
+            width: 100%;
+        }
+        .img-2, .img-3, .img-5 {
+            aspect-ratio: 0.91;
+            object-fit: auto;
+            object-position: center;
+            width: 188px;
+            max-width: 100%;
+        }
+        .img-4 {
+            aspect-ratio: 0.93;
+            object-fit: auto;
+            object-position: center;
+            width: 189px;
+            max-width: 100%;
+        }
+        .div-26, .div-30, .div-36, .div-40 {
+            align-self: start;
+            display: flex;
+            margin-top: 27px;
+            flex-direction: column;
+            flex: 1;
+        }
+        .div-27, .div-31, .div-37, .div-41 {
+            color: #000;
+            font: 14px Poppins, sans-serif;
+        }
+        .div-28, .div-32, .div-38, .div-42 {
+            color: #929292;
+            margin-top: 18px;
+            font: 11px Poppins, sans-serif;
+        }
+        .div-33 {
+            margin-top: 17px;
+        }
+        @media (max-width: 991px) {
+            .div-2 {
+                max-width: 100%;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+            .div-4 {
+                white-space: initial;
+            }
+            .div-6 {
+                max-width: 100%;
+                margin-top: 40px;
+                padding: 0 20px;
+            }
+            .div-7 {
+                max-width: 100%;
+            }
+            .div-8 {
+                max-width: 100%;
+                flex-wrap: wrap;
+            }
+            .div-9 {
+                white-space: initial;
+            }
+            .div-12 {
+                padding: 0 20px;
+            }
+            .div-13 {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+            .div-14 {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0px;
+            }
+            .column, .column-2 {
+                width: 100%;
+            }
+            .div-15 {
+                margin-top: 40px;
+            }
+            .div-16, .div-17, .div-18, .div-19, .div-20, .div-21 {
+                white-space: initial;
+                padding: 0 20px;
+            }
+            .div-22 {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+            .div-23 {
+                max-width: 100%;
+            }
+            .div-24, .div-34 {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0px;
+            }
+            .column-3, .column-4, .column-5, .column-6 {
+                width: 100%;
+            }
+            .div-25, .div-29, .div-35, .div-39 {
+                margin-top: 15px;
+                white-space: initial;
+            }
+            .div-26, .div-30, .div-36, .div-40 {
+                white-space: initial;
+            }
+            .div-33 {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <div class="div-2">
+            <div class="div-3">BISTROT CHEZ RÉMY</div>
+            <div class="div-4">
+                <div class="div-5">Gerente0000</div>
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bd69caf513a031a441b0ae2c28050f8e01024dfd2f15fb76144d64f2f7d9df8f?apiKey=629bdbd1e8094e57ae964126872a2922&" class="img" />
+            </div>
+        </div>
+        <div class="div-6">
+            <div class="div-7">
+                <div class="div-8">
+                    <div class="div-9">
+                        <div class="div-10">Menu</div>
+                        <div class="div-11">RECETAS</div>
+                    </div>
+
+                </div>
+                <div class="div-13">
+                    <div class="div-14">
+                        <div class="column">
+                            <div class="div-15">
+                                <<button class="div-16" onclick="window.location.href = 'Entradas.html';" id = "boton Entradas">Entradas</button>
+                                <button class="div-17" onclick="window.location.href = 'PlatosFuertes.html';" id = "boton Entradas">Platos Fuertes</button>
+                                <button class="div-18" onclick="window.location.href = 'Vegetariano.html';" id = "boton Vegetariano">Vegetariano</button>
+                                <button class="div-19" onclick="window.location.href = 'Postres.html';" id = "boton Postres">Postres</button>
+                                <button class="div-20" onclick="window.location.href = 'infantil.html';" id = "boton infantil">Menu de niños</button>
+                                <button class="div-21" onclick="window.location.href = 'Bebidas.html';" id = "boton Bebidas">Bebidas</button></button>
+                            </div>
+                        </div>
+                        <div class="column-2">
+                            <div class="div-22">
+                                <div class="div-23">
+                                    <div class="div-24">
+                                        <div class="column-3">
+                                            <div class="div-25">
+                                                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c32c30666024b77e74c4e313d6a30f21176cc19c342eebd284a9489b038246b?apiKey=629bdbd1e8094e57ae964126872a2922&" class="img-2" />
+                                                <div class="div-26">
+                                                    <div class="div-27">Nombre</div>
+                                                    <div class="div-28">Descripcion</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="column-4">
+                                            <div class="div-29">
+                                                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6f24e268e5e5fbcba8734dcdde95b4521544225945ac4b08ce315da568be507e?apiKey=629bdbd1e8094e57ae964126872a2922&" class="img-3" />
+                                                <div class="div-30">
+                                                    <div class="div-31">Nombre</div>
+                                                    <div class="div-32">Descripcion</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="div-33">
+                                    <div class="div-34">
+                                        <div class="column-5">
+                                            <div class="div-35">
+                                                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/626ab9327ba252f16a98b3eb4525904e7198bfc3d5ece132420a91b0b6654fd1?apiKey=629bdbd1e8094e57ae964126872a2922&" class="img-4" />
+                                                <div class="div-36">
+                                                    <div class="div-37">Nombre</div>
+                                                    <div class="div-38">Descripcion</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="column-6">
+                                            <div class="div-39">
+                                                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/bedf8ac64da3233a4f84d73b1e942348162a619024ade8c5f65e3caecf483fc9?apiKey=629bdbd1e8094e57ae964126872a2922&" class="img-5" />
+                                                <div class="div-40">
+                                                    <div class="div-41">Nombre</div>
+                                                    <div class="div-42">Descripcion</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
