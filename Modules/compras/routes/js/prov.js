@@ -38,3 +38,51 @@ let exit = document.getElementsByClassName('title-exit')[0]
 exit.onclick = function(){
     location.href = '../html/index.html'
 }
+//Validaciones
+
+//Validacion si la entrada recibe un numero
+function validarNumero(e){
+    //Funcion isNaN verifica si es numero, si es numero retornara False
+    if (isNaN(e.key)){
+        if (e.key != 'Backspace'){
+            e.preventDefault()
+        }
+    }
+}
+tlf.addEventListener('keydown', event => validarNumero(event))
+
+//validacion si la entrada recibe una letra
+function validLetra(e){
+    var key = e.keyCode || e.which,
+      tecla = String.fromCharCode(key).toLowerCase(),
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
+      especiales = [8, 37, 39, 46],
+      tecla_especial = false;
+
+    for (var i in especiales) {
+      if (key == especiales[i]) {
+        tecla_especial = true;
+        break;
+      }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+      return false;
+    }
+}
+//Validacion para el numero de telefono
+
+// Validacion de los campos
+btn_add.onclick = function validar(event){
+    if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
+        || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0){
+            alert("Tiene que llenar los campos primeros para poder agregar al provvedor")
+    }else{
+        if(correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) || tlf.value.match(/^(0414|0412|0424|0426)[0-9]{7}$/ || 
+            rif.value.match(/^j-[0-9]{9}$/))){
+            return
+        }else{
+            alert("Unos de los campos esta mal escrito")
+        }
+    }
+}

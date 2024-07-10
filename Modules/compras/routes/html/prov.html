@@ -99,13 +99,13 @@
                             <button id="data-title-btn">Agregar/Modificar</button>
                         </div>
                         <form class="form-data">
-                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text">
-                            <input placeholder="RIF" class="input-data rif-prov" type="text">
-                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text">
-                            <input placeholder="Correo" class="input-data correo-prov" type="text">
-                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text">
-                            <input placeholder="Telefono" class="input-data tlf-prov" type="text">
-                            <input placeholder="Producto" class="input-data prod-prov" type="text">
+                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text", onkeypress="return validLetra(event)", maxlength="20">
+                            <input placeholder="RIF" class="input-data rif-prov" type="text" maxlength="12">
+                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" maxlength="10">
+                            <input placeholder="Correo" class="input-data correo-prov" type="text" maxlength="24">
+                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" onkeypress="return validLetra(event)", maxlength="10">
+                            <input placeholder="Telefono" class="input-data tlf-prov" type="text" maxlength="11">
+                            <input placeholder="Producto" class="input-data prod-prov" type="text"onkeypress="return validLetra(event)", maxlength="10"></input>
                         </form>
                     </div>
                 </div>
