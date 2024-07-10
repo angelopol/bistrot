@@ -86,3 +86,9 @@ btn_add.onclick = function validar(event){
         }
     }
 }
+btn_delete.onclick = function validar(event){
+    if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
+        || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0){
+            alert("Se tiene que pasar los datos para poder eliminar al provvedor")
+    }
+}

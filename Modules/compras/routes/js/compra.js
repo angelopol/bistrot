@@ -21,3 +21,21 @@ let exit = document.getElementsByClassName('title-exit')[0]
 exit.onclick = function(){
     location.href = '../html/index.html'
 }
+//Validaciones
+function validarNumero(e){
+    //Funcion isNaN verifica si es numero, si es numero retornara False
+    if (isNaN(e.key)){
+        if (e.key != 'Backspace'){
+            e.preventDefault()
+        }
+    }
+    
+}
+cantidad.addEventListener("keydown",event => validarNumero(event))
+
+// validacion al boton confirmar
+btn_confirmar.onclick = function validar(){
+    if(selectproducto.selectedIndex == 0 || cantidad.value.length == 0 || selectproveedor.selectedIndex == 0){
+        alert("Se tien que llenar los campos para poder confirmar la compra")
+    }
+}

@@ -46,5 +46,7 @@ btnEnviar.onclick = function validar(){
         }
 }
 btnAcept.onclick = function validar(){
-    
+    if(solicitud.selectedIndex == 0){
+        alert("Tiene que seleccionar el id de la requisicion")
+    }
 }
