@@ -28,7 +28,7 @@ let exit = document.getElementsByClassName('title-exit')[0]
 //Boton de Exit
 
 exit.onclick = function(){
-    location.href = '../html/index.html'
+    window.location.href = '/'
 }
 // Validaciones
 registrar.onclick = function ocupar(event){

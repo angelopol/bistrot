@@ -15,26 +15,26 @@ let btn_prov = document.getElementById('btn-prov')
 //Boton de View Proveedores
 
 btn_prov.onclick = function(){
-    location.href = '../views/prov.ejs'
+    window.location.href = '/prov'
 }
 
 let btn_compra = document.getElementById('btn-compra')
 //Boton de View Realizar Compra
 
 btn_compra.onclick = function(){
-    location.href = '../views/compra.ejs'
+    window.location.href = 'compra'
 }
 
 let btn_prod = document.getElementById('btn-prod')
 
 btn_prod.onclick = function(){
-    location.href = '../html/productos.html'
+    window.location.href = 'productos'
 }
 
 let btn_soli = document.getElementById('btn-soli')
 
 btn_soli.onclick = function(){
-    location.href = '../html/solicitud.html'
+    window.location.href = 'solicitud'
 }
 
 //Modificacion del saldo
