@@ -231,7 +231,7 @@ body{
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04); 
     border: 1px solid #e0e0e0; 
     display: flex; 
-    flex-grow: 1; 
+    /* flex-grow: 1;  */
     flex-direction: column; 
     font-size: 16px; 
     color: #000; 
@@ -301,14 +301,11 @@ body{
     font-family: Inter, sans-serif; 
     justify-content: center; 
     border-radius: 50px; 
-    
-    
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
     background-color: #0f624a; 
     text-align: center; 
     margin: auto 0; 
     padding: 5px 11px; 
-    
     cursor: pointer;
     border: none;
 }
@@ -329,6 +326,86 @@ a{
     cursor: pointer;
     border: none;
 }
+
+
+
+
+
+.cerrar-modal{
+    background: #0f624a;
+    padding: 10px 30px;
+    font-size: 17px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* transition: 0.4s; */
+    transform: translateX(100px);
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    font-size: 16px;
+    color: #000;
+    font-family: Inter, sans-serif;
+    border: 1px solid;
+    border-radius: 15px;
+    box-shadow: 0px 0px 30px #0f624a;
+    width: 300px;
+    transform: translate(210px, -100px) scale(0.5); 
+    padding: 40px;
+    background-color: #fff;
+  }
+  
+  .modal.revelar {
+    display: block;
+    animation: scale-up-center 0.9s forwards; 
+  }
+  
+  @keyframes scale-up-center {
+    0% {
+      transform: translate(210px, -100px) scale(0.5);
+    }
+    100% {
+      transform: translate(210px, -100px) scale(1);
+    }
+  }
+
+
+
+/* @media (max-width: 991px) {
+    .header { 
+        max-width: 100%; 
+        flex-wrap: wrap; 
+        padding: 0 20px; 
+    }
+
+    .user-info { 
+        white-space: initial;
+    }
+
+    .content-wrapper { 
+        max-width: 100%; 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .events-column { 
     display: flex; 
@@ -373,13 +450,6 @@ a{
     height: 30px; 
 }
 
-.ocultar-modal{
-    display: none;
-}
-
-.mostrar-modal{
-    display: block;
-}
 
 
 
@@ -387,20 +457,17 @@ a{
 
 
 
-@media (max-width: 991px) {
-    .header { 
-        max-width: 100%; 
-        flex-wrap: wrap; 
-        padding: 0 20px; 
-    }
 
-    .user-info { 
-        white-space: initial;
-    }
 
-    .content-wrapper { 
-        max-width: 100%; 
-    }
+
+
+
+
+
+
+
+
+
 
     .main-content { 
         flex-direction: column; 
@@ -523,4 +590,4 @@ a{
         white-space: initial; 
         padding: 0 20px; 
     }
-}
+} */

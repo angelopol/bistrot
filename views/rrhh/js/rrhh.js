@@ -25,5 +25,18 @@
 
 // function 
 
+const botonMostrarEmpleado = document.querySelector(".action-view")
+const modal = document.querySelector(".modal");
+const closeModalButton = document.querySelector(".cerrar-modal");
+
+botonMostrarEmpleado.addEventListener("click", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  modal.classList.toggle("revelar");
+});
 
 
+closeModalButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  modal.classList.toggle("revelar");
+});
