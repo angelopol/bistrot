@@ -77,6 +77,10 @@ main {
     margin-top: 20%;
 }
 
+thead {
+    pointer-events: none;
+}
+
 tbody tr:hover {
     background-color: #02676F40;
     cursor: pointer;
