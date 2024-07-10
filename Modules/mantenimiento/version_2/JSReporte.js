@@ -26,12 +26,33 @@ function mostrarVista(boton){ //Funcion que se ejecuta a la hora de mostrar una 
     }
 }
 
+function redactar(){
+    //Obtencion de forms
+    redaccion = document.getElementById("redaccionReportes");
+    form = document.getElementById("formReportes");
+
+    //Obtencion de botones
+    botonAgregar = document.getElementById("Button_formulario_Agregar");
+    botonEnviar = document.getElementById("Button_formulario_Enviar");
+
+    if (form.style.display == "block"){
+        form.style.display = "none"
+        botonAgregar.style.display = "none"
+        botonEnviar.style.display = "inline"
+        redaccion.style.display = "block"
+    }
+}
+
 function regresar(){ //Funcion que se ejecuta con el boton de Regresar
-    //Obtecion de elementos
+    //Obtencion de forms
     vista = document.getElementById("vistaReportes");
     form = document.getElementById("formReportes");
+    redaccion = document.getElementById("redaccionReportes");
+
+    //Obtencion de botones
     botonEliminar = document.getElementById("Button_formulario_EliminarReporte");
     botonAgregar = document.getElementById("Button_formulario_Agregar");
+    botonEnviar = document.getElementById("Button_formulario_Enviar");
 
     //Comprobar que elemento esta abierto para ejecutar la accion
     if(form.style.display=="block"){
@@ -39,6 +60,11 @@ function regresar(){ //Funcion que se ejecuta con el boton de Regresar
     }else if(vista.style.display=="block"){
         vista.style.display = "none"
         botonEliminar.style.display = "none"
+        botonAgregar.style.display = "inline"
+        form.style.display = "block"
+    }else if(redaccion.style.display=="block"){
+        redaccion.style.display = "none"
+        botonEnviar.style.display = "none"
         botonAgregar.style.display = "inline"
         form.style.display = "block"
     }

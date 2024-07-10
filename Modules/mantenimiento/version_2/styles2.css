@@ -154,10 +154,31 @@ label {
 }
 
 #Button_formulario_EliminarReporte{
+    margin:0px 60px;
     background-color: #fb5252;
-    transition: all 0.3s linear;
+    transition: all 0.1s linear;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #Button_formulario_EliminarReporte:hover{
     background-color: #ff0000;
+    scale: 1.1;
+}
+
+#Button_formulario_Enviar{
+    margin:0px 60px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#Button_formulario_Enviar:hover {
+    background-color: #45a049;
 }
