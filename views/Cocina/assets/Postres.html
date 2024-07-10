@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISTROT CHEZ RÉMY - Menu</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .menu-container {
+            background-color: #fff;
+            display: flex;
+            padding-bottom: 63px;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #013d1f;
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            color: #fff;
+            font-weight: 400;
+            line-height: 150%;
+            padding: 34px 55px;
+        }
+        @media (max-width: 991px) {
+            .header {
+                max-width: 100%;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+        }
+        .restaurant-name {
+            letter-spacing: -0.24px;
+            flex-grow: 1;
+            flex-basis: auto;
+            margin: auto 0;
+            font: 24px 'Krona One', sans-serif;
+        }
+        .user-info {
+            border-radius: 8px;
+            border: 1px solid #fff;
+            background-color: #013d1f;
+            display: flex;
+            gap: 16px;
+            font-size: 16px;
+            white-space: nowrap;
+            padding: 8px 16px;
+        }
+        @media (max-width: 991px) {
+            .user-info {
+                white-space: initial;
+            }
+        }
+        .user-name {
+            font-family: 'Inter', sans-serif;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .user-icon {
+            aspect-ratio: 1;
+            object-fit: auto;
+            object-position: center;
+            width: 24px;
+        }
+        .main-content {
+            border-radius: 15px;
+            box-shadow: 0 1px 32.5px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            align-self: center;
+            display: flex;
+            margin-top: 49px;
+            width: 100%;
+            max-width: 1314px;
+            align-items: center;
+            justify-content: center;
+            padding: 70px 60px;
+        }
+        @media (max-width: 991px) {
+            .main-content {
+                max-width: 100%;
+                margin-top: 40px;
+                padding: 0 20px;
+            }
+        }
+        .content-wrapper {
+            display: flex;
+            margin-bottom: 21px;
+            width: 100%;
+            max-width: 1093px;
+            flex-direction: column;
+        }
+        @media (max-width: 991px) {
+            .content-wrapper {
+                max-width: 100%;
+            }
+        }
+        .menu-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            line-height: 150%;
+            justify-content: space-between;
+        }
+        @media (max-width: 991px) {
+            .menu-header {
+                max-width: 100%;
+                flex-wrap: wrap;
+            }
+        }
+        .menu-title-container {
+            align-self: end;
+            display: flex;
+            margin-top: 25px;
+            flex-direction: column;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        @media (max-width: 991px) {
+            .menu-title-container {
+                white-space: initial;
+            }
+        }
+        .menu-title {
+            color: #0f624a;
+            font: 40px 'Poppins', sans-serif;
+        }
+        .menu-subtitle {
+            color: #6c6c6c;
+            margin-top: 15px;
+            font: 15px 'Poppins', sans-serif;
+        }
+
+        @media (max-width: 991px) {
+            .edit-menu-btn {
+                padding: 0 20px;
+            }
+        }
+        .menu-content {
+            margin-top: 67px;
+        }
+        @media (max-width: 991px) {
+            .menu-content {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+        }
+        .menu-layout {
+            gap: 20px;
+            display: flex;
+        }
+        @media (max-width: 991px) {
+            .menu-layout {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .menu-categories {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 23%;
+            margin-left: 0;
+        }
+        @media (max-width: 991px) {
+            .menu-categories {
+                width: 100%;
+            }
+        }
+        .category-button {
+            font-family: 'Inter', sans-serif;
+            justify-content: center;
+            border-radius: 5px;
+            white-space: nowrap;
+            padding: 13px 16px;
+            margin-top: 20px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: 700;
+            border: none;
+            color: #fff;
+        }
+        .category-button:first-child {
+            margin-top: 0;
+        }
+        .category-button.entradas { background-color: #0f624a; }
+        .category-button.platos-fuertes { background-color: #0f624a; }
+        .category-button.vegetariano { background-color: #0f624a; }
+        .category-button.postres {background-color: #fff;
+            color:#0f624a;
+            
+            box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618); }
+        .category-button.menu-ninos { background-color: #0f624a; }
+        .category-button.bebidas { background-color: #0f624a; }
+        @media (max-width: 991px) {
+            .category-button {
+                white-space: initial;
+                padding: 13px 20px;
+            }
+        }
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 77%;
+            margin-left: 20px;
+        }
+        @media (max-width: 991px) {
+            .menu-items {
+                width: 100%;
+            }
+        }
+        .items-container {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+        }
+        @media (max-width: 991px) {
+            .items-container {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+        }
+        .items-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        @media (max-width: 991px) {
+            .items-grid {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .menu-item {
+            border-radius: 10px;
+            background-color: #efefef;
+            display: flex;
+            flex-grow: 1;
+            gap: 20px;
+            font-weight: 700;
+            line-height: 150%;
+            width: calc(50% - 10px);
+        }
+        @media (max-width: 991px) {
+            .menu-item {
+                width: 100%;
+                margin-top: 15px;
+            }
+        }
+        .item-image {
+            aspect-ratio: 0.91;
+            object-fit: cover;
+            object-position: center;
+            width: 188px;
+            max-width: 100%;
+        }
+        .item-details {
+            align-self: start;
+            display: flex;
+            margin-top: 28px;
+            flex-direction: column;
+            flex: 1;
+        }
+        .item-name {
+            color: #000;
+            font: 14px 'Poppins', sans-serif;
+        }
+        .item-description {
+            color: #929292;
+            margin-top: 19px;
+            font: 11px 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <section class="menu-container">
+        <header class="header">
+            <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
+            <div class="user-info">
+                <span class="user-name">Gerente0000</span>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bd69caf513a031a441b0ae2c28050f8e01024dfd2f15fb76144d64f2f7d9df8f?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="User icon" class="user-icon" />
+            </div>
+        </header>
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="menu-header">
+                    <div class="menu-title-container">
+                        <h2 class="menu-title">Menu</h2>
+                        <p class="menu-subtitle">RECETAS</p>
+                    </div>
+            
+                </div>
+                <div class="menu-content">
+                    <div class="menu-layout">
+                        <nav class="menu-categories">
+                            
+                            <button class="category-button entradas" onclick="window.location.href = 'Entradas.html';" id = "boton Entradas">Entradas</button>
+                            <button class="category-button platos-fuertes" onclick="window.location.href = 'PlatosFuertes.html';" id = "boton Entradas">Platos Fuertes</button>
+                            <button class="category-button vegetariano" onclick="window.location.href = 'Vegetariano.html';" id = "boton Vegetariano">Vegetariano</button>
+                            <button class="category-button postres" onclick="window.location.href = 'Postres.html';" id = "boton Postres">Postres</button>
+                            <button class="category-button menu-ninos" onclick="window.location.href = 'infantil.html';" id = "boton infantil">Menu de niños</button>
+                            <button class="category-button bebidas" onclick="window.location.href = 'Bebidas.html';" id = "boton Bebidas">Bebidas</button>
+
+                        </nav>
+                        <section class="menu-items">
+                            <div class="items-container">
+                                <div class="items-grid">
+                                    <article class="menu-item">
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b91f86f29262ea085d4f471ce27d412f0367b9494708fcdd1cf1c3ed7e1c021b?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Chocolate Mouse" class="item-image" />
+                                        <div class="item-details">
+                                            <h3 class="item-name">Chocolate Mouse</h3>
+                                            <p class="item-description">Descripcion</p>
+                                        </div>
+                                    </article>
+                                    <article class="menu-item">
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c7871cb36c4c0c83fe638230ddbf512877f23a43d6e1c62ea92386741527c65c?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Chocolate Cake" class="item-image" />
+                                        <div class="item-details">
+                                            <h3 class="item-name">Chocolate Cake</h3>
+                                            <p class="item-description">Descripcion</p>
+                                        </div>
+                                    </article>
+                                    <article class="menu-item">
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dc05e328c32a051f18804e6a580a55d8a974245b0e56a92691d7c84a936d4774?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Fruit Salad" class="item-image" />
+                                        <div class="item-details">
+                                            <h3 class="item-name">Fruit Salad</h3>
+                                            <p class="item-description">Descripcion</p>
+                                        </div>
+                                    </article>
+                                    <article class="menu-item">
+                                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/636ffae497340b7e3ef42d5899075ff26cb11106a93f59239a7908b603820c73?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Apple tart" class="item-image" />
+                                        <div class="item-details">
+                                            <h3 class="item-name">Apple tart</h3>
+                                            <p class="item-description">Descripcion</p>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
+</html>

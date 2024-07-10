@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Form</title>
+    <style>
+        body {
+            font-family: Inter, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .recipe-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            max-width: 816px;
+            padding: 80px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .recipe-form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 611px;
+            gap: 20px;
+            margin-top: 41px;
+            font: 500 16px/150% Inter, sans-serif;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 30%;
+        }
+        .form-label {
+            color: #000;
+            margin-bottom: 8px;
+        }
+        .form-input {
+            font-family: Inter, sans-serif;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            background-color: #fff;
+            color: #828282;
+            padding: 12px 16px;
+        }
+        .type-select {
+            display: flex;
+            gap: 16px;
+            font-weight: 400;
+            align-items: center;
+        }
+        .type-text {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .type-icon {
+            width: 24px;
+            height: 24px;
+        }
+        .recipe-details {
+            width: 100%;
+            max-width: 611px;
+            margin-top: 33px;
+        }
+        .details-container {
+            display: flex;
+            gap: 20px;
+        }
+        .ingredients-section,
+        .instructions-section {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .section-label {
+            color: #000;
+            margin-bottom: 8px;
+        }
+        .section-content {
+            font-family: Inter, sans-serif;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            background-color: #fff;
+            color: #828282;
+            padding: 12px 16px;
+            resize: vertical;
+        }
+        .ingredients-content {
+            min-height: 150px;
+        }
+        .instructions-content {
+            min-height: 168px;
+        }
+        .submit-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 611px;
+            margin-top: 33px;
+            padding: 16px 32px;
+            border-radius: 4px;
+            background-color: #0f624a;
+            color: #fff;
+            font: 500 20px/150% Inter, sans-serif;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #0d5340;
+        }
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        @media (max-width: 991px) {
+            .recipe-container {
+                padding: 40px 20px;
+            }
+            .recipe-form,
+            .recipe-details,
+            .submit-button {
+                max-width: 100%;
+            }
+            .details-container {
+                flex-direction: column;
+            }
+            .ingredients-content,
+            .instructions-content {
+                min-height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="recipe-container">
+        <form class="recipe-form">
+            <div class="form-group">
+                <label for="recipe-name" class="form-label">Nombre</label>
+                <input id="recipe-name" type="text" class="form-input" placeholder="rata Pelada" required>
+            </div>
+            <div class="form-group">
+                <label for="cooking-time" class="form-label">Tiempo de coccion</label>
+                <input id="cooking-time" type="text" class="form-input" placeholder="00:00" required>
+            </div>
+            <div class="form-group">
+                <label for="recipe-type" class="form-label">Tipo</label>
+                <div class="form-input type-select">
+                    <span class="type-text">Plato/Entrada</span>
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c958e0598bcb404edfd1008a8fecfb3020e54eba178075da2aa14845eef6d537?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Recipe type icon" class="type-icon">
+                </div>
+            </div>
+        </form>
+        <section class="recipe-details">
+            <div class="details-container">
+                <div class="ingredients-section">
+                    <label for="ingredients" class="section-label">Ingredientes</label>
+                    <textarea id="ingredients" class="section-content ingredients-content" placeholder="lista&#10;tomate" required></textarea>
+                </div>
+                <div class="instructions-section">
+                    <label for="instructions" class="section-label">Receta</label>
+                    <textarea id="instructions" class="section-content instructions-content" placeholder="pasos de receta" required></textarea>
+                </div>
+            </div>
+        </section>
+        <button type="submit" class="submit-button" onclick="window.location.href = 'menu.html';">Agregar</button>
+    </main>
+</body>
+</html>
