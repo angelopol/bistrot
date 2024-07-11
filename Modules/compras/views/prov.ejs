@@ -166,11 +166,14 @@
         }
 
         //Validacion de Numeros
-        function validNumber(e){
-            if (isNaN(e.key)){
-                    e.preventDefault()
+        function validLetter(e){
+            var regex = /^[a-zA-Z]+$/;
+            if (!e.key.match(regex)){
+                e.preventDefault();
             }
         }
+
+        nombre_prov.addEventListener('keydown', validLetter)
 
         rif.addEventListener('keydown', (e)=>{
             if (isNaN(e.key)){
