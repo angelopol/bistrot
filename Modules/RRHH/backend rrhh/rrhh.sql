@@ -74,6 +74,27 @@ CREATE TABLE IF NOT EXISTS `horarios` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `turnos`
+--
+
+CREATE TABLE employees (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  salary DECIMAL(10,2) NOT NULL,
+  cargo VARCHAR(255) NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  employee_code VARCHAR(10) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
