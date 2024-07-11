@@ -73,16 +73,17 @@
                 <div class="formulario">
                     <h3 id="title-detaile-prov">Detalles</h3>
                     <form action="/prod" method="post">
+                        <input type="hidden" name="_method" value="PATCH">
                     
                         <input placeholder="Nombre del Producto" class="input-data name-prov" type="text" name="NombreP">
                         <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text" name="Unidades">
                         <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text" name="Consumo">
                         
                         <input type="submit" id="btn-regis" value="Agregar">
-                        
+                        <input type="submit" id="btn-modi" value="Modificar">
                     </form>
 
-                    <button id="btn-modi">Modificar</button>
+                    
                     <button id="btn-clear">Limpiar</button>
                     <div class="carrito">
                         <img class="foto-cart" src="../resources/carrito.png" alt="Carrito">
@@ -145,20 +146,18 @@
                 this.action = `/prod/${nombre}?_method=DELETE`;
             }
         });
+        
+        //Buttos
+        //Boton de Agregar
+        registrar = document.getElementById('btn-regis')
+        //Boton de Modificar
+        modificar = document.getElementById('btn-modi')
+        modificar.disabled = true
+        //Boton de Eliminar
+        eliminar = document.getElementById('delete-prov-btn')
 
-        //Tabla de producto
-        const tabla = document.getElementById('tabla-comp')
-        function seleccionarFila(event){
-            const filaSeleccionada = event.target.closest('tbody tr')
-            if (filaSeleccionada ){
-                const idd = filaSeleccionada.cells[0].textContent
-                console.log(idd)
-            }
-            
-        }
-
-        //Evento para poder clickear tabla
-        tabla.addEventListener('click',seleccionarFila)
+        //variable donde se guarda el id de los productos cuando se selecciona un registro en la tabla
+        let idd
 
         //Inputs
         nombre = document.getElementsByClassName('name-prov')[0]
@@ -166,14 +165,30 @@
         unid_cons = document.getElementsByClassName('cons-prov')[0]
         //Unidades de Compra
         unid_comp = document.getElementsByClassName('comp-prov')[0]
+        //Tabla de producto
+        const tabla = document.getElementById('tabla-comp')
+        function seleccionarFila(event){
+            const filaSeleccionada = event.target.closest('tbody tr')
+            if (filaSeleccionada ){
+                idd = filaSeleccionada.cells[0].textContent
+                const product = filaSeleccionada.cells[1].textContent
+                const udsComp = filaSeleccionada.cells[2].textContent
+                const udsCons = filaSeleccionada.cells[3].textContent
+                console.log(idd)
+                modificar.disabled = false
+                nombre.value = product
+                unid_cons.value = udsComp
+                unid_comp.value = udsCons
+            }
+            
+        }
 
-        //Buttos
-        //Boton de Agregar
-        registrar = document.getElementById('btn-regis')
-        //Boton de Modificar
-        modificar = document.getElementById('btn-modi')
-        //Boton de Eliminar
-        eliminar = document.getElementById('delete-prov-btn')
+        //Evento para poder clickear tabla
+        tabla.addEventListener('click',seleccionarFila)
+
+        
+
+        
         //Boton de Limpiar
         //AQUIIII
         //Cuando le apliques el evento de seleccionar la fila
@@ -182,10 +197,13 @@
         limpiar = document.getElementById('btn-clear')
 
         limpiar.onclick = function(){
+            idd = null
+            console.log(idd)
             nombre.value = ''
             unid_cons.value = ''
             unid_comp.value = ''
             registrar.style.display = 'flex'
+            modificar.disabled = true
         }
 
         //Tabla de los Producto
@@ -214,6 +232,8 @@
         modificar.onclick = function ocupar(event){
             if(nombre.value.length == 0 || unid_cons.value.length == 0 || unid_comp.value.length == 0){
                 alert("Tiene que llenar los campos de texto para poder modificar un producto")
+            }else{
+                alert("HABILITADO")
             }
         }
 

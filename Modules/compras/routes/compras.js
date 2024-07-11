@@ -14,7 +14,7 @@ export const createComprasRouter = ({productoModel,historialModel,proveedoresMod
   ComprasRouter.get('/prod',productoController.getAll1)
 
   ComprasRouter.post('/historial', historialController.create)
-  ComprasRouter.get('/',historialController.getAll)
+  ComprasRouter.get('/',historialController.getAll) 
 
   ComprasRouter.post('/proveedores', proveedorController.create)
   ComprasRouter.patch('/proveedores/:id', proveedorController.update)
