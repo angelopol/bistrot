@@ -105,11 +105,12 @@
                     <div class="data">
                         <div class="data-box-title">
                             <h3 id="data-title">Datos del Proveedor</h3>
-                            <button id="data-title-btn">Agregar/Modificar</button>
+                            <button id="data-title-btn">Agregar</button>
+                            <button id="data-title-modi">Modificar</button>
                         </div>
                         <form class="form-data">
                             <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text">
-                            <input placeholder="RIF" class="input-data rif-prov" type="text">
+                            <input maxlength="10" placeholder="RIF" class="input-data rif-prov" type="text">
                             <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text">
                             <input placeholder="Correo" class="input-data correo-prov" type="text">
                             <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text">
@@ -137,7 +138,8 @@
         //Boton que Elimina a un proveedor en el combobox
 
         let btn_add = document.getElementById('data-title-btn')
-        //Boton que agrega o modifica un proveedor validado por los inputs
+        let btn_modi = document.getElementById('data-title-modi')
+        //Botones que agrega o modifica un proveedor validado por los inputs
         //Validar que si el proveedor ya existe que lo modifique
         //Y si no existe que lo agregue
 
@@ -162,6 +164,19 @@
         exit.onclick = function(){
             window.location.href = '/'
         }
+
+        //Validacion de Numeros
+        function validNumber(e){
+            if (isNaN(e.key)){
+                    e.preventDefault()
+            }
+        }
+
+        rif.addEventListener('keydown', (e)=>{
+            if (isNaN(e.key)){
+                    e.preventDefault()
+            }
+        })
     </script>
 </body>
 </html>
