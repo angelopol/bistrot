@@ -114,7 +114,7 @@
                             <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text">
                             <input placeholder="Correo" class="input-data correo-prov" type="text">
                             <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text">
-                            <input placeholder="Telefono" class="input-data tlf-prov" type="text">
+                            <input max="11" placeholder="Telefono" class="input-data tlf-prov" type="text">
                             <input placeholder="Producto" class="input-data prod-prov" type="text">
                         </form>
                     </div>
@@ -141,7 +141,6 @@
         let btn_modi = document.getElementById('data-title-modi')
         //Botones que agrega o modifica un proveedor validado por los inputs
         //Validar que si el proveedor ya existe que lo modifique
-        //Y si no existe que lo agregue
 
         //Inputs - Datos del Proveedor
         let nombre_prov = document.getElementsByClassName('name-prov')[0]
@@ -173,9 +172,24 @@
             }
         }
 
-        nombre_prov.addEventListener('keydown', validLetter)
+        //Validacion de Correo
+        //Para Validar correo utilizar asi: 
+        //      if(correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/))
 
+        //Aplicando Validacion de Letra
+        nombre_prov.addEventListener('keydown', validLetter)
+        producto.addEventListener('keydown', validLetter)
+        nombre_res.addEventListener('keydown', validLetter)
+
+        //Validacion de RIF
         rif.addEventListener('keydown', (e)=>{
+            if (isNaN(e.key)){
+                    e.preventDefault()
+            }
+        })
+
+        //Validacion de telefono
+        tlf.addEventListener('keydown', (e)=>{
             if (isNaN(e.key)){
                     e.preventDefault()
             }
