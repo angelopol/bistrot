@@ -91,11 +91,65 @@
                   </div>
 
                 </div>
-                <button class="action-button">Cerrar /aperturar</button>
-                <button class="action-button">Tasa del dia</button>
-                <button class="action-button">Presupuestos</button>
-                <button class="action-button">Eventos/cotizacion</button>
-                <button class="action-button">Registros</button>
+                <button class="action-button" id="openModal1">Apertura/Cierre</button>
+                <button class="action-button" id="openModal2">Tasa del dia</button>
+                <button class="action-button" id="openModal3">Presupuestos</button>
+                <button class="action-button" id="openModal4">Eventos/Cotizacion</button>
+                <button class="action-button" id="openModal5">Registros</button>
+
+                <section id="menu-apertura/cierre visible">
+
+                  <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <span class="closeBtn" data-modal="modal1">&times;</span>
+                        <h2>Apertura y Cierre de caja</h2>
+                        <p>Contenido de la caja xoxooxoxxoxo</p>
+                        <button class="btn-caja">Aperturar</button>
+                        <button class="btn-caja">Cerrar</button>
+                    </div>
+                  </div>
+
+                  <div id="modal2" class="modal">
+                    <div class="modal-content">
+                        <span class="closeBtn" data-modal="modal2">&times;</span>
+                        <h2>Tasa del dia</h2>
+                        <p>Contenido de la caja xoxooxoxxoxo</p>
+                        <button class="btn-caja">Calcular</button>
+                    </div>
+                  </div>
+
+                  <div id="modal3" class="modal">
+                    <div class="modal-content">
+                        <span class="closeBtn" data-modal="modal3">&times;</span>
+                        <h2>Presupuestos</h2>
+                        <p>Contenido de la caja xoxooxoxxoxo</p>
+                        <button class="btn-caja">Añadir</button>
+                        <button class="btn-caja">Editar</button>
+                        <button class="btn-caja">Eliminar</button>
+                    </div>
+                  </div>
+
+                  <div id="modal4" class="modal">
+                    <div class="modal-content">
+                        <span class="closeBtn" data-modal="modal4">&times;</span>
+                        <h2>Eventos/Cotizacion </h2>
+                        <p>Contenido de la caja xoxooxoxxoxo</p>
+                        <button class="btn-caja">Añadir</button>
+                        <button class="btn-caja">Editar</button>
+                        <button class="btn-caja">Eliminar</button>
+                    </div>
+                  </div>
+
+                  <div id="modal5" class="modal">
+                    <div class="modal-content">
+                        <span class="closeBtn" data-modal="modal5">&times;</span>
+                        <h2>Registros</h2>
+                        <p>Contenido de la caja xoxooxoxxoxo</p>
+                        <button class="btn-caja">Actualiar</button>
+                    </div>
+                  </div>
+
+                </section>
                 </div>
               </div>
                
@@ -119,7 +173,7 @@
       </div>
     </main>
 
-    <script src="dropdown.js"></script>
+    <script src="Gerente_logica.js"></script>
     
 </body>
 </html>
