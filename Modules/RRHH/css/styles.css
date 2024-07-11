@@ -22,6 +22,7 @@ body{
     flex-basis: auto; 
     margin: auto 0; 
     font: 24px Krona One, sans-serif; 
+    color: #fff;
 }
 
 .user-info { 
