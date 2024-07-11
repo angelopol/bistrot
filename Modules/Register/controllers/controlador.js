@@ -76,9 +76,9 @@ export class ProductoController{
         const {id} = req.params
         console.log(result)
         console.log(id)
-        const [updatedProducto] = await this.productoModel.modificar({id,result})
-
-        return res.json(updatedProducto)
+        await this.productoModel.modificar({id,result}) 
+        res.redirect('/prod')
+        
 
     }
 

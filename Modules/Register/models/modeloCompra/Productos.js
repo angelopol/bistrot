@@ -74,8 +74,7 @@ export class ProductoModel{
         'UPDATE ProductoCompras SET NombreP = ?, Unidades = ?, Consumo = ? WHERE ID_Producto = ?',
         [NombreP,Unidades,Consumo,id]
       )
-      const [actualizado] = await connection.execute("SELECT * FROM ProductoCompras WHERE ID_Producto = ?",[id]);
-      return actualizado
+      
     }catch(e){
       console.log(e)
       throw new Error('Error a Modificar los datos del proveedor')
