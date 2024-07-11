@@ -131,7 +131,6 @@ main {
     cursor: pointer;
     background-color: #0F624A;
     color: white;
-    box-shadow: 0 0 5px 0 #0F624A;
 }
 
 #horizontal-divider {
@@ -143,9 +142,10 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 5px;
 }
 
-#data-title-btn {
+#data-title-btn, #data-title-modi {
     padding: 15px;
     width: 40%;
     background-color: #0F624A;
