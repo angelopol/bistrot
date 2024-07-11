@@ -227,7 +227,11 @@ button:focus {
   background-color: #0F624A;
   padding: 12px;
   cursor: pointer;
-  width: 100px;
+  width: 130px;
+}
+
+#editarBtn {
+  width: 200px;
 }
 
 .action-btn:hover {
@@ -338,56 +342,93 @@ table.table-bordered.dataTable tbody td {
 /*Div editar*/
 /* Estilo base para el contenedor de la tarjeta */
 .medio-div {
-  position: fixed; /* Cambia a fixed para que se mantenga en la vista */
-  top: 50%; /* Centra verticalmente */
-  left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Centra el div completamente */
-  width: 80%; /* Establece el ancho del contenedor */
+  position: fixed;
+  /* Cambia a fixed para que se mantenga en la vista */
+  top: 50%;
+  /* Centra verticalmente */
+  left: 50%;
+  /* Centra horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Centra el div completamente */
+  width: 80%;
+  /* Establece el ancho del contenedor */
   height: 80%;
   max-width: 800px;
   max-height: 600px;
   background-color: #ffffff00;
-  display: none; /* Oculto por defecto */
-  padding: 20px; /* Espaciado interior */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  display: none;
+  /* Oculto por defecto */
+  padding: 20px;
+  /* Espaciado interior */
+  z-index: 1000;
+  /* Asegura que esté por encima de otros elementos */
   overflow-y: auto;
 }
+
 /* Estilo para la tarjeta */
 .cardd {
-  width: 100%; /* La tarjeta ocupa el ancho completo del contenedor */
-  background-color: #e5e8ef; /* Fondo blanco */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-  border-radius: 10px; /* Bordes redondeados */
-  overflow: hidden; /* Oculta contenido que desborda */
+  width: 100%;
+  /* La tarjeta ocupa el ancho completo del contenedor */
+  background-color: #e5e8ef;
+  /* Fondo blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra */
+  border-radius: 10px;
+  /* Bordes redondeados */
+  overflow: hidden;
+  /* Oculta contenido que desborda */
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform: scale(0); /* Oculto por defecto */
-  opacity: 0; /* Opacidad 0 por defecto */
-  position: relative; /* Relativo para manejar elementos internos */
+  transform: scale(0);
+  /* Oculto por defecto */
+  opacity: 0;
+  /* Opacidad 0 por defecto */
+  position: relative;
+  /* Relativo para manejar elementos internos */
 }
+
 .card-header {
-  background-color: #013d1f; /* Color de fondo oscuro */
-  color: white; /* Texto blanco */
-  padding: 15px; /* Espaciado interior */
-  display: flex; /* Usa flexbox para alinear elementos */
-  justify-content: space-between; /* Espacia entre elementos */
-  align-items: center; /* Alinea verticalmente */
+  background-color: #013d1f;
+  /* Color de fondo oscuro */
+  color: white;
+  /* Texto blanco */
+  padding: 15px;
+  /* Espaciado interior */
+  display: flex;
+  /* Usa flexbox para alinear elementos */
+  justify-content: space-between;
+  /* Espacia entre elementos */
+  align-items: center;
+  /* Alinea verticalmente */
 }
+
 /* Estilo para el botón de cerrar */
 .close-card-btn {
-  background: none; /* Sin fondo */
-  border: none; /* Sin borde */
-  color: white; /* Color del texto */
-  font-size: 24px; /* Tamaño de la fuente */
-  cursor: pointer; /* Cursor de pointer */
+  background: none;
+  /* Sin fondo */
+  border: none;
+  /* Sin borde */
+  color: white;
+  /* Color del texto */
+  font-size: 24px;
+  /* Tamaño de la fuente */
+  cursor: pointer;
+  /* Cursor de pointer */
 }
+
 .titulo-icono-editar {
   top: 30%;
-  display: flex; /* Utiliza flexbox para alinear los elementos en fila */
-  align-items: center; /* Alinea verticalmente el texto e imagen en el centro */
-  gap: 10px; /* Añade espacio entre la imagen y el texto */
-  width: 100%; /* Ajusta el ancho del contenedor */
-  justify-content: space-between; /* Alinea los elementos al principio de la fila */
+  display: flex;
+  /* Utiliza flexbox para alinear los elementos en fila */
+  align-items: center;
+  /* Alinea verticalmente el texto e imagen en el centro */
+  gap: 10px;
+  /* Añade espacio entre la imagen y el texto */
+  width: 100%;
+  /* Ajusta el ancho del contenedor */
+  justify-content: space-between;
+  /* Alinea los elementos al principio de la fila */
 }
+
 .card-editar {
   width: 70%;
   height: 70%;
@@ -404,25 +445,32 @@ table.table-bordered.dataTable tbody td {
   align-items: center;
   justify-content: center;
 }
+
 .medio-div.show {
-  display: block; /* Cambia de none a block para mostrar */
+  display: block;
+  /* Cambia de none a block para mostrar */
   overflow-y: hidden;
 }
 
 .cardd.show {
-  transform: scale(1); /* Cambia de scale(0) a scale(1) para mostrar */
-  opacity: 1; /* Cambia de opacity 0 a 1 para mostrar */
+  transform: scale(1);
+  /* Cambia de scale(0) a scale(1) para mostrar */
+  opacity: 1;
+  /* Cambia de opacity 0 a 1 para mostrar */
 }
+
 .card-body {
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Si quieres que los elementos se apilen verticalmente */
-  height: 100%; /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
+  flex-direction: column;
+  /* Si quieres que los elementos se apilen verticalmente */
+  height: 100%;
+  /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
 }
 
-.espacio{
+.espacio {
   padding-top: 20px;
 }
 
@@ -456,116 +504,120 @@ button[type="submit"]:hover {
   background-color: #025157;
 }
 
+/* Estilos adicionales para el formulario */
+#editForm {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  gap: 15px;
+  /* Espaciado entre filas */
+}
+
 .form-row {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between; /* Espacio entre label e input */
-  gap: 70px; /* Espaciado entre label y input */
+  justify-content: space-between;
+  /* Espacio entre label e input */
+  gap: 10px;
+  /* Espaciado entre label y input */
 }
 
-.edit-form{
-  display: flex;
-  flex-direction: column;
-  padding: 5%;
-  gap: 15px; /* Espaciado entre filas */
+.form-row label {
+  flex: 1;
+  /* Flexibilidad para ajustar el tamaño del label */
 }
 
-.Select-CategoriaEditar{
-  width: 48%;
+.form-row input {
+  flex: 2;
+  /* Flexibilidad para ajustar el tamaño del input */
 }
 
-.Select-AreaEditar{
-  width: 48%;
+#editForm button {
+  align-self: flex-start;
+  /* Alinear botón al inicio del formulario */
+  margin-top: 20px;
+  /* Espaciado superior para los botones */
 }
 
-.Select-UnidadEditarInsumos{
-  width: 48%;
-}
-
-.Select-FechaEditar{
-  width: 200px;
-  text-align: center;
-}
-
-.Select-CategoriaEditarEquipos{
-  width: 45%;
-}
-
-.Select-FuncionaEditarEquipos{
-  width: 200px;
-}
-
-.Select-UnidadEditarEquipos{
-  width: 45%;
-}
-
-.Select-FechaMantEditarEquipos{
-  width: 200px;
-  text-align: center;
-}
-
-.add-form{
-  display: flex;
-  flex-direction: column;
-  padding: 5%;
-  gap: 15px; /* Espaciado entre filas */
-}
-
-
-.medio-div-commit{
-  position: fixed; /* Cambia a fixed para que se mantenga en la vista */
-  top: 50%; /* Centra verticalmente */
-  left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Centra el div completamente */
-  width: 80%; /* Establece el ancho del contenedor */
+.medio-div-commit {
+  position: fixed;
+  /* Cambia a fixed para que se mantenga en la vista */
+  top: 50%;
+  /* Centra verticalmente */
+  left: 50%;
+  /* Centra horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Centra el div completamente */
+  width: 80%;
+  /* Establece el ancho del contenedor */
   height: 80%;
   max-width: 800px;
   max-height: 600px;
   background-color: #ffffff00;
-  display: none; /* Oculto por defecto */
-  padding: 20px; /* Espaciado interior */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  display: none;
+  /* Oculto por defecto */
+  padding: 20px;
+  /* Espaciado interior */
+  z-index: 1000;
+  /* Asegura que esté por encima de otros elementos */
   overflow-y: auto;
 }
 
-.medio-div-commit.show{
-  display: block; /* Cambia de none a block para mostrar */
+.medio-div-commit.show {
+  display: block;
+  /* Cambia de none a block para mostrar */
   overflow-y: hidden;
 }
 
-.card3{
-  width: 100%; /* La tarjeta ocupa el ancho completo del contenedor */
-  background-color: #e5e8ef; /* Fondo blanco */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-  border-radius: 10px; /* Bordes redondeados */
-  overflow: hidden; /* Oculta contenido que desborda */
+.card3 {
+  width: 100%;
+  /* La tarjeta ocupa el ancho completo del contenedor */
+  background-color: #e5e8ef;
+  /* Fondo blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra */
+  border-radius: 10px;
+  /* Bordes redondeados */
+  overflow: hidden;
+  /* Oculta contenido que desborda */
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform: scale(0); /* Oculto por defecto */
-  opacity: 0; /* Opacidad 0 por defecto */
-  position: relative; /* Relativo para manejar elementos internos */
+  transform: scale(0);
+  /* Oculto por defecto */
+  opacity: 0;
+  /* Opacidad 0 por defecto */
+  position: relative;
+  /* Relativo para manejar elementos internos */
 }
 
-.card3.show{
-  transform: scale(1); /* Cambia de scale(0) a scale(1) para mostrar */
-  opacity: 1; /* Cambia de opacity 0 a 1 para mostrar */
+.card3.show {
+  transform: scale(1);
+  /* Cambia de scale(0) a scale(1) para mostrar */
+  opacity: 1;
+  /* Cambia de opacity 0 a 1 para mostrar */
 }
 
-.card-bodyCommit{
+.card-bodyCommit {
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Si quieres que los elementos se apilen verticalmente */
-  height: 100%; /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
+  flex-direction: column;
+  /* Si quieres que los elementos se apilen verticalmente */
+  height: 100%;
+  /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
 }
 
-.titulo-icono-commit{
+.titulo-icono-commit {
   top: 30%;
-  display: flex; /* Utiliza flexbox para alinear los elementos en fila */
-  align-items: center; /* Alinea verticalmente el texto e imagen en el centro */
-  gap: 10px; /* Añade espacio entre la imagen y el texto */
-  justify-content: space-between; /* Alinea los elementos al principio de la fila */
+  display: flex;
+  /* Utiliza flexbox para alinear los elementos en fila */
+  align-items: center;
+  /* Alinea verticalmente el texto e imagen en el centro */
+  gap: 10px;
+  /* Añade espacio entre la imagen y el texto */
+  justify-content: space-between;
+  /* Alinea los elementos al principio de la fila */
 }
 
 .commitMessageContainer {
@@ -601,57 +653,82 @@ button[type="submit"]:hover {
 /* Registro section styles */
 /* Estilo básico para el div de registro */
 .registro {
-  position: fixed; /* Cambia a fixed para que se mantenga en la vista */
-  top: 50%; /* Centra verticalmente */
-  left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Centra el div completamente */
-  width: 80%; /* Establece el ancho del contenedor */
+  position: fixed;
+  /* Cambia a fixed para que se mantenga en la vista */
+  top: 50%;
+  /* Centra verticalmente */
+  left: 50%;
+  /* Centra horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Centra el div completamente */
+  width: 80%;
+  /* Establece el ancho del contenedor */
   height: 80%;
   max-width: 800px;
   max-height: 600px;
   background-color: #b7000000;
-  display: none; /* Oculto por defecto */
-  padding: 20px; /* Espaciado interior */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  display: none;
+  /* Oculto por defecto */
+  padding: 20px;
+  /* Espaciado interior */
+  z-index: 1000;
+  /* Asegura que esté por encima de otros elementos */
   overflow-y: auto;
 }
 
-.cardReg{
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-  border-radius: 10px; /* Bordes redondeados */
-  overflow: hidden; /* Oculta contenido que desborda */
-  position: relative; /* Relativo para manejar elementos internos */
+.cardReg {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra */
+  border-radius: 10px;
+  /* Bordes redondeados */
+  overflow: hidden;
+  /* Oculta contenido que desborda */
+  position: relative;
+  /* Relativo para manejar elementos internos */
 }
 
-.card-reg-header{
-  background-color: #013d1f; /* Color de fondo oscuro */
-  color: white; /* Texto blanco */
-  padding: 15px; /* Espaciado interior */
-  display: flex; /* Usa flexbox para alinear elementos */
-  justify-content: space-between; /* Espacia entre elementos */
-  align-items: center; /* Alinea verticalmente */
+.card-reg-header {
+  background-color: #013d1f;
+  /* Color de fondo oscuro */
+  color: white;
+  /* Texto blanco */
+  padding: 15px;
+  /* Espaciado interior */
+  display: flex;
+  /* Usa flexbox para alinear elementos */
+  justify-content: space-between;
+  /* Espacia entre elementos */
+  align-items: center;
+  /* Alinea verticalmente */
 }
 
-.card-body-reg{
+.card-body-reg {
   padding: 20px;
   display: flex;
   background-color: #e5e8ef;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Si quieres que los elementos se apilen verticalmente */
-  height: 100%; /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
+  flex-direction: column;
+  /* Si quieres que los elementos se apilen verticalmente */
+  height: 100%;
+  /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
 }
 
-.card-titulo-reg{
+.card-titulo-reg {
   top: 30%;
-  display: flex; /* Utiliza flexbox para alinear los elementos en fila */
-  align-items: center; /* Alinea verticalmente el texto e imagen en el centro */
-  gap: 10px; /* Añade espacio entre la imagen y el texto */
-  width: 100%; /* Ajusta el ancho del contenedor */
-  justify-content: space-between; /* Alinea los elementos al principio de la fila */
+  display: flex;
+  /* Utiliza flexbox para alinear los elementos en fila */
+  align-items: center;
+  /* Alinea verticalmente el texto e imagen en el centro */
+  gap: 10px;
+  /* Añade espacio entre la imagen y el texto */
+  width: 100%;
+  /* Ajusta el ancho del contenedor */
+  justify-content: space-between;
+  /* Alinea los elementos al principio de la fila */
 }
 
-.prueba{
+.prueba {
   width: 70%;
   height: 70%;
   top: 30%;
@@ -667,6 +744,7 @@ button[type="submit"]:hover {
   align-items: center;
   justify-content: center;
 }
+
 /* Clase para mostrar el div de registro */
 .show {
   display: block;
@@ -674,23 +752,32 @@ button[type="submit"]:hover {
 
 /*Borrar*/
 .medio-div-borrar {
-  position: fixed; /* Cambia a fixed para que se mantenga en la vista */
-  top: 50%; /* Centra verticalmente */
-  left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Centra el div completamente */
-  width: 80%; /* Establece el ancho del contenedor */
+  position: fixed;
+  /* Cambia a fixed para que se mantenga en la vista */
+  top: 50%;
+  /* Centra verticalmente */
+  left: 50%;
+  /* Centra horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Centra el div completamente */
+  width: 80%;
+  /* Establece el ancho del contenedor */
   height: 80%;
   max-width: 800px;
   max-height: 600px;
   background-color: #ffffff00;
-  display: none; /* Oculto por defecto */
-  padding: 20px; /* Espaciado interior */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  display: none;
+  /* Oculto por defecto */
+  padding: 20px;
+  /* Espaciado interior */
+  z-index: 1000;
+  /* Asegura que esté por encima de otros elementos */
   overflow-y: auto;
 }
 
 .medio-div-borrar.show {
-  display: block; /* Cambia de none a block para mostrar */
+  display: block;
+  /* Cambia de none a block para mostrar */
 }
 
 .card-bodyBorrar {
@@ -699,38 +786,51 @@ button[type="submit"]:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Si quieres que los elementos se apilen verticalmente */
-  height: 100%; /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
+  flex-direction: column;
+  /* Si quieres que los elementos se apilen verticalmente */
+  height: 100%;
+  /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
 }
 
 /*Agregar*/
-.medio-div-Agregar{
-  position: fixed; /* Cambia a fixed para que se mantenga en la vista */
-  top: 50%; /* Centra verticalmente */
-  left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Centra el div completamente */
-  width: 80%; /* Establece el ancho del contenedor */
+.medio-div-Agregar {
+  position: fixed;
+  /* Cambia a fixed para que se mantenga en la vista */
+  top: 50%;
+  /* Centra verticalmente */
+  left: 50%;
+  /* Centra horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Centra el div completamente */
+  width: 80%;
+  /* Establece el ancho del contenedor */
   height: 80%;
   max-width: 800px;
   max-height: 600px;
   background-color: #ffffff00;
-  display: none; /* Oculto por defecto */
-  padding: 20px; /* Espaciado interior */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  display: none;
+  /* Oculto por defecto */
+  padding: 20px;
+  /* Espaciado interior */
+  z-index: 1000;
+  /* Asegura que esté por encima de otros elementos */
   overflow-y: auto;
 }
 
-.medio-div-Agregar.show{
-  display: block; /* Cambia de none a block para mostrar */
+.medio-div-Agregar.show {
+  display: block;
+  /* Cambia de none a block para mostrar */
   overflow-y: hidden;
 }
 
-.card-body-Agregar{
+.card-body-Agregar {
   background-color: #e5e8ef;
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Si quieres que los elementos se apilen verticalmente */
-  height: 100%; /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
+  flex-direction: column;
+  /* Si quieres que los elementos se apilen verticalmente */
+  height: 100%;
+  /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
 }

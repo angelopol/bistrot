@@ -119,226 +119,110 @@
         </div>
         <div class="table-actions">
           <div class="action-buttons">
-            <button id="editarBtn" class="action-btn">Editar</button>
-            <button id="showRegistroBtn" class="action-btn">Registro</button>
+            <button id="recepcionBtn" class="action-btn">Recepcion</button>
+            <button id="showRegistroBtn" class="action-btn">Ajustes</button>
+            <button id="ajusteBtn" class="action-btn">Registros</button>
           </div>
           <div class="icon-buttons">
-            <button id="borrarBtn" class="icon-btn" aria-label="Edit">
-              <img src="css/img/icono_basura.png" alt="Basura icon" class="icon-img" />
-            </button>
-            <button id="agregarBtn" class="icon-btn" aria-label="Delete">
-              <img src="css/img/icono_suma.png" alt="Suma icon" class="icon-img" />
-            </button>
           </div>
         </div>
 
-        <!--Editar div-->
-        <div class="medio-div" id="cardContainer">
+        <div class="medio-div" id="cardContainerRecepcion">
           <div id="cardd" class="cardd">
-              <div class="card-header">
-                  <h3>Editar</h3>
-                  <button id="closeCardButton" class="close-card-btn">&times;</button>
-              </div>
-              <div class="card-body">
-                  <div class="titulo-icono-editar">
-                      <div class="card-editar">
-                        <div class="form-row">
-                          <div class="espacio"> 
-                            <label class="Label-idEditar" for="ID">ID: </label>
-                            <select class="Select-idEditar" name="ID" id="ID">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                            </select>
-                          </div>
-                        </div>
-                        <!-- Formulario de Edición de Insumos -->
-                        <div id="editInsumos" class="edit-form">
-                          <div class="form-row">
-                              <label for="nombre">Nombre:</label>
-                              <input type="text" id="nombre" name="nombre">
-                          </div>
-                          <div class="form-row">
-                              <label for="categoria">Categoría:</label>
-                              <select class="Select-CategoriaEditar" name="categoria" id="SelectCategoriaInsumos">
-                                  <option value="1">Cocina</option>
-                                  <option value="2">Bar</option>
-                              </select>
-                          </div>
-                          <div class="form-row">
-                              <label for="cantidad">Cantidad:</label>
-                              <input type="number" id="cantidad" name="cantidad">
-                          </div>
-                          <div class="form-row">
-                              <label for="area">Área:</label>
-                              <select class="Select-AreaEditar" name="area" id="SelectAreaInsumos">
-                                  <option value="1">Almacén 1</option>
-                                  <option value="2">Almacén 2</option>
-                                  <option value="3">Refrigerador 1</option>
-                                  <option value="4">Refrigerador 2</option>
-                              </select>
-                          </div>
-                          <div class="form-row">
-                              <label for="unidad">Unidad:</label>
-                              <select class="Select-UnidadEditarInsumos" name="unidad" id="SelectUnidadEditarInsumos">
-                                <option value="1">kg</option>
-                                <option value="2">litros</option>
-                                <option value="3">unidad</option>
-                                <option value="4">botellas</option>
-                                <option value="5">litros</option>
-                              </select>
-                          </div>
-                          <div class="form-row">
-                              <label for="fechaCaducidad">Fecha de Caducidad:</label>
-                              <input class="Select-FechaEditar" type="date" id="fechaCaducidad" name="fechaCaducidad">
-                          </div>
-                      </div>
-                        <!-- Formulario de Edición de Equipos -->
-                        <div id="editEquipos" class="edit-form d-none">
-                            <div class="form-row">
-                              <label for="nombre">Nombre:</label>
-                              <input type="text" id="nombre" name="nombre">
-                            </div>
-                            <div class="form-row">
-                              <label for="Categoria">Categoría:</label>
-                              <select class="Select-CategoriaEditarEquipos" name="categoria" id="SelectCategoriaEquipos">
-                                <option value="1">Electrodommésticos</option>
-                                <option value="2">Instrumentos</option>
-                                <option value="3">Vajilla</option>
-                              </select>
-                            </div>
-                            <div class="form-row">
-                              <label for="estado">Funciona/Estado:</label>
-                              <select class="Select-FuncionaEditarEquipos" name="estado" id="SelectFuncionaEquipos">
-                                <option value="1">Funcional</option>
-                                <option value="2">No funcional</option>
-                              </select>
-                            </div>
-                            <div class="form-row">
-                              <label for="fechaMantenimiento">Fecha de mantemiento:</label>
-                              <input class="Select-FechaMantEditarEquipos" type="date" id="fechaMantenimiento" name="fechaMantenimiento">
-                            </div>
-                            <div class="form-row">
-                              <label for="unidad">Unidad:</label>
-                              <select class="Select-UnidadEditarEquipos" name="unidad" id="SelectUnidadEditarEquipos">
-                                <option value="1">Unidad</option>
-                              </select>
-                            </div>
-                            <div class="form-row">
-                              <label for="cantidad">Cantidad:</label>
-                              <input type="number" id="cantidad" name="cantidad">
-                            </div>
-                        </div>
-                        <!-- Formulario de Edición de Muebles -->
-                        <div id="editMuebles" class="edit-form d-none">
-                          <div class="form-row">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre">
-                          </div>
-                          <div class="form-row">
-                            <label for="Categoria">Categoría:</label>
-                            <select class="Select-CategoriaEditarEquipos" name="categoria" id="SelectCategoriaMuebles">
-                              <option value="1">Muebles de comeder</option>
-                              <option value="2">Muebles de cocina</option>
-                              <option value="3">Decoración</option>
-                            </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="estado">Funciona/Estado:</label>
-                            <select class="Select-FuncionaEditarEquipos" name="area" id="SelectFuncionaMuebles">
-                              <option value="1">Funcional</option>
-                              <option value="2">No funcional</option>
-                            </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="fechaMantenimiento">Fecha de mantemiento:</label>
-                            <input class="Select-FechaMantEditarEquipos" type="date" id="fechaMantenimiento" name="fechaMantenimiento">
-                          </div>
-                          <div class="form-row">
-                            <label for="unidad">Unidad:</label>
-                              <select class="Select-UnidadEditarEquipos" name="unidad" id="SelectUnidadEditaMuebles">
-                                <option value="1">Unidad</option>
-                              </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="cantidad">Cantidad:</label>
-                            <input type="number" id="cantidad" name="cantidad">
-                          </div>
-                        </div>
-                        <!-- Formulario de Edición de Maquinaria -->
-                        <div id="editMaquinaria" class="edit-form d-none">
-                          <div class="form-row">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre">
-                          </div>
-                          <div class="form-row">
-                            <label for="Categoria">Categoría:</label>
-                            <select class="Select-CategoriaEditarEquipos" name="categoria" id="SelectCategoriMaquinaria">
-                              <option value="1">Hornos</option>
-                              <option value="2">Refigeración</option>
-                              <option value="3">Lavado</option>
-                              <option value="4">Procesamiento de alimentos</option>
-                            </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="estado">Funciona/Estado:</label>
-                            <select class="Select-FuncionaEditarEquipos" name="area" id="SelectFuncionaMaquinaria">
-                              <option value="1">Funcional</option>
-                              <option value="2">No funcional</option>
-                            </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="fechaMantenimiento">Fecha de mantemiento:</label>
-                            <input class="Select-FechaMantEditarEquipos" type="date" id="fechaMantenimiento" name="fechaMantenimiento">
-                          </div>
-                          <div class="form-row">
-                            <label for="unidad">Unidad:</label>
-                              <select class="Select-UnidadEditarEquipos" name="unidad" id="SelectUnidadEditarMaquinaria">
-                                <option value="1">Unidad</option>
-                              </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="cantidad">Cantidad:</label>
-                            <input type="number" id="cantidad" name="cantidad">
-                          </div>
-                        </div>
-                        <div class="form-row">
-                          <button class="action-btn" id="cancelButtonEditar">Cancelar</button>
-                          <button class="action-btn" id="comentarCambios">Siguiente</button>
-                        </div>
-                        <div class="espacio"></div>
-                      </div>
+            <div class="card-header">
+              <h3>Recepción de Orden de Compra</h3>
+              <button id="closeCardButton" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-body">
+              <div class="titulo-icono-Orden de Compra">
+                <div class="card-Orden de Compra">
+                  <div class="form-row">
+                    <div class="espacio">
+                      <label class="Label-idOrden de Compra" for="ID">ID Orden de Compra:</label>
+                      <input type="number" class="Select-idOrden de Compra" name="ID" id="ID">
+                      <button id="buscarOrdenBtn" class="action-btn">Buscar</button>
+                    </div>
                   </div>
+                  <form id="OrdenDeCompraForm">
+                    <div class="form-row">
+                      <label for="Producto">Producto:</label>
+                      <input type="text" id="Producto" name="Producto" readonly>
+                    </div>
+                    <div class="form-row">
+                      <label for="Cantidad">Cantidad Ordenada:</label>
+                      <input type="number" id="Cantidad" name="Cantidad" readonly>
+                    </div>
+                    <div class="form-row">
+                      <label for="CantidadRecibida">Cantidad Recibida:</label>
+                      <input type="number" id="CantidadRecibida" name="CantidadRecibida">
+                    </div>
+                    <div class="form-row">
+                      <label for="Observaciones">Observaciones:</label>
+                      <textarea id="Observaciones" name="Observaciones"></textarea>
+                    </div>
+                  </form>
+                  <div class="form-row">
+                    <button class="action-btn" id="cancelButtonRecepcion">Cancelar</button>
+                    <button class="action-btn" id="finalizarRecepcion">Finalizar</button>
+                  </div>
+                  <div class="espacio"></div>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <!--Confirmar de Orden de Compra div-->
+        <div class="medio-div-commit" id="commitMessageContainer">
+          <div id="commit" class="card3">
+            <div class="card-header">
+              <h3>Guardar Cambios</h3>
+              <button id="closeCommitButton" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-bodyCommit">
+              <div class="titulo-icono-commit">
+                <div class="card-editarCommit">
+                  <form class="editForm" id="commitForm">
+                    <div class="form-row">
+                      <label for="commitMessage">Descripción de los cambios:</label>
+                      <textarea id="commitMessage" name="commitMessage" rows="4" required></textarea>
+                    </div>
+                  </form>
+                  <div class="espacio">
+                  </div>
+                  <div class="form-row">
+                    <button class="action-btn" id="commitAtrasButton">Atrás</button>
+                    <button type="submit">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <!--Confirmar edición div-->
-        <div class="medio-div-commit" id="commitMessageContainer" >
+        <div class="medio-div-commit" id="commitMessageContainer">
           <div id="commit" class="card3">
-              <div class="card-header">
-                  <h3>Guardar Cambios</h3>
-                  <button id="closeCommitButton" class="close-card-btn">&times;</button>
-              </div>
-              <div class="card-bodyCommit">
-                  <div class="titulo-icono-commit">
-                    <div class="card-editarCommit">
-                      <form class="editForm" id="commitForm">
-                        <div class="form-row">
-                            <label for="commitMessage">Descripción de los cambios:</label>
-                            <textarea id="commitMessage" name="commitMessage" rows="4" required></textarea>
-                        </div>
-                      </form>
-                      <div class="espacio">
-                      </div>
-                      <div class="form-row">
-                        <button class="action-btn" id="commitAtrasButton">Atrás</button>
-                        <button type="submit">Guardar</button>
-                      </div>
+            <div class="card-header">
+              <h3>Guardar Cambios</h3>
+              <button id="closeCommitButton" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-bodyCommit">
+              <div class="titulo-icono-commit">
+                <div class="card-editarCommit">
+                  <form class="editForm" id="commitForm">
+                    <div class="form-row">
+                      <label for="commitMessage">Descripción de los cambios:</label>
+                      <textarea id="commitMessage" name="commitMessage" rows="4" required></textarea>
                     </div>
+                  </form>
+                  <div class="espacio">
                   </div>
+                  <div class="form-row">
+                    <button class="action-btn" id="commitAtrasButton">Atrás</button>
+                    <button type="submit">Guardar</button>
+                  </div>
+                </div>
               </div>
+            </div>
           </div>
         </div>
 
@@ -346,7 +230,7 @@
         <div id="registroDiv" class="registro">
           <div class="cardReg">
             <div class="card-reg-header">
-              <h2>Registro</h2>
+              <h2>Ajustes</h2>
               <button id="closeRegistroButton" class="close-card-btn">&times;</button>
             </div>
             <div class="card-body-reg">
@@ -354,17 +238,17 @@
                 <div class="prueba">
                   <table id="historialTabla" class="table table-striped table-bordered">
                     <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Acción</th>
-                            <th>Producto</th>
-                            <th>Categoría</th>
-                            <th>Cantidad</th>
-                            <th>Responsable</th>
-                        </tr>
+                      <tr>
+                        <th>Fecha</th>
+                        <th>Acción</th>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Cantidad</th>
+                        <th>Responsable</th>
+                      </tr>
                     </thead>
                     <tbody>
-                        <!-- Aquí se llenarán los datos del historial -->
+                      <!-- Aquí se llenarán los datos del historial -->
                     </tbody>
                   </table>
                 </div>
@@ -439,172 +323,47 @@
         <!-- Agregar botón div-->
         <div class="medio-div-Agregar" id="cardContainerAgregar">
           <div id="cardd" class="card-Agregar">
-              <div class="card-header">
-                  <h3>Añadir</h3>
-                  <button id="closeCardButtonAgregar" class="close-card-btn">&times;</button>
-              </div>
-              <div class="card-body-Agregar">
-                  <div class="titulo-icono-editar">
-                      <div class="card-editar">
-                        <!-- Formulario de Agregar Insumos -->
-                        <div id="addInsumos" class="add-form">
-                          <div class="form-row">
-                              <label for="nombre">Nombre:</label>
-                              <input type="text" id="nombre" name="nombre">
-                          </div>
-                          <div class="form-row">
-                              <label for="categoria">Categoría:</label>
-                              <select class="Select-CategoriaEditar" name="categoria" id="SelectCategoríaInsumos">
-                                  <option value="1">Cocina</option>
-                                  <option value="2">Bar</option>
-                              </select>
-                          </div>
-                          <div class="form-row">
-                              <label for="cantidad">Cantidad:</label>
-                              <input type="number" id="cantidad" name="cantidad">
-                          </div>
-                          <div class="form-row">
-                              <label for="area">Área:</label>
-                              <select class="Select-AreaEditar" name="area" id="SelectAreaInsumos">
-                                  <option value="1">Almacén 1</option>
-                                  <option value="2">Almacén 2</option>
-                                  <option value="3">Refrigerador 1</option>
-                                  <option value="4">Refrigerador 2</option>
-                              </select>
-                          </div>
-                          <div class="form-row">
-                              <label for="unidad">Unidad:</label>
-                              <select class="Select-UnidadEditarInsumos" name="unidad" id="SelectUnidadEditarInsumos">
-                                <option value="1">kg</option>
-                                <option value="2">litros</option>
-                                <option value="3">unidad</option>
-                                <option value="4">botellas</option>
-                                <option value="5">litros</option>
-                              </select>
-                          </div>
-                          <div class="form-row">
-                              <label for="fechaCaducidad">Fecha de Caducidad:</label>
-                              <input class="Select-FechaEditar" type="date" id="fechaCaducidad" name="fechaCaducidad">
-                          </div>
-                          <!-- Contenido del formulario de agregar Insumos -->
-                        </div>
-                        <!-- Formulario de Agregar Equipos -->
-                        <div id="addEquipos" class="add-form d-none">
-                          <div class="form-row">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre">
-                          </div>
-                          <div class="form-row">
-                            <label for="Categoria">Categoría:</label>
-                            <select class="Select-CategoriaEditarEquipos" name="categoria" id="SelectCategoriaEquipos">
-                              <option value="1">Electrodommésticos</option>
-                              <option value="2">Instrumentos</option>
-                              <option value="3">Vajilla</option>
-                            </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="estado">Funciona/Estado:</label>
-                            <select class="Select-FuncionaEditarEquipos" name="estado" id="SelectFuncionaEquipos">
-                              <option value="1">Funcional</option>
-                              <option value="2">No funcional</option>
-                            </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="fechaMantenimiento">Fecha de mantemiento:</label>
-                            <input class="Select-FechaMantEditarEquipos" type="date" id="fechaMantenimiento" name="fechaMantenimiento">
-                          </div>
-                          <div class="form-row">
-                            <label for="unidad">Unidad:</label>
-                            <select class="Select-UnidadEditarEquipos" name="unidad" id="SelectUnidadEditarEquipos">
-                              <option value="1">Unidad</option>
-                            </select>
-                          </div>
-                          <div class="form-row">
-                            <label for="cantidad">Cantidad:</label>
-                            <input type="number" id="cantidad" name="cantidad">
-                          </div>
-                        </div>
-                        <!-- Formulario de Agregar Muebles -->
-                        <div id="addMuebles" class="add-form d-none">
-                          <div class="form-row">
-                          <label for="nombre">Nombre:</label>
-                          <input type="text" id="nombre" name="nombre">
-                        </div>
-                        <div class="form-row">
-                          <label for="Categoria">Categoría:</label>
-                          <select class="Select-CategoriaEditarEquipos" name="categoria" id="SelectCategoriaMuebles">
-                            <option value="1">Muebles de comeder</option>
-                            <option value="2">Muebles de cocina</option>
-                            <option value="3">Decoración</option>
-                          </select>
-                        </div>
-                        <div class="form-row">
-                          <label for="estado">Funciona/Estado:</label>
-                          <select class="Select-FuncionaEditarEquipos" name="area" id="SelectFuncionaMuebles">
-                            <option value="1">Funcional</option>
-                            <option value="2">No funcional</option>
-                          </select>
-                        </div>
-                        <div class="form-row">
-                          <label for="fechaMantenimiento">Fecha de mantemiento:</label>
-                          <input class="Select-FechaMantEditarEquipos" type="date" id="fechaMantenimiento" name="fechaMantenimiento">
-                        </div>
-                        <div class="form-row">
-                          <label for="unidad">Unidad:</label>
-                            <select class="Select-UnidadEditarEquipos" name="unidad" id="SelectUnidadEditaMuebles">
-                              <option value="1">Unidad</option>
-                            </select>
-                        </div>
-                        <div class="form-row">
-                          <label for="cantidad">Cantidad:</label>
-                          <input type="number" id="cantidad" name="cantidad">
-                        </div>
-                        </div>
-                        <!-- Formulario de Agregar Maquinaria -->
-                        <div id="addMaquinaria" class="add-form d-none">
-                            <div class="form-row">
-                              <label for="nombre">Nombre:</label>
-                              <input type="text" id="nombre" name="nombre">
-                            </div>
-                            <div class="form-row">
-                              <label for="Categoria">Categoría:</label>
-                              <select class="Select-CategoriaEditarEquipos" name="categoria" id="SelectCategoriMaquinaria">
-                                <option value="1">Hornos</option>
-                                <option value="2">Refigeración</option>
-                                <option value="3">Lavado</option>
-                                <option value="4">Procesamiento de alimentos</option>
-                              </select>
-                            </div>
-                            <div class="form-row">
-                              <label for="estado">Funciona/Estado:</label>
-                              <select class="Select-FuncionaEditarEquipos" name="area" id="SelectFuncionaMaquinaria">
-                                <option value="1">Funcional</option>
-                                <option value="2">No funcional</option>
-                              </select>
-                            </div>
-                            <div class="form-row">
-                              <label for="fechaMantenimiento">Fecha de mantemiento:</label>
-                              <input class="Select-FechaMantEditarEquipos" type="date" id="fechaMantenimiento" name="fechaMantenimiento">
-                            </div>
-                            <div class="form-row">
-                              <label for="unidad">Unidad:</label>
-                                <select class="Select-UnidadEditarEquipos" name="unidad" id="SelectUnidadEditarMaquinaria">
-                                  <option value="1">Unidad</option>
-                                </select>
-                            </div>
-                            <div class="form-row">
-                              <label for="cantidad">Cantidad:</label>
-                              <input type="number" id="cantidad" name="cantidad">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                          <button class="action-btn" id="cancelarAgregar">Cancelar</button>
-                          <button class="action-btn" id="AgregarBtn">Agregar</button>
-                        </div>
-                        <div class="espacio"></div>
-                      </div>
+            <div class="card-header">
+              <h3>Añadir</h3>
+              <button id="closeCardButtonAgregar" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-body-Agregar">
+              <div class="titulo-icono-editar">
+                <div class="card-editar">
+                  <form id="editForm">
+                    <div class="form-row">
+                      <label for="nombre">Nombre:</label>
+                      <input type="text" id="nombre" name="nombre">
+                    </div>
+                    <div class="form-row">
+                      <label for="categoria">Categoría:</label>
+                      <input type="text" id="categoria" name="categoria">
+                    </div>
+                    <div class="form-row">
+                      <label for="cantidad">Cantidad:</label>
+                      <input type="number" id="cantidad" name="cantidad">
+                    </div>
+                    <div class="form-row">
+                      <label for="area">Área:</label>
+                      <input type="text" id="area" name="area">
+                    </div>
+                    <div class="form-row">
+                      <label for="unidad">Unidad:</label>
+                      <input type="text" id="unidad" name="unidad">
+                    </div>
+                    <div class="form-row">
+                      <label for="fechaCaducidad">Fecha de Caducidad:</label>
+                      <input type="date" id="fechaCaducidad" name="fechaCaducidad">
+                    </div>
+                  </form>
+                  <div class="form-row">
+                    <button class="action-btn" id="cancelarAgregar">Cancelar</button>
+                    <button class="action-btn" id="AgregarBtn">Agregar</button>
                   </div>
+                  <div class="espacio"></div>
+                </div>
               </div>
+            </div>
           </div>
         </div>
       </section>
