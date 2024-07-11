@@ -113,6 +113,10 @@ body {
 
 
 
+.modal-content {
+    text-align: center;
+    
+}
 
 .menu-items{
     width: 75%;
@@ -153,6 +157,10 @@ body {
     font-weight: 700;
     line-height: 150%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vinos{
+    margin-bottom: 10px;
 }
 
 @media (max-width: 991px) {
@@ -273,12 +281,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    padding: 10px;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.2);
     align-items: center;
     height: 300px;
     width:  300px;
+    
 }
 
 .button-cerrar-modal{
@@ -494,3 +503,6 @@ body {
     display: block;
 }
 
+h3{
+    font-family: 'Montserrat',sans-serif;
+}
