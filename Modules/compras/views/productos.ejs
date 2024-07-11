@@ -72,7 +72,7 @@
             <div class="dashboard">
                 <div class="formulario">
                     <h3 id="title-detaile-prov">Detalles</h3>
-                    <form action="/prod" method="post">
+                    <form action="/prod" method="post" id="form1">
                         <input type="hidden" name="_method" value="PATCH">
                     
                         <input placeholder="Nombre del Producto" class="input-data name-prov" type="text" name="NombreP">
@@ -133,6 +133,26 @@
         </div>
     </main> 
     <script>
+        // Selecciona el formulario específico por su id
+        var form = document.getElementById('form1');
+
+        //variable donde se guarda el id de los productos cuando se selecciona un registro en la tabla
+        let idd
+        
+        // Agrega el evento 'submit' al formulario
+        form.addEventListener('submit', function(event) {
+            alert(idd)
+            // Selecciona el select dentro del formulario actual
+            var select = form.querySelector('select');
+            // Si el botón presionado tiene el valor "Modificar"
+            if (event.submitter.value === 'Modificar') {
+                // Cambia la acción del formulario para incluir el ID y usar el método PATCH
+                form.action = '/prod/' + idd + '?_method=PATCH';
+            } else {
+                // Si el botón presionado no es "Modificar", usa la acción por defecto
+                form.action = '/prod';
+            }
+        });
         //Evento para agregar dinamicamente el id para poder utilizar la ruta /soli/:
         document.getElementById('delete-form').addEventListener('submit', function (e) {
             const select = document.getElementById('select-prod');
@@ -154,7 +174,7 @@
         eliminar = document.getElementById('delete-prov-btn')
 
         //variable donde se guarda el id de los productos cuando se selecciona un registro en la tabla
-        let idd
+        
 
         //Inputs
         nombre = document.getElementsByClassName('name-prov')[0]
@@ -171,11 +191,11 @@
                 const product = filaSeleccionada.cells[1].textContent
                 const udsComp = filaSeleccionada.cells[2].textContent
                 const udsCons = filaSeleccionada.cells[3].textContent
-                console.log(idd)
+                
                 modificar.disabled = false
                 nombre.value = product
-                unid_cons.value = udsComp
-                unid_comp.value = udsCons
+                unid_cons.value = udsCons
+                unid_comp.value = udsComp
             }
             
         }
@@ -230,7 +250,7 @@
             if(nombre.value.length == 0 || unid_cons.value.length == 0 || unid_comp.value.length == 0){
                 alert("Tiene que llenar los campos de texto para poder modificar un producto")
             }else{
-                alert("HABILITADO")
+                console.log("Modificando producto")
             }
         }
 
