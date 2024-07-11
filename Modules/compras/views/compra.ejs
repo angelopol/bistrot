@@ -6,6 +6,7 @@
     <title>Bistrot - Compras</title>
     <link rel="stylesheet" href="../css/side.css">
     <link rel="stylesheet" href="../css/compra.css">
+    <link rel="stylesheet" href="../css/confirmacion.css">
     <link rel="shortcut icon" href="../resources/icon.jpeg" type="image/x-icon">
 </head>
 <body>
@@ -102,6 +103,38 @@
                 </div>
             </div>
         </div>
+
+        <div style="display: none;" class="main-confirmation" id="main">
+            <div class="header-title">
+                <img class="exit-icon" src="../resources/Icono-Back.svg" alt="Icono - Exit">
+                <h2 id="header-title">Orden de Compra</h2>
+            </div>
+            <div class="content-area">
+                <div class="form-section">
+                    <h3 class="section-title">Producto</h3>
+                    <p id="product"></p>
+                    <h3 class="section-title">Fecha de Compra</h3>
+                    <p id="date"></p>
+                    <h3 class="section-title">Cantidad</h3>
+                    <p id="quantity"></p>
+                    <h3 class="section-title">Precio del Producto</h3>
+                    <p id="price"></p>
+                    <h3 class="section-title">Saldo Previo</h3>
+                    <p id="previous-balance"></p>
+                    <h3 class="section-title">Saldo Actual</h3>
+                    <p id="current-balance"></p>
+                    <h3 class="section-title">Numero de orden</h3>
+                    <p id="order-number"></p>
+                </div>
+                <div class="confirmation-section">
+                    <img class="cart-image" src="../resources/check.png" alt="Carrito">
+                    <p class="confirmation-message">Compra realizada con Exito</p>
+                    <button id="back-button">Regresar</button>
+                </div>
+                
+            </div>
+        </div>
+        
     </main>
     <script >
         //Tabla de los Producto
@@ -122,15 +155,33 @@
         //Boton que redirigira a la de Compra Exitosa
 
         btn_confirmar.onclick = function(){
-            window.location.href = '/compra/confirmacion'
+            document.getElementById('principal').style.display = 'none'
+            document.getElementById('main').style.display = 'flex'
         }
 
         let exit = document.getElementsByClassName('title-exit')[0]
         //Boton de Exit
 
+        let atras = document.getElementsByClassName('exit-icon')[0]
+        //Boton de Atras Confirmacion
+
+        atras.onclick = function(){
+            document.getElementById('principal').style.display = 'flex'
+            document.getElementById('main').style.display = 'none'
+        }
+
         exit.onclick = function(){
             window.location.href = '/'
         }
+
+        let producto = document.getElementById('product');
+        let fecha = document.getElementById('date');
+        let cantidad_confirmada = document.getElementById('quantity');
+        let precio = document.getElementById('price');
+        let saldo_previo = document.getElementById('previous-balance');
+        let saldo = document.getElementById('current-balance');
+        let orden = document.getElementById('order-number');
+        let regresar = document.getElementById('back-button');
     </script>
 </body>
 </html>
