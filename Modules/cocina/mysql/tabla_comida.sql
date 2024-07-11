@@ -5,8 +5,8 @@ CREATE TABLE comida (
 	nombre VARCHAR(255) NOT NULL, -- Nombre de la comida
     tipo_comida VARCHAR(255), -- Tipo de la comida, si es una entrada , postre , etc
 	tipo_bebida VARCHAR(255), -- Tipo de bebida, si  es un vino blacno, un trago,etc
-    instrumentos LONGTEXT , -- Representa un array de con los nombres de los intrumentos que usa la comida para prepararse, en este formato: "instrumento1,instrumento2,..."
-    ingredientes LONGTEXT NOT NULL -- representa el diccionario de los ingredientes y cantidades que usa la comida para preparase, en este formato: "{ingrediente1:cantidad1;ingrediente2:cantidad2,...}", osea seria un string en formato json
+    instrumentos LONGTEXT , -- Representa un array los id's (de la tabla general de inventario) de los intrumentos que usa la comida para prepararse, en este formato: 'idInstrumento1,idInstrumento2,...'
+    ingredientes LONGTEXT NOT NULL -- representa el diccionario de los id's de los ingredientes y cantidades de cada ingrediente que usa la comida para preparase, en este formato: '{idIngrediente1:cantidad1;idIngrediente2:cantidad2,...}', osea seria un string en formato json, los id de los ingredientes tienen que ir entre comillas dobles y las cantidades sin comillas
 );
 
 INSERT INTO comida (nombre , tipo_comida , tipo_bebida , instrumentos , ingredientes) VALUES
@@ -26,11 +26,19 @@ INSERT INTO comida (nombre , tipo_comida , tipo_bebida , instrumentos , ingredie
 ('Old Fashioned' , null , "trago" , '21' , '{"27":0.25,"26":0.2,"18":0.05}')
 ('Margarita' , null , "trago" , '22' , '{"28":0.25,"26":0.2,"18":0.05}')
 ('Cuvée Bistrot Chez Rémy' , null , "vino rojo" , null , '{29:1.0}')
-('Agneau Rouge' , null , "vino rojo" , null , '{30:1.0}')
-('Sancerre AOC' , null , "vino blanco" , null , '{31:1.0}')
-('Languedoc' , null , "vino blanco" , null , '{32:1.0}')
-('Coca-Cola Original' , null , "bebida" , null , '{33:1.0}')
-('Coca-Cola Cherry' , null , "bebida" , null , '{34:1.0}')
-('Fanta Orange' , null , "bebida" , null , '{35:1.0}')
-('Sprite' , null , "bebida" , null , '{36:1.0}')
-('Vittel' , null , "bebida" , null , '{37:1.0}')
+('Agneau Rouge' , null , "vino rojo" , null , '{"30":1.0}')
+('Sancerre AOC' , null , "vino blanco" , null , '{"31":1.0}')
+('Languedoc' , null , "vino blanco" , null , '{"32":1.0}')
+('Coca-Cola Original' , null , "bebida" , null , '{"33":1.0}')
+('Coca-Cola Cherry' , null , "bebida" , null , '{"34":1.0}')
+('Fanta Orange' , null , "bebida" , null , '{"35":1.0}')
+('Sprite' , null , "bebida" , null , '{"36":1.0}')
+('Vittel' , null , "bebida" , null , '{"37":1.0}')
+('Vegetable Stew with Herby' , "vegetariano" , null , '1,9' , '{"38":0.5,"2":0.25,"4":0.25,"14":0.25,"39":0.25}')
+('Vegetable Vinaigrette' , "vegetariano" , null , '2,10' , '{"38":0.5,"2":0.25,"4":0.25,"11":0.25,"39":0.25}')
+('Mixed Greens' , "vegetariano" , null , '14' , '{"38":0.5,"2":0.25,"4":0.25,"39":0.25}')
+('Tomato Confit' , "vegetariano" , null , '3,11' , '{"2":0.75,"8":0.25,"4":0.25,"40":0.25,"14":0.25}')
+('Potatoes with Onion' , "niño" , null , '4,12' , '{"5":0.5,"14":0.3,"4":0.5,"41":0.25}')
+('Linguine Pasta' , "niño" , null , '1,9,5' , '{"2":0.5,"12":0.5,"13":0.25,"4":0.25,"14":0.25}')
+('Crushed Potatoes' , "niño" , null , '2,15' , '{"5":0.75,"14":0.25,"42":0.25,"2":0.5,"13":0.5,"40":0.25}')
+('French Fries and Ratatouille' , "niño" , null , '2,15' , '{"5":0.75,"14":0.25,"42":0.25,"2":0.5,"13":0.5,"40":0.25}')
