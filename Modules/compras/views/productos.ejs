@@ -83,6 +83,7 @@
                     </form>
 
                     <button id="btn-modi">Modificar</button>
+                    <button id="btn-clear">Limpiar</button>
                     <div class="carrito">
                         <img class="foto-cart" src="../resources/carrito.png" alt="Carrito">
                     </div>
@@ -173,6 +174,19 @@
         modificar = document.getElementById('btn-modi')
         //Boton de Eliminar
         eliminar = document.getElementById('delete-prov-btn')
+        //Boton de Limpiar
+        //AQUIIII
+        //Cuando le apliques el evento de seleccionar la fila
+        //Usas registrar.style.display = 'none'
+        //Para que se ponga invisible
+        limpiar = document.getElementById('btn-clear')
+
+        limpiar.onclick = function(){
+            nombre.value = ''
+            unid_cons.value = ''
+            unid_comp.value = ''
+            registrar.style.display = 'flex'
+        }
 
         //Tabla de los Producto
         //Categorias: Producto-Unidades-Cantidad-Precio
