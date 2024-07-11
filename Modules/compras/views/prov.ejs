@@ -110,7 +110,7 @@
                         </div>
                         <form class="form-data">
                             <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text">
-                            <input placeholder="RIF" class="input-data rif-prov" type="text">
+                            <input maxlength="10" placeholder="RIF" class="input-data rif-prov" type="text">
                             <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text">
                             <input placeholder="Correo" class="input-data correo-prov" type="text">
                             <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text">
@@ -164,6 +164,19 @@
         exit.onclick = function(){
             window.location.href = '/'
         }
+
+        //Validacion de Numeros
+        function validNumber(e){
+            if (isNaN(e.key)){
+                    e.preventDefault()
+            }
+        }
+
+        rif.addEventListener('keydown', (e)=>{
+            if (isNaN(e.key)){
+                    e.preventDefault()
+            }
+        })
     </script>
 </body>
 </html>
