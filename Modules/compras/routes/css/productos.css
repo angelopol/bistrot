@@ -169,6 +169,13 @@ main {
     background-color: #0F624A;
     color: white;
 }
+
+#btn-modi:hover:disabled {
+    cursor:not-allowed;
+    background-color: white;
+    color: #02676F;
+}
+
 .carrito {
     display: flex;
     justify-content: center;
