@@ -21,7 +21,7 @@ Content-Type: application/json
 }
 
 ### Eliminar un producto por su id
-DELETE http://localhost:1234/compras/producto/8
+DELETE http://localhost:1234/prod/Leche
 
 ### Crear una orden de compra
 POST http://localhost:1234/historial

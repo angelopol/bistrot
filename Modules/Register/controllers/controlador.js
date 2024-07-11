@@ -1,6 +1,6 @@
 //import { HistorialModel } from "../models/modeloCompra/historial.js";
 //import { ProductoModel } from "../models/modeloCompra/Productos.js";
-import { HistorialValidaschema } from "../schemas/ValidacionHistorial.js"
+import {validarHistorial} from "../schemas/ValidacionHistorial.js"
 
 export class HistorialController {
     constructor ({historialModel}){
@@ -81,13 +81,14 @@ export class ProductoController{
         return res.json(updatedProducto)
 
     }
+
+    //Metodo para borrar un producto
     delete = async (req,res)=>{
         //Lo deje aqui  
-        const {id} = req.params
-        console.log(id)
-        const mensaje = await this.productoModel.eliminar({id})
+        const {nombre} = req.params
+        await this.productoModel.eliminar({nombre})
 
-        return res.json(mensaje)
+        res.redirect('/prod')
     }
 
 }

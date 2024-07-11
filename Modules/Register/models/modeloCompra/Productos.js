@@ -82,18 +82,18 @@ export class ProductoModel{
     }
   }
   // Funcion que elimina un producto
-  static async eliminar({id}){
-    
+  static async eliminar({nombre}){
+    console.log(nombre)
     try{
-      const [result]=await connection.execute(
-        'DELETE FROM ProductoCompras WHERE ID_Producto = ?',
-        [id]
+      await connection.execute(
+        'DELETE FROM ProductoCompras WHERE NombreP = ?',
+        [nombre]
       )
-      if (result.affectedRows > 0) {
-        return { message: `Producto con id ${id} eliminado correctamente.` };
-    } else {
-        throw new Error(`No se encontró ningun producto con id ${id}.`);
-    }
+      /*if (result.affectedRows > 0) {
+        return { message: `Producto con nombre ${nombre} eliminado correctamente.` };
+      }else {
+        throw new Error(`No se encontró ningun producto con nombre ${nombre}.`);
+      }*/
     }catch(e){
       console.log(e)
       throw new Error('Error a eliminar el producto')

@@ -16,7 +16,7 @@ export const createApp = ({ productoModel,historialModel,proveedoresModel,solici
     const __dirname = path.dirname(__filename);
     app.set('view engine', 'ejs')
     app.use(methodOverride('_method'));
-    app.use(json())
+    app.use(json()) 
     app.use(cookieParser())
     app.use(corsMiddleware())
     app.use((req, res, next) => {authenticated(req, res, next)})

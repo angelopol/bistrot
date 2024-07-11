@@ -114,22 +114,37 @@
                             </tbody>
                         </table>
                     </div>
-                    <select id="select-prov">
-                        <option disabled selected>Producto</option>
-                        <% if (data) { %>
-                            <% for (var i = 0; i < data.length; i++) { %>
-                                <option value="<%= data[i].NombreP %>" ><%= data[i].NombreP %></option>
+                    <form action="/prod/:nombre" method="post" id="delete-form">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <select id="select-prod" class="input-data name-prov" name="NombreP">
+                            <option disabled selected>Producto</option>
+                            <% if (data) { %>
+                                <% for (var i = 0; i < data.length; i++) { %>
+                                    <option value="<%= data[i].NombreP %>" ><%= data[i].NombreP %></option>
+                                <% } %>
+                                
                             <% } %>
                             
-                        <% } %>
-                        
-                    </select>
-                    <button id="delete-prov-btn">Eliminar</button>
+                        </select>
+                        <input id="delete-prov-btn" type="submit" value="Eliminar">
+                    </form>
+                    
                 </div>
             </div>
         </div>
     </main> 
     <script>
+        //Evento para agregar dinamicamente el id para poder utilizar la ruta /soli/:
+        document.getElementById('delete-form').addEventListener('submit', function (e) {
+            const select = document.getElementById('select-prod');
+            const selectedOption = select.options[select.selectedIndex];
+            const nombre = selectedOption.value;
+
+            if (nombre) {
+                this.action = `/prod/${nombre}?_method=DELETE`;
+            }
+        });
+
         //Tabla de producto
         const tabla = document.getElementById('tabla-comp')
         function seleccionarFila(event){
