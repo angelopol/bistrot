@@ -98,24 +98,33 @@
                         <h3 id="title-detaile-prov">Detalles</h3>
                         <select id="select-prov">
                             <option disabled selected>Proveedor</option>
+                            <% if (data) { %>
+                                <% for (var i = 0; i < data.length; i++) { %>
+                                    <option value="<%= data[i].Nombre_Empresa %>" ><%= data[i].Nombre_Empresa %></option>
+                                <% } %>
+                                
+                            <% } %>
                         </select>
                     </div>
                     <button id="delete-prov-btn">Eliminar</button>
                     <div id="horizontal-divider"></div>
                     <div class="data">
-                        <div class="data-box-title">
-                            <h3 id="data-title">Datos del Proveedor</h3>
-                            <button id="data-title-btn">Agregar</button>
-                            <button id="data-title-modi">Modificar</button>
-                        </div>
-                        <form class="form-data">
-                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text">
-                            <input maxlength="10" placeholder="RIF" class="input-data rif-prov" type="text">
-                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text">
-                            <input placeholder="Correo" class="input-data correo-prov" type="text">
-                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text">
-                            <input max="11" placeholder="Telefono" class="input-data tlf-prov" type="text">
-                            <input placeholder="Producto" class="input-data prod-prov" type="text">
+                        
+                        <form action="/prov" method="post" id="form1" class="form-data">
+                            <input type="hidden" name="_method" value="PATCH">
+                            <div class="data-box-title">
+                                <h3 id="data-title">Datos del Proveedor</h3>
+                                
+                                <input type="submit" id="data-title-btn" value="Agregar">
+                                <input type="submit" id="data-title-modi" value="Modificar">
+                            </div>
+                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa">
+                            <input maxlength="10" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
+                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal">
+                            <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo">
+                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa">
+                            <input max="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
+                            <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd">
                         </form>
                     </div>
                 </div>
@@ -123,6 +132,57 @@
         </div>
     </main> 
     <script>
+        // Selecciona el formulario específico por su id
+        var form = document.getElementById('form1');
+
+        //variable donde se guarda el id (QUE ES EL RIF) de los productos cuando se selecciona un registro en la tabla
+        let idd
+        
+        // Agrega el evento 'submit' al formulario
+        form.addEventListener('submit', function(event) {
+            alert(idd)
+            // Selecciona el select dentro del formulario actual
+            var select = form.querySelector('select');
+            // Si el botón presionado tiene el valor "Modificar"
+            if (event.submitter.value === 'Modificar') {
+                // Cambia la acción del formulario para incluir el ID y usar el método PATCH
+                form.action = '/prov/' + idd + '?_method=PATCH';
+            } else {
+                // Si el botón presionado no es "Modificar", usa la acción por defecto
+                form.action = '/prov';
+            }
+        });
+        
+        //Esto lo tengo que MODIFICARRR
+        //Aqui tengo que hacer una peticion a la base de datos para obtener los datos y poder modificarlos
+        const tabla = document.getElementById('tabla-prov')
+        function seleccionarFila(event){
+            const filaSeleccionada = event.target.closest('tbody tr')
+            if (filaSeleccionada ){
+                
+                idd = filaSeleccionada.cells[0].textContent
+                nombre_prov.value = idd
+                rif.value = "E"
+                direc_fis.value = "P"
+                correo.value = "A"
+                nombre_res.value = "L"
+                tlf.value = "E"
+                producto.value = "E"
+
+
+            }
+            
+        }
+
+        //Evento para poder clickear tabla
+        tabla.addEventListener('click',seleccionarFila)
+
+
+
+
+
+
+
         let proveedores = document.getElementById('tabla-prov')
         //Tabla Contiene un thead y un tbody, tbody vacio, rellenar
         let provbody = document.getElementById('tabla-prov-body')

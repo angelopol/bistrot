@@ -35,8 +35,7 @@ CREATE TABLE `bistrot`.`ProductoCompras` (
     UNIQUE ( `NombreP`)
 );
 
-DROP TABLE bistrot.productocompras;
-
+DELETE FROM ProductoCompras WHERE ID_Producto=5;
 INSERT INTO bistrot.ProductoCompras (NombreP, Unidades, Consumo)
 VALUES
 ('Café Colombiano', 'bultos', 'kg'),
@@ -58,6 +57,7 @@ CREATE TABLE `bistrot`.`Proveedores` (
     PRIMARY KEY (`RIF`),
     UNIQUE (`Nombre_Empresa`, `Correo`, `Nombre_Responsa`, `Tlf`)
 );
+SELECT * FROM Proveedores WHERE RIF = '321456789';
 
 select * from bistrot.proveedores;
 
@@ -77,3 +77,11 @@ CREATE TABLE `bistrot`.`Solicitudes` (
     PRIMARY KEY (`ID_Requisicion`),
     UNIQUE (`ID_Requisicion`, `FECHA`)
 );
+
+INSERT INTO Solicitudes (Departamento,ID_Empleado,Cantidad,Nombre_Producto,FECHA,Aprobada,DETALLE) VALUES('Inventario',4,5,'Pasta',NOW(),1,'Necesidad de una escoba');
+
+select * from bistrot.solicitudes;
+
+
+
+DROP TABLE bistrot.solicitudes;
