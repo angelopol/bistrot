@@ -147,6 +147,7 @@ body{
     width: 77%; 
     margin-left: 20px; 
     margin-bottom: 60px;
+    transform: translateY(-50px);
 }
 
 .content-area { 
@@ -174,7 +175,8 @@ body{
     font-size: 20px; 
     font-weight: 500; 
     line-height: 150%; 
-    transform: translateX(550px);
+    transform: translateY(-50px);
+    /*transform: translateX(550px);*/
 }
 
 .search-input { 
@@ -205,7 +207,7 @@ body{
 
 .results-container { 
     margin-top: 32px; 
-    transform: translateY(-100px);
+    transform: translateY(-55px);
     text-align: justify;
 
 }
@@ -398,13 +400,6 @@ a{
     .content-wrapper { 
         max-width: 100%; 
     }
-
-
-
-
-
-
-
 
 .events-column { 
     display: flex; 

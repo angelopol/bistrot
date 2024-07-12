@@ -22,11 +22,14 @@
     margin-top: 37px;
     gap: 20px;
     justify-content: space-between;
+    transform: translateX(-100px);
 }
   
 .form-group {
     display: flex;
     flex-direction: column;
+    
+
 }
   
 .form-label {
@@ -84,8 +87,10 @@
     padding: 16px 32px;
     font: 500 20px Inter, sans-serif;
     cursor: pointer;
-    transform: translate(135px);
+    transform: translate(80px);
 }
+
+
   
 @media (max-width: 991px) {
     .page-title,
