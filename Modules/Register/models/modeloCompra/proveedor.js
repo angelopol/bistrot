@@ -35,13 +35,14 @@ export class ProveedoresModel{
       Correo,
       nombre_responsa,
       Tlf,
-      ProveedorProd
+      ProveedorProd,
+      precio
     } = input
 
     try{
       await connection.execute(
-        'INSERT INTO Proveedores(RIF,Nombre_empresa,Dire_Fiscal,Correo,Nombre_responsa,Tlf,Productos_proveedor) VALUES(?,?,?,?,?,?,?)',
-        [rif,nombre_empresa,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd]
+        'INSERT INTO Proveedores(RIF,Nombre_empresa,Dire_Fiscal,Correo,Nombre_responsa,Tlf,Productos_proveedor,Precio_udcompra) VALUES(?,?,?,?,?,?,?,?)',
+        [rif,nombre_empresa,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd,precio]
       )
 
     }catch(e){
@@ -74,13 +75,14 @@ export class ProveedoresModel{
       Correo,
       nombre_responsa,
       Tlf,
-      ProveedorProd
+      ProveedorProd,
+      precio
     } = result
     
     try{
       await connection.execute(
-        'UPDATE Proveedores SET  Nombre_empresa = ?, Dire_Fiscal = ?, Correo = ?,Nombre_responsa = ?, Tlf = ?, Productos_proveedor = ? WHERE  RIF = ?',
-        [nombre_empresa,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd,id]
+        'UPDATE Proveedores SET  Nombre_empresa = ?, Dire_Fiscal = ?, Correo = ?,Nombre_responsa = ?, Tlf = ?, Productos_proveedor = ?, Precio_udcompra=? WHERE  RIF = ?',
+        [nombre_empresa,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd,precio,id]
       )
 
     }catch(e){

@@ -91,6 +91,7 @@
                                         <td style="display:none"><%= data[i].Nombre_Responsa %></td>
                                         <td style="display:none"><%= data[i].Tlf %></td>
                                         <td style="display:none"><%= data[i].Dire_Fiscal %></td>
+                                        <td style="display:none"><%= data[i].Precio_udcompra %></td>
                                     </tr>
                                 <% } %>
                             <% } %>
@@ -133,6 +134,7 @@
                             <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa">
                             <input max="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
                             <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd">
+                            <input placeholder="Precio por ud.Compra" class="input-data pre-prov" type="text" name="precio">
                         </form>
                     </div>
                 </div>
@@ -187,7 +189,7 @@
                 nombre_res.value = filaSeleccionada.cells[4].textContent
                 tlf.value = filaSeleccionada.cells[5].textContent
                 producto.value = filaSeleccionada.cells[6].textContent
-
+                precioo.value = filaSeleccionada.cells[7].textContent
 
             }
             
@@ -222,6 +224,8 @@
         //Validar que si el proveedor ya existe que lo modifique
 
         //Inputs - Datos del Proveedor
+        let precioo = document.getElementsByClassName('pre-prov')[0]
+        //Precio por unidad de compra
         let nombre_prov = document.getElementsByClassName('name-prov')[0]
         //Nombre Del proveedor
         let rif = document.getElementsByClassName('rif-prov')[0]
