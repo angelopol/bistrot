@@ -44,26 +44,20 @@ export class ProveedoresModel{
         [rif,nombre_empresa,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd]
       )
 
-      const [proveedor] = await connection.execute("SELECT * FROM Proveedores WHERE RIF = ?",[rif]);
-      return proveedor
     }catch(e){
       console.log(e)
       throw new Error('Error creando el proveedor')
     }
   }
   // Funcion que elimina un proveedor
-  static async eliminar({id}){
+  static async eliminar({nombre}){
 
     try{
-      const [result] = await connection.execute(
-        'DELETE FROM Proveedores WHERE RIF = ?',
-        [id]
+      await connection.execute(
+        'DELETE FROM Proveedores WHERE Nombre_empresa = ?',
+        [nombre]
       )
-      if (result.affectedRows > 0) {
-        return { message: `Producto con id ${id} eliminado correctamente.` };
-      }else {
-        throw new Error(`No se encontró ningun producto con id ${id}.`);
-      }
+      
     }catch(e){
       console.log(e)
       throw new Error('Error a eliminar el proveedor')
@@ -88,11 +82,7 @@ export class ProveedoresModel{
         'UPDATE Proveedores SET  Nombre_empresa = ?, Dire_Fiscal = ?, Correo = ?,Nombre_responsa = ?, Tlf = ?, Productos_proveedor = ? WHERE  RIF = ?',
         [nombre_empresa,Dire_Fiscal,Correo,nombre_responsa,Tlf,ProveedorProd,id]
       )
-      const[fila] = await connection.execute(
-        'SELECT * FROM Proveedores WHERE RIF = ?',
-        [id]
-      )
-      return fila[0]
+
     }catch(e){
       console.log(e)
       throw new Error('Error a Modificar los datos del proveedor')

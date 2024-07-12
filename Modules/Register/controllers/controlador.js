@@ -105,8 +105,8 @@ export class ProveedorController{
 
         
 
-        const newProveedor = await this.proveedoresModel.crear({input: req.body})
-        return res.json(newProveedor)
+        await this.proveedoresModel.crear({input: req.body})
+        res.redirect('/prov')
 
     }
     update = async (req,res)=>{
@@ -116,18 +116,18 @@ export class ProveedorController{
         const {id} = req.params
         console.log(result)
         console.log(id)
-        const updatedProveedor = await this.proveedoresModel.modificar({id,result})
+        await this.proveedoresModel.modificar({id,result})
 
-        return res.json(updatedProveedor)
+        res.redirect('/prov')
 
     }
     delete = async (req,res)=>{
         //Lo deje aqui  
-        const {id} = req.params
-        console.log(id)
-        const mensaje = await this.proveedoresModel.eliminar({id})
+        const {nombre} = req.params
+        console.log(nombre)
+        await this.proveedoresModel.eliminar({nombre})
 
-        return res.json(mensaje)
+        res.redirect('/prov')
     }
 
     getById = async (req,res)=>{

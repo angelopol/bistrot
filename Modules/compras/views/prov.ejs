@@ -100,17 +100,21 @@
                 <div class="right-side">
                     <div class="prov-details">
                         <h3 id="title-detaile-prov">Detalles</h3>
-                        <select id="select-prov">
-                            <option disabled selected>Proveedor</option>
-                            <% if (data) { %>
-                                <% for (var i = 0; i < data.length; i++) { %>
-                                    <option value="<%= data[i].Nombre_Empresa %>" ><%= data[i].Nombre_Empresa %></option>
+                        <form action="/prov/:nombre" method="post" id="delete-form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <select id="select-prov">
+                                <option disabled selected>Proveedor</option>
+                                <% if (data) { %>
+                                    <% for (var i = 0; i < data.length; i++) { %>
+                                        <option value="<%= data[i].Nombre_Empresa %>" ><%= data[i].Nombre_Empresa %></option>
+                                    <% } %>
+                                    
                                 <% } %>
-                                
-                            <% } %>
-                        </select>
+                            </select>
+                            <input id="delete-prov-btn" type="submit" value="Eliminar">
+                        </form>
                     </div>
-                    <button id="delete-prov-btn">Eliminar</button>
+                    
                     <div id="horizontal-divider"></div>
                     <div class="data">
                         
@@ -142,9 +146,20 @@
         //variable donde se guarda el id (QUE ES EL RIF) de los productos cuando se selecciona un registro en la tabla
         let idd
         
+        //Eliminar proveedor
+        document.getElementById('delete-form').addEventListener('submit', function (e) {
+            const select = document.getElementById('select-prov');
+            const selectedOption = select.options[select.selectedIndex];
+            const nombre = selectedOption.value;
+
+            if (nombre) {
+                this.action = `/prov/${nombre}?_method=DELETE`;
+            }
+        });
+        
         // Agrega el evento 'submit' al formulario
         form.addEventListener('submit', function(event) {
-            alert(idd)
+            
             // Selecciona el select dentro del formulario actual
             var select = form.querySelector('select');
             // Si el botón presionado tiene el valor "Modificar"
@@ -164,9 +179,9 @@
             const filaSeleccionada = event.target.closest('tbody tr')
             if (filaSeleccionada ){
                 
-                
+                idd = filaSeleccionada.cells[1].textContent
                 nombre_prov.value = filaSeleccionada.cells[0].textContent
-                rif.value =filaSeleccionada.cells[1].textContent
+                rif.value = filaSeleccionada.cells[1].textContent
                 direc_fis.value = filaSeleccionada.cells[2].textContent
                 correo.value = filaSeleccionada.cells[3].textContent
                 nombre_res.value = filaSeleccionada.cells[4].textContent
@@ -286,13 +301,14 @@
                 }
             }
         }
-
+        /* Esta validacion no es necesaria porque no se tienen que comprobar datos
+        
         btn_delete.onclick = function validar(event){
             if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
                 || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0){
                     alert("Se tiene que pasar los datos para poder eliminar al provvedor")
             }
-        }
+        }*/
 
 
 

@@ -17,8 +17,8 @@ export const createComprasRouter = ({productoModel,historialModel,proveedoresMod
   ComprasRouter.get('/',historialController.getAll)  
 
   ComprasRouter.post('/prov', proveedorController.create)
-  ComprasRouter.patch('/proveedores/:id', proveedorController.update)
-  ComprasRouter.delete('/proveedores/:id', proveedorController.delete)
+  ComprasRouter.patch('/prov/:id', proveedorController.update)
+  ComprasRouter.delete('/prov/:nombre', proveedorController.delete)
   ComprasRouter.get('/prov/:id', proveedorController.getById)
   ComprasRouter.get('/prov',proveedorController.getAll)
 
