@@ -55,7 +55,7 @@ export class pedidoController {
                 // hacen falta ingredientes
 
                 //actualizacmos el estatus de pedido a rechazado
-                let cambios = {status_pedido: "rechazado"}
+                let cambios = {status_pedido: 2}
                 const requestOptions = {
                     method: 'PUT', // Método HTTP para actualizar (puede ser PUT o PATCH dependiendo de tu API)
                     headers: {
@@ -110,7 +110,7 @@ export class pedidoController {
                         // no se cuenta con la maquinaria necesaria
     
                         //actualizacmos el estatus de pedido a rechazado
-                        let cambios = {status_pedido: "rechazado"}
+                        let cambios = {status_pedido: 2}
                         const requestOptions = {
                             method: 'PUT', // Método HTTP para actualizar (puede ser PUT o PATCH dependiendo de tu API)
                             headers: {
@@ -195,7 +195,7 @@ export class pedidoController {
         })        
 
         // cambiamos el estado a aceptado
-        let cambios = {status_pedido: "aceptado"}
+        let cambios = {status_pedido: 3}
         const requestOptions = {
             method: 'PUT', // Método HTTP para actualizar (puede ser PUT o PATCH dependiendo de tu API)
             headers: {
@@ -251,7 +251,7 @@ export class pedidoController {
         const {pedido_id} = req.query
 
         // cambiamos el estado a listo
-        let cambios = {status_pedido: "listo"}
+        let cambios = {status_pedido: 4}
         const requestOptions = {
             method: 'PUT', // Método HTTP para actualizar (puede ser PUT o PATCH dependiendo de tu API)
             headers: {

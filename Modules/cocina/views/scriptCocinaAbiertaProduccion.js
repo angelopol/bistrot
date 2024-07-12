@@ -22,7 +22,7 @@ async function actualizarPedidos() {
 
         // Iterar sobre los pedidos y actualizar las order-cards
         pedidos.forEach(pedido => {
-            if (pedido.status == "pendiente") {
+            if (pedido.status_pedido == 1) {
                 let cardsMesas = document.querySelectorAll(".order-card")
                 for (const cardMesa of cardsMesas) {
                     if (!cardMesa.classList.contains("ocupado")) {
@@ -58,12 +58,12 @@ if (idPedido == null){
 let idCardSeleccionada = idPedido 
 let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`)
 let pedido = await response.json()
-if (pedido.status == "aceptado"){
+if (pedido.status_pedido == 3){
     let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
     let cardMesaStatus = cardMesa.lastElementChild;
     cardMesaStatus.textContent = `ID pedido: ${idCardSeleccionada} \nEstatus: Cocinando`;
 }
-else if(pedido.status == "rechazado"){
+else if(pedido.status_pedido == 2){
     alert("No se cuenta con los recursos para realizar este pedido")
     let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
     let cardMesaStatus = cardMesa.lastElementChild;
@@ -186,7 +186,7 @@ cardPedidoStatus.textContent = ``;
 })
 
 
-// evento boton hacer de nuebo
+// evento boton hacer de nuevo
 let botonHacerNuevo = document.querySelector("#botonHacerNuevo")
 botonHacerNuevo.addEventListener("click" , async ()=> {
     if (idPedido == null){
@@ -196,12 +196,12 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
     let idCardSeleccionada = idPedido 
     let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`)
     let pedido = await response.json()
-    if (pedido.status == "aceptado"){
+    if (pedido.status_pedido == 3){
         let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
         let cardMesaStatus = cardMesa.lastElementChild;
         cardMesaStatus.textContent = `ID pedido: ${idCardSeleccionada} \nEstatus: Cocinando`;
     }
-    else if(pedido.status == "rechazado"){
+    else if(pedido.status_pedido == 2){
         alert("No se cuenta con los recursos para realizar este pedido")
         let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
         let cardMesaStatus = cardMesa.lastElementChild;
