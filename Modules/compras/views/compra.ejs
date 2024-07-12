@@ -93,7 +93,7 @@
                         <select id="select-prod">
                             <option disabled selected>Producto</option>
                         </select>
-                        <input id="input-cant" placeholder="Cantidad" type="text">
+                        <input maxlength="4" id="input-cant" placeholder="Cantidad" type="text">
                     </div>
                     <p class="help-comp">Indique el Proveedor del producto</p>
                     <select id="select-prov">
@@ -148,6 +148,15 @@
         //ComboBox del Producto seleccionado
         let cantidad = document.getElementById('input-cant')
         //Input de la cantidad del producto segun la unidad
+        cantidad.onkeypress = function(e) {
+            var regex = /^[0-9]+$/;
+            if (!e.key.match(regex)){
+                e.preventDefault();
+            }
+        };
+
+
+
         let selectproveedor = document.getElementById('select-prov')
         //Combobox del Proveedor del producto
         //Validar si el proveedor tiene ese producto
