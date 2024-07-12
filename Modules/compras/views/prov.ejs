@@ -87,6 +87,10 @@
                                         <td><%= data[i].Nombre_Empresa %></td>
                                         <td><%= data[i].RIF %></td>
                                         <td><%= data[i].Productos_Proveedor %></td>
+                                        <td style="display:none"><%= data[i].Correo %></td>
+                                        <td style="display:none"><%= data[i].Nombre_Responsa %></td>
+                                        <td style="display:none"><%= data[i].Tlf %></td>
+                                        <td style="display:none"><%= data[i].Dire_Fiscal %></td>
                                     </tr>
                                 <% } %>
                             <% } %>
@@ -160,14 +164,14 @@
             const filaSeleccionada = event.target.closest('tbody tr')
             if (filaSeleccionada ){
                 
-                idd = filaSeleccionada.cells[0].textContent
-                nombre_prov.value = idd
-                rif.value = "E"
-                direc_fis.value = "P"
-                correo.value = "A"
-                nombre_res.value = "L"
-                tlf.value = "E"
-                producto.value = "E"
+                
+                nombre_prov.value = filaSeleccionada.cells[0].textContent
+                rif.value =filaSeleccionada.cells[1].textContent
+                direc_fis.value = filaSeleccionada.cells[2].textContent
+                correo.value = filaSeleccionada.cells[3].textContent
+                nombre_res.value = filaSeleccionada.cells[4].textContent
+                tlf.value = filaSeleccionada.cells[5].textContent
+                producto.value = filaSeleccionada.cells[6].textContent
 
 
             }
