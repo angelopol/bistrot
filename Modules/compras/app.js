@@ -45,7 +45,7 @@ export const createApp = ({ productoModel,historialModel,proveedoresModel,solici
 
     app.get('/compra',(req,res)=>{
         //res.sendFile(path.join (__dirname,'routes','html','index.html'))
-        res.render('compra')
+        res.render('compra',{data2: null})
     });
 
     app.get('/prod',(req,res)=>{

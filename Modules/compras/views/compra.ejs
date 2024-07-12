@@ -75,14 +75,25 @@
                         <h3 id="title-table">Requisiciones</h3>
                         <thead>
                         <tr>
+                            <th class="comp-clase">ID</th>
                             <th class="comp-clase">Producto</th>
-                            <th class="comp-clase">Proveedor</th>
-                            <th class="comp-clase">Unidades</th>
                             <th class="comp-clase">Cantidad</th>
-                            <th class="comp-clase">Precio</th>
+                            
                         </tr>
                         </thead>
                         <tbody id="tabla-comp-body">
+                            <% if (data2) { %>
+                                
+                                <% for (var i = 0; i < data2.length; i++) { %>
+                                    <% if (data2[i].Aprobada == 1 && data2[i].Comprado == 0) { %>
+                                        <tr>
+                                            <td><%= data2[i].ID_Requisicion %></td>
+                                            <td><%= data2[i].Nombre_Producto %></td>
+                                            <td><%= data2[i].Cantidad %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>

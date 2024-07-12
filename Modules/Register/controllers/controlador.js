@@ -3,9 +3,17 @@
 import {validarHistorial} from "../schemas/ValidacionHistorial.js"
 
 export class HistorialController {
-    constructor ({historialModel}){
+    constructor ({historialModel,solicitudModel}){
         this.historialModel = historialModel
+        this.solicitudModel = solicitudModel
     }
+
+    getAllData2 = async (req,res)=>{
+        const requisicion = await this.solicitudModel.getReq()
+
+        res.render('compra',{data2: requisicion})
+    }
+
     create = async (req,res)=>{
         const result = validarHistorial(req.body)
 
@@ -114,8 +122,7 @@ export class ProveedorController{
         const result = req.body
 
         const {id} = req.params
-        console.log(result)
-        console.log(id)
+
         await this.proveedoresModel.modificar({id,result})
 
         res.redirect('/prov')
@@ -141,6 +148,7 @@ export class ProveedorController{
     getAll = async (req,res)=>{
         const proveedores = await this.proveedoresModel.listar()
         
+        
         res.render('prov',{data: proveedores});
          
     }
@@ -157,11 +165,6 @@ export class SolicitudController{
     create = async (req,res)=>{
         //me falta agregar las validaciones
         const {result} = req.body
-
-        console.log(req.body)
-
-        
-
         /*const newSolicitud =*/
         await this.solicitudModel.agregar({input: req.body})
         //return res.json(newSolicitud)
@@ -171,7 +174,7 @@ export class SolicitudController{
     update = async (req,res)=>{
         //me falta agregar las validaciones
         
-        console.log("Entree")
+        
         //console.log(req.params)
         await this.solicitudModel.modificar({input: req.body})
         res.redirect('/soli');

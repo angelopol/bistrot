@@ -40,8 +40,8 @@ export class SolicitudModel{
 
     try{
       await connection.execute(
-        'INSERT INTO Solicitudes(Departamento,ID_Empleado,Cantidad,Nombre_Producto,FECHA,Aprobada,DETALLE) VALUES(?,?,?,?,?,?,?)',
-        [depar,id_emp,cant,nombre_producto,fechaa,aprobacion,detalle]
+        'INSERT INTO Solicitudes(Departamento,ID_Empleado,Cantidad,Nombre_Producto,FECHA,Aprobada,DETALLE,Comprado) VALUES(?,?,?,?,?,?,?,?)',
+        [depar,id_emp,cant,nombre_producto,fechaa,aprobacion,detalle,aprobacion]
       )
 
       //const [producto] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = LAST_INSERT_ID()")

@@ -3,7 +3,7 @@ import { HistorialController, ProductoController, ProveedorController, Solicitud
 
 export const createComprasRouter = ({productoModel,historialModel,proveedoresModel,solicitudModel}) => {
   const ComprasRouter = Router()
-  const historialController = new HistorialController({historialModel})
+  const historialController = new HistorialController({historialModel,solicitudModel})
   const productoController = new ProductoController({productoModel,solicitudModel})
   const proveedorController = new ProveedorController({proveedoresModel})
   const solicitudController = new SolicitudController({solicitudModel})
@@ -30,6 +30,8 @@ export const createComprasRouter = ({productoModel,historialModel,proveedoresMod
   ComprasRouter.get('/soli',productoController.getAllData)
   //ComprasRouter.post('/soli',productoController.create)
 
+  //Ruta para presentar los datos de las solicitudes en la tabla en el apartado de realizar compra
+  ComprasRouter.get('/compra',historialController.getAllData2)
 
   return ComprasRouter
 }
