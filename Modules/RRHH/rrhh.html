@@ -68,8 +68,12 @@
               <h2 class="section-title">RRHH</h2>
               <form class="search-bar">
                 <label for="searchInput" class="visually-hidden">Buscar por nombre o código</label>
-                <input type="text" id="searchInput" class="search-input" placeholder="nombre o codigo" aria-label="Buscar por nombre o código">
+                <input type="text" id="searchInput" class="search-input" placeholder="Nombre o código" aria-label="Buscar por nombre o código">
                 <button type="submit" class="search-button">Buscar</button>
+
+              
+
+
               </form>
               <div class="results-container">
                 <div class="results-wrapper">
@@ -78,40 +82,40 @@
                       <div class="table-header">
                         <span class="header-name">Nombre y Apellido</span>
                         <div class="header-details">
-                          <span>codigo</span>
+                          <span>Código</span>
                           <span>Cargo</span>
                         </div>
                       </div>
-                      <div class="table-row">
+                      <div class="table-row" id="row-1">
                         <span class="row-name">Pakita la del Barrio</span>
                         <div class="row-details">
                           <span>00000</span>
                           <span>Gerente</span>
                         </div>
                       </div>
-                      <div class="table-row">
+                      <div class="table-row" id="row-2">
                         <span class="row-name">Karina</span>
                         <div class="row-details">
                           <span>00000</span>
                           <span>Gerente</span>
                         </div>
                       </div>
-                      <div class="table-row">
+                      <div class="table-row" id="row-3">
                         <span class="row-name">Row 3</span>
                         <div class="row-details">
                           <span>00000</span>
                           <span>Gerente</span>
                         </div>
                       </div>
-                      <div class="table-row">
+                      <div class="table-row" id="row-4">
                         <span class="row-name">Row 4</span>
                         <div class="row-details">
                           <span>00000</span>
                           <span>Gerente</span>
                         </div>
                       </div>
-                      <div class="table-row">
-                        <span class="row-name">Row 4</span>
+                      <div class="table-row" id="row-5">
+                        <span class="row-name">Row 5</span>
                         <div class="row-details">
                           <span>00000</span>
                           <span>Gerente</span>
@@ -124,8 +128,10 @@
                       </div>
                     </div>
                   </section>
+                  
+                  
 
-                  <!-- Modal para las vistas dela info de los empleados -->
+      
                     <div class="modal modal-hidden">
                       <header>
                         <h2 class="employee-id">GERENTE 00000</h2>
@@ -175,6 +181,7 @@
         </div>
       </div>
       <script src="js/rrhh.js"></script>
+      
 
 </body>
 </html>
