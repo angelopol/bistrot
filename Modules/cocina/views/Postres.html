@@ -8,7 +8,9 @@
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Monserrat';
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
         .menu-container {
             background-color: #fff;
@@ -18,7 +20,7 @@
         }
         .header {
             background-color: #013d1f;
-            display: flex;
+            display: inline-block;
             width: 100%;
             gap: 20px;
             color: #fff;
@@ -33,6 +35,10 @@
                 padding: 0 20px;
             }
         }
+        .icono{
+
+transform: translateX(-300%) translateY(-480%) scale(0.6);
+}
         .restaurant-name {
             letter-spacing: -0.24px;
             flex-grow: 1;
@@ -41,12 +47,21 @@
             font: 24px 'Krona One', sans-serif;
         }
         .user-info {
-            border-radius: 8px;
-            border: 1px solid #fff;
+            border-radius: var(--sds-size-radius-200);
+            border-color: rgba(255, 255, 255, 1);
+            border-style: solid;
+            border-width: 1px;
             background-color: #013d1f;
-            display: flex;
-            gap: 16px;
-            font-size: 16px;
+            display: inline-flex;
+            justify-content: flex-end ;
+            position: absolute;
+            right: 0;
+            width: 10%;
+            transform: translateY(-85%);
+            margin-right: 30px;
+            margin-bottom: 20px;
+            gap: 12px;
+            font-size: 15px;
             white-space: nowrap;
             padding: 8px 16px;
         }
@@ -69,17 +84,23 @@
             width: 24px;
         }
         .main-content {
+            position: relative;
+            padding-bottom: 56.25% ;
             border-radius: 15px;
-            box-shadow: 0 1px 32.5px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 1px 32.5px 5px rgba(0, 0, 0, 0.1);
             background-color: #fff;
             align-self: center;
             display: flex;
+            top: 0;
+            height: 100%;
+            left: 0;
             margin-top: 49px;
-            width: 100%;
+            width: 80%;
             max-width: 1314px;
+            max-height: 249px;
             align-items: center;
             justify-content: center;
-            padding: 70px 60px;
+            padding: 96px 60px;
         }
         @media (max-width: 991px) {
             .main-content {
@@ -94,6 +115,8 @@
             width: 100%;
             max-width: 1093px;
             flex-direction: column;
+            transform: scale(0.68) translateX(-20%);
+
         }
         @media (max-width: 991px) {
             .content-wrapper {
@@ -120,6 +143,7 @@
             flex-direction: column;
             font-weight: 700;
             white-space: nowrap;
+            transform: translateX(11%)translateY(12%);
         }
         @media (max-width: 991px) {
             .menu-title-container {
@@ -129,11 +153,14 @@
         .menu-title {
             color: #0f624a;
             font: 40px 'Poppins', sans-serif;
+            transform: translateX(12%) translateY(12%);
         }
         .menu-subtitle {
             color: #6c6c6c;
             margin-top: 15px;
             font: 15px 'Poppins', sans-serif;
+            transform: translateX(12%) translateY(-90%)
+
         }
 
         @media (max-width: 991px) {
@@ -167,6 +194,7 @@
             line-height: normal;
             width: 23%;
             margin-left: 0;
+            transform: translateX(12%) translateY(-13%) scale(1);
         }
         @media (max-width: 991px) {
             .menu-categories {
@@ -232,6 +260,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
+            transform: translateX(30%) translateY(-27%) scale(1.27);
+
         }
         @media (max-width: 991px) {
             .items-grid {
@@ -300,6 +330,8 @@
             
                 </div>
                 <div class="menu-content">
+            <img src="iconos_barra/icono_salida.png" class="icono" onclick= "window.location.href = 'produccion.html';" />
+
                     <div class="menu-layout">
                         <nav class="menu-categories">
                             

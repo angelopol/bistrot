@@ -1,6 +1,0 @@
-
-CREATE TABLE instrumento (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    funciona BOOLEAN NOT NULL 
-);

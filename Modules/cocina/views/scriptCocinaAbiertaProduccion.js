@@ -8,18 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('filter-active');
         });
     });
-
-    const actionButtons = document.querySelectorAll('.action-button');
-    actionButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            alert('Acción: ' + this.textContent);
-        });
-    });
-
-    const orderReadyButton = document.querySelector('.order-ready');
-    orderReadyButton.addEventListener('click', function() {
-        alert('Pedido marcado como listo');
-    });
 });
 
 async function actualizarPedidos() {
@@ -83,11 +71,23 @@ else if(pedido.status == "rechazado"){
 }
 })
 
-const pedidosContainers = document.getElementsByClassName("order-card") //cartas de pedidos
+const pedidosContainers = document.querySelectorAll(".order-card") //cartas de pedidos
 pedidosContainers.forEach(container => {
-container.addEventListener("click", async function () {
-    let idStringCardSeleccionada = this.getAtributte("id")
-    idPedido = parseInt(idStringCardSeleccionada.replace("#", "")) // Obtenemos el id del pedido
+    container.addEventListener("click", async function (e) {
+        console.log("hola")
+
+    //efecto de seleccionado
+    let otraVezMiDiv = document.querySelectorAll('.order-card');
+    otraVezMiDiv.forEach(otraVezOrden => {
+        if (!(otraVezOrden == e.target)){
+            otraVezOrden.classList.remove("clicked")
+        }
+    })
+    e.target.classList.toggle("clicked")    
+
+
+    let idStringCardSeleccionada = e.target.id
+    idPedido = idStringCardSeleccionada // Obtenemos el id del pedido
 
     fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`, {
         method: "GET",
@@ -121,7 +121,6 @@ container.addEventListener("click", async function () {
             // Iteramos el diccionario de pedidos para encontrar sus nombres
             let res = fetch(`http://localhost:1234/comidas/${platoId}`) // Se busca la receta en el modelo comida
             let nombrePlato = res.json()
-            pTag.textContent = `${pTag.textContent} , . ` // Elemento provisional que contiene la información de los platos pedidos
             
             let divItem = document.createElement("div")
             divItem.className = "order-item" // div que almacena el nombre y cantidad de platos
@@ -131,8 +130,8 @@ container.addEventListener("click", async function () {
             itemName.innerHTML = `${nombrePlato.nombre}` // span con el nombre del plato
 
             let itemDetail = document.createElement("span")
-            itemName.className = "item-detail"
-            itemName.innerHTML = `x${comidasPedido[platoId]}` // span con la cantidad del plato
+            itemDetail.className = "item-detail"
+            itemDetail.innerHTML = `x${comidasPedido[platoId]}` // span con la cantidad del plato
 
             divItem.appendChild(itemName)
             divItem.appendChild(itemDetail)
@@ -174,7 +173,7 @@ fetch(`http://localhost:1234/comidas/pedido-listo?pedido_id=${idPedido}`, {
   })
 })
 
-let devolverBoton = document.querySelector("#botonDeolver")
+let devolverBoton = document.querySelector("#botonDevolver")
 devolverBoton.addEventListener("click" , async ()=>{
 if (idPedido == null){
     alert("Seleccione un pedido")
@@ -184,4 +183,28 @@ let cardPedido = document.getElementById(`${idPedido}`)
 cardPedido.classList.remove("ocupado")
 let cardPedidoStatus = cardPedido.lastElementChild;
 cardPedidoStatus.textContent = ``;
+})
+
+
+// evento boton hacer de nuebo
+let botonHacerNuevo = document.querySelector("#botonHacerNuevo")
+botonHacerNuevo.addEventListener("click" , async ()=> {
+    if (idPedido == null){
+        alert("Seleccione un pedido")
+        return null
+    }
+    let idCardSeleccionada = idPedido 
+    let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`)
+    let pedido = await response.json()
+    if (pedido.status == "aceptado"){
+        let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
+        let cardMesaStatus = cardMesa.lastElementChild;
+        cardMesaStatus.textContent = `ID pedido: ${idCardSeleccionada} \nEstatus: Cocinando`;
+    }
+    else if(pedido.status == "rechazado"){
+        alert("No se cuenta con los recursos para realizar este pedido")
+        let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
+        let cardMesaStatus = cardMesa.lastElementChild;
+        cardMesaStatus.textContent = `ID pedido: ${idCardSeleccionada} \nEstatus: Rechazado`;
+    }
 })
