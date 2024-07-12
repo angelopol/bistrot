@@ -116,7 +116,6 @@ main {
 
 #delete-prov-btn {
     width: 100%;
-    height: 7%;
     background-color: white;
     border-radius: 5px;
     border-color: #02676F;
@@ -143,6 +142,7 @@ main {
     justify-content: space-between;
     align-items: center;
     gap: 5px;
+    margin-bottom: 5%;
 }
 
 #data-title-btn, #data-title-modi {
@@ -180,4 +180,14 @@ main {
 .input-data:focus {
     border-color: #02676F;
     padding: 15px 10px;
+}
+
+#delete-form {
+    gap: 5px;
+    display: flex;
+}
+
+#form1 {
+    display: flex;
+    flex-direction: column;
 }
