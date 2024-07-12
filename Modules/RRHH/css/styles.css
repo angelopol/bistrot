@@ -359,6 +359,14 @@ a{
     animation: scale-up-center 0.9s forwards; 
 }
 
+.nav-item:hover {
+    background-color: #0f624a;
+    color: #fff;
+ 
+}
+
+
+
 /* .modal.cerrar {
     animation: scale-down-center 0.9s forwards; 
     animation-fill-mode: forwards;
