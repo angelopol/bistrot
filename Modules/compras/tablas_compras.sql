@@ -54,14 +54,14 @@ CREATE TABLE `bistrot`.`Proveedores` (
     `Nombre_Responsa` VARCHAR(200) CHARACTER SET utf8 NOT NULL, -- Persona con la que se negocia
     `Tlf` VARCHAR(200) CHARACTER SET utf8 NOT NULL, -- Numero de teléfono del proveedor
     `Productos_Proveedor` VARCHAR(200) CHARACTER SET utf8 NOT NULL, -- Productos del proveedor
+    `Precio_udcompra` FLOAT NOT NULL, -- Precio por unidad de compra del producto
     PRIMARY KEY (`RIF`),
     UNIQUE (`Nombre_Empresa`, `Correo`, `Nombre_Responsa`, `Tlf`)
 );
-SELECT * FROM Proveedores WHERE RIF = '321456789';
+
 
 select * from bistrot.proveedores;
 
-DROP TABLE `bistrot`.`solicitudes`;
 
 select * from bistrot.solicitudes;
 -- Tabla de las solicitudes de las compras
@@ -81,7 +81,3 @@ CREATE TABLE `bistrot`.`Solicitudes` (
 INSERT INTO Solicitudes (Departamento,ID_Empleado,Cantidad,Nombre_Producto,FECHA,Aprobada,DETALLE) VALUES('Inventario',4,5,'Pasta',NOW(),1,'Necesidad de una escoba');
 
 select * from bistrot.solicitudes;
-
-
-
-DROP TABLE bistrot.solicitudes;
