@@ -71,7 +71,33 @@
                 <input type="text" id="searchInput" class="search-input" placeholder="Nombre o código" aria-label="Buscar por nombre o código">
                 <button type="submit" class="search-button">Buscar</button>
 
-              
+                <!-- Filtrar buscar por nombre y codigo SIN BS
+                <script>
+
+                  // que al buscar por nombre, se filtre los empleados que coincidan con el nombre
+                  // que al buscar por codigo, se filtre los empleados que coincidan con el codigo
+                  // que al dar click en el boton de ver, se muestre la informacion del empleado
+                  // que al dar click en el boton de eliminar, se elimine el empleado
+                  
+                  const searchInput = document.getElementById('searchInput');
+                  const searchButton = document.querySelector('.search-button');
+                  const tableRows = document.querySelectorAll('.table-row');
+                  
+                  searchButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const searchValue = searchInput.value.toLowerCase();
+                    tableRows.forEach(row => {
+                      const rowName = row.querySelector('.row-name').textContent.toLowerCase();
+                      const rowCode = row.querySelector('.row-details span').textContent;
+                      if (rowName.includes(searchValue) || rowCode.includes(searchValue)) {
+                        row.style.display = 'flex';
+                      } else {
+                        row.style.display = 'none';
+                      }
+                    });
+                  });
+                </script>
+                -->
 
 
               </form>
@@ -130,7 +156,6 @@
                   </section>
                   
                   
-
       
                     <div class="modal modal-hidden">
                       <header>
