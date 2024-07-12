@@ -78,7 +78,6 @@
                             <th class="comp-clase">ID</th>
                             <th class="comp-clase">Producto</th>
                             <th class="comp-clase">Cantidad</th>
-                            
                         </tr>
                         </thead>
                         <tbody id="tabla-comp-body">
@@ -107,9 +106,12 @@
                         <input maxlength="4" id="input-cant" placeholder="Cantidad" type="text">
                     </div>
                     <p class="help-comp">Indique el Proveedor del producto</p>
-                    <select id="select-prov">
-                        <option disabled selected>Proveedor</option>
-                    </select>
+                    <div class="box-prov">
+                        <select id="select-prov">
+                            <option disabled selected>Proveedor</option>
+                        </select>
+                        <input id="btn-filtrar" value="Filtrar" type="submit">
+                    </div>
                     <button id="confirm-compra-btn">Confirmar</button>
                 </div>
             </div>
@@ -167,6 +169,8 @@
         };
 
 
+        //AQUIIII
+        btn_filtro = document.getElementById('btn-filtrar')
 
         let selectproveedor = document.getElementById('select-prov')
         //Combobox del Proveedor del producto

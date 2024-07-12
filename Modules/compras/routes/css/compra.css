@@ -169,3 +169,21 @@ option {
     border-radius: 8px;
     height: 40%;
 }
+
+.box-prov {
+    gap: 5px;
+    display: flex;
+}
+
+#btn-filtrar {
+    width: 50%;
+    background-color: white;
+    font-family: 'Montserrat-Bold';
+    font-size: 0.8rem;
+    color: #0F624A;
+    border-style: solid;
+    border-color: #0F624A;
+    border-width: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
