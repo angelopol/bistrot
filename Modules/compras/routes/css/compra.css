@@ -93,6 +93,20 @@ main {
     gap: 20px;
 }
 
+#select-prod {
+    appearance: none;
+    width: 60%;
+    border-color: #D9D9D9;
+    color: #828282;
+    padding: 10px;
+    outline: none;
+    border-width: 2px;
+    font-size: 0.8rem;
+    border-color: #D9D9D9;
+    border-style: solid;
+    border-radius: 5px;
+}
+
 select {
     appearance: none;
     width: 60%;
@@ -143,6 +157,7 @@ select:focus {
 
 .box-producto {
     display: flex;
+    gap: 5px;
     justify-content: space-between;
 }
 

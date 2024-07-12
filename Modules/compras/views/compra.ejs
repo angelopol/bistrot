@@ -96,14 +96,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="right-side">
+                <form class="right-side">
                     <h3 id="subtitle-comp">Proceso de Compra</h3>
                     <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
                     <div class="box-producto">
-                        <select id="select-prod">
-                            <option disabled selected>Producto</option>
-                        </select>
-                        <input maxlength="4" id="input-cant" placeholder="Cantidad" type="text">
+                        <input disabled placeholder="Producto" id="select-prod" type="text">
+                        <input disabled id="input-cant" placeholder="Cantidad" type="text">
                     </div>
                     <p class="help-comp">Indique el Proveedor del producto</p>
                     <div class="box-prov">
@@ -112,8 +110,8 @@
                         </select>
                         <input id="btn-filtrar" value="Filtrar" type="submit">
                     </div>
-                    <button id="confirm-compra-btn">Confirmar</button>
-                </div>
+                    <input value="Confirmar" type="submit" id="confirm-compra-btn">
+                </form>
             </div>
         </div>
 
