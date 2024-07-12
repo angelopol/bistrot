@@ -456,7 +456,7 @@
                 <div class="action-buttons">
                     <button class="action-button">Devolver orden</button>
                     <button class="action-button">Hacer de nuevo</button>
-                    <button class="action-button">PROCESAR</button>
+                    <button class="action-button" id="botonProcesar">PROCESAR</button>
                 </div>
             </section>
             <aside class="order-details">
@@ -522,11 +522,20 @@
 
         // PARTE MIA PARA LO DEL CLICK HECHA POR KIKE 
 
-        const miDiv = document.querySelector('.order-card');
+        const miDiv = document.querySelectorAll('.order-card');
 
-        miDiv.addEventListener('click', () => {
-            miDiv.classList.toggle('clicked');
-        });
+        miDiv.forEach(orden => {
+            orden.addEventListener("click" , (e) => {
+                otraVezMiDiv = document.querySelectorAll('.order-card');
+                otraVezMiDiv.forEach(otraVezOrden => {
+                    if (!(otraVezOrden == e.target)){
+                        otraVezOrden.classList.remove("clicked")
+                    }
+                })
+                e.target.classList.toggle("clicked")
+
+            })
+        })
     </script>
 </body>
 </html>
