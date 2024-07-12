@@ -437,6 +437,8 @@ body {
 
 .modal-content {
     background-color: #ffffff;
+    text-align: center;
+    align-content: center;
     color: #000;
     margin: 15% auto;
     padding: 20px;
@@ -471,7 +473,6 @@ body {
     font-family: 'Montserrat', sans-serif;
     justify-content: center;
     border-radius: 8px;
-    border: none;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     background-color: #0F624A;
     font-size: 15px;
@@ -482,4 +483,32 @@ body {
     cursor: pointer;
     border-width: 0.5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Esto es para quitar los spin en los inputs de type number*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+
+.tasa-dia {
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.apertura-cierre, .presupuesto {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
 }

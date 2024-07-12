@@ -3,6 +3,61 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const dropbtn = document.querySelector('.dropbtn');
     const dropdownContent = document.querySelector('.dropdown-content');
 
+    // obtener los valores de la vista de Gerente
+    const monto_apertura = document.querySelector(".apertura-cierre");
+    const monto_cierre = document.querySelector(".apertura-cierre");
+    const tasa_del_dia = document.querySelector(".tasa-dia");
+    const presupuesto = document.querySelector(".prespuesto");
+    const eventos = document.querySelector(".eventos");
+    const registro = document.querySelector("resgitro");
+
+    // seleccionar los botones para gestionar sus eventos de click
+    const btn_monto_apertura = document.querySelector(".btn-apertura-cierre");
+    const btn_monto_cierre = document.querySelector(".btn-apertura-cierre");
+    const btn_tasa_del_dia = document.querySelector(".btn-tasa-dia");
+    const btn_presupuesto = document.querySelector(".btn-prespuesto");
+    const btn_eventos = document.querySelector(".btn-eventos");
+    const btn_registro = document.querySelector(".btn-registro");
+
+
+    btn_monto_apertura.addEventListener("click", () => {
+        // obtenemos el valor del campo de texto
+        monto_apertura.value
+        
+    });
+
+    btn_monto_cierre.addEventListener("click", () => {
+        // obtenemos el valor del campo de texto
+        monto_cierre.value
+    });
+
+    btn_tasa_del_dia.addEventListener("click", () => {
+        // obtenemos el valor del campo de texto
+        tasa_del_dia.value
+    });
+
+    /*
+    btn_presupuesto.addEventListener("click", () => {
+        // obtenemos el valor del campo de texto
+        presupuesto.value
+    });
+    */
+
+    /*
+    btn_eventos.addEventListener("click", () => {
+        // obtenemos el valor del campo de texto
+        eventos.value
+    });
+    */
+
+    /*
+    btn_registro.addEventListener("click", () => {
+        // obtenemos el valor del campo de texto
+        registro.value
+    });
+    */
+
+
     dropbtn.addEventListener('click', () => {
         dropdown.classList.toggle('show');
     });
