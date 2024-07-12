@@ -163,9 +163,14 @@
         let btn_confirmar = document.getElementById('confirm-compra-btn')
         //Boton que redirigira a la de Compra Exitosa
 
+        //Validando boton click todos los campos llenos
         btn_confirmar.onclick = function(){
-            document.getElementById('principal').style.display = 'none'
-            document.getElementById('main').style.display = 'flex'
+            if(selectproducto.value == 'Producto' || cantidad.value == '' || selectproveedor.value == 'Proveedor'){
+                alert('Por favor, llene todos los campos')
+            }else{
+                document.getElementById('principal').style.display = 'none'
+                document.getElementById('main').style.display = 'flex'
+            }
         }
 
         let exit = document.getElementsByClassName('title-exit')[0]
