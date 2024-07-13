@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         button.addEventListener('click', (event) => {
             // Evita que el evento click se propague al contenedor padre
             event.stopPropagation();
-            
+
             // Encuentra el modal correspondiente al botón clicado
             const modal = button.nextElementSibling;
             if (modal && modal.tagName.toLowerCase() === 'dialog') {
@@ -58,7 +58,79 @@ document.addEventListener('DOMContentLoaded', (event) => {
             updateTotalAmount(itemPrice);
         }
     });
+
+    // Selecciona el botón de Cancelar
+    const cancelButtons = document.querySelectorAll('.cancel-button');
+
+    // Agrega el evento de clic a cada botón de Cancelar
+    cancelButtons.forEach(button => {
+        button.addEventListener('click', cancelOrder);
+    });
+
+    // Selecciona el botón de Realizar pedido
+    const placeOrderButton = document.querySelector('.confirm-button');
+
+    // Agrega el evento de clic
+    placeOrderButton.addEventListener('click', placeOrder);
 });
+
+function cancelOrder() {
+    // Selecciona todos los elementos de la orden
+    const orderItems = document.querySelectorAll('.order-item');
+
+    // Elimina cada elemento de la orden
+    orderItems.forEach(item => {
+        const itemId = item.id;
+        removeFromOrder(item);
+        const menuItem = document.getElementById(itemId);
+        menuItem.classList.remove('disabled');
+    });
+
+    // Restablece el total del pedido a 0
+    updateTotalAmount(-parseFloat(document.getElementById('total-amount').textContent));
+
+    // Muestra un mensaje de "Pedido cancelado"
+    alert('¡Pedido cancelado!');
+    // Redirige al usuario a la página Mesonero_Zona_General.html
+    window.location.href = '../Vista_Meseros/Mesero_Zona_General.html';
+}
+
+function salir() {
+    // Redirige al usuario a la página de inicio o a cualquier otra página
+    window.location.href = 'index.html';
+}
+
+function placeOrder() {
+    // Obtén la información del pedido (elementos, cantidad, total, etc.)
+    const orderItems = document.querySelectorAll('.order-item');
+    const orderData = {
+        items: [],
+        total: parseFloat(document.getElementById('total-amount').textContent),
+        tableId: document.getElementById('table-id').value // Obtén el ID de la mesa seleccionada
+    };
+
+    orderItems.forEach(item => {
+        orderData.items.push({
+            name: item.querySelector('.order-item-name').textContent,
+            quantity: parseInt(item.querySelector('.quantity-value').textContent),
+            price: parseFloat(item.price)
+        });
+    });
+
+    // Envía los datos del pedido al servidor o redirige al usuario a la página de confirmación
+    sendOrderToServer(orderData);
+}
+
+function sendOrderToServer(orderData) {
+    // Aquí puedes implementar la lógica de envío de datos al servidor
+    console.log('Enviando pedido al servidor:', orderData);
+
+    // Muestra un mensaje de éxito
+    alert('¡Pedido realizado con éxito! El pedido se ha enviado a la mesa ' + orderData.tableId);
+
+    // Restablece el pedido
+    cancelOrder();
+}
 
 function cambiar(IDdestino){
     let destino = document.getElementById(IDdestino);
@@ -106,7 +178,7 @@ function removeFromOrder(button) {
 
     origen.forEach(div => {
         if (div.id == itemToRemove.id)
-            div.classList.remove('disabled'); 
+            div.classList.remove('disabled');
     });
 
     const itemPrice = parseFloat(itemToRemove.price);
