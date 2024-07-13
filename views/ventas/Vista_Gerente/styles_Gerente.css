@@ -8,6 +8,7 @@ body {
     box-sizing: border-box;
     height: 70%;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 
@@ -156,7 +157,7 @@ body {
 .main-section {
     width: 90%;
     margin-left: 20px;
-    margin-top: 5px;
+    margin-top: 0px;
 }
 
 @media (max-width: 991px) {
@@ -197,7 +198,8 @@ body {
     font-size: 40px;
     color: #0F624A;
     font-weight: 600;
-    
+    margin-top: 20px;
+    margin-bottom: 20px;
     letter-spacing: -0.68px;
     line-height: 110%;
     padding: 0 20px;
@@ -358,9 +360,10 @@ body {
 
 .stats-container {
     display: flex;
-    gap: 42px;
-    margin: 20px;
+    gap: 10px;
+    margin: 10px;
     width: 96%;
+    align-items: center;
 
   }
 
@@ -388,7 +391,7 @@ body {
     letter-spacing: -0.4px;
     margin-top: 0px;
     margin-bottom: 18px;
-    font: 600 40px/1.1 'Montserrat', sans-serif;
+    font: 600 30px/1.1 'Montserrat', sans-serif;
 }
 
 .stats-change {
@@ -451,6 +454,7 @@ body {
     max-width: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: show 0.4s;
+    
 }
 
 @keyframes show {
