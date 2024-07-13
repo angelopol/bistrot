@@ -19,7 +19,7 @@ body {
 }
 
 .header {
-    background-color: #3f51b5;
+    background-color: #006b36;
     color: #ffffff;
     padding: 20px;
     border-radius: 12px 12px 0 0;
@@ -44,7 +44,7 @@ body {
 }
 
 .button {
-    background-color: #3f51b5;
+    background-color: #006b36;
     color: #ffffff;
     padding: 10px 20px;
     border: none;
@@ -54,7 +54,7 @@ body {
 }
 
 .button:hover {
-    background-color: #303f9f;
+    background-color: #005c2e;
 }
 
 .modal-content {
@@ -87,7 +87,7 @@ body {
 }
 
 .modal-content button[type="submit"] {
-    background-color: #3f51b5;
+    background-color: #006b36;
     color: #ffffff;
     padding: 10px 20px;
     border: none;
@@ -97,5 +97,5 @@ body {
 }
 
 .modal-content button[type="submit"]:hover {
-    background-color: #303f9f;
+    background-color: #005c2e;
 }
