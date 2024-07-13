@@ -1,6 +1,6 @@
 import z from 'zod';
 
-const validacionInventarioMesas = z.object({
+const validacion_Inventario_Mesas = z.object({
     descripcion: z.string({
         required_error: 'La descripción es requerida',
         invalid_type_error: 'La descripción debe ser un texto',
@@ -20,7 +20,7 @@ const validacionInventarioMesas = z.object({
 })
 
 export function validarInventarioMesas(datos) {
-    return validacionInventarioMesas.safeParse(datos);
+    return validacion_Inventario_Mesas.safeParse(datos);
 }
     
     
