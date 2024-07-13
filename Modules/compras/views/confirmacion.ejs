@@ -71,25 +71,28 @@
                 <h2 id="title-prov">Orden de Compra</h2>
             </div>
             <div class="dashboard">
-                <div class="formulario">
-                    <h3 class="subtitle">Producto</h3>
-                    <p id="producto"></p>
-                    <h3 class="subtitle">Fecha de Compra</h3>
-                    <p id="fecha"></p>
-                    <h3 class="subtitle">Cantidad</h3>
-                    <p id="cantidad"></p>
-                    <h3 class="subtitle">Total(IVA)</h3>
-                    <p id="total"></p>
-                    <h3 class="subtitle">Numero de orden</h3>
-                    <p id="orden"></p>
-                </div>
-                <div class="confirmacion">
-                    <img class="foto-cart" src="../resources/check.png" alt="Carrito">
-                    <p class="confirm-msg">¿Desea Confirmar su compra?</p>
-                    <input id="btn-regis" type="submit" value="Confirmar">
-                    <input id="btn-cancel" type="submit" value="Cancelar">
-                </div>
-                
+                <form action="/compra/confirmacion" method="post" id="form1">
+
+                    <input type="hidden" name="_method" value="PATCH">
+                    <div class="formulario">
+                        <h3 class="subtitle">Producto</h3>
+                        <p id="producto"></p>
+                        <h3 class="subtitle">Fecha de Compra</h3>
+                        <p id="fecha"></p>
+                        <h3 class="subtitle">Cantidad</h3>
+                        <p id="cantidad"></p>
+                        <h3 class="subtitle">Total(IVA)</h3>
+                        <p id="total"></p>
+                        <h3 class="subtitle">Numero de orden</h3>
+                        <p id="orden"></p>
+                    </div>
+                    <div class="confirmacion">
+                        <img class="foto-cart" src="../resources/check.png" alt="Carrito">
+                        <p class="confirm-msg">¿Desea Confirmar su compra?</p>
+                        <input id="btn-regis" type="submit" value="Confirmar">
+                        <input id="btn-cancel" type="submit" value="Cancelar">
+                    </div>
+                </form>
             </div>
         </div>
     </main> 

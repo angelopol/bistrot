@@ -22,7 +22,7 @@ export class HistorialController {
         //const input = result.data
         console.log(req.body)
         await this.historialModel.agregar({input: req.body})
-        res.redirect('/')
+        res.redirect('/compra/confirmacion')
     }
 
     getAll = async (req,res)=>{
