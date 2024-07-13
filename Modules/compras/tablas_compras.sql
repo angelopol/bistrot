@@ -74,6 +74,7 @@ CREATE TABLE `bistrot`.`Solicitudes` (
     `FECHA` DATETIME NOT NULL, -- Fecha en la que se hizo la solicitud
     `Aprobada` boolean not null, -- Valor booleano para identificar si esta aprobada o no
     `DETALLE` TEXT(255) , -- Justificación
+    `Comprado` boolean not null, -- Valor booleano para saber si ya se compro la requisicion
     PRIMARY KEY (`ID_Requisicion`),
     UNIQUE (`ID_Requisicion`, `FECHA`)
 );
