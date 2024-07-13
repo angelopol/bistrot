@@ -6,7 +6,7 @@ USE bistrot;
 CREATE TABLE `reserva` (
   `numero_reserva` int NOT NULL,
   `ID_mesa` BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
-  `Confirmado` tinyint NOT NULL,
+  `Confirmado` boolean NOT NULL,
   `cantidad_personas` int NOT NULL,
   `ID_cliente` BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
   `fecha_inicio` datetime NOT NULL,
@@ -39,9 +39,9 @@ CREATE TABLE `lista_espera` (
 ) 
 SELECT * FROM bistrot.lista_espera;
 
-CREATE TABLE `cliente` (
+CREATE TABLE `reserva_mesas` (
   `numero_reserva` int NOT NULL,
   `id_mesa` BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
   
 )
-SELECT * FROM bistrot.cliente;
+SELECT * FROM bistrot.reserva_mesas;
