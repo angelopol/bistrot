@@ -6,11 +6,11 @@ import { corsMiddleware } from 'file:///C:/Users/Usuario/OneDrive/Documentos/cur
 //import { routes } from './routes/routes.js' 
 import { authenticated } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/auth.js'
 import bodyParser from 'body-parser'
-import { createReservasRouter } from './routes/compras.js'
+import { createReservasRouter } from ''
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
 
-export const createApp = ({ productoModel,historialModel,proveedoresModel,solicitudModel }) => {
+export const createApp = ({ }) => {
     const app = express()
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
