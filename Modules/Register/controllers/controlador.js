@@ -1,7 +1,9 @@
 //import { HistorialModel } from "../models/modeloCompra/historial.js";
 //import { ProductoModel } from "../models/modeloCompra/Productos.js";
 import {validarHistorial} from "../schemas/ValidacionHistorial.js"
-import { ValidarProducto } from "../schemas/ValidacionProducto.js"
+import { ValidarProducto,validarProductoM } from "../schemas/ValidacionProducto.js"
+import { ValidarProv,ValidarProvM } from "../schemas/validacionProv.js"
+import { ValidarSolicitudes,ValidarSolicitudesM } from "../schemas/ValidacionSolicitud.js"
 
 export class HistorialController {
     constructor ({historialModel,solicitudModel,proveedoresModel}){
@@ -18,14 +20,16 @@ export class HistorialController {
     }
 
     create = async (req,res)=>{
-        //const result = validarHistorial(req.body)
-
-        //const input = result.data
         const{
             id
         } = req.body
-        
-        const orden = await this.historialModel.agregar({input: req.body})
+        const result = validarHistorial(req.body)
+        if(!result.success){
+            res.redirect('/compra')
+        }else{
+            await this.historialModel.crear({input: req.body})
+            res.redirect('/compra')
+        }
         
         res.render('confirmacion',{dato: id,dato2: orden})
     }
@@ -77,7 +81,6 @@ export class ProductoController{
     */
 
     create = async (req,res)=>{
-        //me falta agregar las validaciones
         const result = ValidarProducto(req.body)
         console.log(result)
         if (!result.success) {
@@ -91,13 +94,16 @@ export class ProductoController{
     }
     update = async (req,res)=>{
         //me falta agregar las validaciones
-        const result = req.body
-
+        const result = validarProductoM(req.body)
         const {id} = req.params
         console.log(result)
         console.log(id)
-        await this.productoModel.modificar({id,result}) 
-        res.redirect('/prod')
+        if(!result.success){
+            res.redirect('/prod')
+        }else{
+            await this.productoModel.modificar({id,result}) 
+            res.redirect('/prod')
+        }
         
 
     }
@@ -119,26 +125,26 @@ export class ProveedorController{
         this.solicitudModel = solicitudModel
     }
     create = async (req,res)=>{
-        //me falta agregar las validaciones
-        const {result} = req.body
-
+        const result = ValidarProv(req.body)
         console.log(req.body)
-
-        
-
-        await this.proveedoresModel.crear({input: req.body})
-        res.redirect('/prov')
+        if(!result.success){
+            res.redirect('/prov')
+        }else{
+            await this.proveedoresModel.crear({input: req.body})
+            res.redirect('/prov')
+        }
 
     }
     update = async (req,res)=>{
-        //me falta agregar las validaciones
-        const result = req.body
-
+        const result = ValidarProvM(req.body)
         const {id} = req.params
 
-        await this.proveedoresModel.modificar({id,result})
-
-        res.redirect('/prov')
+        if(!result.success){
+            res.redirect('/prov')
+        }else{
+            await this.proveedoresModel.modificar({id,result})
+            res.redirect('/prov')
+        }
 
     }
     delete = async (req,res)=>{
@@ -185,21 +191,24 @@ export class SolicitudController{
     
 
     create = async (req,res)=>{
-        //me falta agregar las validaciones
-        const {result} = req.body
-        /*const newSolicitud =*/
-        await this.solicitudModel.agregar({input: req.body})
-        //return res.json(newSolicitud)
-        res.redirect('/soli');
+        const result = ValidarSolicitudes(req.body)
+        if(!result.success){
+            res.redirect('/soli');
+        }else{
+            await this.solicitudModel.agregar({input: req.body})
+            res.redirect('/soli');
+        }
 
     }
     update = async (req,res)=>{
-        //me falta agregar las validaciones
-        
-        
-        //console.log(req.params)
-        await this.solicitudModel.modificar({input: req.body})
-        res.redirect('/soli');
+        const result = ValidarSolicitudesM(req.body)
+        if(!result.success){
+            res.redirect('/soli')
+        }else{
+            await this.solicitudModel.modificar({input: req.body})
+            res.redirect('/soli');
+        }
+
         
 
     }
