@@ -8,7 +8,7 @@ CREATE TABLE `reserva` (
   `ID_mesa` BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
   `Confirmado` boolean NOT NULL,
   `cantidad_personas` int NOT NULL,
-  `ID_cliente` BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
+  `ID_cliente` BINARY(16) DEFAULT (UUID_TO_BIN(UUID())),
   `fecha_inicio` datetime NOT NULL,
   `fecha_fin` datetime NOT NULL,
   `tipo_de_evento` TEXT NOT NULL,

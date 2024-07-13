@@ -1,0 +1,74 @@
+.contenidop {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    gap: 10px;
+}
+
+.left-side {
+    box-shadow: 0 0 5px rgba(50, 50, 50, 0.1);
+    height: 60vh;
+    width: 40vw;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.right-side {
+    box-shadow: 0 0 5px rgba(50, 50, 50, 0.1);
+    height: 60vh;
+    width: 20vw;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+    list-style:none;
+    padding: 0;
+}
+
+.btn-list {
+    margin-top: 10%;
+    padding: 10px;
+    appearance: none;
+    border-radius: 5px;
+    background-color: #0F624A;
+    border:none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.5s;
+    width: 100%;
+}
+
+.btn-list:hover {
+    background-color: #137b5d;
+}
+
+.date-box {
+    display: flex;
+    gap: 10px;
+}
+
+#fecha {
+    border-radius: 5px;
+    border-color: #DADADA;
+    border-style: solid;
+    padding: 5px;
+}
+
+.list-fecha {
+    height: 60%;
+    border-style: solid;
+    width: 80%;
+    border-radius: 10px;
+    padding: 5px;
+    border-color: #DADADA;
+}
