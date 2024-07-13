@@ -1,6 +1,7 @@
 //import { HistorialModel } from "../models/modeloCompra/historial.js";
 //import { ProductoModel } from "../models/modeloCompra/Productos.js";
 import {validarHistorial} from "../schemas/ValidacionHistorial.js"
+import { ValidarProducto } from "../schemas/ValidacionProducto.js"
 
 export class HistorialController {
     constructor ({historialModel,solicitudModel,proveedoresModel}){
@@ -77,14 +78,15 @@ export class ProductoController{
 
     create = async (req,res)=>{
         //me falta agregar las validaciones
-        const {result} = req.body
-
-        console.log(req.body)
-
+        const result = ValidarProducto(req.body)
+        console.log(result)
+        if (!result.success) {
+            res.redirect('/prod')
+        } else {
+            await this.productoModel.crear({input: req.body})
+            res.redirect('/prod')
+        }
         
-
-        await this.productoModel.crear({input: req.body})
-        res.redirect('/prod')
 
     }
     update = async (req,res)=>{
