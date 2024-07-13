@@ -20,14 +20,23 @@ export class HistorialController {
         //const result = validarHistorial(req.body)
 
         //const input = result.data
-        console.log(req.body)
+        const{
+            id
+        } = req.body
+        
         await this.historialModel.agregar({input: req.body})
-        res.redirect('/compra/confirmacion')
+        res.render('confirmacion',{dato: id})
     }
 
     getAll = async (req,res)=>{
         const ordenes = await this.historialModel.listar()
         res.render('index',{data: ordenes});
+    }
+
+    delete = async (req,res)=>{
+        await this.historialModel.eliminar()
+        console.log("Se eliminooo")
+        res.redirect('/compra')
     }
 }
 
@@ -190,6 +199,11 @@ export class SolicitudController{
         res.redirect('/soli');
         
 
+    }
+    updateCompra = async (req,res)=>{
+        const {id} = req.params
+        await this.solicitudModel.modificarCompra({id})
+        res.redirect('/compra')
     }
     delete = async (req,res)=>{
         //Lo deje aqui  

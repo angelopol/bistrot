@@ -69,6 +69,17 @@ export class SolicitudModel{
       throw new Error("Error al eliminar la solicitud")
     }
   }
+
+  //Funcion para cambiar el estado de la solicitud a comprado
+  static async modificarCompra({id}){
+    let comprado = true
+    try {
+      await connection.execute('UPDATE Solicitudes SET Comprado=? WHERE ID_Requisicion = ?',[comprado,id])
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   //Funcion que modifica una solicitud
   static async modificar({input}){
     const {id_req} = input

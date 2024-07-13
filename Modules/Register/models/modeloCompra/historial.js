@@ -22,7 +22,7 @@ export class HistorialModel{
       proveedor
      } = input
 
-     console.log(input)
+     
 
     const fecha = new Date()
     let prov = []
@@ -48,6 +48,14 @@ export class HistorialModel{
     }catch(e){
       console.log(e)
       throw new Error("Error agregando la compra al historial")
+    }
+  }
+
+  static async eliminar(){
+    try {
+      await connection.execute('DELETE FROM Historial WHERE ID = LAST_INSERT_ID()')
+    } catch (error) {
+      console.log(error)
     }
   }
 }

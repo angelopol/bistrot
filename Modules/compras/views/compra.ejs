@@ -118,45 +118,16 @@
                         
                     </div>
                     <input value="Comprar" type="submit" id="confirm-compra-btn">
-                    <input style="display: none;" id="id-solicitud" readonly type="text">
+                    <input style="display: none;" id="id-solicitud" readonly type="text" name="id">
                 </form>
             </div>
         </div>
 
-        <div style="display: none;" class="main-confirmation" id="main">
-            <div class="header-title">
-                <img class="exit-icon" src="../resources/Icono-Back.svg" alt="Icono - Exit">
-                <h2 id="header-title">Orden de Compra</h2>
-            </div>
-            <div class="content-area">
-                <div class="form-section">
-                    <h3 class="section-title">Producto</h3>
-                    <p id="product"></p>
-                    <h3 class="section-title">Fecha de Compra</h3>
-                    <p id="date"></p>
-                    <h3 class="section-title">Cantidad</h3>
-                    <p id="quantity"></p>
-                    <h3 class="section-title">Precio del Producto</h3>
-                    <p id="price"></p>
-                    <h3 class="section-title">Saldo Previo</h3>
-                    <p id="previous-balance"></p>
-                    <h3 class="section-title">Saldo Actual</h3>
-                    <p id="current-balance"></p>
-                    <h3 class="section-title">Numero de orden</h3>
-                    <p id="order-number"></p>
-                </div>
-                <div class="confirmation-section">
-                    <img class="cart-image" src="../resources/check.png" alt="Carrito">
-                    <p class="confirmation-message">Compra realizada con Exito</p>
-                    <button id="back-button">Regresar</button>
-                </div>
-                
-            </div>
-        </div>
+        
         
     </main>
     <script >
-        
+        let campoId = document.getElementById('id-solicitud')
 
         const tabla = document.getElementById('tabla-comp')
         function seleccionarFila(event){
@@ -168,6 +139,7 @@
                 
                 
                 //modificar.disabled = false
+                campoId.value = idd
                 selectproducto.value = product
                 cantidad.value = cant
                 
@@ -222,23 +194,23 @@
         let atras = document.getElementsByClassName('exit-icon')[0]
         //Boton de Atras Confirmacion
 
-        atras.onclick = function(){
+        /*atras.onclick = function(){
             document.getElementById('principal').style.display = 'flex'
             document.getElementById('main').style.display = 'none'
-        }
+        }*/
 
         exit.onclick = function(){
             window.location.href = '/'
         }
 
-        let producto = document.getElementById('product');
-        let fecha = document.getElementById('date');
-        let cantidad_confirmada = document.getElementById('quantity');
-        let precio = document.getElementById('price');
-        let saldo_previo = document.getElementById('previous-balance');
-        let saldo = document.getElementById('current-balance');
-        let orden = document.getElementById('order-number');
-        let regresar = document.getElementById('back-button');
+        //let producto = document.getElementById('product');
+        //let fecha = document.getElementById('date');
+        //let cantidad_confirmada = document.getElementById('quantity');
+        //let precio = document.getElementById('price');
+        //let saldo_previo = document.getElementById('previous-balance');
+        //let saldo = document.getElementById('current-balance');
+        //let orden = document.getElementById('order-number');
+        //let regresar = document.getElementById('back-button');
     </script>
 </body>
 </html>

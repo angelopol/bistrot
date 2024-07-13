@@ -71,8 +71,7 @@
                 <h2 id="title-prov">Orden de Compra</h2>
             </div>
             <div class="dashboard">
-                <form action="/compra/confirmacion" method="post" id="form1">
-
+                <form action="/compra/confirmacion/:id" method="post" id="form1">
                     <input type="hidden" name="_method" value="PATCH">
                     <div class="formulario">
                         <h3 class="subtitle">Producto</h3>
@@ -91,12 +90,31 @@
                         <p class="confirm-msg">¿Desea Confirmar su compra?</p>
                         <input id="btn-regis" type="submit" value="Confirmar">
                         <input id="btn-cancel" type="submit" value="Cancelar">
+                        <input style="display: none;" id="id-solicitud" readonly type="text" name="id" value="<%= dato %>">
                     </div>
                 </form>
             </div>
         </div>
     </main> 
     <script>
+        var form = document.getElementById('form1');
+        
+        
+        
+        // Agrega el evento 'submit' al formulario
+        form.addEventListener('submit', function(event) {
+            let idd = document.getElementById('id-solicitud').value;
+            alert(idd)
+            if (event.submitter.value === 'Confirmar') {
+                console.log("Entreeee")
+                console.log(idd)
+                // Cambia la acción del formulario para incluir el ID y usar el método PATCH
+                form.action = '/compra/confirmacion/' + idd + '?_method=PATCH';
+            } else {
+                // Si el botón presionado no es "Modificar", usa la acción por defecto
+                form.action = '/compra/confirmacion' + '?_method=DELETE';
+            }
+        });
         //Textos donde Ingresar los datos
         producto = document.getElementById('producto')
         fecha = document.getElementById('fecha')
