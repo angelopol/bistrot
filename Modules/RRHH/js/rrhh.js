@@ -28,6 +28,7 @@ const botonMostrarEmpleado = document.querySelector(".action-view")
 const modal = document.querySelector(".modal");
 const closeModalButton = document.querySelector(".cerrar-modal");
 
+
 botonMostrarEmpleado.addEventListener("click", function() {
   modal.classList.add("revelar");
 });
@@ -36,3 +37,6 @@ botonMostrarEmpleado.addEventListener("click", function() {
 closeModalButton.addEventListener("click", function() {
   modal.classList.remove("revelar");
 });
+
+
+
