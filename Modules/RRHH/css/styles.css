@@ -266,6 +266,7 @@ body{
     display: flex; 
     width: 100%; 
     padding: 18px 78px 18px 0; 
+    cursor:  pointer;
 }
 
 .row-name { 
