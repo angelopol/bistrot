@@ -1,11 +1,6 @@
 import express, { json } from 'express' // require -> commonJS
-import crypto from 'node:crypto'
 import {comidasRouter} from "./routes/comidas.js"
 import {corsMiddlewares} from "./middlewares/cors.js"
-
-// import comidas from './comidas.json' --> no podemos importar un json directamente con ES modules
-
-//importamos el json simulando un require, ver el archivo utils
 
 
 
