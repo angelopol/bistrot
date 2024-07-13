@@ -40,3 +40,71 @@ closeModalButton.addEventListener("click", function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const searchInput = document.getElementById('searchInput'); 
+const searchButton = document.querySelector('.search-button'); 
+const tableRows = document.querySelectorAll('.table-row'); 
+
+searchButton.addEventListener('click', function(event) {
+  event.preventDefault(); 
+  const searchTerm = searchInput.value.toLowerCase(); 
+
+  tableRows.forEach(row => {
+    const employeeName = row.querySelector('.row-name').textContent.toLowerCase(); 
+    const employeeCode = row.querySelector('.row-details span:first-child').textContent; 
+
+    if (employeeName.includes(searchTerm) || employeeCode.includes(searchTerm)) {
+      row.style.display = 'flex'; 
+    } else {
+      row.style.display = 'none'; 
+    }
+  });
+
+});
+
