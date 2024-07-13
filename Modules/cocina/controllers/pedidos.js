@@ -147,7 +147,7 @@ export class pedidoController {
                         const requestOptions = {
                             method: 'PUT', 
                             headers: {
-                            'Content-Type': 'application/json' o
+                            'Content-Type': 'application/json' 
                             },
                             body: JSON.stringify(cambios) 
                         };
