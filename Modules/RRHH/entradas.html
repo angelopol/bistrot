@@ -69,6 +69,13 @@
               <label for="employee-name" class="form-label">Nombre del empleado</label>
               <input type="text" id="employee-name" class="form-input" placeholder="Nombre del empleado" />
             </div>
+            <script>
+              // validacion de input del nombre, no permite numeros, solo letras y espacios, no permite caracteres especiales
+              document.getElementById('employee-name').addEventListener('input', function() {
+                this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+              });
+
+            </script>
             <div class="form-group">
               <label for="employee-id" class="form-label">ID del empleado</label>
               <input type="text" id="employee-id" class="form-input" placeholder="ID del empleado" />
@@ -77,7 +84,14 @@
               <label for="employee-ci" class="form-label">Cédula de identidad</label>
               <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
             </div>
+            <script>
+              // validacion de input de cedula, solo permite numeros, no permite letras ni caracteres especiales
+              document.getElementById('employee-ci').addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+              });
+            </script>
           </div>
+          
           <div class="form-row">
             <button type="button" class="submit-button" onclick="registrarHora('llegada')">Registrar hora de llegada</button>
             <button type="button" class="submit-button" onclick="registrarHora('salida')">Registrar hora de salida</button>
