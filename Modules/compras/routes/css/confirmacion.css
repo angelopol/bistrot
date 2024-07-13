@@ -20,7 +20,7 @@ body {
     overflow: hidden;
 }
 
-.main-confirmation {
+#principal {
     font-family: 'Montserrat-Medium';
     color: #02676F;
     display: flex;
@@ -30,23 +30,18 @@ body {
     width: 75vw;
 }
 
-.header-title {
+.box-title-prov {
     display: flex;
     align-items: center;
     gap: 10px;
     font-family: 'Montserrat-Bold';
 }
 
-#header-title {
+#title-prov{
     font-size: 1.5rem;
 }
 
-.exit-icon {
-    cursor: pointer;
-    width: 40px;
-}
-
-.content-area {
+.dashboard {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -55,27 +50,23 @@ body {
     width: 100%;
 }
 
-.cart-image {
-    width: 45%;
-}
-
-.form-section {
+.formulario {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 40%;
 }
 
-.confirmation-section {
+.confirmacion {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 40%;
-    gap: 20px;
+    gap: 10px;
 }
 
-#back-button {
+#btn-regis {
     padding: 15px;
     width: 40%;
     background-color: #0F624A;
@@ -85,9 +76,10 @@ body {
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: all 0.5s;
 }
 
-.cart-image {
+.foto-cart{
     width: 50%;
 }
 
@@ -101,4 +93,27 @@ body {
 
 #order-number {
     font-size: 0.5rem;
+}
+
+#btn-cancel {
+    padding: 15px;
+    width: 40%;
+    background-color: white;
+    color: #0F624A;
+    font-family: 'Montserrat-Bold';
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border-color: #0F624A;
+    border-width: 3px;
+    border-style: solid;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+#btn-regis:hover, #btn-cancel:hover {
+    width: 50%;
+}
+
+#btn-regis:active, #btn-cancel:active {
+    transform: scale(0.90);
 }

@@ -6,6 +6,8 @@
     <title>Bistrot - Compras</title>
     <link rel="stylesheet" href="../css/side.css">
     <link rel="stylesheet" href="../css/confirmacion.css">
+    <!--Por si acaso no se aplica el de arriba-->
+    <link rel="stylesheet" href="../routes/css/confirmacion.css">
     <link rel="shortcut icon" href="../resources/icon.jpeg" type="image/x-icon">
 </head>
 <body>
@@ -66,7 +68,6 @@
 
         <div id="principal">
             <div class="box-title-prov">
-                <img class="title-exit" src="../resources/Icono-Back.svg" alt="Icono - Exit">
                 <h2 id="title-prov">Orden de Compra</h2>
             </div>
             <div class="dashboard">
@@ -88,8 +89,9 @@
                 </div>
                 <div class="confirmacion">
                     <img class="foto-cart" src="../resources/check.png" alt="Carrito">
-                    <p class="confirm-msg">Compra realizada con Exito</p>
-                    <button id="btn-regis">Regresar</button>
+                    <p class="confirm-msg">¿Desea Confirmar su compra?</p>
+                    <input id="btn-regis" type="submit" value="Confirmar">
+                    <input id="btn-cancel" type="submit" value="Cancelar">
                 </div>
                 
             </div>
@@ -108,20 +110,12 @@
         orden = document.getElementById('orden')
 
 
-        let exit = document.getElementsByClassName('title-exit')[0]
-        //Boton de Exit
 
-        exit.onclick = function(){
-            window.location.href = '/compra'
-        }
+        //Boton de Confirmacion
+        let btn_confirm = document.getElementById('btn-regis')
 
-
-        //Boton de Regresar
-        let btn_exit = document.getElementById('btn-regis')
-
-        btn_exit.onclick = function(){
-            window.location.href = '/compra'
-        }
+        //Boton de Cancelar
+        let btn_cancel = document.getElementById('btn-cancel')
     </script>
 </body>
 </html>
