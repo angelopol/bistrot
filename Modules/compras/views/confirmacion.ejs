@@ -75,15 +75,15 @@
                     <input type="hidden" name="_method" value="PATCH">
                     <div class="formulario">
                         <h3 class="subtitle">Producto</h3>
-                        <p id="producto"></p>
+                        <p id="producto"><%= dato2[0] %></p>
                         <h3 class="subtitle">Fecha de Compra</h3>
-                        <p id="fecha"></p>
+                        <p id="fecha"><%= dato2[1] %></p>
                         <h3 class="subtitle">Cantidad</h3>
-                        <p id="cantidad"></p>
+                        <p id="cantidad"><%= dato2[2] %></p>
                         <h3 class="subtitle">Total(IVA)</h3>
-                        <p id="total"></p>
-                        <h3 class="subtitle">Numero de orden</h3>
-                        <p id="orden"></p>
+                        <p id="total"> <%= dato2[3] %> </p>
+                        <h3 class="subtitle">Condicion</h3>
+                        <p id="orden"><%= dato2[4] %></p>
                     </div>
                     <div class="confirmacion">
                         <img class="foto-cart" src="../resources/check.png" alt="Carrito">
@@ -106,8 +106,7 @@
             let idd = document.getElementById('id-solicitud').value;
             alert(idd)
             if (event.submitter.value === 'Confirmar') {
-                console.log("Entreeee")
-                console.log(idd)
+                
                 // Cambia la acción del formulario para incluir el ID y usar el método PATCH
                 form.action = '/compra/confirmacion/' + idd + '?_method=PATCH';
             } else {

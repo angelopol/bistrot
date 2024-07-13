@@ -44,6 +44,8 @@ export class HistorialModel{
         [fecha,condicion,nombreP,cantidad,pago,proveedor,autorizacion]
       )
 
+      const orden = [nombreP,fecha,cantidad,pago,condicion]
+      return orden
       
     }catch(e){
       console.log(e)

@@ -24,8 +24,9 @@ export class HistorialController {
             id
         } = req.body
         
-        await this.historialModel.agregar({input: req.body})
-        res.render('confirmacion',{dato: id})
+        const orden = await this.historialModel.agregar({input: req.body})
+        
+        res.render('confirmacion',{dato: id,dato2: orden})
     }
 
     getAll = async (req,res)=>{
@@ -35,7 +36,7 @@ export class HistorialController {
 
     delete = async (req,res)=>{
         await this.historialModel.eliminar()
-        console.log("Se eliminooo")
+        
         res.redirect('/compra')
     }
 }
