@@ -156,7 +156,7 @@ body {
 .main-section {
     width: 90%;
     margin-left: 20px;
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 @media (max-width: 991px) {
@@ -181,6 +181,8 @@ body {
 
 .sales-section {
     width: 100%;
+    margin: 0 0;
+    padding: 10px;
 }
 
 @media (max-width: 991px) {
@@ -234,6 +236,7 @@ body {
     line-height: 150%;
     margin: 70px auto 0;
     padding: 18px;
+    margin-top: 10px;
 
 }
 

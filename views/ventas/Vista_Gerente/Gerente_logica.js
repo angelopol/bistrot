@@ -106,3 +106,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 });
+
+//Grafica de las ventas
+let miCanvas = document.getElementById("myChart").getContext("2d");
+
+var chart = new Chart(miCanvas,{
+    type:"bar",
+    data:{
+        labels: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"],
+        datasets:[
+            {
+                label:"Ventas de la semana",
+                backgroundColor:"rgb(0,0,0)",
+                data:[12,39,5,30,23]
+            }
+        ]
+    }
+});

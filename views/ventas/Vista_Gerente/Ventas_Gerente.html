@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles_Gerente.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
    
     <title>Ventas</title>
@@ -73,7 +74,9 @@
           <div class="content-area">
             <div class="sales-section">
               <h2 class="sales-title">Ventas</h2>
-              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5ad227dc1d9041478bf65bad4fb8958ed9ea9df9c4ce1b5c5cec0287dbe97415?apiKey=a04e7bd234a9496eaf95e30022021dfe&" alt="Sales chart" class="sales-chart" />
+              <div class="chart">
+                <canvas id="myChart" width="400" height="300"></canvas>
+              </div>
             </div>
     
             <aside class="sidebar-right">
@@ -151,7 +154,7 @@
                         <span class="closeBtn" data-modal="modal5">&times;</span>
                         <h2>Registros</h2>
                         <p>Contenido de la caja xoxooxoxxoxo</p>
-                        <button class="btn-caja btn-resgitro">Actualiar</button>
+                        <button class="btn-caja btn-resgitro">Actualizar</button>
                     </div>
                   </div>
 
