@@ -303,7 +303,8 @@ body{
     background-color: #0f624a; 
     text-align: center; 
     margin: auto 0; 
-    padding: 5px 11px; 
+    padding: 7px 24px;
+    transform: translateX(70px);
     cursor: pointer;
     border: none;
 }
@@ -316,13 +317,14 @@ a{
 .action-view { 
     font-family: Inter, sans-serif; 
     justify-content: center; 
-    border-radius: 8px; 
+    border-radius: 50px; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
     background-color: #0f624a;
     padding: 7px 24px; 
     color: #fff;
     cursor: pointer;
     border: none;
+    transform: translateX(70px);
 }
 
 .cerrar-modal{
@@ -357,6 +359,14 @@ a{
     display: block;
     animation: scale-up-center 0.9s forwards; 
 }
+
+.nav-item:hover {
+    background-color: #0f624a;
+    color: #fff;
+ 
+}
+
+
 
 /* .modal.cerrar {
     animation: scale-down-center 0.9s forwards; 
