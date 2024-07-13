@@ -60,7 +60,7 @@ async function actualizarPedidos() {
 setInterval(actualizarPedidos, 15000); // Actualizar la vista de los pedidos cada 15 segundos (15000 milisegundos)
 
 //boton procesar
-var idPedido = null // Esta variable guarda los id de los contenedores de pedidos de que se seleccionen en las vistas que a su vez, coinciden con los id de los pedidos que guarda ventas en la base de datos
+var idPedido = "" // Esta variable guarda los id de los contenedores de pedidos de que se seleccionen en las vistas que a su vez, coinciden con los id de los pedidos que guarda ventas en la base de datos
 
 // obtenemos el boton procesar
 let botonProcesar = document.querySelector("#botonProcesar")
@@ -69,7 +69,7 @@ let botonProcesar = document.querySelector("#botonProcesar")
 botonProcesar.addEventListener("click" , async () => {
     // Evento asignado al botón de "Procesar". Se encarga de validar si se tienen ingredientes e instrumentos disponibles
 
-    if (idPedido == null){
+    if (idPedido == ""){
         alert("Seleccione un pedido")
         return null
     }
@@ -196,7 +196,7 @@ listoButton.addEventListener("click", async function () {
     // accedemos al contenedor que contiene el pedido seleccionado
     let cardSeleccionada = document.getElementById(idPedido.toString())
 
-    if (idPedido === null){
+    if (idPedido === ""){
         // Se verifica que haya un pedido seleccionado
         alert("Seleccione un pedido")
         return null
@@ -219,18 +219,20 @@ listoButton.addEventListener("click", async function () {
         cardPedido.classList.remove("ocupado")
         let cardPedidoStatus = cardPedido.lastElementChild;
         cardPedidoStatus.innerHTML = `ID pedido: ${idPedido}<br>Estatus: listo`; // Se muestra el cambio en la view
+        idPedido = ""
     })
     .catch(e => {
         console.error(`No se ha encontrado un pedido en la base de datos con el ID dado.`, e)
     })
     })
 
-// le agregamos un evento al boton devolver, que sirve para quitar de las vistas las ordenes rechazdas
+// le agregamos un evento al boton devolver, que sirve para quitar de las vistas las ordenes rechazadas
 let devolverBoton = document.querySelector("#botonDevolver")
 devolverBoton.addEventListener("click" , async ()=>{
+    console.log("hola")
     // Evento que elimina de la carta seleccionada un pedido
 
-    if (idPedido == null){
+    if (idPedido == ""){
         alert("Seleccione un pedido")
         return null
     }
@@ -245,6 +247,7 @@ devolverBoton.addEventListener("click" , async ()=>{
     cardPedido.classList.remove("ocupado")
     let cardPedidoStatus = cardPedido.lastElementChild;
     cardPedidoStatus.textContent = ``;
+    idPedido = ""
 })
 
 
@@ -252,7 +255,7 @@ devolverBoton.addEventListener("click" , async ()=>{
 let botonHacerNuevo = document.querySelector("#botonHacerNuevo")
 botonHacerNuevo.addEventListener("click" , async ()=> {
 
-    if (idPedido == null){
+    if (idPedido == ""){
         alert("Seleccione un pedido")
         return null
     }

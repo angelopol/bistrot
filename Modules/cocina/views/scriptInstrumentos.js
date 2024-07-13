@@ -1,4 +1,8 @@
+
+// obtenemos el input donde se colocan los id de los intrumentos que se quieren reportar
 const input = document.getElementById('searchInput');
+
+// hacemos que solo puedan ser numeros mayores a cero
 input.addEventListener('input', function () {
     //validacion del input para el input del id
 
@@ -16,11 +20,11 @@ async function funcionBotonReporte(id){
     // Opciones de la solicitud fetch
     let cambio = {funciona_estado: 0}
     const requestOptions = {
-        method: 'PUT', // Método HTTP para actualizar 
+        method: 'PUT', 
         headers: {
-        'Content-Type': 'application/json' // Tipo de contenido que estás enviando
+        'Content-Type': 'application/json' 
         },
-        body: JSON.stringify(cambio) // Convertir el objeto data a JSON
+        body: JSON.stringify(cambio) 
     };
 
 
@@ -34,24 +38,26 @@ async function funcionBotonReporte(id){
       })
       .then(data => {
         console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
-        // Puedes hacer lo que necesites con la respuesta de la actualización aquí
+        
       })
       .catch(error => {
         console.error('Fetch error:', error);
-        // Manejar el error de la solicitud
+       
       });
 }
 
 async function obtenerObjetosCocina(){
   // Función que hace una petición a inventario y retorna una lista con los instrumentos
 
+    // con este endpoint solicitamos a inventario todos los instrumentos que tienen guardados en su tabla de general
     const response = await fetch(`http://localhost:3000/api/general`); /*Importar Modulo externo Inventario*/
     if (!response.ok){
         throw new Error('No se pudo obtener los objetos de gneeral');
     }
 
-    let objetos = await response.json()
-    let instrumentosCocina = []
+
+    let objetos = await response.json() // esta variable guardaria todo los objetos
+    let instrumentosCocina = [] // con esta variable guardamos todos los objetos cuyo tipo sea igual a equipoCocina, basicamente los intrumentos que pertenezcan al modulo de cocina/bar
     objetos.forEach(objeto => {
         if (objeto.tipo == "equipoCocina"){
             instrumentosCocina.push(objeto)
@@ -60,13 +66,14 @@ async function obtenerObjetosCocina(){
     return instrumentosCocina
 }
 
+// con esta funcion actualizamos en la tabla para que aparezcan los instrumentos de cocina
 async function actualizarFilas() {
   // Función que actualiza las filas de la tabla de la view
 
     let tableBody = document.getElementById("tBody")
     tableBody.innerHTML = "" // Se eliminan las filas
     
-    let instrumentos = obtenerObjetosCocina()
+    let instrumentos = obtenerObjetosCocina() // esta variable guarda los instrumentos de inventario que pertenecen a cocina
     instrumentos.forEach(instrumento => {
       // Por cada instrumento se agrega una fila al tbody de la tabla
 
@@ -76,7 +83,7 @@ async function actualizarFilas() {
 
       let celdaId = document.createElement("td") 
       celdaId.className = "row-cell" 
-      celdaId.textContent = `${instrumento.id}`
+      celdaId.textContent = `${instrumento.id_general}`
 
       let celdaNombre = document.createElement("td") 
       celdaNombre.className = "row-cell-name" 
@@ -84,10 +91,10 @@ async function actualizarFilas() {
 
       let celdaFunciona = document.createElement("td") 
       celdaFunciona.className = "row-cell"
-      if (instrumento.funciona_estado === 1) {
+      if (instrumento.funciona_estado == 1) {
         celdaFunciona.textContent = `Funciona`
       }
-      else if (instrumento.funciona_estado === 0) {
+      else if (instrumento.funciona_estado == 0) {
         celdaFunciona.textContent = `No funciona`
       }
       // Se agregan las celdas con los datos a la fila
@@ -99,6 +106,7 @@ async function actualizarFilas() {
     })
 }
 
+// agregamos el evento al boton reportar
 let reportarButton = document.querySelector(".report-button")
 reportarButton.addEventListener("click", function () {
   // Función que toma el id del input, reporta el fallo del instrumento y muestra los cambios en la view 
