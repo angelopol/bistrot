@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/entradas.css">
+    <title>Recursos Humanos</title>
+</head>
+<body>
+  <header class="header">
+    <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
+  </header>
+  <div class="content-wrapper">
+    <div class="main-content">
+      <nav class="sidebar">
+        <ul class="nav-menu">
+          <!-- Navigation items here -->
+        </ul>
+      </nav>
+      <main class="registra-entradas">
+        <h1 class="page-title">Entradas de empleados</h1>
+        <form class="employee-registration">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="employee-name" class="form-label">Nombre del empleado</label>
+              <input type="text" id="employee-name" class="form-input" placeholder="Nombre del empleado" />
+            </div>
+            <div class="form-group">
+              <label for="employee-id" class="form-label">ID del empleado</label>
+              <input type="text" id="employee-id" class="form-input" placeholder="ID del empleado" />
+            </div>
+            <div class="form-group">
+              <label for="employee-ci" class="form-label">Cédula de identidad</label>
+              <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
+            </div>
+          </div>
+          <div class="form-row">
+            <button type="button" class="submit-button" onclick="registrarHora('llegada')">Registrar hora de llegada</button>
+            <button type="button" class="submit-button" onclick="registrarHora('salida')">Registrar hora de salida</button>
+            <button type="button" class="submit-button" onclick="importarRegistros()">Importar registro de llegadas</button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+  <script src="js/entradas.js"></script>
+</body>
+</html>
