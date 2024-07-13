@@ -96,19 +96,27 @@
                         </tbody>
                     </table>
                 </div>
-                <form class="right-side">
+                <form class="right-side" id="form1" method="post" action="/compra">
                     <h3 id="subtitle-comp">Proceso de Compra</h3>
                     <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
                     <div class="box-producto">
-                        <input disabled placeholder="Producto" id="select-prod" type="text">
-                        <input disabled id="input-cant" placeholder="Cantidad" type="text">
+                        <input  placeholder="Producto" id="select-prod" type="text" name="nombreP">
+                        <input  id="input-cant" placeholder="Cantidad" type="text" name="cantidad">
                     </div>
                     <p class="help-comp">Indique el Proveedor del producto</p>
                     <div class="box-prov">
-                        <select id="select-prov">
+                        <select id="select-prov" name="proveedor">
                             <option disabled selected>Proveedor</option>
+                            
+                            <% if (data3 !== undefined && data3 !== null) { %>
+                                
+                                <% for (var i = 0; i < data3.length; i++) { %>
+                                    <option value="<%= data3[i].Nombre_Empresa %>" ><%= data3[i].Nombre_Empresa %></option>
+                                <% } %>
+                                
+                            <% } %>
                         </select>
-                        <input id="btn-filtrar" value="Filtrar" type="submit">
+                        
                     </div>
                     <input value="Confirmar" type="submit" id="confirm-compra-btn">
                 </form>
@@ -148,6 +156,28 @@
         
     </main>
     <script >
+        
+
+        const tabla = document.getElementById('tabla-comp')
+        function seleccionarFila(event){
+            const filaSeleccionada = event.target.closest('tbody tr')
+            if (filaSeleccionada ){
+                idd = filaSeleccionada.cells[0].textContent
+                const product = filaSeleccionada.cells[1].textContent
+                const cant = filaSeleccionada.cells[2].textContent
+                
+                
+                //modificar.disabled = false
+                selectproducto.value = product
+                cantidad.value = cant
+                
+            }
+            
+        }
+
+        //Evento para poder clickear tabla
+        tabla.addEventListener('click',seleccionarFila)
+
         //Tabla de los Producto
         //Categorias: Producto-Unidades-Cantidad-Precio
         let productos = document.getElementById('tabla-comp')

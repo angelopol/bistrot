@@ -163,7 +163,6 @@ select:focus {
 
 option {
     appearance: none;
-    background-color: red;
 }
 
 .help-comp {

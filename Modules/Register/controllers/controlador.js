@@ -3,26 +3,26 @@
 import {validarHistorial} from "../schemas/ValidacionHistorial.js"
 
 export class HistorialController {
-    constructor ({historialModel,solicitudModel}){
+    constructor ({historialModel,solicitudModel,proveedoresModel}){
         this.historialModel = historialModel
         this.solicitudModel = solicitudModel
+        this.proveedoresModel = proveedoresModel
     }
 
     getAllData2 = async (req,res)=>{
         const requisicion = await this.solicitudModel.getReq()
+        const proveedores = await this.proveedoresModel.listar()
 
-        res.render('compra',{data2: requisicion})
+        res.render('compra',{data2: requisicion,data3: proveedores})
     }
 
     create = async (req,res)=>{
-        const result = validarHistorial(req.body)
+        //const result = validarHistorial(req.body)
 
-        if(!result.success){
-            return res.status(400).json({ error: JSON.parse(result.error.message) })
-        }
-        const input = result.data
-        const Historial = await historialModel.agregar({input})
-        res.status(201).json(Historial)
+        //const input = result.data
+        console.log(req.body)
+        await this.historialModel.agregar({input: req.body})
+        res.redirect('/')
     }
 
     getAll = async (req,res)=>{
@@ -102,8 +102,9 @@ export class ProductoController{
 }
 
 export class ProveedorController{
-    constructor ({proveedoresModel}){
+    constructor ({proveedoresModel,solicitudModel}){
         this.proveedoresModel = proveedoresModel
+        this.solicitudModel = solicitudModel
     }
     create = async (req,res)=>{
         //me falta agregar las validaciones
@@ -137,6 +138,14 @@ export class ProveedorController{
         res.redirect('/prov')
     }
 
+    getByName = async (req,res)=>{
+        console.log(req.params)
+        const proveedor = await this.proveedoresModel.filtrar({nombre: req.params})
+
+        const requisicion = await this.solicitudModel.getReq()
+        res.render('compra',{data2:requisicion,data3:proveedor})
+    }
+
     getById = async (req,res)=>{
         const {id} =req.params
 
@@ -144,6 +153,7 @@ export class ProveedorController{
         if (proveedor) return res.json(proveedor)
         res.status(404).json({ message: 'Proveedor not found' })
     }
+    
 
     getAll = async (req,res)=>{
         const proveedores = await this.proveedoresModel.listar()

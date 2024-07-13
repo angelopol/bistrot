@@ -4,9 +4,20 @@ import connection from "../conexion.js"
 
 
 export class ProveedoresModel{
+  //Funcion para buscar por un producto el nombre del proveedor
+  static async filtrar({nombre}){
+    console.log(nombre)
+    try {
+      const [proveedor] = await connection.execute("SELECT * FROM Proveedores WHERE Productos_Proveedor = ?",[nombre])
+      return proveedor
+    } catch (error) {
+      throw new Error("Error a obtener proveedor por su nombre")
+    }
+  } 
+
   //Funcion para obtener un proveedor por su rif (id)
   static async buscar({rif}){
-    console.log("Entre")
+    
     try {
       const [proveedor] = await connection.execute("SELECT * FROM Proveedores WHERE RIF = ?",[rif])
       return proveedor[0]
