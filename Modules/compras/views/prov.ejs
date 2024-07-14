@@ -127,13 +127,13 @@
                                 <input type="submit" id="data-title-btn" value="Agregar">
                                 <input type="submit" id="data-title-modi" value="Modificar">
                             </div>
-                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa">
-                            <input maxlength="10" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
-                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal">
-                            <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo">
-                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa">
-                            <input max="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
-                            <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd">
+                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa"  onkeypress="return validLetra(event)", maxlength="20">
+                            <input maxlength="12" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
+                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal" maxlength="10">
+                            <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo" maxlength="24">
+                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa" onkeypress="return validLetra(event)", maxlength="10">
+                            <input maxlength="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
+                            <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd" onkeypress="return validLetra(event)", maxlength="10">
                             <input placeholder="Precio por ud.Compra" class="input-data pre-prov" type="text" name="precio">
                         </form>
                     </div>
@@ -259,7 +259,13 @@
             }
         }
         tlf.addEventListener('keydown', event => validarNumero(event))
-        rif.addEventListener('keydown', event => validarNumero(event))
+        rif.addEventListener('keydown', () =>{
+            if(rif.value.match(/^j-[0-9]{9}$/)){
+                rif.style.border= '2px solid #02676F'
+            }else{
+                rif.style.border= '2px solid red'
+            }
+        })
 
         correo.addEventListener('keydown',()=>{
             if(correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)){
@@ -295,25 +301,10 @@
         btn_add.onclick = function validar(event){
             if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
                 || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0){
-                    alert("Tiene que llenar los campos primeros para poder agregar al provvedor")
-            }else{
-                if(correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) || tlf.value.match(/^(0414|0412|0424|0426)[0-9]{7}$/ || 
-                    rif.value.match(/^j-[0-9]{9}$/))){
-                    return
-                }else{
-                    alert("Unos de los campos esta mal escrito")
-                }
+                    alert("Tiene que llenar los campos primeros para poder agregar al proveedor")
             }
         }
-        /* Esta validacion no es necesaria porque no se tienen que comprobar datos
         
-        btn_delete.onclick = function validar(event){
-            if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
-                || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0){
-                    alert("Se tiene que pasar los datos para poder eliminar al provvedor")
-            }
-        }*/
-
 
 
 

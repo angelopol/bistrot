@@ -38,6 +38,13 @@ let exit = document.getElementsByClassName('title-exit')[0]
 exit.onclick = function(){
     location.href = '../html/index.html'
 }
+rif.addEventListener('keydown', () =>{
+    if(rif.value.match(/^j-[0-9]{9}$/)){
+        rif.style.border= '2px solid #02676F'
+    }else{
+        rif.style.border= '2px solid red'
+    }
+})
 //Validaciones
 
 //Validacion si la entrada recibe un numero
@@ -76,15 +83,8 @@ function validLetra(e){
 btn_add.onclick = function validar(event){
     if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
         || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0){
-            alert("Tiene que llenar los campos primeros para poder agregar al provvedor")
-    }else{
-        if(correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) || tlf.value.match(/^(0414|0412|0424|0426)[0-9]{7}$/ || 
-            rif.value.match(/^j-[0-9]{9}$/))){
-            return
-        }else{
-            alert("Unos de los campos esta mal escrito")
+            alert("Tiene que llenar los campos primeros para poder agregar al proveedor")
         }
-    }
 }
 btn_delete.onclick = function validar(event){
     if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
