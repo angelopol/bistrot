@@ -3,14 +3,14 @@ import path, { dirname } from 'path'
 import { fileURLToPath } from 'url';
 import methodOverride from 'method-override'
 import { corsMiddleware } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/cors.js'
-//import { routes } from './routes/routes.js' 
 import { authenticated } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/auth.js'
 import bodyParser from 'body-parser'
 import { createReservasRouter } from ''
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
+import { InventarioMesasController } from './controllers/controlador';
 
-export const createApp = ({ }) => {
+export const createApp = ({InventarioMesasModel,ListaEsperaModel,ReservaClienteModel,ReservaMesasModel}) => {
     const app = express()
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
@@ -23,31 +23,28 @@ export const createApp = ({ }) => {
     app.disable('x-powered-by')
     app.use(bodyParser.urlencoded({ extended: true }))
     app.use(bodyParser.json())
-    app.use('/', createComprasRouter({}))
+    app.use('/', createReservasRouter({}))
     app.use(express.static(path.join(__dirname, 'routes')));
-    //Vista para el modulo de compras
-    app.get('/',(req,res)=>{
-        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
-        res.render('reserv',{data: null})
-    });
+    //Vista para el modulo de reservas
+    app.get('/',InventarioMesasController.mostrarReserva);
+    
     app.get('/bar',(req,res)=>{
-        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
+        
         res.render('bar',{data: null})
     });
     app.get('/CrearReservas',(req,res)=>{
-        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
+        
         res.render('CrearReservas',{data: null})
     });
     app.get('/reservacion',(req,res)=>{
-        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
+        
         res.render('reservacion',{data: null})
     });
     app.get('/mesas',(req,res)=>{
-        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
+        
         res.render('mesas',{data: null})
     });
     app.get('/CrearEvento',(req,res)=>{
-        //res.sendFile(path.join (__dirname,'routes','html','index.html'))
         res.render('evento',{data: null})
     });
 

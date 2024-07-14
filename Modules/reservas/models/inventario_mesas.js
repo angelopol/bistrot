@@ -5,8 +5,8 @@ const DBConfig = {
   host: process.env.DB_HOST || '127.0.0.1',
   user: process.env.DB_USERNAME || 'root',
   port: process.env.DB_PORT || 3306,
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_DATABASE || 'bistrot',
+  password: process.env.DB_PASSWORD || '1234',
+  database: process.env.DB_DATABASE || 'modulo_reservas',
 };
 
 const connection = await mysql.createConnection(DBConfig);
@@ -18,13 +18,15 @@ export class InventarioMesasModel {
       descripcion,
       numero_sillas,
       ubicacion,
+      status,
+      confirmado
     } = input;
 
     try {
       await connection.query(
         `INSERT INTO inventario_mesas (ID_mesa, descripcion, numero_sillas, ubicacion)
-          VALUES (?, ?, ?, ?);`,
-        [ID_mesa, descripcion, numero_sillas, ubicacion]
+          VALUES (?, ?, ?, ?, ?, ?);`,
+        [ID_mesa, descripcion, numero_sillas, ubicacion,status,confirmado]
       );
     } catch (e) {
       console.log(e);
@@ -38,12 +40,14 @@ export class InventarioMesasModel {
       descripcion,
       numero_sillas,
       ubicacion,
+      status,
+      confirmado
     } = modi;
 
     try {
       await connection.query(
-        'UPDATE inventario_mesas SET descripcion = ?, numero_sillas = ?, ubicacion = ? WHERE ID_mesa = ?',
-        [descripcion, numero_sillas, ubicacion, ID_mesa]
+        'UPDATE inventario_mesas SET descripcion = ?, numero_sillas = ?, ubicacion = ?, status = ?, confirmado = ? WHERE ID_mesa = ?',
+        [descripcion, numero_sillas, ubicacion, status, confirmado,ID_mesa]
       );
     } catch (e) {
       console.log(e);
