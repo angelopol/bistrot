@@ -25,12 +25,22 @@
             font: 24px 'Krona One', sans-serif;
         }
         .user-info {
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 1);
+            border-radius: var(--sds-size-radius-200);
+            border-color: rgba(255, 255, 255, 1);
+            border-style: solid;
+            border-width: 1px;
             background-color: #013d1f;
-            display: flex;
-            gap: 16px;
-            font-size: 16px;
+            display: inline-flex;
+            justify-content: flex-end ;
+            position: absolute;
+            right: 0;
+            width: 10%;
+            transform: translateY(-10px);
+            margin-right: 30px;
+            margin-bottom: 20px;
+            gap: 12px;
+            font-size: 15px;
+            white-space: nowrap;
             padding: 8px 16px;
         }
         .user-name {
