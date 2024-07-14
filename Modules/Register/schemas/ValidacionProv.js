@@ -12,7 +12,7 @@ const ProvSchema = z.object({
 
     Nombre_Responsa: z.string().max(200).regex(/^[a-zA-Z\s]+$/),
 
-    Tlf: z.string().max(200).regex(/0414|0412|0424|0426)[0-9]{7}$/),
+    Tlf: z.string().max(200).regex(/^04(14|12|24|26)[0-9]{7}$/),
 
     Producto_Proveedor: z.string().max(200).regex(/^[a-zA-Z\s]+$/)
 })

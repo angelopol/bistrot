@@ -101,5 +101,14 @@ export class ProveedoresModel{
       throw new Error('Error a Modificar los datos del proveedor')
     }
   }
+
+  static async getProducto({proveedor}){
+    try {
+      const nombreProducto = await connection.execute('SELECT Productos_Proveedor FROM Proveedores WHERE Nombre_Empresa=?',[proveedor])
+      return nombreProducto[0]
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 

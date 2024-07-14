@@ -2,7 +2,7 @@
 //import { ProductoModel } from "../models/modeloCompra/Productos.js";
 import {validarHistorial} from "../schemas/ValidacionHistorial.js"
 import { ValidarProducto,validarProductoM } from "../schemas/ValidacionProducto.js"
-import { ValidarProv,ValidarProvM } from "../schemas/validacionProv.js"
+import { ValidarProv,ValidarProvM } from "../schemas/ValidacionProv.js"
 import { ValidarSolicitudes,ValidarSolicitudesM } from "../schemas/ValidacionSolicitud.js"
 
 export class HistorialController {
@@ -21,17 +21,25 @@ export class HistorialController {
 
     create = async (req,res)=>{
         const{
-            id
+            id,
+            nombreP,
+            proveedor
         } = req.body
         const result = validarHistorial(req.body)
-        if(!result.success){
+        //Obtener producto que vende el proveedor para validar que si vende el producto solicitado
+        const productoProveedor = await this.proveedoresModel.getProducto({proveedor})
+        //const {Productos_Proveedor} = productoProveedor
+        //console.log(Productos_Proveedor)
+        
+        if((!result.success)&&(productoProveedor[0].Productos_Proveedor.toLowerCase() != nombreP.toLowerCase())){
+            
             res.redirect('/compra')
         }else{
-            await this.historialModel.crear({input: req.body})
-            res.redirect('/compra')
+            const orden = await this.historialModel.agregar({input: req.body})
+            res.render('confirmacion',{dato: id,dato2: orden})
         }
         
-        res.render('confirmacion',{dato: id,dato2: orden})
+        
     }
 
     getAll = async (req,res)=>{
