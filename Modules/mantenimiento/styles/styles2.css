@@ -1,21 +1,20 @@
 #Global_todos{
     padding: 20px;
-    margin: 20px 15px;
+    margin: 0px 15px;
     justify-content: center;
 }
 
 #Inicial_logo{
     padding: 10px;
     text-align: center;
-    padding: 15px;
 }
 
 #Recipiente_div{
     justify-self: center;
     background-color: #828282;
-    margin: 15px 20px;
+    margin: 0px 20px;
     padding: 15px;
-    width: 900px;
+    min-width: 900px;
     min-height: 300px;
     text-align: center;
 }
@@ -150,7 +149,7 @@ label {
 
 .textArea{
     resize: none;
-    height:200px;
+    height:130px;
     width: 70%;
 }
 
