@@ -212,7 +212,7 @@ export class SolicitudController{
     update = async (req,res)=>{
         //const result = ValidarSolicitudesM(req.body)
         const {id_req} = req.body
-        console.log(id_req)
+        
         if(id_req === undefined){
             res.redirect('/soli')
         }else{
