@@ -1,16 +1,17 @@
-CREATE TABLE `bistrot`.`Documento Tecnico` (
-    `Nombre` VARCHAR(30),
-    `Fecha` DATETIME NOT NULL,
-    `ID tipo` INT NOT NULL,
-    `ID inventario`,
-    `Descripcion` VARCHAR,
-    `Estatus` BOOLEAN NOT NULL,
+create table if not exists mantenimientos_realizar(
+id_mantenimiento int not null,
+descripcion_corta varchar(45) not null,
+responsable varchar(45),
+fecha_inicio datetime,
+fecha_final datetime,
+PRIMARY KEY(id_mantenimiento)
+) ;
 
-    FOREIGN KEY (`ID tipo`)
-);
-
-CREATE TABLE `bistrot`.`ID tipo` (
-    `Id` INT NOT NULL,
-    `Nombre` VARCHAR(30),
-    `Descripcion` VARCHAR
+create table if not exists contactos(
+id_contacto int not null,
+nombre varchar(45) not null,
+servicio varchar (45) not null, 
+telefono varchar(45),
+correo varchar (100),
+Primary Key (id_contacto)
 );

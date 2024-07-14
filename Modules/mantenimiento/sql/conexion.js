@@ -2,9 +2,9 @@ let mysql = require("mysql");
 
 let conexion = mysql.createConnection({
     host: "localhost", //cambiar todo dependiendo de la base de datos que se use
-    database: "restaurante",
+    database: "mantenimiento",
     user: "root",
-    password: ""
+    password: "root123"
 });
 
 conexion.connect(function(err){

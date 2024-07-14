@@ -89,37 +89,34 @@
                     <div id="tipo_formulario" class="scroll-table" style="display: block;">
 
                         <div id="Agregar_mas_trabajador" style="display: block;">
-                            <form id="formulario_agregar">
+                            <form id="formulario_agregar" action="/api/mantenimiento_realizar" method="get">
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="mantenimiento">Nombre:</label>
+                                    <label for="mantenimiento">Mantenimiento:</label>
                                     <input type="text" id="mantenimiento" name="mantenimiento" required>
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="responsable">Servicio:</label>
+                                    <label for="responsable">Responsable:</label>
                                     <input type="text" id="responsable" name="responsable" required>
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="inicio">Descripción:</label>
-                                    <input type="text" id="inicio" name="inicio" required>
-                                </div>
-
-                                <div class="Ingreso_Inf_Trabajador">
-                                    <label for="fin">Fecha y hora:</label>
+                                    <label for="inicio">Inicio:</label>
                                     <input type="datetime-local" id="fin" name="fin">
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <button id="Button_entregar_formulario">Agregar</button>
+                                    <label for="fin">Fin:</label>
+                                    <input type="datetime-local" id="fin" name="fin">
                                 </div>
+                                <input type="submit" value="Agregar">
                             </form>
                         </div>
                     </div>
                     <div>
                         <button id="Button_formulario_Inicio" style="display: inline;">Regresar</button>
                         <button id="Button_formulario_Volver" style="display: none;">Volver</button>
-                        <button id="Button_formulario_Agregar" style="display: inline;">Agregar</button>
+                        <button id="Button_entregar_formulario" style="display: inline;">Agregar</button>
                     </div>
                 </div>
 

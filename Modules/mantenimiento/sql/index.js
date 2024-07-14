@@ -8,14 +8,14 @@ app.get('/', (req, res) =>{
     res.send('Node JS API');
 });
 
-app.get('/api/mantenimiento_documento_tecnico', (req, res)=>{
-    conexion.query('SELECT * FROM mantenimiento_documento_tecnico', function (error, results, fields) {
+app.get('/api/mantenimientos_realizar', (req, res)=>{
+    conexion.query('SELECT * FROM mantenimientos_realizar', function (error, results, fields) {
         res.send(results);
     });
 });
 
-app.get('/api/mantenimiento_documento_tecnico/:id', (req, res)=>{
-    conexion.query('SELECT * FROM mantenimiento_documento_tecnico WHERE id = ?', [req.params.id],  function (error, results, fields) {
+app.get('/api/mantenimientos_realizar/:id', (req, res)=>{
+    conexion.query('SELECT * FROM mantenimientos_realizar WHERE id = ?', [req.params.id],  function (error, results, fields) {
         if (results.length == 0) {
             res.status(404).send('ID no existe');
         } else {
@@ -24,25 +24,59 @@ app.get('/api/mantenimiento_documento_tecnico/:id', (req, res)=>{
     });      
 });
 
-app.post('/api/mantenimiento_documento_tecnico', (req, res)=>{
-    conexion.query('INSERT INTO mantenimiento_documento_tecnico (nombre,tipo,objeto_inventario,descripcion,estatus) VALUES (?,?,?,?,?)', [
-        req.body.nombre,
-        req.body.tipo,
-        req.body.objeto_inventario,
-        req.body.descripcion,
-        req.body.estatus
+app.post('/api/mantenimientos_realizar', (req, res)=>{
+    conexion.query('INSERT INTO mantenimientos_realizar (descripcion_corta,responsable,fecha_inicio,fecha_fin) VALUES (?,?,?,?)', [
+        req.body.descripcion_corta,
+        req.body.responsable,
+        req.body.fecha_inicio,
+        req.body.fecha_fin,
     ], function (error, results, fields) {
         res.send(results);
     });   
 });
 
-app.delete('/api/mantenimiento_documento_tecnico/:id', (req, res)=>{
-    conexion.query('DELETE FROM mantenimiento_documento_tecnico WHERE id = ?', [
+app.delete('/api/mantenimientos_realizar/:id', (req, res)=>{
+    conexion.query('DELETE FROM mantenimientos_realizar WHERE id = ?', [
         req.params.id
     ], function (error, results, fields) {
         res.send(results);
     });   
 });
 
-const port = 8081;
+app.get('/api/contactos', (req, res)=>{
+    conexion.query('SELECT * FROM contactos', function (error, results, fields) {
+        res.send(results);
+    });
+});
+
+app.get('/api/contactos/:id', (req, res)=>{
+    conexion.query('SELECT * FROM contactos WHERE id = ?', [req.params.id],  function (error, results, fields) {
+        if (results.length == 0) {
+            res.status(404).send('ID no existe');
+        } else {
+            res.send(results);
+        }
+    });      
+});
+
+app.post('/api/contactos', (req, res)=>{
+    conexion.query('INSERT INTO contactos (nombre,servicio,telefono,correo) VALUES (?,?,?,?)', [
+        req.body.nombre,
+        req.body.servicio,
+        req.body.telefono,
+        req.body.correo,
+    ], function (error, results, fields) {
+        res.send(results);
+    });   
+});
+
+app.delete('/api/contactos/:id', (req, res)=>{
+    conexion.query('DELETE FROM contactos WHERE id = ?', [
+        req.params.id
+    ], function (error, results, fields) {
+        res.send(results);
+    });   
+});
+
+const port = 3306;
 app.listen(port);
