@@ -17,6 +17,7 @@
                 
                 <a  href="#entradas" onclick="cambiar('Entradas')" class="menu-nav-item">Entradas</a>
                 <a  href="#principal" onclick="cambiar('Principal')" class="menu-nav-item">Principal</a>
+                <a  href="#vegetariano" onclick="cambiar('Vegetariano')" class="menu-nav-item">Vegetariano</a>
                 <a  href="#postres" onclick="cambiar('Postres')" class="menu-nav-item">Postres</a>
                 <a  href="#bebidas" onclick="cambiar('Bebidas')" class="menu-nav-item">Bebidas</a>
                 <a  href="#Tragos" onclick="cambiar('Tragos')" class="menu-nav-item">Tragos</a>
@@ -703,6 +704,122 @@
                 
             </section>
 
+            
+    <section id="Vegetariano" class="menu-items">
+        <div class="menu-row">
+            <article id="26" class="menu-item" onclick="addToOrder('Vegetable Stew with Herby','20','Menu/Vegetable Stew.png','26')">
+                <img loading="lazy" src="Menu/Vegetable Stew.png" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Vegetable Stew with Herby</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$3</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Vegetable Stew with Herby</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Lechuga: 0.5kg</li>
+                                    <li>Tomate: 0.25kg</li>
+                                    <li>Cebolla: 0.25kg</li>
+                                    <li>Pepino: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+            <article id="27" class="menu-item" onclick="addToOrder('Vegetable Stew with Herby','20','Menu/Vegetable Stew.png','27')">
+                <img loading="lazy" src="Menu/Vegetable Stew.png" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Vegetable Vinaigrette</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$3</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Vegetable Stew with Herby</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Lechuga: 0.5kg</li>
+                                    <li>Tomate: 0.25kg</li>
+                                    <li>Cebolla: 0.25kg</li>
+                                    <li>Pepino: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="menu-row">
+
+            <article id="15" class="menu-item" onclick="addToOrder('Old Fashioned','3','Menu/old fashioned.png','15')">
+                <img loading="lazy" src="Menu/old fashioned.png" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Old Fashioned</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$3</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Old Fashioned</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Whisky: 0.25l</li>
+                                    <li>Limon: 0.2kg</li>
+                                    <li>Azucar: 0.05kg</li>
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+            <article id="16" class="menu-item" onclick="addToOrder('Margarita','3','Menu/margarita.jpg','16')">
+                <img loading="lazy" src="Menu\margarita.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Margarita</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$3</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Margarita</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Tequila: 0.25l</li>
+                                    <li>Limon: 0.2kg</li>
+                                    <li>Azucar: 0.05kg</li>
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+            
+            
+        </div>
+        
+    </section>
+
 
             </div>
         </main>
@@ -730,6 +847,10 @@
         </aside>
         </div>
     </section>
+
+
+
+
 
     <script src="pedido_logica.js"></script>
 

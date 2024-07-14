@@ -45,17 +45,10 @@ body {
     width: 70%;
     box-shadow: 0 1px 32.5px 5px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    padding: 75px 43px 75px 21px;
+    padding:40px;
 }
 
-@media (max-width: 991px) {
-    .menu-content {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 40px;
-    padding: 0 20px;
-    }
-}
+
 
 .menu-sections {
     align-items: start;
