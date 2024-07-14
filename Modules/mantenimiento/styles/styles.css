@@ -489,3 +489,7 @@ h1 {
     margin-top: 24px;
     padding: 43px 48px;
 }
+.scroll-table {
+    overflow-y: auto;
+    max-height: 200px; /* ajusta el alto máximo según tus necesidades */
+}
