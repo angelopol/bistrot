@@ -92,7 +92,7 @@ body {
     align-self: center;
     margin-top: 0;
     margin-bottom: 30px;
-    font: 40px/150% Montserrat, sans-serif;
+    font: 25px Montserrat, sans-serif;
 }
 
 .menu-nav-item {
@@ -247,13 +247,13 @@ body {
 .order-title {
     color: #000;
     align-self: center;
-    font: 40px Montserrat, sans-serif;
+    font: 25px Montserrat, sans-serif;
 }
 
 .order-table {
     color: #000;
     margin-top: 23px;
-    font: 20px Montserrat, sans-serif;
+    font: 15px Montserrat, sans-serif;
 }
 
 .order-item {

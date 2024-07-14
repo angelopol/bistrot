@@ -76,7 +76,6 @@ tableCards.forEach((tableCard, index) => {
 
         // Mostrar estado "Ocupado" al hacer clic en la tarjeta de mesa
         const tableStatusElement = tableCard.querySelector('h2');
-        tableStatusElement.textContent = 'Ocupado';
 
         // Actualizar la tabla de mesas (opcional)
         updateTable(selectedTableId);
