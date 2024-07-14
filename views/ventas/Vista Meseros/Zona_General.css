@@ -55,7 +55,6 @@ body {
 
     transition: transform 0.3s ease;
     transform: translateY(-7px);
-    transform: scale(1.1);
 
 }
 
