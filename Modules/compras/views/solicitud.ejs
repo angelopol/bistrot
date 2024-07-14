@@ -137,7 +137,7 @@
                                     <% }); %>
                                 <% } %>
                             </select>
-                            <input id="input-cant" placeholder="Cantidad" type="text" name="cant">
+                            <input id="input-cant" placeholder="Cantidad" type="text" name="cant" readonly maxlength="3" >
                         </div>
                         <div class="content-other">
                             <select id="select-depa" name="depar">
@@ -148,7 +148,7 @@
                                 <option>Mantenimiento</option>
                                 <option>Cocina</option>
                             </select>
-                            <input id="input-id" placeholder="ID Empleado" type="text" name="id_emp">
+                            <input id="input-id" placeholder="ID Empleado" type="text" name="id_emp" readonly maxlength="2">
                         </div>
                         
                             <textarea placeholder="Descripcion" class="input-data desc" name="detalle"></textarea>
@@ -189,6 +189,7 @@
         cantidad =  document.getElementById('input-cant')
         departamento =  document.getElementById('select-depa')
         descripcion =  document.querySelector('.input-data.desc')
+        idEmpleado = document.getElementById('input-id')
         //Select o combobox del select de solicitud
         //Poner aqui toda solicitud que se emita
         solicitud =  document.getElementById('select-soli')
@@ -216,6 +217,13 @@
             }
         });
         
+        // Validaciones
+        btnEnviar.onclick = function validar(event){
+            if(producto.selectedIndex == 0 || cantidad.value.length == 0 || idEmpleado.value.length == 0 || 
+            departamento.selectedIndex == 0 || descripcion.value.length == 0){
+                alert("Se requiere rellenar los campos para poder enviar la solicitud")
+            }
+        }
     </script>
 </body>
 </html>
