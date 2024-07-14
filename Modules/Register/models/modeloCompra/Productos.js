@@ -55,21 +55,6 @@ export class ProductoModel{
     } = result
 
     try{
-      // Construir la parte de la consulta SQL para actualizar
-      /*let updates = [];
-      let values = [];
-      if (NombreP){
-        updates.push("NombreP=?");
-        values.push(NombreP); 
-      }
-
-      if (Unidades){
-        updates.push("NombreP=?");
-        values.push(NombreP); 
-      }
-      */
-
-      //Quede aqui arrreglando este metodo
       await connection.execute(
         'UPDATE ProductoCompras SET NombreP = ?, Unidades = ?, Consumo = ? WHERE ID_Producto = ?',
         [NombreP,Unidades,Consumo,id]
@@ -88,11 +73,6 @@ export class ProductoModel{
         'DELETE FROM ProductoCompras WHERE NombreP = ?',
         [nombre]
       )
-      /*if (result.affectedRows > 0) {
-        return { message: `Producto con nombre ${nombre} eliminado correctamente.` };
-      }else {
-        throw new Error(`No se encontró ningun producto con nombre ${nombre}.`);
-      }*/
     }catch(e){
       console.log(e)
       throw new Error('Error a eliminar el producto')

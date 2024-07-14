@@ -44,8 +44,6 @@ export class SolicitudModel{
         [depar,id_emp,cant,nombre_producto,fechaa,aprobacion,detalle,aprobacion]
       )
 
-      //const [producto] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = LAST_INSERT_ID()")
-      //return producto
     }catch(e){
       console.log(e)
       throw new Error("Error al agregar una nueva solicitud")
@@ -92,8 +90,6 @@ export class SolicitudModel{
         [aprobar,id_req]
       )
 
-      //const [actualizado] = await connection.execute("SELECT * FROM Solicitudes WHERE ID_Requisicion = ?",[id]);
-      //return actualizado
     }catch(e){
       //console.log(e)
       throw new Error("Error al modificar la solicitud")
