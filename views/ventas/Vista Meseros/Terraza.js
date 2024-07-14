@@ -4,8 +4,20 @@ const actionButtons = document.querySelectorAll('.action-button');
 // Seleccionar todas las tarjetas de mesa
 const tableCards = document.querySelectorAll('.table-card');
 
+// declarar una variable de origen para saber en la vista de pedido quien hizo la solicitud (terraza, general)
+localStorage.setItem('origenPedido', 'terraza');
+
+// Obtener los pedidos que se han realizado
+const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];
+console.log(pedidos_realizados_t);
+
+// actualizacion constante de los estados
+recorrido_mesas(pedidos_realizados_t);
+
 // Variable para almacenar el ID de la mesa seleccionada
 let selectedTableId = null;
+let selectedMesa = false;
+let selectedMesaetiqueta = null;
 
 // Agregar evento de clic a cada botón de acción    
 actionButtons.forEach(button => {
@@ -21,29 +33,73 @@ actionButtons.forEach(button => {
                 break;
             case 'Tomar pedido':
                 // Abrir pedidos.html y pasar el ID de la mesa seleccionada
-                if (selectedTableId) {
-                    location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}`;
+                if (selectedTableId && selectedMesa) {
+
+                    // verificamos si su estatus es disponible para tomar su pedido
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
+                        alert("Hola")
+                        location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}`;
+                        return;
+                    } else {
+                        alert("No se puede tomar el pedido")
+                    }
+                    
                 } else {
                     alert('Seleccione una mesa primero');
                 }
                 break;
             case 'Eliminar pedido': 
                 // Restablecer el número de mesa y estado
-                if (selectedTableId) {
-                    const tableCard = document.querySelector(`.table-card:nth-child(${selectedTableId})`);
-                    const tableNumberElement = tableCard.querySelector('.table-number');
-                    const tableNameElement = tableCard.querySelector('.table-name');
-                    tableNumberElement.textContent = '0';
-                    tableNameElement.textContent = `MESA ${selectedTableId}`;
-                    tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
+                if (selectedTableId && selectedMesa) {
+                    // recorremos todas las mesas para ver cual es el pedido que se quiere eliminar
+                    tableCards.forEach((tableCard,mesa) => {
+
+                        // vemos si coinciden en id
+                        if(String(mesa+1) === String(selectedTableId)){
+
+                            // si el estatus es disponible solamente lo deseleccionada
+                            if (tableCard.querySelector(".table-status").textContent === "DISPONIBLE"){
+                                tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
+                                selectedMesa = false;
+                                return;
+
+                            // si es pendiente lo deseleccionada y elimina el pedido de la lista de pedidos realizados
+                            } else if (tableCard.querySelector(".table-status").textContent === "Pendiente"){
+
+                                tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
+
+                                pedidos_realizados.forEach((pedido,mesas) => {
+
+                                    if (pedido.tableId === String(selectedTableId)){
+
+                                        pedidos_realizados_t.splice(mesas, 1);
+                                        tableCard.querySelector(".table-status").textContent = "DISPONIBLE" // ponemos el estatus como Disponible
+                                        // Actualizar el localStorage con el array modificado
+                                        localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+                                        console.log(pedidos_realizados_t);
+                                        return;
+
+                                    }
+                                });
+                                
+                            }
+                            
+                        }
+                    });
+                    
                 } else {
                     alert('Seleccione una mesa primero');
                 }
                 break;
             case 'Solicitar factura':
                 // Redirigir a la vista caja
-                if (selectedTableId) {
-                    location.href = `../Vista_Caja/caja.html?tableId=${selectedTableId}`;
+                if (selectedTableId && selectedMesa) {
+
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Listo"){
+                        selectedMesaetiqueta.querySelector('.table-status').textContent = "Factura"
+                        location.href = `../Vista_Caja/caja.html?tableId=${selectedTableId}`;
+                    }
+                    
                 } else {
                     alert('Seleccione una mesa primero');
                 }
@@ -65,9 +121,8 @@ tableCards.forEach((tableCard, index) => {
 
         // Seleccionar la mesa actual
         tableCard.classList.add('selected');
-
-        // Mostrar estado "Ocupado" al hacer clic en la tarjeta de mesa
-        const tableStatusElement = tableCard.querySelector('h2');
+        selectedMesa = true;
+        selectedMesaetiqueta = tableCard;
         
         // Actualizar la tabla de mesas (opcional)
         updateTable(selectedTableId);
@@ -77,4 +132,31 @@ tableCards.forEach((tableCard, index) => {
 // Función opcional para actualizar la tabla de mesas
 function updateTable(tableId) {
     // Implementar la lógica de actualización de la tabla de mesas aquí
+}
+
+
+// funcion para recorrer los pedidos realizados
+function recorrido_mesas(pedidos_mesas){
+
+    pedidos_mesas.forEach(pedidos => {
+
+        tableCards.forEach((mesas,id_mesas) => {
+
+            // estatus pedidos
+            if (pedidos.estatus === 1 && pedidos.tableId === String(id_mesas+1)){
+                const tableStatusElement = mesas.querySelector('.table-status');
+                tableStatusElement.textContent = 'Pendiente';
+            } else if(pedidos.estatus === 2 && pedidos.tableId === String(id_mesas+1)) {
+                const tableStatusElement = mesas.querySelector('table-status');
+                tableStatusElement.textContent = 'Rechazado';
+            } else if(pedidos.estatus === 3 && pedidos.tableId === String(id_mesas+1)) {
+                const tableStatusElement = mesas.querySelector('table-status');
+                tableStatusElement.textContent = 'Aceptado';
+            } else if(pedidos.estatus === 4 && pedidos.tableId === String(id_mesas+1)) {
+                const tableStatusElement = mesas.querySelector('table-status');
+                tableStatusElement.textContent = 'Listo';
+            }
+        })
+        
+    })
 }

@@ -437,7 +437,7 @@ export class VentasModel {
 
     static async update_factura({id , input}) {
         const {
-            monto, iva, consumo, estatus_pedido
+            monto, iva, consumo, status_pedido
         } = input;
 
         try {
@@ -457,9 +457,9 @@ export class VentasModel {
                 updates.push("consumo = ?");
                 values.push(consumo);
             }
-            if (estatus_pedido) {
-                updates.push("estatus_pedido = ?");
-                values.push(estatus_pedido);
+            if (status_pedido) {
+                updates.push("status_pedido = ?");
+                values.push(status_pedido);
             }
             
 

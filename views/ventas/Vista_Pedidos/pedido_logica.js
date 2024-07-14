@@ -1,8 +1,13 @@
 // definimos la variable para registar los pedidos realizados sino se han realizado se muestra una lista vacia
-const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
+const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];  // vista general
+const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];  // vista terraza
 
 // obtenemos el id de la mesa
 const urlParams = new URLSearchParams(window.location.search);
+
+// obtenemos el origen de la vista que hizo la peticion
+const origenPedido = localStorage.getItem('origenPedido');
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -98,15 +103,34 @@ function cancelOrder(tipo_button) {
     // Restablece el total del pedido a 0
     updateTotalAmount(-parseFloat(document.getElementById('total-amount').textContent));
 
-    if (tipo_button == "cancelar_pedido"){
-        // Muestra un mensaje de "Pedido cancelado"
-        alert('¡Pedido cancelado!');
-        // Redirige al usuario a la página Mesonero_Zona_General.html
-        window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
-    } else {
-        // Redirige al usuario a la página Mesonero_Zona_General.html
-        window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
+
+    // verificamos de donde es la vista donde se realiza la peticion
+    if (origenPedido === 'general'){
+
+        if (tipo_button === "cancelar_pedido"){
+            // Muestra un mensaje de "Pedido cancelado"
+            alert('¡Pedido cancelado!');
+            // Redirige al usuario a la página Mesonero_Zona_General.html
+            window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
+        } else {
+            // Redirige al usuario a la página Mesonero_Zona_General.html
+            window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
+        }
+
+    } else if (origenPedido === 'terraza'){
+
+        if (tipo_button === "cancelar_pedido"){
+            // Muestra un mensaje de "Pedido cancelado"
+            alert('¡Pedido cancelado!');
+            // Redirige al usuario a la página Mesonero_Zona_General.html
+            window.location.href = '../Vista Meseros/Mesero_Terraza.html';
+        } else {
+            // Redirige al usuario a la página Mesonero_Zona_General.html
+            window.location.href = '../Vista Meseros/Mesero_Terraza.html';
+        }
+
     }
+    
 }
 
 function salir() {
@@ -144,28 +168,54 @@ function sendOrderToServer(orderData) {
     // Actualizar el localStorage con los pedidos registrados
     let bandera_reemplazo = false;  // esto es para saber si se tomo un nuevo pedido en una mesa existente para reemplazarlo
 
-    // recorremos los pedidos realizados
-    pedidos_realizados.forEach((pedidos,cont_posiciones) => {
+    // verificamos de donde es la vista donde se realiza la peticion
+    if (origenPedido === 'general'){
+        
+        // recorremos los pedidos realizados
+        pedidos_realizados.forEach((pedidos,cont_posiciones) => {
 
-        // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
-        if(pedidos.tableId === orderData.tableId) {
-            pedidos_realizados.splice(cont_posiciones, 1, orderData);
+            // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
+            if(pedidos.tableId === orderData.tableId) {
+                pedidos_realizados.splice(cont_posiciones, 1, orderData);
+                localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+                console.log(pedidos_realizados);
+                bandera_reemplazo = true;
+                return;
+            }
+
+        });
+
+        // si en la mesa donde se realiza el pedido todavia no esta registrado se agrega el pedido
+        if(!bandera_reemplazo){
+            pedidos_realizados.push(orderData);
             localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
             console.log(pedidos_realizados);
-            bandera_reemplazo = true;
-            return;
         }
 
-    });
+    } else if (origenPedido === 'terraza'){
 
+        // recorremos los pedidos realizados
+        pedidos_realizados_t.forEach((pedidos,cont_posiciones) => {
 
-    // si en la mesa donde se realiza el pedido todavia no esta registrado se agrega el pedido
-    if(!bandera_reemplazo){
-        pedidos_realizados.push(orderData);
-        localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
-        console.log(pedidos_realizados);
+            // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
+            if(pedidos.tableId === orderData.tableId) {
+                pedidos_realizados_t.splice(cont_posiciones, 1, orderData);
+                localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+                console.log(pedidos_realizados_t);
+                bandera_reemplazo = true;
+                return;
+            }
+
+        });
+
+        // si en la mesa donde se realiza el pedido todavia no esta registrado se agrega el pedido
+        if(!bandera_reemplazo){
+            pedidos_realizados_t.push(orderData);
+            localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+            console.log(pedidos_realizados_t);
+        }
     }
-    
+
     
     // Muestra un mensaje de éxito
     alert('¡Pedido realizado con éxito! El pedido se ha enviado a la mesa ' + orderData.tableId);
@@ -244,3 +294,4 @@ function updateTotalAmount(priceChange) {
 
 // Eliminar todos los pedidos del localStorage
 //localStorage.removeItem('pedidos');
+//localStorage.removeItem('pedidos_t');

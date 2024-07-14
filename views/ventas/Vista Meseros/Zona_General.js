@@ -4,6 +4,9 @@ const actionButtons = document.querySelectorAll('.action-button');
 // Seleccionar todas las tarjetas de mesa
 const tableCards = document.querySelectorAll('.table-card');
 
+// declarar una variable de origen para saber en la vista de pedido quien hizo la solicitud (terraza, general)
+localStorage.setItem('origenPedido', 'general');
+
 // Obtener los pedidos que se han realizado
 const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
 console.log(pedidos_realizados);
@@ -14,6 +17,7 @@ recorrido_mesas(pedidos_realizados)
 // Variable para almacenar el ID de la mesa seleccionada
 let selectedTableId = null;
 let selectedMesa = false;
+let selectedMesaetiqueta = null;
 
 // Agregar evento de clic a cada botón de acción    
 actionButtons.forEach(button => {
@@ -30,7 +34,16 @@ actionButtons.forEach(button => {
             case 'Tomar pedido':
                 // Abrir pedidos.html y pasar el ID de la mesa seleccionada
                 if (selectedTableId && selectedMesa) {
-                    location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}`;
+
+                    // verificamos si su estatus es disponible para tomar su pedido
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
+                        alert("Hola")
+                        location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}`;
+                        return;
+                    } else {
+                        alert("No se puede tomar el pedido")
+                    }
+                    
                 } else {
                     alert('Seleccione una mesa primero');
                 }
@@ -47,15 +60,28 @@ actionButtons.forEach(button => {
                             // si el estatus es disponible solamente lo deseleccionada
                             if (tableCard.querySelector(".table-status").textContent === "DISPONIBLE"){
                                 tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
+                                selectedMesa = false;
                                 return;
 
                             // si es pendiente lo deseleccionada y elimina el pedido de la lista de pedidos realizados
                             } else if (tableCard.querySelector(".table-status").textContent === "Pendiente"){
+
                                 tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
-                                pedidos_realizados.splice(selectedTableId, 1);
-                                // Actualizar el localStorage con el array modificado
-                                localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
-                                return;
+
+                                pedidos_realizados.forEach((pedido,mesas) => {
+
+                                    if (pedido.tableId === String(selectedTableId)){
+
+                                        pedidos_realizados.splice(mesas, 1);
+                                        tableCard.querySelector(".table-status").textContent = "DISPONIBLE" // ponemos el estatus como Disponible
+                                        // Actualizar el localStorage con el array modificado
+                                        localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+                                        console.log(pedidos_realizados);
+                                        return;
+
+                                    }
+                                });
+                                
                             }
                             
                         }
@@ -67,8 +93,13 @@ actionButtons.forEach(button => {
                 break;
             case 'Solicitar factura':
                 // Redirigir a la vista caja
-                if (selectedTableId) {
-                    location.href = `../Vista_Caja/caja.html?tableId=${selectedTableId}`;
+                if (selectedTableId && selectedMesa) {
+
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Listo"){
+                        selectedMesaetiqueta.querySelector('.table-status').textContent = "Factura"
+                        location.href = `../Vista_Caja/caja.html?tableId=${selectedTableId}`;
+                    }
+                    
                 } else {
                     alert('Seleccione una mesa primero');
                 }
@@ -89,16 +120,14 @@ tableCards.forEach((tableCard, index) => {
         });
 
 
-        if (tableCard.querySelector('.table-status').textContent === 'DISPONIBLE'){
-            // Seleccionar la mesa actual
-            tableCard.classList.add('selected');
-            selectedMesa = true;
+        // Seleccionar la mesa actual
+        tableCard.classList.add('selected');
+        selectedMesa = true;
+        selectedMesaetiqueta = tableCard;
 
-            // Actualizar la tabla de mesas (opcional)
-            updateTable(selectedTableId);
-        } else {
-            selectedMesa = false;
-        }
+        // Actualizar la tabla de mesas (opcional)
+        updateTable(selectedTableId);
+
     });
 });
 
