@@ -82,87 +82,39 @@
             <div id="Global_todos">
                 <div id="Inicial_logo">
                     <img src="resources/provedores.png" width="35px" height="30px">
-                    <p>Contactos</p>
+                    <p>Agregar Mantenimiento</p>
                 </div>
 
                 <div id="Recipiente_div">
                     <div id="tipo_formulario" class="scroll-table" style="display: block;">
-                        <table id="Actual_tabla">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Servicio</th>
-                                    <th>Telefono</th>
-                                    <th>Cor</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Amber</td>
-                                    <td>reparacion de hornos</td>
-                                    <td>Arreglar la cosa</td>
-                                    <td>2024-07-01 21:59</td>
-                                </tr>
-                                <tr>
-                                    <td>Link</td>
-                                    <td>Reparacion de ventilador</td>
-                                    <td>Arreglar la cosa</td>
-                            nb         <td>2024-07-05 15:30</td>
-                                </tr>
-                                <tr>
-                                    <td>Venti</td>
-                                    <td>Servicio de bar</td>
-                                    <td>Apronbar las comidas</td>
-                                    <td>2024-07-10 10:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Venti</td>
-                                    <td>Servicio de bar</td>
-                                    <td>Apronbar las comidas</td>
-                                    <td>2024-07-01 18:45</td>
-                                </tr>
-                                <tr>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="Agregar_mas_trabajador" style="display: none;">
-                        <form id="formulario_agregar">
-                            <center>
-                                <h2>Agregar el contacto:</h2>
-                            </center>
-                            <div id="cambia_para_izquierda">
-
+                        
+                        <div id="Agregar_mas_trabajador" style="display: none;">
+                            <form id="formulario_agregar">
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="nombre">Nombre:</label>
-                                    <input type="text" id="nombre" name="nombre" required>
+                                    <label for="mantenimiento">Nombre:</label>
+                                    <input type="text" id="mantenimiento" name="mantenimiento" required>
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="trabajo_servicio">Servicio:</label>
-                                    <input type="text" id="trabajo_servicio" name="trabajo_servicio" required>
+                                    <label for="responsable">Servicio:</label>
+                                    <input type="text" id="responsable" name="responsable" required>
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="descripcion_trabajo">Descripción:</label>
-                                    <input type="text" id="descripcion_trabajo" name="descripcion_trabajo" required>
+                                    <label for="inicio">Descripción:</label>
+                                    <input type="text" id="inicio" name="inicio" required>
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="fecha">Fecha y hora:</label>
-                                    <input type="datetime-local" id="fecha" name="fecha">
+                                    <label for="fin">Fecha y hora:</label>
+                                    <input type="datetime-local" id="fin" name="fin">
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
                                     <button id="Button_entregar_formulario">Agregar</button>
                                 </div>
-
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                     <div>
                         <button id="Button_formulario_Inicio" style="display: inline;">Regresar</button>
@@ -174,7 +126,7 @@
             </div>
         </div>
     </div>
-    <script src="scripts/JSContacto.js"></script>
+    <script src="scripts/JSAgregarMantenimiento.js"></script>
 </body>
 
 </html>
