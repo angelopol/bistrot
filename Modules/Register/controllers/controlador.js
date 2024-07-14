@@ -200,6 +200,7 @@ export class SolicitudController{
 
     create = async (req,res)=>{
         const result = ValidarSolicitudes(req.body)
+        console.log(result)
         if(!result.success){
             res.redirect('/soli');
         }else{
@@ -209,8 +210,10 @@ export class SolicitudController{
 
     }
     update = async (req,res)=>{
-        const result = ValidarSolicitudesM(req.body)
-        if(!result.success){
+        //const result = ValidarSolicitudesM(req.body)
+        const {id_req} = req.body
+        console.log(id_req)
+        if(id_req === undefined){
             res.redirect('/soli')
         }else{
             await this.solicitudModel.modificar({input: req.body})
