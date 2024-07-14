@@ -2,8 +2,8 @@
 //import { ProductoModel } from "../models/modeloCompra/Productos.js";
 import {validarHistorial} from "../schemas/ValidacionHistorial.js"
 import { ValidarProducto,validarProductoM } from "../schemas/ValidacionProducto.js"
-import { ValidarProv,ValidarProvM } from "../schemas/ValidacionProv.js"
-import { ValidarSolicitudes,ValidarSolicitudesM } from "../schemas/ValidacionSolicitud.js"
+import { ValidarProv,ValidarProvM } from "../schemas/validacionProv.js"
+import { ValidarSolicitudes} from "../schemas/ValidacionSolicitud.js"
 
 export class HistorialController {
     constructor ({historialModel,solicitudModel,proveedoresModel}){
