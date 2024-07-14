@@ -1,6 +1,6 @@
 import pkg from 'mysql2';
 const {mysql} = pkg;
-import {promisify} from 'util';
+//import {promisify} from 'util';
 
 const db = {
   host: '127.0.0.1',

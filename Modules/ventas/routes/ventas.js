@@ -1,39 +1,55 @@
 import { Router } from 'express'
-import { ControllerVentasSalon } from '../controllers/ventas_salon.js'
+import { ControllerCaja } from '../controllers/caja.js'
+import { ControllerCliente } from '../controllers/cliente.js'
+import { ControllerSalon } from '../controllers/salon.js'
+import { ControllerFactura } from '../controllers/factura.js'
+import { ControllerMesas } from '../controllers/mesas.js'
 
 export const createVentasRouter = () => {
   const VentasRouter = Router()
-  const controllerVentasSalon = new ControllerVentasSalon()
+  const controllerCaja = new ControllerCaja()
+  const controllerCliente = new ControllerCliente()
+  const controllerSalon = new ControllerSalon()
+  const controllerFactura = new ControllerFactura()
+  //const controllerMesas = new ControllerMesas()
 
   VentasRouter.use(errorMiddleware);
   // Rutas de Caja
-  VentasRouter.get('/caja', controllerVentasSalon.getAll_c);
-  VentasRouter.get('/caja/:id', controllerVentasSalon.getById_c);
-  VentasRouter.post('/caja', controllerVentasSalon.create_c);
-  VentasRouter.put('/:id', controllerVentasSalon.update_c);
-  VentasRouter.delete('/caja/:id', controllerVentasSalon.delete_c);
+  VentasRouter.get('/caja', controllerCaja.getAll_c);
+  VentasRouter.get('/caja/:id', controllerCaja.getById_c);
+  VentasRouter.post('/caja', controllerCaja.create_c);
+  VentasRouter.put('/:id', controllerCaja.update_c);
+  VentasRouter.delete('/caja/:id', controllerCaja.delete_c);
 
   // Rutas de Salón
-  VentasRouter.get('/salon', controllerVentasSalon.getAll_s);
-  VentasRouter.get('/salon/:id', controllerVentasSalon.getById_s);
-  VentasRouter.post('/salon', controllerVentasSalon.create_s);
-  VentasRouter.put('/salon/:id', controllerVentasSalon.update_s);
-  VentasRouter.delete('/salon/:id', controllerVentasSalon.delete_s);
+  VentasRouter.get('/salon', controllerSalon.getAll_s);
+  VentasRouter.get('/salon/:id', controllerSalon.getById_s);
+  VentasRouter.post('/salon', controllerSalon.create_s);
+  VentasRouter.put('/salon/:id', controllerSalon.update_s);
+  VentasRouter.delete('/salon/:id', controllerSalon.delete_s);
 
   // Rutas de Cliente
-  VentasRouter.get('/cliente', controllerVentasSalon.getAll_cl);
-  VentasRouter.get('/cliente/:id', controllerVentasSalon.getById_cl);
-  VentasRouter.post('/cliente', controllerVentasSalon.create_cl);
-  VentasRouter.put('/cliente/:id', controllerVentasSalon.update_cl);
-  VentasRouter.delete('/cliente/:id', controllerVentasSalon.delete_cl);
+  VentasRouter.get('/cliente', controllerCliente.getAll_cl);
+  VentasRouter.get('/cliente/:id', controllerCliente.getById_cl);
+  VentasRouter.post('/cliente', controllerCliente.create_cl);
+  VentasRouter.put('/cliente/:id', controllerCliente.update_cl);
+  VentasRouter.delete('/cliente/:id', controllerCliente.delete_cl);
 
   // Rutas de Factura
-  VentasRouter.get('/factura', controllerVentasSalon.getAll_f);
-  VentasRouter.get('/factura/:id', controllerVentasSalon.getById_f);
-  VentasRouter.post('/factura', controllerVentasSalon.create_f);
-  VentasRouter.put('/factura/:id', controllerVentasSalon.update_f);
-  VentasRouter.delete('/factura/:id', controllerVentasSalon.delete_f);
+  VentasRouter.get('/factura', controllerFactura.getAll_f);
+  VentasRouter.get('/factura/:id', controllerFactura.getById_f);
+  VentasRouter.post('/factura', controllerFactura.create_f);
+  VentasRouter.put('/factura/:id', controllerFactura.update_f);
+  VentasRouter.delete('/factura/:id', controllerFactura.delete_f);
 
   // Rutas de Mesas
+  /*
+  VentasRouter.get('/mesas', controllerMesas.getAll_m);
+  VentasRouter.get('/mesas/:id', controllerMesas.getById_m);
+  VentasRouter.post('/mesas', controllerMesas.create_m);
+  VentasRouter.put('/mesas/:id', controllerMesas.update_m);
+  VentasRouter.delete('/mesas/:id', controllerMesas.delete_m);
+  */
+
   return VentasRouter
 }

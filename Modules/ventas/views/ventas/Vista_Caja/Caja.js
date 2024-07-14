@@ -1,32 +1,31 @@
-var selectedTableId = null;
+let selectedTableId = null;
 let selectedMesa = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   const tableCards = document.querySelectorAll('.table-card');
 
+
   // Agregar evento de clic a cada tarjeta de mesa
   tableCards.forEach((tableCard, index) => {
-      tableCard.addEventListener('click', function() {
-          // Seleccionar la mesa actual
-          selectedTableId = index + 1 ;
+    tableCard.addEventListener('click', function() {
+        // Seleccionar la mesa actual
+        selectedTableId = index + 1;
 
-          // Desseleccionar las demás mesas
-          tableCards.forEach(card => {
-              card.classList.remove('selected');
-          });
+        // Desseleccionar las demás mesas
+        tableCards.forEach(card => {
+            card.classList.remove('selected');
+        });
 
-          // Verificar si la mesa está disponible
-          if (tableCard.querySelector('.table-status').textContent === 'DISPONIBLE') {
-              // Seleccionar la mesa actual
-              tableCard.classList.add('selected');
-              selectedMesa = true;
 
-              // Actualizar la tabla de mesas (opcional)
-              updateTable(selectedTableId);
-          } else {
-              selectedMesa = false;
-          }
-      });
+        // Seleccionar la mesa actual
+        tableCard.classList.add('selected');
+        selectedMesa = true;
+        selectedMesaetiqueta = tableCard;
+
+        // Actualizar la tabla de mesas (opcional)
+        updateTable(selectedTableId);
+
+    });
   });
 
   // Función opcional para actualizar la tabla de mesas

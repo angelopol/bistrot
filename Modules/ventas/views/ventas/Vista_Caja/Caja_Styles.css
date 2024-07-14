@@ -232,7 +232,7 @@ body {
     border: 0.8px solid #178566;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform: translateY(-7px);
-    transform: scale(1,1);
+    transform: scale(1.1);
 
 }
 
@@ -251,8 +251,4 @@ body {
     background-color: #bbbbbb;
     transition:  background-color 0.3s ease;
 
-}
-
-.selected {
-    transform: scale(1,1);
 }
