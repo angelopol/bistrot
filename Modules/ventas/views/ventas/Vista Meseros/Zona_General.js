@@ -37,7 +37,6 @@ actionButtons.forEach(button => {
 
                     // verificamos si su estatus es disponible para tomar su pedido
                     if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
-                        alert("Hola")
                         location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}&origen=${origen}`;
                         return;
                     } else {
