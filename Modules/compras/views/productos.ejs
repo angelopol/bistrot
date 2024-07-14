@@ -50,18 +50,6 @@
                 <img class="side-foto" src="../resources/iconos_barra/icono_reservas.png">
                 <p class="side-option">Reservas</p>
             </div>
-            <div class="side report">
-                <img class="side-foto" src="../resources/iconos_barra/icono_reporte.png">
-                <p class="side-option">Reportes</p>
-            </div>
-            <div class="side config">
-                <img class="side-foto" src="../resources/iconos_barra/icono_config.png">
-                <p class="side-option">Configuraciones</p>
-            </div>
-            <div class="side ayuda">
-                <img class="side-foto" src="../resources/iconos_barra/icono_ayuda.png">
-                <p class="side-option">Ayuda</p>
-            </div>
         </div>
 
         <div id="principal">
@@ -75,9 +63,9 @@
                     <form action="/prod" method="post" id="form1">
                         <input type="hidden" name="_method" value="PATCH">
                     
-                        <input placeholder="Nombre del Producto" class="input-data name-prov" type="text" name="NombreP" onkeypress="return validLetra(event)", maxlength="8">
-                        <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text" name="Unidades" onkeypress="return validLetra(event) ", maxlength="12">
-                        <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text" name="Consumo" onkeypress="return validLetra(event)", maxlength="12">
+                        <input placeholder="Nombre del Producto" class="input-data name-prov" type="text" name="NombreP"  maxlength="8">
+                        <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text" name="Unidades"  maxlength="12">
+                        <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text" name="Consumo"  maxlength="12">
                         
                         <input type="submit" id="btn-regis" value="Agregar">
                         <input type="submit" id="btn-modi" value="Modificar">
@@ -255,22 +243,22 @@
         }
 
         //valdiacion para la entrada de palabras
-        function validLetra(e){
-            var key = e.keyCode || e.which,
-            tecla = String.fromCharCode(key).toLowerCase(),
-            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
-            especiales = [8, 37, 39, 46],
-            tecla_especial = false;
-
-            for (var i in especiales) {
-            if (key == especiales[i]) {
-                tecla_especial = true;
-                break;
+        nombre.onkeypress = function(e){
+            var regex = /^[a-zA-Z\s]+$/
+            if(!e.key.match(regex)){
+                e.preventDefault()
             }
+        }
+        unid_comp.onkeypress = function(e){
+            var regex = /^[a-zA-Z\s]+$/
+            if(!e.key.match(regex)){
+                e.preventDefault()
             }
-
-            if (letras.indexOf(tecla) == -1 && !tecla_especial) {
-            return false;
+        }
+        unid_cons.onkeypress = function(e){
+            var regex = /^[a-zA-Z\s]+$/
+            if(!e.key.match(regex)){
+                e.preventDefault()
             }
         }
     </script>

@@ -1,9 +1,8 @@
-//import { HistorialModel } from "../models/modeloCompra/historial.js";
-//import { ProductoModel } from "../models/modeloCompra/Productos.js";
+
 import {validarHistorial} from "../schemas/ValidacionHistorial.js"
 import { ValidarProducto,validarProductoM } from "../schemas/ValidacionProducto.js"
-import { ValidarProv,ValidarProvM } from "../schemas/ValidacionProv.js"
-import { ValidarSolicitudes,ValidarSolicitudesM } from "../schemas/ValidacionSolicitud.js"
+import { ValidarProv,ValidarProvM } from "../schemas/validacionProv.js"
+import { ValidarSolicitudes} from "../schemas/ValidacionSolicitud.js"
 
 export class HistorialController {
     constructor ({historialModel,solicitudModel,proveedoresModel}){
@@ -28,8 +27,7 @@ export class HistorialController {
         const result = validarHistorial(req.body)
         //Obtener producto que vende el proveedor para validar que si vende el producto solicitado
         const productoProveedor = await this.proveedoresModel.getProducto({proveedor})
-        //const {Productos_Proveedor} = productoProveedor
-        //console.log(Productos_Proveedor)
+        
         
         if((!result.success)&&(productoProveedor[0].Productos_Proveedor.toLowerCase() != nombreP.toLowerCase())){
             
@@ -59,7 +57,6 @@ export class ProductoController{
         this.productoModel = productoModel
         this.solicitudModel = solicitudModel
     }
-    //Hice un getAll1 para mostrar los datos en dos paginas distintan ya que si lo hacia en el mismo metodo estaba
     //renderizando dos paginas en un controlador y fallaba 
     getAll1 = async (req,res)=>{
         const productos = await this.productoModel.listar()
@@ -70,23 +67,12 @@ export class ProductoController{
     getAllData = async (req,res)=>{
         const productos = await this.productoModel.listar()
         const nombres = await this.productoModel.getNombre()
-        //const ids = await this.solicitudModel.getId()
         const requisicion = await this.solicitudModel.getReq()
         
         
         res.render('solicitud',{data: productos,data1: nombres,data2: requisicion})
     }
 
-    /*getAll2 = async (req,res)=>{
-        const productos = await this.productoModel.listar()
-        res.render('solicitud',{data: productos,data1: null})
-    }
-
-    getName = async(req,res)=>{
-        const nombres = await this.productoModel.getNombre()
-        res.render('solicitud',{data: null,data1: nombres})
-    }
-    */
 
     create = async (req,res)=>{
         const result = ValidarProducto(req.body)
@@ -210,7 +196,6 @@ export class SolicitudController{
 
     }
     update = async (req,res)=>{
-        //const result = ValidarSolicitudesM(req.body)
         const {id_req} = req.body
         
         if(id_req === undefined){

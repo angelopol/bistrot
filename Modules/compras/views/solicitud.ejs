@@ -50,24 +50,12 @@
                 <img class="side-foto" src="../resources/iconos_barra/icono_reservas.png">
                 <p class="side-option">Reservas</p>
             </div>
-            <div class="side report">
-                <img class="side-foto" src="../resources/iconos_barra/icono_reporte.png">
-                <p class="side-option">Reportes</p>
-            </div>
-            <div class="side config">
-                <img class="side-foto" src="../resources/iconos_barra/icono_config.png">
-                <p class="side-option">Configuraciones</p>
-            </div>
-            <div class="side ayuda">
-                <img class="side-foto" src="../resources/iconos_barra/icono_ayuda.png">
-                <p class="side-option">Ayuda</p>
-            </div>
         </div>
 
         <div id="principal">
             <div class="box-title-prov">
                 <img class="title-exit" src="../resources/Icono-Back.svg" alt="Icono - Exit">
-                <h2 id="title-prov">Solicitudes</h2>
+                <h2 id="title-prov">Requisiciones</h2>
             </div>
             <div class="dashboard">
                 <div class="left-side">
@@ -98,7 +86,7 @@
                     </div>
                     <div class="tabla-content">
                     <table id="tabla-soli">
-                        <h3 id="title-table">Solicitudes</h3>
+                        <h3 id="title-table">Requisiciones</h3>
                         <thead>
                           <tr>
                             <th class="registro-clase">ID</th>
@@ -137,7 +125,7 @@
                                     <% }); %>
                                 <% } %>
                             </select>
-                            <input id="input-cant" placeholder="Cantidad" type="text" name="cant">
+                            <input id="input-cant" placeholder="Cantidad" type="text" name="cant" readonly maxlength="3" >
                         </div>
                         <div class="content-other">
                             <select id="select-depa" name="depar">
@@ -148,7 +136,7 @@
                                 <option>Mantenimiento</option>
                                 <option>Cocina</option>
                             </select>
-                            <input id="input-id" placeholder="ID Empleado" type="text" name="id_emp">
+                            <input id="input-id" placeholder="ID Empleado" type="text" name="id_emp" readonly maxlength="2">
                         </div>
                         
                             <textarea placeholder="Descripcion" class="input-data desc" name="detalle"></textarea>
@@ -189,6 +177,7 @@
         cantidad =  document.getElementById('input-cant')
         departamento =  document.getElementById('select-depa')
         descripcion =  document.querySelector('.input-data.desc')
+        idEmpleado = document.getElementById('input-id')
         //Select o combobox del select de solicitud
         //Poner aqui toda solicitud que se emita
         solicitud =  document.getElementById('select-soli')
@@ -216,6 +205,13 @@
             }
         });
         
+        // Validaciones
+        btnEnviar.onclick = function validar(event){
+            if(producto.selectedIndex == 0 || cantidad.value.length == 0 || idEmpleado.value.length == 0 || 
+            departamento.selectedIndex == 0 || descripcion.value.length == 0){
+                alert("Se requiere rellenar los campos para poder enviar la solicitud")
+            }
+        }
     </script>
 </body>
 </html>

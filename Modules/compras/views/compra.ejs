@@ -50,18 +50,6 @@
                 <img class="side-foto" src="../resources/iconos_barra/icono_reservas.png">
                 <p class="side-option">Reservas</p>
             </div>
-            <div class="side report">
-                <img class="side-foto" src="../resources/iconos_barra/icono_reporte.png">
-                <p class="side-option">Reportes</p>
-            </div>
-            <div class="side config">
-                <img class="side-foto" src="../resources/iconos_barra/icono_config.png">
-                <p class="side-option">Configuraciones</p>
-            </div>
-            <div class="side ayuda">
-                <img class="side-foto" src="../resources/iconos_barra/icono_ayuda.png">
-                <p class="side-option">Ayuda</p>
-            </div>
         </div>
         <div id="principal">
             <div class="box-title-comp">
@@ -99,8 +87,8 @@
                     <h3 id="subtitle-comp">Proceso de Compra</h3>
                     <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
                     <div class="box-producto">
-                        <input  placeholder="Producto" id="select-prod" type="text" name="nombreP">
-                        <input  id="input-cant" placeholder="Cantidad" type="text" name="cantidad">
+                        <input readonly  placeholder="Producto" id="select-prod" type="text" name="nombreP">
+                        <input  id="input-cant" placeholder="Cantidad" type="text" name="cantidad" maxlength="2">
                     </div>
                     <p class="help-comp">Indique el Proveedor del producto</p>
                     <div class="box-prov">
@@ -191,26 +179,10 @@
         let exit = document.getElementsByClassName('title-exit')[0]
         //Boton de Exit
 
-        let atras = document.getElementsByClassName('exit-icon')[0]
-        //Boton de Atras Confirmacion
-
-        /*atras.onclick = function(){
-            document.getElementById('principal').style.display = 'flex'
-            document.getElementById('main').style.display = 'none'
-        }*/
 
         exit.onclick = function(){
             window.location.href = '/'
         }
-
-        //let producto = document.getElementById('product');
-        //let fecha = document.getElementById('date');
-        //let cantidad_confirmada = document.getElementById('quantity');
-        //let precio = document.getElementById('price');
-        //let saldo_previo = document.getElementById('previous-balance');
-        //let saldo = document.getElementById('current-balance');
-        //let orden = document.getElementById('order-number');
-        //let regresar = document.getElementById('back-button');
     </script>
 </body>
 </html>

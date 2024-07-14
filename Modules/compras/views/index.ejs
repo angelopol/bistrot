@@ -112,7 +112,7 @@
                         <img id="prov-icon" alt="Icono de Proveedores" src='../resources/products.png'>
                     </div>
                     <div class="box-prov">
-                        <button id="btn-soli">Solicitudes</button>
+                        <button id="btn-soli">Requisiciones</button>
                         <img id="prov-icon" alt="Icono de Proveedores" src='../resources/request.png'>
                     </div>
                 </div>
@@ -159,14 +159,6 @@
         btn_soli.onclick = function(){
             window.location.href = '/soli'
         }
-
-        //Modificacion del saldo
-        //Dependiendo de las solicitudes que se haga el saldo van a ir disminuyendo
-        //Funcionalidad del boton compra
-        let comprar = document.getElementById("btn-compra").addEventListener('click',() =>{
-            saldo.innerHTML = result
-
-        })
     </script>
 </body>
 </html>

@@ -50,18 +50,6 @@
                 <img class="side-foto" src="../resources/iconos_barra/icono_reservas.png">
                 <p class="side-option">Reservas</p>
             </div>
-            <div class="side report">
-                <img class="side-foto" src="../resources/iconos_barra/icono_reporte.png">
-                <p class="side-option">Reportes</p>
-            </div>
-            <div class="side config">
-                <img class="side-foto" src="../resources/iconos_barra/icono_config.png">
-                <p class="side-option">Configuraciones</p>
-            </div>
-            <div class="side ayuda">
-                <img class="side-foto" src="../resources/iconos_barra/icono_ayuda.png">
-                <p class="side-option">Ayuda</p>
-            </div>
         </div>
 
         <div id="principal">
@@ -127,13 +115,13 @@
                                 <input type="submit" id="data-title-btn" value="Agregar">
                                 <input type="submit" id="data-title-modi" value="Modificar">
                             </div>
-                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa"  onkeypress="return validLetra(event)", maxlength="20">
+                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa"  maxlength="20">
                             <input maxlength="12" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
                             <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal" maxlength="10">
                             <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo" maxlength="24">
-                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa" onkeypress="return validLetra(event)", maxlength="10">
+                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa", maxlength="10">
                             <input maxlength="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
-                            <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd" onkeypress="return validLetra(event)", maxlength="10">
+                            <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd", maxlength="10">
                             <input placeholder="Precio por ud.Compra" class="input-data pre-prov" type="text" name="precio">
                         </form>
                     </div>
@@ -259,6 +247,9 @@
             }
         }
         tlf.addEventListener('keydown', event => validarNumero(event))
+
+        precioo.addEventListener('keydown', event => validarNumero(event))
+
         rif.addEventListener('keydown', () =>{
             if(rif.value.match(/^j-[0-9]{9}$/)){
                 rif.style.border= '2px solid #02676F'
@@ -275,28 +266,40 @@
                 correo.style.border='2px solid red'
             }
         })
+        direc_fis.addEventListener('keydown', () =>{
+            if(direc_fis.value.match(/^[a-zA-Z0-9]+$/)){
+                direc_fis.style.border = '2px solid #02676F'
+            }else{
+                direc_fis.style.border = '2px solid red'
+            }
+        })
+        tlf.addEventListener('keydown', () =>{
+            if(tlf.value.match(/^04(14|12|24|26)[0-9]{7}$/)){
+                tlf.style.border = '2px solid #02676F'
+            }else{
+                tlf.style.border = '2px solid red'
+            }
+        })
 
         //validacion si la entrada recibe una letra
-        function validLetra(e){
-            var key = e.keyCode || e.which,
-            tecla = String.fromCharCode(key).toLowerCase(),
-            letras = " áéíóúabcdefghijklmnñopqrstuvwxyz",
-            especiales = [8, 37, 39, 46],
-            tecla_especial = false;
-
-            for (var i in especiales) {
-            if (key == especiales[i]) {
-                tecla_especial = true;
-                break;
-            }
-            }
-
-            if (letras.indexOf(tecla) == -1 && !tecla_especial) {
-            return false;
+        nombre_prov.onkeypress = function(e){
+            var regex = /^[a-zA-Z\s]+$/
+            if (!e.key.match(regex)){
+                e.preventDefault();
             }
         }
-        //Validacion para el numero de telefono
-
+        nombre_res.onkeypress = function(e){
+            var regex = /^[a-zA-Z\s]+$/
+            if(!e.key.match(regex)){
+                e.preventDefault()
+            }
+        }
+        producto.onkeypress = function(e){
+            var regex = /^[a-zA-Z\s]+$/
+            if(!e.key.match(regex)){
+                e.preventDefault()
+            }
+        }
         // Validacion de los campos
         btn_add.onclick = function validar(event){
             if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
