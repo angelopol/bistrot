@@ -8,12 +8,13 @@ import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
 import { InventarioMesasController } from './controllers/controlador.js';
+
     const controladorInventario= new InventarioMesasController();
     const app = express()
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     app.use(express.static(path.join(__dirname, 'views')));
-    app.set('view engine', 'ejs')
+    app.set('view engine', 'ejs');
     app.use(methodOverride('_method'));
     app.use(json()) 
     app.use(cookieParser())
@@ -24,7 +25,7 @@ import { InventarioMesasController } from './controllers/controlador.js';
     app.use(bodyParser.json())
     app.use(express.static(path.join(__dirname, 'routes')));
     //Vista para el modulo de reservas
-    app.get('/',controladorInventario.mostrarReserva);
+    app.get('/',controladorInventario.mostrarReservacion);
 
     app.get('/css/reservas.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/reservacion.css'))
@@ -62,17 +63,10 @@ import { InventarioMesasController } from './controllers/controlador.js';
         res.sendFile(path.join(__dirname, 'views/CrearReservas.css'))
     });
 
-    app.get('/reservacion',controladorInventario.mostrarReservacion);
-
-    app.get('/css/reservacion.css',(req,res)=>{
-        res.sendFile(path.join(__dirname, 'views/reservacion.css'))
-    });
-
     const PORT = process.env.PORT ?? 1234
     app.listen(PORT, () => {
         console.log(`Server running on port ${PORT}`)
-    }
-    )
+    })
 
 
 

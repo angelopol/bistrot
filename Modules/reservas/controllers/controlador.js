@@ -1,5 +1,4 @@
 import { validarInventarioMesas } from "../schemes/validacion_inventarioMesas.js";
-import { validarListaEspera } from "../schemes/validacion_lista_espera.js";
 import { validarReservaMesas } from "../schemes/validacion_reserva_mesas.js";
 
 export class InventarioMesasController{

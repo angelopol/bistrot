@@ -29,22 +29,24 @@ export class ReservaMesasModel {
             throw new Error('Error creando reserva de mesa')
         }
     }
-    static async modificar({ modi }) {
-        const {
-            ID_mesa,
-            ID_reserva,
-        } = modi
+    // Creo que no debería poder modificarse los ID, se deja comentado por si acaso
 
-        try {
-            await connection.query(
-                'UPDATE reserva_mesa SET ID_reserva = ? WHERE ID_mesa = ?',
-                [ID_reserva, ID_mesa]
-            )
-        } catch (e) {
-            console.log(e)
-            throw new Error('Error actualizando reserva de mesa')
-        }
-    }
+    // static async modificar({ modi }) {
+    //     const {
+    //         ID_mesa,
+    //         ID_reserva,
+    //     } = modi
+
+    //     try {
+    //         await connection.query(
+    //             'UPDATE reserva_mesa SET ID_reserva = ? WHERE ID_mesa = ?',
+    //             [ID_reserva, ID_mesa]
+    //         )
+    //     } catch (e) {
+    //         console.log(e)
+    //         throw new Error('Error actualizando reserva de mesa')
+    //     }
+    // }
     static async encontrar({ ID_mesa }) {
         try {
             const [rows] = await connection.query(
@@ -57,14 +59,16 @@ export class ReservaMesasModel {
             throw new Error('Error buscando reserva de mesa')
         }
     }
-    static async eliminar({ Elimin }) { 
-        const { ID_mesa } = Elimin
-
+    static async eliminar({ ID_mesa }) {
         try {
-            await connection.query(
+            const [result] = await connection.query(
                 'DELETE FROM reserva_mesa WHERE ID_mesa = ?',
                 [ID_mesa]
             )
+
+            if (result.affectedRows > 0) {
+                return { message: `Reserva con id ${id} eliminada correctamente.` }
+            }
         } catch (e) {
             console.log(e)
             throw new Error('Error eliminando reserva de mesa')

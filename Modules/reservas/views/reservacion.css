@@ -3,6 +3,13 @@
     flex-direction: column;
 }
 
+
+h2 a {
+  text-decoration: none; /* Elimina el subrayado */
+  color: inherit; /* Hereda el color del elemento padre */
+}
+
+
 main {
     display: flex;
     gap: 10px;
@@ -21,12 +28,13 @@ main {
 
 .right-side {
     box-shadow: 0 0 5px rgba(50, 50, 50, 0.1);
-    height: 60vh;
-    width: 20vw;
+    height: 55vh;
+    width: 15vw;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 30px;
 }
 
 ul {
@@ -72,3 +80,102 @@ ul {
     padding: 5px;
     border-color: #DADADA;
 }
+
+
+
+
+
+
+.container-historial {
+    font-family: Inter, sans-serif;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 30px;
+  }
+  
+  .left-section {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .right-section {
+    width: 50%;
+  }
+  
+  .historial-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  table {
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    width: 1600px;
+    height: 10px;
+  }
+  
+  
+  .calendar {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .calendar table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar th, .calendar td {
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    width: 14.28%; /* Distribute days evenly */
+  }
+  
+  .calendar th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .calendar td {
+    height: 30px;
+  }
+  
+  .calendar td.current {
+    background-color: #e0f2f7; /* Highlight current day */
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+
+

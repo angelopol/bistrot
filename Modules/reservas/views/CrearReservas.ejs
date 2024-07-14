@@ -42,7 +42,12 @@
         <div class="contenido">
             <div class="contenidop">
                 <div class="Reservar">
-                   <h2><img src="imagenes/icono_salida.png" alt="regresar">Reservar</h2>
+                  <h2>
+                    <a href="reservacion.html">
+                      <img src="imagenes/icono_salida.png" alt="regresar">
+                    </a>
+                    Reservar
+                  </h2>
                 </div>
                 <div class="seccion">
                     <h2>Reservación de mesa</h2>
@@ -72,9 +77,9 @@
   <div class="form-group">
     <label for="zona">Zona:</label>
     <select id="zona" name="zona" required>
-      <option value="cocina">Cocina</option>
-      <option value="salon">Salón</option>
-      <option value="terraza">Terraza</option>
+      <option value="Interior">Interior</option>
+      <option value="Exterior">Exterior</option>
+      <option value="Barra">Barra</option>
     </select>
   </div>
 
@@ -94,8 +99,8 @@
   </div>
 
   <div class="form-group">
-    <label for="descripcion">Descripción:</label>
-    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+    <label for="idmesa">Número de mesa:</label>
+    <input type="text" id="idmesa" name="idmesa" required>
   </div>
 
   <button type="submit">Registrar Reserva</button>

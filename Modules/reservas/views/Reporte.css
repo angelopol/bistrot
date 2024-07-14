@@ -7,6 +7,13 @@ body {
     overflow: hidden;
 }
 
+
+h2 a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Hereda el color del elemento padre */
+  }
+  
+
 h2, h3 {
     color: #02676F;
 }
@@ -134,44 +141,48 @@ form {
     display: flex;
     flex-wrap: wrap;
   }
-
-  /* Estilos para los grupos de campos */
+  
   .form-group {
-    flex: 1 1 calc(30% - 10px); /* Dos columnas, con margen entre ellas */
+    flex: 1 1 calc(30% - 10px); /* Tres columnas, con margen entre ellas */
     margin-right: 10px;
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
   }
-
+  
   .form-group:last-child {
     margin-right: 0; /* Elimina el margen derecho del último grupo */
   }
-
+  
   .form-group label {
     display: block;
     margin-bottom: 5px;
     color: #555;
+    text-align: center; /* Centra el texto del label */
   }
-
+  
   .form-group input[type="text"],
   .form-group input[type="number"],
   .form-group input[type="date"],
   .form-group input[type="time"],
   .form-group textarea,
   .form-group select {
-    width: 100%; /* Ocupa todo el ancho disponible */
+    width: 90%; /* Ocupa el 90% del ancho disponible */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    margin: 0 auto; /* Centra horizontalmente */
   }
-
+  
   .form-group textarea {
     resize: vertical; /* Permitir redimensionamiento vertical */
   }
-
+  
   /* Estilos para el botón */
   button[type="submit"] {
-    background-color: #02676F;
+    background-color: #0A3D2F;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -180,7 +191,8 @@ form {
     transition: background-color 0.3s;
     width: 100%;
   }
-
+  
   button[type="submit"]:hover {
     background-color: #45a049;
   }
+  

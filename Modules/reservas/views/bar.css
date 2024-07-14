@@ -7,6 +7,12 @@ body {
     overflow: hidden;
 }
 
+h2 a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Hereda el color del elemento padre */
+  }
+  
+
 h2, h3 {
     color: #02676F;
 }
@@ -121,8 +127,8 @@ nav ul li a:hover {
 
 .distribucion {
     position: relative;
-    width: 80%;
-    height: 60%;
+    width: 50%;
+    height: 40%;
     display: flex;
     justify-content: center; /* Centrar horizontalmente los elementos */
     align-items: center; /* Centrar verticalmente los elementos */

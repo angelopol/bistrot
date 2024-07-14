@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear un Evento</title>
-    <link rel="stylesheet" href="/css/crearEventos.css">
+    <link rel="stylesheet" href="CrearEvento.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
 
 </head>
@@ -42,7 +42,12 @@
         <div class="contenido">
             <div class="contenidop">
                 <div class="Reservar">
-                   <h2><img src="imagenes/icono_salida.png" alt="regresar">Reservar</h2>
+                   <h2>
+                        <a href="reservacion.html">
+                          <img src="imagenes/icono_salida.png" alt="regresar">
+                        </a>
+                        Reservar
+                      </h2>
                 </div>
                 <div class="seccion">
                     <h2>Crear Evento</h2>
@@ -100,9 +105,9 @@
                     <div class="form-group">
                         <label for="zona">Zona:</label>
                         <select id="zona" name="zona" required>
-                            <option value="cocina">Cocina</option>
-                            <option value="salon">Salón</option>
-                            <option value="terraza">Terraza</option>
+                            <option value="cocina">Interior</option>
+                            <option value="salon">Exterior</option>
+                            <option value="terraza">Barra</option>
                         </select>
                     </div>
 
@@ -112,9 +117,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-                    </div>
+                        <label for="idmesa">Número de mesa:</label>
+                        <input type="text" id="idmesa" name="idmesa" required>
+                      </div>
 
                     <button type="submit">Registrar Evento</button>
                 </form>

@@ -34,9 +34,8 @@ export class InventarioMesasModel {
     }
   }
 
-  static async modificar({ modi }) {
+  static async modificar({ ID_mesa, modi }) {
     const {
-      ID_mesa,
       descripcion,
       numero_sillas,
       ubicacion,
@@ -68,14 +67,15 @@ export class InventarioMesasModel {
     }
   }
 
-  static async eliminar({ Elimin }) {
-    const { ID_mesa } = Elimin;
-
+  static async eliminar({ ID_mesa }) {
     try {
-      await connection.query(
+      const response = await connection.query(
         'DELETE FROM inventario_mesas WHERE ID_mesa = ?',
         [ID_mesa]
       );
+      if (result.affectedRows > 0) {
+        return { message: `Mesa con id ${ID_mesa} eliminada correctamente.` }
+      }
     } catch (e) {
       console.log(e);
       throw new Error('Error deleting mesa');
