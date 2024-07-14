@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Caja</title>
     <link rel="stylesheet" type="text/css" href="Caja_Styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
@@ -17,80 +17,102 @@
     </header>
 
     <div class="Contenido">
-        
-        <section class="table-grid">
-            <article class="table-card">
-            <header class="table-header">
+        <section id="General" class="Mesas visible">
+            <section class="table-grid">
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 01</h2>
-            </header>
-            <p class="">DISPONIBLE</p>
-            </article>
-            <article class="table-card">
-            <header class="table-header">
+                    <h2 class="table-name">MESA 01</h2>
+                </header>
+                <p class="">DISPONIBLE</p>
+                </article>
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 02</h2>
-            </header>
-            <p class="">DISPONIBLE</p>
-            </article>
-            <article class="table-card">
-            <header class="table-header">
+                    <h2 class="table-name">MESA 02</h2>
+                </header>
+                <p class="">DISPONIBLE</p>
+                </article>
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 03</h2>
-            </header>
-            <p class="table-status">DISPONIBLE</p>
-            </article>
-            <article class="table-card">
-            <header class="table-header">
+                    <h2 class="table-name">MESA 03</h2>
+                </header>
+                <p class="table-status">DISPONIBLE</p>
+                </article>
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 04</h2>
-            </header>
-            <p class="">DISPONIBLE</p>
-            </article>
-            <article class="table-card">
-            <header class="table-header">
+                    <h2 class="table-name">MESA 04</h2>
+                </header>
+                <p class="">DISPONIBLE</p>
+                </article>
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 05</h2>
-            </header>
-            <p class="">DISPONIBLE</p>
-            </article>
-            <article class="table-card">
-            <header class="table-header">
+                    <h2 class="table-name">MESA 05</h2>
+                </header>
+                <p class="">DISPONIBLE</p>
+                </article>
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 06</h2>
-            </header>
-            <p class="">DISPONIBLE</p>
-            </article>
-            <article class="table-card">
-            <header class="table-header">
+                    <h2 class="table-name">MESA 06</h2>
+                </header>
+                <p class="">DISPONIBLE</p>
+                </article>
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 07</h2>
-            </header>
-            <p class="">DISPONIBLE</p>
-            </article>
-            <article class="table-card">
-            <header class="table-header">
+                    <h2 class="table-name">MESA 07</h2>
+                </header>
+                <p class="">DISPONIBLE</p>
+                </article>
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 08</h2>
-            </header>
-            <p class="">DISPONIBLE</p>
-            </article>
-            <article class="table-card">
-            <header class="table-header">
+                    <h2 class="table-name">MESA 08</h2>
+                </header>
+                <p class="">DISPONIBLE</p>
+                </article>
+                <article class="table-card">
+                <header class="table-header">
 
-                <h2 class="table-name">MESA 09</h2>
-            </header>
-            <p class="">DISPONIBLE</p>
-            </article>
-            
+                    <h2 class="table-name">MESA 09</h2>
+                </header>
+                <p class="">DISPONIBLE</p>
+                </article>
+                
+            </section>
+        </section>
+
+        <section id="Terraza" class="Mesas">
+            <section class="table-grid">
+                <article class="table-card">
+                    <header class="table-header">
+                      <div class="table-number">
+                      </div>
+                      <h2 class="table-name">MESA 01</h2>
+                    </header>
+                    <p class="table-status">DISPONIBLE</p>
+                  </article>
+                <article class="table-card">
+                    <header class="table-header">
+
+                        <h2 class="table-name">MESA 02</h2>
+                    </header>
+                    <p class="">DISPONIBLE</p>
+                </article>
+                
+                
+            </section>
         </section>
 
         <aside class="sidebar-right">
             <section class="navigation-bar">
                     <div class="nav-tabs">
-                        <button class="nav-tab nav-tab-active">Mesas</button>
-                        <button class="nav-tab nav-tab-inactive">Terraza</button>
-                        <button class="nav-tab nav-tab-inactive">Salon</button>
+                        <button id="tab1" class="nav-tab nav-tab-active" onclick="changeTab('tab1')">General</button>
+                        <button id="tab2" class="nav-tab nav-tab-inactive" onclick="changeTab('tab2')">Terraza</button>
                     </div>
             </section>
             <section class="action-panel">
@@ -101,6 +123,6 @@
         </aside>
     </div>
 
-    
+    <script src="Caja.js"></script>
 </body>
 </html>

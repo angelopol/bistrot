@@ -113,6 +113,16 @@ body {
     gap: 5px;
 }
 
+.Mesas{
+    display: none;
+    width: 100%;
+}
+
+
+.visible{
+    display: block;
+}
+
 
 .table-name {
     font-weight: 500;
@@ -131,6 +141,7 @@ body {
     display: flex;
     gap: 12px;
     color: #02676f;
+    background-color: #e4e4e4;
     white-space: nowrap;
     border: none;
     line-height: 150%;
@@ -144,7 +155,6 @@ body {
     border-radius: 8px;
 
     padding: 10px ;
-    color: #02676f;
 
     border: none;
     cursor: pointer;
@@ -158,12 +168,13 @@ body {
 }
 
 .nav-tab-inactive {
-    background-color: #fff;
+    background-color: #e4e4e4;
     /* Color de fondo blanco para los botones desactivados */
     color: #178566;
     /* Texto verde para los botones desactivados */
     border-radius: 8px;
 }
+
 
 
 .action-panel {
@@ -235,4 +246,8 @@ body {
     background-color: #bbbbbb;
     transition:  background-color 0.3s ease;
 
+}
+
+.selected {
+    transform: scale(1,1);
 }
