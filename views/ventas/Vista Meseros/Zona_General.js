@@ -4,8 +4,16 @@ const actionButtons = document.querySelectorAll('.action-button');
 // Seleccionar todas las tarjetas de mesa
 const tableCards = document.querySelectorAll('.table-card');
 
+// Obtener los pedidos que se han realizado
+const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
+console.log(pedidos_realizados);
+
+// actualizacion constante de los estados
+recorrido_mesas(pedidos_realizados)
+
 // Variable para almacenar el ID de la mesa seleccionada
 let selectedTableId = null;
+let selectedMesa = [];
 
 // Agregar evento de clic a cada botón de acción    
 actionButtons.forEach(button => {
@@ -77,4 +85,31 @@ tableCards.forEach((tableCard, index) => {
 // Función opcional para actualizar la tabla de mesas
 function updateTable(tableId) {
     // Implementar la lógica de actualización de la tabla de mesas aquí
+}
+
+
+// funcion para recorrer los pedidos realizados
+function recorrido_mesas(pedidos_mesas){
+
+    pedidos_mesas.forEach(pedidos => {
+
+        tableCards.forEach((mesas,id_mesas) => {
+
+            // estatus pedidos
+            if (pedidos.estatus === 1 && pedidos.tableId === String(id_mesas+1)){
+                const tableStatusElement = mesas.querySelector('h2');
+                tableStatusElement.textContent = 'Pendiente';
+            } else if(pedidos.estatus === 2 && pedidos.tableId === String(id_mesas+1)) {
+                const tableStatusElement = mesas.querySelector('h2');
+                tableStatusElement.textContent = 'Rechazado';
+            } else if(pedidos.estatus === 3 && pedidos.tableId === String(id_mesas+1)) {
+                const tableStatusElement = mesas.querySelector('h2');
+                tableStatusElement.textContent = 'Aceptado';
+            } else if(pedidos.estatus === 4 && pedidos.tableId === String(id_mesas+1)) {
+                const tableStatusElement = mesas.querySelector('h2');
+                tableStatusElement.textContent = 'Listo';
+            }
+        })
+        
+    })
 }
