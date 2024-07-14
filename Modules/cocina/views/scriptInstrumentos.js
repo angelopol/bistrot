@@ -46,24 +46,29 @@ async function funcionBotonReporte(id){
       });
 }
 
+// Función que hace una petición a inventario y retorna una lista con los instrumentos
 async function obtenerObjetosCocina(){
-  // Función que hace una petición a inventario y retorna una lista con los instrumentos
-
-    // con este endpoint solicitamos a inventario todos los instrumentos que tienen guardados en su tabla de general
-    const response = await fetch(`http://localhost:3000/api/general`); /*Importar Modulo externo Inventario*/
-    if (!response.ok){
-        throw new Error('No se pudo obtener los objetos de gneeral');
-    }
-
-
-    let objetos = await response.json() // esta variable guardaria todo los objetos
-    let instrumentosCocina = [] // con esta variable guardamos todos los objetos cuyo tipo sea igual a equipoCocina, basicamente los intrumentos que pertenezcan al modulo de cocina/bar
-    objetos.forEach(objeto => {
-        if (objeto.tipo == "equipoCocina"){
-            instrumentosCocina.push(objeto)
-        }
-    }); 
-    return instrumentosCocina
+    try {
+      // con este endpoint solicitamos a inventario todos los instrumentos que tienen guardados en su tabla de general
+      const response = await fetch(`http://localhost:3000/api/general`); /*Importar Modulo externo Inventario*/
+      if (!response.ok){
+          throw new Error('No se pudo obtener los objetos de general');
+      }
+  
+      let objetos = await response.json(); // esta variable guardará todos los objetos
+      let instrumentosCocina = []; // con esta variable guardamos todos los objetos cuyo tipo sea igual a equipoCocina, básicamente los instrumentos que pertenecen al módulo de cocina/bar
+  
+      objetos.forEach(objeto => {
+          if (objeto.tipo === "equipoCocina") {
+              instrumentosCocina.push(objeto);
+          }
+      }); 
+  
+      return instrumentosCocina;
+  } catch (error) {
+      console.error('Hubo un error en el fetch:', error);
+  }
+  
 }
 
 // con esta funcion actualizamos en la tabla para que aparezcan los instrumentos de cocina

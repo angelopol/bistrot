@@ -1,3 +1,5 @@
+/* Recordatorio: los pedidos se refieren a los objetos factura de ventas */
+
 document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-button');
     filterButtons.forEach(button => {
@@ -15,7 +17,7 @@ async function actualizarPedidos() {
     try {
         // Metodo que verifica si hay pedidos "pendientes" por procesar, y se muestran en la view.
 
-        // esta ruta hay que importarla de ventas,
+        // esta ruta hay que importarla de ventas
         const response = await fetch('http://localhost:3000/ventas/factura'); 
         if (!response.ok) {
             throw new Error('No se pudo obtener la lista de pedidos');
@@ -74,31 +76,38 @@ botonProcesar.addEventListener("click" , async () => {
         return null
     }
 
-    let idCardSeleccionada = idPedido // se guarda el id del pedido seleccionado
-
-    // hacemos una peticion a este endpoint (que es de cocina, que a su vez usa internamente un endpoint de ventas) para que verifique si se puede hacer el pedido cuyo id es el que le pasamos por la url, y ademas este endpoint retorna ese pedido
-    let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`) // Petición que lleva al controlador de cocina
-
-    let pedido = await response.json() // Se toma el pedido retornado por el controlador, el ya valido si se puede realizar la comida y se sabe accediendo a su atributo de estatus
-
-    // si el estatus pedido es 3, entonces se acepta el pédido, y se puede preparar las comidas/bebidas
-    if (pedido.status_pedido == 3){
-
-        // se obtiene el contenedor del pedido seleccionado
-        let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
-        let cardMesaStatus = cardMesa.lastElementChild;
-        cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
-        // Al aceptarse el pedido se considera (en la view) que inicia la preparacion 
+    try {
+        let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
+    
+        // hacemos una petición a este endpoint para verificar si se puede procesar el pedido
+        let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`);
+    
+        if (!response.ok) {
+            throw new Error('La solicitud no pudo completarse correctamente');
+        }
+    
+        let pedido = await response.json(); // obtenemos el pedido retornado por el controlador
+    
+        // si el estado del pedido es 3, se acepta el pedido y se puede preparar
+        if (pedido.status_pedido === 3) {
+            // se obtiene el contenedor del pedido seleccionado
+            let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
+            let cardMesaStatus = cardMesa.lastElementChild;
+            cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
+            // Al aceptarse el pedido se considera (en la vista) que inicia la preparación
+        }
+        // si el estado del pedido es 2, se rechaza el pedido por falta de recursos
+        else if (pedido.status_pedido === 2) {
+            alert("No se cuenta con los recursos para realizar este pedido");
+            let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
+            let cardMesaStatus = cardMesa.lastElementChild;
+            cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: Rechazado`;
+            // Al rechazarse, Ventas debe manejar el pedido
+        }
+    } catch (error) {
+        console.error('Hubo un error al conectarse con la base de datos de ventas:', error);
     }
-
-    // si el estatus del pedido es 2, entonces se rechaza el pedido porque no se cuentan con los recursos para procesarlo
-    else if(pedido.status_pedido == 2){
-        alert("No se cuenta con los recursos para realizar este pedido")
-        let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
-        let cardMesaStatus = cardMesa.lastElementChild;
-        cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} \nEstatus: Rechazado`;
-        // Al rechazarse Ventas debe manejar el pedido
-    }
+    
 })
 
 
@@ -180,7 +189,7 @@ pedidosContainers.forEach(container => {
             contenedorPedido.appendChild(listoButton)
         })
         .catch(e => {
-            console.error(`Error al acceder a la base de datos de pedidos`, e)
+            console.error(`Error al acceder a la base de datos de pedidos (tabla de factura de ventas)`, e)
         })
     })
 })
@@ -202,8 +211,8 @@ listoButton.addEventListener("click", async function () {
         return null
     }
     else if (!cardSeleccionada.innerHTML.includes("preparando")){
-        // Se verifica que el pedido se haya aceptado antes de cambiar su estado a listo
-        alert("Primero debe procesar el pedido")
+        // Se verifica que el pedido no tenga el estatus de rechazado, pendiente o listo
+        alert("Pedido invalido para ponerlo en listo")
         return null
     }
     // Petición al controlador de pedidos que cambia el estado del pedido a listo
@@ -220,11 +229,14 @@ listoButton.addEventListener("click", async function () {
         let cardPedidoStatus = cardPedido.lastElementChild;
         cardPedidoStatus.innerHTML = `ID pedido: ${idPedido}<br>Estatus: listo`; // Se muestra el cambio en la view
         idPedido = ""
+
+        quitarEstatusClickeado()
+        vaciarFichaLateralDerecha()
     })
     .catch(e => {
-        console.error(`No se ha encontrado un pedido en la base de datos con el ID dado.`, e)
+        console.error(`Error al acceder al pedido.`, e)
     })
-    })
+})
 
 // le agregamos un evento al boton devolver, que sirve para quitar de las vistas las ordenes rechazadas
 let devolverBoton = document.querySelector("#botonDevolver")
@@ -248,6 +260,8 @@ devolverBoton.addEventListener("click" , async ()=>{
     let cardPedidoStatus = cardPedido.lastElementChild;
     cardPedidoStatus.textContent = ``;
     idPedido = ""
+    quitarEstatusClickeado()
+    vaciarFichaLateralDerecha()
 })
 
 
@@ -260,29 +274,65 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
         return null
     }
 
-    let idCardSeleccionada = idPedido // se guarda el id del pedido seleccionado
-
-    // hacemos una peticion a este endpoint (que es de cocina, que a su vez usa internamente un endpoint de ventas) para que verifique si se puede hacer el pedido cuyo id es el que le pasamos por la url, y ademas este endpoint retorna ese pedido
-    let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`) // Petición que lleva al controlador de cocina
-
-    let pedido = await response.json() // Se toma el pedido retornado por el controlador, el ya valido si se puede realizar la comida y se sabe accediendo a su atributo de estatus
-
-    // si el estatus pedido es 3, entonces se acepta el pédido, y se puede preparar las comidas/bebidas
-    if (pedido.status_pedido == 3){
-
-        // se obtiene el contenedor del pedido seleccionado
-        let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
-        let cardMesaStatus = cardMesa.lastElementChild;
-        cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
-        alert("Se cuenta con los recursos para volver a preparar el pedido") 
-    }
-
-    // si el estatus del pedido es 2, entonces se rechaza el pedido porque no se cuentan con los recursos para procesarlo
-    else if(pedido.status_pedido == 2){
-        alert("No se cuenta con los recursos para realizar de nuevo este pedido")
-        let cardMesa = document.querySelector(`#${idCardSeleccionada}`)
-        let cardMesaStatus = cardMesa.lastElementChild;
-        cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} \nEstatus: Rechazado`;
-        // Al rechazarse Ventas debe manejar el pedido
+    if (confirm("¿Estas seguro que deseas volver a procesar el pedido?")){
+    
+        try {
+            let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
+        
+            // hacemos una petición a este endpoint para verificar si se puede procesar el pedido
+            let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`);
+        
+            if (!response.ok) {
+                throw new Error('La solicitud no pudo completarse correctamente');
+            }
+        
+            let pedido = await response.json(); // obtenemos el pedido retornado por el controlador
+        
+            // si el estado del pedido es 3, se acepta el pedido y se puede preparar
+            if (pedido.status_pedido === 3) {
+                // se obtiene el contenedor del pedido seleccionado
+                let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
+                let cardMesaStatus = cardMesa.lastElementChild;
+                cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
+                alert("Si se cuenta con los recursos para volver a preparar el pedido");
+            }
+            // si el estado del pedido es 2, se rechaza el pedido por falta de recursos
+            else if (pedido.status_pedido === 2) {
+                alert("No se cuenta con los recursos para realizar de nuevo este pedido");
+                let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
+                let cardMesaStatus = cardMesa.lastElementChild;
+                cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: Rechazado`;
+                // Al rechazarse, Ventas debe manejar el pedido
+            }
+        } catch (error) {
+            console.error('Hubo un problema al procesar el pedido:', error);
+        }
+        
     }
 })
+
+
+// funcion que quita el status de clickeado de los contenedores de las vistas que representan los pedidos
+function quitarEstatusClickeado(){
+    let contenedoresPedidos = document.querySelectorAll(".order-card")
+    contenedoresPedidos.forEach(contenedorPedido => {
+        contenedorPedido.classList.remove("clicked")
+    })
+}
+
+// vacia la ficha lateral derecha que muestra la info del pedido
+function vaciarFichaLateralDerecha() {
+    let contenedorPedido = document.querySelector(".order-summary")
+    contenedorPedido.innerHTML = "" // Se borra el contenido de la carta resumen de pedidos
+
+    let elementoH3 = document.createElement("h3")
+    elementoH3.className = "order-number"
+    elementoH3.id = "order-id"
+    elementoH3.textContent = `Pedido ID:`
+    contenedorPedido.appendChild(elementoH3) // Se agrega el id del pedido 
+
+    let divPedido = document.createElement("div")
+    divPedido.className = "order-type"
+    divPedido.innerHTML = "PEDIDO"
+    contenedorPedido.appendChild(divPedido) // Se agrega el indicador "PEDIDO"
+}
