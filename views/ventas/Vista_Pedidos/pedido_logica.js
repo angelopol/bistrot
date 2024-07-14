@@ -1,4 +1,13 @@
+// definimos la variable para registar los pedidos realizados sino se han realizado se muestra una lista vacia
+const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
+
+// obtenemos el id de la mesa
+const urlParams = new URLSearchParams(window.location.search);
+
 document.addEventListener('DOMContentLoaded', (event) => {
+
+    // Escribimos el id de la mesa en el pedido
+    document.querySelector(".order-table").textContent = ("Mesa #" + urlParams.get('tableId'));
     // Selecciona todos los botones de abrir modal
     const openModalButtons = document.querySelectorAll('.button-abrir-modal');
 
@@ -64,7 +73,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Agrega el evento de clic a cada botón de Cancelar
     cancelButtons.forEach(button => {
-        button.addEventListener('click', cancelOrder);
+        button.addEventListener('click', () => cancelOrder("cancelar_pedido"));
     });
 
     // Selecciona el botón de Realizar pedido
@@ -74,7 +83,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     placeOrderButton.addEventListener('click', placeOrder);
 });
 
-function cancelOrder() {
+function cancelOrder(tipo_button) {
     // Selecciona todos los elementos de la orden
     const orderItems = document.querySelectorAll('.order-item');
 
@@ -89,10 +98,15 @@ function cancelOrder() {
     // Restablece el total del pedido a 0
     updateTotalAmount(-parseFloat(document.getElementById('total-amount').textContent));
 
-    // Muestra un mensaje de "Pedido cancelado"
-    alert('¡Pedido cancelado!');
-    // Redirige al usuario a la página Mesonero_Zona_General.html
-    window.location.href = '../Vista_Meseros/Mesero_Zona_General.html';
+    if (tipo_button == "cancelar_pedido"){
+        // Muestra un mensaje de "Pedido cancelado"
+        alert('¡Pedido cancelado!');
+        // Redirige al usuario a la página Mesonero_Zona_General.html
+        window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
+    } else {
+        // Redirige al usuario a la página Mesonero_Zona_General.html
+        window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
+    }
 }
 
 function salir() {
@@ -102,11 +116,13 @@ function salir() {
 
 function placeOrder() {
     // Obtén la información del pedido (elementos, cantidad, total, etc.)
+    // Obtener los valores de los parámetros de la URL
     const orderItems = document.querySelectorAll('.order-item');
     const orderData = {
         items: [],
         total: parseFloat(document.getElementById('total-amount').textContent),
-        tableId: document.getElementById('table-id').value // Obtén el ID de la mesa seleccionada
+        estatus: 1, // 1 = "Pendiente", 2 = "Rechazado", 3 = "Aceptado", 4 = "Listo"
+        tableId: urlParams.get('tableId'), // Obtén el ID de la mesa seleccionada
     };
 
     orderItems.forEach(item => {
@@ -125,11 +141,37 @@ function sendOrderToServer(orderData) {
     // Aquí puedes implementar la lógica de envío de datos al servidor
     console.log('Enviando pedido al servidor:', orderData);
 
+    // Actualizar el localStorage con los pedidos registrados
+    let bandera_reemplazo = false;  // esto es para saber si se tomo un nuevo pedido en una mesa existente para reemplazarlo
+
+    // recorremos los pedidos realizados
+    pedidos_realizados.forEach((pedidos,cont_posiciones) => {
+
+        // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
+        if(pedidos.tableId === orderData.tableId) {
+            pedidos_realizados.splice(cont_posiciones, 1, orderData);
+            localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+            console.log(pedidos_realizados);
+            bandera_reemplazo = true;
+            return;
+        }
+
+    });
+
+
+    // si en la mesa donde se realiza el pedido todavia no esta registrado se agrega el pedido
+    if(!bandera_reemplazo){
+        pedidos_realizados.push(orderData);
+        localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+        console.log(pedidos_realizados);
+    }
+    
+    
     // Muestra un mensaje de éxito
     alert('¡Pedido realizado con éxito! El pedido se ha enviado a la mesa ' + orderData.tableId);
 
     // Restablece el pedido
-    cancelOrder();
+    cancelOrder("realizar_pedido");
 }
 
 function cambiar(IDdestino){
@@ -196,3 +238,9 @@ function updateTotalAmount(priceChange) {
     totalActual += priceInt;
     totalAmountElement.textContent = totalActual.toFixed(2).toString().padStart(6, '0');
 }
+
+
+// Esto es para borrar las pruebas
+
+// Eliminar todos los pedidos del localStorage
+//localStorage.removeItem('pedidos');
