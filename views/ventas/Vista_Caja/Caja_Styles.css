@@ -83,25 +83,28 @@ body {
     box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.3), 0 0 15px 0 rgba(0, 0, 0, 0.3);
     background-color: #fff;
     display: flex;
+    padding-bottom: 10px;
     flex-direction: column;
-    height: 120px; 
-    font-size: 14px; 
+    text-align: center;
+    font-size: 12px;
     color: #000;
+    font-weight: 500;
     line-height: 150%;
-    margin: 10px;
-    width: 220px; 
-    padding-bottom: 50px; 
+    width: 16%;
+    max-width: 16%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.table-header {
-    background-color: #D9D9D9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    padding-top: 20px; 
-}
 
+.table-header {
+    background-color: #178566;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px ;
+}
 
 
 .table-info {
@@ -110,27 +113,20 @@ body {
     gap: 5px;
 }
 
-.table-icon {
-    width: 24px;
-    height: 24px;
-}
-
-.table-number {
-    margin: auto 0;
-}
 
 .table-name {
-    margin-top: 20px;
     font-weight: 500;
 }
 
-
+.table-status {
+    font-family: Montserrat, sans-serif;
+    align-self: center;
+}
 
 
 .nav-tabs {
     border-radius: 12px;
-    border: 1px solid #5da0a6;
-    background-color: #D9D9D9;
+    border: 1px solid #178566;
     align-self: flex-end;
     display: flex;
     gap: 12px;
@@ -139,17 +135,15 @@ body {
     border: none;
     line-height: 150%;
     padding: 12px;
-    margin-bottom: 10px;
 }
 
 .nav-tab {
-    font-size: 17px;
-    font-weight: 400;
+    font-size: 15px;
+    font-weight: 500;
     justify-content: center;
     border-radius: 8px;
-    background-color: #D9D9D9;
 
-    padding: 10px 16px;
+    padding: 10px ;
     color: #02676f;
 
     border: none;
@@ -157,16 +151,16 @@ body {
 }
 
 .nav-tab-active {
-    background-color: #02676f;
+    background-color: #178566;
     /* Fondo verde para el botón activo */
     color: #fff;
     /* Texto blanco para el botón activo */
 }
 
 .nav-tab-inactive {
-    background-color: #D9D9D9;
+    background-color: #fff;
     /* Color de fondo blanco para los botones desactivados */
-    color: #02676f;
+    color: #178566;
     /* Texto verde para los botones desactivados */
     border-radius: 8px;
 }
@@ -175,15 +169,13 @@ body {
 .action-panel {
     
     border-radius: 15px;
-    background-color: #D9D9D9;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #fff;
     font-weight: 500;
     line-height: 150%;
-    width: 120%;
-    margin: 20px;
+    width: 80%;
     padding: 30px;
 }
 
@@ -194,12 +186,12 @@ body {
     font-weight: 600;
     justify-content: center;
     border-radius: 10px;
-    background-color: #02676f;
+    background-color: #178566;
     color: white;
     padding: 13px 16px;
     margin: 15px;
     cursor: pointer;
-    width: 80%;
+    width: 100%;
     border: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
@@ -210,18 +202,25 @@ body {
     flex-direction: column;
     align-items: center;
     width: 20%;
-    gap: 20px;
 }
 
-.Salida{margin: 40px;}
 
 .Contenido{
     display: flex;
     flex-direction: row;
     width: 90%;
     margin: 20px;
+    margin-top: 50px;
     align-items: start;
 }
+
+.selected {
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(-7px);
+
+}
+
 .table-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.6), 0 0 20px 0 rgba(0, 0, 0, 0.6);
