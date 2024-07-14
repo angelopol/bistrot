@@ -32,25 +32,40 @@ import { InventarioMesasController } from './controllers/controlador.js';
     app.get('/css/mesa.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/mesas.css'))
     });
+    app.get('/bar',controladorInventario.mostrarBar);
 
+    app.get('/css/bares.css',(req,res)=>{
+        res.sendFile(path.join(__dirname, 'views/bar.css'))
+    });
+
+    app.get('/CrearEvento',controladorInventario.mostrarCrearEvento);
+
+    app.get('/css/crearEventos.css',(req,res)=>{
+        res.sendFile(path.join(__dirname, 'views/CrearEvento.css'))
+    });
+
+    app.get('/Reporte',controladorInventario.mostrarReporte);
+
+    app.get('/css/reportes.css',(req,res)=>{
+        res.sendFile(path.join(__dirname, 'views/Reporte.css'))
+    });
+
+    app.get('/mesas',controladorInventario.mostrarMesas);
     
-    app.get('/bar',(req,res)=>{
-        res.render('bar',{data: null})
+    app.get('/css/mesass.css',(req,res)=>{
+        res.sendFile(path.join(__dirname, 'views/mesas.css'))
     });
-    app.get('/CrearReservas',(req,res)=>{
-        
-        res.render('CrearReservas',{data: null})
+
+    app.get('/CrearReservas',controladorInventario.mostrarCrearReservas);
+
+    app.get('/css/crearReservas.css',(req,res)=>{
+        res.sendFile(path.join(__dirname, 'views/CrearReservas.css'))
     });
-    app.get('/reservacion',(req,res)=>{
-        
-        res.render('reservacion',{data: null})
-    });
-    app.get('/mesas',(req,res)=>{
-        
-        res.render('mesas',{data: null})
-    });
-    app.get('/CrearEvento',(req,res)=>{
-        res.render('evento',{data: null})
+
+    app.get('/reservacion',controladorInventario.mostrarReservacion);
+
+    app.get('/css/reservacion.css',(req,res)=>{
+        res.sendFile(path.join(__dirname, 'views/reservacion.css'))
     });
 
     const PORT = process.env.PORT ?? 1234

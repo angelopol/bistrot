@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte</title>
-    <link rel="stylesheet" href="Reporte.css">
+    <title>Crear un Evento</title>
+    <link rel="stylesheet" href="/css/crearEventos.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
 </head>
 <body>
     <div class="heading">
@@ -34,29 +35,26 @@
                     <li><a href="#"><img src="imagenes/icono_reporte.png" alt="Reportes">Reportes</a></li>
                     <li><a href="#"><img src="imagenes/icono_config.png" alt="Configuraciones">Configuraciones</a></li>
                     <li><a href="#"><img src="imagenes/icono_ayuda.png" alt="Ayuda">Ayuda</a></li>
+                    
                 </ul>
             </nav>
         </div>
         <div class="contenido">
             <div class="contenidop">
                 <div class="Reservar">
-                    <h2><img src="imagenes/icono_salida.png" alt="regresar">Reservar</h2>
+                   <h2><img src="imagenes/icono_salida.png" alt="regresar">Reservar</h2>
                 </div>
                 <div class="seccion">
-                    <h2>Reporte</h2>
+                    <h2>Crear Evento</h2>
                 </div>
             </div>
+        
         
             <div class="distribucion">
                 <form action="tu_script_para_procesar_el_formulario.php" method="POST">
                     <div class="form-group">
-                        <label for="codigo_empleado">Empleado:</label>
+                        <label for="codigo_empleado">Código de Empleado:</label>
                         <input type="text" id="codigo_empleado" name="codigo_empleado" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cargo">Cargo:</label>
-                        <input type="text" id="cargo" name="cargo" required>
                     </div>
 
                     <div class="form-group">
@@ -65,13 +63,38 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="hora">Hora:</label>
-                        <input type="time" id="hora" name="hora" required>
+                        <label for="hora_inicio">Hora de Inicio:</label>
+                        <input type="time" id="hora_inicio" name="hora_inicio" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="tipo">Tipo:</label>
-                        <input type="text" id="tipo" name="tipo" required>
+                        <label for="hora_fin">Hora de Fin:</label>
+                        <input type="time" id="hora_fin" name="hora_fin" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cedula">Cédula de Identidad:</label>
+                        <input type="text" id="cedula" name="cedula" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personas">Cantidad de personas:</label>
+                        <input type="number" id="personas" name="personas" required>
                     </div>
 
                     <div class="form-group">
@@ -84,13 +107,19 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="tipo_evento">Tipo de Evento:</label>
+                        <input type="text" id="tipo_evento" name="tipo_evento" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="descripcion">Descripción:</label>
                         <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
                     </div>
 
-                    <button type="submit">Enviar Reporte</button>
+                    <button type="submit">Registrar Evento</button>
                 </form>
             </div>
+
         </div>
     </div>
 </body>
