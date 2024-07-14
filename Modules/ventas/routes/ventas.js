@@ -34,5 +34,6 @@ export const createVentasRouter = () => {
   VentasRouter.put('/factura/:id', controllerVentasSalon.update_f);
   VentasRouter.delete('/factura/:id', controllerVentasSalon.delete_f);
 
+  // Rutas de Mesas
   return VentasRouter
 }

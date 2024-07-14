@@ -112,13 +112,18 @@ let miCanvas = document.getElementById("myChart").getContext("2d");
 
 var chart = new Chart(miCanvas,{
     type:"bar",
+    scales:{
+        x:{
+            max: 5
+        }
+    },
     data:{
-        labels: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"],
+        labels: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes","Sabado","Domingo"],
         datasets:[
             {
                 label:"Ventas de la semana",
                 backgroundColor:"rgb(0,0,0)",
-                data:[12,39,5,30,23]
+                data:[12,39,25,30,23,10,6]
             }
         ]
     }

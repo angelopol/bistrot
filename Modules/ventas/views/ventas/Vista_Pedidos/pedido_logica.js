@@ -6,7 +6,7 @@ const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || []
 const urlParams = new URLSearchParams(window.location.search);
 
 // obtenemos el origen de la vista que hizo la peticion
-const origenPedido = localStorage.getItem('origenPedido');
+const origen = urlParams.get('origen');
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -105,7 +105,7 @@ function cancelOrder(tipo_button) {
 
 
     // verificamos de donde es la vista donde se realiza la peticion
-    if (origenPedido === 'general'){
+    if (origen === 'general'){
 
         if (tipo_button === "cancelar_pedido"){
             // Muestra un mensaje de "Pedido cancelado"
@@ -117,7 +117,7 @@ function cancelOrder(tipo_button) {
             window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
         }
 
-    } else if (origenPedido === 'terraza'){
+    } else if (origen === 'terraza'){
 
         if (tipo_button === "cancelar_pedido"){
             // Muestra un mensaje de "Pedido cancelado"
@@ -169,7 +169,7 @@ function sendOrderToServer(orderData) {
     let bandera_reemplazo = false;  // esto es para saber si se tomo un nuevo pedido en una mesa existente para reemplazarlo
 
     // verificamos de donde es la vista donde se realiza la peticion
-    if (origenPedido === 'general'){
+    if (origen === 'general'){
         
         // recorremos los pedidos realizados
         pedidos_realizados.forEach((pedidos,cont_posiciones) => {
@@ -192,7 +192,7 @@ function sendOrderToServer(orderData) {
             console.log(pedidos_realizados);
         }
 
-    } else if (origenPedido === 'terraza'){
+    } else if (origen === 'terraza'){
 
         // recorremos los pedidos realizados
         pedidos_realizados_t.forEach((pedidos,cont_posiciones) => {

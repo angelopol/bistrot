@@ -5,14 +5,14 @@ const actionButtons = document.querySelectorAll('.action-button');
 const tableCards = document.querySelectorAll('.table-card');
 
 // declarar una variable de origen para saber en la vista de pedido quien hizo la solicitud (terraza, general)
-localStorage.setItem('origenPedido', 'general');
+const origen = 'terraza';
 
 // Obtener los pedidos que se han realizado
-const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
-console.log(pedidos_realizados);
+const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];
+console.log(pedidos_realizados_t);
 
 // actualizacion constante de los estados
-recorrido_mesas(pedidos_realizados)
+recorrido_mesas(pedidos_realizados_t);
 
 // Variable para almacenar el ID de la mesa seleccionada
 let selectedTableId = null;
@@ -37,8 +37,7 @@ actionButtons.forEach(button => {
 
                     // verificamos si su estatus es disponible para tomar su pedido
                     if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
-                        alert("Hola")
-                        location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}`;
+                        location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}&origen=${origen}`;
                         return;
                     } else {
                         alert("No se puede tomar el pedido")
@@ -68,15 +67,15 @@ actionButtons.forEach(button => {
 
                                 tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
 
-                                pedidos_realizados.forEach((pedido,mesas) => {
+                                pedidos_realizados_t.forEach((pedido,mesas) => {
 
                                     if (pedido.tableId === String(selectedTableId)){
 
-                                        pedidos_realizados.splice(mesas, 1);
+                                        pedidos_realizados_t.splice(mesas, 1);
                                         tableCard.querySelector(".table-status").textContent = "DISPONIBLE" // ponemos el estatus como Disponible
                                         // Actualizar el localStorage con el array modificado
-                                        localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
-                                        console.log(pedidos_realizados);
+                                        localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+                                        console.log(pedidos_realizados_t);
                                         return;
 
                                     }
@@ -119,15 +118,13 @@ tableCards.forEach((tableCard, index) => {
             card.classList.remove('selected');
         });
 
-
         // Seleccionar la mesa actual
         tableCard.classList.add('selected');
         selectedMesa = true;
         selectedMesaetiqueta = tableCard;
-
+        
         // Actualizar la tabla de mesas (opcional)
         updateTable(selectedTableId);
-
     });
 });
 
