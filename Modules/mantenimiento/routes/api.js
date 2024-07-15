@@ -1,11 +1,11 @@
-import mysql from 'mysql2/promise'
+import mysql from 'mysql'
 import 'dotenv/config'
 
 const DBConfig = {
     host: '127.0.0.1' || process.env.DB_HOST,
     user: 'root' || process.env.DB_USERNAME,
     port: 3306 || process.env.DB_PORT,
-    password: '' || process.env.DB_PASSWORD,
+    password: 'root123' || process.env.DB_PASSWORD,
     database: 'bistrot' || process.env.DB_DATABASE,
   }
   
@@ -30,10 +30,10 @@ export const createMantenimientoApi = (MantenimientoRouter) => {
   
     MantenimientoRouter.post('/api/mantenimientos_realizar', async (req, res)=>{
         Conexion.query('INSERT INTO mantenimientos_realizar (descripcion_corta,responsable,fecha_inicio,fecha_final) VALUES (?,?,?,?)', [
-            req.body.mantenimiento,
+            req.body.mantenimiento, 
             req.body.responsable,
-            req.body.fecha_inicio,
-            req.body.fecha_fin,
+            req.body.inicio,
+            req.body.fin,
         ], function (error, results, fields) {
             res.send(results);
         });

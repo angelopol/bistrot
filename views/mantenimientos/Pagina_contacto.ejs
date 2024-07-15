@@ -7,7 +7,6 @@
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles/styles2.css">
-    <link rel="stylesheet" href="styles/personal.css">
 </head>
 
 <body>
@@ -87,15 +86,14 @@
                 </div>
 
                 <div id="Recipiente_div">
-                    <div id="tipo_formulario" style="display: block;">
+                    <div id="tipo_formulario" class="scroll-table" style="display: block;">
                         <table id="Actual_tabla">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Servicio</th>
-                                    <th>Tipo de mantenimiento</th>
-                                    <th>Estatus</th>
-                                    <th>Modificar</th>
+                                    <th>Telefono</th>
+                                    <th>Cor</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -103,29 +101,31 @@
                                     <td>Amber</td>
                                     <td>reparacion de hornos</td>
                                     <td>Arreglar la cosa</td>
-                                    <td>Activo</td>
-                                    <td><button onclick="obtener_el_datos_trabajadores(this)" id="Modificar_1">Modificar</button></td>
+                                    <td>2024-07-01 21:59</td>
                                 </tr>
                                 <tr>
-                                    <td>Amber</td>
-                                    <td>reparacion de hornos</td>
+                                    <td>Link</td>
+                                    <td>Reparacion de ventilador</td>
                                     <td>Arreglar la cosa</td>
-                                    <td>Activo</td>
-                                    <td><button onclick="obtener_el_datos_trabajadores(this)" id="Modificar_1">Modificar</button></td>
+                            nb         <td>2024-07-05 15:30</td>
                                 </tr>
                                 <tr>
                                     <td>Venti</td>
                                     <td>Servicio de bar</td>
                                     <td>Apronbar las comidas</td>
                                     <td>2024-07-10 10:00</td>
-                                    <td><button onclick="obtener_el_datos_trabajadores(this)" id="Modificar_1">Modificar</button></td>
                                 </tr>
                                 <tr>
                                     <td>Venti</td>
                                     <td>Servicio de bar</td>
                                     <td>Apronbar las comidas</td>
                                     <td>2024-07-01 18:45</td>
-                                    <td><button id="Modificar_1">Modificar</button></td>
+                                </tr>
+                                <tr>
+                                    <td>None</td>
+                                    <td>None</td>
+                                    <td>None</td>
+                                    <td>None</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -138,32 +138,24 @@
                             <div id="cambia_para_izquierda">
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="nombre_personal">Nombre:</label>
-                                    <input type="text" id="nombre_personal" name="nombre_personal" required>
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre" name="nombre" required>
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="trabajo_servicio_personal">Servicio:</label>
-                                    <input type="text" id="trabajo_servicio_personal" name="trabajo_servicio_personal" required>
+                                    <label for="trabajo_servicio">Servicio:</label>
+                                    <input type="text" id="trabajo_servicio" name="servicio" required>
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="tipo_mantenimiento">Descripción:</label>
-                                    <select style="width: 150px; padding: 1px;" id="tipo_mantenimiento" name="tipo_mantenimiento"  required>
-                                        <option value="opcion_preventivo">Preventivo</option>
-                                        <option value="opcion_correctivo">Correctivo</option>
-                                    </select>
+                                    <label for="descripcion_trabajo">Telefono:</label>
+                                    <input type="text" id="descripcion_trabajo" name="telefono" required>
                                 </div>
 
                                 <div class="Ingreso_Inf_Trabajador">
-                                    <label for="estatus_trabajador">Descripción:</label>
-                                    <select style="width: 100px; padding: 1px;" id="estatus_trabajador" name="estatus_trabajador"  required>
-                                        <option value="opcion_preventivo">Activo</option>
-                                        <option value="opcion_correctivo">Inactivo</option>
-                                    </select>
+                                    <label for="fecha">Correo:</label>
+                                    <input type="text" id="fecha" name="correo" required>
                                 </div>
-
-                                
 
                                 <div class="Ingreso_Inf_Trabajador">
                                     <button id="Button_entregar_formulario">Agregar</button>
@@ -178,8 +170,11 @@
                         <button id="Button_formulario_Agregar" style="display: inline;">Agregar</button>
                     </div>
                 </div>
+
             </div>
-            <script src="scripts/JSPersonal.js"></script>
+        </div>
+    </div>
+    <script src="scripts/JSContacto.js"></script>
 </body>
 
 </html>
