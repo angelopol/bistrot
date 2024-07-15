@@ -5,7 +5,7 @@
     font-size: 16px;
     line-height: 1.5;
     padding-bottom: 30px;
-    transform: translate(150px);
+    transform: translate(150px, -30px);
 }
   
 .page-title {
@@ -14,7 +14,7 @@
     letter-spacing: -0.68px;
     align-self: stretch;
     font: 600 34px/1.1 Inter, sans-serif;
-    transform: translateX(-100px);
+    transform: translate(-100px, 20px);
 }
   
 .form-row {
@@ -75,21 +75,23 @@
 }
   
 .submit-button {
-    justify-content: center;
-    align-items: center;
     border: none;
     border-radius: 10px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     background-color: #3a9b0c;
     margin-top: 37px;
-    width: 100%;
+    width: 80%;
+    height: 20px;
     max-width: 556px;
     color: #fff;
     padding: 16px 32px;
     font: 500 20px Inter, sans-serif;
     cursor: pointer;
-    transform: translate(80px);
+    position: fixed;
+    transform: translateX(10px);
+    text-align: center;
 }
+
 
 
   

@@ -1,79 +1,56 @@
-.main-contend{
-    background-color: #fff;
-    padding: 20px;
-}
-
 h2{
     padding-left: 30px;
+    font-family: sans-serif;
 }
 
-.sections-title{
-    color: #000; 
-    letter-spacing: -0.68px; 
-    font: 600 34px/110% Inter, sans-serif; 
-}
 
-table.cal {
-	display:inline-block;
-	min-height:600px;
-	width:97%;
-	border-spacing:0;
-	border: 1px solid grey;
-	border-radius: 20px 20px 20px 20px;
-    margin: 30px;
-    padding: 2%;
-    padding-bottom: 80px;
-}
-
-table > caption {
-	border: 3px solid  grey;
-	border-radius: 15px;
-	text-align: center;
-	background-color: #008080;
-	color: #ffffff;
-	padding: 8px;
-	margin: 20px;
-}
-
-thead> tr > th {
-    background-color:#006b36; 
-    font: 600 34px/110% Inter, sans-serif;
-	text-align:center;
-	vertical-align:center;
-    font-size: 18px;
-    margin: 1%; 
-    padding:1%;
+.encabezado{
+    background-color:#01994d; 
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 23px;
+    padding: 15px;
     border: 1px solid #000;
-
 }
 
 
-table.cal>tbody> th,td{
-	display:in-line;	
-	width:600px;
-    margin: 2%;
-	height:60px;
-	border: 1px solid #000;
-	vertical-align:top;
-	text-align: center;
+.info{
+    background-color:#00c261; 
+    font-family: sans-serif;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    padding: 15px;
+    border: 1px solid #000;
 }
 
-
-.horas{
-    font: 600 14px/110% Inter, sans-serif;
-    
+.lista{
+    margin: 20px;
+    padding:20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    height: 250px;
+    transform: translate(150px, 50px);
 }
 
-.regresar{
+.regresar {
+    position: absolute; 
+    display: block; 
+    margin: 20px auto; 
     font-family: 'Montserrat', sans-serif;
     color: white;
-    justify-content: center;
     border: none;
     border-radius: 8px;
     background-color: #0F624A;
     padding: 12px;
     cursor: pointer;
-    width: 100px;
-    height: 50px;
-    transform: translate(615px, 660px);
+    transform: translate(255px, 110px);
 }
+
+
+table{
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+
