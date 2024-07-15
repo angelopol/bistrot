@@ -122,10 +122,13 @@ export class ProveedorController{
     }
     create = async (req,res)=>{
         const result = ValidarProv(req.body)
-        console.log(req.body)
+        console.log(result.success)
+        console.log(result.data)
         if(!result.success){
+            console.log("Validacion Incorrecta")
             res.redirect('/prov')
         }else{
+            console.log("Validacion correcta")
             await this.proveedoresModel.crear({input: req.body})
             res.redirect('/prov')
         }
@@ -144,7 +147,7 @@ export class ProveedorController{
 
     }
     delete = async (req,res)=>{
-        //Lo deje aqui  
+        //Lo deje aqui 
         const {nombre} = req.params
         console.log(nombre)
         await this.proveedoresModel.eliminar({nombre})
