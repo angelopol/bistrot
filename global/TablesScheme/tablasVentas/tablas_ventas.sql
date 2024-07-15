@@ -13,14 +13,7 @@ CREATE TABLE submodulo_caja (
     egresos float NOT NULL
 );
 
--- tabla de mesas
-CREATE TABLE submodulo_mesas (
-    id_mesa INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL,
-    capacidad int NOT NULL,
-    status_mesa varchar(255) NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES submodulo_registro_cliente(id_cliente)
-);
+
 
 -- tabla del salon
 CREATE TABLE submodulo_salon (

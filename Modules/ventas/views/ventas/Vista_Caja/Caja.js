@@ -273,8 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
-
 function PagoCuenta() {
   if (selectedTableId !== null && selectedMesa) {
 
@@ -309,9 +307,11 @@ function PagoCuenta() {
           `;
           modalContainer.appendChild(modal);
 
+          // Mostrar el modal y desactivar el scroll del cuerpo
           modal.style.display = 'block';
           document.body.style.overflow = 'hidden';
 
+          // Manejar el evento de cierre del modal
           modal.querySelector('.closeBtn').addEventListener('click', () => {
               modal.style.display = 'none';
               document.body.style.overflow = 'auto';
@@ -322,6 +322,7 @@ function PagoCuenta() {
               document.body.style.overflow = 'auto';
           });
 
+          // Manejar el envío del formulario de pedido
           const formPedido = modal.querySelector('#formPedido');
           const pedidoDetalles = modal.querySelector('#pedidoDetalles');
 
@@ -350,6 +351,7 @@ function PagoCuenta() {
               formPedido.reset();
           });
 
+          // Manejar el envío del formulario de pago
           const formPago = modal.querySelector('#formPago');
           formPago.addEventListener('submit', (event) => {
               event.preventDefault();
@@ -360,11 +362,104 @@ function PagoCuenta() {
               // Aquí podrías añadir lógica adicional para procesar el pago, como actualizar estado en el sistema, etc.
           });
       }
+      if (document.querySelector("#General").classList.contains("visible")) {
+        const modalContainer = document.getElementById('divModal');
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = `modal-${selectedTableId}`;
+        modal.innerHTML = `
+                <div id="Modal${selectedTableId}" class="modal-content">
+                    <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                    <h3>Detalles del Pedido</h3>
+                    <form id="formPedido">
+                
+                        <hr>
+                        <h3>Datos del Cliente</h3>
+                        <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
+                        <input type="text" id="nombreCliente" name="nombreCliente" required>
+                        <label for="rifCedula">RIF o Cédula:</label>
+                        <input type="text" id="rifCedula" name="rifCedula" required>
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion">
+                        <label for="tipoEstado">Tipo de Estado:</label>
+                        <input type="text" id="tipoEstado" name="tipoEstado">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo">
+                        <hr>
+                        <label for="metodoPago">Seleccione el método de pago:</label>
+                        <select id="metodoPago" name="metodoPago">
+                            <option value="efectivo">Efectivo</option>
+                            <option value="tarjeta">Tarjeta</option>
+                        </select>
+                        <button type="submit" class="button-agregar">Agregar</button>
+                    </form>
+                    <hr>
+                    <form id="formPago">
+                        <button type="submit" class="button-pagar">Pagar</button>
+                    </form>
+                    <button class="button-cerrar-modal">Cerrar</button>
+                </div>
+            `;
+        modalContainer.appendChild(modal);
+
+        // Mostrar el modal y desactivar el scroll del cuerpo
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+
+        // Manejar el evento de cierre del modal
+        modal.querySelector('.closeBtn').addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Manejar el envío del formulario de pedido
+        const formPedido = modal.querySelector('#formPedido');
+        const pedidoDetalles = modal.querySelector('#pedidoDetalles');
+
+        formPedido.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const nombrePlato = formPedido.elements['nombrePlato'].value;
+            const cantidad = parseInt(formPedido.elements['cantidad'].value);
+
+            
+            // Mostrar detalles del pedido
+            const pedidoItemHTML = `
+                <div class="factura-item">
+                    <span class="item-nombre">${nombrePlato}</span>
+                    <span class="item-cantidad">x${cantidad}</span>
+                    <span class="item-precio">Precio por definir</span>
+                </div>
+            `;
+            pedidoDetalles.innerHTML += pedidoItemHTML;
+
+            // Limpiar campos del formulario
+            formPedido.reset();
+        });
+
+        // Manejar el envío del formulario de pago
+        const formPago = modal.querySelector('#formPago');
+        formPago.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const metodoPago = formPago.elements['metodoPago'].value;
+            alert(`Pago realizado con ${metodoPago}`);
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            // Aquí podrías añadir lógica adicional para procesar el pago, como actualizar estado en el sistema, etc.
+        });
+    }
 
       // Aquí podrías implementar una lógica similar para el caso de document.querySelector("#General").classList.contains("visible")
       // Ajusta según tus necesidades específicas para mostrar detalles y procesar el pago.
   }
 }
+
 
 
 
