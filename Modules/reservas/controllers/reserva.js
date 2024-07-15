@@ -3,9 +3,9 @@ import { validarMesas } from '../schemes/validacion_mesas.js'
 
 export class ReservaController{
      getAll = async(req, res) =>{
-        const reservas = await ReservaModel.listar()
+        const reservas = await ReservaModel.listarReservas()
         if (reservas) {
-            return res.json(reservas)
+            return reservas
         }
         res.status(404).json({ message: 'No hay reservas de mesas en la base de datos' })
     }
@@ -29,7 +29,7 @@ export class ReservaController{
         const { fecha, personas, hora_inicio, hora_fin, nombre, apellido, cedula, idmesa, idtelefono, iddescripcion } = req.body;
 
         const nueva_reserva = await ReservaModel.create(req.body)
-        res.status(201).json(nueva_reserva)
+        res.redirect('/')
     }
         
     delete = async(req, res) =>{

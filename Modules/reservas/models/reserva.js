@@ -21,14 +21,14 @@ export class ReservaModel {
         iddescripcion, // Asegúrate de que este nombre coincida con el esperado
         idtelefono,
         nombre,
-        apellido    // Asegúrate de que este nombre coincida con el esperado
+        ubicacion    // Asegúrate de que este nombre coincida con el esperado
       } = input;
   
       try {
         await connection.query(
-          `INSERT INTO reserva (cantidad_personas, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, apellido)
+          `INSERT INTO reserva (cantidad_personas, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, ubicacion)
            VALUES (?,?,?,?,?,?,?,?);`,
-          [personas, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre, apellido]
+          [personas, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre, ubicacion]
       );
       } catch (e) {
         console.log(e);
@@ -71,18 +71,19 @@ export class ReservaModel {
     }
     static async modificar (cedulaC, modi) {
         const {fecha, // Debe coincidir con el nombre del campo en el formulario HTML
-          personas,
-          hora_inicio,
-          hora_fin,
-          iddescripcion, // Asegúrate de que este nombre coincida con el esperado
-          idtelefono,
-          nombre,
-          apellido  } = modi
+         // Debe coincidir con el nombre del campo en el formulario HTML
+        personas,
+        hora_inicio,
+        hora_fin,
+        iddescripcion, // Asegúrate de que este nombre coincida con el esperado
+        idtelefono,
+        nombre,
+        ubicacion  } = modi
     
         try {
           await connection.query(
             'UPDATE reserva SET fecha = ?, nombre = ?,apellido=?, cantidad_personas = ?, telefono = ?, confirmado = ?, hora_inicio = ?, hora_fin = ?, descripciom = ? WHERE numero_reservas = ?',
-            [fecha, nombre, personas, idtelefono, cedulaC]
+            [fecha, nombre, apellido, personas, idtelefono, confirmado, hora_inicio, hora_fin, iddescripcion, cedulaC]
           )
         } catch (e) {
           console.log(e)

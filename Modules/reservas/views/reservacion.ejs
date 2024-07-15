@@ -48,30 +48,36 @@
                     <div class="left-side">
 
                 <table>
-                  <tr>
-                    <th>Nombre completo</th>
-                    <th>Cédula</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Ubicación</th>
-                    <th></th>
-                  </tr>
-                  <tr>
-                    <td>Jessica Betancourt</td>
-                    <td>29.550.146</td>
-                    <td>29-09-2024</td>
-                    <td>9:00pm</td>
-                    <td>Interior</td>
-                    <td><input type="checkbox"></td>
-                  </tr>
-                  <tr>
-                    <td>Nicolás Millán</td>
-                    <td>28.083.342</td>
-                    <td>22-12-2024</td>
-                    <td>9:00pm</td>
-                    <td>Interior</td>
-                    <td><input type="checkbox"></td>
-                  </tr>
+                <thead>
+                    <tr>
+                        <th>Nombre completo</th>
+                        <th>Cédula</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Ubicación</th>
+                        <th></th>
+                        </tr>
+                    <tr>
+                        
+                      </tr>
+
+                </thead>
+
+                <tbody>
+                    <% if (data) { %>
+                        <% for (var i = 0; i < data.length; i++) { %>
+                            <tr>
+                                <td><%= data[i].nombre %></td>
+                                <td><%= data[i].ID_cliente %></td>
+                                <td><%= data[i].fecha %></td>
+                                <td><%= data[i].hora_inicio %></td>
+                                <td><%= data[i].Ubicacion %></td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+
+                </tbody>
+                  
 
                   
                 </table>
@@ -123,6 +129,8 @@
         botonReporte.addEventListener('click', () => {
             window.location.href = 'reporte.html';
         });
+
+
 
         
     </script>

@@ -27,7 +27,7 @@ import {ReservaController} from './controllers/reserva.js';
     app.use(bodyParser.json())
     app.use(express.static(path.join(__dirname, 'routes')));
     //Vista para el modulo de reservas
-    app.get('/',controladorInventario.mostrarReservacion);
+    app.get('/',controladorInventario.mostrarReserva);
 
     app.get('/css/reservas.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/reservacion.css'))
