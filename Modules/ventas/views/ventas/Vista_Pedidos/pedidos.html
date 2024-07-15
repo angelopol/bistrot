@@ -18,6 +18,8 @@
                 <a  href="#entradas" onclick="cambiar('Entradas')" class="menu-nav-item">Entradas</a>
                 <a  href="#principal" onclick="cambiar('Principal')" class="menu-nav-item">Principal</a>
                 <a  href="#vegetariano" onclick="cambiar('Vegetariano')" class="menu-nav-item">Vegetariano</a>
+                <a  href="#infantil" onclick="cambiar('Infantil')" class="menu-nav-item">Infantil</a>
+
                 <a  href="#postres" onclick="cambiar('Postres')" class="menu-nav-item">Postres</a>
                 <a  href="#bebidas" onclick="cambiar('Bebidas')" class="menu-nav-item">Bebidas</a>
                 <a  href="#Tragos" onclick="cambiar('Tragos')" class="menu-nav-item">Tragos</a>
@@ -824,9 +826,130 @@
         
     </section>
 
+    <section id="Infantil" class="menu-items">
+        <div class="menu-row">
+            <article id="30" class="menu-item" onclick="addToOrder('Potatoes with Onion','20','Menu/potatoes.jpg','30')">
+                <img loading="lazy" src="Menu/potatoes.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Potatoes with Onion</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$20</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Potatoes with Onion</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Papa: 0.5kg</li>
+                                    <li>Aceite: 0.3l</li>
+                                    <li>Cebolla: 0.5kg</li>
+                                    <li>Pimenton: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
 
-            </div>
-        </main>
+            <article id="31" class="menu-item" onclick="addToOrder('Linguine Pasta','20','Menu/linguinepastawithtomatosauce.jpeg','31')">
+                <img loading="lazy" src="Menu/linguinepastawithtomatosauce.jpeg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Linguine Pasta</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$20</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Linguine Pasta</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Tomate: 0.5kg</li>
+                                    <li>Pasta: 0.5kg</li>
+                                    <li>Berenjena: 0.25kg</li>
+                                    <li>Cebolla: 0.25kg</li>
+                                    <li>Aceite: 0.25l</li>
+
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="menu-row">
+
+            
+            <article id="32" class="menu-item" onclick="addToOrder('Crushed Potatoes','20','Menu/crushed.jpg','32')">
+                <img loading="lazy" src="Menu/crushed.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Crushed Potatoes</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$20</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Crushed Potatoes</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Papa: 0.75kg</li>
+                                    <li>Aceite: 0.25l</li>
+                                    <li>Ajo: 0.25kg</li>
+                                    <li>Cebollin: 0.25kg</li>
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+            <article id="33" class="menu-item" onclick="addToOrder('French Fries and Ratatouille','20','Menu/frenchfries.jpg','33')">
+                <img loading="lazy" src="Menu/frenchfries.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">French Fries and Ratatouille</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$20</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>French Fries and Ratatouille</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Papa: 0.75kg</li>
+                                    <li>Aceite: 0.25l</li>
+                                    <li>Cebollin: 0.25kg</li>
+                                    <li>Tomate: 0.5kg</li>
+                                    <li>Berenjena: 0.5kg</li>
+                                    <li>Aji: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>            
+            
+        </div>
+        
+    </section>
+
+    </div>
+    </main>
 
         <aside class="order-section">
             <div class="order-container">

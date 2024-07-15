@@ -1,9 +1,15 @@
 let selectedTableId = null;
 let selectedMesa = false;
 
+// obtenelos los pedidos de generar y terraza
+const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
+const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];
+
 document.addEventListener('DOMContentLoaded', () => {
   const tableCards = document.querySelectorAll('.table-card');
 
+  // actualizar los estatus de las mesas
+  recorrido_mesas(pedidos_mesas)
 
   // Agregar evento de clic a cada tarjeta de mesa
   tableCards.forEach((tableCard, index) => {
@@ -65,13 +71,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Función para eliminar una cuenta
 function eliminarCuenta(id) {
-  // Lógica para eliminar la cuenta del servidor o base de datos
-  // Aquí debes implementar la llamada a una API o función que elimine la cuenta
-  console.log(`Eliminando cuenta con ID: ${id}`);
-  // Luego, puedes actualizar la interfaz de usuario para reflejar el cambio
-  // Por ejemplo, puedes remover el elemento del DOM
-  const cuentaAEliminar = document.getElementById(`cuenta-${id}`);
-  cuentaAEliminar.remove();
+  fetch(`/cuentas/${id}`, {
+    method: 'DELETE',
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log(`Cuenta con ID: ${id} eliminada exitosamente`);
+        // Actualizar la interfaz de usuario
+        eliminarElementoDOM(`cuenta-${id}`);
+      } else {
+        console.error(`Error al eliminar la cuenta con ID: ${id}`);
+        // Mostrar un mensaje de error al usuario
+        mostrarMensajeError('No se pudo eliminar la cuenta');
+      }
+    })
+    .catch((error) => {
+      console.error('Error al eliminar la cuenta:', error);
+      // Mostrar un mensaje de error al usuario
+      mostrarMensajeError('Ocurrió un error al eliminar la cuenta');
+    });
 }
 
 // Función para pagar una cuenta
@@ -119,3 +137,41 @@ function ImprimirCuenta(){
      Cédula: ${selectedTableId}`);
   }
 }
+
+
+function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza){
+  
+  // recorrer las mesas de la vista de terraza
+  if (document.querySelector("#Terraza").classList.contains("visible")){
+
+    pedido_mesas_terraza.forEach(pedidos => {
+
+      tableCards.forEach((mesas, mesas_id) => {
+  
+          // verificamos el estatus del pedido, si esta listo se coloca el estatus para solicitar cuenta
+          if (pedidos.estatus === "1" && pedidos.tableId === String(mesas_id+1)){
+              const tableStatusElement = mesas.querySelector('.table-status');
+              tableStatusElement.textContent = 'Cuenta';
+          }
+      })
+      
+    })
+
+    // recorre la vista de los generales
+  } else if (document.querySelector("#Terraza").classList.contains("visible")){
+
+    pedidos_mesas_general.forEach(pedidos => {
+
+      tableCards.forEach((mesas, mesas_id) => {
+  
+          // verificamos el estatus del pedido, si esta listo se coloca el estatus para solicitar cuenta
+          if (pedidos.estatus === "1" && pedidos.tableId === String(mesas_id+1)){
+              const tableStatusElement = mesas.querySelector('.table-status');
+              tableStatusElement.textContent = 'Cuenta';
+          }
+      })
+      
+    })
+  }
+  
+} 
