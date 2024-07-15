@@ -51,10 +51,10 @@ function showAddForm(tab) {
 }
 
 // Event listener para el botón editar
-document.getElementById('recepcionBtn').addEventListener('click', function () {
+document.getElementById('editarBtn').addEventListener('click', function () {
     const activeTab = document.querySelector('.tab-active').id.replace('btn', '').toLowerCase();
     showEditForm(activeTab);
-    document.getElementById('cardContainerRecepcion').classList.add('show');
+    document.getElementById('cardContainer').classList.add('show');
     document.getElementById('cardd').classList.add('show');
 });
 
@@ -228,43 +228,20 @@ function capitalizeFirstLetter(string) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Recepcion
-    const openEditarBtn = document.getElementById('recepcionBtn');
+    // Editar
+    const openEditarBtn = document.getElementById('editarBtn');
     const closeCardButton = document.getElementById('closeCardButton');
-    const cardContainer = document.getElementById('cardContainerRecepcion');
+    const cardContainer = document.getElementById('cardContainer');
     const card = document.getElementById('cardd');
-    const cancelButtonEditar = document.getElementById('cancelButtonRecepcion');
+    const cancelButtonEditar = document.getElementById('cancelButtonEditar');
 
-    // Commit editar
-    const comentarBtn = document.getElementById('comentarCambios');
-    const closeCommitButton = document.getElementById('closeCommitButton');
-    const commitContainer = document.getElementById('commitMessageContainer');
-    const commit = document.getElementById('commit');
-    const atras = document.getElementById('commitAtrasButton');
+    //Ajustes
+    const openAjusteBtn = document.getElementById('showAjustesBtn');
+    const closeCardButton2 = document.getElementById('closeAjusteButton');
+    const ajusteDiv = document.getElementById('ajusteDiv');
+    const cardAjustes = document.getElementById('cardd');
 
-    // Borrar
-    const borrarBtn = document.getElementById('borrarBtn');
-    const cardContainer2 = document.getElementById('cardContainer2');
-    const card2 = document.getElementById('card2');
-    const closeCardButtonBorrar = document.getElementById('closeCardButtonBorrar');
-    const cancelButtonBorrar = document.getElementById('cancelButtonBorrar');
-
-    // Commit borrar
-    const comentarBorrarBtn = document.getElementById('openCardButtonBorrar');
-    const commitContainerBorrar = document.getElementById('commitMessageContainerBorrar');
-    const commitBorrar = document.getElementById('commitBorrar');
-    const closeCommitButtonBorrar = document.getElementById('closeCommitButtonBorrar');
-    const atrasCommitBorrar = document.getElementById('atrasCommitBorrar');
-
-    // ------- Agregar ---------
-    const agregarBtn = document.getElementById('agregarBtn');
-    const cardContainerAgregar = document.getElementById('cardContainerAgregar');
-    const cardAgregar = document.getElementById('cardAgregar');
-    const closeCardButtonAgregar = document.getElementById('closeCardButtonAgregar');
-    const cancelarAgregar = document.getElementById('cancelarAgregar');
-    const ConfirmarAgregarBtn = document.getElementById('AgregarBtn');
-
-    // ------- Recepcion ---------
+    // ------- Edición ---------
     // Mostrar div de edición
     openEditarBtn.addEventListener('click', function () {
         cardContainer.classList.add('show');
@@ -283,66 +260,17 @@ document.addEventListener('DOMContentLoaded', function () {
         card.classList.remove('show');
     });
 
-    // Mostrar commit editar
-    comentarBtn.addEventListener('click', function () {
-        commitContainer.classList.add('show');
-        commit.classList.add('show');
-        cardContainer.classList.remove('show');
-        card.classList.remove('show');
+    //------------Ajuste------------
+    // Mostrar div de edición
+    openAjusteBtn.addEventListener('click', function () {
+        ajusteDiv.classList.add('show');
+        cardAjustes.classList.add('show');
     });
 
-    // Ocultar commit editar
-    closeCommitButton.addEventListener('click', function () {
-        commitContainer.classList.remove('show');
-        commit.classList.remove('show');
-    });
-
-    atras.addEventListener('click', function () {
-        cardContainer.classList.add('show');
-        card.classList.add('show');
-        commitContainer.classList.remove('show');
-        commit.classList.remove('show');
-    });
-
-    // --------- Borrar --------
-    // Mostrar div para Borrar
-    borrarBtn.addEventListener('click', function () {
-        cardContainer2.classList.add('show');
-        card2.classList.add('show');
-    });
-
-    // Ocultar div para Borrar
-    closeCardButtonBorrar.addEventListener('click', function () {
-        cardContainer2.classList.remove('show');
-        card2.classList.remove('show');
-    });
-
-    // Cancelar borrar
-    cancelButtonBorrar.addEventListener('click', function () {
-        cardContainer2.classList.remove('show');
-        card2.classList.remove('show');
-    });
-
-    // Mostrar commit borrar
-    comentarBorrarBtn.addEventListener('click', function () {
-        commitContainerBorrar.classList.add('show');
-        commitBorrar.classList.add('show');
-        cardContainer2.classList.remove('show');
-        card2.classList.remove('show');
-    });
-
-    // Ocultar commit borrar
-    closeCommitButtonBorrar.addEventListener('click', function () {
-        commitContainerBorrar.classList.remove('show');
-        commitBorrar.classList.remove('show');
-    });
-
-    // Atrás commit borrar
-    atrasCommitBorrar.addEventListener('click', function () {
-        cardContainer2.classList.add('show');
-        card2.classList.add('show');
-        commitContainerBorrar.classList.remove('show');
-        commitBorrar.classList.remove('show');
+    // Ocultar div de edición
+    closeCardButton2.addEventListener('click', function () {
+        ajusteDiv.classList.remove('show');
+        cardAjustes.classList.remove('show');
     });
 
     //--------Registro-----------
@@ -357,24 +285,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('registroDiv').classList.remove('show');
     });
 
-    //--------Agregar-----------
-    // Mostrar div de agregar
-    agregarBtn.addEventListener('click', function () {
-        cardContainerAgregar.classList.add('show');
-        cardAgregar.classList.add('show');
-    });
-
-    // Ocultar div de agregar
-    closeCardButtonAgregar.addEventListener('click', function () {
-        cardContainerAgregar.classList.remove('show');
-        cardAgregar.classList.remove('show');
-    });
-
-    // Cancelar agregar
-    cancelarAgregar.addEventListener('click', function () {
-        cardContainerAgregar.classList.remove('show');
-        cardAgregar.classList.remove('show');
-    });
 
     // Siguiente (puedes agregar lógica adicional aquí si es necesario)
     ConfirmarAgregarBtn.addEventListener('click', function () {
@@ -383,77 +293,224 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('comentarCambios').addEventListener('click', () => {
-        const id = document.getElementById('ID').value;
-        const nombre = document.getElementById('nombre').value;
-        const categoria = document.getElementById('SelectCategoriaInsumos').value;
-        const cantidad = document.getElementById('cantidad').value;
-        const area = document.getElementById('SelectAreaInsumos').value;
-        const unidad = document.getElementById('SelectUnidadEditarInsumos').value;
-        const fechaCaducidad = document.getElementById('fechaCaducidad').value;
-        const cambiosRealizados = {
-            nombre: nombre,
-            categoria: categoria,
-            cantidad: cantidad,
-            area: area,
-            unidad: unidad,
-            fecha_mantenimiento: fechaCaducidad
-        };
+// tabla registros
+function generateTableRegistros() {
+    var url = 'http://localhost:3000/api/registros'; // URL de la API para registros
 
-        fetch(`http://localhost:3000/api/general/`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
+    $('#tablaRegistros').DataTable({
+        "language": {
+            "search": "Buscar:",
+            "lengthMenu": "Mostrar _MENU_ registros por página",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
             },
-            body: JSON.stringify(cambiosRealizados)
-        }).then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Cambios guardados exitosamente');
-                    document.getElementById('cardContainer').style.display = 'none';
-                    $('#tablaGeneral').DataTable().ajax.reload();
-                } else {
-                    alert('Error al guardar los cambios');
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "searchPlaceholder": "Buscar...",
+            "emptyTable": "No hay datos disponibles en la tabla",
+            "thousands": ".",
+            "decimal": ","
+        },
+        "ajax": {
+            "url": url,
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "id" },
+            {
+                "data": "fecha_registro",
+                "render": function (data, type, row) {
+                    if (data) {
+                        var fecha = new Date(data);
+                        return fecha.toLocaleDateString('es-ES');
+                    } else {
+                        return 'No especificada';
+                    }
                 }
-            }).catch(error => {
-                alert('Error al guardar los cambios');
-            });
+            },
+            { "data": "modulo" },
+            { "data": "usuario" },
+            { "data": "producto" },
+            { "data": "tipo_ajuste" },
+            { "data": "cantidad" },
+            { "data": "observaciones" }
+        ]
     });
+}
+
+// Llama a la función para generar la tabla de registros al cargar la página
+$(document).ready(function () {
+    generateTableRegistros();
+    $('#tablaRegistros').removeClass('d-none');
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('openCardButtonBorrar').addEventListener('click', () => {
-        document.getElementById('cardContainer2').style.display = 'none';
-        document.getElementById('commitMessageContainerBorrar').style.display = 'block';
-    });
+// Función para buscar y mostrar el producto según el ID
+document.getElementById('searchForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const productId = document.getElementById('order-id-n').value.trim();
+    const tableType = document.getElementById('tablaAjuste').value;
+    // Resetear los campos
+    document.getElementById('productName').textContent = '';
+    document.getElementById('currentQuantity').textContent = '';
 
-    document.getElementById('atrasCommitBorrar').addEventListener('click', () => {
-        document.getElementById('commitMessageContainerBorrar').style.display = 'none';
-        document.getElementById('cardContainer2').style.display = 'block';
-    });
+    // Verificar si el ID está vacío o no es un número
+    if (!productId || isNaN(productId)) {
+        alert('Por favor ingresa un ID válido');
+        return;
+    }
 
-    document.getElementById('commitFormBorrar').addEventListener('submit', (event) => {
-        event.preventDefault();
-        const id = document.getElementById('IDBorrar').value;
+    // URL de la API basada en el tipo de tabla y el ID del producto
+    let apiUrl = '';
+    if (tableType === 'cocina-bar' || tableType === 'general') {
+        apiUrl = `http://localhost:3000/api/${tableType}/${productId}`;
+    } else {
+        alert('Tabla seleccionada no válida');
+        return;
+    }
 
-        fetch(`http://localhost:3000/api/general/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
+    // Hacer la solicitud a la API
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                if (response.status === 404) {
+                    throw new Error('Producto no encontrado');
+                } else {
+                    throw new Error('Error en la solicitud');
+                }
             }
-        }).then(response => response.json())
-            .then(data => {
-                console.log('Response data:', data);
-                if (data.success) {
-                    alert('Registro eliminado exitosamente');
-                    document.getElementById('commitMessageContainerBorrar').style.display = 'none';
-                    $('#tablaGeneral').DataTable().ajax.reload();
-                } else {
-                    alert('Error al eliminar el registro');
-                }
-            }).catch(error => {
-                alert('Error al eliminar el registro');
-            });
-    });
+            return response.json();
+        })
+        .then(data => {
+            // Mostrar los datos del producto encontrado
+            document.getElementById('productName').textContent = data.nombre;
+            document.getElementById('currentQuantity').textContent = data.cantidad;
+        })
+        .catch(error => {
+            alert(error.message);
+        });
 });
+
+// Función para realizar el ajuste de inventario
+document.getElementById('finalizarAjuste').addEventListener('click', function () {
+    const productId = document.getElementById('order-id-n').value.trim();
+    const tableType = document.getElementById('tablaAjuste').value;
+    const adjustmentType = document.getElementById('tipoAjuste').value;
+    const adjustmentAmount = document.getElementById('cantidadAjuste').value.trim();
+    const observations = document.getElementById('observations-f').value.trim();
+
+    // Validar campos requeridos y tipo de datos
+    if (!productId || isNaN(productId) || !adjustmentAmount || isNaN(adjustmentAmount)) {
+        alert('Por favor completa todos los campos con valores numéricos válidos');
+        return;
+    }
+
+    let productName = '';
+    fetch(`http://localhost:3000/api/${tableType}/${productId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al obtener información del producto');
+            }
+            return response.json();
+        })
+        .then(product => {
+            productName = product.nombre; // Guardar el nombre del producto obtenido
+
+            // URL de la API para el ajuste
+            let apiUrl = '';
+            if (tableType === 'cocina-bar' || tableType === 'general') {
+                apiUrl = `http://localhost:3000/api/${tableType}/${adjustmentType}/${productId}`;
+            } else {
+                alert('Tabla seleccionada no válida');
+                return;
+            }
+
+            // Crear objeto con los datos del ajuste
+            const adjustmentData = {
+                cantidad: adjustmentAmount,
+                observaciones: observations || `Ajuste de cantidad para ${productName}`, // Incluir observaciones con el nombre del producto
+                producto: productId,
+            };
+
+            // Hacer la solicitud PUT a la API para ajustar el inventario
+            return fetch(apiUrl, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(adjustmentData)
+            });
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al ajustar inventario');
+            }
+            return response.text();
+        })
+        .then(message => {
+            alert(message);
+            // Limpiar los campos después de finalizar el ajuste y recargar
+            document.getElementById('order-id-n').value = '';
+            document.getElementById('cantidadAjuste').value = '';
+            document.getElementById('observations-f').value = '';
+            document.getElementById('productName').textContent = '';
+            document.getElementById('currentQuantity').textContent = '';
+            location.reload();
+        })
+        .catch(error => {
+            alert(error.message);
+        });
+});
+
+
+
+
+
+
+// Importar la conexión a la base de datos
+const connection = require('./conexion');
+
+// Definir la función verificarInventario
+function verificarInventario(callback) {
+    // Consulta para verificar la tabla cocina_bar
+    const queryCocinaBar = `
+      SELECT id_cocina_bar AS id, nombre, cantidad
+      FROM cocina_bar
+      WHERE cantidad <= 10;
+    `;
+
+    // Consulta para verificar la tabla general
+    const queryGeneral = `
+      SELECT id_general AS id, nombre, cantidad
+      FROM general
+      WHERE cantidad <= 10;
+    `;
+
+    connection.query(queryCocinaBar, (err, resultsCocinaBar) => {
+        if (err) throw err;
+
+        connection.query(queryGeneral, (err, resultsGeneral) => {
+            if (err) throw err;
+
+            // Concatenar resultados de ambas tablas
+            const lowStockItems = [...resultsCocinaBar, ...resultsGeneral];
+
+            // Agregar cantidad base para pedir
+            const pedidos = lowStockItems.map(item => ({
+                id: item.id,
+                nombre: item.nombre,
+                cantidad_a_pedir: 20
+            }));
+
+            callback(pedidos);
+        });
+    });
+}
+
+module.exports = verificarInventario;
