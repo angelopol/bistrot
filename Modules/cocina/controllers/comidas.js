@@ -28,7 +28,7 @@ export class ComidaController{
         const input = result.data
         const newComida = await ComidaModel.create({input})
         res.status(201).json(newComida)
-        }
+    }
         
     static async delete (req, res) {
         const { id } = req.params
@@ -39,7 +39,8 @@ export class ComidaController{
         }
       
         return res.json({ message: 'Comida deleted' })
-        }    
+    }    
+
     static async update (req, res) {
         const result = validatePartialComida(req.body)
         if (!result.success) {
@@ -52,10 +53,37 @@ export class ComidaController{
         if (condicion == false) {
             res.status(404).json({ message: 'Comida not found' })
         }
-    
-  
         return res.json(condicion)  
-        }    
-    
+    }
+}
 
+export class RenderController{
+    // Renderizado de views??
+    renderProduccion = async (req, res) => {
+        res.render("/cocina/produccion")
+    }
+    renderCocinaAbierta = async (req, res) => {
+        res.render("/cocina/cocinaAbiertaProduciendo")
+    }
+    renderInstrumentos = async (req, res) => {
+        res.render("/cocina/instumentos")
+    }
+    renderEntradas = async (req, res) => {
+        res.render("/cocina/Entradas")
+    }
+    renderPlatosFuertes = async (req, res) => {
+        res.render("/cocina/PlatosFuertes")
+    }
+    renderVegetariano = async (req, res) => {
+        res.render("/cocina/Vegetariano")
+    }
+    renderPostres = async (req, res) => {
+        res.render("/cocina/Postres")
+    }
+    renderInfantil = async (req, res) => {
+        res.render("/cocina/infantil")
+    }
+    renderBebidas = async (req, res) => {
+        res.render("/cocina/Bebidas")
+    }
 }

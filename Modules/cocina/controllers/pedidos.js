@@ -1,5 +1,5 @@
 import { ComidaModel } from '../models/mysql/comida.js'
-export class pedidoController {
+export class PedidoController {
 
     
     /* 
