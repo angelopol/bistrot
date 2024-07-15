@@ -88,14 +88,16 @@ export class ProductoController{
     }
     update = async (req,res)=>{
         //me falta agregar las validaciones
-        const result = validarProductoM(req.body)
+        const result = ValidarProducto(req.body)
         const {id} = req.params
-        console.log(result)
-        console.log(id)
+        //console.log(result.success)
+        //console.log(id)
         if(!result.success){
+            //console.log("Validacion no exitosa")
             res.redirect('/prod')
         }else{
-            await this.productoModel.modificar({id,result}) 
+            //console.log("Validacion exitosa")
+            await this.productoModel.modificar({id,result: result.data}) 
             res.redirect('/prod')
         }
         
