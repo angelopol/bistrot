@@ -1,4 +1,4 @@
-import express, { json } from 'express' // require -> commonJS
+import express, { json } from 'express'
 import { corsMiddleware } from './global/middlewares/cors.js'
 import { routes } from './global/routes/routes.js'
 import { authenticated } from "./global/middlewares/auth.js"
