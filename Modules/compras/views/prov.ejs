@@ -155,6 +155,7 @@
             // Si el botón presionado tiene el valor "Modificar"
             if (event.submitter.value === 'Modificar') {
                 // Cambia la acción del formulario para incluir el ID y usar el método PATCH
+                rif.readOnly = false;
                 form.action = '/prov/' + idd + '?_method=PATCH';
             } else {
                 // Si el botón presionado no es "Modificar", usa la acción por defecto
