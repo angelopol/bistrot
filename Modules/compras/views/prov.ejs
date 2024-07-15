@@ -116,7 +116,7 @@
                                 <input type="submit" id="data-title-modi" value="Modificar">
                             </div>
                             <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa"  maxlength="50">
-                            <input maxlength="12" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
+                            <input maxlength="9" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
                             <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal">
                             <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo" maxlength="50">
                             <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa", maxlength="50">
@@ -261,11 +261,14 @@
 
         precioo.addEventListener('keydown', event => validarPrecio(event))
 
-        rif.addEventListener('keydown', () =>{
-            if(rif.value.match(/^J-[0-9]{9}$/)){
-                rif.style.border= '2px solid #D9D9D9'
-            }else{
-                rif.style.border= '2px solid red'
+        rif.addEventListener('keydown', event => validarNumero(event))
+
+        rif.addEventListener('keydown',()=>{
+            if(rif.value.match(/^\d{9}$/)){
+                rif.style.border='2px solid #D9D9D9'
+            }
+            else{
+                rif.style.border='2px solid red'
             }
         })
 
@@ -277,8 +280,9 @@
                 correo.style.border='2px solid red'
             }
         })
+
         tlf.addEventListener('keydown', () =>{
-            if(tlf.value.match(/^04(14|12|24|26)[0-9]{7}$/)){
+            if(tlf.value.match(/^(0414|0412|0416|0424|0426)\d{6}$/)){
                 tlf.style.border = '2px solid #D9D9D9'
             }else{
                 tlf.style.border = '2px solid red'
@@ -311,10 +315,6 @@
                     alert("Tiene que llenar los campos primeros para poder agregar al proveedor")
             }
         }
-        
-
-
-
     </script>
 </body>
 </html>
