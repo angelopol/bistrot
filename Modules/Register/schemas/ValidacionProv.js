@@ -2,7 +2,7 @@ import z from "zod"
 // Validacion de la tabla de proveedor
 
 const ProvSchema = z.object({
-    rif: z.string().max(200).regex(/^[0-9]{9}$/),
+    rif: z.string().max(200).regex(/^[0-9]$/),
 
     nombre_empresa: z.string().max(200),
 

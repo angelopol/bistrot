@@ -135,13 +135,16 @@ export class ProveedorController{
 
     }
     update = async (req,res)=>{
-        const result = ValidarProvM(req.body)
+        const result = ValidarProv(req.body)
         const {id} = req.params
-
+        //console.log(result)
+        //console.log(result.success)
+        //console.log(req.body)
         if(!result.success){
+            //console.log("Validacion devolvio false")
             res.redirect('/prov')
-        }else{
-            await this.proveedoresModel.modificar({id,result})
+        }else{ 
+            await this.proveedoresModel.modificar({id,result: req.body})
             res.redirect('/prov')
         }
 
