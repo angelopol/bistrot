@@ -1,5 +1,6 @@
 let selectedTableId = null;
 let selectedMesa = false;
+selectedMesaetiqueta = null;
 
 // Seleccionar las mesas
 const tableCards = document.querySelectorAll('.table-card');
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateTable(selectedTableId);
         });
     });
+    
 
     // Función opcional para actualizar la tabla de mesas
     function updateTable(tableId) {
@@ -94,87 +96,148 @@ function eliminarCuenta(id) {
 }
 
 // Función para pagar una cuenta
-function pagarCuenta(id, monto, metodoPago) {
-  try {
-      // Obtener los datos de la cuenta a pagar
-      const cuenta = obtenerCuentaPorId(id);
-      // Validar que la cuenta exista y que el monto sea correcto
-      if (!cuenta) {
-          throw new Error('Cuenta no encontrada.');
+
+
+function encontrar(mesa_id,pedidos_check) {
+  let pedido = null;
+
+  for (let i = 0; i < pedidos_check.length; i++) {
+      let pedidoActual = pedidos_check[i];
+      
+      if (pedidoActual.tableId === String(mesa_id) && pedidoActual.estatus === 1) {
+        alert('Pedido encontrado');
+        pedido = pedidoActual;
+          
+          break;
       }
-      if (cuenta.monto !== monto) {
-          throw new Error('El monto no coincide con el monto de la cuenta.');
-      }
-      // Crear el objeto de pago con los datos necesarios
-      const datosTransaccion = {
-          monto: cuenta.monto,
-          metodoPago,
-          nombreCliente: `${cuenta.cliente.nombre} ${cuenta.cliente.apellido}`,
-          direccionCliente: cuenta.cliente.direccion
-      };
-      // Enviar los datos de pago a la API de Stripe o PayPal
-      procesarPago(datosTransaccion)
-        .then(() => {
-          // Actualizar el estado de la cuenta como pagada en el servidor
-          actualizarEstadoCuenta(id, 'pagada')
-            .then(() => {
-              // Mostrar un mensaje de éxito al usuario
-              alert('¡Cuenta pagada con éxito!');
-            })
-            .catch(error => {
-              console.error('Error al actualizar el estado de la cuenta:', error);
-              alert('Hubo un error al procesar el pago. Por favor, inténtalo de nuevo.');
-            });
-        })
-        .catch(error => {
-          console.error('Error al procesar el pago:', error);
-          alert('Hubo un error al procesar el pago. Por favor, inténtalo de nuevo.');
-        });
-  } catch (error) {
-      console.error('Error al procesar el pago:', error);
-      alert('Hubo un error al procesar el pago. Por favor, inténtalo de nuevo.');
   }
+
+  return pedido;
 }
 
-
-
-
-// Función para imprimir una cuenta
 function ImprimirCuenta() {
   if (selectedTableId !== null && selectedMesa) {
-      // Seleccionar la mesa correspondiente basado en el índice
-      let mesa = document.querySelectorAll('.table-card')[selectedTableId - 1];
-      // Obtener el estado de la mesa
-      let estadoMesa = mesa.querySelector('.table-name').textContent;
 
-      const modalContainer = document.getElementById('divModal');
-      const modal = document.createElement('div');
-      modal.className = 'modal';
-      modal.id = `modal-${selectedTableId}`;
-      modal.innerHTML = `
-          <div id="Modal${selectedTableId}" class="modal-content">
-              <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
-              <h3>Factura</h3>
-              <p>Mesa: ${selectedTableId}</p>
-              <p>Estado: ${estadoMesa}</p>
-              <button class="button-cerrar-modal">Cerrar</button>
-          </div>
-      `;
-      modalContainer.appendChild(modal);
+    if(document.querySelector("#Terraza").classList.contains("visible")){
+        // Seleccionar la mesa correspondiente basado en el índice
+        let mesa = document.querySelectorAll('.table-card')[selectedTableId - 1];
+        // Obtener el estado de la mesa
+        let numeroMesa = mesa.querySelector('.table-name').textContent;
 
-      // Mostrar el modal
-      modal.style.display = 'block';
+        // Obtener la mesa con estatus cuenta
+        let pedido = encontrar(selectedTableId,pedidos_realizados_t);
 
-      // Asignar evento para cerrar el modal
-      modal.querySelector('.closeBtn').addEventListener('click', () => {
-          modal.style.display = 'none';
-      });
+        // Calcular el total del pedido
+        let total = pedido.items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
-      modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
-          modal.style.display = 'none';
-      });
-  }
+        const modalContainer = document.getElementById('divModal');
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = `modal-${selectedTableId}`;
+        modal.innerHTML = `
+            <div id="Modal${selectedTableId}" class="modal-content">
+                <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                <h3>Factura</h3>
+                <p>Mesa: ${numeroMesa}</p>
+                <div class="factura-divider"></div>
+                ${pedido.items.map(item => `
+                    <div class="factura-item">
+                        <span class="item-nombre">${item.name}</span>
+                        <span class="item-cantidad">x${item.quantity}</span>
+                        <span class="item-precio">${item.price.toFixed(2)} €</span>
+                    </div>
+                `).join('')}
+                <div class="factura-divider"></div>
+                <div class="factura-item">
+                    <span class="item-nombre"><strong>Total</strong></span>
+                    <span class="item-cantidad"></span>
+                    <span class="item-precio"><strong>${total.toFixed(2)} €</strong></span>
+                </div>
+                <button class="button-cerrar-modal">Cerrar</button>
+            </div>
+        `;
+        modalContainer.appendChild(modal);
+
+        // Mostrar el modal y desactivar el scroll del cuerpo
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+
+        // Asignar evento para cerrar el modal
+        modal.querySelector('.closeBtn').addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+
+    }
+    
+    else if (document.querySelector("#General").classList.contains("visible")){
+      alert('General');
+          // Seleccionar la mesa correspondiente basado en el índice
+          let mesa = document.querySelectorAll('.table-card')[selectedTableId - 1];
+          // Obtener el estado de la mesa
+          let numeroMesa = mesa.querySelector('.table-name').textContent;
+  
+          // Obtener la mesa con estatus cuenta
+          let pedido = encontrar(selectedTableId,pedidos_realizados);
+  
+          // Calcular el total del pedido
+          let total = pedido.items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  
+          const modalContainer = document.getElementById('divModal');
+          const modal = document.createElement('div');
+          modal.className = 'modal';
+          modal.id = `modal-${selectedTableId}`;
+          modal.innerHTML = `
+              <div id="Modal${selectedTableId}" class="modal-content">
+                  <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                  <h3>Factura</h3>
+                  <p>Mesa: ${numeroMesa}</p>
+                  <div class="factura-divider"></div>
+                  ${pedido.items.map(item => `
+                      <div class="factura-item">
+                          <span class="item-nombre">${item.name}</span>
+                          <span class="item-cantidad">x${item.quantity}</span>
+                          <span class="item-precio">${item.price.toFixed(2)} €</span>
+                      </div>
+                  `).join('')}
+                  <div class="factura-divider"></div>
+                  <div class="factura-item">
+                      <span class="item-nombre"><strong>Total</strong></span>
+                      <span class="item-cantidad"></span>
+                      <span class="item-precio"><strong>${total.toFixed(2)} €</strong></span>
+                  </div>
+                  <button class="button-cerrar-modal">Cerrar</button>
+              </div>
+          `;
+          modalContainer.appendChild(modal);
+  
+          // Mostrar el modal y desactivar el scroll del cuerpo
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+  
+          // Asignar evento para cerrar el modal
+          modal.querySelector('.closeBtn').addEventListener('click', () => {
+              modal.style.display = 'none';
+              document.body.style.overflow = 'auto';
+          });
+  
+          modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
+              modal.style.display = 'none';
+              document.body.style.overflow = 'auto';
+          });
+      }
+
+    
+  } 
 }
+
+
 
 // Abrir y cerrar modal de factura
 document.addEventListener('DOMContentLoaded', () => {
@@ -210,12 +273,109 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
+function PagoCuenta() {
+  if (selectedTableId !== null && selectedMesa) {
+
+      if (document.querySelector("#Terraza").classList.contains("visible")) {
+          const modalContainer = document.getElementById('divModal');
+          const modal = document.createElement('div');
+          modal.className = 'modal';
+          modal.id = `modal-${selectedTableId}`;
+          modal.innerHTML = `
+              <div id="Modal${selectedTableId}" class="modal-content">
+                  <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                  <h3>Detalles del Pedido</h3>
+                  <form id="formPedido">
+                      <label for="nombrePlato">Nombre del Plato:</label>
+                      <input type="text" id="nombrePlato" name="nombrePlato" required>
+                      <label for="cantidad">Cantidad:</label>
+                      <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+                      <button type="submit" class="button-agregar">Agregar</button>
+                  </form>
+                  <div id="pedidoDetalles"></div>
+                  <hr>
+                  <form id="formPago">
+                      <label for="metodoPago">Seleccione el método de pago:</label>
+                      <select id="metodoPago" name="metodoPago">
+                          <option value="efectivo">Efectivo</option>
+                          <option value="tarjeta">Tarjeta</option>
+                      </select>
+                      <button type="submit" class="button-pagar">Pagar</button>
+                  </form>
+                  <button class="button-cerrar-modal">Cerrar</button>
+              </div>
+          `;
+          modalContainer.appendChild(modal);
+
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+
+          modal.querySelector('.closeBtn').addEventListener('click', () => {
+              modal.style.display = 'none';
+              document.body.style.overflow = 'auto';
+          });
+
+          modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
+              modal.style.display = 'none';
+              document.body.style.overflow = 'auto';
+          });
+
+          const formPedido = modal.querySelector('#formPedido');
+          const pedidoDetalles = modal.querySelector('#pedidoDetalles');
+
+          formPedido.addEventListener('submit', (event) => {
+              event.preventDefault();
+              const nombrePlato = formPedido.elements['nombrePlato'].value;
+              const cantidad = parseInt(formPedido.elements['cantidad'].value);
+
+              // Validar entrada de datos
+              if (nombrePlato.trim() === '' || isNaN(cantidad) || cantidad <= 0) {
+                  alert('Por favor, ingrese un nombre de plato válido y una cantidad válida.');
+                  return;
+              }
+
+              // Mostrar detalles del pedido
+              const pedidoItemHTML = `
+                  <div class="factura-item">
+                      <span class="item-nombre">${nombrePlato}</span>
+                      <span class="item-cantidad">x${cantidad}</span>
+                      <span class="item-precio">Precio por definir</span>
+                  </div>
+              `;
+              pedidoDetalles.innerHTML += pedidoItemHTML;
+
+              // Limpiar campos del formulario
+              formPedido.reset();
+          });
+
+          const formPago = modal.querySelector('#formPago');
+          formPago.addEventListener('submit', (event) => {
+              event.preventDefault();
+              const metodoPago = formPago.elements['metodoPago'].value;
+              alert(`Pago realizado con ${metodoPago}`);
+              modal.style.display = 'none';
+              document.body.style.overflow = 'auto';
+              // Aquí podrías añadir lógica adicional para procesar el pago, como actualizar estado en el sistema, etc.
+          });
+      }
+
+      // Aquí podrías implementar una lógica similar para el caso de document.querySelector("#General").classList.contains("visible")
+      // Ajusta según tus necesidades específicas para mostrar detalles y procesar el pago.
+  }
+}
+
+
+
+
 // Recorridos de las mesas para la vista de General, Terrazas
 function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
     // Recorrer las mesas de la vista de terraza
     if (document.querySelector("#Terraza").classList.contains("visible")) {
         pedido_mesas_terraza.forEach(pedidos => {
             tableCards.forEach((mesas, mesas_id) => {
+              console.log(pedidos.tableId);
                 // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
                 if (pedidos.estatus === 1 && pedidos.tableId === String(mesas_id + 1)) {
                     const tableStatusElement = mesas.querySelector('.table-status');

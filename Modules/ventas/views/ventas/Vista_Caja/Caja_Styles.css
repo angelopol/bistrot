@@ -2,7 +2,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-
 body {
     margin: 0;
     padding: 0;
@@ -14,9 +13,7 @@ body {
 .restaurant-title, .Contenido {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-
 }
-
 
 .restaurant-header {
     background-color: #013D1F;
@@ -24,12 +21,10 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     color: #fff;
-
     line-height: 150%;
     padding: 34px 5%;
     box-sizing: border-box;
 }
-
 
 .restaurant-title {
     letter-spacing: -1%;
@@ -50,9 +45,7 @@ body {
     padding: 8px 16px;
 }
 
-
 .user-name {
-
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -64,7 +57,6 @@ body {
     width: 24px;
     height: 24px;
 }
-
 
 .table-grid {
     margin-left: 60px;
@@ -102,9 +94,8 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 10px ;
+    padding: 10px;
 }
-
 
 .table-info {
     align-self: center;
@@ -112,16 +103,14 @@ body {
     gap: 5px;
 }
 
-.Mesas{
+.Mesas {
     display: none;
     width: 100%;
 }
 
-
-.visible{
+.visible {
     display: block;
 }
-
 
 .table-name {
     font-weight: 500;
@@ -130,9 +119,7 @@ body {
 .table-status {
     font-family: Montserrat, sans-serif;
     align-self: center;
-    
 }
-
 
 .nav-tabs {
     border-radius: 12px;
@@ -153,32 +140,23 @@ body {
     font-weight: 500;
     justify-content: center;
     border-radius: 8px;
-
-    padding: 10px ;
-
+    padding: 10px;
     border: none;
     cursor: pointer;
 }
 
 .nav-tab-active {
     background-color: #178566;
-    /* Fondo verde para el botón activo */
     color: #fff;
-    /* Texto blanco para el botón activo */
 }
 
 .nav-tab-inactive {
     background-color: #e4e4e4;
-    /* Color de fondo blanco para los botones desactivados */
     color: #178566;
-    /* Texto verde para los botones desactivados */
     border-radius: 8px;
 }
 
-
-
 .action-panel {
-    
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -189,7 +167,6 @@ body {
     width: 80%;
     padding: 30px;
 }
-
 
 .action-button {
     font-size: 14px;
@@ -205,11 +182,7 @@ body {
     width: 100%;
     border: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    
-
 }
-
 
 .sidebar-right {
     display: flex;
@@ -218,8 +191,7 @@ body {
     width: 20%;
 }
 
-
-.Contenido{
+.Contenido {
     display: flex;
     flex-direction: row;
     width: 90%;
@@ -233,7 +205,6 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform: translateY(-7px);
     transform: scale(1.1);
-
 }
 
 .table-card:hover {
@@ -241,24 +212,25 @@ body {
     box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.6), 0 0 20px 0 rgba(0, 0, 0, 0.6);
 }
 
-.action-button:hover{   
+.action-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.2);
-    
 }
 
-.nav-tab-inactive:hover{
+.nav-tab-inactive:hover {
     background-color: #bbbbbb;
-    transition:  background-color 0.3s ease;
-
+    transition: background-color 0.3s ease;
 }
 
+/* Estilos para el modal */
 .modal-content {
     background-color: #ffffff;
     text-align: center;
     align-content: center;
     color: #000;
-    margin: 15% auto;
+    margin: auto;
+    margin-top: 80px;
+    
     padding: 20px;
     border: 1px solid #888;
     border-radius: 8px;
@@ -266,7 +238,6 @@ body {
     max-width: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: show 0.4s;
-    
 }
 
 .modal {
@@ -293,4 +264,47 @@ body {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Estilos para la factura */
+.factura-divider {
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+.factura-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.factura-item .item-nombre {
+    flex: 2;
+}
+
+.factura-item .item-cantidad {
+    flex: 1;
+    text-align: center;
+}
+
+.factura-item .item-precio {
+    flex: 1;
+    text-align: right;
+}
+
+.button-cerrar-modal {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #178566;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-cerrar-modal:hover {
+    background-color: #178566;
 }

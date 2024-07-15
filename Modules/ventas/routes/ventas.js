@@ -3,7 +3,6 @@ import { ControllerCaja } from '../controllers/caja.js'
 import { ControllerCliente } from '../controllers/cliente.js'
 import { ControllerSalon } from '../controllers/salon.js'
 import { ControllerFactura } from '../controllers/factura.js'
-import { ControllerMesas } from '../controllers/mesas.js'
 
 export const createVentasRouter = () => {
   const VentasRouter = Router()
@@ -11,7 +10,6 @@ export const createVentasRouter = () => {
   const controllerCliente = new ControllerCliente()
   const controllerSalon = new ControllerSalon()
   const controllerFactura = new ControllerFactura()
-  //const controllerMesas = new ControllerMesas()
 
   VentasRouter.use(errorMiddleware);
   // Rutas de Caja
@@ -41,15 +39,6 @@ export const createVentasRouter = () => {
   VentasRouter.post('/factura', controllerFactura.create_f);
   VentasRouter.put('/factura/:id', controllerFactura.update_f);
   VentasRouter.delete('/factura/:id', controllerFactura.delete_f);
-
-  // Rutas de Mesas
-  /*
-  VentasRouter.get('/mesas', controllerMesas.getAll_m);
-  VentasRouter.get('/mesas/:id', controllerMesas.getById_m);
-  VentasRouter.post('/mesas', controllerMesas.create_m);
-  VentasRouter.put('/mesas/:id', controllerMesas.update_m);
-  VentasRouter.delete('/mesas/:id', controllerMesas.delete_m);
-  */
 
   return VentasRouter
 }

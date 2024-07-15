@@ -255,7 +255,7 @@ function addToOrder(name, price, imageUrl, idCard) {
             </div>
         </div>
     `;
-
+    
     let card = document.getElementById(idCard);
     card.classList.add('disabled');
     orderItemsContainer.appendChild(orderItem);
