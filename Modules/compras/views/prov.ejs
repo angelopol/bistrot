@@ -115,13 +115,13 @@
                                 <input type="submit" id="data-title-btn" value="Agregar">
                                 <input type="submit" id="data-title-modi" value="Modificar">
                             </div>
-                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa"  maxlength="20">
+                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa"  maxlength="50">
                             <input maxlength="12" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
                             <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal">
-                            <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo" maxlength="24">
-                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa", maxlength="10">
+                            <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo" maxlength="50">
+                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa", maxlength="50">
                             <input maxlength="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
-                            <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd", maxlength="10">
+                            <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd", maxlength="30">
                             <input placeholder="Precio por ud.Compra" class="input-data pre-prov" type="text" name="precio">
                         </form>
                     </div>
@@ -185,12 +185,6 @@
 
         //Evento para poder clickear tabla
         tabla.addEventListener('click',seleccionarFila)
-
-
-
-
-
-
 
         let proveedores = document.getElementById('tabla-prov')
         //Tabla Contiene un thead y un tbody, tbody vacio, rellenar
