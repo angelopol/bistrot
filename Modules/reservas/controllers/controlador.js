@@ -1,5 +1,5 @@
-import { validarInventarioMesas } from "../schemes/validacion_inventarioMesas.js";
-import { validarReservaMesas } from "../schemes/validacion_reserva_mesas.js";
+import { validarMesas } from "../schemes/validacion_mesas.js";
+
 
 export class InventarioMesasController{
     mostrarReserva = async (req,res)=>{

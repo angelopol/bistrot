@@ -11,22 +11,20 @@ const DBConfig = {
 
 const connection = await mysql.createConnection(DBConfig);
 
-export class InventarioMesasModel {
+export class MesasModel {
   static async create({ input }) {
     const {
       ID_mesa,
       descripcion,
       numero_sillas,
       ubicacion,
-      status,
-      confirmado
     } = input;
 
     try {
       await connection.query(
-        `INSERT INTO inventario_mesas (ID_mesa, descripcion, numero_sillas, ubicacion)
-          VALUES (?, ?, ?, ?, ?, ?);`,
-        [ID_mesa, descripcion, numero_sillas, ubicacion,status,confirmado]
+        `INSERT INTO mesas (ID_mesa, descripcion, numero_sillas, ubicacion)
+          VALUES (?, ?, ?, ?);`,
+        [ID_mesa, descripcion, numero_sillas, ubicacion]
       );
     } catch (e) {
       console.log(e);
@@ -39,14 +37,12 @@ export class InventarioMesasModel {
       descripcion,
       numero_sillas,
       ubicacion,
-      status,
-      confirmado
     } = modi;
 
     try {
       await connection.query(
-        'UPDATE inventario_mesas SET descripcion = ?, numero_sillas = ?, ubicacion = ?, status = ?, confirmado = ? WHERE ID_mesa = ?',
-        [descripcion, numero_sillas, ubicacion, status, confirmado,ID_mesa]
+        'UPDATE inventario_mesas SET descripcion = ?, numero_sillas = ?, ubicacion = ? WHERE ID_mesa = ?',
+        [descripcion, numero_sillas, ubicacion,ID_mesa]
       );
     } catch (e) {
       console.log(e);
@@ -57,7 +53,7 @@ export class InventarioMesasModel {
   static async encontrar({ ID_mesa }) {
     try {
       const [rows] = await connection.query(
-        `SELECT * FROM inventario_mesas WHERE ID_mesa = ?;`,
+        `SELECT * FROM mesas WHERE ID_mesa = ?;`,
         [ID_mesa]
       );
       return rows[0];
@@ -70,7 +66,7 @@ export class InventarioMesasModel {
   static async eliminar({ ID_mesa }) {
     try {
       const response = await connection.query(
-        'DELETE FROM inventario_mesas WHERE ID_mesa = ?',
+        'DELETE FROM mesas WHERE ID_mesa = ?',
         [ID_mesa]
       );
       if (result.affectedRows > 0) {

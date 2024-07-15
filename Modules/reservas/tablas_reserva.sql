@@ -1,36 +1,25 @@
-CREATE DATABASE bistrot;
+use modulo_reserva;
 
-USE bistrot;
-
-
-CREATE TABLE `reserva_cliente` (
-  `numero_reserva` int NOT NULL AUTO_INCREMENT,
-  `Confirmado` boolean NOT NULL,
-  `cantidad_personas` int NOT NULL,
-  `ID_cliente` BINARY(16) DEFAULT (UUID_TO_BIN(UUID())),
-  `fecha_inicio` datetime NOT NULL,
-  `fecha_fin` datetime NOT NULL,
-  `tipo_de_evento` TEXT NOT NULL,
-  PRIMARY KEY (`numero_reserva`)
+CREATE TABLE `mesas` (
+  `ID_mesa` int NOT NULL,
+  `descripcion` varchar(45) DEFAULT NULL,
+  `numero_sillas` varchar(45) NOT NULL,
+  `ubicacion` varchar(1) NOT NULL,
+  PRIMARY KEY (`ID_mesa`)
 ) 
 
-SELECT * FROM bistrot.reserva_cliente;
-
-CREATE TABLE `inventario_mesas` (
-  `ID_mesa` BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
-  `descripcion` TEXT NOT NULL,
-  `numero_sillas` int NOT NULL,
-  `ubicacion` char(1) NOT NULL,
-  `status` char(1) NOT NULL,
-  `confirmado` boolean NOT NULL,
-  PRIMARY KEY (`ID_mesa`)
-)
-
-SELECT * FROM bistrot.inventario_mesas;
-
-CREATE TABLE `reserva_mesa` (
+CREATE TABLE `reserva` (
   `numero_reserva` int NOT NULL,
-  `id_mesa` BINARY(16) PRIMARY KEY DEFAULT (UUID_TO_BIN(UUID())),
-  
+  `ID_mesa` int NOT NULL,
+  `confirmado` tinyint DEFAULT NULL,
+  `cantidad_personas` int NOT NULL,
+  `ID_cliente` int NOT NULL AUTO_INCREMENT,
+  `fecha` datetime NOT NULL,
+  `hora_inicio` time NOT NULL,
+  `hora_fin` time NOT NULL,
+  `descripcion` text NOT NULL,
+  `telefono` varchar(45) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`numero_reserva`),
+  UNIQUE KEY `ID_cliente_UNIQUE` (`ID_cliente`)
 )
-SELECT * FROM bistrot.reserva_mesa;

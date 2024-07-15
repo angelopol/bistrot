@@ -58,7 +58,7 @@
             <div class="distribucion">
 
         
-<form action="tu_script_para_procesar_el_formulario.php" method="POST">
+<form action="reservaciones/crear" method="POST">
   <div class="form-group">
     <label for="fecha">Fecha:</label>
     <input type="date" id="fecha" name="fecha" required>
@@ -70,17 +70,13 @@
   </div>
 
   <div class="form-group">
-    <label for="hora">Hora:</label>
-    <input type="time" id="hora" name="hora" required>
+    <label for="hora">Hora de inicio:</label>
+    <input type="time" id="hora" name="hora_inicio" required>
   </div>
 
   <div class="form-group">
-    <label for="zona">Zona:</label>
-    <select id="zona" name="zona" required>
-      <option value="Interior">Interior</option>
-      <option value="Exterior">Exterior</option>
-      <option value="Barra">Barra</option>
-    </select>
+    <label for="hora">Hora de finalizacion:</label>
+    <input type="time" id="hora" name="hora_fin" required>
   </div>
 
   <div class="form-group">
@@ -102,6 +98,17 @@
     <label for="idmesa">Número de mesa:</label>
     <input type="text" id="idmesa" name="idmesa" required>
   </div>
+
+  <div class="form-group">
+    <label for="idtelefono">telefono:</label>
+    <input type="text" id="idtelefono" name="idtelefono" required>
+  </div>
+
+  <div class="form-group">
+    <label for="descripcion">descripcion</label>
+    <input type="text" id="iddescripcion" name="iddescripcion" required>
+  </div>
+
 
   <button type="submit">Registrar Reserva</button>
 </form>

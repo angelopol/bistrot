@@ -1,38 +1,40 @@
-import { ReservaMesasModel } from '../models/reserva_mesa.js'
-import { validarReservaMesas } from '../schemes/validacion_reserva_mesas.js'
+import { ReservaModel } from '../models/reserva.js'
+import { validarMesas } from '../schemes/validacion_mesas.js'
 
-export class ReservaMesasController{
-    static async getAll (req, res) {
-        const reservas = await ReservaMesasModel.listar()
+export class ReservaController{
+     getAll = async(req, res) =>{
+        const reservas = await ReservaModel.listar()
         if (reservas) {
             return res.json(reservas)
         }
         res.status(404).json({ message: 'No hay reservas de mesas en la base de datos' })
     }
 
-    static async getForId (req, res) {
+    getForId = async(req, res) =>{
         const { id } = req.params
-        const reserva = await ReservaMesasModel.encontrar({id})
+        const reserva = await ReservaModel.encontrar({id})
         if (reserva) {
             return res.json(reserva)
         }
         res.status(404).json({ message: 'Reserva de mesas no encontrada' })
     }
 
-    static async create (req, res) {
-        const result = validarReservaMesas(req.body)
+    create=async (req, res)=> {
+        //const result = //validarMesas(req.body)
   
-        if (!result.success) {
-        return res.status(400).json({ error: JSON.parse(result.error.message) })
-        }
-        const input = result.data
-        const nueva_reserva = await ReservaMesasModel.crear({input})
+        //if (!result.success) {
+        //return res.status(400).json({ error: JSON.parse(result.error.message) })
+        //}
+        //const input = result.data
+        const { fecha, personas, hora_inicio, hora_fin, nombre, apellido, cedula, idmesa, idtelefono, iddescripcion } = req.body;
+
+        const nueva_reserva = await ReservaModel.create(req.body)
         res.status(201).json(nueva_reserva)
-        }
+    }
         
-    static async delete (req, res) {
+    delete = async(req, res) =>{
         const { id } = req.params
-        const validacion = await ReservaMesasModel.eliminar({id})
+        const validacion = await ReservaModel.eliminar({id})
         
         if (!validacion) {
           return res.status(404).json({ message: 'No se encontró la reserva de mesas' })

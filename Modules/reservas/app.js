@@ -8,8 +8,10 @@ import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
 import { InventarioMesasController } from './controllers/controlador.js';
+import {ReservaController} from './controllers/reserva.js';
 
     const controladorInventario= new InventarioMesasController();
+    const controladorReserva = new ReservaController();
     const app = express()
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
@@ -62,6 +64,8 @@ import { InventarioMesasController } from './controllers/controlador.js';
     app.get('/css/crearReservas.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/CrearReservas.css'))
     });
+    
+    app.post('/reservaciones/crear',controladorReserva.create);
 
     const PORT = process.env.PORT ?? 1234
     app.listen(PORT, () => {
