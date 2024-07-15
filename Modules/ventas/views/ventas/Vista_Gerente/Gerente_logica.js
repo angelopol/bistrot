@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+//Abrir y cerrar modals de gerente
 document.addEventListener('DOMContentLoaded', (event) => {
     const modals = document.querySelectorAll('.modal');
     const openModalButtons = document.querySelectorAll('button[id^="openModal"]');

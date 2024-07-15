@@ -98,19 +98,23 @@
 
         <aside class="sidebar-right">
             <section class="navigation-bar">
-                    <div class="nav-tabs">
-                        <button id="tab1" class="nav-tab nav-tab-active" onclick="changeTab('tab1')">General</button>
-                        <button id="tab2" class="nav-tab nav-tab-inactive" onclick="changeTab('tab2')">Terraza</button>
-                    </div>
+                <div class="nav-tabs">
+                    <button id="tab1" class="nav-tab nav-tab-active">General</button>
+                    <button id="tab2" class="nav-tab nav-tab-inactive">Terraza</button>
+                </div>
             </section>
             <section class="action-panel">
                 <button class="action-button" onclick="eliminarCuenta()">Eliminar cuenta</button>
-                <button class="action-button" onclick="ImprimirCuenta()">Imprimir cuenta</button>
+                <button class="action-button button-abrir-modal" onclick="ImprimirCuenta()">Imprimir cuenta</button>
+                <div id="divModal"></div>
                 <button class="action-button" onclick="pagarCuenta()">Pagar</button>
             </section>
         </aside>
-    </div>
+        
+        
 
+        
+    </div>
     <script src="Caja.js"></script>
 </body>
 </html>
