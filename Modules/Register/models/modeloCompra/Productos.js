@@ -62,7 +62,7 @@ export class ProductoModel{
       
     }catch(e){
       console.log(e)
-      throw new Error('Error a Modificar los datos del proveedor')
+      throw new Error('Error a Modificar los datos del producto')
     }
   }
   // Funcion que elimina un producto
