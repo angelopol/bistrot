@@ -86,4 +86,8 @@ export class RenderController{
     renderBebidas = async (req, res) => {
         res.render("/cocina/Bebidas")
     }
+
+    renderCSS = async (req, res) => {
+        res.sendFile(process.cwd() + '/views/cocina/css/Menu.css')
+    }
 }

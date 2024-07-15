@@ -33,12 +33,15 @@ export const createCocinaRouter = () => {
     cocinaRouter.get("/produccion", renderController.renderProduccion)
     cocinaRouter.get("/cocinaAbiertaProduciendo", renderController.renderCocinaAbierta)
     cocinaRouter.get("/instumentos", renderController.renderInstrumentos)
+    cocinaRouter.get("/menu", renderController.renderEntradas)
     cocinaRouter.get("/Entradas", renderController.renderEntradas)
     cocinaRouter.get("/PlatosFuertes", renderController.renderPlatosFuertes)
     cocinaRouter.get("/Vegetariano", renderController.renderVegetariano)
     cocinaRouter.get("/Postres", renderController.renderPostres)
     cocinaRouter.get("/infantil", renderController.renderInfantil)
     cocinaRouter.get("/Bebidas", renderController.renderBebidas)
+
+    cocinaRouter.get("/assets/Menu.css", renderController.renderCSS)
 
     return cocinaRouter
 }
