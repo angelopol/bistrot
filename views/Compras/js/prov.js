@@ -11,7 +11,7 @@ document.getElementById('delete-form').addEventListener('submit', function (e) {
     const nombre = selectedOption.value;
 
     if (nombre) {
-        this.action = `/prov/${nombre}?_method=DELETE`;
+        this.action = `/compras-index/prov/${nombre}?_method=DELETE`;
     }
 });
 
@@ -24,10 +24,10 @@ form.addEventListener('submit', function(event) {
     if (event.submitter.value === 'Modificar') {
         // Cambia la acción del formulario para incluir el ID y usar el método PATCH
         rif.readOnly = false;
-        form.action = '/prov/' + idd + '?_method=PATCH';
+        form.action = '/compras-index/prov/' + idd + '?_method=PATCH';
     } else {
         // Si el botón presionado no es "Modificar", usa la acción por defecto
-        form.action = '/prov';
+        form.action = '/compras-index/prov';
     }
 });
 

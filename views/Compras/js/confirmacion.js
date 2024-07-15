@@ -13,17 +13,14 @@ orden = document.getElementById('orden')
 let exit = document.getElementsByClassName('title-exit')[0]
 //Boton de Exit
 
-exit.onclick = function(){
+/*exit.onclick = function(){
     location.href = '/compra'
-}
+}*/
 
 
 //Boton de Regresar
 let btn_exit = document.getElementById('btn-regis')
 
-btn_exit.onclick = function(){
-    location.href = '/compra'
-}
 
 var form = document.getElementById('form1');
         
@@ -32,14 +29,14 @@ var form = document.getElementById('form1');
 // Agrega el evento 'submit' al formulario
 form.addEventListener('submit', function(event) {
     let idd = document.getElementById('id-solicitud').value;
-    alert(idd)
+    
     if (event.submitter.value === 'Confirmar') {
         
         // Cambia la acción del formulario para incluir el ID y usar el método PATCH
-        form.action = '/compra/confirmacion/' + idd + '?_method=PATCH';
+        form.action = '/compras-index/compra/confirmacion/' + idd + '?_method=PATCH';
     } else {
         // Si el botón presionado no es "Modificar", usa la acción por defecto
-        form.action = '/compra/confirmacion' + '?_method=DELETE';
+        form.action = '/compras-index/compra/confirmacion' + '?_method=DELETE';
     }
 });
 //Textos donde Ingresar los datos

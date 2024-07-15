@@ -29,7 +29,7 @@ export class HistorialController {
         
         if((!result.success)&&(productoProveedor[0].Productos_Proveedor.toLowerCase() != nombreP.toLowerCase())){
             
-            res.redirect('compra')
+            res.redirect('/compra-index/compra')
         }else{
             const orden = await HistorialModel.agregar({input: req.body})
             res.render('compras/confirmacion',{dato: id,dato2: orden})
@@ -46,7 +46,7 @@ export class HistorialController {
     delete = async (req,res)=>{
         await HistorialModel.eliminar()
         
-        res.redirect('compra')
+        res.redirect('/compras-index')
     }
 }
 
@@ -75,6 +75,7 @@ export class ProductoController{
             res.redirect('compras-prod')
         } else {
             await ProductoModel.crear({input: req.body})
+
             res.redirect('compras-prod')
         }
         
@@ -88,11 +89,11 @@ export class ProductoController{
         //console.log(id)
         if(!result.success){
             //console.log("Validacion no exitosa")
-            res.redirect('compras-prod')
+            res.redirect('/compras-index/compras-prod')
         }else{
             //console.log("Validacion exitosa")
             await ProductoModel.modificar({id,result: result.data}) 
-            res.redirect('compras-prod')
+            res.redirect('/compras-index/compras-prod')
         }
         
 
@@ -104,7 +105,7 @@ export class ProductoController{
         const {nombre} = req.params
         await ProductoModel.eliminar({nombre})
 
-        res.redirect('/compras-prod')
+        res.redirect('/compras-index/compras-prod')
     }
 
 }
@@ -112,15 +113,16 @@ export class ProductoController{
 export class ProveedorController{
     create = async (req,res)=>{
         const result = ValidarProv(req.body)
-        console.log(result.success)
-        console.log(result.data)
+        //console.log(result.success)
+        //console.log(result.data)
+        //console.log(req.body)
         if(!result.success){
-            console.log("Validacion Incorrecta")
-            res.redirect('prov')
+            //console.log("Validacion Incorrecta")
+            res.redirect('/compras-index/prov')
         }else{
-            console.log("Validacion correcta")
+            //console.log("Validacion correcta")
             await ProveedoresModel.crear({input: req.body})
-            res.redirect('prov')
+            res.redirect('/compras-index/prov')
         }
 
     }
@@ -132,20 +134,26 @@ export class ProveedorController{
         //console.log(req.body)
         if(!result.success){
             //console.log("Validacion devolvio false")
-            res.redirect('prov')
+            res.redirect('/compras-index/prov')
         }else{ 
             await ProveedoresModel.modificar({id,result: req.body})
-            res.redirect('prov')
+            res.redirect('/compras-index/prov')
         }
 
     }
     delete = async (req,res)=>{
         //Lo deje aqui 
         const {nombre} = req.params
-        console.log(nombre)
-        await ProveedoresModel.eliminar({nombre})
+        //console.log(nombre)
+        if(nombre === undefined){
+            res.redirect('/compras-index/prov')
+        }else{
+            await ProveedoresModel.eliminar({nombre})
+            res.redirect('/compras-index/prov')
+        }
+        
 
-        res.redirect('prov')
+        
     }
 
     getByName = async (req,res)=>{
@@ -180,10 +188,10 @@ export class SolicitudController{
         const result = ValidarSolicitudes(req.body)
         console.log(result)
         if(!result.success){
-            res.redirect('soli');
+            res.redirect('/compras-index/soli');
         }else{
             await SolicitudModel.agregar({input: req.body})
-            res.redirect('soli');
+            res.redirect('/compras-index/soli');
         }
 
     }
@@ -191,10 +199,10 @@ export class SolicitudController{
         const {id_req} = req.body
         
         if(id_req === undefined){
-            res.redirect('soli')
+            res.redirect('/compras-index/soli')
         }else{
             await SolicitudModel.modificar({input: req.body})
-            res.redirect('soli');
+            res.redirect('/compras-index/soli');
         }
 
         
@@ -203,7 +211,7 @@ export class SolicitudController{
     updateCompra = async (req,res)=>{
         const {id} = req.params
         await SolicitudModel.modificarCompra({id})
-        res.redirect('compra')
+        res.redirect('/compras-index')
     }
     delete = async (req,res)=>{
         //Lo deje aqui  

@@ -115,7 +115,7 @@
                     <h3 id="subtitle-comp">Proceso de Solicitud</h3>
                     <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
 
-                    <form action="/soli" method="post">
+                    <form action="/compras-index/soli" method="post">
                         <div class="box-producto">
                             <select id="select-prod" name="nombre_producto">
                                 <option disabled selected >Producto</option>
@@ -125,7 +125,7 @@
                                     <% }); %>
                                 <% } %>
                             </select>
-                            <input id="input-cant" placeholder="Cantidad" type="text" name="cant" readonly maxlength="3" >
+                            <input id="input-cant" placeholder="Cantidad" type="text" name="cant" maxlength="3" >
                         </div>
                         <div class="content-other">
                             <select id="select-depa" name="depar">
@@ -136,7 +136,7 @@
                                 <option>Mantenimiento</option>
                                 <option>Cocina</option>
                             </select>
-                            <input id="input-id" placeholder="ID Empleado" type="text" name="id_emp" readonly maxlength="2">
+                            <input id="input-id" placeholder="ID Empleado" type="text" name="id_emp" maxlength="2">
                         </div>
                         
                             <textarea placeholder="Descripcion" class="input-data desc" name="detalle"></textarea>

@@ -16,6 +16,6 @@ export const routes = ({app}) => {
     app.use('/reservas', createReservasRouter())
     app.use('/inventario', createInventarioRouter())
     app.use('/ventas', createVentasRouter())
-    app.use('/', createComprasRouter())
+    app.use('/compras-index', createComprasRouter())
     app.use('/cocina', createCocinaRouter())
 }

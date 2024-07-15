@@ -11,11 +11,12 @@ form.addEventListener('submit', function(event) {
     var select = form.querySelector('select');
     // Si el botón presionado tiene el valor "Modificar"
     if (event.submitter.value === 'Modificar') {
+        
         // Cambia la acción del formulario para incluir el ID y usar el método PATCH
-        form.action = '/compras-prod/' + idd + '?_method=PATCH';
+        form.action = '/compras-index/compras-prod/' + idd + '?_method=PATCH';
     } else {
         // Si el botón presionado no es "Modificar", usa la acción por defecto
-        form.action = '/compras-prod';
+        form.action = '/compras-index/compras-prod'; 
     }
 });
 //Evento para agregar dinamicamente el nombre para poder utilizar la ruta /prod/:
@@ -25,7 +26,7 @@ document.getElementById('delete-form').addEventListener('submit', function (e) {
     const nombre = selectedOption.value;
 
     if (nombre) {
-        this.action = `/compras-prod/${nombre}?_method=DELETE`;
+        this.action = `/compras-index/compras-prod/${nombre}?_method=DELETE`;
     }
 });
 

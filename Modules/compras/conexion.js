@@ -8,11 +8,11 @@ async function createConnection() {
             host: '127.0.0.1' || process.env.DB_HOST,
             user: 'root' || process.env.DB_USERNAME,
             port: 3306 || process.env.DB_PORT,
-            password: '$0p0rt3' || process.env.DB_PASSWORD,
+            password: 'Samp1203*' || process.env.DB_PASSWORD,
             database: 'bistrot' || process.env.DB_DATABASE,
         });
         console.log('Connected to the database.');
-    } catch (error) {
+    } catch (error) { 
         console.error('Error connecting to the database:', error);
     }
     return connection;

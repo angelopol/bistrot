@@ -28,7 +28,7 @@ document.getElementById('update-form').addEventListener('submit', function (e) {
     const selectedOption = select.options[select.selectedIndex];
     const id = selectedOption.value;
     if (id) {
-        this.action = `/soli/${id}?_method=PATCH`;
+        this.action = `/compras-index/soli/${id}?_method=PATCH`;
     }
 });
 
