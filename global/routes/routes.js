@@ -7,7 +7,6 @@ import { createInventarioRouter } from '../../Modules/Inventario/routes/inventar
 import { createVentasRouter } from '../../Modules/ventas/routes/ventas.js'
 import { createComprasRouter } from '../../Modules/compras/routes/compras.js'
 import { createCocinaRouter } from '../../Modules/cocina/routes/cocina.js'
-import { ProductoModel } from '../../Modules/Register/models/modeloCompra/Productos.js'
 
 export const routes = ({app}) => {
     app.use('/movies', createMovieRouter())
@@ -17,6 +16,6 @@ export const routes = ({app}) => {
     app.use('/reservas', createReservasRouter())
     app.use('/inventario', createInventarioRouter())
     app.use('/ventas', createVentasRouter())
-    app.use('/compras', createComprasRouter({productoModel : ProductoModel}))
+    app.use('/', createComprasRouter())
     app.use('/cocina', createCocinaRouter())
 }

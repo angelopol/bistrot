@@ -14,7 +14,7 @@ let exit = document.getElementsByClassName('title-exit')[0]
 //Boton de Exit
 
 exit.onclick = function(){
-    location.href = '../html/compra.html'
+    location.href = '/compra'
 }
 
 
@@ -22,5 +22,5 @@ exit.onclick = function(){
 let btn_exit = document.getElementById('btn-regis')
 
 btn_exit.onclick = function(){
-    location.href = '../html/compra.html'
+    location.href = '/compra'
 }

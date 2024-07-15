@@ -36,7 +36,7 @@ let producto = document.getElementsByClassName('prod-prov')[0]
 let exit = document.getElementsByClassName('title-exit')[0]
 
 exit.onclick = function(){
-    location.href = '../html/index.html'
+    location.href = '/compras-index'
 }
 rif.addEventListener('keydown', () =>{
     if(rif.value.match(/^j-[0-9]{9}$/)){

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot - Compras</title>
+    <link rel="stylesheet" href="../Compras/css/side.css">
+    <link rel="stylesheet" href="../Compras/css/productos.css">
+    <link rel="shortcut icon" href="../Compras/resources/icon.jpeg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="../Compras/resources/iconos_barra/icono_inicio.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/icono_ventas.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/icono_compras.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/icono_rrhh.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/icono_inventario.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/icono_mantenimiento.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/icono_cocina.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/icono_reservas.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+
+        <div id="principal">
+            <div class="box-title-prov">
+                <img class="title-exit" src="../Compras/resources/Icono-Back.svg" alt="Icono - Exit">
+                <h2 id="title-prov">Productos</h2>
+            </div>
+            <div class="dashboard">
+                <div class="formulario">
+                    <h3 id="title-detaile-prov">Detalles</h3>
+                    <form action="/compras-prod" method="post" id="form1">
+                        <input type="hidden" name="_method" value="PATCH">
+                    
+                        <input placeholder="Nombre del Producto" class="input-data name-prov" type="text" name="NombreP"  maxlength="8">
+                        <input placeholder="Unidades de Compra" class="input-data comp-prov" type="text" name="Unidades"  maxlength="12">
+                        <input placeholder="Unidades de Consumo" class="input-data cons-prov" type="text" name="Consumo"  maxlength="12">
+                        
+                        <input type="submit" id="btn-regis" value="Agregar">
+                        <input type="submit" id="btn-modi" value="Modificar">
+                    </form>
+
+                    
+                    <button id="btn-clear">Limpiar</button>
+                    
+                </div>
+                <div class="data">
+                    <div class="content-prod">
+                        <table id="tabla-comp">
+                            <h3 id="title-table">Productos</h3>
+                            <thead>
+                            <tr style="user-select: none;">
+                                <th class="comp-clase">ID</th>
+                                <th class="comp-clase">Producto</th>
+                                <th class="comp-clase">uds.Compra</th>
+                                <th class="comp-clase">uds.Consumo</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tabla-comp-body">
+                                <% if (data) { %>
+                                    <% for (var i = 0; i < data.length; i++) { %>
+                                        <tr>
+                                            <td><%= data[i].ID_Producto %></td>
+                                            <td><%= data[i].NombreP %></td>
+                                            <td><%= data[i].Unidades %></td>
+                                            <td><%= data[i].Consumo %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <form action="/compras-prod/:nombre" method="post" id="delete-form">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <select id="select-prod" class="input-data name-prov" name="NombreP">
+                            <option disabled selected>Producto</option>
+                            <% if (data) { %>
+                                <% for (var i = 0; i < data.length; i++) { %>
+                                    <option value="<%= data[i].NombreP %>" ><%= data[i].NombreP %></option>
+                                <% } %>
+                                
+                            <% } %>
+                            
+                        </select>
+                        <input id="delete-prov-btn" type="submit" value="Eliminar">
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </main> 
+    <script src="../Compras/js/productos.js"></script>
+</body>
+</html>

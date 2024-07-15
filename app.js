@@ -15,6 +15,7 @@ app.use((req, res, next) => {authenticated(req, res, next)})
 app.disable('x-powered-by')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(express.static('views'));
 
 routes({ app })
 

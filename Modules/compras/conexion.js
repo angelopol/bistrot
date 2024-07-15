@@ -1,13 +1,15 @@
 import mysql from 'mysql2/promise';
+import 'dotenv/config'
 
 async function createConnection() {
     let connection;
     try {
         connection = await mysql.createConnection({
-            host: "127.0.0.1", //lo mismo que localhost
-            database: "bistrot",
-            user: "root",
-            password: "Samp1203*",
+            host: '127.0.0.1' || process.env.DB_HOST,
+            user: 'root' || process.env.DB_USERNAME,
+            port: 3306 || process.env.DB_PORT,
+            password: '$0p0rt3' || process.env.DB_PASSWORD,
+            database: 'bistrot' || process.env.DB_DATABASE,
         });
         console.log('Connected to the database.');
     } catch (error) {

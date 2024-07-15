@@ -22,19 +22,19 @@ let btn_compra = document.getElementById('btn-compra')
 //Boton de View Realizar Compra
 
 btn_compra.onclick = function(){
-    window.location.href = 'compra'
+    window.location.href = '/compra'
 }
 
 let btn_prod = document.getElementById('btn-prod')
 
 btn_prod.onclick = function(){
-    window.location.href = 'productos'
+    window.location.href = '/compras-prod'
 }
 
 let btn_soli = document.getElementById('btn-soli')
 
 btn_soli.onclick = function(){
-    window.location.href = 'solicitud'
+    window.location.href = '/soli'
 }
 
 //Modificacion del saldo

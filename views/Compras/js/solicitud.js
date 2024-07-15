@@ -23,7 +23,7 @@ let exit = document.getElementsByClassName('title-exit')[0]
 //Boton de Exit
 
 exit.onclick = function(){
-    location.href = '../html/index.html'
+    location.href = '/compras-index'
 }
 //Validaciones
 
