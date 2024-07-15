@@ -104,7 +104,7 @@ export class ProductoController{
         const {nombre} = req.params
         await ProductoModel.eliminar({nombre})
 
-        res.redirect('compras-prod')
+        res.redirect('/compras-prod')
     }
 
 }
