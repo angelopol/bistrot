@@ -189,5 +189,16 @@ main {
 
 #form1 {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.input-data {
+    width: 42%;
+}
+
+.data-box-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
