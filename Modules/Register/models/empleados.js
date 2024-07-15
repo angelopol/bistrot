@@ -6,10 +6,10 @@ const DBConfig = {
   user: 'root' || process.env.DB_USERNAME,
   port: 3306 || process.env.DB_PORT,
   password: '' || process.env.DB_PASSWORD,
-  database: 'bistrot' || process.env.DB_DATABASE,
+  database: 'rrhh' || process.env.DB_DATABASE,
 }
 
-const connection = await mysql.createConnection(DBConfig)
+// const connection = await mysql.createConnection(DBConfig)
 
 export class EmpleadosModel {
   static async create ({ input }) {

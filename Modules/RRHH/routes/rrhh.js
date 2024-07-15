@@ -1,26 +1,41 @@
 import { Router } from 'express'
 // const path = require('path');
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { RecursosHumanos } from '../controllers/recursoHumano.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const createRRHHRouter = () => {
   const RRHHRouter = Router()
+  const controlador = new RecursosHumanos();
 
-  RRHHRouter.get('/rrhh', (req, res) => {
-    res.send('Hello World')
-  })
+  
+  //Para los html
 
-  // show a html form
-  // RRHHRouter.get('/create', (req, res) => {
-  //   res.render('views/rrhh')
-  // })
-  RRHHRouter.get('/create', (req, res) => {
-    const result = 2+2;
-    // res.sendFile(path.join(__dirname, '../../../views/rrhh/rrhh.html'));
-    res.sendFile(process.cwd() + '/views/rrhh/rrhh.html')
-  });
+  RRHHRouter.get('/recursos-humanos', controlador.create)
 
+  RRHHRouter.get('/horarios', controlador.horarios)
+
+  RRHHRouter.get('/form', controlador.form)
+
+  RRHHRouter.get('/entradas', controlador.entradas)
+
+  RRHHRouter.get('/ausensias', controlador.ausensias)
+
+
+
+  // Para los estilos
+
+  RRHHRouter.get('/assets/style.css', controlador.GetStyle)
+
+  RRHHRouter.get('/assets/horarios.css', controlador.getStyle)
+
+  RRHHRouter.get('/assets/header.css', controlador.GetStyles)
+  
+  RRHHRouter.get('/assets/form.css', controlador.getStyles)
+  
+  RRHHRouter.get('/assets/entradas.css', controlador.getStyless)
+
+  RRHHRouter.get('/assets/ausensias.css', controlador.GetStyless)
+
+  
   return RRHHRouter
 }

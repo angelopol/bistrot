@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/entradas.css">
+    <title>Recursos Humanos</title>
+</head>
+<body>
+  <header class="header">
+    <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
+  </header>
+  <div class="content-wrapper">
+    <div class="main-content">
+      <nav class="sidebar">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8aeb03e907893948abf056ea4cd71ca94895e19e6380045d3aaff552cb4b4116?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Home icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Inicio</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/07a7b3b0c82f76b259051b3c06e22579ada99c42b0bac25e83773ec5c9c15edc?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Sales icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Ventas/Salon</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a0fc2e002b9d26adb97ce39f9f1705d7df3e9a386ef4cbb45dc7f6a8bcff7895?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Purchases icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Compras</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4b28cd707f6670c8eb27c51e2dc84c517381eb9a1292c051fdec16cfb5e5375b?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="HR icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">RRHH</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d06c0ce42016c9edd479c3398d1198fd645e2097b5d85e2d6008e6a588a30072?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Inventory icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Inventario</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-text">Mantenimiento</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/65420d7b2fa9eda8e903f8608c86b007d3391d54045913100876705c1962068d?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Kitchen icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Cocina/Bar</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dc6e42d71ff47b147816c83b4b0ca04935a942e5800885d2c3605a52a7a5eb51?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reservations icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Reservas</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9902f1c16af56e6c7ea24d201e76d77657ebc5769994165240feb6861cdfbc7e?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reports icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Reportes</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/24c6e997e8d79345382a5dec7f629f61217e270de7c0903529b6f377fec8320a?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Settings icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Configuraciones</span>
+          </li>
+          <li class="help-item">
+            <div class="help-icon-wrapper">
+              <div class="help-icon">?</div>
+            </div>
+            <span class="nav-text">Ayuda</span>
+          </li>
+        </ul>
+      </nav>
+      <main class="registra-entradas">
+        <h1 class="page-title">Entradas de empleados</h1>
+        <form class="employee-registration">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="employee-name" class="form-label">Nombre del empleado</label>
+              <input type="text" id="employee-name" class="form-input" placeholder="Nombre del empleado" />
+            </div>
+            <script>
+              // validacion de input del nombre, no permite numeros, solo letras y espacios, no permite caracteres especiales
+              document.getElementById('employee-name').addEventListener('input', function() {
+                this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+              });
+
+            </script>
+            <div class="form-group">
+              <label for="employee-id" class="form-label">ID del empleado</label>
+              <input type="text" id="employee-id" class="form-input" placeholder="ID del empleado" />
+            </div>
+            <div class="form-group">
+              <label for="employee-ci" class="form-label">Cédula de identidad</label>
+              <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
+            </div>
+            <script>
+              // validacion de input de cedula, solo permite numeros, no permite letras ni caracteres especiales
+              document.getElementById('employee-ci').addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+              });
+            </script>
+          </div>
+          
+          <div class="form-row">
+            <button type="button" class="submit-button" onclick="registrarHora('llegada')">Registrar hora de llegada</button>
+            <button type="button" class="submit-button" onclick="registrarHora('salida')">Registrar hora de salida</button>
+            <button type="button" class="submit-button" onclick="importarRegistros()">Importar registro de llegadas</button>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+  <script src="js/entradas.js"></script>
+</body>
+</html>
