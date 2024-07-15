@@ -27,9 +27,9 @@ actionButtons.forEach(button => {
 
         // Realizar acción según el texto del botón
         switch (buttonText) {
-            case 'Cambio de mesa':
+            case 'Solicitar factura':
                 // Redirigir a pedidos.html
-                location.href = '../Vista_Pedidos/pedidos.html';
+                location.href = '../Vista_Caja/Caja.html';
                 break;
             case 'Tomar pedido':
                 // Abrir pedidos.html y pasar el ID de la mesa seleccionada
