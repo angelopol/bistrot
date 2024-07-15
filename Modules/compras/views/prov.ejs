@@ -122,7 +122,7 @@
                             <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa", maxlength="50">
                             <input maxlength="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
                             <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd", maxlength="30">
-                            <input placeholder="Precio por ud.Compra" class="input-data pre-prov" type="text" name="precio">
+                            <input maxlength="30" placeholder="Precio por ud.Compra" class="input-data pre-prov" type="text" name="precio">
                         </form>
                     </div>
                 </div>
@@ -240,9 +240,26 @@
                 }
             }
         }
+
+        function validarPrecio(e) {
+            let valorActual = e.target.value;
+
+            let cantidadPuntos = (valorActual.match(/\./g) || []).length;
+
+            if (e.key === "." && cantidadPuntos === 0) {
+                return true;
+            }
+            if (isNaN(e.key)) {
+                if (e.key != "Backspace") {
+                e.preventDefault();
+                }
+            }
+        }
+
+
         tlf.addEventListener('keydown', event => validarNumero(event))
 
-        precioo.addEventListener('keydown', event => validarNumero(event))
+        precioo.addEventListener('keydown', event => validarPrecio(event))
 
         rif.addEventListener('keydown', () =>{
             if(rif.value.match(/^J-[0-9]{9}$/)){
