@@ -114,7 +114,8 @@ async function actualizarFilas() {
 // agregamos el evento al boton reportar
 let reportarButton = document.querySelector(".report-button")
 reportarButton.addEventListener("click", function () {
-  // Función que toma el id del input, reporta el fallo del instrumento y muestra los cambios en la view 
+  if(confirm("Estas seguro que deseas reportar?")){
+    // Función que toma el id del input, reporta el fallo del instrumento y muestra los cambios en la view 
 
     let input = document.getElementById("searchInput")
     id = parseInt(input.value)
@@ -122,6 +123,9 @@ reportarButton.addEventListener("click", function () {
     actualizarFilas()
     input.value = ""
     alert("Instrumento Resportado")
+  } else {
+    return null
+  }
 })
 
 document.addEventListener('DOMContentLoaded', function() {

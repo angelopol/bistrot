@@ -8,6 +8,39 @@ document.addEventListener('DOMContentLoaded', function() {
             filterButtons.forEach(btn => btn.classList.add('filter-inactive'));
             this.classList.remove('filter-inactive');
             this.classList.add('filter-active');
+
+            let pedidosMesa = document.querySelector("#pedidosMesa")
+            
+            let pedidosBar = document.querySelector("#pedidosBar")
+            let pedidosTerraza = document.querySelector("#pedidosTerraza")
+            let pedidosSalon = document.querySelector("#pedidosSalon")
+            if (button.textContent == "Bar"){
+                pedidosMesa.style.display = "none"
+                pedidosBar.style.display = "flex"
+                pedidosTerraza.style.display = "none"
+                pedidosSalon.style.display = "none"
+            }
+
+            else if (button.textContent == "Mesas"){
+                pedidosMesa.style.display = "flex"
+                pedidosBar.style.display = "none"
+                pedidosTerraza.style.display = "none"
+                pedidosSalon.style.display = "none"
+            }
+
+            else if (button.textContent == "Terraza"){
+                pedidosMesa.style.display = "none"
+                pedidosBar.style.display = "none"
+                pedidosTerraza.style.display = "flex"
+                pedidosSalon.style.display = "none"
+            }
+            else if (button.textContent == "Salon"){
+                pedidosMesa.style.display = "none"
+                pedidosBar.style.display = "none"
+                pedidosTerraza.style.display = "none"
+                pedidosSalon.style.display = "flex"
+            }
+            
         });
     });
 });
