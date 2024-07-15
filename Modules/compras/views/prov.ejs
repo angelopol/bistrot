@@ -117,7 +117,7 @@
                             </div>
                             <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa"  maxlength="20">
                             <input maxlength="12" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
-                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal" maxlength="10">
+                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal">
                             <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo" maxlength="24">
                             <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa", maxlength="10">
                             <input maxlength="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
@@ -251,8 +251,8 @@
         precioo.addEventListener('keydown', event => validarNumero(event))
 
         rif.addEventListener('keydown', () =>{
-            if(rif.value.match(/^j-[0-9]{9}$/)){
-                rif.style.border= '2px solid #02676F'
+            if(rif.value.match(/^J-[0-9]{9}$/)){
+                rif.style.border= '2px solid #D9D9D9'
             }else{
                 rif.style.border= '2px solid red'
             }
@@ -260,7 +260,7 @@
 
         correo.addEventListener('keydown',()=>{
             if(correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/)){
-                correo.style.border='2px solid #02676F'
+                correo.style.border='2px solid #D9D9D9'
             }
             else{
                 correo.style.border='2px solid red'
@@ -268,14 +268,14 @@
         })
         direc_fis.addEventListener('keydown', () =>{
             if(direc_fis.value.match(/^[a-zA-Z0-9]+$/)){
-                direc_fis.style.border = '2px solid #02676F'
+                direc_fis.style.border = '2px solid #D9D9D9'
             }else{
                 direc_fis.style.border = '2px solid red'
             }
         })
         tlf.addEventListener('keydown', () =>{
             if(tlf.value.match(/^04(14|12|24|26)[0-9]{7}$/)){
-                tlf.style.border = '2px solid #02676F'
+                tlf.style.border = '2px solid #D9D9D9'
             }else{
                 tlf.style.border = '2px solid red'
             }
@@ -303,7 +303,7 @@
         // Validacion de los campos
         btn_add.onclick = function validar(event){
             if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
-                || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0){
+                || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0 || !correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) || !tlf.value.match(/^04(14|12|24|26)[0-9]{7}$/) || !direc_fis.value.match(/^[a-zA-Z0-9]+$/)){
                     alert("Tiene que llenar los campos primeros para poder agregar al proveedor")
             }
         }
