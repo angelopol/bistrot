@@ -38,10 +38,11 @@ export class HistorialModel{
     let condicion = "Contado"
     //La autorizacion viene dada por el usuario que esta activo (que tiene que ser gerente de compras o gerente general)
     var autorizacion = "Gerente de Compras: Samuel Molina"
+    var recibido = false
     try{
       await connection.execute(
-        'INSERT INTO Historial(FECHA,Pago,Producto,Cantidad,Precio,Nombre_Proveedor,Autorizacion) VALUES(?,?,?,?,?,?,?)',
-        [fecha,condicion,nombreP,cantidad,pago,proveedor,autorizacion]
+        'INSERT INTO Historial(FECHA,Pago,Producto,Cantidad,Precio,Nombre_Proveedor,Autorizacion,Recibido) VALUES(?,?,?,?,?,?,?,?)',
+        [fecha,condicion,nombreP,cantidad,pago,proveedor,autorizacion,recibido]
       )
 
       const orden = [nombreP,fecha,cantidad,pago,condicion]
