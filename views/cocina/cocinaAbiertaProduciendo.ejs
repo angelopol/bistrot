@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/side.css">
     <title>BISTROT CHEZ RÉMY</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            
             margin: 0;
             padding: 0;
             overflow-y: hidden;
@@ -62,7 +63,7 @@
             }
         }
         .user-name {
-            font-family: Inter, sans-serif;
+            
             flex: 1;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -142,7 +143,7 @@
             transform: translateX(-300%) translateY(30%);
         }
         .orders-text {
-            font-family: Inter, sans-serif;
+           
             align-self: end;
             margin-top: 50px;
             flex-grow: 1;
@@ -172,7 +173,7 @@
             }
         }
         .filter-button {
-            font-family: Inter, sans-serif;
+            
             justify-content: center;
             border-radius: 8px;
             padding: 8px 16px;
@@ -253,7 +254,7 @@
             color: #02676f;
             text-align: center;
             padding: 41px 60px 23px;
-            font: 700 16px Montserrat, sans-serif;
+            font: 700 16px;
         }
         @media (max-width: 991px) {
             .order-header {
@@ -264,7 +265,7 @@
             color: #000000;
             align-self: center;
             margin-top: 20px;
-            font: 500 14px Montserrat, sans-serif;
+            font: 500 14px;
         }
         .action-buttons {
             align-self: center;
@@ -277,7 +278,7 @@
             font-weight: 500;
             line-height: 150%;
             justify-content: space-between;
-            transform: scale(1.5) translateX(8%);
+            transform: scale(1.5) translateX(-2%);
         }
         @media (max-width: 991px) {
             .action-buttons {
@@ -286,7 +287,7 @@
             }
         }
         .action-button {
-            font-family: Inter, sans-serif;
+           
             justify-content: center;
             border-radius: 8px;
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -329,7 +330,7 @@
             width: 100%;
             flex-direction: column;
             padding: 10px 10px 25px;
-            transform: translateY(-20%);
+            transform: translateY(-30%);
         }
         @media (max-width: 991px) {
             .order-summary {
@@ -337,7 +338,7 @@
             }
         }
         .order-number {
-            font-family: Inter, sans-serif;
+            
             font-weight: 500;
             line-height: 24px;
             margin-top: 22px;
@@ -356,16 +357,16 @@
             padding: 18px 0 7px;
         }
         .item-name {
-            font-family: Inter, sans-serif;
+            
             font-weight: 500;
         }
         .item-detail {
             text-align: right;
-            font-family: Inter, sans-serif;
+            
             font-weight: 400;
         }
         .order-ready {
-            font-family: Inter, sans-serif;
+            
             justify-content: center;
             align-items: center;
             border-radius: 8px;
@@ -401,13 +402,12 @@
     </style>
 </head>
 <body>
-    <header class="restaurant-header">
-        <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
-        <div class="user-info">
-            <span class="user-name">Gerente0000</span>
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bd69caf513a031a441b0ae2c28050f8e01024dfd2f15fb76144d64f2f7d9df8f?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="User avatar" class="user-avatar" />
-
-        </div>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
     </header>
     <main class="main-content">
         <div class="content-wrapper">

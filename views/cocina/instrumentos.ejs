@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/side.css">
     <title>Instrumentos - Bistrot Chez Rémy</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            
             margin: 0;
             padding: 0;
             background-color: #fff;
@@ -85,8 +86,8 @@
             width: 80%;
             height: 100% ;
             transform: translateX(15%);
-            max-width: 900px;
-            max-height: 330px;
+            max-width: 952px;
+            max-height: 356px;
             align-items: center;
             font-size: 22px;
             font-weight: 500;
@@ -271,12 +272,12 @@
     </style>
 </head>
 <body>
-    <header class="bistrot-header">
-        <h1 class="bistrot-title" onclick="window.location.href = '/cocina/Produccion';">BISTROT CHEZ RÉMY</h1>
-        <div class="user-info">
-            <span class="user-name">Gerente0000</span>
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bd69caf513a031a441b0ae2c28050f8e01024dfd2f15fb76144d64f2f7d9df8f?apiKey=1338fe71ffab4d72840a5a38bafe941b&" alt="" class="user-icon" />
-        </div>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
     </header>
     <main class="main-content">
         <img src="iconos_barra/icono_salida.png"  class="pichu" onclick= "window.location.href = '/cocina/produccion';" />

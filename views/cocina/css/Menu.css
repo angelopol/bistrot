@@ -1,7 +1,6 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Monserrat';
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -30,7 +29,7 @@ body, html {
 }
 .icono{
 
-transform: translateX(-300%) translateY(-480%) scale(0.6);
+transform: translateX(-556%) translateY(-348%) scale(0.6);
 }
 .restaurant-name {
     letter-spacing: -0.24px;
@@ -145,14 +144,14 @@ transform: translateX(-300%) translateY(-480%) scale(0.6);
 }
 .menu-title {
     color: #0f624a;
-    font: 40px 'Poppins', sans-serif;
-    transform: translateX(12%) translateY(12%);
+    
+    transform: translateX(67%) translateY(80%) scale(1.9);
 }
 .menu-subtitle {
     color: #6c6c6c;
     margin-top: 15px;
-    font: 15px 'Poppins', sans-serif;
-    transform: translateX(12%) translateY(-90%)
+    
+    transform: translateX(21%) translateY(120%)
 
 }
 
@@ -195,7 +194,7 @@ transform: translateX(-300%) translateY(-480%) scale(0.6);
     }
 }
 .category-button {
-    font-family: 'Inter', sans-serif;
+    
     justify-content: center;
     border-radius: 5px;
     white-space: nowrap;
@@ -253,7 +252,7 @@ transform: translateX(-300%) translateY(-480%) scale(0.6);
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    transform: translateX(30%) translateY(-27%) scale(1.27);
+    transform: translateX(30%) translateY(-20%) scale(1.27);
 
 }
 @media (max-width: 991px) {
@@ -295,18 +294,18 @@ transform: translateX(-300%) translateY(-480%) scale(0.6);
 }
 .item-name {
     color: #000;
-    font: 14px 'Poppins', sans-serif;
+    font-size: 1rem;
 }
 .item-description {
     color: #929292;
     margin-top: 19px;
-    font: 11px 'Poppins', sans-serif;
+    
 }
 .carousel-container {
     position: relative;
     width: 70%;
     max-width: 120em;
-    transform: translateY(-20%);
+    transform: translateY(-30%);
     overflow: hidden;
     
     
@@ -330,8 +329,9 @@ transform: translateX(-300%) translateY(-480%) scale(0.6);
 }
 .card img {
     width: 100%;
-    height: auto;
+    height: 90%;
     border-radius: 10px;
+    transform: translateY(15%)
 }
 
 
@@ -364,5 +364,5 @@ button.next {
 
 #containerdebebidas {
 
-    transform: scale(1.7) translateX(40%) translateY(-13%);
+    transform: scale(1.7) translateX(40%) translateY(-20%);
 }
