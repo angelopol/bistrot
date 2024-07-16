@@ -21,13 +21,33 @@ form.addEventListener('submit', function(event) {
     // Selecciona el select dentro del formulario actual
     var select = form.querySelector('select');
     // Si el botón presionado tiene el valor "Modificar"
-    if (event.submitter.value === 'Modificar') {
-        // Cambia la acción del formulario para incluir el ID y usar el método PATCH
-        rif.readOnly = false;
-        form.action = '/compras-index/prov/' + idd + '?_method=PATCH';
-    } else {
-        // Si el botón presionado no es "Modificar", usa la acción por defecto
-        form.action = '/compras-index/prov';
+    if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
+        || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0 || !correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) || !tlf.value.match(/^04(14|12|24|26)[0-9]{7}$/)){
+            alert("Rellene los campos de manera correcta")
+    }
+    else{
+        if (event.submitter.value === 'Modificar') {
+            // Cambia la acción del formulario para incluir el ID y usar el método PATCH
+            rif.readOnly = false;
+            nombre_prov.readOnly = false;
+            direc_fis.readOnly = false;
+            correo.readOnly = false;
+            nombre_res.readOnly = false;
+            tlf.readOnly = false;
+            producto.readOnly = false;
+            precioo.readOnly = false;
+            form.action = '/compras-index/prov/' + idd + '?_method=PATCH';
+        } 
+        else {
+            if(rif.readOnly){
+                alert('No puede agregar un proveedor que ya existe')
+            }
+            else{
+                // Si el botón presionado no es "Modificar", usa la acción por defecto
+                form.action = '/compras-index/prov';
+            }
+
+        }
     }
 });
 
@@ -48,6 +68,13 @@ function seleccionarFila(event){
         producto.value = filaSeleccionada.cells[2].textContent
         precioo.value = filaSeleccionada.cells[7].textContent
         rif.readOnly = true;
+        nombre_prov.readOnly = true;
+        direc_fis.readOnly = true;
+        correo.readOnly = true;
+        nombre_res.readOnly = true;
+        tlf.readOnly = true;
+        producto.readOnly = true;
+        precioo.readOnly = true;
     }
     
 }
@@ -175,12 +202,5 @@ producto.onkeypress = function(e){
     var regex = /^[a-zA-Z\s]+$/
     if(!e.key.match(regex)){
         e.preventDefault()
-    }
-}
-// Validacion de los campos
-btn_add.onclick = function validar(event){
-    if(nombre_prov.value.length == 0 || rif.value.length == 0 || direc_fis.value.length == 0 || correo.value.length == 0
-        || nombre_res.value.length == 0 || tlf.value.length == 0 || producto.value.length == 0 || !correo.value.match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/) || !tlf.value.match(/^04(14|12|24|26)[0-9]{7}$/)){
-            alert("Tiene que llenar los campos primeros para poder agregar al proveedor")
     }
 }

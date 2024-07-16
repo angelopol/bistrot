@@ -172,3 +172,7 @@ select:hover {
     color: #828282;
     font-size: 0.8rem;
 }
+
+#title-table {
+    font-size: 0.8rem;
+}

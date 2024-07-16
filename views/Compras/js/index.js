@@ -36,18 +36,3 @@ let btn_soli = document.getElementById('btn-soli')
 btn_soli.onclick = function(){
     window.location.href = 'compras-index/soli'
 }
-
-//Modificacion del saldo
-//Dependiendo de las solicitudes que se haga el saldo van a ir disminuyendo
-
-function disminuirSaldo(costo){
-    const saldoNum = parseInt(saldo.textContent)
-    const resultado = parseInt(saldoNum - costo)
-    return resultado
-}
-let result = disminuirSaldo(1000)
-//Funcionalidad del boton compra
-let comprar = document.getElementById("btn-compra").addEventListener('click',() =>{
-    saldo.innerHTML = result
-
-})
