@@ -1,11 +1,4 @@
--- Creacion de la base de datos
-CREATE DATABASE bistrot;
-
--- usar 
-USE bistrot;
--- Tabla del historial de compras
-
--- Tabla del historial de compras
+-- Tabla del historial de compras (Tabla que fue actualizada)
 CREATE TABLE `bistrot`.`Historial` (
     `ID` INT NOT NULL AUTO_INCREMENT, -- Identificación de las compras
     `FECHA` DATETIME NOT NULL, -- Fecha General
@@ -16,13 +9,11 @@ CREATE TABLE `bistrot`.`Historial` (
     `Precio` FLOAT NOT NULL, -- Precio del Producto
     `Nombre_Proveedor` VARCHAR(200) NOT NULL, -- Nombre del proveedor
     `Autorizacion` VARCHAR(200) NOT NULL, -- Persona que autoriza la compra
+    `Recibido` boolean NOT NULL, -- Campo que actualiza inventario cuando reciban compra
     PRIMARY KEY (`ID`),
     UNIQUE (`ID`, `FECHA`)
 );
 
-SELECT * FROM bistrot.historial;
-
--- Tabla de los Productos de las compras
 CREATE TABLE `bistrot`.`ProductoCompras` (
     `ID_Producto` INT NOT NULL AUTO_INCREMENT, -- ID del Producto
     -- `ID_Proveedor` INT NOT NULL, -- ID del proveedor
@@ -34,16 +25,6 @@ CREATE TABLE `bistrot`.`ProductoCompras` (
     PRIMARY KEY (`ID_Producto`),
     UNIQUE ( `NombreP`)
 );
-
-DELETE FROM ProductoCompras WHERE ID_Producto=5;
-INSERT INTO bistrot.ProductoCompras (NombreP, Unidades, Consumo)
-VALUES
-('Café Colombiano', 'bultos', 'kg'),
-('Arroz', 'bultos', 'kg'),
-('Pasta', 'bultos', 'Kg');
-
-SELECT * FROM bistrot.ProductoCompras;
-
 
 -- Tabla de los proveedores de las compras del restaurante
 CREATE TABLE `bistrot`.`Proveedores` (
@@ -60,10 +41,6 @@ CREATE TABLE `bistrot`.`Proveedores` (
 );
 
 
-select * from bistrot.proveedores;
-
-
-select * from bistrot.solicitudes;
 -- Tabla de las solicitudes de las compras
 CREATE TABLE `bistrot`.`Solicitudes` (
 	`ID_Requisicion` INT NOT NULL AUTO_INCREMENT, -- Identificación de la requisición
@@ -78,7 +55,3 @@ CREATE TABLE `bistrot`.`Solicitudes` (
     PRIMARY KEY (`ID_Requisicion`),
     UNIQUE (`ID_Requisicion`, `FECHA`)
 );
-
-INSERT INTO Solicitudes (Departamento,ID_Empleado,Cantidad,Nombre_Producto,FECHA,Aprobada,DETALLE) VALUES('Inventario',4,5,'Pasta',NOW(),1,'Necesidad de una escoba');
-
-select * from bistrot.solicitudes;
