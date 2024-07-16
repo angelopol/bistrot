@@ -7,68 +7,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-   
     <title>Ventas</title>
 </head>
 <body>
     
-    <header class="restaurant-header">
-      <h1 class="restaurant-title">BISTROT CHEZ RÉMY</h1>
-      <div class="user-info">
-        <span class="user-name">Gerente0000</span>
-        <img src="Assets\iconos\flecha_hacia_abajo_usuario.png" alt="flecha_hacia_abajo" class="flecha_hacia_abajo" />
-      </div>
-    </header> 
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
     
     <main class="main-content">
       <div class="content-wrapper">
-        <nav class="sidebar">
-          <a href="#" class="sidebar-item">
-            <img src="Assets\iconos\icono_inicio.png" alt="Home icon" class="sidebar-icon" />
-            <span class="sidebar-text">Inicio</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets/iconos/icono_ventas.png" alt="Sales icon" class="sidebar-icon" />
-            <span class="sidebar-text">Ventas/Salon</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets\iconos\icono_compras.png" alt="Purchases icon" class="sidebar-icon" />
-            <span class="sidebar-text">Compras</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets\iconos\icono_rrhh.png" alt="HR icon" class="sidebar-icon" />
-            <span class="sidebar-text">RRHH</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets\iconos\icono_inventario.png" alt="Inventory icon" class="sidebar-icon" />
-            <span class="sidebar-text">Inventario</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets/iconos/icono_mantenimiento.png" alt="Mantenimiento icon" class="sidebar-icon" />
-            <span class="sidebar-text">Mantenimiento</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets\iconos\icono_cocina.png" alt="Kitchen icon" class="sidebar-icon" />
-            <span class="sidebar-text">Cocina/Bar</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets\iconos\icono_reservas.png" alt="Reservations icon" class="sidebar-icon" />
-            <span class="sidebar-text">Reservas</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets\iconos\icono_reporte.png" alt="Reports icon" class="sidebar-icon" />
-            <span class="sidebar-text">Reportes</span>
-          </a>
-          <a href="#" class="sidebar-item">
-            <img src="Assets\iconos\icono_config.png" alt="Settings icon" class="sidebar-icon" />
-            <span class="sidebar-text">Configuraciones</span>
-          </a>
-          <a href="#" class="sidebar-item help-item">
-            <img src="Assets\iconos\icono_ayuda.png" alt="Ayuda icon" class="sidebar-icon" />
+        <div id="sidebar">
+          <div class="side inicio">
+              <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+              <p class="side-option">Inicio</p>
+          </div>
+          <div class="side ventas">
+              <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+              <p class="side-option">Ventas/Salon</p>
+          </div>
+          <div class="side compras">
+              <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+              <p class="side-option">Compras</p>
+          </div>
+          <div class="side rrhh">
+              <img class="side-foto" src="resources/iconos_barra/person-green.png">
+              <p class="side-option">RRHH</p>
+          </div>
+          <div class="side inventario">
+              <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+              <p class="side-option">Inventario</p>
+          </div>
+          <div class="side mantent">
+              <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+              <p class="side-option">Mantenimiento</p>
+          </div>
+          <div class="side cocina">
+              <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+              <p class="side-option">Cocina/Bar</p>
+          </div>
+          <div class="side reserv">
+              <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+              <p class="side-option">Reservas</p>
+          </div>
+      </div>
 
-            <span class="sidebar-text">Ayuda</span>
-          </a>
-        </nav>
     
         <section class="main-section">
           <div class="content-area">

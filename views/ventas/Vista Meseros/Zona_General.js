@@ -27,10 +27,6 @@ actionButtons.forEach(button => {
 
         // Realizar acción según el texto del botón
         switch (buttonText) {
-            case 'Solicitar factura':
-                // Redirigir a pedidos.html
-                location.href = '../Vista_Caja/Caja.html';
-                break;
             case 'Tomar pedido':
                 // Abrir pedidos.html y pasar el ID de la mesa seleccionada
                 if (selectedTableId && selectedMesa) {
@@ -94,9 +90,8 @@ actionButtons.forEach(button => {
                 // Redirigir a la vista caja
                 if (selectedTableId && selectedMesa) {
 
-                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Listo"){
-                        selectedMesaetiqueta.querySelector('.table-status').textContent = "Factura"
-                        location.href = `../Vista_Caja/caja.html?tableId=${selectedTableId}`;
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Pendiente"){
+                        imprimirFactura();
                     }
                     
                 } else {
@@ -124,15 +119,77 @@ tableCards.forEach((tableCard, index) => {
         selectedMesa = true;
         selectedMesaetiqueta = tableCard;
 
-        // Actualizar la tabla de mesas (opcional)
-        updateTable(selectedTableId);
-
     });
 });
 
-// Función opcional para actualizar la tabla de mesas
-function updateTable(tableId) {
-    // Implementar la lógica de actualización de la tabla de mesas aquí
+function imprimirFactura(){
+
+    if (selectedTableId !== null && selectedMesa) {
+    
+        if (selectedMesaetiqueta.querySelector(".table-status").textContent === 'Pendiente'){
+            // Seleccionar la mesa correspondiente basado en el índice
+            let mesa = document.querySelectorAll('.table-card')[selectedTableId - 1];
+            // Obtener el estado de la mesa
+            let numeroMesa = mesa.querySelector('.table-name').textContent;
+
+            // Obtener la mesa con estatus cuenta
+            let pedido = encontrar(selectedTableId,pedidos_realizados);
+
+            // Calcular el total del pedido
+            let total = pedido.total
+
+            const modalContainer = document.getElementById('divModal');
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.id = `modal-${selectedTableId}`;
+            modal.innerHTML = `
+                <div id="Modal${selectedTableId}" class="modal-content">
+                    <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                    <h3>Factura</h3>
+                    <p>Mesa: ${numeroMesa}</p>
+                    <div class="factura-divider"></div>
+                    ${pedido.items.map(item => `
+                        <div class="factura-item">
+                            <span class="item-nombre">${item.name}</span>
+                            <span class="item-cantidad">x${item.quantity}</span>
+                            <span class="item-precio">${item.price.toFixed(2)} €</span>
+                        </div>
+                    `).join('')}
+                    <div class="factura-divider"></div>
+                    <div class="factura-item">
+                        <span class="item-nombre"><strong>Total</strong></span>
+                        <span class="item-cantidad"></span>
+                        <span class="item-precio"><strong>${total.toFixed(2)} €</strong></span>
+                    </div>
+                    <button class="button-cerrar-modal">Cerrar</button>
+                </div>
+            `;
+            modalContainer.appendChild(modal);
+
+            // Mostrar el modal y desactivar el scroll del cuerpo
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            // Asignar evento para cerrar el modal
+            modal.querySelector('.closeBtn').addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+        } else {
+            alert("No se puede pedir cuenta")
+        }
+        
+    }
+    
+        
+    
+
 }
 
 
@@ -160,4 +217,24 @@ function recorrido_mesas(pedidos_mesas){
         })
         
     })
+}
+
+
+// funcion para ver si (Cocina-bar) hizo alguna actualizacion en los estatus de los pedidos
+function actualizacion_pedidos(){
+
+    // obtener los pedidos
+    let response = fetch("http:localhost:1234/ventas/factura")
+
+    if(!response.ok){
+        return alert("No se pudo obtener la lista de pedidos")
+    }
+
+    const pedidos_bd = response.json() // se guarda una lista de los pedidos almacenados
+
+    pedidos_bd.forEach(pedido => {
+
+        
+    });
+
 }

@@ -1,8 +1,15 @@
 @font-face {
-    font-family: 'Montserrat';
-    src: url('views\ventas\fonts\Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
-    src: url('views\ventas\fonts\Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
 }
+
+@font-face {
+    font-family: "Krona-One";
+    src: url("../resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
+    font-weight: 500;
+}
+
 
 *{
     font-family: 'Montserrat',sans-serif;   
@@ -12,10 +19,82 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 70%;
+    
     overflow: hidden;
 }
 
+
+
+header {
+    background-color: #013D1F;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 15vh;
+}
+
+#title {
+    font-family: 'Montserrat';
+    font-size: 1.4rem;
+    margin-right: 45%;
+}
+
+#title-combo {
+    appearance: none;
+    color: white;
+    background-color: #013D1F;
+    border-radius: 2px;
+    padding: 10px;
+    width: 15%;
+    outline: none;
+}
+
+main {
+    display: flex;
+}
+
+#sidebar {
+    margin: 0;
+    
+    background-color: #EDEDED;
+    height: 85vh;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.side {
+    font-family: 'Montserrat-Medium';
+    font-size: 0.8rem;
+    color:#013D1F;
+    cursor: pointer;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #F6F6F6;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.side-foto {
+    width: 15%;
+    margin: 0px 10%;
+}
+
+.side:hover {
+    padding: 15px 8px;
+    background-color: #02676F10;
+}
+
+.inicio {
+    margin-top: 20%;
+}
+
+#principal {
+    width: 85vw;
+}
 
 .restaurant-header {
     background-color: #013d1f;
@@ -75,7 +154,7 @@ body {
 }
 
 .main-content {
-    width: 100%;
+    width: 100%
 }
 
 @media (max-width: 991px) {
@@ -86,6 +165,7 @@ body {
 
 .content-wrapper {
     display: flex;
+    flex:1;
     gap: 20px;
 }
 
@@ -97,18 +177,7 @@ body {
     }
 }
 
-.sidebar {
-    width: 20%;
-    background-color: #ededed;
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    color: #02676f;
-    font-weight: 500;
-    line-height: 150%;
-    padding: 20px 9px;
-    
-}
+
 
 @media (max-width: 991px) {
     .sidebar {
@@ -160,9 +229,11 @@ body {
 }
 
 .main-section {
-    width: 90%;
-    margin-left: 20px;
+    margin-left: 40px;
     margin-top: 0px;
+    margin-right: 40px;
+    display: flex;
+    flex: 1;
 }
 
 @media (max-width: 991px) {
@@ -174,7 +245,10 @@ body {
 
 .content-area {
     display: flex;
+    flex-grow: 1;
     gap: 20px;
+    margin-top: 30px;
+    
 }
 
 @media (max-width: 991px) {
@@ -189,6 +263,11 @@ body {
     width: 100%;
     margin: 0 0;
     padding: 10px;
+}
+
+.chart {
+    width: 100%;
+    height: 100%;
 }
 
 @media (max-width: 991px) {
@@ -222,7 +301,7 @@ body {
 .sidebar-right {
     width: 25%;
     margin: 20px;
-    
+    margin-top: 65px;
     
 }
 

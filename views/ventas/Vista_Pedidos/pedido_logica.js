@@ -157,6 +157,9 @@ function placeOrder() {
         });
     });
 
+    // crear pedido para almacenarlo en la base de datos
+    crear_pedido_base_datos(orderData)
+
     // Envía los datos del pedido al servidor o redirige al usuario a la página de confirmación
     sendOrderToServer(orderData);
 }
@@ -287,6 +290,95 @@ function updateTotalAmount(priceChange) {
     let priceInt = parseFloat(priceChange);
     totalActual += priceInt;
     totalAmountElement.textContent = totalActual.toFixed(2).toString().padStart(6, '0');
+}
+
+
+// funcion para crear la solicitud a la base de datos
+function crear_pedido_base_datos(orderData){
+
+    let factura = {}
+
+    factura["monto"] = orderData.total
+    factura["iva"] = orderData.total * 1.16
+    consumo = cambiar_name_comidas_a_ids(orderData.items)  // cambiamos la clave : valor de (name : "nombre_comida") a (id_comida : id)
+    factura["consumo"] = JSON.stringify(consumo, null, 2)
+    factura["status_pedido"] = orderData.estatus
+    factura["mesa"] = orderData.tableId
+
+    console.log(factura);
+
+    // creamos el pedido en nuestra tabla de facturas
+    fetch("http:localhost:1234/ventas/factura", {
+        method : "POST",
+        headers : { "Content-Type" : "aplication/json" },
+        body : JSON.stringify(factura)
+    })
+    .then((res) => {
+        if (res.ok) {
+            console.log('Solicitud exitosa');
+        } else {
+            console.error('Error en la solicitud');
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+    
+}
+
+
+function cambiar_name_comidas_a_ids(consumos){
+
+    const consumo_actualizado = consumos.map(consumo => {
+        const nombre_comida = consumo.name;
+        const cantidad_comida = consumo.quantity;
+        const precio_unitario = consumo.price;
+        const id_comida = comida[nombre_comida];
+
+        return {
+            id: id_comida,
+            quantity: cantidad_comida,
+            price: precio_unitario
+        };
+    });
+
+    return consumo_actualizado;
+}
+
+
+comida = {
+    'Seasonal Soup with The Laughing Cow and Mixed Herbs': 1,
+    'Courgette Soup with The Laughing Cow': 2,
+    'Chicken Rillettes with Toast': 3 ,
+    'Spelt and Mushroom Salad': 4 ,
+    'Linguine Pasta with Tomato Sauce and Ratatouille': 5 ,
+    'Sauted Chicken and Potatoes': 6 ,
+    'Roast cod with tomato sauce': 7 ,
+    'Roasted Chicken with Herbs': 8,
+    'Chocolate Mousse': 9,
+    'Fruit Salad': 10 ,
+    'Apple Tart': 11,
+    'Mojito': 12 ,
+    'Daiquiri': 13 ,
+    'Old Fashioned': 14 ,
+    'Margarita': 15,
+    'Cuvée Bistrot Chez Rémy': 16,
+    'Agneau Rouge': 17 ,
+    'Sancerre AOC': 18 ,
+    'Languedoc': 19 ,
+    'Coca-Cola Original': 20 ,
+    'Coca-Cola Cherry': 21 ,
+    'Fanta Orange': 22 ,
+    'Sprite': 23 ,
+    'Vittel': 24 ,
+    'Vegetable Stew with Herby': 25,
+    'Vegetable Vinaigrette' : 26 ,
+    'Mixed Greens' : 27 ,
+    'Tomato Confit' : 28 ,
+    'Potatoes with Onion' : 29,
+    'Linguine Pasta' : 30,
+    'Crushed Potatoes' : 31 ,
+    'French Fries and Ratatouille' : 32
 }
 
 
