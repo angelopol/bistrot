@@ -1,3 +1,5 @@
+import connection from "../conexion.js"
+
 
 export class RecursosHumanos {
 
@@ -46,4 +48,27 @@ export class RecursosHumanos {
     }
 
 
+    Registrar = async (req, res) => {
+        Conexion.query('Inser into empleados value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+            req.body.cargo, 
+            req.body.FechaInicio,
+            req.body.FechaCulminacion,
+            req.body.salario,
+            req.body.horas,
+            req.body.semana,
+            req.body.nombre,
+            req.body.apellido,
+            req.body.cedula,
+            req.body.tlf,
+            req.body.direccion,
+            req.body.codigo,
+            req.body.clave,
+        ], function (error, results, fields) {
+            res.send(results);
+        });
+    }
+
+    formulario = async (req, res) => {
+        res.sendFile(process.cwd() + '/views/rrhh/form.ejs')
+    }
 }  

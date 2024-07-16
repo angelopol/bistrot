@@ -10,7 +10,7 @@ export const createRRHHRouter = () => {
   
   //Para los html
 
-  RRHHRouter.get('/recursos-humanos', controlador.create)
+  RRHHRouter.get('/rrhh', controlador.create)
 
   RRHHRouter.get('/horarios', controlador.horarios)
 
@@ -35,6 +35,11 @@ export const createRRHHRouter = () => {
   RRHHRouter.get('/assets/entradas.css', controlador.getStyless)
 
   RRHHRouter.get('/assets/ausensias.css', controlador.GetStyless)
+
+
+  // Para los JS
+
+  RRHHRouter.get('/assets/formulario', controlador.formulario)
 
   
   return RRHHRouter
