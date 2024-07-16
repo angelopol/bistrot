@@ -1,7 +1,7 @@
 import {Router} from "express"
 import { ComidaController } from "../controllers/comidas.js"
 import { PedidoController } from "../controllers/pedidos.js"
-import { RenderController } from "../controllers/comidas.js"
+import { RenderController } from "../controllers/render.js"
 
 export const createCocinaRouter = () => {
     const cocinaRouter = Router()
@@ -11,13 +11,13 @@ export const createCocinaRouter = () => {
 
     cocinaRouter.get("/" , comidaController.getAll) 
 
-    cocinaRouter.get("/:id" , comidaController.getForId)
+    cocinaRouter.get("/comida/:id" , comidaController.getForId)
 
     cocinaRouter.post("/", comidaController.create)
 
-    cocinaRouter.delete("/:id" , comidaController.delete)
+    cocinaRouter.delete("/comida/:id" , comidaController.delete)
 
-    cocinaRouter.patch("/:id" , comidaController.update)
+    cocinaRouter.patch("/comida/:id" , comidaController.update)
 
 
     // este endpoint lo que hace es que le pasamos el id del pedido(factura de ventas) por la url, verifica si se puede realizar el pedido, retorna este pedido y con su atributo status_pedido se verifica si se acepto (3) o si se rechazo(2)
@@ -32,7 +32,7 @@ export const createCocinaRouter = () => {
     // Renderizado de vistas??
     cocinaRouter.get("/produccion", renderController.renderProduccion)
     cocinaRouter.get("/cocinaAbiertaProduciendo", renderController.renderCocinaAbierta)
-    cocinaRouter.get("/instumentos", renderController.renderInstrumentos)
+    cocinaRouter.get("/instrumentos", renderController.renderInstrumentos)
     cocinaRouter.get("/menu", renderController.renderEntradas)
     cocinaRouter.get("/Entradas", renderController.renderEntradas)
     cocinaRouter.get("/PlatosFuertes", renderController.renderPlatosFuertes)

@@ -3,7 +3,7 @@ import { ComidaModel } from '../models/mysql/comida.js'
 import { validateComida, validatePartialComida } from '../schemas/comidas.js'
 
 export class ComidaController{
-    static async getAll (req, res) {
+    getAll = async (req, res) => {
         const { tipo_comida } = req.query
         const {tipo_bebida} = req.query
         const comidas = await ComidaModel.getAll({tipo_comida , tipo_bebida})
@@ -11,14 +11,14 @@ export class ComidaController{
         res.json(comidas)
     }
 
-    static async getForId (req, res) {
+    getForId = async (req, res) => {
         const { id } = req.params
         const comida = await ComidaModel.getForId({id})
         if (comida) return res.json(comida)
         res.status(404).json({ message: 'Comida not found' })
     }
 
-    static async create (req, res) {
+    create = async (req, res) => {
         const result = validateComida(req.body)
   
         if (!result.success) {
@@ -30,7 +30,7 @@ export class ComidaController{
         res.status(201).json(newComida)
     }
         
-    static async delete (req, res) {
+    delete = async (req, res) => {
         const { id } = req.params
         const condicion = await ComidaModel.delete({id})
       
@@ -41,7 +41,7 @@ export class ComidaController{
         return res.json({ message: 'Comida deleted' })
     }    
 
-    static async update (req, res) {
+    update = async (req, res) => {
         const result = validatePartialComida(req.body)
         if (!result.success) {
           return res.status(400).json({ error: JSON.parse(result.error.message) })
@@ -54,40 +54,5 @@ export class ComidaController{
             res.status(404).json({ message: 'Comida not found' })
         }
         return res.json(condicion)  
-    }
-}
-
-export class RenderController{
-    // Renderizado de views??
-    renderProduccion = async (req, res) => {
-        res.render("/cocina/produccion")
-    }
-    renderCocinaAbierta = async (req, res) => {
-        res.render("/cocina/cocinaAbiertaProduciendo")
-    }
-    renderInstrumentos = async (req, res) => {
-        res.render("/cocina/instumentos")
-    }
-    renderEntradas = async (req, res) => {
-        res.render("/cocina/Entradas")
-    }
-    renderPlatosFuertes = async (req, res) => {
-        res.render("/cocina/PlatosFuertes")
-    }
-    renderVegetariano = async (req, res) => {
-        res.render("/cocina/Vegetariano")
-    }
-    renderPostres = async (req, res) => {
-        res.render("/cocina/Postres")
-    }
-    renderInfantil = async (req, res) => {
-        res.render("/cocina/infantil")
-    }
-    renderBebidas = async (req, res) => {
-        res.render("/cocina/Bebidas")
-    }
-
-    renderCSS = async (req, res) => {
-        res.sendFile(process.cwd() + '/views/cocina/css/Menu.css')
     }
 }

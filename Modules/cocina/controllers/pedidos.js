@@ -13,7 +13,7 @@ export class PedidoController {
 
 
     //Funcion para buscar el pedido(De la tabla de factura de ventas) por id, y hacer verificar y modificar el status del pedido a aceptado (3) o rechazado (2)
-    static async orderStatus(req , res) {
+    orderStatus = async (req , res) => {
 
         const {pedido_id} = req.query // sacamos el id del pedido de la url
 
@@ -266,7 +266,7 @@ export class PedidoController {
     }
 
     // funcion para solo obtener un pedido de ventas
-    static async getOrder(req, res) {
+    getOrder = async (req, res) => {
         /* Guiandome de la función anterior, esta función en teoría solo retorna los datos del pedido
         tomados de la base de datos. El id recibido será tomado del frontend al clickear en uno de los pedidos
         procesados */
@@ -284,7 +284,7 @@ export class PedidoController {
     }
 
     // funcion para cambiar el status de un pedido de ventas por su id a listo (4)
-    static async orderListaStatus(req, res) {
+    orderListaStatus = async (req, res) => {
         const {pedido_id} = req.query
 
         // cambiamos el estado a listo

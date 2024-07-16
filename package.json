@@ -20,6 +20,7 @@
     "ejs": "^3.1.10",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
     "mongodb": "^5.9.2",
     "mysql2": "^3.10.1",
     "zod": "^3.23.8"

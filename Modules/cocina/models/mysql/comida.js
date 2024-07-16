@@ -4,8 +4,8 @@ const config = {
     host: "localhost",
     user: "root",
     port: 3306,
-    password: "root",
-    database: "data_comida",
+    password: "$0p0rt3",
+    database: "bistrot",
 }
 
 const connection = await mysql.createConnection(config)
