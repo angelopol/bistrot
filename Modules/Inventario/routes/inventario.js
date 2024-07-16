@@ -8,9 +8,11 @@ import { createRegistrosRouter } from './registros.js'
 import { createSubmoduloRouter } from './submoduloinventario.js'
 import { createVerificarRouter } from './verificar-inventario.js'
 import { createLoginRouter } from './login.js'
+import { InventarioController } from '../controllers/inventario.js'
 
 export const createInventarioRouter = () => {
   var InventarioRouter = Router()
+  const inventarioController = new InventarioController()
  
   InventarioRouter = createLoginRouter(InventarioRouter)
   InventarioRouter = createCocinaBarRouter(InventarioRouter)
@@ -21,6 +23,8 @@ export const createInventarioRouter = () => {
   InventarioRouter = createRegistrosRouter(InventarioRouter)
   InventarioRouter = createSubmoduloRouter(InventarioRouter)
   InventarioRouter = createVerificarRouter(InventarioRouter)
+  
+  InventarioRouter.get('/', inventarioController.index)
 
   return InventarioRouter
 }
