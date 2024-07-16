@@ -301,7 +301,7 @@ function crear_pedido_base_datos(orderData){
     factura["monto"] = orderData.total
     factura["iva"] = orderData.total * 1.16
     consumo = cambiar_name_comidas_a_ids(orderData.items)  // cambiamos la clave : valor de (name : "nombre_comida") a (id_comida : id)
-    factura["consumo"] = JSON.stringify(consumo, null, 2)
+    factura["consumo"] = JSON.stringify(consumo, null, 2) // convertimos el el objeto a  string con un formato json
     factura["status_pedido"] = orderData.estatus
     factura["mesa"] = orderData.tableId
 
@@ -358,27 +358,28 @@ comida = {
     'Chocolate Mousse': 9,
     'Fruit Salad': 10 ,
     'Apple Tart': 11,
-    'Mojito': 12 ,
-    'Daiquiri': 13 ,
-    'Old Fashioned': 14 ,
-    'Margarita': 15,
-    'Cuvée Bistrot Chez Rémy': 16,
-    'Agneau Rouge': 17 ,
-    'Sancerre AOC': 18 ,
-    'Languedoc': 19 ,
-    'Coca-Cola Original': 20 ,
-    'Coca-Cola Cherry': 21 ,
-    'Fanta Orange': 22 ,
-    'Sprite': 23 ,
-    'Vittel': 24 ,
-    'Vegetable Stew with Herby': 25,
-    'Vegetable Vinaigrette' : 26 ,
-    'Mixed Greens' : 27 ,
-    'Tomato Confit' : 28 ,
-    'Potatoes with Onion' : 29,
-    'Linguine Pasta' : 30,
-    'Crushed Potatoes' : 31 ,
-    'French Fries and Ratatouille' : 32
+    "Chocolate Cake" : 12,
+    'Mojito': 13 ,
+    'Daiquiri': 14 ,
+    'Old Fashioned': 15 ,
+    'Margarita': 16,
+    'Cuvée Bistrot Chez Rémy': 17,
+    'Agneau Rouge': 18 ,
+    'Sancerre AOC': 19 ,
+    'Languedoc': 20 ,
+    'Coca-Cola Original': 21 ,
+    'Coca-Cola Cherry': 22 ,
+    'Fanta Orange': 23 ,
+    'Sprite': 24 ,
+    'Vittel': 25 ,
+    'Vegetable Stew with Herby': 26,
+    'Vegetable Vinaigrette' : 27 ,
+    'Mixed Greens' : 28 ,
+    'Tomato Confit' : 29 ,
+    'Potatoes with Onion' : 30,
+    'Linguine Pasta' : 31,
+    'Crushed Potatoes' : 32 ,
+    'French Fries and Ratatouille' : 33
 }
 
 

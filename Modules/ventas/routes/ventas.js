@@ -3,6 +3,8 @@ import { ControllerCaja } from '../controllers/caja.js'
 import { ControllerCliente } from '../controllers/cliente.js'
 import { ControllerSalon } from '../controllers/salon.js'
 import { ControllerFactura } from '../controllers/factura.js'
+import { RenderController } from '../controllers/render.js'
+
 
 export const createVentasRouter = () => {
   const VentasRouter = Router()
@@ -10,6 +12,7 @@ export const createVentasRouter = () => {
   const controllerCliente = new ControllerCliente()
   const controllerSalon = new ControllerSalon()
   const controllerFactura = new ControllerFactura()
+  const renderController = new RenderController()
 
   // Rutas de Caja
   VentasRouter.get('/caja', controllerCaja.getAll_c);
@@ -38,6 +41,30 @@ export const createVentasRouter = () => {
   VentasRouter.post('/factura', controllerFactura.create_f);
   VentasRouter.put('/factura/:id', controllerFactura.update_f);
   VentasRouter.delete('/factura/:id', controllerFactura.delete_f);
+
+  //Renderizado de Vistas
+  //PAGINAS
+  VentasRouter.get("/gerente", renderController.renderGerente)
+  
+  VentasRouter.get("/meseros_general", renderController.renderMeserosGeneral)
+
+  VentasRouter.get("/meseros_terraza", renderController.renderMeserosTerraza)
+
+  VentasRouter.get("/caja", renderController.renderCaja)
+
+  VentasRouter.get("/pedidos", renderController.renderPedidos)
+
+  //Estilos
+  VentasRouter.get("/assets/styles_Gerente.css", renderController.stylesGerente)
+  VentasRouter.get("/assets/Zona_General.css", renderController.stylesMeserosGeneral)
+  VentasRouter.get("/assets/Terraza_styles.css", renderController.stylesMeserosTerraza)
+  VentasRouter.get("/assets/Caja_Styles.css", renderController.stylesCaja)
+  VentasRouter.get("/assets/pedidos_styles.css", renderController.stylesPedidos)
+
+
+  
+  
+  
 
   return VentasRouter
 }
