@@ -9,7 +9,6 @@
     <link rel="shortcut icon" href="../Compras/resources/icon.jpeg" type="image/x-icon">
 </head>
 <body>
-
     <header>
         <h1 id="title">BISTROT CHEZ RÉMY</h1>
         <select id="title-combo">
@@ -110,71 +109,5 @@
     </main> 
 
     <script src="../Compras/js/index.js"></script>
-</body>
-</html>
-        <div id="principal">
-            <div class="box-title-comp">
-                <img class="title-exit" src="../Compras/resources/Icono-Back.svg" alt="Icono-Exit">
-                <h2 id="title-comp">Realizar Compra</h2>
-            </div>
-            <div class="dashboard">
-                <div class="left-side">
-                    <table id="tabla-comp">
-                        <h3 id="title-table">Requisiciones</h3>
-                        <thead>
-                        <tr>
-                            <th class="comp-clase">ID</th>
-                            <th class="comp-clase">Producto</th>
-                            <th class="comp-clase">Cantidad</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tabla-comp-body">
-                            <% if (data2) { %>
-                                
-                                <% for (var i = 0; i < data2.length; i++) { %>
-                                    <% if (data2[i].Aprobada == 1 && data2[i].Comprado == 0) { %>
-                                        <tr>
-                                            <td><%= data2[i].ID_Requisicion %></td>
-                                            <td><%= data2[i].Nombre_Producto %></td>
-                                            <td><%= data2[i].Cantidad %></td>
-                                        </tr>
-                                    <% } %>
-                                <% } %>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
-                <form class="right-side" id="form1" method="post" action="/compras-index/compra">
-                    <h3 id="subtitle-comp">Proceso de Compra</h3>
-                    <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
-                    <div class="box-producto">
-                        <input readonly  placeholder="Producto" id="select-prod" type="text" name="nombreP">
-                        <input  id="input-cant" placeholder="Cantidad" type="text" name="cantidad" maxlength="2">
-                    </div>
-                    <p class="help-comp">Indique el Proveedor del producto</p>
-                    <div class="box-prov">
-                        <select id="select-prov" name="proveedor">
-                            <option disabled selected>Proveedor</option>
-                            
-                            <% if (data3 !== undefined && data3 !== null) { %>
-                                
-                                <% for (var i = 0; i < data3.length; i++) { %>
-                                    <option value="<%= data3[i].Nombre_Empresa %>" ><%= data3[i].Nombre_Empresa %></option>
-                                <% } %>
-                                
-                            <% } %>
-                        </select>
-                        
-                    </div>
-                    <input value="Comprar" type="submit" id="confirm-compra-btn">
-                    <input style="display: none;" id="id-solicitud" readonly type="text" name="id">
-                </form>
-            </div>
-        </div>
-
-        
-        
-    </main>
-    <script src="../Compras/js/compra.js"></script>
 </body>
 </html>
