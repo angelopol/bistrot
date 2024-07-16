@@ -59,7 +59,7 @@ async function obtenerObjetosCocina(){
       let instrumentosCocina = []; // con esta variable guardamos todos los objetos cuyo tipo sea igual a equipoCocina, básicamente los instrumentos que pertenecen al módulo de cocina/bar
   
       objetos.forEach(objeto => {
-          if (objeto.tipo === "equipoCocina") {
+          if (objeto.tipo === "Equipo") {
               instrumentosCocina.push(objeto);
           }
       }); 
