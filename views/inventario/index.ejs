@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="/inventario/css/styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="restaurant-header">
+    <h1 class="restaurant-nombre">BISTROT CHEZ RÉMY</h1>
+    <div class="user-info">
+      <span class="username">Gerente0000</span>
+      <img src="/inventario/css/img/flecha_hacia_abajo_usuario.png" alt="flecha_hacia_abajo_usuario"
+        class="flecha_hacia_abajo_usuarior" />
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_inicio.png" alt="Inicio icon" class="sidebar-icon" />
+          <span class="sidebar-text">Inicio</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_ventas.png" alt="Ventas icon" class="sidebar-icon" />
+          <span class="sidebar-text">Ventas/Salon</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_compras.png" alt="Compras icon" class="sidebar-icon" />
+          <span class="sidebar-text">Compras</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_rrhh.png" alt="RRHH icon" class="sidebar-icon" />
+          <span class="sidebar-text">RRHH</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_inventario.png" alt="inventario icon" class="sidebar-icon" />
+          <span class="sidebar-text">Inventario</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_mantenimiento.png" alt="Mantenimiento icon" class="sidebar-icon" />
+          <span class="sidebar-text">Mantenimiento</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_cocina.png" alt="Cocina icon" class="sidebar-icon" />
+          <span class="sidebar-text">Cocina/Bar</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_reservas.png" alt="Reservas icon" class="sidebar-icon" />
+          <span class="sidebar-text">Reservas</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_reporte.png" alt="Reportes icon" class="sidebar-icon" />
+          <span class="sidebar-text">Reportes</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_config.png" alt="Configuraciones icon" class="sidebar-icon" />
+          <span class="sidebar-text">Configuraciones</span>
+        </a>
+        <a href="#" class="sidebar-item">
+          <img src="/inventario/css/img/icono_ayuda.png" alt="Ayuda icon" class="sidebar-icon" />
+          <span class="sidebar-text">Ayuda</span>
+        </a>
+      </nav>
+
+      <section class="main-section">
+        <div class="titulo-modulo">
+          <h2 class="titulo-modulo">Inventario</h2>
+        </div>
+        <div class="tab-container">
+          <button class="tab tab-active" id="btnInsumos" onclick="changeTab('insumos')">Insumos</button>
+          <button class="tab tab-inactive" id="btnEquipos" onclick="changeTab('equipos')">Equipos</button>
+          <button class="tab tab-inactive" id="btnMuebles" onclick="changeTab('muebles')">Muebles</button>
+          <button class="tab tab-inactive" id="btnMaquinaria" onclick="changeTab('maquinaria')">Maquinaria</button>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <table id="tablaCocinaBar" class="table table-striped table-bordered d-none" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Área</th>
+                    <th>Unidad</th>
+                    <th>Fecha de Caducidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+              <table id="tablaGeneral" class="table table-striped table-bordered d-none" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Funciona Estado</th>
+                    <th>Fecha de Mantenimiento</th>
+                    <th>Unidad</th>
+                    <th>Cantidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="table-actions">
+          <div class="action-buttons">
+            <button id="editarBtn" class="action-btn">Recepción</button>
+            <button id="showAjustesBtn" class="action-btn">Ajustes</button>
+            <button id="showRegistroBtn" class="action-btn">Registro</button>
+          </div>
+          <div class="icon-buttons">
+            <button id="borrarBtn" class="icon-btn">
+            </button>
+          </div>
+        </div>
+
+        <!--Div para recepción-->
+        <div class="medio-div" id="cardContainer">
+          <div id="cardd" class="cardd">
+            <div class="card-header">
+              <h3>Recepción de Orden de Compra</h3>
+              <button id="closeCardButton" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-body">
+              <div class="titulo-icono-editar">
+                <div class="card-editar">
+                  <section class="order-reception">
+                    <div class="order-content">
+                      <div class="order-layout">
+                        <div class="main-column">
+                          <div class="order-details">
+                            <div class="search-container">
+                              <form class="search-bar">
+                                <div class="search-input">
+                                  <label for="order-id" class="search-label">ID Orden</label>
+                                  <input type="text" id="order-id" class="search-field" aria-label="ID Orden">
+                                </div>
+                                <button type="submit" class="search-button">Buscar</button>
+                              </form>
+                            </div>
+                            <div class="order-header">
+                              <span class="header-item">Fecha</span>
+                              <span class="header-item">Producto</span>
+                              <span class="header-item">Proveedor</span>
+                              <span class="header-item">Cantidad</span>
+                            </div>
+                            <div class="order-row"></div>
+                          </div>
+                        </div>
+                        <div class="side-column">
+                          <div class="quantity-section">
+                            <div class="quantity-header">Cantidad recibida</div>
+                            <div class="quantity-input">
+                              <input type="number" class="quantity-field" aria-label="Cantidad recibida">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <label for="observations" class="observations-label">Observaciones</label>
+                    <textarea id="observations" class="observations-field" aria-label="Observaciones"></textarea>
+                    <button class="action-btn2" id="comentarCambios">Finalizar recepción</button>
+                  </section>
+                  <div class="form-row">
+                    <button class="search-button" id="cancelButtonEditar">Cancelar</button>
+
+                  </div>
+                  <div class="espacio"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ajuste div -->
+        <div id="ajusteDiv" class="registro">
+          <div class="cardReg">
+            <div class="card-reg-header">
+              <h2>Ajuste de inventario</h2>
+              <button id="closeAjusteButton" class="close-card-btn">&times;</button>
+            </div>
+            <div class="card-body-reg">
+              <div class="card-titulo-reg">
+                <div class="prueba">
+                  <section class="order-reception">
+                    <div class="order-content">
+                      <div class="order-layout">
+                        <div class="main-column">
+                          <div class="order-details">
+                            <div class="search-container">
+                              <form class="search-bar" id="searchForm">
+                                <div class="search-input">
+                                  <label for="order-id" class="search-label">ID Producto</label>
+                                  <input type="number" id="order-id-n" class="search-field" aria-label="ID Orden"
+                                    inputmode="numeric">
+                                </div>
+                                <div>
+                                  <label for="tabla-ajuste">Tabla</label>
+                                  <select name="tabla-ajuste" id="tablaAjuste" class="dropboxTabla">
+                                    <option value="cocina-bar">Cocina</option>
+                                    <option value="general">General</option>
+                                  </select>
+                                </div>
+                                <button type="submit" class="search-button">Buscar</button>
+                              </form>
+                            </div>
+                            <div class="order-header2">
+                              <span class="header-item">Producto</span>
+                              <span class="header-item">Cantidad actual</span>
+                            </div>
+                            <div class="order-row2" id="orderRow">
+                              <div class="quantity-input2">
+                                <span id="productName"></span>
+                                <span id="currentQuantity"></span>
+                              </div>
+                            </div>
+                            <div class="order-header2">
+                              <span class="header-item">Tipo Ajuste</span>
+                              <span class="header-item">Cantidad</span>
+                            </div>
+                            <div class="order-row2" id="orderRow">
+                              <div class="quantity-input2">
+                                <select name="tipo-ajuste" id="tipoAjuste" class="dropboxTabla2">
+                                  <option value="agregar">Entrada</option>
+                                  <option value="retirar">Salida</option>
+                                </select>
+                                <input type="number" id="cantidadAjuste" class="quantity-field2"
+                                  aria-label="Cantidad recibida">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <label for="observations" class="observations-label">Observaciones</label>
+                      <textarea id="observations-f" class="observations-field" aria-label="Observaciones"></textarea>
+                      <button class="action-btn2" id="finalizarAjuste">Finalizar</button>
+                    </div>
+                </div>
+      </section>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <!-- Div para registros -->
+    <div id="registroDiv" class="registro">
+      <div class="cardReg">
+        <div class="card-reg-header">
+          <h2>Registros</h2>
+          <button id="closeRegistroButton" class="close-card-btn">&times;</button>
+        </div>
+        <div class="card-body-reg">
+          <div class="card-titulo-reg">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col">
+                  <table id="tablaRegistros" class="table table-striped table-bordered d-none" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Fecha Registro</th>
+                        <th>Módulo</th>
+                        <th>Usuario</th>
+                        <th>Producto</th>
+                        <th>Tipo Ajuste</th>
+                        <th>Cantidad</th>
+                        <th>Observaciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agregar botón div-->
+    <div class="medio-div-Agregar" id="cardContainerAgregar">
+      <div id="cardd" class="card-Agregar">
+        <div class="card-header">
+          <h3>Añadir</h3>
+          <button id="closeCardButtonAgregar" class="close-card-btn">&times;</button>
+        </div>
+        <div class="card-body-Agregar">
+          <div class="titulo-icono-editar">
+            <div class="card-editar">
+              <div class="form-row">
+                <button class="action-btn" id="cancelarAgregar">Cancelar</button>
+                <button class="action-btn" id="AgregarBtn">Agregar</button>
+              </div>
+              <div class="espacio"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.min.js"></script>
+  <script src="/inventario/js/scripts.js"></script>
+</body>
+
+</html>

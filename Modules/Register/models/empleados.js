@@ -2,11 +2,11 @@ import mysql from 'mysql2/promise'
 import 'dotenv/config'
 
 const DBConfig = {
-  host: '127.0.0.1' || process.env.DB_HOST,
-  user: 'root' || process.env.DB_USERNAME,
-  port: 3306 || process.env.DB_PORT,
-  password: '' || process.env.DB_PASSWORD,
-  database: 'bistrot' || process.env.DB_DATABASE,
+  host: process.env.DB_HOST || '127.0.0.1',
+  user: process.env.DB_USERNAME || 'root',
+  port: process.env.DB_PORT || 3306,
+  password: process.env.DB_PASSWORD || 'Samp1203*',
+  database: process.env.DB_DATABASE || 'bistrot',
 }
 
 const connection = await mysql.createConnection(DBConfig)
