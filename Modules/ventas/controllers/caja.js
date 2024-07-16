@@ -1,4 +1,4 @@
-import {VentasModel} from '../models/ventas_salon';
+import {VentasModel} from '../models/ventas_salon.js';
 import {validateCaja, validatePartialCaja} from '../schemas/caja.js';
 
 export class ControllerCaja {

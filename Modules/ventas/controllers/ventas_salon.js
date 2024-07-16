@@ -3,7 +3,7 @@ import {validateCliente, validatePartialCliente} from '../schemas/cliente.js';
 import {validateFactura, validatePartialFactura} from '../schemas/factura.js';
 import {validateSalon, validatePartialSalon} from '../schemas/salon.js';
 
-import {VentasModel} from '../models/ventas_salon';
+import {VentasModel} from '../models/ventas_salon.js';
 
 
 

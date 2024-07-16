@@ -1,4 +1,4 @@
-import {VentasModel} from '../models/ventas_salon';
+import {VentasModel} from '../models/ventas_salon.js';
 import {validateSalon, validatePartialSalon} from '../schemas/salon.js';
 
 

@@ -11,7 +11,6 @@ export const createVentasRouter = () => {
   const controllerSalon = new ControllerSalon()
   const controllerFactura = new ControllerFactura()
 
-  VentasRouter.use(errorMiddleware);
   // Rutas de Caja
   VentasRouter.get('/caja', controllerCaja.getAll_c);
   VentasRouter.get('/caja/:id', controllerCaja.getById_c);

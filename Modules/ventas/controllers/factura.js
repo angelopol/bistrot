@@ -1,4 +1,4 @@
-import {VentasModel} from '../models/ventas_salon';
+import {VentasModel} from '../models/ventas_salon.js';
 import {validateFactura, validatePartialFactura} from '../schemas/factura.js';
 
 export class ControllerFactura {

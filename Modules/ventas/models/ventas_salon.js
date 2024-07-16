@@ -1,17 +1,17 @@
-import pkg from 'mysql2';
-const {mysql} = pkg;
+import mysql from 'mysql2/promise';
+import 'dotenv/config'
 //import {promisify} from 'util';
 
 const db = {
-  host: '127.0.0.1',
-  user: 'root',
-  password: '',
-  database: 'Ventas_Salon'
+    host: '127.0.0.1' || process.env.DB_HOST,
+    user: 'root' || process.env.DB_USERNAME,
+    port: 3306 || process.env.DB_PORT,
+    password: '' || process.env.DB_PASSWORD,
+    database: 'bistrot' || process.env.DB_DATABASE,
 };
 
-
 // Crear la conexión
-const connection = mysql.createConnection(db);
+const connection = await mysql.createConnection(db);
 
 /*
 // Conectar a la base de datos
@@ -33,12 +33,13 @@ export class VentasModel {
     // CAJA
     
 
-    static async getAll_caja({}) {
+    static async getAll_caja() {
         try {
-        const [registro_ventas] = await connection.query("SELECT * FROM submodulo_caja")
-            return registro_ventas
-        } catch {
-            throw new Error("Error obteniendo el registro de las ventas")
+            const [registro_ventas] = await connection.query("SELECT * FROM submodulo_caja");
+            return registro_ventas;
+        } catch (error) {
+            console.error('Error al obtener los datos:', error);
+            throw error; // O maneja el error como prefieras
         }
     }
 
