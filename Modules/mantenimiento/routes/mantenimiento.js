@@ -8,7 +8,7 @@ export const createMantenimientoRouter = () => {
   /*Rutas de los documentos HTML/EJS*/ 
 
   MantenimientoRouter.get('/', (req, res) =>{
-    res.render('mantenimientos/Pagina_principal');
+    res.render('mantenimientos/Pagina_principal', mantenimiento);
   });
 
   MantenimientoRouter.get('/agregar', (req, res) =>{
@@ -16,7 +16,7 @@ export const createMantenimientoRouter = () => {
   });
 
   MantenimientoRouter.get('/Pagina_contacto.html', (req, res) =>{
-    res.render('mantenimientos/Pagina_contacto');
+    res.render('mantenimientos/Pagina_contacto', contacto);
   });
 
   MantenimientoRouter.get('/Pagina_reportes.html', (req, res) =>{

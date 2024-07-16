@@ -103,30 +103,16 @@
                                     <td>Arreglar la cosa</td>
                                     <td>2024-07-01 21:59</td>
                                 </tr>
-                                <tr>
-                                    <td>Link</td>
-                                    <td>Reparacion de ventilador</td>
-                                    <td>Arreglar la cosa</td>
-                            nb         <td>2024-07-05 15:30</td>
-                                </tr>
-                                <tr>
-                                    <td>Venti</td>
-                                    <td>Servicio de bar</td>
-                                    <td>Apronbar las comidas</td>
-                                    <td>2024-07-10 10:00</td>
-                                </tr>
-                                <tr>
-                                    <td>Venti</td>
-                                    <td>Servicio de bar</td>
-                                    <td>Apronbar las comidas</td>
-                                    <td>2024-07-01 18:45</td>
-                                </tr>
-                                <tr>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                    <td>None</td>
-                                </tr>
+                                <% if (contacto) { %>
+                                    <% for (var i = 0; i < contacto.length; i++) { %>
+                                        <tr>
+                                            <td><%= contacto[i].nombre %></td>
+                                            <td><%= contacto[i].servicios %></td>
+                                            <td><%= contacto[i].telefono %></td>
+                                            <td><%= contacto[i].fecha %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
                             </tbody>
                         </table>
                     </div>

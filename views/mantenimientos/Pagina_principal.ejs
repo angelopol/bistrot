@@ -117,36 +117,16 @@
                   <td>2/7 8:00pm</td>
                   <td>En proceso</td>
                 </tr>
-                <tr>
-                  <td>Limpieza de cocina</td>
-                  <td>Juan Sanchez</td>
-                  <td>1/7 9:00pm</td>
-                  <td>1/7 10:00pm</td>
-                </tr>
-                <tr>
-                  <td>Mantenimiento de ventilación</td>
-                  <td>Julio Tovar</td>
-                  <td>1/7 9:00pm</td>
-                  <td>1/7 10:00pm</td>
-                </tr>
-                <tr>
-                  <td>Limpieza de mesas</td>
-                  <td>Laura Gonzalez</td>
-                  <td>1/7 9:00pm</td>
-                  <td>1/7 10:00pm</td>
-                </tr>
-                <tr>
-                  <td>Limpieza de neveras</td>
-                  <td>Juan Sanchez</td>
-                  <td>1/7 9:00pm</td>
-                  <td>1/7 10:00pm</td>
-                </tr>
-                <tr>
-                  <td>Revision de tuberias</td>
-                  <td>Jose Santana</td>
-                  <td>1/7 9:00pm</td>
-                  <td>1/7 10:00pm</td>
-                </tr>
+                <% if (mantenimiento) { %>
+                  <% for (var i = 0; i < mantenimiento.length; i++) { %>
+                      <tr>
+                          <td><%= mantenimiento[i].descripcion %></td>
+                          <td><%= mantenimiento[i].personal %></td>
+                          <td><%= mantenimiento[i].fecha %></td>
+                          <td><%= mantenimiento[i].estado %></td>
+                      </tr>
+                  <% } %>
+                <% } %>
               </table>
             </div>
             </div>
