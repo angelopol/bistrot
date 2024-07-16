@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISTROT CHEZ RÉMY</title>
+    <link rel="stylesheet" href="css/side.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Monserrat', sans-serif;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        .bistrot-header {
+            background-color: #013d1f;
+            display: inline-block;
+            width: 100%;
+            gap: 20px;
+            color: #fff;
+            font-weight: 400;
+            line-height: 150%;
+            padding: 34px 55px;
+        }
+        @media (max-width: 991px) {
+            .bistrot-header {
+                max-width: 100%;
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+        }
+        .bistrot-title {
+            letter-spacing: -0.24px;
+            flex-grow: 1;
+            flex-basis: auto;
+            margin: auto 0;
+            font: 24px Krona One, sans-serif;
+            display: inline-block;
+        }
+        .user-info {
+            border-radius: var(--sds-size-radius-200);
+            border-color: rgba(255, 255, 255, 1);
+            border-style: solid;
+            border-width: 1px;
+            background-color: #013d1f;
+            display: inline-flex;
+            justify-content: flex-end ;
+            position: absolute;
+            right: 0;
+            width: 10%;
+            transform: translateY(-10px);
+            margin-right: 30px;
+            margin-bottom: 20px;
+            gap: 12px;
+            font-size: 15px;
+            white-space: nowrap;
+            padding: 8px 16px;
+        }
+        @media (max-width: 991px) {
+            .user-info {
+                white-space: initial;
+            }
+        }
+        .user-name {
+            font-family: 'Inter', sans-serif;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .user-avatar {
+            aspect-ratio: 1;
+            object-fit: auto;
+            object-position: center;
+            width: 24px;
+        }
+        .main-content {
+            width: 100%;
+        }
+        @media (max-width: 991px) {
+            .main-content {
+                max-width: 100%;
+            }
+        }
+        .content-wrapper {
+            gap: 20px;
+            display: flex;
+        }
+        @media (max-width: 991px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 21%;
+            height: 80vh;
+            justify-content: start;
+            margin-left: 0;
+        }
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 100%;
+            }
+        }
+        .sidebar-menu {
+            background-color: rgba(237, 237, 237, 0.93);
+            display: flex;
+            width: 100%;
+            flex-grow: 1;
+            flex-direction: column;
+            font-size: 16px;
+            color: #02676f;
+            font-weight: 500;
+            white-space: nowrap;
+            line-height: 150%;
+            margin: 0 auto;
+            padding: 15px 9px;
+            height: 100%;
+
+        }
+        @media (max-width: 991px) {
+            .sidebar-menu {
+                margin-top: 40px;
+                white-space: initial;
+            }
+        }
+        .menu-item {
+            border-radius: var(--sds-size-radius-200);
+            background-color: rgba(246, 246, 246, 0.96);
+            display: flex;
+            gap: 16px;
+            padding: 8px 16px;
+            margin-top: 8px;
+        }
+        @media (max-width: 991px) {
+            .menu-item {
+                white-space: initial;
+            }
+        }
+        .menu-icon {
+            aspect-ratio: 1;
+            object-fit: auto;
+            object-position: center;
+            width: 20px;
+            fill: #02676f;
+            margin: auto 0;
+        }
+        .menu-text {
+            font-family: 'Inter', sans-serif;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .help-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1px 0;
+        }
+        @media (max-width: 991px) {
+            .help-item {
+                white-space: initial;
+            }
+        }
+        .help-icon {
+            font-family: 'Inter', sans-serif;
+            border: 2px solid #02676f;
+            background-color: #fff;
+            border-radius: 50%;
+            align-items: center;
+            width: 22px;
+            justify-content: center;
+            height: 22px;
+        }
+        @media (max-width: 991px) {
+            .help-icon {
+                white-space: initial;
+            }
+        }
+        .main-section {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 79%;
+            margin-left: 20px;
+        }
+        @media (max-width: 991px) {
+            .main-section {
+                width: 100%;
+            }
+        }
+        .production-management {
+            align-content: flex-start;
+            flex-wrap: wrap;
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+            margin: auto 0;
+            padding: 0 20px 80px;
+        }
+        @media (max-width: 991px) {
+            .production-management {
+                max-width: 100%;
+                margin-top: 40px;
+            }
+        }
+        .section-title {
+            color: #000;
+            letter-spacing: -0.68px;
+            font: 600 34px/110% 'Inter', sans-serif;
+            transform: translateY(50%);
+        }
+        @media (max-width: 991px) {
+            .section-title {
+                max-width: 100%;
+            }
+        }
+        .management-grid {
+            margin-top: 35px;
+        }
+        @media (max-width: 991px) {
+            .management-grid {
+                max-width: 100%;
+                padding-right: 20px;
+            }
+        }
+        .grid-container {
+            gap:29px;
+            display: flex;
+        }
+        @media (max-width: 991px) {
+            .grid-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+        }
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            line-height: normal;
+            width: 25%;
+            margin-left: 20px;
+        }
+        .grid-item:first-child {
+            margin-left: 0;
+        }
+        @media (max-width: 991px) {
+            .grid-item {
+                width: 100%;
+            }
+        }
+        .item-content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            justify-content: center;
+            align-self: stretch;
+            border-radius: var(--sds-size-radius-200);
+            overflow: hidden;
+            aspect-ratio: 0.86;
+            flex-grow: 1;
+            color: #fff;
+            white-space: nowrap;
+            text-align: center;
+            letter-spacing: -1.92px;
+            padding: 110px 21px 80px;
+            font: 600 48px/100% 'Inter', sans-serif;
+            text-decoration: none;
+        }
+        @media (max-width: 991px) {
+            .item-content {
+                font-size: 40px;
+                margin-top: 30px;
+                padding-left: 20px;
+                white-space: initial;
+            }
+        }
+        .item-image {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; 
+           
+            
+        }
+        .item-text {
+            position: relative;
+            transform: scale(0.65) translateX(-15%) translateY(10%);
+        }
+
+        .item-ins {
+            position: relative;
+            font-size: 20px;
+            transform:scale(1.02) translateX(-5%) translateY(-15%) ; 
+         }
+
+       #mimi {
+
+            transform: translateX(-20%) translateY(1%) scale(0.7);
+        } 
+
+        #nice {
+            transform:  translateX(1%) translateY(-70%);
+        }
+    </style>
+</head>
+<body>
+   
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+
+    <main class="main-content">
+        <div class="content-wrapper">
+            
+
+            <div id="sidebar">
+                <div class="side inicio">
+                    <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+                    <p class="side-option">Inicio</p>
+                </div>
+                <div class="side ventas">
+                    <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+                    <p class="side-option">Ventas/Salon</p>
+                </div>
+                <div class="side compras">
+                    <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+                    <p class="side-option">Compras</p>
+                </div>
+                <div class="side rrhh">
+                    <img class="side-foto" src="resources/iconos_barra/person-green.png">
+                    <p class="side-option">RRHH</p>
+                </div>
+                <div class="side inventario">
+                    <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+                    <p class="side-option">Inventario</p>
+                </div>
+                <div class="side mantent">
+                    <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+                    <p class="side-option">Mantenimiento</p>
+                </div>
+                <div class="side cocina">
+                    <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+                    <p class="side-option">Cocina/Bar</p>
+                </div>
+                <div class="side reserv">
+                    <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+                    <p class="side-option">Reservas</p>
+                </div>
+            </div>
+
+
+
+            <section class="main-section">
+                <div class="production-management">
+                    <h2 class="section-title">Gestion de Produccion</h2>
+                    <div class="management-grid">
+                        <div class="grid-container">
+                            <div class="grid-item">
+                                <a href="/cocina/cocinaAbiertaProduciendo" class="item-content">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9901f18874d9a6c68a1a1e42286f8534db853076edf794b42dbfec9b0007f666?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Kitchen management" class="item-image"   />
+                                    <span class="item-text" id = "mimi">COCINA <br>-------------<br> <p> BAR </p> </span>
+                                </a>
+                            </div>
+                            <div class="grid-item">
+                                <a href="/cocina/instrumentos" class="item-content">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9901f18874d9a6c68a1a1e42286f8534db853076edf794b42dbfec9b0007f666?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Bar management" class="item-image" />
+                                    <span class="item-ins">INSTRUMENTOS</span>
+                                </a>
+                            </div>
+                            <div class="grid-item">
+                                <a href="/cocina/Entradas" class="item-content">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9901f18874d9a6c68a1a1e42286f8534db853076edf794b42dbfec9b0007f666?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Menu management" class="item-image" />
+                                    <span class="item-text"> <p id = "nice">MENU</p></span>
+                                </a>
+                            </div>
+                            <!--<div class="grid-item">
+                                <a href="inventario.html" class="item-content">
+                                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9901f18874d9a6c68a1a1e42286f8534db853076edf794b42dbfec9b0007f666?apiKey=629bdbd1e8094e57ae964126872a2922&" alt="Inventory management" class="item-image" />
+                                    <span class="item-text">Inventario</span>
+                                </a>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
