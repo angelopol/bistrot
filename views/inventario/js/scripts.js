@@ -1,3 +1,5 @@
+const PathUrl = 'http://localhost:1234/inventario/';
+
 document.addEventListener('DOMContentLoaded', (event) => {
     changeTab('insumos'); // Inicializa con la primera pestaña activa
 });
@@ -104,7 +106,7 @@ function updateTableContent(tab) {
 }
 
 function generateTableCocina() {
-    var url = 'http://localhost:3000/api/cocina-bar'; // URL de la API para cocina-bar
+    var url = PathUrl + 'api/cocina-bar'; // URL de la API para cocina-bar
 
     $('#tablaCocinaBar').DataTable({
         "language": {
@@ -160,7 +162,7 @@ function generateTableCocina() {
 }
 
 function generateTableGeneral(tipo) {
-    var url = `http://localhost:3000/api/general`; // URL de la API para general sin filtro
+    var url = PathUrl+`api/general`; // URL de la API para general sin filtro
 
     $('#tablaGeneral').DataTable({
         "language": {
@@ -286,16 +288,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+    /*
     // Siguiente (puedes agregar lógica adicional aquí si es necesario)
     ConfirmarAgregarBtn.addEventListener('click', function () {
         // Aquí puedes agregar la lógica para manejar el botón "Siguiente"
         console.log('Siguiente paso en el proceso de agregar');
     });
+    */
 });
 
 // tabla registros
 function generateTableRegistros() {
-    var url = 'http://localhost:3000/api/registros'; // URL de la API para registros
+    var url = PathUrl+'api/registros'; // URL de la API para registros
 
     $('#tablaRegistros').DataTable({
         "language": {
@@ -369,7 +373,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     // URL de la API basada en el tipo de tabla y el ID del producto
     let apiUrl = '';
     if (tableType === 'cocina-bar' || tableType === 'general') {
-        apiUrl = `http://localhost:3000/api/${tableType}/${productId}`;
+        apiUrl = PathUrl+`api/${tableType}/${productId}`;
     } else {
         alert('Tabla seleccionada no válida');
         return;
@@ -412,7 +416,7 @@ document.getElementById('finalizarAjuste').addEventListener('click', function ()
     }
 
     let productName = '';
-    fetch(`http://localhost:3000/api/${tableType}/${productId}`)
+    fetch(PathUrl+`api/${tableType}/${productId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al obtener información del producto');
@@ -425,7 +429,7 @@ document.getElementById('finalizarAjuste').addEventListener('click', function ()
             // URL de la API para el ajuste
             let apiUrl = '';
             if (tableType === 'cocina-bar' || tableType === 'general') {
-                apiUrl = `http://localhost:3000/api/${tableType}/${adjustmentType}/${productId}`;
+                apiUrl = PathUrl+`api/${tableType}/${adjustmentType}/${productId}`;
             } else {
                 alert('Tabla seleccionada no válida');
                 return;
@@ -468,13 +472,9 @@ document.getElementById('finalizarAjuste').addEventListener('click', function ()
         });
 });
 
-
-
-
-
-
+/*
 // Importar la conexión a la base de datos
-const connection = require('./conexion');
+const connection = require('../../../Modules/Inventario/models/conexion');
 
 // Definir la función verificarInventario
 function verificarInventario(callback) {
@@ -514,3 +514,4 @@ function verificarInventario(callback) {
 }
 
 module.exports = verificarInventario;
+*/
