@@ -21,6 +21,7 @@ INSERT INTO comida (nombre , tipo_comida , tipo_bebida , instrumentos , ingredie
 ('Chocolate Mousse' , 'postre' , null , '5,23' , '{"16":1.0,"17":0.5,"18":1.0,"19":0.5}'),
 ('Fruit Salad' , 'postre' , null , '17' , '{"20":0.5,"21":0.5,"22":0.5,"23":0.5}'),
 ('Apple Tart' , 'postre' , null , '6,24' , '{"16":1.0,"17":0.5,"18":1.0,"22":0.5,"24":3}'),
+('Chocolate Cake' , 'postre' , null , '8,24' , '{"16":1.0,"17":0.5,"18":1.0,"19":0.5,"24":3}'),
 ('Mojito' , null , "trago" , '19' , '{"25":0.25,"26":0.25,"18":0.10}'),
 ('Daiquiri' , null , "trago" , '20' , '{"25":0.20,"26":0.3,"18":0.10}'),
 ('Old Fashioned' , null , "trago" , '21' , '{"27":0.25,"26":0.2,"18":0.05}'),

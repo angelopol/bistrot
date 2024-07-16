@@ -29,7 +29,7 @@ async function funcionBotonReporte(id){
 
 
     // Petición a inventario (habria que importar esta ruta de inventario)
-    await fetch(`http://localhost:3000/api/general/${id}` , requestOptions)
+    await fetch(`http://localhost:1234/inventario/api/general/${id}` , requestOptions)
     .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -50,7 +50,7 @@ async function funcionBotonReporte(id){
 async function obtenerObjetosCocina(){
     try {
       // con este endpoint solicitamos a inventario todos los instrumentos que tienen guardados en su tabla de general
-      const response = await fetch(`http://localhost:3000/api/general`); /*Importar Modulo externo Inventario*/
+      const response = await fetch(`http://localhost:1234/inventario/api/general`); /*Importar Modulo externo Inventario*/
       if (!response.ok){
           throw new Error('No se pudo obtener los objetos de general');
       }

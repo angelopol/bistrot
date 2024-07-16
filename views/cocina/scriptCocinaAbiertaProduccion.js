@@ -51,7 +51,7 @@ async function actualizarPedidos() {
         // Metodo que verifica si hay pedidos "pendientes" por procesar, y se muestran en la view.
 
         // esta ruta hay que importarla de ventas
-        const response = await fetch('http://localhost:3000/ventas/factura'); 
+        const response = await fetch('http://localhost:1234/ventas/factura'); 
         if (!response.ok) {
             throw new Error('No se pudo obtener la lista de pedidos');
         }

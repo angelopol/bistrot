@@ -18,28 +18,31 @@ export class PedidoController {
         const {pedido_id} = req.query // sacamos el id del pedido de la url
 
         //Importamos el pedido con su id
-        const response = await fetch(`http://localhost:3000/ventas/factura/${pedido_id}`); /*IMPORTAR MODULO EXTERNO Ventas*/
+        const response = await fetch(`http://localhost:1234/ventas/factura/${pedido_id}`); /*IMPORTAR MODULO EXTERNO Ventas*/
             if (!response.ok){
                 throw new Error('No se pudo obtener el ingrediente');
             }
 
 
         // Aqui obtenemos el pedido de ventas
-        const pedido = await response.json() 
+        const pedido = await response.json()
 
         //sacamos las comidas del pedido
-        /* pedido.consumo sera un string en formato json con los id de las comidas/bebidas pedidas y la cantidad que pidieron de esas comidas, por ejemplo '{"2":3,"1":4}' */
-        const comidas = JSON.parse(pedido.consumo);
+        /* pedido.consumo sera un string que representara una lista de objetos que seran las comidas pedidas ejemplo '[{"id":2,"quantity":3,"price":10},{"id":8,"quantity":2,"price":10}]' */
+
+        const listaComidas = JSON.parse(pedido.consumo); // aqui tendremos el arreglo de las comidas
+
+        
 
         // este diccionario guardara cada id de los ingredientes requiridos y la cantidad de esos ingredientes que se requieren para realizar la orden
         let ingredientesRequeridos = {};
 
         // iteramos los id de las comidas
-        Object.keys(comidas).forEach( async idComida => {
+        listaComidas.forEach( async objetoComida => {
             
-            
-            let multiplicador = parseInt(comidas[idComida]) // multiplicador representa la cantidad de es comida/bebida que pidio 
-            let comida = await ComidaModel.getForId({idComida}) // obtenemos el objeto de la comida/bebida por su id
+            let multiplicador = parseInt(objetoComida.quantity) // multiplicador representa la cantidad de es comida/bebida que pidio 
+            let comidaId = objetoComida.id // sacamos el id de las comidas
+            let comida = await ComidaModel.getForId({comidaId}) // obtenemos el objeto de la comida/bebida por su id
 
             /* comida.ingredientes de igual forma sera un string en formato json con los id de los ingredientes y la cantidadd de esos ingredientes para producir esa comida/bebida, por ejemplo '{"2":3,"1":4}' */
             let ingredientes = JSON.parse(comida.ingredientes) 
@@ -62,7 +65,7 @@ export class PedidoController {
         Object.keys(ingredientesRequeridos).forEach(async idIngredienteRequerido => {
 
             // De inventario solicitamos el objeto ingrediente de su tabla cocina_bar
-            const response = await fetch(`http://localhost:3000/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
+            const response = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
             if (!response.ok){
                 throw new Error('No se pudo obtener el ingrediente');
             }
@@ -88,7 +91,7 @@ export class PedidoController {
                 };
 
                 // este es el endpoint de ventas para actualizar la factura 
-                await fetch(`http://localhost:3000/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
+                await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
                 .then(response => {
                     if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -105,7 +108,7 @@ export class PedidoController {
                 });
 
                 // con este enpoint obtenemos nuevamente el pedido con su estatus actualizado
-                const response1 = await fetch(`http://localhost:3000/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+                const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
                 if (!response1.ok){
                     throw new Error('No se pudo obtener el ingrediente');
                 }
@@ -119,10 +122,11 @@ export class PedidoController {
 
 
         // Verificamos por cada comida, si se cuenta con la maquinaria disponible para realizarla en invetario
-        Object.keys(comidas).forEach( async idComida => {
+        listaComidas.forEach( async objetoComida => {
 
             // obtenemos el objeto comida/bebida
-            let comida = await ComidaModel.getForId({idComida})
+            let comidaId = objetoComida.id
+            let comida = await ComidaModel.getForId({comidaId})
 
             // verificamos si el objeto comida/bebida requiere de algun instrumento para realizarse
             if(!(comida.instrumentos == null)){
@@ -132,7 +136,7 @@ export class PedidoController {
                 instrumentos.forEach(async idInstrumentos => {
 
                     // con este endpoint de inventario obtenemos el instrumento
-                    const response = await fetch(`http://localhost:3000/api/general/${idInstrumentos}`); /*Importar Modulo externo Inventario*/
+                    const response = await fetch(`http://localhost:1234/inventario/api/general/${idInstrumentos}`); /*Importar Modulo externo Inventario*/
                     if (!response.ok){
                         throw new Error('No se pudo obtener el ingrediente');
                     }
@@ -152,7 +156,7 @@ export class PedidoController {
                             body: JSON.stringify(cambios) 
                         };
 
-                        await fetch(`http://localhost:3000/ventas/factura/${pedido_id})` , requestOptions)
+                        await fetch(`http://localhost:1234/ventas/factura/${pedido_id})` , requestOptions)
                         .then(response => {
                             if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -169,7 +173,7 @@ export class PedidoController {
                         });
         
                         // obtenemos nuevamente el pedido con el endpoint de ventas
-                        const response1 = await fetch(`http://localhost:3000/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+                        const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
                         if (!response1.ok){
                             throw new Error('No se pudo obtener el ingrediente');
                         }
@@ -186,7 +190,7 @@ export class PedidoController {
         Object.keys(ingredientesRequeridos).forEach(async idIngredienteRequerido => {
 
             // con este endpoint obtenemos el ingrediente de inventario
-            const response = await fetch(`http://localhost:3000/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
+            const response = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
             if (!response.ok){
                 throw new Error('No se pudo obtener el ingrediente');
             }
@@ -210,7 +214,7 @@ export class PedidoController {
 
 
             // con este endpoint actualizamos la cantidad del ingrediente en inventario
-            await fetch(`http://localhost:3000/api/cocina-bar/${idIngredienteRequerido}` , requestOptions)
+            await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}` , requestOptions)
             .then(response => {
                 if (!response.ok) {
                   throw new Error('Network response was not ok');
@@ -239,7 +243,7 @@ export class PedidoController {
         };
 
         // con este endpoint cambiamos el status del pedido a aceptado
-        await fetch(`http://localhost:3000/ventas/factura/${pedido_id})` , requestOptions)
+        await fetch(`http://localhost:1234/ventas/factura/${pedido_id})` , requestOptions)
         .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -255,7 +259,7 @@ export class PedidoController {
           });
         
         // con este endpoint obtenemos nuevamente el pedido de ventas, para retornarlo
-        const response1 = await fetch(`http://localhost:3000/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+        const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
           if (!response.ok){
               throw new Error('No se pudo obtener el pedido');
           }
@@ -275,7 +279,7 @@ export class PedidoController {
 
        
        //Importamos el pedido con su id
-       const response = await fetch(`http://localhost:3000/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+       const response = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
        if (!response.ok){
            throw new Error('No se pudo obtener el ingrediente');
        }
@@ -297,7 +301,7 @@ export class PedidoController {
             body: JSON.stringify(cambios) 
         };
 
-        await fetch(`http://localhost:3000/ventas/factura/${pedido_id})` , requestOptions)
+        await fetch(`http://localhost:1234/ventas/factura/${pedido_id})` , requestOptions)
         .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -312,7 +316,7 @@ export class PedidoController {
           });
         
           // con este endpoint retornamos el pedido
-        const response1 = await fetch(`http://localhost:3000/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+        const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
           if (!response1.ok){
               throw new Error('No se pudo obtener el ingrediente');
           }
