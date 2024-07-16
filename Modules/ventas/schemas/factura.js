@@ -20,7 +20,8 @@ const schema_factura = z.object({
     }, {
         message: 'Los ingredientes deben ser un objeto en formato JSON con claves numéricas'
     }),
-    status_pedido : z.number().min(1).max(4), 
+    status_pedido : z.number().min(1).max(5), 
+    mesa : z.number().min(1).max(9).positive({ message: 'El numero de la mesa debe ser un número positivo' }), 
 });
 
 

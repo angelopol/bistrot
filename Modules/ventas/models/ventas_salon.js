@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise';
 import 'dotenv/config'
 //import {promisify} from 'util';
-
+/*
 const db = {
     host: '127.0.0.1' || process.env.DB_HOST,
     user: 'root' || process.env.DB_USERNAME,
@@ -9,6 +9,17 @@ const db = {
     password: '' || process.env.DB_PASSWORD,
     database: 'bistrot' || process.env.DB_DATABASE,
 };
+
+*/
+
+const db = {
+    host: 'localhost:3306' || process.env.DB_HOST,
+    user: 'root' || process.env.DB_USERNAME,
+    port: 3306 || process.env.DB_PORT,
+    password: '' || process.env.DB_PASSWORD,
+    database: 'ventas' || process.env.DB_DATABASE,
+};
+
 
 // Crear la conexión
 const connection = await mysql.createConnection(db);
@@ -65,7 +76,7 @@ export class VentasModel {
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierra, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?);", [turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos]
+                "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?);", [turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos]
             )
         } catch (error) {
             throw new Error("Error creando una venta")
@@ -421,12 +432,12 @@ export class VentasModel {
 
     static async create_factura({input}) {
         const {
-            monto, iva, consumo, status_pedido
+            monto, iva, consumo, status_pedido, mesa, zona
         } = input
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_factura (monto, iva, consumo) VALUES (?, ?, ?);", [monto, iva, consumo, status_pedido]
+                "INSERT INTO submodulo_factura (monto, iva, consumo, mesa, zona) VALUES (?, ?, ?, ?, ?);", [monto, iva, consumo, status_pedido, mesa, zona]
             )
         } catch (error) {
             throw new Error("Error creando un registro de factura")
@@ -438,7 +449,7 @@ export class VentasModel {
 
     static async update_factura({id , input}) {
         const {
-            monto, iva, consumo, status_pedido
+            monto, iva, consumo, status_pedido, mesa, zona
         } = input;
 
         try {
@@ -462,7 +473,14 @@ export class VentasModel {
                 updates.push("status_pedido = ?");
                 values.push(status_pedido);
             }
-            
+            if (mesa) {
+                updates.push("mesa = ?");
+                values.push(mesa);
+            }
+            if (zona) {
+                updates.push("zona = ?");
+                values.push(zona);
+            }
 
             // Comprobar si hay campos para actualizar
             if (updates.length == 0) {

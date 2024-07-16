@@ -44,5 +44,7 @@ CREATE TABLE submodulo_factura (
     monto float NOT NULL,
     iva float NOT NULL,
     consumo LONGTEXT NOT NULL,  -- consumo = {"id_comida" : cantidad}
-    status_pedido INT NOT NULL
+    status_pedido INT NOT NULL,
+    mesa INT NOT NULL,
+    zona varchar(255) NOT NULL
 );
