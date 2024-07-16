@@ -11,8 +11,8 @@
 
   <header class="header">
     <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
-    
   </header>
+  
   <div class="content-wrapper">
     <div class="main-content">
       <nav class="sidebar">
@@ -68,11 +68,10 @@
       <main class="employee-registration">
         <h1 class="page-title">Registro de Empleado</h1>
         
-        <form action="">
+        <form id="employee-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="position" class="form-label">Cargo</label>
-              
+              <label for="cargo" class="form-label">Cargo</label>
               <select class="form-input dropdown text" id="cargo" name="cargo">
                 <option value="" disabled selected>Seleccione un Cargo</option>
                 <option value="Gerente">Gerente</option>
@@ -86,12 +85,12 @@
             
             <div class="form-group">
               <label for="start-date" class="form-label">Fecha inicio</label>
-              <input type="date" id="start-date" class="form-input" name="FechaInicio"/>
+              <input type="date" id="start-date" class="form-input" name="fecha_contratacion"/>
             </div>
            
             <div class="form-group">
               <label for="end-date" class="form-label">Fecha culminación</label>
-              <input type="date" id="end-date" class="form-input" name="FechaCulminacion"/>
+              <input type="date" id="end-date" class="form-input" name="fecha_culminacion"/>
             </div>
 
             <div class="form-group">
@@ -103,7 +102,7 @@
           <div class="form-row">
             <div class="form-group">
               <label for="hours" class="form-label">Horas</label>
-              <select id="hours" class="form-input dropdown" id="horas" name="horas">
+              <select id="hours" class="form-input dropdown" name="horas">
                 <option value="" disabled selected>Seleccione una hora</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
@@ -114,20 +113,6 @@
                 <option value="10">10</option>
                 <option value="11">11</option>
                 <option value="12">12</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
-              <label for="weekday" class="form-label">Día de la semana</label>
-              <select id="weekday" class="form-input" name="semana">
-                <option value="" disabled selected>Seleccione un día</option>
-                <option value="Lunes">Lunes</option>
-                <option value="Martes">Martes</option>
-                <option value="Miercoles">Miercoles</option>
-                <option value="Jueves">Jueves</option>
-                <option value="Viernes">Viernes</option>
-                <option value="Sabado">Sabado</option>
-                <option value="Domingo">Domingo</option>
               </select>
             </div>
           </div>
@@ -150,7 +135,7 @@
             
             <div class="form-group">
               <label for="phone" class="form-label">Teléfono</label>
-              <input type="tel" id="phone" class="form-input"  placeholder="04120201212" name="tlf"/>
+              <input type="tel" id="phone" class="form-input" placeholder="04120201212" name="telefono"/>
             </div>
           </div>
           
@@ -162,16 +147,15 @@
           <div class="form-row">
             <div class="form-group">
               <label for="employee-code" class="form-label">Código de empleado</label>
-              <input type="text" id="employee-code" class="form-input" placeholder="M0000" name="codigo"/>
+              <input type="text" id="employee-code" class="form-input" placeholder="M0000" name="codigo_empleado"/>
             </div>
             
             <div class="form-group">
               <label for="user-password" class="form-label">Clave de Usuario</label>
-              <input type="password" id="user-password" class="form-input" placeholder="****" name="clave"/>
+              <input type="password" id="user-password" class="form-input" placeholder="****" name="clave_usuario"/>
             </div>
-            
           </div>
-          <a type="submit" class="submit-button" href="horarios">Registrar</a>
+          <button type="button" class="submit-button">Registrar</button>
         </form>
       </main>
     </div>
