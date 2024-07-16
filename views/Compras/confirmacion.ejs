@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot - Compras</title>
+    <link rel="stylesheet" href="/Compras/css/side.css">
+    <link rel="stylesheet" href="/Compras/css/confirmacion.css">
+    <!--Por si acaso no se aplica el de arriba-->
+    <link rel="stylesheet" href="/Compras/routes/css/confirmacion.css">
+    <link rel="shortcut icon" href="/Compras/resources/icon.jpeg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="/Compras/resources/iconos_barra/icono_inicio.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/icono_ventas.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/icono_compras.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/icono_rrhh.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/icono_inventario.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/icono_mantenimiento.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/icono_cocina.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/icono_reservas.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+
+        <div id="principal">
+            <div class="box-title-prov">
+                <h2 id="title-prov">Orden de Compra</h2>
+            </div>
+            <div class="dashboard">
+                <form action="/compra/confirmacion" method="post" id="form1">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <div class="formulario">
+                        <h3 class="subtitle">Producto</h3>
+                        <p id="producto"><%= dato2[0] %></p>
+                        <h3 class="subtitle">Fecha de Compra</h3>
+                        <p id="fecha"><%= dato2[1] %></p>
+                        <h3 class="subtitle">Cantidad</h3>
+                        <p id="cantidad"><%= dato2[2] %></p>
+                        <h3 class="subtitle">Total(IVA)</h3>
+                        <p id="total"> <%= dato2[3] %> </p>
+                        <h3 class="subtitle">Condicion</h3>
+                        <p id="orden"><%= dato2[4] %></p>
+                    </div>
+                    <div class="confirmacion">
+                        <img class="foto-cart" src="/Compras/resources/check.png" alt="Carrito">
+                        <p class="confirm-msg">¿Desea Confirmar su compra?</p>
+                        <input id="btn-regis" type="submit" value="Confirmar">
+                        <input id="btn-cancel" type="submit" value="Cancelar">
+                        <input style="display: none;" id="id-solicitud" readonly type="text" name="id" value="<%= dato %>">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main> 
+    <script src="/Compras/js/confirmacion.js"></script>
+</body>
+</html>
