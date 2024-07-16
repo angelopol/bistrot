@@ -1,5 +1,6 @@
 import { ReservaModel } from '../models/reserva.js'
 import { validarMesas } from '../schemes/validacion_mesas.js'
+import { validar_reserva } from '../schemes/validacion_reserva.js'
 
 export class ReservaController{
      getAll = async(req, res) =>{
@@ -20,15 +21,16 @@ export class ReservaController{
     }
 
     create=async (req, res)=> {
-        //const result = //validarMesas(req.body)
+        console.log(req.body)
+        const result = validar_reserva(req.body)
   
-        //if (!result.success) {
-        //return res.status(400).json({ error: JSON.parse(result.error.message) })
-        //}
-        //const input = result.data
-        const { fecha, personas, hora_inicio, hora_fin, nombre, apellido, cedula, idmesa, idtelefono, iddescripcion } = req.body;
+        if (!result.success) {
+            return res.status(400).json({ error: JSON.parse(result.error.message) })
+        }
+        const input = result.data
+        const { fecha, personas, hora_inicio, hora_fin, nombre, apellido, cedula, idmesa, idtelefono, iddescripcion } = input;
 
-        const nueva_reserva = await ReservaModel.create(req.body)
+        const nueva_reserva = await ReservaModel.create(input)
         res.redirect('/')
     }
         

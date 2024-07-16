@@ -5,8 +5,6 @@ export class InventarioMesasController{
     mostrarReserva = async (req,res)=>{
         let rese= new ReservaController();
         let reservas= await rese.getAll(req,res);
-        console.log("lol")
-        console.log(reservas)
         res.render('reservacion',{data: reservas})
     }
     mostrarBar = async (req,res)=>{
@@ -23,5 +21,8 @@ export class InventarioMesasController{
     }
     mostrarReporte = async (req,res)=>{
         res.render('Reporte',{data: null})
+    }
+    mostrarModificar = async (req,res)=>{
+        res.render('modificarReserva',{data: null})
     }
 }

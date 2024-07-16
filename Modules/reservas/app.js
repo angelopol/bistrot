@@ -2,15 +2,16 @@ import express, { json } from 'express' // require -> commonJS
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url';
 import methodOverride from 'method-override'
-import { corsMiddleware } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/cors.js'
-import { authenticated } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/auth.js'
+import { corsMiddleware } from '../../global/middlewares/cors.js'
+import { authenticated } from '../../global/middlewares/auth.js'
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
 import { InventarioMesasController } from './controllers/controlador.js';
-import {ReservaController} from './controllers/reserva.js';
+import { ReservaController } from './controllers/reserva.js';
 
-    const controladorInventario= new InventarioMesasController();
+
+    const controladorInventario = new InventarioMesasController();
     const controladorReserva = new ReservaController();
     const app = express()
     const __filename = fileURLToPath(import.meta.url);
@@ -27,6 +28,7 @@ import {ReservaController} from './controllers/reserva.js';
     app.use(bodyParser.json())
     app.use(express.static(path.join(__dirname, 'routes')));
     //Vista para el modulo de reservas
+
     app.get('/',controladorInventario.mostrarReserva);
 
     app.get('/css/reservas.css',(req,res)=>{
@@ -53,6 +55,12 @@ import {ReservaController} from './controllers/reserva.js';
         res.sendFile(path.join(__dirname, 'views/Reporte.css'))
     });
 
+    app.get('/reservas/modificar',controladorInventario.mostrarModificar);
+    
+    app.get('css/modificarReserva.css',(req,res)=>{
+        res.sendFile(path.join(__dirname, 'views/modificarReserva.css'))
+    });
+
     app.get('/mesas',controladorInventario.mostrarMesas);
     
     app.get('/css/mesass.css',(req,res)=>{
@@ -66,6 +74,8 @@ import {ReservaController} from './controllers/reserva.js';
     });
     
     app.post('/reservaciones/crear',controladorReserva.create);
+
+    app.delete('/reservaciones/eliminar',controladorReserva.delete);
 
     const PORT = process.env.PORT ?? 1234
     app.listen(PORT, () => {

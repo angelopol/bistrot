@@ -5,7 +5,7 @@ export class MesasController{
     getAll = async(req, res)=> {
         const reservas = await MesasModel.listar()
         if (reservas) {
-            return res.json(reservas)
+            return reservas
         }
         res.status(404).json({ message: 'No hay mesas en la base de datos' })
     }
@@ -14,7 +14,7 @@ export class MesasController{
         const { id } = req.params
         const reserva = await MesasModel.encontrar({id})
         if (reserva) {
-            return res.json(reserva)
+            return reserva
         }
         res.status(404).json({ message: 'Mesa no encontrada' })
     }

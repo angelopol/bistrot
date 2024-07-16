@@ -1,15 +1,15 @@
 import z from 'zod';
 
 const validacion_reserva = z.object({
-    cantidad_personas: z.number({required_error: 'La cantidad de personas es requerida',
+    personas: z.number({required_error: 'La cantidad de personas es requerida',
         invalid_type_error: 'La cantidad de personas debe ser un número'
     }).positive({message: 'La cantidad de personas debe ser positiva'}).max(40, {message: 'La cantidad de personas debe ser menor a 40'}),
 
-    fecha_inicio: z.date({required_error: 'La fecha de inicio es requerida',
-    }),
+    cedula: z.number({required_error: 'El ID del cliente es requerido',
+        invalid_type_error: 'El ID del cliente debe ser un número'
+    }).positive({message: 'El ID del cliente debe ser positivo'}).max(8, {message: 'El ID del cliente debe ser menor a 8'}).
+    min(7, {message: 'El ID del cliente debe ser mayor a 7'}),
 
-    fecha_fin: z.date({required_error: 'La fecha de fin es requerida',
-    }),
     descripcion: z.string({required_error: 'El tipo de evento es requerido',
         invalid_type_error: 'El tipo de evento debe ser un string'
     }).max(50, {message: 'El tipo de evento debe tener menos de 100 caracteres'}),

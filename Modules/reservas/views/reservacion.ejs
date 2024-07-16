@@ -93,9 +93,9 @@
                             <li><button class="btn-list mesas">Mesas</button></li>
                             <li><button class="btn-list bar">Barra</button></li>
                             <li><button class="btn-list reserva">Crear Reserva</button></li>
-                            <li><button class="btn-list evento">Crear Evento</button></li>
                             <li><button class="btn-list delete-reserv">Eliminar Reserva</button></li>
-                            <li><button class="btn-list report">Reporte</button></li>
+                            <li><button class="btn-list confirm-reserv">confirmar reserva</button></li>
+                            <li><button class="btn-list modify-reserv">modificar Reserva</button></li>
                         </ul>
                     </div>
                 </main>
@@ -108,31 +108,32 @@
         let botonReserva = document.querySelector('.btn-list.reserva');
         let botonEvento = document.querySelector('.btn-list.evento');
         let botonEliminarReserva = document.querySelector('.btn-list.delete-reserv');
-        let botonReporte = document.querySelector('.btn-list.report');  
+        let botonModificar = document.querySelector('.btn-list confirm-reserv');  
 
         botonMesas.addEventListener('click', () => {
-            window.location.href = 'mesas.html';
+            window.location.href = '/mesas'; // Cambia a la ruta del servidor
         });
 
         botonBar.addEventListener('click', () => {
-            window.location.href = 'bar.html';
+            window.location.href = '/bar'; // Cambia a la ruta del servidor
         });
 
         botonReserva.addEventListener('click', () => {
-            window.location.href = 'CrearReservas.html';
+            window.location.href = '/CrearReservas'; // Cambia a la ruta del servidor
         });
 
-        botonEvento.addEventListener('click', () => {
-            window.location.href = 'CrearEvento.html';
+        botonEliminarReserva.addEventListener('click', () => {
+            window.location.href = '/reservas/eliminar'; // Cambia a la ruta del servidor
         });
 
-        botonReporte.addEventListener('click', () => {
-            window.location.href = 'reporte.html';
+        botonModificar.addEventListener('click', () => {
+            window.location.href = '/reservas/modificar'; // Cambia a la ruta del servidor
         });
-
 
 
         
     </script>
 </body>
 </html>
+
+

@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesas</title>
-    <link rel="stylesheet" href="mesas.css">
+    <title>Crear una Reservación</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
-
+    <link rel="stylesheet" href="./modificarReserva.css">
 </head>
 <body>
     <div class="heading">
@@ -42,37 +41,47 @@
         <div class="contenido">
             <div class="contenidop">
                 <div class="Reservar">
-                    <h2>
-                        <a href="/">
-                          <img src="imagenes/icono_salida.png" alt="regresar">
-                        </a>
-                        Reservar
-                      </h2>
+                  <h2>
+                    <a href="/">
+                      <img src="imagenes/icono_salida.png" alt="regresar">
+                    </a>
+                    Reservar
+                  </h2>
                 </div>
                 <div class="seccion">
-                    <h2>Mesas</h2>
+                    <h2>Reservación de mesa</h2>
                 </div>
             </div>
         
         
             <div class="distribucion">
-                <div class="interior">
-                    <h3>Interior</h3>
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>6</div>
-                    <div>7</div>
-                    <div>8</div>
-                    <div>9</div>
-                </div>
-                <div class="exterior">
-                    <h3>Exterior</h3>
-                    <div>10</div>
-                    <div>11</div>
-                </div>
+
+        
+<form action="reservaciones/crear" method="POST">
+  <div class="form-group">
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="fecha" required>
+  </div>
+
+  <div class="form-group">
+    <label for="hora">Hora de inicio:</label>
+    <input type="time" id="hora" name="hora_inicio" required>
+  </div>
+
+  <div class="form-group">
+    <label for="hora">Hora de finalizacion:</label>
+    <input type="time" id="hora" name="hora_fin" required>
+  </div>
+
+  <div class="form-group">
+    <label for="descripcion">descripcion</label>
+    <input type="text" id="iddescripcion" name="iddescripcion" required>
+  </div>
+
+  <button type="submit">Registrar Reserva</button>
+</form>
+
+                    
             </div>
 
 
@@ -80,3 +89,4 @@
     </div>
 </body>
 </html>
+
