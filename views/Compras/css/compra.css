@@ -1,0 +1,203 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 800;
+}
+
+body {
+    overflow: hidden;
+}
+
+main {
+    font-family: 'Montserrat-Medium';
+    color: #02676F;
+}
+
+#principal {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    height: 85vh;
+    width: 75vw;
+}
+
+.box-title-comp {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat-Bold';
+}
+
+#title-comp {
+    font-size: 1.5rem;
+}
+
+.title-exit {
+    cursor: pointer;
+    width: 40px;
+}
+
+.dashboard {
+    display: flex;
+    height: 100%;
+    gap: 5%;
+    width: 100%;
+    padding: 20px;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    height: 90%;
+}
+
+#title-table {
+    font-size: 0.8em;
+    padding: 10px;
+}
+
+#tabla-comp, #tabla-soli {
+    width: 100%;
+    font-size: 0.8rem;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #E0E0E0;
+}
+
+.comp-clase {
+    color: #828282;
+    padding: 10px;
+}
+
+.right-side {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#select-prod {
+    appearance: none;
+    width: 60%;
+    border-color: #D9D9D9;
+    color: #828282;
+    padding: 10px;
+    outline: none;
+    border-width: 2px;
+    font-size: 0.8rem;
+    border-color: #D9D9D9;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+select {
+    appearance: none;
+    width: 60%;
+    border-color: #D9D9D9;
+    color: #828282;
+    padding: 10px;
+    outline: none;
+    border-width: 2px;
+    font-size: 0.8rem;
+}
+
+select:focus {
+    border-color: #02676F;
+}
+
+#select-prov {
+    width: 100%;
+}
+
+#input-cant {
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    border-color: #D9D9D9;
+    border-width: 2px;
+    border-style: solid;
+    font-size: 0.8rem;
+    width: 30%;
+    outline: none;
+    transition: all 0.5s;
+}
+
+#input-cant:focus {
+    border-color: #02676F;
+}
+
+#confirm-compra-btn {
+    padding: 15px;
+    width: 100%;
+    background-color: #0F624A;
+    color: white;
+    font-family: 'Montserrat-Bold';
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.box-producto {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+option {
+    appearance: none;
+}
+
+.help-comp {
+    color: #828282;
+    font-size: 0.8rem;
+}
+
+
+#tabla-soli {
+    font-size: 0.8rem;
+}
+
+.content-soli {
+    width: 100%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #E0E0E0;
+    border-radius: 8px;
+    height: 40%;
+}
+
+.box-prov {
+    gap: 5px;
+    display: flex;
+}
+
+#btn-filtrar {
+    width: 50%;
+    background-color: white;
+    font-family: 'Montserrat-Bold';
+    font-size: 0.8rem;
+    color: #0F624A;
+    border-style: solid;
+    border-color: #0F624A;
+    border-width: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}

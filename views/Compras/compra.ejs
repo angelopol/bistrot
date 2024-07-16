@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot - Compras</title>
+    <link rel="stylesheet" href="../Compras/css/side.css">
+    <link rel="stylesheet" href="../Compras/css/compra.css">
+    <link rel="shortcut icon" href="../Compras/resources/icon.jpeg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="../Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="../Compras/resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+
+        <div id="principal">
+            <!--Iniciar Aqui el modulo-->
+            <h2 id="compras-title">Compras</h2>
+            <div class="dashboard">
+                <div class="left-side">
+                    <table id="tabla-registro">
+                        <h3 id="title-table">Historial de Compra</h3>
+                        <thead>
+                          <tr>
+                            <th class="registro-clase">Producto</th>
+                            <th class="registro-clase">ID Orden</th>
+                            <th class="registro-clase">Cantidad</th>
+                            <th class="registro-clase">Costo</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tabla-registro-body">
+                            <% if (data) { %>
+                                <% for (var i = 0; i < data.length; i++) { %>
+                                    <tr>
+                                        <td><%= data[i].Producto %></td>
+                                        <td><%= data[i].ID %></td>
+                                        <td><%= data[i].Cantidad %></td>
+                                        <td><%= data[i].Precio %></td>
+                                    </tr>
+                                <% } %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="vertical-divider"></div>
+                <div class="right-side">
+                    <div class="box-saldo">
+                        <h2 id="saldo">00000</h2>
+                        <h3 id="saldo-title">Saldo Actual</h3>
+                    </div>
+                    <div class="box-compra">
+                        <button id="btn-compra">Realizar Compra</button>
+                        <img id="compra-icon" alt="Icono de Compra" src="../Compras/resources/comprar.png">
+                    </div>
+                    <div class="box-prov">
+                        <button id="btn-prov">Proveedores</button>
+                        <img id="prov-icon" alt="Icono de Proveedores" src='../Compras/resources/proveedor.png'>
+                    </div>
+                    <div class="box-prov">
+                        <button id="btn-prod">Productos</button>
+                        <img id="prov-icon" alt="Icono de Proveedores" src='../Compras/resources/products.png'>
+                    </div>
+                    <div class="box-prov">
+                        <button id="btn-soli">Requisiciones</button>
+                        <img id="prov-icon" alt="Icono de Proveedores" src='../Compras/resources/request.png'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> 
+
+    <script src="../Compras/js/index.js"></script>
+</body>
+</html>
