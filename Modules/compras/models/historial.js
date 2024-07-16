@@ -54,6 +54,15 @@ export class HistorialModel{
     }
   }
 
+  static async actualizar({id}){
+    var recibido = true
+    try {
+      await connection.execute('UPDATE Historial SET Recibido=? WHERE ID=?',[recibido,id])
+    } catch (error) {
+      throw new Error("Error modificando estatus de compra")
+    }
+  }
+
   static async eliminar(){
     try {
       await connection.execute('DELETE FROM Historial WHERE ID = LAST_INSERT_ID()')

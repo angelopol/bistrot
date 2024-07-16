@@ -48,6 +48,14 @@ export class HistorialController {
         
         res.redirect('/compras-index')
     }
+    //metodo del controlador que permite actualizar el estatus de recibido
+    update = async (req,res)=>{
+        //Asegurate que el id que agregues a la ruta se llame "id"
+        const {id} = req.params
+        await HistorialModel.actualizar({id})
+
+        //Aqui puedes colocar la vista que quieres que se vea en inventario
+    }
 }
 
 export class ProductoController{
@@ -186,7 +194,7 @@ export class ProveedorController{
 export class SolicitudController{
     create = async (req,res)=>{
         const result = ValidarSolicitudes(req.body)
-        console.log(result)
+        //console.log(result)
         if(!result.success){
             res.redirect('/compras-index/soli');
         }else{
