@@ -1,19 +1,16 @@
-let mysql = require("mysql");
+const express = require('express');
+const app = express();
+const port = 3000;
 
-let connection = mysql.createConnection({
-    host: "127.0.0.1", 
-    database: "rrhh",
-    user: "root",
-    password: "",
+// Importar las rutas
+const routes = require('./routes');
+
+// Usar las rutas
+app.use('/', routes);
+
+// Servir archivos estáticos
+app.use(express.static('public'));
+
+app.listen(port, () => {
+    console.log(`Servidor escuchando en http://localhost:${port}`);
 });
-
-connection.connect(error => {
-    if (error) {
-        console.error('Error connecting to the database:', error);
-        return;
-    }
-    console.log('Connected to the database.');
-});
-
-
-module.exports = connection;
