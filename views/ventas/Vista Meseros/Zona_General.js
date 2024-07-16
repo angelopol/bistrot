@@ -368,4 +368,4 @@ async function eliminar_pedido(id_mesa){
 }
 
 // llamamos una funcion una serie de tiempo para ver si (Cocina-bar) hizo una actualizacion en los estatus del pedido
-//setInterval(actualizacion_pedidos, 20000); 
+setInterval(actualizacion_pedidos, 20000); 

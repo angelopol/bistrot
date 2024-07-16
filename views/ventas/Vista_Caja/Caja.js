@@ -125,31 +125,6 @@ function changeTab(tab) {
 });
 
 
-// Función para eliminar una cuenta
-function eliminarCuenta(id) {
-    fetch(`/cuentas/${id}`, {
-        method: 'DELETE',
-    })
-    .then((response) => {
-        if (response.ok) {
-            console.log(`Cuenta con ID: ${id} eliminada exitosamente`);
-            // Actualizar la interfaz de usuario
-            eliminarElementoDOM(`cuenta-${id}`);
-        } else {
-            console.error(`Error al eliminar la cuenta con ID: ${id}`);
-            // Mostrar un mensaje de error al usuario
-            mostrarMensajeError('No se pudo eliminar la cuenta');
-        }
-    })
-    .catch((error) => {
-        console.error('Error al eliminar la cuenta:', error);
-        // Mostrar un mensaje de error al usuario
-        mostrarMensajeError('Ocurrió un error al eliminar la cuenta');
-    });
-}
-
-// Función para pagar una cuenta
-
 
 function encontrar(mesa_id,pedidos_check) {
   let pedido = null;
@@ -337,6 +312,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+// Función para pagar una cuenta
 function PagoCuenta() {
   
   if (selectedTableId !== null && selectedMesa) {
@@ -346,78 +323,87 @@ function PagoCuenta() {
       modal.className = 'modal';
       modal.id = `modal-${selectedTableId}`;
       
+      
       if (document.querySelector("#Terraza").classList.contains("visible")) {
-          let pedido = encontrar(selectedTableId,pedidos_realizados_t);
-          modal.innerHTML = `
-              <div id="Modal${selectedTableId}" class="modal-content">
-                  <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
-                  <h3>Detalles del Pedido</h3>
-                  <div id="pedidoDetalles"></div>
-                  <div id="totalPedido">Monto Total: $${pedido.total}</div>
-                  <hr>
-                  <form id="formCliente">
-                      <h3>Datos del Cliente</h3>
-                      <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
-                      <input type="text" id="nombreCliente" name="nombreCliente" required>
-                      <label for="rifCedula">RIF o Cédula:</label>
-                      <input type="text" id="rifCedula" name="rifCedula" required>
-                      <label for="direccion">Dirección:</label>
-                      <input type="text" id="direccion" name="direccion">
-                      <label for="tipoEstado">Tipo de Estado:</label>
-                      <input type="text" id="tipoEstado" name="tipoEstado">
-                      <label for="telefono">Teléfono:</label>
-                      <input type="tel" id="telefono" name="telefono">
-                      <label for="correo">Correo Electrónico:</label>
-                      <input type="email" id="correo" name="correo">
-                  </form>
-                  <hr>
-                  <form id="formPago">
-                      <label for="metodoPago">Seleccione el método de pago:</label>
-                      <select id="metodoPago" name="metodoPago">
-                          <option value="efectivo">Efectivo</option>
-                          <option value="tarjeta">Tarjeta</option>
-                      </select>
-                      <button type="submit" class="button-pagar">Pagar</button>
-                  </form>
-                  <button class="button-cerrar-modal">Cerrar</button>
-              </div>
-          `;
+
+
+        if (selectedMesaetiqueta.querySelector(".table-status").textContent === 'Cuenta'){
+            let pedido = encontrar(selectedTableId,pedidos_realizados_t);
+            modal.innerHTML = `
+                <div id="Modal${selectedTableId}" class="modal-content">
+                    <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                    <h3>Detalles del Pedido</h3>
+                    <div id="pedidoDetalles"></div>
+                    <div id="totalPedido">Monto Total: $${pedido.total}</div>
+                    <hr>
+                    <form id="formCliente">
+                        <h3>Datos del Cliente</h3>
+                        <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
+                        <input type="text" id="nombreCliente" name="nombreCliente" required>
+                        <label for="rifCedula">RIF o Cédula:</label>
+                        <input type="text" id="rifCedula" name="rifCedula" required>
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion">
+                        <label for="tipoEstado">Tipo de Estado:</label>
+                        <input type="text" id="tipoEstado" name="tipoEstado">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo">
+                    </form>
+                    <hr>
+                    <form id="formPago">
+                        <label for="metodoPago">Seleccione el método de pago:</label>
+                        <select id="metodoPago" name="metodoPago">
+                            <option value="efectivo">Efectivo</option>
+                            <option value="tarjeta">Tarjeta</option>
+                        </select>
+                        <button type="submit" class="button-pagar">Pagar</button>
+                    </form>
+                    <button class="button-cerrar-modal">Cerrar</button>
+                </div>
+            `;
+
+        }
       } else if (document.querySelector("#General").classList.contains("visible")) {
-          let pedido = encontrar(selectedTableId,pedidos_realizados);
-          modal.innerHTML = `
-              <div id="Modal${selectedTableId}" class="modal-content">
-                  <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
-                  <h3>Detalles del Pedido</h3>
-                  <div id="pedidoDetalles"></div>
-                  <div id="totalPedido">Monto Total: $${pedido.total}</div>
-                  <hr>
-                  <form id="formCliente">
-                      <h3>Datos del Cliente</h3>
-                      <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
-                      <input type="text" id="nombreCliente" name="nombreCliente" required>
-                      <label for="rifCedula">RIF o Cédula:</label>
-                      <input type="text" id="rifCedula" name="rifCedula" required>
-                      <label for="direccion">Dirección:</label>
-                      <input type="text" id="direccion" name="direccion">
-                      <label for="tipoEstado">Tipo de Estado:</label>
-                      <input type="text" id="tipoEstado" name="tipoEstado">
-                      <label for="telefono">Teléfono:</label>
-                      <input type="tel" id="telefono" name="telefono">
-                      <label for="correo">Correo Electrónico:</label>
-                      <input type="email" id="correo" name="correo">
-                  </form>
-                  <hr>
-                  <form id="formPago">
-                      <label for="metodoPago">Seleccione el método de pago:</label>
-                      <select id="metodoPago" name="metodoPago">
-                          <option value="efectivo">Efectivo</option>
-                          <option value="tarjeta">Tarjeta</option>
-                      </select>
-                      <button type="submit" class="button-pagar">Pagar</button>
-                  </form>
-                  <button class="button-cerrar-modal">Cerrar</button>
-              </div>
-          `;
+
+        if (selectedMesaetiqueta.querySelector(".table-status").textContent === 'Cuenta'){
+            let pedido = encontrar(selectedTableId,pedidos_realizados);
+            modal.innerHTML = `
+                <div id="Modal${selectedTableId}" class="modal-content">
+                    <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                    <h3>Detalles del Pedido</h3>
+                    <div id="pedidoDetalles"></div>
+                    <div id="totalPedido">Monto Total: $${pedido.total}</div>
+                    <hr>
+                    <form id="formCliente">
+                        <h3>Datos del Cliente</h3>
+                        <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
+                        <input type="text" id="nombreCliente" name="nombreCliente" required>
+                        <label for="rifCedula">RIF o Cédula:</label>
+                        <input type="text" id="rifCedula" name="rifCedula" required>
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion">
+                        <label for="tipoEstado">Tipo de Estado:</label>
+                        <input type="text" id="tipoEstado" name="tipoEstado">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo">
+                    </form>
+                    <hr>
+                    <form id="formPago">
+                        <label for="metodoPago">Seleccione el método de pago:</label>
+                        <select id="metodoPago" name="metodoPago">
+                            <option value="efectivo">Efectivo</option>
+                            <option value="tarjeta">Tarjeta</option>
+                        </select>
+                        <button type="submit" class="button-pagar">Pagar</button>
+                    </form>
+                    <button class="button-cerrar-modal">Cerrar</button>
+                </div>
+            `;
+        }
       }
 
       modalContainer.appendChild(modal);
@@ -445,6 +431,7 @@ function PagoCuenta() {
       formCliente.addEventListener('submit', (event) => {
           event.preventDefault();
 
+
           // Aquí puedes realizar validaciones si es necesario antes de agregar los detalles del pedido
 
           // Mostrar detalles del cliente
@@ -454,6 +441,8 @@ function PagoCuenta() {
           const clienteTipoEstado = formCliente.elements['tipoEstado'].value;
           const clienteTelefono = formCliente.elements['telefono'].value;
           const clienteCorreo = formCliente.elements['correo'].value;
+
+          guargar_registro_cliente_bd();
 
           // Mostrar detalles del pedido (ejemplo de cómo agregar un elemento al pedido)
           const pedidoItemHTML = `
@@ -477,7 +466,8 @@ function PagoCuenta() {
       const formPago = modal.querySelector('#formPago');
       formPago.addEventListener('submit', (event) => {
           event.preventDefault();
-          const metodoPago = formPago.elements['metodoPago'].value;
+          // Capturar método de pago
+          const metodoPago = capturarMetodoPago(formPago);
           alert(`Pago realizado con ${metodoPago}`);
           modal.style.display = 'none';
           document.body.style.overflow = 'auto';
@@ -489,9 +479,6 @@ function PagoCuenta() {
 
 
 
-
-
-
 // Recorridos de las mesas para la vista de General, Terrazas
 function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
     // Recorrer las mesas de la vista de terraza
@@ -499,7 +486,7 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
         pedido_mesas_terraza.forEach(pedidos => {
             tableCards2.forEach((mesas, mesas_id) => {
                 // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
-                if (pedidos.estatus === 1 && pedidos.tableId === String(mesas_id + 1)) {
+                if (pedidos.estatus === 4 && pedidos.tableId === String(mesas_id + 1)) {
                     const tableStatusElement = mesas.querySelector('.table-status');
                     tableStatusElement.textContent = 'Cuenta';
 
@@ -515,7 +502,7 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
             tableCards.forEach((mesas, mesas_id) => {
               
                 // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
-                if (pedidos.estatus === 1 && pedidos.tableId === String(mesas_id + 1)) {
+                if (pedidos.estatus === 4 && pedidos.tableId === String(mesas_id + 1)) {
                     const tableStatusElement = mesas.querySelector('.table-status');
                     tableStatusElement.textContent = 'Cuenta';
                 }
@@ -523,3 +510,5 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
         });
     }
 }
+
+
