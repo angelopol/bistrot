@@ -326,10 +326,11 @@ devolverBoton.addEventListener("click" , async ()=>{
     let cardPedido = document.getElementById(`${idPedido}`)
     cardPedido.classList.remove("ocupado")
     let cardPedidoStatus = cardPedido.lastElementChild;
-    cardPedidoStatus.textContent = ``;
+    cardPedidoStatus.textContent = `ORDEN`;
     idPedido = ""
     quitarEstatusClickeado()
     vaciarFichaLateralDerecha()
+    agregarFuncionDelBotonListo()
 })
 
 
