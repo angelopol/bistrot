@@ -4,7 +4,7 @@ const schema_cliente = z.object({
     // Validamos si es un string
     nombre_cliente_empresa: z.string().min(1, { message: 'El nombre del cliente o empresa no puede estar vacío' }),
     // Validamos si es un string
-    rif_cedula: z.string().min(1, { message: 'El RIF o cédula no puede estar vacío' }),
+    rif_cedula: z.string().min(8, { message: 'El RIF o cédula no puede estar vacío' }),
     // Validamos si es un string
     direccion: z.string().min(1, { message: 'La dirección no puede estar vacía' }),
     // Validamos si es un string y refinamos para que sea 'natural' o 'juridico'

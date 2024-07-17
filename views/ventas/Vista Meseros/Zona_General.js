@@ -301,7 +301,7 @@ function actualizar_mesas(cambio_estatus_mesas){
         })
     })
 
-    recorrido_mesas(pedidos_mesas)  // actualizamos lo estatus de la mesas en el front
+    recorrido_mesas(pedidos_realizados)  // actualizamos lo estatus de la mesas en el front
     
 }
 

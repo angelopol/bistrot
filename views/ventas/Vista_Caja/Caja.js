@@ -379,17 +379,17 @@ function PagoCuenta() {
                     <form id="formCliente">
                         <h3>Datos del Cliente</h3>
                         <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
-                        <input type="text" id="nombreCliente" name="nombreCliente" required>
+                        <input type="text" id="nombreCliente" name="nombreCliente" required minlength="3">
                         <label for="rifCedula">RIF o Cédula:</label>
-                        <input type="text" id="rifCedula" name="rifCedula" required>
+                        <input type="text" id="rifCedula" name="rifCedula" required minlength="8">
                         <label for="direccion">Dirección:</label>
-                        <input type="text" id="direccion" name="direccion">
+                        <input type="text" id="direccion" name="direccion" required minlength="3">
                         <label for="tipoEstado">Tipo de Estado:</label>
-                        <input type="text" id="tipoEstado" name="tipoEstado">
+                        <input type="text" id="tipoEstado" name="tipoEstado" required>
                         <label for="telefono">Teléfono:</label>
-                        <input type="tel" id="telefono" name="telefono">
+                        <input type="tel" id="telefono" name="telefono" required>
                         <label for="correo">Correo Electrónico:</label>
-                        <input type="email" id="correo" name="correo">
+                        <input type="email" id="correo" name="correo" required>
                     </form>
                     <hr>
                     <form id="formPago">
@@ -426,53 +426,77 @@ function PagoCuenta() {
       // Manejar el envío del formulario de cliente y pedido
       const formCliente = modal.querySelector('#formCliente');
       const pedidoDetalles = modal.querySelector('#pedidoDetalles');
-      const totalPedido = modal.querySelector('#totalPedido');
-
-      formCliente.addEventListener('submit', (event) => {
-          event.preventDefault();
-
-
-          // Aquí puedes realizar validaciones si es necesario antes de agregar los detalles del pedido
-
-          // Mostrar detalles del cliente
-          const clienteNombre = formCliente.elements['nombreCliente'].value;
-          const clienteRIF = formCliente.elements['rifCedula'].value;
-          const clienteDireccion = formCliente.elements['direccion'].value;
-          const clienteTipoEstado = formCliente.elements['tipoEstado'].value;
-          const clienteTelefono = formCliente.elements['telefono'].value;
-          const clienteCorreo = formCliente.elements['correo'].value;
-
-          guargar_registro_cliente_bd();
-
-          // Mostrar detalles del pedido (ejemplo de cómo agregar un elemento al pedido)
-          const pedidoItemHTML = `
-              <div class="factura-item">
-                  <span class="item-nombre">Cliente: ${clienteNombre}</span>
-                  <span class="item-rif">RIF/Cédula: ${clienteRIF}</span>
-                  <span class="item-direccion">Dirección: ${clienteDireccion}</span>
-                  <span class="item-estado">Tipo de Estado: ${clienteTipoEstado}</span>
-                  <span class="item-telefono">Teléfono: ${clienteTelefono}</span>
-                  <span class="item-correo">Correo Electrónico: ${clienteCorreo}</span>
-              </div>
-          `;
-          pedidoDetalles.innerHTML = pedidoItemHTML;
-
-         
-          // Limpiar campos del formulario
-          formCliente.reset();
-      });
 
       // Manejar el envío del formulario de pago
       const formPago = modal.querySelector('#formPago');
+
       formPago.addEventListener('submit', (event) => {
-          event.preventDefault();
-          // Capturar método de pago
-          const metodoPago = capturarMetodoPago(formPago);
-          alert(`Pago realizado con ${metodoPago}`);
-          modal.style.display = 'none';
-          document.body.style.overflow = 'auto';
-          // Aquí podrías añadir lógica adicional para procesar el pago, como actualizar estado en el sistema, etc.
-      });
+        event.preventDefault();
+
+        // Aquí puedes realizar validaciones si es necesario antes de agregar los detalles del pedido
+
+        // Mostrar detalles del cliente
+        const clienteNombre = formCliente.elements['nombreCliente'].value.trim();
+        const clienteRIF = formCliente.elements['rifCedula'].value.trim();
+        const clienteDireccion = formCliente.elements['direccion'].value.trim();
+        const clienteTipoEstado = formCliente.elements['tipoEstado'].value.trim();
+        const clienteTelefono = formCliente.elements['telefono'].value.trim();
+        const clienteCorreo = formCliente.elements['correo'].value.trim();
+
+        // Validar el formato del número de teléfono
+        const telefonoRegex = /^\+?\d{1,3}?[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/;
+
+        if (clienteTelefono !== '' && !telefonoRegex.test(clienteTelefono)) {
+            alert('Por favor, ingrese un número de teléfono válido.');
+            return;
+        }
+
+        // Validar el tipo de estado
+        const tiposEstado = ['natural', 'juridico'];
+
+        if (!tiposEstado.includes(tipoEstado.toLowerCase())) {
+            alert('El tipo de estado debe ser "natural" o "juridico".');
+            return;
+        }
+
+        cliente = {
+        nombre_cliente_empresa : clienteNombre,
+        rif_cedula : clienteRIF,
+        direccion : clienteDireccion,
+        tipo_estado : clienteTipoEstado,
+        telefono : clienteTelefono,
+        correo_electronico : clienteCorreo
+
+        }
+
+        guargar_registro_cliente_bd(cliente);
+
+        // Mostrar detalles del pedido (ejemplo de cómo agregar un elemento al pedido)
+        const pedidoItemHTML = `
+            <div class="factura-item">
+                <span class="item-nombre">Cliente: ${clienteNombre}</span>
+                <span class="item-rif">RIF/Cédula: ${clienteRIF}</span>
+                <span class="item-direccion">Dirección: ${clienteDireccion}</span>
+                <span class="item-estado">Tipo de Estado: ${clienteTipoEstado}</span>
+                <span class="item-telefono">Teléfono: ${clienteTelefono}</span>
+                <span class="item-correo">Correo Electrónico: ${clienteCorreo}</span>
+            </div>
+        `;
+        pedidoDetalles.innerHTML = pedidoItemHTML;
+
+        // Obtener el valor seleccionado en el campo de selección
+        const metodoPago = document.getElementById('metodoPago').value;
+
+        alert(`Pago realizado con ${metodoPago}`);
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+
+        // Limpiar campos del formulario
+        formCliente.reset();
+        formPago.reset();
+
+       });
+
   }
 }
 
@@ -512,3 +536,24 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
 }
 
 
+// funcion para guardar el registro del cliente en la base de datos
+async function guargar_registro_cliente_bd(cliente){
+
+    // creamos el pedido en nuestra tabla de facturas
+    fetch("http:localhost:1234/ventas/cliente", {
+        method : "POST",
+        headers : { "Content-Type" : "aplication/json" },
+        body : JSON.stringify(cliente)
+    })
+    .then((res) => {
+        if (res.ok) {
+            console.log('Solicitud exitosa');
+        } else {
+            console.error('Error en la solicitud');
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+}
