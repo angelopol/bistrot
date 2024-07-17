@@ -1,42 +1,23 @@
 import mysql from 'mysql2/promise';
 import 'dotenv/config'
 //import {promisify} from 'util';
-/*
-const db = {
-    host: '127.0.0.1' || process.env.DB_HOST,
-    user: 'root' || process.env.DB_USERNAME,
-    port: 3306 || process.env.DB_PORT,
-    password: '' || process.env.DB_PASSWORD,
-    database: 'bistrot' || process.env.DB_DATABASE,
-};
-
-*/
 
 const db = {
-    host: 'localhost:3306' || process.env.DB_HOST,
-    user: 'root' || process.env.DB_USERNAME,
-    port: 3306 || process.env.DB_PORT,
-    password: '' || process.env.DB_PASSWORD,
-    database: 'ventas' || process.env.DB_DATABASE,
+    host: "localhost",
+    user: "root",
+    port: 3306,
+    password: "$0p0rt3",
+    database: "bistrot",
 };
 
 
 // Crear la conexión
 const connection = await mysql.createConnection(db);
 
-/*
-// Conectar a la base de datos
-connection.connect((err) => {
-  if (err) {
-    console.error('Error al conectar a la base de datos:', err.stack);
-    return;
-  }
 
-  console.log('Conexión establecida con la base de datos MySQL');
-});
 
-connection.query = promisify(connection.query);
-*/
+
+
 
 export class VentasModel {
 

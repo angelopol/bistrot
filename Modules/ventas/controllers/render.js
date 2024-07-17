@@ -13,7 +13,6 @@ export class RenderController{
     renderMeserosTerraza= async(req,res)=>{
         res.render('ventas/Vista_Meseros/Mesero_Terraza')
     }
- 
     renderCaja= async(req,res)=>{
         res.render('ventas/Vista_Caja/Caja')
     }

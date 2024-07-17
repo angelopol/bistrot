@@ -341,7 +341,7 @@ body {
     align-content: center;
     color: #000;
     margin: auto;
-    margin-top: 80px;
+    margin-top: 0px;
     
     padding: 20px;
     border: 1px solid #888;
@@ -378,6 +378,32 @@ body {
     cursor: pointer;
 }
 
+/* Estilos para la factura */
+.factura-divider {
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+.factura-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.factura-item .item-nombre {
+    flex: 2;
+}
+
+.factura-item .item-cantidad {
+    flex: 1;
+    text-align: center;
+}
+
+.factura-item .item-precio {
+    flex: 1;
+    text-align: right;
+}
+
 .button-cerrar-modal {
     display: block;
     width: 100%;
@@ -393,4 +419,15 @@ body {
 
 .button-cerrar-modal:hover {
     background-color: #178566;
+}
+
+.factura-item {
+    margin-bottom: 10px;
+    
+    padding-bottom: 5px;
+}
+
+.cliente-datos {
+    margin-top: 20px;
+    padding-top: 10px;
 }

@@ -2,7 +2,6 @@ import express, { json } from 'express' // require -> commonJS
 import { corsMiddleware } from './global/middlewares/cors.js'
 import { routes } from './global/routes/routes.js'
 import { authenticated } from "./global/middlewares/auth.js"
-import { VentasRouter } from "Modules/ventas/routes/ventas.js"
 import methodOverride from 'method-override'
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
@@ -11,7 +10,6 @@ import 'dotenv/config'
 const app = express()
 app.set('view engine', 'ejs')
 app.use(json())
-app.use('/ventas',VentasRouter)
 app.use(cookieParser())
 app.use(corsMiddleware())
 app.use((req, res, next) => {authenticated(req, res, next)})

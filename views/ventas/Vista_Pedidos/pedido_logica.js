@@ -112,10 +112,10 @@ function cancelOrder(tipo_button) {
             // Muestra un mensaje de "Pedido cancelado"
             alert('¡Pedido cancelado!');
             // Redirige al usuario a la página Mesonero_Zona_General.html
-            window.location.href = '/ventas/meseros_general';
+            window.location.href = '/ventas/Vista_Meseros/meseros_general';
         } else {
             // Redirige al usuario a la página Mesonero_Zona_General.html
-            window.location.href = '/ventas/meseros_general';
+            window.location.href = '/ventas/Vista_Meseros/meseros_general';
         }
 
     } else if (origen === 'terraza'){
@@ -124,10 +124,10 @@ function cancelOrder(tipo_button) {
             // Muestra un mensaje de "Pedido cancelado"
             alert('¡Pedido cancelado!');
             // Redirige al usuario a la página Mesonero_Zona_General.html
-            window.location.href = '/ventas/meseros_terraza';
+            window.location.href = '/ventas/Vista_Meseros/meseros_terraza';
         } else {
             // Redirige al usuario a la página Mesonero_Zona_General.html
-            window.location.href = '/ventas/meseros_terraza';
+            window.location.href = '/ventas/Vista_Meseros/meseros_terraza';
         }
 
     }
@@ -158,9 +158,9 @@ function placeOrder() {
             price: parseFloat(item.price)
         });
     });
-
+    
     // crear pedido para almacenarlo en la base de datos
-    //crear_pedido_base_datos(orderData)
+    crear_pedido_base_datos(orderData)
 
     // Envía los datos del pedido al servidor o redirige al usuario a la página de confirmación
     sendOrderToServer(orderData);
@@ -297,7 +297,7 @@ function updateTotalAmount(priceChange) {
 
 // funcion para crear la solicitud a la base de datos
 function crear_pedido_base_datos(orderData){
-
+    
     let factura = {}
 
     factura["monto"] = orderData.total
@@ -309,7 +309,7 @@ function crear_pedido_base_datos(orderData){
     factura["zona"] = orderData.zona
 
     console.log(factura);
-
+    
     // creamos el pedido en nuestra tabla de facturas
     fetch("http:localhost:1234/ventas/factura", {
         method : "POST",

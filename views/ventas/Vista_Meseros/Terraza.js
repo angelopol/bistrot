@@ -37,7 +37,7 @@ actionButtons.forEach(button => {
 
                     // verificamos si su estatus es disponible para tomar su pedido
                     if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
-                        location.href = `/ventas/pedidos?tableId=${selectedTableId}&origen=${origen}`;
+                        location.href = `../Vista_Pedidos/pedidos?tableId=${selectedTableId}&origen=${origen}`;
                         return;
                     } else {
                         alert("No se puede tomar el pedido")
@@ -134,7 +134,6 @@ function imprimirFactura(){
     if (selectedTableId !== null && selectedMesa) {
     
         if (selectedMesaetiqueta.querySelector(".table-status").textContent === 'Pendiente'){
-            alert("Hola")
             // Seleccionar la mesa correspondiente basado en el índice
             let mesa = document.querySelectorAll('.table-card')[selectedTableId - 1];
             // Obtener el estado de la mesa
@@ -252,7 +251,7 @@ async function actualizacion_pedidos(){
 
     try {
         // obtener los pedidos
-        const response = await fetch("http:localhost:1234/ventas/factura");
+        const response = await fetch("../factura");
 
         if(!response.ok){
             if (response.status === 404) {

@@ -7,9 +7,15 @@ export class ControllerFactura {
 
     // obtener todo los registros de la tabla de factura
     getAll_f = async (req, res) => {
-        const registros_facturas = await VentasModel.getAll_factura({})
-        if (registros_facturas) return res.json(registros_facturas)
-        res.status(404).json({ message: 'registros de los facturas  not found' })
+        try{
+            const registros_facturas = await VentasModel.getAll_factura({})
+            if (registros_facturas) return res.json(registros_facturas)
+            res.status(404).json({ message: 'registros de los facturas  not found' })
+    
+        }
+        catch (error){
+            console.log('error')
+        }
     }
 
 

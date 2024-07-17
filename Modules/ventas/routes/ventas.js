@@ -46,9 +46,9 @@ export const createVentasRouter = () => {
   //PAGINAS
   VentasRouter.get("/Vista_Gerente/gerente", renderController.renderGerente)
   
-  VentasRouter.get("/Vista Meseros/meseros_general", renderController.renderMeserosGeneral)
+  VentasRouter.get("/Vista_Meseros/meseros_general", renderController.renderMeserosGeneral)
 
-  VentasRouter.get("/Vista Meseros/meseros_terraza", renderController.renderMeserosTerraza)
+  VentasRouter.get("/Vista_Meseros/meseros_terraza", renderController.renderMeserosTerraza)
 
   VentasRouter.get("/Vista_Caja/caja", renderController.renderCaja)
 
@@ -56,8 +56,8 @@ export const createVentasRouter = () => {
 
   //Estilos
   VentasRouter.get("/Vista_Gerente/styles_Gerente.css", renderController.stylesGerente)
-  VentasRouter.get("/Vista Meseros/Zona_General.css", renderController.stylesMeserosGeneral)
-  VentasRouter.get("/Vista Meseros/Terraza_styles.css", renderController.stylesMeserosTerraza)
+  VentasRouter.get("/Vista_Meseros/Zona_General.css", renderController.stylesMeserosGeneral)
+  VentasRouter.get("/Vista_Meseros/Terraza_styles.css", renderController.stylesMeserosTerraza)
   VentasRouter.get("/Vista_Caja/Caja_Styles.css", renderController.stylesCaja)
   VentasRouter.get("/Vista_Pedidos/pedidos_styles.css", renderController.stylesPedidos)
 
