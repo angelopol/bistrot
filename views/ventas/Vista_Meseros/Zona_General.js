@@ -134,7 +134,7 @@ actionButtons.forEach(button => {
                 // Redirigir a la vista caja
                 if (selectedTableId && selectedMesa) {
 
-                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Pendiente"){
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Listo"){
                         imprimirFactura();
                     }
                     
@@ -172,7 +172,7 @@ function encontrar(mesa_id,pedidos_check) {
     
     for (let i = 0; i < pedidos_check.length; i++) {
         let pedidoActual = pedidos_check[i];
-        if (pedidoActual.tableId === String(mesa_id) && pedidoActual.estatus === 1) {
+        if (pedidoActual.tableId === String(mesa_id) && pedidoActual.estatus === 4) {
             alert('Pedido encontrado');
             pedido = pedidoActual;
             
