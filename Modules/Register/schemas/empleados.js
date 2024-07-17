@@ -8,20 +8,20 @@ export async function validateEmpleado (input, register = true) {
   if (typeof password !== 'string' || password.length < 1) {
     return {
       success: false,
-      error: new Error(JSON.stringify({ user: 'password is required' }))
+      error: 'La contraseña es requerida.'
     }
   }
   if (password.length < 8) {
     return {
       success: false,
-      error: new Error(JSON.stringify({ user: 'password lenght is too short' }))
+      error: 'La longitud de la contraseña es muy corta.'
     }
   }
   if (register) {
     if (!await EmpleadosModel.unique({ user })) {
       return {
         success: false,
-        error: new Error(JSON.stringify({ user: 'user already exists' }))
+        error: 'El usuario ya existe.'
       }
     }
     password = bcrypt.hashSync(password, 10)

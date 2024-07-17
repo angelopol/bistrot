@@ -1,0 +1,123 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("Fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Krona-One";
+    src: url("Fonts/KronaOne-Regular.ttf") format("truetype");
+}
+
+body {
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+}
+
+header {
+    background-color: #013D1F;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 15vh;
+}
+
+#title {
+    font-family: 'Krona-One';
+    font-size: 1.4rem;
+    margin-right: 45%;
+}
+
+#title-combo {
+    appearance: none;
+    color: white;
+    background-color: transparent;
+    border-radius: 2px;
+    padding: 10px;
+    width: 15%;
+}
+
+main {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat-Regular';
+}
+
+.main-title {
+    font-family: 'Krona-One';
+    color: #7E734D;
+    font-size: 2rem;
+}
+
+.title-frase {
+    font-size: 0.8rem;
+    color: #000;
+
+}
+
+.logo {
+    width: 20%;
+    padding: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-style: solid;
+    border-top-color: #0F624A;
+    border-top-width: 1px;
+    height: 15vh;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat-Regular';
+    gap: 5%;
+    font-size: 0.6rem;
+}
+
+ul li div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    color: #02676F;
+}
+
+
+.img-btn {
+    background-color: #F8F8F8;
+    cursor: pointer;
+    border-radius: 15px;
+    height: 4vh;
+    width: 80px;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 0 rgb(218, 218, 218);
+}
+
+.img-btn:hover {
+    transform: translateY(-5px);
+    background-color: #02676F;
+}
+
+.img-list {
+    width: 30px;
+}
