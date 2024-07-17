@@ -562,6 +562,9 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
     }
 }
 
+// llamamos una funcion una serie de tiempo para ver si hizo una actualizacion en los estatus del pedido
+setInterval(recorrido_mesas, 20000); 
+
 
 // funcion para guardar el registro del cliente en la base de datos
 async function guargar_registro_cliente_bd(cliente){
@@ -569,7 +572,7 @@ async function guargar_registro_cliente_bd(cliente){
     // creamos el pedido en nuestra tabla de facturas
     fetch("../cliente", {
         method : "POST",
-        headers : { "Content-Type" : "aplication/json" },
+        headers : { "Content-Type" : "application/json" },
         body : JSON.stringify(cliente)
     })
     .then((res) => {
