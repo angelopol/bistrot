@@ -418,15 +418,20 @@ function completarTamañoFicha(){
     let contenedorPedido = document.querySelector(".order-summary")
     let elementosHijos = contenedorPedido.children;
     let elementosArray = Array.from(elementosHijos).slice(2);
-    for (let i = 0 ; i < 6 - elementosArray.length ; i++){
-        let contenedor1 = document.createElement("DIV")
-        contenedor1.classList.add("order-item")
-        let subContenedor1 = document.createElement("span")
-        subContenedor1.classList.add("item-name")
-        let subContenedor2 = document.createElement("span")
-        subContenedor1.classList.add("item-detail")
-        contenedor1.appendChild(subContenedor1)
-        contenedor1.appendChild(subContenedor2)
-        contenedorPedido.appendChild(contenedor1)
+    if (elementosArray.length < 6){
+        for (let i = 0 ; i < 6 - elementosArray.length ; i++){
+            let contenedor1 = document.createElement("DIV")
+            contenedor1.classList.add("order-item")
+            let subContenedor1 = document.createElement("span")
+            subContenedor1.classList.add("item-name")
+            let subContenedor2 = document.createElement("span")
+            subContenedor1.classList.add("item-detail")
+            contenedor1.appendChild(subContenedor1)
+            contenedor1.appendChild(subContenedor2)
+            contenedorPedido.appendChild(contenedor1)
+        }
     }
-}
+    else {
+        return null
+    }
+    }
