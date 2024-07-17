@@ -31,7 +31,7 @@ export class ControllerFactura {
 
     // crea un registros de la tabla de factura
     create_f = async (req, res) => {
-        const result = (req.body)
+        const result = validateFactura(req.body)
         
         console.log(result.data)
         const new_registro_factura = await VentasModel.create_factura({ input: req.body })
@@ -70,44 +70,5 @@ export class ControllerFactura {
         return res.json({ message: 'factura deleted' })
     }
 
-
-    probarPost = async (req, res) => {
-        let aa = JSON.stringify([
-            {
-                "id": 1,
-                "quantity": 3,
-                "price": 10
-            },
-            {
-                "id": 2,
-                "quantity": 2,
-                "price": 10
-            }
-            ])
-        let data = {
-            "monto":444,
-            "iva":222,
-                "consumo": aa,
-            "status_pedido":1,
-            "mesa":1,
-            "zona":"general"
-        }
-        let response = await fetch("http://localhost:1234/ventas/factura", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json' 
-                },
-            body: JSON.stringify(data)
-        })
-
-        if (!response.success) {
-            console.log("HOLAAAA")
-            return res.json("NOOOO")
-        }
-        else {
-            return res.json(data)
-        }
-    }
-    
 
 }

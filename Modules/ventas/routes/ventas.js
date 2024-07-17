@@ -42,8 +42,6 @@ export const createVentasRouter = () => {
   VentasRouter.patch('/factura/:id', controllerFactura.update_f);
   VentasRouter.delete('/factura/:id', controllerFactura.delete_f);
 
-  VentasRouter.get("/probarpost", controllerFactura.probarPost)
-
   //Renderizado de Vistas
   //PAGINAS
   VentasRouter.get("/Vista_Gerente/gerente", renderController.renderGerente)
