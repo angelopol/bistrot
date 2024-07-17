@@ -25,14 +25,15 @@ export const createRRHHRouter = () => {
   RRHHRouter.get('/assets/formulario', controlador.formulario);
 
   // Para la consulta de empleados
+  // Esta funcion trae todos los datos de la base de datos
   RRHHRouter.get('/empleados', async (req, res) => {
     try {
-      const [results, fields] = await connection.query('SELECT id, nombre, apellido, puesto, fecha_contratacion, telefono, direccion FROM empleados');
+      const [results, fields] = await connection.query('SELECT id, nombre, apellido, cedula, puesto, fecha_contratacion, telefono, direccion FROM empleados');
       res.json(results);
     } catch (err) {
       res.status(500).send(err);
     }
-  });
+  }); 
 
   // Ruta para registrar empleados
   RRHHRouter.post('/empleados', async (req, res) => {

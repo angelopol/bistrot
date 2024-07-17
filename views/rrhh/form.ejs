@@ -68,7 +68,7 @@
       <main class="employee-registration">
         <h1 class="page-title">Registro de Empleado</h1>
         
-        <form id="employee-form">
+        <form id="employee-form" method="POST" action="">
           <div class="form-row">
             <div class="form-group">
               <label for="cargo" class="form-label">Cargo</label>
@@ -92,10 +92,10 @@
               <label for="end-date" class="form-label">Fecha culminación</label>
               <input type="date" id="end-date" class="form-input" name="fecha_culminacion"/>
             </div>
-
+      
             <div class="form-group">
               <label for="salary" class="form-label">Salario (bs)</label>
-              <input type="number" id="salary" class="form-input" value="" placeholder="000,00" step="0.01" name="salario"/>
+              <input type="number" id="salary" class="form-input" placeholder="000,00" step="0.01" name="salario"/>
             </div>
           </div>
           
@@ -127,7 +127,7 @@
               <label for="last-name" class="form-label">Apellido</label>
               <input type="text" id="last-name" class="form-input" name="apellido"/>
             </div>
-
+      
             <div class="form-group">
               <label for="id-number" class="form-label">Cédula</label>
               <input type="text" id="id-number" class="form-input" name="cedula"/>
@@ -139,11 +139,11 @@
             </div>
           </div>
           
-          <div class="form-group" style="transform: translateX(-102px);">
+          <div class="form-group address-group">
             <label for="address" class="form-label">Dirección</label>
             <input type="text" id="address" class="form-input address-input" placeholder="Mañongo, cerca del CC Sambil calle 13" name="direccion"/>
           </div>
-
+      
           <div class="form-row">
             <div class="form-group">
               <label for="employee-code" class="form-label">Código de empleado</label>
@@ -155,11 +155,82 @@
               <input type="password" id="user-password" class="form-input" placeholder="****" name="clave_usuario"/>
             </div>
           </div>
-          <button type="button" class="submit-button">Registrar</button>
+          <button type="submit" id="submit-button">Registrar</button>
         </form>
-      </main>
+      </main>      
     </div>
   </div>
-  <script src="js/form.js"></script>
+  <script type="text/javascript">
+    document.getElementById('submit-button').addEventListener('click', function(event) {
+      event.preventDefault();
+  
+      const formData = {
+        cedula: document.getElementById('id-number').value,
+        codigoEmpleado: document.getElementById('employee-code').value,
+        nombre: document.getElementById('first-name').value,
+        apellido: document.getElementById('last-name').value,
+        direccion: document.getElementById('address').value,
+        cargo: document.getElementById('cargo').value,
+        fecha_contratacion: document.getElementById('start-date').value,
+        fecha_culminacion: document.getElementById('end-date').value,
+        salario: document.getElementById('salary').value,
+        horas: document.getElementById('hours').value,
+        telefono: document.getElementById('phone').value,
+        clave_usuario: document.getElementById('user-password').value
+      };
+  
+      const validateForm = (data) => {
+        for (const key in data) {
+          if (!data[key]) {
+            alert('Por favor, complete todos los campos');
+            return false;
+          }
+        }
+        return true;
+      };
+  
+      if (!validateForm(formData)) return;
+  
+      const dataToSend = {
+        nombre: formData.nombre,
+        apellido: formData.apellido,
+        puesto: formData.cargo,
+        fecha_contratacion: formData.fecha_contratacion,
+        telefono: formData.telefono,
+        direccion: formData.direccion,
+        salario: formData.salario,
+        fecha_culminacion: formData.fecha_culminacion,
+        horas: formData.horas,
+        cedula: formData.cedula,
+        codigo_empleado: formData.codigoEmpleado,
+        clave_usuario: formData.clave_usuario
+      };
+  
+      console.log('Datos a enviar:', dataToSend);
+  
+      fetch('http://localhost:1234/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataToSend)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          alert('Empleado registrado exitosamente');
+          // Limpiar el formulario
+          document.getElementById('employee-form').reset();
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Hubo un error al registrar el empleado');
+      });
+    });
+  </script>
+   
 </body>
 </html>

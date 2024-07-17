@@ -7,9 +7,9 @@ async function createConnection() {
         connection = await mysql.createConnection({
             host: 'localhost' || process.env.DB_HOST,
             user: 'root' || process.env.DB_USERNAME,
-            port: 3308 || process.env.DB_PORT,
-            password: '' || process.env.DB_PASSWORD,
-            database: 'rrhh' || process.env.DB_DATABASE,
+            port: 3306 || process.env.DB_PORT,
+            password: 'mcy2004' || process.env.DB_PASSWORD,
+            database: 'rrhh' || process.env.DB_DATABASE, 
         });
         console.log('Connected to the database.');
     } catch (error) { 

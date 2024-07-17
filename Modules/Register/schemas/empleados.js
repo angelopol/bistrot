@@ -3,28 +3,28 @@ import { EmpleadosModel } from '../models/empleados.js'
 import 'dotenv/config'
 
 export async function validateEmpleado (input, register = true) {
-  var {user, password} = input
+  var {nombre, clave_usuario} = input
   
-  if (typeof password !== 'string' || password.length < 1) {
+  if (typeof clave_usuario !== 'string' || clave_usuario.length < 1) {
     return {
       success: false,
-      error: new Error(JSON.stringify({ user: 'password is required' }))
+      error: new Error(JSON.stringify({ nombre: 'clave_usuario is required' }))
     }
   }
-  if (password.length < 8) {
+  if (clave_usuario.length < 8) {
     return {
       success: false,
-      error: new Error(JSON.stringify({ user: 'password lenght is too short' }))
+      error: new Error(JSON.stringify({ nombre: 'clave_usuario lenght is too short' }))
     }
   }
   if (register) {
-    if (!await EmpleadosModel.unique({ user })) {
+    if (!await EmpleadosModel.unique({ nombre })) {
       return {
         success: false,
-        error: new Error(JSON.stringify({ user: 'user already exists' }))
+        error: new Error(JSON.stringify({ nombre: 'nombre already exists' }))
       }
     }
-    password = bcrypt.hashSync(password, 10)
+    clave_usuario = bcrypt.hashSync(clave_usuario, 10)
   }
-  return { success: true, data: { user, password } }
+  return { success: true, data: { nombre, clave_usuario } }
 }

@@ -1,55 +1,73 @@
-import mysql from 'mysql2/promise'
-import 'dotenv/config'
-
-const DBConfig = {
-  host: '127.0.0.1' || process.env.DB_HOST,
-  user: 'root' || process.env.DB_USERNAME,
-  port: 3306 || process.env.DB_PORT,
-  password: '' || process.env.DB_PASSWORD,
-  database: 'rrhh' || process.env.DB_DATABASE,
-}
-
-// const connection = await mysql.createConnection(DBConfig)
-
+import connection from "../../RRHH/conexion.js";
 export class EmpleadosModel {
-  static async create ({ input }) {
+  static async create({ input }) {
     const {
-      user,
-      password,
-    } = input
-
+      nombre,
+      clave_usuario,
+      cedula
+    } = input;
+    //y asi vas agregando todas 
     try {
       await connection.query(
-        `INSERT INTO empleados (user, password)
+        `INSERT INTO empleados (nombre, clave_usuario, cedula)
           VALUES (?, ?);`,
-        [user, password]
-      )
+        [nombre, clave_usuario, cedula]
+      );
     } catch (e) {
-      console.log(e)
-      throw new Error('Error creating empleado')
+      console.log(e);
+      throw new Error('Error creating empleado');
     }
   }
 
-  static async find ({ user }) {
+  static async find({ nombre }) {
     const [rows] = await connection.query(
-      `SELECT * FROM empleados WHERE user = ?;`,
-      [user]
-    )
-    return rows[0]
+      `SELECT * FROM empleados WHERE nombre = ?;`,
+      [nombre]
+    );
+    return rows[0];
   }
 
-  static async unique ({ user }) {
+  static async unique({ nombre }) {
     const [rows] = await connection.query(
-      `SELECT user FROM empleados WHERE user = ?;`,
-      [user]
-    )
-    if (rows.length > 0) return false
-    return true
+      `SELECT nombre FROM empleados WHERE nombre = ?;`,
+      [nombre]
+    );
+    if (rows.length > 0) return false;
+    return true;
   }
 
-  static async delete ({ id }) {
+  static async delete({ id }) {
+    try {
+      await connection.query(
+        `DELETE FROM empleados WHERE id = ?;`,
+        [id]
+      );
+    } catch (e) {
+      console.log(e);
+      throw new Error('Error deleting empleado');
+    }
   }
 
-  static async update ({ id, input }) {
+  static async update({ id, input }) {
+    const {
+      nombre,
+      clave_usuario,
+      // Agrega otros campos aquí y arriba
+    } = input;
+
+    try {
+      await connection.query(
+        `UPDATE empleados SET
+          nombre = ?,
+          clave_usuario = ?,
+          -- Agrega otros campos aquí según sea necesario
+          WHERE id = ?;`,
+        [nombre, clave_usuario, id]
+        // Agrega otros campos aquí y arriba
+      );
+    } catch (e) {
+      console.log(e);
+      throw new Error('Error updating empleado');
+    }
   }
 }

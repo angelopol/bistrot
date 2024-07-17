@@ -1,32 +1,34 @@
-// document.addEventListener('DOMContentLoaded', (event) => {
-//   changeTab('empleados'); 
-// });
 
-
-
-// function changeTab(tab) {
-//   document.querySelectorAll('.tab').forEach(button => {
-//     button.classList.remove('active');
-//     button.classList.add('tab-inactive')
-//   });
-
-//   const activeButton = document.getElementById(`btn${capitalizerFirstLetter(tab)}`);
-//   activeButton.classList.remove('tab-inactive');
-//   activeButton.classList.add('active');
-
-//   updateTableContent(tab);
-
-//   showEditForm(tab);
-
-//   showAddForm(tab);
-
-// }
-
-// function 
 
 const botonMostrarEmpleado = document.querySelector(".action-view")
 const modal = document.querySelector(".modal");
 const closeModalButton = document.querySelector(".cerrar-modal");
+
+
+
+
+
+// async function ObtenerEmpleados() {
+//   try {
+//   const response = await fetch('http://localhost:1234/rrhh/empleados');
+//   if (!response.ok) {
+//       throw new Error('Network response was not ok');
+//   }
+//   const empleados = await response.json();
+//   console.log(empleados)
+
+//   llenarTabla(empleados);
+//   } catch (error) {
+//   console.error('Error fetching empleados:', error);
+//   }
+// }
+// function llenarTabla(empleados) {
+//   const tabla = document.querySelector('.table tbody');
+// }
+
+
+
+
 
 
 botonMostrarEmpleado.addEventListener("click", function() {

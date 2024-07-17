@@ -4,6 +4,7 @@ import { EmpleadosModel } from "../models/empleados.js"
 export class RegisterController {
     store = async (req, res) => {
         const result = await validateEmpleado(req.body)
+        console.log(req.body)
     
         if (!result.success) {
           return res.status(400).json({ error: JSON.parse(result.error.message) })
