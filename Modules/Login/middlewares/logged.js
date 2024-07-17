@@ -1,3 +1,4 @@
+
 export const logged = (req, res, home = false) => {
     const {user} = req.session
     if (!user){

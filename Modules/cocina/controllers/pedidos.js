@@ -284,7 +284,8 @@ export class PedidoController {
            throw new Error('No se pudo obtener el ingrediente');
        }
 
-        return await res.json(response)
+        const data = await response.json();
+        return res.json(data);
     }
 
     // funcion para cambiar el status de un pedido de ventas por su id a listo (4)

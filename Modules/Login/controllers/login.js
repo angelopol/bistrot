@@ -1,3 +1,4 @@
+
 import { EmpleadosModel } from "../../Register/models/empleados.js"
 import { validateEmpleado } from "../../Register/schemas/empleados.js"
 import { logged } from "../middlewares/logged.js"

@@ -1,3 +1,4 @@
+
 import bcrypt from 'bcrypt'
 import { EmpleadosModel } from '../models/empleados.js'
 import 'dotenv/config'

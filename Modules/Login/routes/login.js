@@ -1,3 +1,4 @@
+
 import { Router } from 'express'
 import { LoginController } from '../controllers/login.js'
 
@@ -13,3 +14,4 @@ export const createLoginRouter = () => {
 
   return loginRouter
 }
+

@@ -166,18 +166,19 @@ pedidosContainers.forEach(container => {
         idPedido = idStringCardSeleccionada // Obtenemos el id del pedido
 
         // Petición al controlador de mostrar pedido, que retorna los datos del mismo
-        fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`, {
+        await fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`, {
             method: "GET",
             headers: {
                 "content-type": "aplication/json"
             }
         })
-        .then(response => {response.json})
+        .then( async response => { await response.json()})
         .then(data => {
             // Se muestran los datos del pedido en la carta resumen
 
             let pedido = data
-            let comidasPedido = JSON.parse(pedido.consumo) // Obtenemos el diccionario con los id de los platos y la cantidad
+            /* pedido.consumo sera un string que representara una lista de objetos que seran las comidas pedidas ejemplo '[{"id":2,"quantity":3,"price":10},{"id":8,"quantity":2,"price":10}]' */
+            let listaComidas = JSON.parse(pedido.consumo) // aqui tendremos el arreglo de las comidas
 
             let contenedorPedido = document.querySelector(".order-summary")
             contenedorPedido.innerHTML = "" // Se borra el contenido de la carta resumen de pedidos
@@ -193,11 +194,11 @@ pedidosContainers.forEach(container => {
             divPedido.innerHTML = "PEDIDO"
             contenedorPedido.appendChild(divPedido) // Se agrega el indicador "PEDIDO"
 
-            Object.keys(comidasPedido).forEach(platoId => {
+            listaComidas.forEach( async objetoComida => {
                 // Iteramos el diccionario de pedidos para encontrar sus nombres
 
-                let res = fetch(`http://localhost:1234/comidas/${platoId}`) // Petición al modelo comidas que retorna al receta
-                let nombrePlato = res.json()
+                let res = await fetch(`http://localhost:1234/comidas/${objetoComida.id}`) // Petición al modelo comidas que retorna al receta
+                let nombrePlato = await res.json()
                 
                 let divItem = document.createElement("div")
                 divItem.className = "order-item" // div que almacena el nombre y cantidad de platos
@@ -208,7 +209,7 @@ pedidosContainers.forEach(container => {
 
                 let itemDetail = document.createElement("span")
                 itemDetail.className = "item-detail"
-                itemDetail.innerHTML = `x${comidasPedido[platoId]}` // span con la cantidad del plato
+                itemDetail.innerHTML = `x${objetoComida.quantity}` // span con la cantidad del plato
 
                 divItem.appendChild(itemName)
                 divItem.appendChild(itemDetail)
@@ -249,13 +250,13 @@ listoButton.addEventListener("click", async function () {
         return null
     }
     // Petición al controlador de pedidos que cambia el estado del pedido a listo
-    fetch(`http://localhost:1234/comidas/pedido-listo?pedido_id=${idPedido}`, {
+    await fetch(`http://localhost:1234/comidas/pedido-listo?pedido_id=${idPedido}`, {
             method: "GET",
             headers: {
                 "content-type": "aplication/json"
             }
         })
-    .then(response => {response.json})
+    .then(async response => {await response.json()})
     .then(() => {
         let cardPedido = document.getElementById(`${idPedido}`)
         cardPedido.classList.remove("ocupado")
@@ -356,7 +357,36 @@ function quitarEstatusClickeado(){
 // vacia la ficha lateral derecha que muestra la info del pedido
 function vaciarFichaLateralDerecha() {
     let contenedorPedido = document.querySelector(".order-summary")
-    contenedorPedido.innerHTML = "" // Se borra el contenido de la carta resumen de pedidos
+    contenedorPedido.innerHTML = `<h3 class="order-number">Pedido ID:</h3>
+                    <div class="order-type">PEDIDO</div>
+                    <div class="order-item">
+                        <span class="item-name"></span>
+                        <span class="item-detail"></span>
+                    </div>
+                    <div class="order-item">
+                        <span class="item-name"></span>
+                        <span class="item-detail"></span>
+                    </div>
+                    <div class="order-item">
+                        <span class="item-name"></span>
+                        <span class="item-detail"></span>
+                    </div>
+                    <div class="order-item">
+                        <span class="item-name"></span>
+                        <span class="item-detail"></span>
+                    </div>
+                    <div class="order-item">
+                        <span class="item-name"></span>
+                        <span class="item-detail"></span>
+                    </div>
+                    <div class="order-item">
+                        <span class="item-name"></span>
+                        <span class="item-detail"></span>
+                    </div>
+                    <button class="order-ready">listo</button>` 
+    
+    /*
+    // Se borra el contenido de la carta resumen de pedidos
 
     let elementoH3 = document.createElement("h3")
     elementoH3.className = "order-number"
@@ -368,4 +398,6 @@ function vaciarFichaLateralDerecha() {
     divPedido.className = "order-type"
     divPedido.innerHTML = "PEDIDO"
     contenedorPedido.appendChild(divPedido) // Se agrega el indicador "PEDIDO"
+
+    */
 }
