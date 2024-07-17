@@ -91,11 +91,7 @@
                     </div>
                     <div class="form-group">
                         <label for="zona">Zona:</label>
-                        <select id="zona" name="zona" required>
-                            <option value="interior">Interior</option>
-                            <option value="exterior">Exterior</option>
-                            <option value="barra">Barra</option>
-                        </select>
+                        <input type="text" id="zona" name="zona" >
                     </div>
                     <button type="submit">Registrar Reserva</button>
                 </form>
@@ -107,6 +103,23 @@
         document.addEventListener("DOMContentLoaded", function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById("fecha").setAttribute("min", today);
+
+            //funcion que recupera las mesas seleccionadas y las muestra en el campo de numero de mesa
+            const buttons = document.querySelectorAll(".button");
+            buttons.forEach(button => {
+                button.addEventListener("click", function() {
+                    if (button.classList.contains("selected")) {
+                        button.classList.remove("selected");
+                    } else {
+                        button.classList.add("selected");
+                    }
+
+                    const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button => button.textContent);
+                    document.getElementById("idmesa").value = selectedButtons.join(", ");
+
+                    localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
+                });
+            });
 
             // Recuperar la selección de mesas almacenada
             const selectedButtons = JSON.parse(localStorage.getItem("selectedButtons")) || [];
@@ -157,8 +170,6 @@
                     event.target.setCustomValidity("");
                 }
             });
-
-
 
             //funcion que valida si un numero de telefono tiene 11 digitos, si es un numero y si los primeros 4 digitos son: 0412, 0414, 0416, 0424, 0426
 
@@ -298,3 +309,5 @@
     </script>
 </body>
 </html>
+
+

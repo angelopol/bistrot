@@ -86,9 +86,18 @@
                             <form method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="id" value="ID_DE_LA_RESERVA">
-                                <li><button class="btn-list delete-reserv">Eliminar Reserva</button></li>
+                                <li>
+                                    <button 
+                                    class="btn-list delete-reserv">
+                                    Eliminar Reserva
+                                    </button>
+                                </li>
                             </form>
-                            <li><button class="btn-list modify-reserv">modificar Reserva</button></li>
+                            <form id="form1" method="get">
+                                <li><input value="modificar reserva" type="submit" class="btn-list modify-reserv"></li>
+
+                            </form>
+                            
                         </ul>
                     </div>
                 </main>
@@ -100,19 +109,43 @@
         
         let botonReserva = document.querySelector('.btn-list.reserva');
         let botonEliminarReserva = document.querySelector('.btn-list.delete-reserv');
+        let formulario1=document.getElementById('form1');
         let botonModificar = document.querySelector('.btn-list.modify-reserv');  
-
         botonReserva.addEventListener('click', () => {
             window.location.href = '/mesas'; // Cambia a la ruta del servidor
         });
 
-        botonModificar.addEventListener('click', () => {
-            window.location.href = '/modificar'; // Cambia a la ruta del servidor
+        formulario1.addEventListener('submit',function (event) {
+            let radios = document.getElementsByName('radioboton');
+            let id = null;
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    id = radios[i].value;
+                    break;
+                }
+            }
+            // como hago para que la id se pase a la vista modificarReserva.ejs
+
+            if (id) {
+                //window.location.href = `/modificar`;
+                formulario1.action = `/modificar/${id}`;
+                
+            } else {
+                alert('Seleccione una reserva para modificar');
+            }
+             
         });
 
         //boton que elimina un resgistro de la tabla reservas
 
-        botonEliminarReserva.addEventListener('click', () => {
+        botonEliminarReserva.addEventListener('click', e => {
+            e.preventDefault();
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }
             let radios = document.getElementsByName('radioboton');
             let id = null;
             for (let i = 0; i < radios.length; i++) {
@@ -122,9 +155,20 @@
                 }
             }
             if (id) {
-                let form = document.querySelector('form');
-                form.action = `/eliminar/${id}`;
-                form.submit();
+                fetch(`/eliminar`,{
+                    ...options,
+                    body: JSON.stringify({id})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Reserva eliminada');
+                        window.location.reload();
+                    } else {
+                        alert('Error al eliminar la reserva');
+                    }
+                })
+                console.log("pues nose");
             } else {
                 alert('Seleccione una reserva para eliminar');
             }

@@ -42,7 +42,7 @@ import {ReservaController} from './controllers/reserva.js';
         res.sendFile(path.join(__dirname, 'views/bar.css'))
     });
 
-    app.get('/modificar',controladorInventario.mostrarModificar);
+    app.get('/modificar/:id',controladorInventario.mostrarModificar);
     app.get('css/modificar.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/modificarReserva.css'))
     });
@@ -61,8 +61,9 @@ import {ReservaController} from './controllers/reserva.js';
     
     app.post('/mesas/CrearReservas/crear',controladorReserva.create);
 
-    //funcion que e
-    app.delete('/eliminar/:id',controladorReserva.delete);
+    app.delete('/eliminar',controladorReserva.delete);
+
+    app.post('/modificarr/:id',controladorReserva.update);
 
     const PORT = process.env.PORT ?? 1234
     app.listen(PORT, () => {

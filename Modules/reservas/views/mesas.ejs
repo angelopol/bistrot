@@ -91,29 +91,38 @@
             window.location.href = "/CrearReservas";
         });
         document.addEventListener("DOMContentLoaded", function() {
-            // Cargar la selección almacenada
-            const selectedButton = localStorage.getItem("selectedButton");
-            if (selectedButton) {
-                const button = document.querySelector(`.button[data-number='${selectedButton}']`);
-                if (button) {
-                    button.classList.add("selected");
-                }
-            }
 
-            // Añadir evento de clic a todos los botones
-            document.querySelectorAll(".button").forEach(button => {
+            //funcion que permite seleccionar varias mesas
+            const buttons = document.querySelectorAll(".button");
+            buttons.forEach(button => {
                 button.addEventListener("click", function() {
-                    // Deseleccionar el botón previamente seleccionado
-                    document.querySelectorAll(".button.selected").forEach(btn => btn.classList.remove("selected"));
-                    
-                    // Seleccionar el nuevo botón
-                    const number = this.getAttribute("data-number");
-                    this.classList.add("selected");
-                    localStorage.setItem("selectedButton", number);
+                    if (button.classList.contains("selected")) {
+                        button.classList.remove("selected");
+                    } else {
+                        button.classList.add("selected");
+                    }
                 });
             });
+            //funcion que manda los numeros de las mesas seleccionadas y los manda al campo de numero de mesa de la vista CrearReservas
+            const mesas = document.getElementById("mesa");
+            mesas.addEventListener("click", function() {
+                const selectedButtons = document.querySelectorAll(".selected");
+                const selectedNumbers = [];
+                selectedButtons.forEach(selectedButton => {
+                    selectedNumbers.push(selectedButton.dataset.number);
+                });
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "mesas";
+                input.value = selectedNumbers.join(",");
+                document.body.appendChild(input);
+            });
+            
+            
+            
         });
     </script>
 </body>
 </html>
+
 

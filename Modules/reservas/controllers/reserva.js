@@ -24,8 +24,6 @@ export class ReservaController{
         
         const result = validar_reserva(req.body)
         if (!result.success) {
-            console.log(result)
-            console.log("lol")
             return res.status(400).json({ error: JSON.parse(result.error.message) })
         }
         const input = result.data
@@ -35,7 +33,7 @@ export class ReservaController{
     }
         
     delete = async(req, res) =>{
-        console.log("lol")
+        console.log("progra web sueltame el brazooooo")
         const { id } = req.params
         const validacion = await ReservaModel.eliminar({id})
         
@@ -46,18 +44,17 @@ export class ReservaController{
         res.redirect('/')
         }    
 
-    // Leer comentario en el modelo
+    update = async (req, res) =>{
+        console.log(req.params)
+        const { id } = req.params;
+        const input = req.body; 
+        const response = await ReservaModel.modificar({ id, ...input });
+        res.redirect('/')
+    }
 
-    // static async update (req, res) {
-    //     const result = validarReservaMesas(req.body)
-    //     if (!result.success) {
-    //       return res.status(400).json({ error: JSON.parse(result.error.message) })
-    //     }
-  
-    //     const { id } = req.params
-    //     const input = result.data
-    //     const response = await ReservaMesasModel.modificar({id,input})
-  
-    //     return res.json(response)  
-    //     }    
+    getModificar = async (req, res) =>{
+        const { id } = req.params;
+        res.render('modificarReserva', { data: id }); 
+    }
+
 }

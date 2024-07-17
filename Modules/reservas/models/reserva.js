@@ -74,19 +74,16 @@ export class ReservaModel {
         }
     }
     static async modificar (cedulaC, modi) {
-        const {fecha, // Debe coincidir con el nombre del campo en el formulario HTML
-         // Debe coincidir con el nombre del campo en el formulario HTML
-        personas,
+        const {fecha,
         hora_inicio,
         hora_fin,
-        iddescripcion, // Asegúrate de que este nombre coincida con el esperado
-        idtelefono,
-        nombre} = modi
+        iddescripcion, 
+        } = modi
     
         try {
           await connection.query(
-            'UPDATE reserva SET fecha = ?, nombre = ?,apellido=?, cantidad_personas = ?, telefono = ?, confirmado = ?, hora_inicio = ?, hora_fin = ?, descripciom = ? WHERE numero_reservas = ?',
-            [fecha, nombre, personas, idtelefono, hora_inicio, hora_fin, iddescripcion, cedulaC]
+            'UPDATE reserva SET fecha = ?, hora_inicio = ?, hora_fin = ?, descripcion = ? WHERE ID_cliente = ?',
+            [fecha, hora_inicio, hora_fin, iddescripcion, cedulaC]
           )
         } catch (e) {
           console.log(e)

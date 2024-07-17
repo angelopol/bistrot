@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear una Reservación</title>
+    <title>Modificar Reservación</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <link rel="stylesheet" href="modificarReserva.css">
 </head>
@@ -34,59 +34,97 @@
                     <li><a href="#"><img src="imagenes/icono_reporte.png" alt="Reportes">Reportes</a></li>
                     <li><a href="#"><img src="imagenes/icono_config.png" alt="Configuraciones">Configuraciones</a></li>
                     <li><a href="#"><img src="imagenes/icono_ayuda.png" alt="Ayuda">Ayuda</a></li>
-                    
                 </ul>
             </nav>
         </div>
         <div class="contenido">
             <div class="contenidop">
                 <div class="Reservar">
-                  <h2>
-                    <a href="/">
-                      <img src="imagenes/icono_salida.png" alt="regresar">
-                    </a>
-                    Reservar
-                  </h2>
+                    <h2>
+                        <a href="/">
+                            <img src="imagenes/icono_salida.png" alt="regresar">
+                        </a>
+                        Reservar
+                    </h2>
                 </div>
                 <div class="seccion">
-                    <h2>Modificacion de mesa</h2>
+                    <h2>Modificación de mesa</h2>
                 </div>
             </div>
         
-        
             <div class="distribucion">
+                <form id="reserva-form" method="POST">
+                    <div class="form-group">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
 
-        
-<form action="reservaciones/modificar" method="POST">
-  <div class="form-group">
-    <label for="fecha">Fecha:</label>
-    <input type="date" id="fecha" name="fecha" required>
-  </div>
+                    <div class="form-group">
+                        <label for="hora_inicio">Hora de inicio:</label>
+                        <input type="time" id="hora_inicio" name="hora_inicio" required>
+                    </div>
 
-  <div class="form-group">
-    <label for="hora">Hora de inicio:</label>
-    <input type="time" id="hora" name="hora_inicio" required>
-  </div>
+                    <div class="form-group">
+                        <label for="hora_fin">Hora de finalización:</label>
+                        <input type="time" id="hora_fin" name="hora_fin" required>
+                    </div>
 
-  <div class="form-group">
-    <label for="hora">Hora de finalizacion:</label>
-    <input type="time" id="hora" name="hora_fin" required>
-  </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <input type="text" id="descripcion" name="descripcion" required>
+                    </div>
+                    <h1><%= data.id %></h1>
 
-  <div class="form-group">
-    <label for="descripcion">Descripcion</label>
-    <input type="text" id="iddescripcion" name="iddescripcion" required>
-  </div>
-
-  <button type="submit">modificar Reserva</button>
-</form>
-
-                    
+                    <button type="submit">Modificar Reserva</button>
+                </form>
             </div>
-
-
         </div>
     </div>
+
+    <script>
+
+        //funcion que extrae la cedula del cliente seleccionado en la tabla
+        
+
+        const form = document.getElementById('reserva-form');
+        const cedulaCliente = obtenerCedulaClienteSeleccionado();
+        form.action = `/modificarr/${cedulaCliente}`;
+
+        
+
+        // Método que bloquea las fechas anteriores a hoy del calendario
+        const fecha = document.getElementById("fecha");
+        const hoy = new Date();
+        const dd = String(hoy.getDate()).padStart(2, '0');
+        const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+        const yyyy = hoy.getFullYear();
+        const fechaHoy = yyyy + '-' + mm + '-' + dd;
+        fecha.setAttribute("min", fechaHoy);
+
+        // Método que bloquea las horas anteriores a la actual si selecciona la fecha actual
+        function bloquearHorasAnteriores() {
+            const fechaSeleccionada = new Date(document.getElementById("fecha").value);
+            const hoy = new Date();
+            
+            // Si la fecha seleccionada es hoy, bloquear horas anteriores a la hora actual
+            if (fechaSeleccionada.toDateString() === hoy.toDateString()) {
+                const horaInicio = document.getElementById("hora_inicio");
+                const horaFin = document.getElementById("hora_fin");
+                const horaActual = hoy.getHours().toString().padStart(2, '0') + ":" + hoy.getMinutes().toString().padStart(2, '0');
+                horaInicio.setAttribute("min", horaActual);
+                horaFin.setAttribute("min", horaActual);
+            } else {
+                // Si la fecha seleccionada es distinta a hoy, no hay restricción de horas
+                document.getElementById("hora_inicio").removeAttribute("min");
+                document.getElementById("hora_fin").removeAttribute("min");
+            }
+        }
+
+        // Event listener para detectar cambios en la fecha seleccionada
+        document.getElementById("fecha").addEventListener("change", bloquearHorasAnteriores);
+
+        // Llamar al método inicialmente para ajustar según la fecha inicial seleccionada
+        bloquearHorasAnteriores();
+    </script>
 </body>
 </html>
-
