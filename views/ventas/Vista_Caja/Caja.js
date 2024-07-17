@@ -7,6 +7,9 @@ const PathUrl = "http:localhost:1234/ventas/";
 const tableCards = document.querySelectorAll('.table-card');
 const tableCards2 = document.querySelectorAll('.table-card2');
 
+lista_mesas_pagadas_general = []
+lista_mesas_pagadas_terraza = []
+
 // Obtener los pedidos de generar y terraza
 const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
 const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];
@@ -88,17 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
           selectedMesa = true;
           selectedMesaetiqueta = tableCard;
 
-          // Actualizar la tabla de mesas (opcional)
-          updateTable(selectedTableId);
       });
   });
   
-
-
-  // Función opcional para actualizar la tabla de mesas
-  function updateTable(tableId) {
-      // Implementar la lógica de actualización de la tabla de mesas aquí
-  }
 
   function cambiar(IDdestino) {
     document.querySelectorAll('.Mesas').forEach(div => {
@@ -495,6 +490,46 @@ function PagoCuenta() {
         // Limpiar campos del formulario
         formCliente.reset();
         formPago.reset();
+
+        // limpiar las mesas de zona de caja
+
+        if (document.querySelector("#General").classList.contains("visible")){
+
+            mesitas = {
+                mesa : selectedTableId
+            }
+
+            tableCards.forEach((mesas, mesas_id) => {
+              
+                // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
+                if (selectedTableId === String(mesas_id + 1)) {
+                    const tableStatusElement = mesas.querySelector('.table-status');
+                    tableStatusElement.textContent = 'DISPONIBLE';
+                }
+            });
+    
+            lista_mesas_pagadas_general.push(mesitas)
+            JSON.parse(localStorage.getItem('mesas_pagadas_general'))
+
+        } else if (document.querySelector("#Terraza").classList.contains("visible")){
+            
+            mesitas = {
+                mesa : selectedTableId
+            }
+
+            tableCards2.forEach((mesas, mesas_id) => {
+              
+                // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
+                if (selectedTableId === String(mesas_id + 1)) {
+                    const tableStatusElement = mesas.querySelector('.table-status');
+                    tableStatusElement.textContent = 'DISPONIBLE';
+                }
+            });
+    
+            lista_mesas_pagadas_terraza.push(mesitas)
+            JSON.parse(localStorage.getItem('mesas_pagadas_terraza'))
+        }
+        
 
        });
 

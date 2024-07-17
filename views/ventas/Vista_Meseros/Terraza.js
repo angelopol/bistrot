@@ -7,9 +7,46 @@ const tableCards = document.querySelectorAll('.table-card');
 // declarar una variable de origen para saber en la vista de pedido quien hizo la solicitud (terraza, general)
 const origen = 'terraza';
 
+// obtener las mesas que ya han pagado su comida
+const mesas_pagadas_terraza = JSON.parse(localStorage.getItem('mesas_pagadas_terraza')) || [];
+
+
 // Obtener los pedidos que se han realizado
 const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];
 console.log(pedidos_realizados_t);
+
+
+// actualizacion de las mesas cuando ya pagaron la cuenta
+if (mesas_pagadas_terraza.length > 0){
+
+    mesas_pagadas_terraza.forEach(pedidos => {
+
+        tableCards.forEach((mesas,id_mesas) => {
+
+            // estatus pedidos
+            if (pedidos.mesa === String(id_mesas+1)){
+                const tableStatusElement = mesas.querySelector('.table-status');
+                tableStatusElement.textContent = 'DISPONIBLE';
+            }
+        })
+        
+    })
+
+    pedidos_realizados_t.forEach(pedidos => {
+
+        tableCards.forEach((mesas,id_mesas) => {
+
+            // estatus pedidos
+            if (pedidos.tableId === String(id_mesas+1)){
+                update_mesas_pagadas(id_mesas+1);
+                pedidos_realizados_t.splice(id_mesas, 1);
+            }
+        })
+        
+    })
+
+    
+}
 
 // actualizacion constante de los estados
 recorrido_mesas(pedidos_realizados_t);
@@ -372,3 +409,68 @@ async function eliminar_pedido(id_mesa){
 
 // llamamos una funcion una serie de tiempo para ver si (Cocina-bar) hizo una actualizacion en los estatus del pedido
 setInterval(actualizacion_pedidos, 20000); 
+
+
+// funcion para actualizar las mesas que ya pagaron su cuenta
+async function update_mesas_pagadas(id_mesa){
+
+    const id_update = null;
+    const update_mesas = {
+        status_pedido : 5
+    }
+
+    try {
+        // obtener los pedidos
+        const response = await fetch("http:localhost:1234/ventas/factura");
+
+        if(!response.ok){
+            if (response.status === 404) {
+                console.log("La URL 'http:localhost:1234/ventas/factura' no se encontró.");
+            } else {
+                throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
+            }
+        }
+
+        const pedidos_bd = await response.json(); // se guarda una lista de los pedidos almacenados
+
+        pedidos_bd.forEach(pedido => {
+
+            if (pedido.mesa === id_mesa && pedido.zona === 'terraza'){
+                id_update = pedido.id_cliente
+                return;
+            }
+        })
+        
+
+    } catch (error){
+        console.log("No se pudo obtener la lista de pedidos");
+    }
+
+
+    if(id_update !== null){
+        try {
+
+            // hacemos el solicitud para actualizar el pedido
+            fetch(`http:localhost:1234/ventas/factura/${id_update}`, {
+                method : "PATCH",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(update_mesas)
+            })
+            .then(response => {
+                if (response.ok) {
+                  console.log('Recurso eliminado correctamente');
+                } else {
+                  console.error('Error al eliminar el recurso');
+                }
+            })
+            .catch(error => {
+                console.error('Error en la solicitud:', error);
+            });
+
+        } catch (error){
+            console.log("No se pudo eliminar el pedido");
+        }
+    }
+}
