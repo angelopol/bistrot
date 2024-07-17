@@ -11,7 +11,7 @@ export class ControllerFactura {
             const registros_facturas = await VentasModel.getAll_factura({})
             if (registros_facturas) return res.json(registros_facturas)
             res.status(404).json({ message: 'registros de los facturas  not found' })
-    
+        
         }
         catch (error){
             console.log('error')
@@ -28,7 +28,6 @@ export class ControllerFactura {
         res.status(404).json({ message: 'registro de factura not found' })
     }
 
-    
 
     // crea un registros de la tabla de factura
     create_f = async (req, res) => {

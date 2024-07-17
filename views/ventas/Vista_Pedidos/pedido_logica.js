@@ -311,7 +311,7 @@ function crear_pedido_base_datos(orderData){
     console.log(factura);
     
     // creamos el pedido en nuestra tabla de facturas
-    fetch("http:localhost:1234/ventas/factura", {
+    fetch("../factura", {
         method : "POST",
         headers : { "Content-Type" : "aplication/json" },
         body : JSON.stringify(factura)

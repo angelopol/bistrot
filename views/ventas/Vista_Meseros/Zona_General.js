@@ -30,6 +30,7 @@ if (mesas_pagadas_general.length > 0){
             if (pedidos.mesa === String(id_mesas+1)){
                 const tableStatusElement = mesas.querySelector('.table-status');
                 tableStatusElement.textContent = 'DISPONIBLE';
+                mesas_pagadas_general.splice(id_mesas,1)
             }
         })
         
@@ -281,7 +282,7 @@ async function actualizacion_pedidos(){
 
     try {
         // obtener los pedidos
-        const response = await fetch(PathUrl+"factura");
+        const response = await fetch("../factura");
 
         if(!response.ok){
             if (response.status === 404) {
@@ -349,7 +350,7 @@ async function eliminar_pedido(id_mesa){
 
     try {
         // obtener los pedidos
-        const response = await fetch("http:localhost:1234/ventas/factura");
+        const response = await fetch("../factura");
 
         if(!response.ok){
             if (response.status === 404) {
@@ -378,7 +379,7 @@ async function eliminar_pedido(id_mesa){
         try {
 
             // hacemos el solicitud para eliminar el pedido
-            fetch(`http:localhost:1234/ventas/factura/${id_eliminar}`, {
+            fetch(`../factura/${id_eliminar}`, {
                 method : "DELETE",
                 headers: {
                     'Content-Type': 'application/json'
@@ -416,7 +417,7 @@ async function update_mesas_pagadas(id_mesa){
 
     try {
         // obtener los pedidos
-        const response = await fetch("http:localhost:1234/ventas/factura");
+        const response = await fetch("../factura");
 
         if(!response.ok){
             if (response.status === 404) {
@@ -446,7 +447,7 @@ async function update_mesas_pagadas(id_mesa){
         try {
 
             // hacemos el solicitud para actualizar el pedido
-            fetch(`http:localhost:1234/ventas/factura/${id_update}`, {
+            fetch(`../factura/${id_update}`, {
                 method : "PATCH",
                 headers: {
                     'Content-Type': 'application/json'
@@ -455,9 +456,9 @@ async function update_mesas_pagadas(id_mesa){
             })
             .then(response => {
                 if (response.ok) {
-                  console.log('Recurso eliminado correctamente');
+                    console.log('Recurso eliminado correctamente');
                 } else {
-                  console.error('Error al eliminar el recurso');
+                    console.error('Error al eliminar el recurso');
                 }
             })
             .catch(error => {

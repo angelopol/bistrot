@@ -8,9 +8,9 @@ const schema_factura = z.object({
     // Validación del consumo como un objeto JSON con claves numéricas
     consumo: z.array(
         z.object({
-          id: z.number().int().positive(),
-          quantity: z.number().int().positive(),
-          price: z.number().positive()
+            id: z.number().int().positive(),
+            quantity: z.number().int().positive(),
+            price: z.number().positive()
         })
     ),
     status_pedido : z.number().min(1).max(5), 
@@ -25,8 +25,8 @@ const schema_factura = z.object({
 
 export function validateFactura (input) {
     return schema_factura.safeParse(input)
-  }
-  
+}
+
 export function validatePartialFactura (input) {
     return schema_factura.partial().safeParse(input)
 }

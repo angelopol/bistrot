@@ -8,7 +8,8 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden;    
+    overflow: hidden; 
+      
 }
 
 .restaurant-title, .Contenido {
@@ -187,6 +188,7 @@ body {
 .Salida{margin: 40px;}
 
 .Contenido{
+    overflow-x: hidden; 
     display: flex;
     flex-direction: row;
     width: 99%;
@@ -221,6 +223,7 @@ body {
     max-width: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: show 0.4s;
+    overflow-x: hidden; 
 }
 
 .modal {
@@ -233,6 +236,7 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+    overflow-x: hidden; 
 }
 
 .closeBtn {

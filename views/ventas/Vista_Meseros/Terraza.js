@@ -10,11 +10,9 @@ const origen = 'terraza';
 // obtener las mesas que ya han pagado su comida
 const mesas_pagadas_terraza = JSON.parse(localStorage.getItem('mesas_pagadas_terraza')) || [];
 
-
 // Obtener los pedidos que se han realizado
 const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];
 console.log(pedidos_realizados_t);
-
 
 // actualizacion de las mesas cuando ya pagaron la cuenta
 if (mesas_pagadas_terraza.length > 0){
@@ -27,6 +25,7 @@ if (mesas_pagadas_terraza.length > 0){
             if (pedidos.mesa === String(id_mesas+1)){
                 const tableStatusElement = mesas.querySelector('.table-status');
                 tableStatusElement.textContent = 'DISPONIBLE';
+                mesas_pagadas_terraza.splice(id_mesas,1)
             }
         })
         
@@ -48,6 +47,7 @@ if (mesas_pagadas_terraza.length > 0){
     
 }
 
+
 // actualizacion constante de los estados
 recorrido_mesas(pedidos_realizados_t);
 
@@ -64,10 +64,7 @@ actionButtons.forEach(button => {
 
         // Realizar acción según el texto del botón
         switch (buttonText) {
-            case 'Cambio de mesa':
-                // Redirigir a pedidos.html
-                location.href = '/ventas/pedidos';
-                break;
+            
             case 'Tomar pedido':
                 // Abrir pedidos.html y pasar el ID de la mesa seleccionada
                 if (selectedTableId && selectedMesa) {
@@ -354,7 +351,7 @@ async function eliminar_pedido(id_mesa){
 
     try {
         // obtener los pedidos
-        const response = await fetch("http:localhost:1234/ventas/factura");
+        const response = await fetch("../factura");
 
         if(!response.ok){
             if (response.status === 404) {
@@ -383,7 +380,7 @@ async function eliminar_pedido(id_mesa){
         try {
 
             // hacemos el solicitud para eliminar el pedido
-            fetch(`http:localhost:1234/ventas/factura/${id_eliminar}`, {
+            fetch(`../factura/${id_eliminar}`, {
                 method : "DELETE",
                 headers: {
                     'Content-Type': 'application/json'
@@ -421,7 +418,7 @@ async function update_mesas_pagadas(id_mesa){
 
     try {
         // obtener los pedidos
-        const response = await fetch("http:localhost:1234/ventas/factura");
+        const response = await fetch("../factura");
 
         if(!response.ok){
             if (response.status === 404) {
@@ -451,7 +448,7 @@ async function update_mesas_pagadas(id_mesa){
         try {
 
             // hacemos el solicitud para actualizar el pedido
-            fetch(`http:localhost:1234/ventas/factura/${id_update}`, {
+            fetch(`../factura/${id_update}`, {
                 method : "PATCH",
                 headers: {
                     'Content-Type': 'application/json'
@@ -460,9 +457,9 @@ async function update_mesas_pagadas(id_mesa){
             })
             .then(response => {
                 if (response.ok) {
-                  console.log('Recurso eliminado correctamente');
+                    console.log('Recurso eliminado correctamente');
                 } else {
-                  console.error('Error al eliminar el recurso');
+                    console.error('Error al eliminar el recurso');
                 }
             })
             .catch(error => {
