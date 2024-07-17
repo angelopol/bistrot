@@ -121,6 +121,11 @@ botonProcesar.addEventListener("click" , async () => {
         return null
     }
 
+    let contenedorPedidoAqui = document.getElementById(idPedido)
+    if(!contenedorPedidoAqui.innerHTML.includes("pendiente")){
+        return alert("Pedido invalido para procesar")
+    }
+
     try {
         let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
     
@@ -136,7 +141,8 @@ botonProcesar.addEventListener("click" , async () => {
         // si el estado del pedido es 3, se acepta el pedido y se puede preparar
         if (pedido.status_pedido === 3) {
             // se obtiene el contenedor del pedido seleccionado
-            let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
+            alert("Pedido aceptado")
+            let cardMesa = document.getElementById(`${idCardSeleccionada}`);
             let cardMesaStatus = cardMesa.lastElementChild;
             cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
             // Al aceptarse el pedido se considera (en la vista) que inicia la preparación
@@ -144,9 +150,9 @@ botonProcesar.addEventListener("click" , async () => {
         // si el estado del pedido es 2, se rechaza el pedido por falta de recursos
         else if (pedido.status_pedido === 2) {
             alert("No se cuenta con los recursos para realizar este pedido");
-            let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
+            let cardMesa = document.getElementById(`${idCardSeleccionada}`);
             let cardMesaStatus = cardMesa.lastElementChild;
-            cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: Rechazado`;
+            cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
             // Al rechazarse, Ventas debe manejar el pedido
         }
     } catch (error) {
@@ -175,6 +181,10 @@ pedidosContainers.forEach(container => {
 
         // al id del contenedor que coincide con el id del pedido, se lo asignamos al variable global que guarda los id
         let idStringCardSeleccionada = e.target.id
+        if (idStringCardSeleccionada == ""){
+            vaciarFichaLateralDerecha()
+            return null
+        }
         idPedido = idStringCardSeleccionada // Obtenemos el id del pedido
 
         // Petición al controlador de mostrar pedido, que retorna los datos del mismo
@@ -319,6 +329,10 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
         alert("Seleccione un pedido")
         return null
     }
+    let contenedorPedidoAqui = document.getElementById(idPedido)
+    if(!contenedorPedidoAqui.innerHTML.includes("preparando")){
+        return alert("Pedido invalido para procesa de nuevo")
+    }
 
     if (confirm("¿Estas seguro que deseas volver a procesar el pedido?")){
     
@@ -337,17 +351,18 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
             // si el estado del pedido es 3, se acepta el pedido y se puede preparar
             if (pedido.status_pedido === 3) {
                 // se obtiene el contenedor del pedido seleccionado
-                let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
+                alert("Si se cuenta con los recursos para volver a preparar el pedido");
+                let cardMesa = document.getElementById(`${idCardSeleccionada}`);
                 let cardMesaStatus = cardMesa.lastElementChild;
                 cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
-                alert("Si se cuenta con los recursos para volver a preparar el pedido");
+                
             }
             // si el estado del pedido es 2, se rechaza el pedido por falta de recursos
             else if (pedido.status_pedido === 2) {
                 alert("No se cuenta con los recursos para realizar de nuevo este pedido");
-                let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
+                let cardMesa = document.getElementById(`${idCardSeleccionada}`);
                 let cardMesaStatus = cardMesa.lastElementChild;
-                cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: Rechazado`;
+                cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
                 // Al rechazarse, Ventas debe manejar el pedido
             }
         } catch (error) {
