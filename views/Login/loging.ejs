@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Login/assets/style2.css" type="text/css">    
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Loging | BCR</title>
+</head>
+<body>
+  <section>
+    <div class="login-container">
+      <div class="login-form">
+        <img loading="lazy" src="/Login/assets/icons/logo.png" class="logo" alt="Bistrot Chez Remy logo" />
+        <form action="/login" method="post" class="login-form"> 
+          <h2 class="login-title">Iniciar Sesion</h2>
+          <div class="input-container">
+            <input name="user" type="text" id="employee-code" class="input-field" required />
+            <label for="employee-code" >Codigo de Empleado</label>
+            <img src="/Login/assets/icons/person.png" class="icon" alt="Lock Icon">
+          </div>
+
+          <div class="input-container">
+            <input name="password" type="password" id="password" class="password-field" required />
+            <label for="password" >Contraseña</label>
+            <img src="/Login/assets/icons/lock.png" class="icon" alt="Lock Icon">
+          </div>
+        
+          <div>
+            <button type="submit" class="submit-button">Ingresar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html> 
