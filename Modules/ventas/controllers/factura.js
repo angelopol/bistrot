@@ -32,13 +32,11 @@ export class ControllerFactura {
     // crea un registros de la tabla de factura
     create_f = async (req, res) => {
         const result = validateFactura(req.body)
-
         if (result.error){
         return res.status(400).json({error : JSON.parse(result.error.message)})
         }
-
+        console.log(result.data)
         const new_registro_factura = await VentasModel.create_factura({ input: result.data })
-
         res.status(201).json(new_registro_factura)
     };
     

@@ -296,37 +296,37 @@ function updateTotalAmount(priceChange) {
 
 
 // funcion para crear la solicitud a la base de datos
-function crear_pedido_base_datos(orderData){
-    
-    let factura = {}
+async function crear_pedido_base_datos({total, items, zona, tableId, estatus}){
 
-    factura["monto"] = orderData.total
-    factura["iva"] = orderData.total * 1.16
-    consumo = cambiar_name_comidas_a_ids(orderData.items)  // cambiamos la clave : valor de (name : "nombre_comida") a (id_comida : id)
-    factura["consumo"] = JSON.stringify(consumo, null, 2) // convertimos el el objeto a  string con un formato json
-    factura["status_pedido"] = orderData.estatus
-    factura["mesa"] = orderData.tableId
-    factura["zona"] = orderData.zona
-
-    console.log(factura);
-    
+    console.log("crear")
+    const partialConsumo = cambiar_name_comidas_a_ids(items) 
+    const consumo = JSON.stringify(partialConsumo, null, 2) // convertimos el el objeto a  string con un formato json
+    const iva = total * 1.16
+    const factura = {
+        monto: total,
+        iva,
+        consumo,
+        status_pedido: estatus,
+        mesa: tableId,
+        zona
+    }
+    console.log(factura)
     // creamos el pedido en nuestra tabla de facturas
-    fetch("../factura", {
+
+    const response = await fetch("../factura", {
         method : "POST",
         headers : { "Content-Type" : "aplication/json" },
         body : JSON.stringify(factura)
     })
-    .then((res) => {
-        if (res.ok) {
-            console.log('Solicitud exitosa');
-        } else {
-            console.error('Error en la solicitud');
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
     
+    if(!response.ok){
+        if (response.status === 404) {
+            console.log("La URL 'http:localhost:1234/ventas/factura' no se encontró.");
+        } else {
+            throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
+        }
+        return
+    }
 }
 
 

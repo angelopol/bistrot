@@ -12,12 +12,17 @@ const db = {
 
 
 // Crear la conexión
-const connection = await mysql.createConnection(db);
-
-
-
-
-
+const connection = await mysql.createConnection(db)
+// try {
+//     const connection = await mysql.createConnection(db);
+//     // Realizar operaciones con la conexión
+// } catch (error) {
+//     console.error('Error:', error);
+// }
+await connection.query(
+    "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?);", ['noche', 3, '2024-06-25', '2024-06-27', 28, 50, 14, 47]
+)
+console.log('SE HA CONECTADO A LA BASE DE DATOS!!!')
 
 export class VentasModel {
 
@@ -418,8 +423,9 @@ export class VentasModel {
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_factura (monto, iva, consumo, mesa, zona) VALUES (?, ?, ?, ?, ?);", [monto, iva, consumo, status_pedido, mesa, zona]
+                "INSERT INTO submodulo_factura (monto, iva, consumo,status_pedido, mesa, zona) VALUES (?, ?, ?, ?, ?, ?)", [monto, iva, consumo, status_pedido, mesa, zona]
             )
+            console.log('SE HA CONECTADO A LA BASE DE DATOS!!!')
         } catch (error) {
             throw new Error("Error creando un registro de factura")
         }
