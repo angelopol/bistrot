@@ -6,13 +6,6 @@ const schema_factura = z.object({
     // Validación del IVA como un número positivo
     iva: z.number().positive({ message: 'El IVA debe ser un número positivo' }),
     // Validación del consumo como un objeto JSON con claves numéricas
-    consumo: z.array(
-        z.object({
-            id: z.number().int().positive(),
-            quantity: z.number().int().positive(),
-            price: z.number().positive()
-        })
-    ),
     status_pedido : z.number().min(1).max(5), 
     mesa : z.number().min(1).max(9).positive({ message: 'El numero de la mesa debe ser un número positivo' }),
     zona : z.string().refine(zona_pedido => {

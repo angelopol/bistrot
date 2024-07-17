@@ -160,10 +160,14 @@ function placeOrder() {
     });
     
     // crear pedido para almacenarlo en la base de datos
-    crear_pedido_base_datos(orderData)
+    crear = crear_pedido_base_datos(orderData)
 
-    // Envía los datos del pedido al servidor o redirige al usuario a la página de confirmación
-    sendOrderToServer(orderData);
+    if(crear){
+        // Envía los datos del pedido al servidor o redirige al usuario a la página de confirmación
+        //sendOrderToServer(orderData);
+    }
+
+    
 }
 
 function sendOrderToServer(orderData) {
@@ -296,26 +300,33 @@ function updateTotalAmount(priceChange) {
 
 
 // funcion para crear la solicitud a la base de datos
-async function crear_pedido_base_datos({total, items, zona, tableId, estatus}){
+async function crear_pedido_base_datos(orderData){
 
     console.log("crear")
-    const partialConsumo = cambiar_name_comidas_a_ids(items) 
-    const consumo = JSON.stringify(partialConsumo, null, 2) // convertimos el el objeto a  string con un formato json
-    const iva = total * 1.16
+    const partialConsumo = cambiar_name_comidas_a_ids(orderData.items) 
+    const consumo = JSON.stringify(partialConsumo) // convertimos el el objeto a  string con un formato json
+
     const factura = {
-        monto: total,
-        iva,
-        consumo,
-        status_pedido: estatus,
-        mesa: tableId,
-        zona
+        monto: orderData.total,
+        iva : orderData.total * 1.16,
+        consumo : consumo,
+        status_pedido: orderData.estatus,
+        mesa: parseInt(orderData.tableId),
+        zona : orderData.zona
     }
+
     console.log(factura)
     // creamos el pedido en nuestra tabla de facturas
+    console.log(factura.monto)
+    console.log(factura.iva)
+    console.log(factura.consumo)
+    console.log(factura.status_pedido)
+    console.log(factura.mesa)
+    console.log(factura.zona)
 
     const response = await fetch("../factura", {
         method : "POST",
-        headers : { "Content-Type" : "aplication/json" },
+        headers : { "Content-Type" : "application/json" },
         body : JSON.stringify(factura)
     })
     
@@ -326,6 +337,9 @@ async function crear_pedido_base_datos({total, items, zona, tableId, estatus}){
             throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
         }
         return
+    } else {
+        console.log("Respuesta Exitosa")
+        return false;
     }
 }
 
