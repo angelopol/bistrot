@@ -1,6 +1,7 @@
 /* Recordatorio: los pedidos se refieren a los objetos factura de ventas */
 
 document.addEventListener('DOMContentLoaded', function() {
+    actualizarPedidos()
     const filterButtons = document.querySelectorAll('.filter-button');
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
