@@ -35,8 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedMesa = true;
             selectedMesaetiqueta = tableCard;
 
-            // Actualizar la tabla de mesas (opcional)
-            updateTable(selectedTableId);
         });
     });
     
@@ -121,7 +119,7 @@ function encontrar(mesa_id,pedidos_check) {
 
     for (let i = 0; i < pedidos_check.length; i++) {
         let pedidoActual = pedidos_check[i];
-        if (pedidoActual.tableId === String(mesa_id) && pedidoActual.estatus === 1) {
+        if (pedidoActual.tableId === String(mesa_id) && pedidoActual.estatus === 4) {
             alert('Pedido encontrado');
             pedido = pedidoActual;
             
@@ -305,224 +303,229 @@ function PagoCuenta() {
     
     if (selectedTableId !== null && selectedMesa) {
 
-        const modalContainer = document.getElementById('divModal');
-        const modal = document.createElement('div');
-        modal.className = 'modal';
-        modal.id = `modal-${selectedTableId}`;
-        
-        
-        if (document.querySelector("#Terraza").classList.contains("visible")) {
-
-
         if (selectedMesaetiqueta.querySelector(".table-status").textContent === 'Cuenta'){
-            let pedido = encontrar(selectedTableId,pedidos_realizados_t);
-            modal.innerHTML = `
-                <div id="Modal${selectedTableId}" class="modal-content">
-                    <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
-                    <h3>Detalles del Pedido</h3>
-                    <div id="pedidoDetalles"></div>
-                    <div id="totalPedido">Monto Total: $${pedido.total}</div>
-                    <hr>
-                    <form id="formCliente">
-                        <h3>Datos del Cliente</h3>
-                        <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
-                        <input type="text" id="nombreCliente" name="nombreCliente" required>
-                        <label for="rifCedula">RIF o Cédula:</label>
-                        <input type="text" id="rifCedula" name="rifCedula" required>
-                        <label for="direccion">Dirección:</label>
-                        <input type="text" id="direccion" name="direccion">
-                        <label for="tipoEstado">Tipo de Estado:</label>
-                        <input type="text" id="tipoEstado" name="tipoEstado">
-                        <label for="telefono">Teléfono:</label>
-                        <input type="tel" id="telefono" name="telefono">
-                        <label for="correo">Correo Electrónico:</label>
-                        <input type="email" id="correo" name="correo">
-                    </form>
-                    <hr>
-                    <form id="formPago">
-                        <label for="metodoPago">Seleccione el método de pago:</label>
-                        <select id="metodoPago" name="metodoPago">
-                            <option value="efectivo">Efectivo</option>
-                            <option value="tarjeta">Tarjeta</option>
-                        </select>
-                        <button type="submit" class="button-pagar">Pagar</button>
-                    </form>
-                    <button class="button-cerrar-modal">Cerrar</button>
-                </div>
-            `;
 
-        }
-    } else if (document.querySelector("#General").classList.contains("visible")) {
-
-        if (selectedMesaetiqueta.querySelector(".table-status").textContent === 'Cuenta'){
-            let pedido = encontrar(selectedTableId,pedidos_realizados);
-            modal.innerHTML = `
-                <div id="Modal${selectedTableId}" class="modal-content">
-                    <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
-                    <h3>Detalles del Pedido</h3>
-                    <div id="pedidoDetalles"></div>
-                    <div id="totalPedido">Monto Total: $${pedido.total}</div>
-                    <hr>
-                    <form id="formCliente">
-                        <h3>Datos del Cliente</h3>
-                        <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
-                        <input type="text" id="nombreCliente" name="nombreCliente" required minlength="3">
-                        <label for="rifCedula">RIF o Cédula:</label>
-                        <input type="text" id="rifCedula" name="rifCedula" required minlength="8">
-                        <label for="direccion">Dirección:</label>
-                        <input type="text" id="direccion" name="direccion" required minlength="3">
-                        <label for="tipoEstado">Tipo de Estado:</label>
-                        <input type="text" id="tipoEstado" name="tipoEstado" required>
-                        <label for="telefono">Teléfono:</label>
-                        <input type="tel" id="telefono" name="telefono" required>
-                        <label for="correo">Correo Electrónico:</label>
-                        <input type="email" id="correo" name="correo" required>
-                    </form>
-                    <hr>
-                    <form id="formPago">
-                        <label for="metodoPago">Seleccione el método de pago:</label>
-                        <select id="metodoPago" name="metodoPago">
-                            <option value="efectivo">Efectivo</option>
-                            <option value="tarjeta">Tarjeta</option>
-                        </select>
-                        <button type="submit" class="button-pagar">Pagar</button>
-                    </form>
-                    <button class="button-cerrar-modal">Cerrar</button>
-                </div>
-            `;
-        }
-    }
-
-        modalContainer.appendChild(modal);
-
-      // Mostrar el modal y desactivar el scroll del cuerpo
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-
-      // Manejar el evento de cierre del modal
-        modal.querySelector('.closeBtn').addEventListener('click', () => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-
-        modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
-
-      // Manejar el envío del formulario de cliente y pedido
-        const formCliente = modal.querySelector('#formCliente');
-        const pedidoDetalles = modal.querySelector('#pedidoDetalles');
-
-      // Manejar el envío del formulario de pago
-        const formPago = modal.querySelector('#formPago');
-
-        formPago.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-        // Aquí puedes realizar validaciones si es necesario antes de agregar los detalles del pedido
-
-        // Mostrar detalles del cliente
-        const clienteNombre = formCliente.elements['nombreCliente'].value.trim();
-        const clienteRIF = formCliente.elements['rifCedula'].value.trim();
-        const clienteDireccion = formCliente.elements['direccion'].value.trim();
-        const clienteTipoEstado = formCliente.elements['tipoEstado'].value.trim();
-        const clienteTelefono = formCliente.elements['telefono'].value.trim();
-        const clienteCorreo = formCliente.elements['correo'].value.trim();
-
-        // Validar el formato del número de teléfono
-        const telefonoRegex = /^\+?\d{1,3}?[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/;
-
-        if (clienteTelefono !== '' && !telefonoRegex.test(clienteTelefono)) {
-            alert('Por favor, ingrese un número de teléfono válido.');
-            return;
-        }
-
-        // Validar el tipo de estado
-        const tiposEstado = ['natural', 'juridico'];
-
-        if (!tiposEstado.includes(tipoEstado.toLowerCase())) {
-            alert('El tipo de estado debe ser "natural" o "juridico".');
-            return;
-        }
-
-        cliente = {
-        nombre_cliente_empresa : clienteNombre,
-        rif_cedula : clienteRIF,
-        direccion : clienteDireccion,
-        tipo_estado : clienteTipoEstado,
-        telefono : clienteTelefono,
-        correo_electronico : clienteCorreo
-
-        }
-
-        guargar_registro_cliente_bd(cliente);
-
-        // Mostrar detalles del pedido (ejemplo de cómo agregar un elemento al pedido)
-        const pedidoItemHTML = `
-            <div class="factura-item">
-                <span class="item-nombre">Cliente: ${clienteNombre}</span>
-                <span class="item-rif">RIF/Cédula: ${clienteRIF}</span>
-                <span class="item-direccion">Dirección: ${clienteDireccion}</span>
-                <span class="item-estado">Tipo de Estado: ${clienteTipoEstado}</span>
-                <span class="item-telefono">Teléfono: ${clienteTelefono}</span>
-                <span class="item-correo">Correo Electrónico: ${clienteCorreo}</span>
-            </div>
-        `;
-        pedidoDetalles.innerHTML = pedidoItemHTML;
-
-        // Obtener el valor seleccionado en el campo de selección
-        const metodoPago = document.getElementById('metodoPago').value;
-
-        alert(`Pago realizado con ${metodoPago}`);
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-
-        // Limpiar campos del formulario
-        formCliente.reset();
-        formPago.reset();
-
-        // limpiar las mesas de zona de caja
-
-        if (document.querySelector("#General").classList.contains("visible")){
-
-            mesitas = {
-                mesa : selectedTableId
-            }
-
-            tableCards.forEach((mesas, mesas_id) => {
-                
-                // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
-                if (selectedTableId === String(mesas_id + 1)) {
-                    const tableStatusElement = mesas.querySelector('.table-status');
-                    tableStatusElement.textContent = 'DISPONIBLE';
-                }
-            });
-    
-            lista_mesas_pagadas_general.push(mesitas)
-            JSON.parse(localStorage.getItem('mesas_pagadas_general'))
-
-        } else if (document.querySelector("#Terraza").classList.contains("visible")){
+            const modalContainer = document.getElementById('divModal');
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.id = `modal-${selectedTableId}`;
             
-            mesitas = {
-                mesa : selectedTableId
+            
+            if (document.querySelector("#Terraza").classList.contains("visible")) {
+
+
+            
+                let pedido = encontrar(selectedTableId,pedidos_realizados_t);
+                modal.innerHTML = `
+                    <div id="Modal${selectedTableId}" class="modal-content">
+                        <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                        <h3>Detalles del Pedido</h3>
+                        <div id="pedidoDetalles"></div>
+                        <div id="totalPedido">Monto Total: $${pedido.total}</div>
+                        <hr>
+                        <form id="formCliente">
+                            <h3>Datos del Cliente</h3>
+                            <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
+                            <input type="text" id="nombreCliente" name="nombreCliente" required>
+                            <label for="rifCedula">RIF o Cédula:</label>
+                            <input type="text" id="rifCedula" name="rifCedula" required>
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" id="direccion" name="direccion">
+                            <label for="tipoEstado">Tipo de Estado:</label>
+                            <input type="text" id="tipoEstado" name="tipoEstado">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono">
+                            <label for="correo">Correo Electrónico:</label>
+                            <input type="email" id="correo" name="correo">
+                        </form>
+                        <hr>
+                        <form id="formPago">
+                            <label for="metodoPago">Seleccione el método de pago:</label>
+                            <select id="metodoPago" name="metodoPago">
+                                <option value="efectivo">Efectivo</option>
+                                <option value="tarjeta">Tarjeta</option>
+                            </select>
+                            <button type="submit" class="button-pagar">Pagar</button>
+                        </form>
+                        <button class="button-cerrar-modal">Cerrar</button>
+                    </div>
+                `;
+
+            
+            } else if (document.querySelector("#General").classList.contains("visible")) {
+
+            
+                let pedido = encontrar(selectedTableId,pedidos_realizados);
+                modal.innerHTML = `
+                    <div id="Modal${selectedTableId}" class="modal-content">
+                        <span class="closeBtn" data-modal="modal-${selectedTableId}">&times;</span>
+                        <h3>Detalles del Pedido</h3>
+                        <div id="pedidoDetalles"></div>
+                        <div id="totalPedido">Monto Total: $${pedido.total}</div>
+                        <hr>
+                        <form id="formCliente">
+                            <h3>Datos del Cliente</h3>
+                            <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
+                            <input type="text" id="nombreCliente" name="nombreCliente" required minlength="3">
+                            <label for="rifCedula">RIF o Cédula:</label>
+                            <input type="text" id="rifCedula" name="rifCedula" required minlength="8">
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" id="direccion" name="direccion" required minlength="3">
+                            <label for="tipoEstado">Tipo de Estado:</label>
+                            <input type="text" id="tipoEstado" name="tipoEstado" required>
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                            <label for="correo">Correo Electrónico:</label>
+                            <input type="email" id="correo" name="correo" required>
+                        </form>
+                        <hr>
+                        <form id="formPago">
+                            <label for="metodoPago">Seleccione el método de pago:</label>
+                            <select id="metodoPago" name="metodoPago">
+                                <option value="efectivo">Efectivo</option>
+                                <option value="tarjeta">Tarjeta</option>
+                            </select>
+                            <button type="submit" class="button-pagar">Pagar</button>
+                        </form>
+                        <button class="button-cerrar-modal">Cerrar</button>
+                    </div>
+                `;
             }
 
-            tableCards2.forEach((mesas, mesas_id) => {
-                
-                // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
-                if (selectedTableId === String(mesas_id + 1)) {
-                    const tableStatusElement = mesas.querySelector('.table-status');
-                    tableStatusElement.textContent = 'DISPONIBLE';
-                }
-            });
-    
-            lista_mesas_pagadas_terraza.push(mesitas)
-            JSON.parse(localStorage.getItem('mesas_pagadas_terraza'))
-        }
-        
+            modalContainer.appendChild(modal);
 
-    });
+            // Mostrar el modal y desactivar el scroll del cuerpo
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+      
+            // Manejar el evento de cierre del modal
+            modal.querySelector('.closeBtn').addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+      
+            modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+      
+            // Manejar el envío del formulario de cliente y pedido
+            const formCliente = modal.querySelector('#formCliente');
+            const pedidoDetalles = modal.querySelector('#pedidoDetalles');
+      
+            // Manejar el envío del formulario de pago
+            const formPago = modal.querySelector('#formPago');
+    
+            formPago.addEventListener('submit', (event) => {
+                event.preventDefault();
+    
+                // Aquí puedes realizar validaciones si es necesario antes de agregar los detalles del pedido
+    
+                // Mostrar detalles del cliente
+                const clienteNombre = formCliente.elements['nombreCliente'].value.trim();
+                const clienteRIF = formCliente.elements['rifCedula'].value.trim();
+                const clienteDireccion = formCliente.elements['direccion'].value.trim();
+                const clienteTipoEstado = formCliente.elements['tipoEstado'].value.trim();
+                const clienteTelefono = formCliente.elements['telefono'].value.trim();
+                const clienteCorreo = formCliente.elements['correo'].value.trim();
+    
+                // Validar el formato del número de teléfono
+                const telefonoRegex = /^\+?\d{1,3}?[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/;
+    
+                if (clienteTelefono !== '' && !telefonoRegex.test(clienteTelefono)) {
+                    alert('Por favor, ingrese un número de teléfono válido.');
+                    return;
+                }
+    
+                // Validar el tipo de estado
+                const tiposEstado = ['natural', 'juridico'];
+    
+                if (!tiposEstado.includes(tipoEstado.toLowerCase())) {
+                    alert('El tipo de estado debe ser "natural" o "juridico".');
+                    return;
+                }
+    
+                cliente = {
+                nombre_cliente_empresa : clienteNombre,
+                rif_cedula : clienteRIF,
+                direccion : clienteDireccion,
+                tipo_estado : clienteTipoEstado,
+                telefono : clienteTelefono,
+                correo_electronico : clienteCorreo
+    
+                }
+    
+                guargar_registro_cliente_bd(cliente);
+    
+                // Mostrar detalles del pedido (ejemplo de cómo agregar un elemento al pedido)
+                const pedidoItemHTML = `
+                    <div class="factura-item">
+                        <span class="item-nombre">Cliente: ${clienteNombre}</span>
+                        <span class="item-rif">RIF/Cédula: ${clienteRIF}</span>
+                        <span class="item-direccion">Dirección: ${clienteDireccion}</span>
+                        <span class="item-estado">Tipo de Estado: ${clienteTipoEstado}</span>
+                        <span class="item-telefono">Teléfono: ${clienteTelefono}</span>
+                        <span class="item-correo">Correo Electrónico: ${clienteCorreo}</span>
+                    </div>
+                `;
+                pedidoDetalles.innerHTML = pedidoItemHTML;
+    
+                // Obtener el valor seleccionado en el campo de selección
+                const metodoPago = document.getElementById('metodoPago').value;
+    
+                alert(`Pago realizado con ${metodoPago}`);
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+    
+                // Limpiar campos del formulario
+                formCliente.reset();
+                formPago.reset();
+    
+                // limpiar las mesas de zona de caja
+    
+                if (document.querySelector("#General").classList.contains("visible")){
+    
+                    mesitas = {
+                        mesa : selectedTableId
+                    }
+    
+                    tableCards.forEach((mesas, mesas_id) => {
+                        
+                        // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
+                        if (selectedTableId === String(mesas_id + 1)) {
+                            const tableStatusElement = mesas.querySelector('.table-status');
+                            tableStatusElement.textContent = 'DISPONIBLE';
+                        }
+                    });
+            
+                    lista_mesas_pagadas_general.push(mesitas)
+                    JSON.parse(localStorage.getItem('mesas_pagadas_general'))
+    
+                } else if (document.querySelector("#Terraza").classList.contains("visible")){
+                    
+                    mesitas = {
+                        mesa : selectedTableId
+                    }
+    
+                    tableCards2.forEach((mesas, mesas_id) => {
+                        
+                        // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
+                        if (selectedTableId === String(mesas_id + 1)) {
+                            const tableStatusElement = mesas.querySelector('.table-status');
+                            tableStatusElement.textContent = 'DISPONIBLE';
+                        }
+                    });
+            
+                    lista_mesas_pagadas_terraza.push(mesitas)
+                    JSON.parse(localStorage.getItem('mesas_pagadas_terraza'))
+                }
+            
+    
+            });
+        
+        }
+
+       
 
     }
 }
