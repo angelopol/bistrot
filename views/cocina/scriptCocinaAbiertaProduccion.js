@@ -286,7 +286,6 @@ listoButton.addEventListener("click", async function () {
 // le agregamos un evento al boton devolver, que sirve para quitar de las vistas las ordenes rechazadas
 let devolverBoton = document.querySelector("#botonDevolver")
 devolverBoton.addEventListener("click" , async ()=>{
-    console.log("hola")
     // Evento que elimina de la carta seleccionada un pedido
 
     if (idPedido == ""){
@@ -297,7 +296,7 @@ devolverBoton.addEventListener("click" , async ()=>{
 
     // si el pedido no ha sido rechazado entonces no se puede devolver
     if (!cardSeleccionada.innerHTML.includes("rechazado")){
-        alert("Solo se pueden devolver pedidos que hayan sido rechazados")
+        return alert("Solo se pueden devolver pedidos que hayan sido rechazados")
     }
 
     let cardPedido = document.getElementById(`${idPedido}`)
