@@ -130,9 +130,7 @@ export class VentasModel {
         } catch (error) {
             console.error('Error al actualizar la venta:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
 
 
@@ -246,9 +244,7 @@ export class VentasModel {
         } catch (error) {
             console.error('Error al actualizar la venta:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
 
 
@@ -364,9 +360,7 @@ export class VentasModel {
         } catch (error) {
             console.error('Error al actualizar el registro del cliente:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
 
 
@@ -486,9 +480,7 @@ export class VentasModel {
         } catch (error) {
             console.error('Error al actualizar el registro de la factura:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
 
 
