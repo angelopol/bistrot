@@ -57,6 +57,17 @@ async function actualizarPedidos() {
         }
         const pedidos = await response.json(); // aqui se guardaria un arreglo de todos los pedidos(facturas) almacenados por ventas
 
+
+        // este bloque fue el que agregue alfredo 
+        let todosContenedores = document.querySelectorAll(".order-card")
+        todosContenedores.forEach(contenedor => {
+            
+            if (contenedor.innerHTML.includes("pendiente")){
+                contenedor.classList.remove("ocupado")
+            }
+        })
+
+
         // Iterar sobre los pedidos y actualizar los order-card
         pedidos.forEach(pedido => {
 
