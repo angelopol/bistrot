@@ -230,7 +230,7 @@ pedidosContainers.forEach(container => {
             // Se agrega el botón listo que (ya que se elimina tmb al inicio del evento)
             let listoButton = document.createElement("button")
             listoButton.className = "order-ready"
-            listoButton.value = "Listo"
+            listoButton.textContent = "Listo"
             contenedorPedido.appendChild(listoButton)
         })
         .catch(e => {
@@ -411,4 +411,21 @@ function vaciarFichaLateralDerecha() {
     contenedorPedido.appendChild(divPedido) // Se agrega el indicador "PEDIDO"
 
     */
+}
+
+function completarTamañoFicha(){
+    let contenedorPedido = document.querySelector(".order-summary")
+    let elementosHijos = contenedorPedido.children;
+    let elementosArray = Array.from(elementosHijos).slice(2);
+    for (let i = 0 ; i < 6 - elementosArray.length ; i++){
+        let contenedor1 = document.createElement("DIV")
+        contenedor1.classList.add("order-item")
+        let subContenedor1 = document.createElement("span")
+        subContenedor1.classList.add("item-name")
+        let subContenedor2 = document.createElement("span")
+        subContenedor1.classList.add("item-detail")
+        contenedor1.appendChild(subContenedor1)
+        contenedor1.appendChild(subContenedor2)
+        contenedorPedido.appendChild(contenedor1)
+    }
 }
