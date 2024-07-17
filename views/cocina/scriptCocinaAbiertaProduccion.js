@@ -65,6 +65,9 @@ async function actualizarPedidos() {
             
             if (contenedor.innerHTML.includes("pendiente")){
                 contenedor.classList.remove("ocupado")
+                contenedor.id = ""
+                let ultimoTexto = contenedor.lastElementChild
+                ultimoTexto.textContent = "ORDEN"
             }
         })
 
@@ -183,6 +186,7 @@ pedidosContainers.forEach(container => {
         let idStringCardSeleccionada = e.target.id
         if (idStringCardSeleccionada == ""){
             vaciarFichaLateralDerecha()
+            agregarFuncionDelBotonListo()
             return null
         }
         idPedido = idStringCardSeleccionada // Obtenemos el id del pedido
@@ -238,12 +242,15 @@ pedidosContainers.forEach(container => {
                 contenedorPedido.appendChild(divItem)
             })
 
-            // Se agrega el botón listo que (ya que se elimina tmb al inicio del evento)
+            // se completa el tamaño de la ficha
             completarTamañoFicha()
+            // Se agrega el botón listo que (ya que se elimina tmb al inicio del evento)
             let listoButton = document.createElement("button")
             listoButton.className = "order-ready"
             listoButton.textContent = "Listo"
             contenedorPedido.appendChild(listoButton)
+            // se agrega su funcionalidad 
+            agregarFuncionDelBotonListo()
         })
         .catch(e => {
             console.error(`Error al acceder a la base de datos de pedidos (tabla de factura de ventas)`, e)
@@ -252,22 +259,26 @@ pedidosContainers.forEach(container => {
 })
 
 
-// accedemos al boton listo
+function agregarFuncionDelBotonListo(){
+    // accedemos al boton listo
 const listoButton = document.querySelector(".order-ready")
 
 // le agregamos el evento al boton listo
 listoButton.addEventListener("click", async function () {
     // Evento que cambia el estado del pedido
 
-    // accedemos al contenedor que contiene el pedido seleccionado
-    let cardSeleccionada = document.getElementById(idPedido.toString())
+    
 
     if (idPedido === ""){
         // Se verifica que haya un pedido seleccionado
         alert("Seleccione un pedido")
         return null
     }
-    else if (!cardSeleccionada.innerHTML.includes("preparando")){
+
+    // accedemos al contenedor que contiene el pedido seleccionado
+    let cardSeleccionada = document.getElementById(idPedido.toString())
+
+    if (!cardSeleccionada.innerHTML.includes("preparando")){
         // Se verifica que el pedido no tenga el estatus de rechazado, pendiente o listo
         alert("Pedido invalido para ponerlo en listo")
         return null
@@ -288,12 +299,13 @@ listoButton.addEventListener("click", async function () {
         idPedido = ""
 
         quitarEstatusClickeado()
-        vaciarFichaLateralDerecha()
     })
     .catch(e => {
         console.error(`Error al acceder al pedido.`, e)
     })
 })
+}
+agregarFuncionDelBotonListo()
 
 // le agregamos un evento al boton devolver, que sirve para quitar de las vistas las ordenes rechazadas
 let devolverBoton = document.querySelector("#botonDevolver")
