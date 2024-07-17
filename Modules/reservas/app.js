@@ -2,16 +2,15 @@ import express, { json } from 'express' // require -> commonJS
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url';
 import methodOverride from 'method-override'
-import { corsMiddleware } from '../../global/middlewares/cors.js'
-import { authenticated } from '../../global/middlewares/auth.js'
+import { corsMiddleware } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/cors.js'
+import { authenticated } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/auth.js'
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
 import { InventarioMesasController } from './controllers/controlador.js';
-import { ReservaController } from './controllers/reserva.js';
+import {ReservaController} from './controllers/reserva.js';
 
-
-    const controladorInventario = new InventarioMesasController();
+    const controladorInventario= new InventarioMesasController();
     const controladorReserva = new ReservaController();
     const app = express()
     const __filename = fileURLToPath(import.meta.url);
@@ -43,21 +42,8 @@ import { ReservaController } from './controllers/reserva.js';
         res.sendFile(path.join(__dirname, 'views/bar.css'))
     });
 
-    app.get('/CrearEvento',controladorInventario.mostrarCrearEvento);
-
-    app.get('/css/crearEventos.css',(req,res)=>{
-        res.sendFile(path.join(__dirname, 'views/CrearEvento.css'))
-    });
-
-    app.get('/Reporte',controladorInventario.mostrarReporte);
-
-    app.get('/css/reportes.css',(req,res)=>{
-        res.sendFile(path.join(__dirname, 'views/Reporte.css'))
-    });
-
-    app.get('/reservas/modificar',controladorInventario.mostrarModificar);
-    
-    app.get('css/modificarReserva.css',(req,res)=>{
+    app.get('/modificar',controladorInventario.mostrarModificar);
+    app.get('css/modificar.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/modificarReserva.css'))
     });
 
@@ -73,9 +59,10 @@ import { ReservaController } from './controllers/reserva.js';
         res.sendFile(path.join(__dirname, 'views/CrearReservas.css'))
     });
     
-    app.post('/reservaciones/crear',controladorReserva.create);
+    app.post('/mesas/CrearReservas/crear',controladorReserva.create);
 
-    app.delete('/reservaciones/eliminar',controladorReserva.delete);
+    //funcion que e
+    app.delete('/eliminar/:id',controladorReserva.delete);
 
     const PORT = process.env.PORT ?? 1234
     app.listen(PORT, () => {

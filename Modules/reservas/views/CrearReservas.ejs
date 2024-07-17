@@ -6,7 +6,6 @@
     <title>Crear una Reservación</title>
     <link rel="stylesheet" href="CrearReservas.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
-
 </head>
 <body>
     <div class="heading">
@@ -35,127 +34,267 @@
                     <li><a href="#"><img src="imagenes/icono_reporte.png" alt="Reportes">Reportes</a></li>
                     <li><a href="#"><img src="imagenes/icono_config.png" alt="Configuraciones">Configuraciones</a></li>
                     <li><a href="#"><img src="imagenes/icono_ayuda.png" alt="Ayuda">Ayuda</a></li>
-                    
                 </ul>
             </nav>
         </div>
         <div class="contenido">
             <div class="contenidop">
                 <div class="Reservar">
-                  <h2>
-                    <a href="reservacion.html">
-                      <img src="imagenes/icono_salida.png" alt="regresar">
-                    </a>
-                    Reservar
-                  </h2>
+                    <h2>
+                        <a href="/mesas">
+                            <img src="imagenes/icono_salida.png" alt="regresar">
+                        </a>
+                        Reservar
+                    </h2>
                 </div>
                 <div class="seccion">
                     <h2>Reservación de mesa</h2>
                 </div>
             </div>
-        
-        
             <div class="distribucion">
+                <form id="reserva-form" action="/mesas/CrearReservas/crear" method="POST">
+                    <div class="form-group">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="personas">Cantidad de personas:</label>
+                        <input type="number" id="personas" name="personas" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora_inicio">Hora de inicio:</label>
+                        <input type="time" id="hora_inicio" name="hora_inicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora_fin">Hora de finalización:</label>
+                        <input type="time" id="hora_fin" name="hora_fin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cedula">Cédula de Identidad:</label>
+                        <input type="text" id="cedula" name="cedula" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idmesa">Número de mesa:</label>
+                        <input type="text" id="idmesa" name="idmesa" >
+                    </div>
+                    <div class="form-group">
+                        <label for="idtelefono">Teléfono:</label>
+                        <input type="text" id="idtelefono" name="idtelefono"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="iddescripcion">Descripción:</label>
+                        <input type="text" id="iddescripcion" name="iddescripcion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zona">Zona:</label>
+                        <select id="zona" name="zona" required>
+                            <option value="interior">Interior</option>
+                            <option value="exterior">Exterior</option>
+                            <option value="barra">Barra</option>
+                        </select>
+                    </div>
+                    <button type="submit">Registrar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        
-              <form id="reserva-form" action="reservaciones/crear" method="POST">
-                <div class="form-group">
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" name="fecha" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="personas">Cantidad de personas:</label>
-                    <input type="number" id="personas" name="personas" min="1" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="hora_inicio">Hora de inicio:</label>
-                    <input type="time" id="hora_inicio" name="hora_inicio" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="hora_fin">Hora de finalización:</label>
-                    <input type="time" id="hora_fin" name="hora_fin" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="nombre">Nombre y Apellido:</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="cedula">Cédula de Identidad:</label>
-                    <input type="text" id="cedula" name="cedula" pattern="\d{8}" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="idmesa">Número de mesa:</label>
-                    <input type="text" id="idmesa" name="idmesa" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="idtelefono">Teléfono:</label>
-                    <input type="text" id="idtelefono" name="idtelefono" pattern="\d{12}" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="iddescripcion">Descripción:</label>
-                    <input type="text" id="iddescripcion" name="iddescripcion" required>
-                </div>
-        
-                <div class="form-group">
-                    <label for="zona">Zona:</label>
-                    <select id="zona" name="zona" required>
-                        <option value="cocina">Interior</option>
-                        <option value="salon">Exterior</option>
-                        <option value="terraza">Barra</option>
-                    </select>
-                </div>
-        
-                <button type="submit">Registrar Reserva</button>
-            </form>
-        
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    const today = new Date().toISOString().split('T')[0];
-                    document.getElementById("fecha").setAttribute("min", today);
-        
-                    document.getElementById("reserva-form").addEventListener("submit", function(event) {
-                        const horaInicio = document.getElementById("hora_inicio").value;
-                        const horaFin = document.getElementById("hora_fin").value;
-        
-                        if (!validarHorarioRestaurante(horaInicio, horaFin)) {
-                            alert("El restaurante solo acepta reservas entre las 7:00 AM y las 9:00 PM.");
-                            event.preventDefault();
-                        }
-                    });
-        
-                    function validarHorarioRestaurante(horaInicio, horaFin) {
-                        const horarioInicioRestaurante = 7;
-                        const horarioFinRestaurante = 21;
-        
-                        // Validar que la hora de inicio y fin estén dentro del horario de funcionamiento
-                        const [horaInicioStr, minInicioStr] = horaInicio.split(":");
-                        const horaInicioInt = parseInt(horaInicioStr, 10);
-                        const [horaFinStr, minFinStr] = horaFin.split(":");
-                        const horaFinInt = parseInt(horaFinStr, 10);
-        
-                        if (isNaN(horaInicioInt) || isNaN(horaFinInt)) {
-                            return false;
-                        }
-        
-                        if (horaInicioInt < horarioInicioRestaurante || horaInicioInt > horarioFinRestaurante) {
-                            return false;
-                        }
-        
-                        if (horaFinInt < horarioInicioRestaurante || horaFinInt > horarioFinRestaurante) {
-                            return false;
-                        }
-        
-                        return true;
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById("fecha").setAttribute("min", today);
+
+            // Recuperar la selección de mesas almacenada
+            const selectedButtons = JSON.parse(localStorage.getItem("selectedButtons")) || [];
+
+            // Mostrar las mesas seleccionadas en el campo de número de mesa
+            document.getElementById("idmesa").value = selectedButtons.join(", ");
+
+            document.getElementById("reserva-form").addEventListener("submit", function(event) {
+                const horaInicio = document.getElementById("hora_inicio").value;
+                const horaFin = document.getElementById("hora_fin").value;
+
+                if (!validarHorarioRestaurante(horaInicio, horaFin)) {
+                    alert("El restaurante solo acepta reservas entre las 7:00 AM y las 9:00 PM.");
+                    event.preventDefault();
+                }
+                //condicional que valida si el campo de numero de mesa esta vacio
+                else if (document.getElementById("idmesa").value == "") {
+                    alert("Debe seleccionar al menos una mesa.");
+                    event.preventDefault();
+                }
+                
+            });
+
+            //funcion que valida si una cedula tiene de 7 a 8 digitos, si es un numero y si el primer numero no es 0
+
+            document.getElementById("cedula").addEventListener("input", function(event) {
+                const cedula = event.target.value;
+                if (cedula.length < 7 || cedula.length > 8) {
+                    event.target.setCustomValidity("La cédula debe tener entre 7 y 8 dígitos.");
+                } else if (isNaN(cedula)) {
+                    event.target.setCustomValidity("La cédula debe contener solo números.");
+                } else if (cedula[0] === "0") {
+                    event.target.setCustomValidity("La cédula no puede empezar con 0.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
+
+            //funcion que valida si el campo de nombre y apellido tiene al menos 2 palabras y si solo contiene letras
+
+            document.getElementById("nombre").addEventListener("input", function(event) {
+                const nombre = event.target.value;
+                if (nombre.split(" ").length < 2) {
+                    event.target.setCustomValidity("El nombre y apellido deben contener al menos 2 palabras.");
+                } else if (!/^[a-zA-Z\s]+$/.test(nombre)) {
+                    event.target.setCustomValidity("El nombre y apellido solo pueden contener letras.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
+
+
+
+            //funcion que valida si un numero de telefono tiene 11 digitos, si es un numero y si los primeros 4 digitos son: 0412, 0414, 0416, 0424, 0426
+
+            document.getElementById("idtelefono").addEventListener("input", function(event) {
+                const telefono = event.target.value;
+                if (telefono.length !== 11) {
+                    event.target.setCustomValidity("El número de teléfono debe tener 11 dígitos.");
+                } else if (isNaN(telefono)) {
+                    event.target.setCustomValidity("El número de teléfono debe contener solo números.");
+                } else if (!["0412", "0414", "0416", "0424", "0426"].includes(telefono.slice(0, 4))) {
+                    event.target.setCustomValidity("El número de teléfono debe comenzar con 0412, 0414, 0416, 0424 o 0426.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
+
+            //funcion que valida si la hora de inicio es mayor a la hora de fin
+
+            document.getElementById("hora_inicio").addEventListener("input", function(event) {
+                const horaInicio = event.target.value;
+                const horaFin = document.getElementById("hora_fin").value;
+
+                if (horaInicio >= horaFin) {
+                    event.target.setCustomValidity("La hora de inicio debe ser menor a la hora de finalización.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
+
+            //funvion que valida si la hora de fin es menor a la hora de inicio
+
+            document.getElementById("hora_fin").addEventListener("input", function(event) {
+                const horaFin = event.target.value;
+                const horaInicio = document.getElementById("hora_inicio").value;
+
+                if (horaFin <= horaInicio) {
+                    event.target.setCustomValidity("La hora de finalización debe ser mayor a la hora de inicio.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
+
+            //funcion que valida si la diferencia de horas da menos de 30 minutos
+
+            document.getElementById("hora_inicio").addEventListener("input", validarDuracionReserva);
+            document.getElementById("hora_fin").addEventListener("input", validarDuracionReserva);
+
+            function validarDuracionReserva() {
+                const horaInicio = document.getElementById("hora_inicio").value;
+                const horaFin = document.getElementById("hora_fin").value;
+
+                if (!horaInicio || !horaFin) {
+                    // No hacer nada si alguno de los valores de hora no está presente
+                    return;
+                }
+
+                const [horaInicioStr, minInicioStr] = horaInicio.split(":");
+                const [horaFinStr, minFinStr] = horaFin.split(":");
+
+                const horaInicioInt = parseInt(horaInicioStr, 10);
+                const minInicioInt = parseInt(minInicioStr, 10);
+                const horaFinInt = parseInt(horaFinStr, 10);
+                const minFinInt = parseInt(minFinStr, 10);
+
+                const diferenciaHoras = (horaFinInt - horaInicioInt) * 60 + (minFinInt - minInicioInt);
+
+                if (diferenciaHoras < 30) {
+                    document.getElementById("hora_inicio").setCustomValidity("La reserva debe tener una duración mínima de 30 minutos.");
+                    document.getElementById("hora_fin").setCustomValidity("La reserva debe tener una duración mínima de 30 minutos.");
+                } else {
+                    document.getElementById("hora_inicio").setCustomValidity("");
+                    document.getElementById("hora_fin").setCustomValidity("");
+                }
+            }
+
+
+            //funcion que valida si la diferencia de horas da mas de 4 horas
+
+                document.getElementById("hora_inicio").addEventListener("input", validarDuracionReserva);
+                document.getElementById("hora_fin").addEventListener("input", validarDuracionReserva);
+
+                function validarDuracionReserva() {
+                    const horaInicio = document.getElementById("hora_inicio").value;
+                    const horaFin = document.getElementById("hora_fin").value;
+
+                    if (!horaInicio || !horaFin) {
+                        // No hacer nada si alguno de los valores de hora no está presente
+                        return;
                     }
-                });
-            </script>
-        </body>
-        </html>
+
+                    const [horaInicioStr, minInicioStr] = horaInicio.split(":");
+                    const [horaFinStr, minFinStr] = horaFin.split(":");
+
+                    const horaInicioInt = parseInt(horaInicioStr, 10);
+                    const minInicioInt = parseInt(minInicioStr, 10);
+                    const horaFinInt = parseInt(horaFinStr, 10);
+                    const minFinInt = parseInt(minFinStr, 10);
+
+                    const diferenciaHoras = (horaFinInt - horaInicioInt) * 60 + (minFinInt - minInicioInt);
+
+                    if (diferenciaHoras > 240) {
+                        document.getElementById("hora_inicio").setCustomValidity("La reserva no puede durar más de 4 horas.");
+                        document.getElementById("hora_fin").setCustomValidity("La reserva no puede durar más de 4 horas.");
+                    } else {
+                        document.getElementById("hora_inicio").setCustomValidity("");
+                        document.getElementById("hora_fin").setCustomValidity("");
+                    }
+                }
+
+
+            
+            function validarHorarioRestaurante(horaInicio, horaFin) {
+                const horarioInicioRestaurante = 7;
+                const horarioFinRestaurante = 21;
+
+                // Validar que la hora de inicio y fin estén dentro del horario de funcionamiento
+                const [horaInicioStr, minInicioStr] = horaInicio.split(":");
+                const horaInicioInt = parseInt(horaInicioStr, 10);
+                const [horaFinStr, minFinStr] = horaFin.split(":");
+                const horaFinInt = parseInt(horaFinStr, 10);
+
+                if (isNaN(horaInicioInt) || isNaN(horaFinInt)) {
+                    return false;
+                }
+
+                if (horaInicioInt < horarioInicioRestaurante || horaInicioInt > horarioFinRestaurante) {
+                    return false;
+                }
+
+                if (horaFinInt < horarioInicioRestaurante || horaFinInt > horarioFinRestaurante) {
+                    return false;
+                }
+
+                return true;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -21,20 +21,21 @@ export class ReservaController{
     }
 
     create=async (req, res)=> {
-        console.log(req.body)
+        
         const result = validar_reserva(req.body)
-  
         if (!result.success) {
+            console.log(result)
+            console.log("lol")
             return res.status(400).json({ error: JSON.parse(result.error.message) })
         }
         const input = result.data
-        const { fecha, personas, hora_inicio, hora_fin, nombre, apellido, cedula, idmesa, idtelefono, iddescripcion } = input;
-
+        const { idmesa,fecha, personas, hora_inicio, hora_fin, nombre, cedula, idtelefono, iddescripcion,zona} = input;
         const nueva_reserva = await ReservaModel.create(input)
         res.redirect('/')
     }
         
     delete = async(req, res) =>{
+        console.log("lol")
         const { id } = req.params
         const validacion = await ReservaModel.eliminar({id})
         
@@ -42,7 +43,7 @@ export class ReservaController{
           return res.status(404).json({ message: 'No se encontró la reserva de mesas' })
         }
       
-        return res.json({ message: 'Reserva de mesad eliminada' })
+        res.redirect('/')
         }    
 
     // Leer comentario en el modelo

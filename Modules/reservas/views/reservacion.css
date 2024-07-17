@@ -1,6 +1,7 @@
 .contenidop {
     display: flex;
     flex-direction: column;
+    
 }
 
 
@@ -18,7 +19,7 @@ main {
 .left-side {
     box-shadow: 0 0 5px rgba(50, 50, 50, 0.1);
     height: 60vh;
-    width: 40vw;
+    width: 45vw;
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -80,12 +81,6 @@ ul {
     padding: 5px;
     border-color: #DADADA;
 }
-
-
-
-
-
-
 .container-historial {
     font-family: Inter, sans-serif;
     background-color: #fff;
@@ -94,7 +89,7 @@ ul {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     gap: 30px;
-  }
+}
   
   .left-section {
     width: 70%;
@@ -110,7 +105,6 @@ ul {
   .historial-title {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
   }
   
   table {
@@ -120,16 +114,14 @@ ul {
   }
   
   th, td {
+    padding: 5px;
     text-align: center;
-    padding: 8px;
     border-bottom: 1px solid #ddd;
-    
   }
   
   th {
     background-color: #f2f2f2;
     font-weight: bold;
-    width: 1600px;
     height: 10px;
   }
   
@@ -177,5 +169,6 @@ ul {
   .button:hover {
     background-color: #45a049;
   }
+
 
 

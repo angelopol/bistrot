@@ -6,7 +6,6 @@
     <title>Mesas</title>
     <link rel="stylesheet" href="mesas.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
-
 </head>
 <body>
     <div class="heading">
@@ -35,7 +34,6 @@
                     <li><a href="#"><img src="imagenes/icono_reporte.png" alt="Reportes">Reportes</a></li>
                     <li><a href="#"><img src="imagenes/icono_config.png" alt="Configuraciones">Configuraciones</a></li>
                     <li><a href="#"><img src="imagenes/icono_ayuda.png" alt="Ayuda">Ayuda</a></li>
-                    
                 </ul>
             </nav>
         </div>
@@ -44,39 +42,78 @@
                 <div class="Reservar">
                     <h2>
                         <a href="/">
-                          <img src="imagenes/icono_salida.png" alt="regresar">
+                            <img src="imagenes/icono_salida.png" alt="regresar">
                         </a>
                         Reservar
-                      </h2>
+                    </h2>
                 </div>
                 <div class="seccion">
                     <h2>Mesas</h2>
                 </div>
             </div>
-        
-        
             <div class="distribucion">
-                <div class="interior">
-                    <h3>Interior</h3>
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>6</div>
-                    <div>7</div>
-                    <div>8</div>
-                    <div>9</div>
+                <div class="arriba">
+                    <div class="interior">
+                        <h3>Interior</h3>
+                        <div class="button" data-number="1">1</div>
+                        <div class="button" data-number="2">2</div>
+                        <div class="button" data-number="3">3</div>
+                        <div class="button" data-number="4">4</div>
+                        <div class="button" data-number="5">5</div>
+                        <div class="button" data-number="6">6</div>
+                        <div class="button" data-number="7">7</div>
+                        <div class="button" data-number="8">8</div>
+                        <div class="button" data-number="9">9</div>
+                    </div>
+                    <div class="exterior">
+                        <h3>Exterior</h3>
+                        <div class="button" data-number="10">10</div>
+                        <div class="button" data-number="11">11</div>
+                    </div>
                 </div>
-                <div class="exterior">
-                    <h3>Exterior</h3>
-                    <div>10</div>
-                    <div>11</div>
+                <div class="abajo">
+                    <h3>Barra</h3>
+                    <div class="button" data-number="1">1</div>
+                    <div class="button" data-number="2">2</div>
+                    <div class="button" data-number="3">3</div>
+                    <div class="button" data-number="4">4</div>
+                    <div class="button" data-number="5">5</div>
                 </div>
             </div>
-
-
+            <button id="mesa">Seleccionar mesa</button>
         </div>
     </div>
+
+    <script>
+
+        const mesas = document.getElementById("mesa");
+        mesas.addEventListener("click", function() {
+            window.location.href = "/CrearReservas";
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            // Cargar la selección almacenada
+            const selectedButton = localStorage.getItem("selectedButton");
+            if (selectedButton) {
+                const button = document.querySelector(`.button[data-number='${selectedButton}']`);
+                if (button) {
+                    button.classList.add("selected");
+                }
+            }
+
+            // Añadir evento de clic a todos los botones
+            document.querySelectorAll(".button").forEach(button => {
+                button.addEventListener("click", function() {
+                    // Deseleccionar el botón previamente seleccionado
+                    document.querySelectorAll(".button.selected").forEach(btn => btn.classList.remove("selected"));
+                    
+                    // Seleccionar el nuevo botón
+                    const number = this.getAttribute("data-number");
+                    this.classList.add("selected");
+                    localStorage.setItem("selectedButton", number);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+

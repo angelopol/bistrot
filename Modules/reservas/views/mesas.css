@@ -133,14 +133,18 @@ nav ul li a:hover {
 
 .distribucion {
     width:50%;
-    height: 60%;
-    display: flex;
-    justify-content: center;
+    height: 380px;
     gap: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
 
+.arriba{
+    height: 255px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .interior {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -180,24 +184,84 @@ nav ul li a:hover {
 
 
 
-.interior div, .exterior div {
+.interior div, .exterior div, .abajo div {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border: 1px solid #ccc;
     cursor: pointer;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 25px;
     
+}
+
+.abajo{
+    position: relative;
+    width: 50%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around; /* Centrar horizontalmente los elementos */
+    align-items: center; /* Centrar verticalmente los elementos */
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;    
+
+}
+
+.abajo h3{
+    position: absolute;
+    margin-bottom: 100px;
+}
+
+
+#mesa{
+    margin-top: 10px;
 }
 
 
 
 
 .interior div:hover, .exterior div:hover {
-    background-color: #45a049;
+    background-color: #b9c0b9;
 }
+
+
+
+.button.selected {
+    background-color: rgba(255, 0, 0, 0.685);
+}
+
+.button.selected:hover {
+    background-color: rgba(154, 12, 12, 0.685);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    display: flex;
+    justify-content: center;
+}
+

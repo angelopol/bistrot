@@ -16,19 +16,23 @@ export class ReservaModel {
       const {
         fecha, // Debe coincidir con el nombre del campo en el formulario HTML
         personas,
+        cedula,
         hora_inicio,
         hora_fin,
         iddescripcion, // Asegúrate de que este nombre coincida con el esperado
         idtelefono,
         nombre,
-        ubicacion    // Asegúrate de que este nombre coincida con el esperado
+        idmesa,
+        zona  // Asegúrate de que este nombre coincida con el esperado
       } = input;
+
+      
   
       try {
         await connection.query(
-          `INSERT INTO reserva (cantidad_personas, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, ubicacion)
-           VALUES (?,?,?,?,?,?,?,?);`,
-          [personas, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre, ubicacion]
+          `INSERT INTO reserva (ID_mesa,cantidad_personas, ID_cliente, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, ubicacion)
+           VALUES (?,?,?,?,?,?,?,?,?,?);`,
+          [idmesa,personas,cedula, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre,zona]
       );
       } catch (e) {
         console.log(e);
@@ -77,13 +81,12 @@ export class ReservaModel {
         hora_fin,
         iddescripcion, // Asegúrate de que este nombre coincida con el esperado
         idtelefono,
-        nombre,
-        ubicacion  } = modi
+        nombre} = modi
     
         try {
           await connection.query(
             'UPDATE reserva SET fecha = ?, nombre = ?,apellido=?, cantidad_personas = ?, telefono = ?, confirmado = ?, hora_inicio = ?, hora_fin = ?, descripciom = ? WHERE numero_reservas = ?',
-            [fecha, nombre, apellido, personas, idtelefono, confirmado, hora_inicio, hora_fin, iddescripcion, cedulaC]
+            [fecha, nombre, personas, idtelefono, hora_inicio, hora_fin, iddescripcion, cedulaC]
           )
         } catch (e) {
           console.log(e)
