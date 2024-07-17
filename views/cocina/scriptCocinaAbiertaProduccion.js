@@ -229,6 +229,7 @@ pedidosContainers.forEach(container => {
             })
 
             // Se agrega el botón listo que (ya que se elimina tmb al inicio del evento)
+            completarTamañoFicha()
             let listoButton = document.createElement("button")
             listoButton.className = "order-ready"
             listoButton.textContent = "Listo"
