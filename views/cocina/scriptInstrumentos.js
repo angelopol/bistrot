@@ -17,14 +17,14 @@ async function funcionBotonReporte(id){
     // Función que cambia el estado del instrumento seleccionado en la base de datos
 
     // Solicitud GET para obtener los atributos del instrumento
-    let instrumentoData = {}
+      let instrumentoData = {}
 
-    const options = {
-      method: 'GET', 
-      headers: {
-      'Content-Type': 'application/json' 
-      }
-  };
+      const options = {
+        method: 'GET', 
+        headers: {
+        'Content-Type': 'application/json' 
+        }
+    };
 
   await fetch(`http://localhost:1234/inventario/api/general/${id}` , options)
   .then(response => {

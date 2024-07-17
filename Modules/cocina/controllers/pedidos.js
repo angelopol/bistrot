@@ -80,23 +80,48 @@ export class PedidoController {
             if(ingredientesRequeridos[idIngredienteRequerido] > cantidadIngredienteInventario){
                 // hacen falta ingredientes
 
-                //actualizacmos el estatus de pedido a rechazado
-                let cambios = {status_pedido: 2}
+                // Solicitud GET para obtener los atributos del pedido 
+                let pedidoData = {}
+
+                const options = {
+                    method: 'GET', 
+                    headers: {
+                    'Content-Type': 'application/json' 
+                    }
+                };
+
+                await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , options)
+                .then(response => {
+                    if (!response.ok){
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data =>{
+                    pedidoData = data
+                    pedidoData.status_pedido = 2 // estatus de rechazado
+                    console.log('Se obtuvo el pedido:', pedidoData);
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+
+                //actualizacmos el pedido en base de datos
                 const requestOptions = {
                     method: 'PUT', 
                     headers: {
                     'Content-Type': 'application/json' 
                     },
-                    body: JSON.stringify(cambios) 
+                    body: JSON.stringify(pedidoData) 
                 };
 
                 // este es el endpoint de ventas para actualizar la factura 
                 await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
-                .then(response => {
+                .then( async response => {
                     if (!response.ok) {
                     throw new Error('Network response was not ok');
                     }
-                    return response.json(); 
+                    return await response.json(); 
                 })
                 .then(data => {
                     console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
@@ -146,40 +171,67 @@ export class PedidoController {
                     if (instrumentoInventario.funciona_estado == 0){
                         // no se cuenta con la maquinaria necesaria
     
-                        //actualizacmos el estatus de pedido a rechazado
-                        let cambios = {status_pedido: 2}
+                        // Solicitud GET para obtener los atributos del pedido 
+                        let pedidoData = {}
+
+                        const options = {
+                            method: 'GET', 
+                            headers: {
+                            'Content-Type': 'application/json' 
+                            }
+                        };
+
+                        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , options)
+                        .then(response => {
+                            if (!response.ok){
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data =>{
+                            pedidoData = data
+                            pedidoData.status_pedido = 2 // estatus de rechazado
+                            console.log('Se obtuvo el pedido:', pedidoData);
+                        })
+                        .catch(error => {
+                            console.error('Fetch error:', error);
+                        });
+
+                        //actualizacmos el pedido en base de datos
                         const requestOptions = {
                             method: 'PUT', 
                             headers: {
                             'Content-Type': 'application/json' 
                             },
-                            body: JSON.stringify(cambios) 
+                            body: JSON.stringify(pedidoData) 
                         };
 
-                        await fetch(`http://localhost:1234/ventas/factura/${pedido_id})` , requestOptions)
-                        .then(response => {
+                        // este es el endpoint de ventas para actualizar la factura 
+                        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
+                        .then( async response => {
                             if (!response.ok) {
                             throw new Error('Network response was not ok');
                             }
-                            return response.json(); 
+                            return await response.json(); 
                         })
                         .then(data => {
                             console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
-                           
+                            // Puedes hacer lo que necesites con la respuesta de la actualización aquí
                         })
                         .catch(error => {
                             console.error('Fetch error:', error);
-                            
+                            // Manejar el error de la solicitud
                         });
-        
-                        // obtenemos nuevamente el pedido con el endpoint de ventas
+
+                        // con este enpoint obtenemos nuevamente el pedido con su estatus actualizado
                         const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
                         if (!response1.ok){
                             throw new Error('No se pudo obtener el ingrediente');
                         }
 
+
                         let nuevoPedido = await response1.json()
-                        return res.json(nuevoPedido)    
+                        return res.json(nuevoPedido)     
                     }
                 })
             }
@@ -190,18 +242,21 @@ export class PedidoController {
         Object.keys(ingredientesRequeridos).forEach(async idIngredienteRequerido => {
 
             // con este endpoint obtenemos el ingrediente de inventario
+
+            let ingredienteData = {}
+
             const response = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
             if (!response.ok){
                 throw new Error('No se pudo obtener el ingrediente');
             }
-
 
             let ingredienteInventario = await response.json()
             let cantidadIngredienteInventario = ingredienteInventario.cantidad
 
             // restamos los ingredientes de inventario
             let nuevaCantidadInventario = cantidadIngredienteInventario - ingredientesRequeridos[idIngredienteRequerido]
-            let cambios = {cantidad: nuevaCantidadInventario}
+            ingredienteData = ingredienteInventario
+            ingredienteData.cantidad = nuevaCantidadInventario
             
             // Opciones de la solicitud fetch
             const requestOptions = {
@@ -209,7 +264,7 @@ export class PedidoController {
                 headers: {
                 'Content-Type': 'application/json' 
                 },
-                body: JSON.stringify(cambios) 
+                body: JSON.stringify(ingredienteData) 
             };
 
 
@@ -233,36 +288,64 @@ export class PedidoController {
         })        
 
         // cambiamos el estado a aceptado
-        let cambios = {status_pedido: 3}
+        // Solicitud GET para obtener los atributos del pedido 
+        let pedidoData = {}
+
+        const options = {
+            method: 'GET', 
+            headers: {
+            'Content-Type': 'application/json' 
+            }
+        };
+
+        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , options)
+        .then(response => {
+            if (!response.ok){
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data =>{
+            pedidoData = data
+            pedidoData.status_pedido = 3 // estatus de aceptado
+            console.log('Se obtuvo el pedido:', pedidoData);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+
+        //actualizacmos el pedido en base de datos
         const requestOptions = {
             method: 'PUT', 
             headers: {
             'Content-Type': 'application/json' 
             },
-            body: JSON.stringify(cambios) 
+            body: JSON.stringify(pedidoData) 
         };
 
-        // con este endpoint cambiamos el status del pedido a aceptado
-        await fetch(`http://localhost:1234/ventas/factura/${pedido_id})` , requestOptions)
-        .then(response => {
+        // este es el endpoint de ventas para actualizar la factura 
+        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
+        .then( async response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok');
             }
-            return response.json(); 
-          })
-          .then(data => {
+            return await response.json(); 
+        })
+        .then(data => {
             console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
-            
-          })
-          .catch(error => {
+            // Puedes hacer lo que necesites con la respuesta de la actualización aquí
+        })
+        .catch(error => {
             console.error('Fetch error:', error);
-          });
-        
-        // con este endpoint obtenemos nuevamente el pedido de ventas, para retornarlo
+            // Manejar el error de la solicitud
+        });
+
+        // con este enpoint obtenemos nuevamente el pedido con su estatus actualizado
         const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
-          if (!response.ok){
-              throw new Error('No se pudo obtener el pedido');
-          }
+        if (!response1.ok){
+            throw new Error('No se pudo obtener el ingrediente');
+        }
+
 
         let nuevoPedido = await response1.json()
         return res.json(nuevoPedido)
@@ -293,34 +376,65 @@ export class PedidoController {
         const {pedido_id} = req.query
 
         // cambiamos el estado a listo
-        let cambios = {status_pedido: 4}
+
+        // Solicitud GET para obtener los atributos del pedido 
+        let pedidoData = {}
+
+        const options = {
+            method: 'GET', 
+            headers: {
+            'Content-Type': 'application/json' 
+            }
+        };
+
+        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , options)
+        .then(response => {
+            if (!response.ok){
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data =>{
+            pedidoData = data
+            pedidoData.status_pedido = 4 // estatus a listo
+            console.log('Se obtuvo el pedido:', pedidoData);
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+
+        //actualizacmos el pedido en base de datos
         const requestOptions = {
             method: 'PUT', 
             headers: {
             'Content-Type': 'application/json' 
             },
-            body: JSON.stringify(cambios) 
+            body: JSON.stringify(pedidoData) 
         };
 
-        await fetch(`http://localhost:1234/ventas/factura/${pedido_id})` , requestOptions)
-        .then(response => {
+        // este es el endpoint de ventas para actualizar la factura 
+        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
+        .then( async response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok');
             }
-            return response.json(); 
-          })
-          .then(data => {
-            console.log('Actualización exitosa:', data);   
-          })
-          .catch(error => {
+            return await response.json(); 
+        })
+        .then(data => {
+            console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
+            // Puedes hacer lo que necesites con la respuesta de la actualización aquí
+        })
+        .catch(error => {
             console.error('Fetch error:', error);
-          });
-        
-          // con este endpoint retornamos el pedido
+            // Manejar el error de la solicitud
+        });
+
+        // con este enpoint obtenemos nuevamente el pedido con su estatus actualizado
         const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
-          if (!response1.ok){
-              throw new Error('No se pudo obtener el ingrediente');
-          }
+        if (!response1.ok){
+            throw new Error('No se pudo obtener el ingrediente');
+        }
+
 
         let nuevoPedido = await response1.json()
         return res.json(nuevoPedido)
