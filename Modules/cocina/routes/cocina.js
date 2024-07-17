@@ -27,7 +27,7 @@ export const createCocinaRouter = () => {
     cocinaRouter.get("/mostrar-pedido", pedidoController.getOrder)
 
     // este endpoint lo que hace es cambiar el status a listo, del pedido por id que se pasa por la url y retornar este pedido
-    cocinaRouter.get("/cocina/pedido-listo", pedidoController.orderListaStatus)
+    cocinaRouter.get("/pedido-listo", pedidoController.orderListaStatus)
 
     // Renderizado de vistas??
     cocinaRouter.get("/produccion", renderController.renderProduccion)

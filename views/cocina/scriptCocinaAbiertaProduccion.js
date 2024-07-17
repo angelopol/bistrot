@@ -124,7 +124,7 @@ botonProcesar.addEventListener("click" , async () => {
         let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
     
         // hacemos una petición a este endpoint para verificar si se puede procesar el pedido
-        let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`);
+        let response = await fetch(`http://localhost:1234/cocina/procesar-pedido?pedido_id=${idCardSeleccionada}`);
     
         if (!response.ok) {
             throw new Error('La solicitud no pudo completarse correctamente');
@@ -177,7 +177,7 @@ pedidosContainers.forEach(container => {
         idPedido = idStringCardSeleccionada // Obtenemos el id del pedido
 
         // Petición al controlador de mostrar pedido, que retorna los datos del mismo
-        await fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`, {
+        await fetch(`http://localhost:1234/cocina/mostrar-pedido?pedido_id=${idPedido}`, {
             method: "GET",
             headers: {
                 "content-type": "aplication/json"
@@ -208,7 +208,7 @@ pedidosContainers.forEach(container => {
             listaComidas.forEach( async objetoComida => {
                 // Iteramos el diccionario de pedidos para encontrar sus nombres
 
-                let res = await fetch(`http://localhost:1234/comidas/${objetoComida.id}`) // Petición al modelo comidas que retorna al receta
+                let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`) // Petición al modelo comidas que retorna al receta
                 let nombrePlato = await res.json()
                 
                 let divItem = document.createElement("div")
@@ -261,7 +261,7 @@ listoButton.addEventListener("click", async function () {
         return null
     }
     // Petición al controlador de pedidos que cambia el estado del pedido a listo
-    await fetch(`http://localhost:1234/comidas/pedido-listo?pedido_id=${idPedido}`, {
+    await fetch(`http://localhost:1234/cocina/pedido-listo?pedido_id=${idPedido}`, {
             method: "GET",
             headers: {
                 "content-type": "aplication/json"
@@ -324,7 +324,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
             let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
         
             // hacemos una petición a este endpoint para verificar si se puede procesar el pedido
-            let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`);
+            let response = await fetch(`http://localhost:1234/cocina/procesar-pedido?pedido_id=${idCardSeleccionada}`);
         
             if (!response.ok) {
                 throw new Error('La solicitud no pudo completarse correctamente');
