@@ -1,3 +1,4 @@
+const PathUrl = "http:localhost:1234/ventas/";
 // definimos la variable para registar los pedidos realizados sino se han realizado se muestra una lista vacia
 const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];  // vista general
 const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];  // vista terraza
@@ -111,10 +112,10 @@ function cancelOrder(tipo_button) {
             // Muestra un mensaje de "Pedido cancelado"
             alert('¡Pedido cancelado!');
             // Redirige al usuario a la página Mesonero_Zona_General.html
-            window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
+            window.location.href = '/ventas/meseros_general';
         } else {
             // Redirige al usuario a la página Mesonero_Zona_General.html
-            window.location.href = '../Vista Meseros/Mesero_Zona_General.html';
+            window.location.href = '/ventas/meseros_general';
         }
 
     } else if (origen === 'terraza'){
@@ -123,10 +124,10 @@ function cancelOrder(tipo_button) {
             // Muestra un mensaje de "Pedido cancelado"
             alert('¡Pedido cancelado!');
             // Redirige al usuario a la página Mesonero_Zona_General.html
-            window.location.href = '../Vista Meseros/Mesero_Terraza.html';
+            window.location.href = '/ventas/meseros_terraza';
         } else {
             // Redirige al usuario a la página Mesonero_Zona_General.html
-            window.location.href = '../Vista Meseros/Mesero_Terraza.html';
+            window.location.href = '/ventas/meseros_terraza';
         }
 
     }
@@ -135,7 +136,7 @@ function cancelOrder(tipo_button) {
 
 function salir() {
     // Redirige al usuario a la página de inicio o a cualquier otra página
-    window.location.href = 'index.html';
+    window.location.href = '/ventas/gerente';
 }
 
 function placeOrder() {
@@ -246,11 +247,11 @@ function addToOrder(name, price, imageUrl, idCard) {
     orderItem.price = price;
 
     orderItem.innerHTML = `
-        <img loading="lazy" src="${imageUrl}" class="menu-item-image" alt="Ordered item" />
+        <img loading="lazy" src="/ventas/Vista_Pedidos/${imageUrl}" class="menu-item-image" alt="Ordered item" />
         <div class="order-item-details">
             <h3 class="order-item-name">${name}</h3>
             <div class="order-item-quantity">
-                <img loading="lazy" onclick="removeFromOrder(this)" src="Assets/iconos/remover.png" class="quantity-icon" alt="" />
+                <img loading="lazy" onclick="removeFromOrder(this)" src="/ventas/Vista_Pedidos/Assets/iconos/remover.png" class="quantity-icon" alt="" />
                 <div class="quantity-controls">
                     <button class="quantity-button decrease-button" aria-label="Decrease quantity">-</button>
                     <span class="quantity-value">1</span>

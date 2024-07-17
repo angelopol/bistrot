@@ -5,15 +5,14 @@ const actionButtons = document.querySelectorAll('.action-button');
 const tableCards = document.querySelectorAll('.table-card');
 
 // declarar una variable de origen para saber en la vista de pedido quien hizo la solicitud (terraza, general)
-const origen = 'general';
+const origen = 'terraza';
 
 // Obtener los pedidos que se han realizado
-const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
-console.log(pedidos_realizados);
+const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];
+console.log(pedidos_realizados_t);
 
 // actualizacion constante de los estados
-recorrido_mesas(pedidos_realizados)
-
+recorrido_mesas(pedidos_realizados_t);
 
 // Variable para almacenar el ID de la mesa seleccionada
 let selectedTableId = null;
@@ -28,13 +27,17 @@ actionButtons.forEach(button => {
 
         // Realizar acción según el texto del botón
         switch (buttonText) {
+            case 'Cambio de mesa':
+                // Redirigir a pedidos.html
+                location.href = '/ventas/pedidos';
+                break;
             case 'Tomar pedido':
                 // Abrir pedidos.html y pasar el ID de la mesa seleccionada
                 if (selectedTableId && selectedMesa) {
 
                     // verificamos si su estatus es disponible para tomar su pedido
-                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE" || selectedMesaetiqueta.querySelector('.table-status').textContent === "Rechazado"){
-                        location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}&origen=${origen}`;
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
+                        location.href = `/ventas/pedidos?tableId=${selectedTableId}&origen=${origen}`;
                         return;
                     } else {
                         alert("No se puede tomar el pedido")
@@ -65,19 +68,18 @@ actionButtons.forEach(button => {
 
                                 tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
 
-                                pedidos_realizados.forEach((pedido,mesas) => {
+                                pedidos_realizados_t.forEach((pedido,mesas) => {
 
                                     if (pedido.tableId === String(selectedTableId)){
 
                                         eliminar_pedido(pedido.tableId) // eliminar el pedido de la base de datos
-                                        pedidos_realizados.splice(mesas, 1);
+                                        pedidos_realizados_t.splice(mesas, 1);
                                         selectedMesa = false;
                                         selectedTableId = null;
                                         tableCard.querySelector(".table-status").textContent = "DISPONIBLE" // ponemos el estatus como Disponible
                                         // Actualizar el localStorage con el array modificado
-                                        localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
-
-                                        console.log(pedidos_realizados);
+                                        localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+                                        console.log(pedidos_realizados_t);
                                         return;
 
                                     }
@@ -108,26 +110,6 @@ actionButtons.forEach(button => {
     });
 });
 
-// Agregar evento de clic a cada tarjeta de mesa
-tableCards.forEach((tableCard, index) => {
-    tableCard.addEventListener('click', function() {
-        // Seleccionar la mesa actual
-        selectedTableId = index + 1;
-
-        // Desseleccionar las demás mesas
-        tableCards.forEach(card => {
-            card.classList.remove('selected');
-        });
-
-
-        // Seleccionar la mesa actual
-        tableCard.classList.add('selected');
-        selectedMesa = true;
-        selectedMesaetiqueta = tableCard;
-
-    });
-});
-
 
 function encontrar(mesa_id,pedidos_check) {
     let pedido = null;
@@ -143,7 +125,9 @@ function encontrar(mesa_id,pedidos_check) {
     }
   
     return pedido;
-  }
+    
+}
+
 
 function imprimirFactura(){
 
@@ -157,7 +141,7 @@ function imprimirFactura(){
             let numeroMesa = mesa.querySelector('.table-name').textContent;
 
             // Obtener la mesa con estatus cuenta
-            let pedido = encontrar(selectedTableId,pedidos_realizados);
+            let pedido = encontrar(selectedTableId,pedidos_realizados_t);
 
             // Calcular el total del pedido
             let total = pedido.total
@@ -213,6 +197,25 @@ function imprimirFactura(){
 
 }
 
+// Agregar evento de clic a cada tarjeta de mesa
+tableCards.forEach((tableCard, index) => {
+    tableCard.addEventListener('click', function() {
+        // Seleccionar la mesa actual
+        selectedTableId = index + 1;
+
+        // Desseleccionar las demás mesas
+        tableCards.forEach(card => {
+            card.classList.remove('selected');
+        });
+
+        // Seleccionar la mesa actual
+        tableCard.classList.add('selected');
+        selectedMesa = true;
+        selectedMesaetiqueta = tableCard;
+        
+    });
+});
+
 
 // funcion para recorrer los pedidos realizados
 function recorrido_mesas(pedidos_mesas){
@@ -241,6 +244,9 @@ function recorrido_mesas(pedidos_mesas){
 }
 
 
+
+
+
 // funcion para ver si (Cocina-bar) hizo alguna actualizacion en los estatus de los pedidos
 async function actualizacion_pedidos(){
 
@@ -258,9 +264,9 @@ async function actualizacion_pedidos(){
 
         const pedidos_bd = await response.json(); // se guarda una lista de los pedidos almacenados
 
-        // obtengo el estatus y el id de la mesa que tienen un estatus diferente de 1 y pedidos realizados en la zona general y los almaceno en un array
+        // obtengo el estatus y el id de la mesa que tienen un estatus diferente de 1 y pedidos realizados en la zona terraza y los almaceno en un array
         const cambio_estatus_mesas = pedidos_bd.filter(pedido => {
-            return pedido.status_pedido !== 1 && pedido.status_pedido !== 5 && pedido.zona === 'general';  // el status 5 es para cuando el cliente pague y finalizase todo no nse toma en cuenta 
+            return pedido.status_pedido !== 1 && pedido.status_pedido !== 5 && pedido.zona === 'terraza';  // el status 5 es para cuando el cliente pague y finalizase todo no nse toma en cuenta 
         }).map(pedido => {
             return {
                 status: pedido.status_pedido,
@@ -273,14 +279,13 @@ async function actualizacion_pedidos(){
         if (cambio_estatus_mesas.length > 0){
             actualizar_mesas(cambio_estatus_mesas);
         } else {
-            console.log("No hay cambios en los estatus de los pedidos de la zona general.");
+            console.log("No hay cambios en los estatus de los pedidos de la zona terraza.");
         }
         
 
     } catch (error){
         //alert("No se pudo obtener la lista de pedidos");
         console.log("No se pudo obtener la lista de pedidos");
-
     }
 
 }
@@ -290,7 +295,7 @@ async function actualizacion_pedidos(){
 function actualizar_mesas(cambio_estatus_mesas){
 
     // recorremos los pedidos que ha sido realizados
-    pedidos_realizados.forEach(pedidos => {
+    pedidos_realizados_t.forEach(pedidos => {
         // recorremos el cambio de estatus modificados por (Cocina-bar)
         cambio_estatus_mesas.forEach(cambios => {
 
@@ -301,10 +306,9 @@ function actualizar_mesas(cambio_estatus_mesas){
         })
     })
 
-    recorrido_mesas(pedidos_realizados)  // actualizamos lo estatus de la mesas en el front
+    recorrido_mesas(pedidos_realizados_t)  // actualizamos lo estatus de la mesas en el front
     
 }
-
 
 
 // funcion para eliminar el pedido de la base de datos
@@ -328,7 +332,7 @@ async function eliminar_pedido(id_mesa){
 
         pedidos_bd.forEach(pedido => {
 
-            if (pedido.mesa === id_mesa && pedido.zona === 'general'){
+            if (pedido.mesa === id_mesa && pedido.zona === 'terraza'){
                 id_eliminar = pedido.id_cliente
                 return;
             }

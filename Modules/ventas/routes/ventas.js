@@ -61,10 +61,5 @@ export const createVentasRouter = () => {
   VentasRouter.get("/Vista_Caja/Caja_Styles.css", renderController.stylesCaja)
   VentasRouter.get("/Vista_Pedidos/pedidos_styles.css", renderController.stylesPedidos)
 
-
-  
-  
-  
-
   return VentasRouter
 }

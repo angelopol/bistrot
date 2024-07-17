@@ -1,3 +1,5 @@
+const PathUrl = "http:localhost:1234/ventas/";
+
 addEventListener('DOMContentLoaded', function() {
 
     const enviar_pedido = document.querySelector(".confirm-button");
@@ -40,7 +42,7 @@ addEventListener('DOMContentLoaded', function() {
             factura = tomar_pedido();  // obtener el objeto factura
 
             // creamos el pedido en nuestra tabla de facturas
-            fetch("http:localhost:1234/ventas/factura", {
+            fetch(PathUrl+"factura", {
                 method : "POST",
                 headers : { "Content-Type" : "aplication/json" },
                 body : JSON.stringify(factura)
@@ -66,7 +68,7 @@ addEventListener('DOMContentLoaded', function() {
 
     function ver_estatus_pedido(){
 
-        fetch("http:localhost:1234/ventas/factura").then((res) => {
+        fetch(PathUrl+"factura").then((res) => {
             if (res.ok) {
 
                 // obtener los pedidos
