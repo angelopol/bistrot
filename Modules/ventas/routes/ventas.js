@@ -44,22 +44,22 @@ export const createVentasRouter = () => {
 
   //Renderizado de Vistas
   //PAGINAS
-  VentasRouter.get("/gerente", renderController.renderGerente)
+  VentasRouter.get("/Vista_Gerente/gerente", renderController.renderGerente)
   
-  VentasRouter.get("/meseros_general", renderController.renderMeserosGeneral)
+  VentasRouter.get("/Vista Meseros/meseros_general", renderController.renderMeserosGeneral)
 
-  VentasRouter.get("/meseros_terraza", renderController.renderMeserosTerraza)
+  VentasRouter.get("/Vista Meseros/meseros_terraza", renderController.renderMeserosTerraza)
 
-  VentasRouter.get("/caja", renderController.renderCaja)
+  VentasRouter.get("/Vista_Caja/caja", renderController.renderCaja)
 
-  VentasRouter.get("/pedidos", renderController.renderPedidos)
+  VentasRouter.get("/Vista_Pedidos/pedidos", renderController.renderPedidos)
 
   //Estilos
-  VentasRouter.get("/assets/styles_Gerente.css", renderController.stylesGerente)
-  VentasRouter.get("/assets/Zona_General.css", renderController.stylesMeserosGeneral)
-  VentasRouter.get("/assets/Terraza_styles.css", renderController.stylesMeserosTerraza)
-  VentasRouter.get("/assets/Caja_Styles.css", renderController.stylesCaja)
-  VentasRouter.get("/assets/pedidos_styles.css", renderController.stylesPedidos)
+  VentasRouter.get("/Vista_Gerente/styles_Gerente.css", renderController.stylesGerente)
+  VentasRouter.get("/Vista Meseros/Zona_General.css", renderController.stylesMeserosGeneral)
+  VentasRouter.get("/Vista Meseros/Terraza_styles.css", renderController.stylesMeserosTerraza)
+  VentasRouter.get("/Vista_Caja/Caja_Styles.css", renderController.stylesCaja)
+  VentasRouter.get("/Vista_Pedidos/pedidos_styles.css", renderController.stylesPedidos)
 
   return VentasRouter
 }

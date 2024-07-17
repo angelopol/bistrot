@@ -148,6 +148,7 @@ function placeOrder() {
         total: parseFloat(document.getElementById('total-amount').textContent),
         estatus: 1, // 1 = "Pendiente", 2 = "Rechazado", 3 = "Aceptado", 4 = "Listo"
         tableId: urlParams.get('tableId'), // Obtén el ID de la mesa seleccionada
+        zona: origen  // obtnemos la zona donde se hizo el pedido (zona -> General o zona -> Terraza)
     };
 
     orderItems.forEach(item => {
@@ -159,7 +160,7 @@ function placeOrder() {
     });
 
     // crear pedido para almacenarlo en la base de datos
-    crear_pedido_base_datos(orderData)
+    //crear_pedido_base_datos(orderData)
 
     // Envía los datos del pedido al servidor o redirige al usuario a la página de confirmación
     sendOrderToServer(orderData);
@@ -305,6 +306,7 @@ function crear_pedido_base_datos(orderData){
     factura["consumo"] = JSON.stringify(consumo, null, 2) // convertimos el el objeto a  string con un formato json
     factura["status_pedido"] = orderData.estatus
     factura["mesa"] = orderData.tableId
+    factura["zona"] = orderData.zona
 
     console.log(factura);
 
