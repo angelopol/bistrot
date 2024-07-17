@@ -29,7 +29,7 @@ actionButtons.forEach(button => {
         switch (buttonText) {
             case 'Cambio de mesa':
                 // Redirigir a pedidos.html
-                location.href = '../Vista_Pedidos/pedidos.html';
+                location.href = '/ventas/pedidos';
                 break;
             case 'Tomar pedido':
                 // Abrir pedidos.html y pasar el ID de la mesa seleccionada
@@ -37,7 +37,7 @@ actionButtons.forEach(button => {
 
                     // verificamos si su estatus es disponible para tomar su pedido
                     if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
-                        location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}&origen=${origen}`;
+                        location.href = `/ventas/pedidos?tableId=${selectedTableId}&origen=${origen}`;
                         return;
                     } else {
                         alert("No se puede tomar el pedido")
@@ -96,7 +96,7 @@ actionButtons.forEach(button => {
 
                     if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Listo"){
                         selectedMesaetiqueta.querySelector('.table-status').textContent = "Factura"
-                        location.href = `../Vista_Caja/caja.html?tableId=${selectedTableId}`;
+                        location.href = `/ventas/caja?tableId=${selectedTableId}`;
                     }
                     
                 } else {

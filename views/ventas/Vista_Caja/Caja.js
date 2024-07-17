@@ -1,6 +1,7 @@
 let selectedTableId = null;
 let selectedMesa = false;
 selectedMesaetiqueta = null;
+const PathUrl = "http:localhost:1234/ventas/";
 
 // Seleccionar las mesas
 const tableCards = document.querySelectorAll('.table-card');

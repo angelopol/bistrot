@@ -1,3 +1,4 @@
+const PathUrl = "http:localhost:1234/ventas/";
 // Seleccionar todos los botones de acción
 const actionButtons = document.querySelectorAll('.action-button');
 
@@ -33,7 +34,7 @@ actionButtons.forEach(button => {
 
                     // verificamos si su estatus es disponible para tomar su pedido
                     if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
-                        location.href = `../Vista_Pedidos/pedidos.html?tableId=${selectedTableId}&origen=${origen}`;
+                        location.href = `/ventas/pedidos?tableId=${selectedTableId}&origen=${origen}`;
                         return;
                     } else {
                         alert("No se puede tomar el pedido")
@@ -224,7 +225,7 @@ function recorrido_mesas(pedidos_mesas){
 function actualizacion_pedidos(){
 
     // obtener los pedidos
-    let response = fetch("http:localhost:1234/ventas/factura")
+    let response = fetch(PathUrl+"factura")
 
     if(!response.ok){
         return alert("No se pudo obtener la lista de pedidos")

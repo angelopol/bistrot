@@ -61,10 +61,5 @@ export const createVentasRouter = () => {
   VentasRouter.get("/assets/Caja_Styles.css", renderController.stylesCaja)
   VentasRouter.get("/assets/pedidos_styles.css", renderController.stylesPedidos)
 
-
-  
-  
-  
-
   return VentasRouter
 }

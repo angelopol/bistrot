@@ -3,23 +3,23 @@ export class RenderController{
 
     //Paginas 
     renderGerente= async(req,res)=>{
-        res.render('ventas/gerente')
+        res.render('ventas/Vista_Gerente/Ventas_Gerente')
     }
 
     renderMeserosGeneral= async(req,res)=>{
-        res.render('ventas/meserosgeneral')
+        res.render('ventas/Vista_Meseros/Mesero_Zona_General')
     }
 
     renderMeserosTerraza= async(req,res)=>{
-        res.render('ventas/meserosterraza')
+        res.render('ventas/Vista_Meseros/Mesero_Terraza')
     }
  
     renderCaja= async(req,res)=>{
-        res.render('ventas/caja')
+        res.render('ventas/Vista_Caja/Caja')
     }
 
     renderPedidos= async(req,res)=>{
-        res.render('ventas/pedidos')
+        res.render('ventas/Vista_Pedidos/pedidos')
     }
 
     //Estilos
