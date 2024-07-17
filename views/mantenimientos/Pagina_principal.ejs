@@ -4,9 +4,12 @@
   <title>Mantenimiento</title>
   <link rel="stylesheet" href="mantenimiento/styles.css">
   <link rel="stylesheet" href="Especial_calendario.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles/side.css">
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/styles2.css">
+  <link rel="shortcut icon" href="resources/icon.jpeg" type="image/x-icon">
 
 </head>
 
@@ -14,13 +17,13 @@
 
   <!-- ESTE ES EL HEADER (BARRA VERDE EN LA PARTE SUPERIOR)-->
 
-  <header class="header">
-    <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
-    <div class="user-info">
-      <span class="user-name">Gerente0000</span>
-      <img src="resources/iconos_barra/flecha_hacia_abajo_usuario.png" alt="User profile icon" class="user-icon" />
-    </div>
-  </header>
+  <header>
+    <h1 id="title">BISTROT CHEZ RÉMY</h1>
+    <select id="title-combo">
+        <option selected>Gerente</option>
+        <option>Cerrar Sesion</option>
+    </select>
+</header>
 
 
 
@@ -30,57 +33,41 @@
   <div class="content-wrapper">
     <div class="maintenance-content">
 
-      <!-- ESTE ES EL SIDEBAR-->
-      <div>
-        <nav class="sidebar">
-          <ul class="nav-menu">
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_inicio.png" alt="Home icon" class="nav-icon" />
-              <span class="nav-text">Inicio</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_ventas.png" alt="Sales icon" class="nav-icon" />
-              <span class="nav-text">Ventas/Salon</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_compras.png" alt="Purchases icon" class="nav-icon" />
-              <span class="nav-text">Compras</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_rrhh.png" alt="HR icon" class="nav-icon" />
-              <span class="nav-text">RRHH</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_inventario.png" alt="Inventory icon" class="nav-icon" />
-              <span class="nav-text">Inventario</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_mantenimiento.png" alt="Maintenance icon" class="nav-icon" />
-              <span class="nav-text">Mantenimiento</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_cocina.png" alt="Kitchen icon" class="nav-icon" />
-              <span class="nav-text">Cocina/Bar</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_reservas.png" alt="Reservations icon" class="nav-icon" />
-              <span class="nav-text">Reservas</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_reporte.png" alt="Reports icon" class="nav-icon" />
-              <span class="nav-text">Reportes</span>
-            </li>
-            <li class="nav-item">
-              <img src="resources/iconos_barra/icono_config.png" alt="Settings icon" class="nav-icon" />
-              <span class="nav-text">Configuraciones</span>
-            </li>
-            <li class="help-item">
-              <img src="resources/iconos_barra/icono_ayuda.png" alt="Help icon" class="nav-icon" />
-              <span class="nav-text">Ayuda</span>
-            </li>
-          </ul>
-        </nav>
-      </div>
+    <!-- ESTE ES EL SIDEBAR-->
+    <div id="sidebar">
+        <div class="side inicio">
+            <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+            <p class="side-option">Inicio</p>
+        </div>
+        <div class="side ventas">
+            <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+            <p class="side-option">Ventas/Salon</p>
+        </div>
+        <div class="side compras">
+            <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+            <p class="side-option">Compras</p>
+        </div>
+        <div class="side rrhh">
+            <img class="side-foto" src="resources/iconos_barra/person-green.png">
+            <p class="side-option">RRHH</p>
+        </div>
+        <div class="side inventario">
+            <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+            <p class="side-option">Inventario</p>
+        </div>
+        <div class="side mantent">
+            <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+            <p class="side-option">Mantenimiento</p>
+        </div>
+        <div class="side cocina">
+            <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+            <p class="side-option">Cocina/Bar</p>
+        </div>
+        <div class="side reserv">
+            <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+            <p class="side-option">Reservas</p>
+        </div>
+    </div>
       <!--SECCION PRINCIPAL DEL PROGRAMA-->
       <div class="principal-pag1">
 

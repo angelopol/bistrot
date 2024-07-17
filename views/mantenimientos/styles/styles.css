@@ -1,7 +1,5 @@
 body{
-    border: 0;
     margin: 0;
-    width: 100%;
 }
 
 .main-container{
@@ -55,7 +53,6 @@ body{
 }
 
 .content-wrapper{
-    width: 100%;
     display: flex;
 }
 
@@ -359,14 +356,16 @@ h1 {
     margin-top: 20px;
     padding: 40px 40px;
     width: 100%;
+    display: flex;
 }
-
 
 /*Contenido de la pagina*/
 .maintenance-content {
     gap: 20px;
     display: flex;
-
+    width: 85vw;
+    justify-content: center;
+    align-items: center;
 }
 
 .maintenance-list {
