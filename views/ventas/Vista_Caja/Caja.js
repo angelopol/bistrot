@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     
         cambiar(tab === 'tab1' ? 'General' : 'Terraza');
-        recorrido_mesas(pedidos_realizados, pedidos_realizados_t);
+        //recorrido_mesas(pedidos_realizados, pedidos_realizados_t);
 
     
     }
@@ -101,7 +101,7 @@ function changeTab(tab) {
     });
 
     cambiar(tab === 'tab1' ? 'General' : 'Terraza');
-    recorrido_mesas(pedidos_realizados, pedidos_realizados_t);
+    //recorrido_mesas(pedidos_realizados, pedidos_realizados_t);
 
 
 }
@@ -544,6 +544,8 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
                     const tableStatusElement = mesas.querySelector('.table-status');
                     tableStatusElement.textContent = 'Cuenta';
 
+                } else {
+                    console.log("no hay pedidos listos")
                 }
             });
         });
@@ -556,6 +558,8 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
                 if (pedidos.estatus === 4 && pedidos.tableId === String(mesas_id + 1)) {
                     const tableStatusElement = mesas.querySelector('.table-status');
                     tableStatusElement.textContent = 'Cuenta';
+                } else {
+                    console.log("no hay pedidos listos")
                 }
             });
         });
@@ -563,7 +567,7 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
 }
 
 // llamamos una funcion una serie de tiempo para ver si hizo una actualizacion en los estatus del pedido
-setInterval(recorrido_mesas, 20000); 
+setInterval(recorrido_mesas(pedidos_realizados, pedidos_realizados_t), 20000); 
 
 
 // funcion para guardar el registro del cliente en la base de datos
