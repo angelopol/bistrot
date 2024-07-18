@@ -269,6 +269,21 @@
               <label for="employee-code" class="form-label">Código de empleado</label>
               <input type="text" id="employee-code" class="form-input" placeholder="M0000" name="codigo_empleado"/>
             </div>
+
+            <script>
+              // validacion de codigo de empleado
+              // primero se ingresa una letra (representa el cargo) y luego numeros
+              document.getElementById("employee-code").addEventListener("input", function () {
+                  var employeeCode = this.value;
+                  var employeeCodePattern = /^[a-zA-Z][0-9]*$/;
+                  if (!employeeCodePattern.test(employeeCode)) {
+                      this.value = employeeCode.slice(0, -1);
+                  }
+                  if (this.value.length > 5) {
+                      this.value = employeeCode.slice(0, 5);
+                  }
+              });
+            </script>
             
             <div class="form-group">
               <label for="user-password" class="form-label">Clave de Usuario</label>
