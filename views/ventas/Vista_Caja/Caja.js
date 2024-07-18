@@ -326,17 +326,17 @@ function PagoCuenta() {
                         <form id="formCliente">
                             <h3>Datos del Cliente</h3>
                             <label for="nombreCliente">Nombre del Cliente o Empresa:</label>
-                            <input type="text" id="nombreCliente" name="nombreCliente" required>
+                            <input type="text" id="nombreCliente" name="nombreCliente" required minlength="3">
                             <label for="rifCedula">RIF o Cédula:</label>
-                            <input type="text" id="rifCedula" name="rifCedula" required>
+                            <input type="text" id="rifCedula" name="rifCedula" required minlength="8">
                             <label for="direccion">Dirección:</label>
-                            <input type="text" id="direccion" name="direccion" required>
+                            <input type="text" id="direccion" name="direccion">
                             <label for="tipoEstado">Tipo de Estado:</label>
                             <input type="text" id="tipoEstado" name="tipoEstado" required>
                             <label for="telefono">Teléfono:</label>
                             <input type="tel" id="telefono" name="telefono" required>
                             <label for="correo">Correo Electrónico:</label>
-                            <input type="email" id="correo" name="correo" required>
+                            <input type="email" id="correo" name="correo">
                         </form>
                         <hr>
                         <form id="formPago">
@@ -370,13 +370,13 @@ function PagoCuenta() {
                             <label for="rifCedula">RIF o Cédula:</label>
                             <input type="text" id="rifCedula" name="rifCedula" required minlength="8">
                             <label for="direccion">Dirección:</label>
-                            <input type="text" id="direccion" name="direccion" required minlength="3">
+                            <input type="text" id="direccion" name="direccion">
                             <label for="tipoEstado">Tipo de Estado:</label>
                             <input type="text" id="tipoEstado" name="tipoEstado" required>
                             <label for="telefono">Teléfono:</label>
                             <input type="tel" id="telefono" name="telefono" required>
                             <label for="correo">Correo Electrónico:</label>
-                            <input type="email" id="correo" name="correo" required>
+                            <input type="email" id="correo" name="correo">
                         </form>
                         <hr>
                         <form id="formPago">
@@ -425,10 +425,10 @@ function PagoCuenta() {
                 // Mostrar detalles del cliente
                 const clienteNombre = formCliente.elements['nombreCliente'].value.trim();
                 const clienteRIF = formCliente.elements['rifCedula'].value.trim();
-                const clienteDireccion = formCliente.elements['direccion'].value.trim();
+                const clienteDireccion = formCliente.elements['direccion'].value.trim() || '';
                 const clienteTipoEstado = formCliente.elements['tipoEstado'].value.trim();
                 const clienteTelefono = formCliente.elements['telefono'].value.trim();
-                const clienteCorreo = formCliente.elements['correo'].value.trim();
+                const clienteCorreo = formCliente.elements['correo'].value.trim() || '';
     
                 // Validar el formato del número de teléfono
                 const telefonoRegex = /^\+?\d{1,3}?[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/;

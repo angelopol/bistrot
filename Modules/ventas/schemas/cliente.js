@@ -6,7 +6,7 @@ const schema_cliente = z.object({
     // Validamos si es un string
     rif_cedula: z.string().min(8, { message: 'El RIF o cédula no puede estar vacío' }),
     // Validamos si es un string
-    direccion: z.string().min(1, { message: 'La dirección no puede estar vacía' }),
+    direccion: z.string().min(1, { message: 'La dirección no puede estar vacía' }).optional(),
     // Validamos si es un string y refinamos para que sea 'natural' o 'juridico'
     tipo_estado: z.string().refine(estado => ['natural', 'juridico'].includes(estado), {
         message: 'El tipo de estado debe ser "natural" o "juridico"'
@@ -21,7 +21,7 @@ const schema_cliente = z.object({
         message: 'El número de teléfono es inválido'
     }),
     // Validamos si es un correo electrónico válido
-    correo_electronico: z.string().email({ message: 'El correo electrónico no es válido' }),
+    correo_electronico: z.string().optional().email({ message: 'El correo electrónico no es válido' }),
 })
 
 
