@@ -246,9 +246,23 @@
           </script>
           
           <div class="form-group address-group">
-            <label for="address" class="form-label">Dirección</label>
+            <label for="address" class="form-label" style="transform: translateX(-100px);">Dirección</label>
             <input type="text" id="address" class="form-input address-input" placeholder="Mañongo, cerca del CC Sambil calle 13" name="direccion"/>
           </div>
+
+          <script>
+            // validar la direccion de residencia 
+            // que me permita ingresar la ñ y la Ñ
+            // no me permita ingresar caracteres especiales, solamente la , y el espacio
+            document.getElementById("address").addEventListener("input", function () {
+                var address = this.value;
+                var addressPattern = /^[a-zA-Z0-9\s,ñÑ]*$/;
+                if (!addressPattern.test(address)) {
+                    this.value = address.slice(0, -1);
+                }
+            });
+        </script>
+
       
           <div class="form-row">
             <div class="form-group">
