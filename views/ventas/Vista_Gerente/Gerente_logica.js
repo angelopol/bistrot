@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         ventasDia.innerHTML = `<h3>Ventas del Día</h3>${ventasDelDia.map(venta => `<p>${venta.valor}</p>`).join('')}`;
         ventasSemana.innerHTML = `<h3>Ventas de la Semana</h3>${ventasDeLaSemana.map(venta => `<p>${venta.valor}</p>`).join('')}`;
-                ventasMes.innerHTML = `<h3>Ventas del Mes</h3>${ventasDelMes.map(venta => `<p>${venta.valor}</p>`).join('')}`;
+        ventasMes.innerHTML = `<h3>Ventas del Mes</h3>${ventasDelMes.map(venta => `<p>${venta.valor}</p>`).join('')}`;
     }
     
     // Lógica para el botón "Registros"
