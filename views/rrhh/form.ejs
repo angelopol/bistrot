@@ -87,17 +87,68 @@
               <label for="start-date" class="form-label">Fecha inicio</label>
               <input type="date" id="start-date" class="form-input" name="fecha_contratacion"/>
             </div>
+
+            <script>
+              // validacion de que la fecha de inicio pueda ser la fecha actual o una fecha futura
+              // no se permite ingresar una fecha pasada
+              document.getElementById("start-date").addEventListener("input", function () {
+                  var today = new Date().toISOString().split('T')[0];
+                  if (this.value < today) {
+                      alert("La fecha de inicio no puede ser una fecha pasada");
+                      this.value = "";
+                  }
+              });
+          </script>
            
             <div class="form-group">
               <label for="end-date" class="form-label">Fecha culminación</label>
               <input type="date" id="end-date" class="form-input" name="fecha_culminacion"/>
             </div>
+
+            <script>
+              // fecha de culminacion no puede ser menor a la fecha de inicio
+              document.getElementById("end-date").addEventListener("input", function () {
+                  var startDate = document.getElementById("start-date").value;
+                  if (this.value < startDate) {
+                      alert("La fecha de culminación no puede ser menor a la fecha de inicio");
+                      this.value = "";
+                  }
+              });
+
+              // si el usuario intenta meter primero la fecha de culminacion y luego la fecha de inicio, si la fecha de inicio es mayor a la fecha de culminacion, la fecha de culminacion se resetea
+              document.getElementById("start-date").addEventListener("input", function () {
+                  var endDate = document.getElementById("end-date").value;
+                  if (this.value > endDate) {
+                      document.getElementById("end-date").value = "";
+                  }
+              });
+            </script>
+
+            
       
             <div class="form-group">
-              <label for="salary" class="form-label">Salario (bs)</label>
+              <label for="salary" class="form-label">Salario (euros)</label>
               <input type="number" id="salary" class="form-input" placeholder="000,00" step="0.01" name="salario"/>
             </div>
           </div>
+
+          <script>
+            // validacion salario no puede ser negativo
+            // no permite ingresar nada que no sea numeros, puntos y comas
+            // permite ingresar varios puntos
+
+            document.getElementById("salary").addEventListener("input", function () {
+                var salary = this.value;
+                var salaryPattern = /^[0-9.,]*$/;
+                if (!salaryPattern.test(salary)) {
+                    this.value = salary.slice(0, -1);
+                }
+                if (this.value < 0) {
+                    alert("El salario no puede ser negativo");
+                    this.value = "";
+                }
+            });
+          </script>
           
           <div class="form-row">
             <div class="form-group">
@@ -116,17 +167,43 @@
               </select>
             </div>
           </div>
+
+          
           
           <div class="form-row">
             <div class="form-group">
               <label for="first-name" class="form-label">Nombre</label>
               <input type="text" id="first-name" class="form-input" name="nombre"/>
             </div>
+            <script>
+              //validar que el nombre y apellido no contengan números
+              // que si el usuario ingrese un numero, no se refleje en el input
+              // solo se permite ingresar letras y espacios   
+              document.getElementById("first-name").addEventListener("input", function () {
+                  var name = this.value;
+                  var namePattern = /^[a-zA-Z\s]*$/;
+                  if (!namePattern.test(name)) {
+                      this.value = name.slice(0, -1);
+                  }
+              });
+          </script>
             
             <div class="form-group">
               <label for="last-name" class="form-label">Apellido</label>
               <input type="text" id="last-name" class="form-input" name="apellido"/>
             </div>
+            <script>
+              //validar que el nombre y apellido no contengan números
+              // que si el usuario ingrese un numero, no se refleje en el input
+              // solo se permite ingresar letras y espacios   
+              document.getElementById("last-name").addEventListener("input", function () {
+                  var name = this.value;
+                  var namePattern = /^[a-zA-Z\s]*$/;
+                  if (!namePattern.test(name)) {
+                      this.value = name.slice(0, -1);
+                  }
+              });
+          </script>
       
             <div class="form-group">
               <label for="id-number" class="form-label">Cédula</label>
