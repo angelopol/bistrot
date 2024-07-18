@@ -62,7 +62,7 @@
         </ul>
       </nav>
       <main class="registra-entradas">
-        <h1 class="page-title">Entradas de empleados</h1>
+        <h1 class="page-title" style="transform: translateX(-100px);">Entradas de empleados</h1>
         <form class="employee-registration">
           <div class="form-row">
             <div class="form-group">
@@ -77,9 +77,23 @@
 
             </script>
             <div class="form-group">
-              <label for="employee-id" class="form-label">ID del empleado</label>
-              <input type="text" id="employee-id" class="form-input" placeholder="ID del empleado" />
+              <label for="employee-id" class="form-label">Código de empleado</label>
+              <input type="text" id="employee-id" class="form-input" placeholder="M0000" />
             </div>
+            <script>
+              // validacion de codigo de empleado
+              // primero se ingresa una letra (representa el cargo) y luego numeros
+              document.getElementById("employee-id").addEventListener("input", function () {
+                  var employeeCode = this.value;
+                  var employeeCodePattern = /^[a-zA-Z][0-9]*$/;
+                  if (!employeeCodePattern.test(employeeCode)) {
+                      this.value = employeeCode.slice(0, -1);
+                  }
+                  if (this.value.length > 5) {
+                      this.value = employeeCode.slice(0, 5);
+                  }
+              });
+            </script>
             <div class="form-group">
               <label for="employee-ci" class="form-label">Cédula de identidad</label>
               <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
