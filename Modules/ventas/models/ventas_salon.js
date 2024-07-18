@@ -19,10 +19,6 @@ const connection = await mysql.createConnection(db)
 // } catch (error) {
 //     console.error('Error:', error);
 // }
-await connection.query(
-    "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?);", ['noche', 3, '2024-06-25', '2024-06-27', 28, 50, 14, 47]
-)
-console.log('SE HA CONECTADO A LA BASE DE DATOS!!!')
 
 export class VentasModel {
 
@@ -62,7 +58,7 @@ export class VentasModel {
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?);", [turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos]
+                "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos]
             )
         } catch (error) {
             throw new Error("Error creando una venta")
@@ -188,7 +184,7 @@ export class VentasModel {
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_salon (presupuesto, inicio_evento, final_evento, pago_inicial, pago_final) VALUES (?, ?, ?, ?, ?);", [presupuesto, inicio_evento, final_evento, pago_inicial, pago_final]
+                "INSERT INTO submodulo_salon (presupuesto, inicio_evento, final_evento, pago_inicial, pago_final) VALUES (?, ?, ?, ?, ?)", [presupuesto, inicio_evento, final_evento, pago_inicial, pago_final]
             )
         } catch (error) {
             throw new Error("Error creando un registro de salon")
@@ -298,13 +294,13 @@ export class VentasModel {
             nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico
         } = input
 
-        try {
+        console.log(input)
+
+        
             await connection.query(
-                "INSERT INTO submodulo_registro_cliente (nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico) VALUES (?, ?, ?, ?, ?, ?);", [nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico]
+                "INSERT INTO submodulo_registro_cliente (nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico) VALUES (?, ?, ?, ?, ?, ?)", [nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico]
             )
-        } catch (error) {
-            throw new Error("Error creando un registro de cliente")
-        }
+        
         
     }
 

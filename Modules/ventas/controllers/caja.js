@@ -32,7 +32,7 @@ export class ControllerCaja {
         return res.status(400).json({error : JSON.parse(result.error.message)})
         }
 
-        const new_Venta = await VentasModel.create_caja({ input: result.data })
+        const new_Venta = await VentasModel.create_caja({ input: req.body })
 
         res.status(201).json(new_Venta)
     };
@@ -49,7 +49,7 @@ export class ControllerCaja {
 
         const { id } = req.params
 
-        const updated_Ventas = await VentasModel.update_caja({ id, input: result.data })
+        const updated_Ventas = await VentasModel.update_caja({ id, input: req.body })
 
         return res.json(updated_Ventas)
     }

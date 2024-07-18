@@ -50,7 +50,7 @@ export class ControllerFactura {
 
         const { id } = req.params
 
-        const updated_factura = await VentasModel.update_factura({ id, input: result.data })
+        const updated_factura = await VentasModel.update_factura({ id, input: req.body })
 
         return res.json(updated_factura)
     }

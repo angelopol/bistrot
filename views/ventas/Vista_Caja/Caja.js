@@ -417,7 +417,7 @@ function PagoCuenta() {
             const formPago = modal.querySelector('#formPago');
     
             formPago.addEventListener('submit', (event) => {
-                alert("Hola")
+                
                 event.preventDefault();
     
                 // Aquí puedes realizar validaciones si es necesario antes de agregar los detalles del pedido
@@ -429,11 +429,21 @@ function PagoCuenta() {
                 const clienteTipoEstado = formCliente.elements['tipoEstado'].value.trim();
                 const clienteTelefono = formCliente.elements['telefono'].value.trim();
                 const clienteCorreo = formCliente.elements['correo'].value.trim() || '';
+
+                if (clienteNombre === '') {
+                    alert('Por favor, ingrese un nombre.');
+                    return;
+                }
+
+                if (clienteRIF === '') {
+                    alert('Por favor, ingrese un rif/cedula.');
+                    return;
+                }
     
                 // Validar el formato del número de teléfono
                 const telefonoRegex = /^\+?\d{1,3}?[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}$/;
     
-                if (clienteTelefono !== '' && !telefonoRegex.test(clienteTelefono)) {
+                if (clienteTelefono === '' && !telefonoRegex.test(clienteTelefono)) {
                     alert('Por favor, ingrese un número de teléfono válido.');
                     return;
                 }
@@ -574,17 +584,21 @@ setInterval(recorrido_mesas(pedidos_realizados, pedidos_realizados_t), 20000);
 // funcion para guardar el registro del cliente en la base de datos
 async function guargar_registro_cliente_bd(cliente){
 
+    console.log(cliente)
     // creamos el pedido en nuestra tabla de facturas
-    fetch("../cliente", {
+    await fetch("../cliente", {
         method : "POST",
-        headers : { "Content-Type" : "application/json" },
+        headers : { 
+            "Content-Type" : "application/json" 
+        },
         body : JSON.stringify(cliente)
     })
     .then((res) => {
         if (res.ok) {
             console.log('Solicitud exitosa');
         } else {
-            console.error('Error en la solicitud');
+            const error = res.json()
+            console.error('Error en la solicitud', error);
         }
     })
     .catch((error) => {
