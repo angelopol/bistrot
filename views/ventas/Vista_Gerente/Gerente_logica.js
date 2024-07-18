@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const precioTotal = (cantidadMesasSalon * precioMesaSalon) + (cantidadMesasTerraza * precioMesaTerraza);
 
 
-        total.innerHTML = `<h3>Precio total: ${precioTotal}$</h3>`;
+        total.innerHTML = `<h3>Precio total: ${precioTotal}$ </h3>`;
         
     });
     
