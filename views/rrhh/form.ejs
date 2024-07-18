@@ -272,8 +272,23 @@
             
             <div class="form-group">
               <label for="user-password" class="form-label">Clave de Usuario</label>
-              <input type="password" id="user-password" class="form-input" placeholder="****" name="clave_usuario"/>
+              <input type="password" id="user-password" class="form-input" placeholder="********" name="clave_usuario"/>
             </div>
+
+            <script>
+              // validacion de la clave de usuario, maximo 8 caracteres
+              // solo numeros, no permite ni espacios ni otros caracteres
+              document.getElementById("user-password").addEventListener("input", function () {
+                  var password = this.value;
+                  var passwordPattern = /^[0-9]*$/;
+                  if (!passwordPattern.test(password)) {
+                      this.value = password.slice(0, -1);
+                  }
+                  if (this.value.length > 8) {
+                      this.value = password.slice(0, 8);
+                  }
+              });
+            </script>
           </div>
           <button type="submit" id="submit-button">Registrar</button>
         </form>
