@@ -59,14 +59,10 @@ body {
 }
 
 .table-grid {
-    margin-left: 60px;
     display: flex;
-    flex: 1;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 0 20px;
-    margin-right: 20px;
-    margin-bottom: 30px;
+    gap: 15px;
+    width: 100%;
 }
 
 .table-card{
@@ -123,7 +119,7 @@ body {
 
 .Mesas {
     display: none;
-    width: 100%;
+    width: 70%;
 }
 
 .visible {
@@ -209,13 +205,15 @@ body {
     width: 20%;
 }
 
-.Contenido {
+.Contenido{
+    overflow-x: hidden; 
     display: flex;
     flex-direction: row;
-    width: 90%;
-    margin: 20px;
-    margin-top: 50px;
+    width: 98%;
+    padding: 10px; 
     align-items: start;
+    margin-top: 20px;
+    justify-content: center;
 }
 
 .selected {
@@ -418,3 +416,10 @@ body {
     border-top: 1px solid #ddd;
     padding-top: 10px;
 }
+
+.titulos{
+    font-size: 20px;
+    font-weight: 600;
+    width: 200px;
+}
+

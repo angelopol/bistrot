@@ -7,7 +7,23 @@ const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || []
 const urlParams = new URLSearchParams(window.location.search);
 
 // obtenemos el origen de la vista que hizo la peticion
-const origen = urlParams.get('origen');
+let origen = urlParams.get('origen');
+
+const tableId = urlParams.get('tableId');
+const orderItems = document.querySelectorAll('.order-item');
+if (origen === 'general' && tableId > 9) {
+    origen = 'bar';
+    let nav_buttons = document.querySelectorAll('.menu-nav-item');
+    nav_buttons.forEach(button => {
+        if (button.id !== 'bebidas' && button.id !== 'vinos' && button.id !== 'tragos') {
+            button.classList.add('invisible');
+        }
+    });
+    const vista_Entradas = document.getElementById('Entradas');
+    vista_Entradas.classList.remove('visible');
+    const vista_Bebidas = document.getElementById('Bebidas');
+    vista_Bebidas.classList.add('visible');
+}
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -129,6 +145,18 @@ function cancelOrder(tipo_button) {
             // Redirige al usuario a la página Mesonero_Zona_General.html
             window.location.href = '/ventas/Vista_Meseros/meseros_terraza';
         }
+    } else if (origen === 'bar'){
+
+        if (tipo_button === "cancelar_pedido"){
+            // Muestra un mensaje de "Pedido cancelado"
+            alert('¡Pedido cancelado!');
+            // Redirige al usuario a la página Mesonero_Zona_General.html
+            window.location.href = '/ventas/Vista_Meseros/meseros_general';
+        } else {
+            // Redirige al usuario a la página Mesonero_Zona_General.html
+            window.location.href = '/ventas/Vista_Meseros/meseros_general';
+        }
+
 
     }
     
@@ -142,12 +170,17 @@ function salir() {
 function placeOrder() {
     // Obtén la información del pedido (elementos, cantidad, total, etc.)
     // Obtener los valores de los parámetros de la URL
+    const tableId = urlParams.get('tableId');
     const orderItems = document.querySelectorAll('.order-item');
+    if(origen === 'general' && tableId > 9){
+        origen='bar';
+    }
+    
     const orderData = {
         items: [],
         total: parseFloat(document.getElementById('total-amount').textContent),
         estatus: 1, // 1 = "Pendiente", 2 = "Rechazado", 3 = "Aceptado", 4 = "Listo"
-        tableId: urlParams.get('tableId'), // Obtén el ID de la mesa seleccionada
+        tableId: tableId, // Obtén el ID de la mesa seleccionada
         zona: origen  // obtnemos la zona donde se hizo el pedido (zona -> General o zona -> Terraza)
     };
 
@@ -184,7 +217,7 @@ function sendOrderToServer(orderData) {
 
                 pedidos_realizados.splice(cont_posiciones, 1, orderData); // se reemplaza en la lista de los pedidos realizados
 
-                console.log("Hola")
+
                 actualizar_pedido_base_datos(orderData)  // se actualiza el pedido que fue rechazado
 
                 localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
@@ -236,6 +269,38 @@ function sendOrderToServer(orderData) {
         }
     }
 
+    else if (origen === 'bar'){
+        
+        // recorremos los pedidos realizados
+        pedidos_realizados.forEach((pedidos,cont_posiciones) => {
+
+            // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
+            if(pedidos.tableId === orderData.tableId) {
+
+                pedidos_realizados.splice(cont_posiciones, 1, orderData); // se reemplaza en la lista de los pedidos realizados
+
+                actualizar_pedido_base_datos(orderData)  // se actualiza el pedido que fue rechazado
+
+                localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+                
+                bandera_reemplazo = true;
+                return;
+            }
+
+        });
+
+        // si en la mesa donde se realiza el pedido todavia no esta registrado se agrega el pedido
+        if(!bandera_reemplazo){
+
+            pedidos_realizados.push(orderData); // se agrega a la lista de los pedidos realizados
+
+            crear_pedido_base_datos(orderData) // se crea el pedido
+
+            localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+            console.log(pedidos_realizados);
+        }
+
+    }
     
     // Muestra un mensaje de éxito
     alert('¡Pedido realizado con éxito! El pedido se ha enviado a la mesa ' + orderData.tableId);

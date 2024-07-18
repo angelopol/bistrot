@@ -13,7 +13,6 @@ const mesas_pagadas_general = JSON.parse(localStorage.getItem('mesas_pagadas_gen
 
 // Obtener los pedidos que se han realizado
 const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
-console.log(pedidos_realizados);
 
 // actualizacion constante de los estados
 recorrido_mesas(pedidos_realizados)
@@ -99,7 +98,7 @@ actionButtons.forEach(button => {
                                 return;
 
                             // si es pendiente lo deseleccionada y elimina el pedido de la lista de pedidos realizados
-                            } else if (tableCard.querySelector(".table-status").textContent === "Pendiente"){
+                            } else if (tableCard.querySelector(".table-status").textContent === "Pendiente" || tableCard.querySelector(".table-status").textContent === "Rechazado"){
 
                                 tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
 
@@ -233,12 +232,12 @@ function imprimirFactura(){
             // Asignar evento para cerrar el modal
             modal.querySelector('.closeBtn').addEventListener('click', () => {
                 modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = 'hidden';
             });
 
             modal.querySelector('.button-cerrar-modal').addEventListener('click', () => {
                 modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = 'hidden';
             });
 
         } else {
@@ -298,7 +297,7 @@ async function actualizacion_pedidos(){
 
         // obtengo el estatus y el id de la mesa que tienen un estatus diferente de 1 y pedidos realizados en la zona general y los almaceno en un array
         let cambio_estatus_mesas = pedidos_bd.filter(pedido => {
-            return pedido.status_pedido !== 1 && pedido.status_pedido !== 5 && pedido.zona === 'general';  // el status 5 es para cuando el cliente pague y finalizase todo no nse toma en cuenta 
+            return pedido.status_pedido !== 1 && pedido.status_pedido !== 5 && (pedido.zona === 'general' || pedido.zona === 'bar');  // el status 5 es para cuando el cliente pague y finalizase todo no nse toma en cuenta 
         }).map(pedido => {
             return {
                 status: pedido.status_pedido,
@@ -367,7 +366,7 @@ async function eliminar_pedido(id_mesa){
 
         pedidos_bd.forEach(pedido => {
 
-            if (pedido.mesa === id_mesa && pedido.zona === 'general'){
+            if (pedido.mesa === id_mesa && (pedido.zona === 'general' || pedido.zona === 'bar')){
                 id_eliminar = pedido.id_cliente
                 return;
             }
@@ -403,7 +402,7 @@ async function eliminar_pedido(id_mesa){
             console.log("No se pudo eliminar el pedido");
         }
     } else {
-        console.log("nose enucnetra el id a eliminar")
+        console.log("nose encuentra el id a eliminar")
     }
     
 }
@@ -436,7 +435,7 @@ async function update_mesas_pagadas(id_mesa){
 
         pedidos_bd.forEach(pedido => {
 
-            if (pedido.mesa === id_mesa && pedido.zona === 'general'){
+            if (pedido.mesa === id_mesa && (pedido.zona === 'general' || pedido.zona === 'bar')){
                 id_update = pedido.id_cliente
                 return;
             }

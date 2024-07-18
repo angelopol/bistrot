@@ -98,7 +98,7 @@ actionButtons.forEach(button => {
                                 return;
 
                             // si es pendiente lo deseleccionada y elimina el pedido de la lista de pedidos realizados
-                            } else if (tableCard.querySelector(".table-status").textContent === "Pendiente"){
+                            } else if (tableCard.querySelector(".table-status").textContent === "Pendiente" || tableCard.querySelector(".table-status").textContent === "Rechazado"){
 
                                 tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
 
