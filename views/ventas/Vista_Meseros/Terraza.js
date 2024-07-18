@@ -335,11 +335,12 @@ function actualizar_mesas(cambio_estatus_mesas){
             // verificamos si el id de mesas son iguales y sus estatus son difentes
             if(parseInt(pedidos.tableId) === cambios.id_mesa && pedidos.estatus !== cambios.status){
                 pedidos.estatus = cambios.status  // se le asigna el nuevo estatus a la mesa
-                localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+                
             }
         })
     })
 
+    localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
     recorrido_mesas(pedidos_realizados_t)  // actualizamos lo estatus de la mesas en el front
     
 }

@@ -330,13 +330,13 @@ function PagoCuenta() {
                             <label for="rifCedula">RIF o Cédula:</label>
                             <input type="text" id="rifCedula" name="rifCedula" required>
                             <label for="direccion">Dirección:</label>
-                            <input type="text" id="direccion" name="direccion">
+                            <input type="text" id="direccion" name="direccion" required>
                             <label for="tipoEstado">Tipo de Estado:</label>
-                            <input type="text" id="tipoEstado" name="tipoEstado">
+                            <input type="text" id="tipoEstado" name="tipoEstado" required>
                             <label for="telefono">Teléfono:</label>
-                            <input type="tel" id="telefono" name="telefono">
+                            <input type="tel" id="telefono" name="telefono" required>
                             <label for="correo">Correo Electrónico:</label>
-                            <input type="email" id="correo" name="correo">
+                            <input type="email" id="correo" name="correo" required>
                         </form>
                         <hr>
                         <form id="formPago">
@@ -417,6 +417,7 @@ function PagoCuenta() {
             const formPago = modal.querySelector('#formPago');
     
             formPago.addEventListener('submit', (event) => {
+                alert("Hola")
                 event.preventDefault();
     
                 // Aquí puedes realizar validaciones si es necesario antes de agregar los detalles del pedido
@@ -440,7 +441,7 @@ function PagoCuenta() {
                 // Validar el tipo de estado
                 const tiposEstado = ['natural', 'juridico'];
     
-                if (!tiposEstado.includes(tipoEstado.toLowerCase())) {
+                if (!tiposEstado.includes(clienteTipoEstado.toLowerCase())) {
                     alert('El tipo de estado debe ser "natural" o "juridico".');
                     return;
                 }
