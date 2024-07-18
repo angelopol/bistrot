@@ -63,7 +63,7 @@ async function actualizarPedidos() {
         let todosContenedores = document.querySelectorAll(".order-card")
         todosContenedores.forEach(contenedor => {
             
-            if (contenedor.innerHTML.includes("pendiente")){
+            if (contenedor.innerHTML.includes("pendiente") || contenedor.innerHTML.includes("preparando") || contenedor.innerHTML.includes("rechazado")){
                 contenedor.classList.remove("ocupado")
                 contenedor.id = ""
                 let ultimoTexto = contenedor.lastElementChild
@@ -76,7 +76,7 @@ async function actualizarPedidos() {
         pedidos.forEach(pedido => {
 
             // si el status_pedido es igual a 1, entonces es una orden pendiente
-            if (pedido.status_pedido == 1) {
+            if (pedido.status_pedido == 1 || pedido.status_pedido == 3  || pedido.status_pedido == 2) {
 
                 // seleccionamos todas las order-card (los contenedores con los pedidos que se muestrabn en las views)
                 let cardsMesas = document.querySelectorAll(".order-card")
@@ -96,8 +96,18 @@ async function actualizarPedidos() {
                         let carMesaStatus = cardMesa.lastElementChild;
                         
                         //Le colocamos el texto al contenedor del pedido
-                        carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: pendiente`;
-                        break; 
+                        if (pedido.status_pedido == 1) {
+                            carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: pendiente`;
+                            break;
+                        }
+                        else if (pedido.status_pedido == 2) {
+                            carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: rechazado`;
+                            break;
+                        }
+                        else if (pedido.status_pedido == 3) {
+                            carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: preparando`;
+                            break;
+                        }
                     }
                 }
             }
