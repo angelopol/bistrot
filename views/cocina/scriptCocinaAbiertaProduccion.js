@@ -130,34 +130,176 @@ botonProcesar.addEventListener("click" , async () => {
     }
 
     try {
+        
         let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
-    
-        // hacemos una petición a este endpoint para verificar si se puede procesar el pedido
-        let response = await fetch(`http://localhost:1234/cocina/procesar-pedido?pedido_id=${idCardSeleccionada}`);
-    
-        if (!response.ok) {
+
+
+        const response1 = await fetch(`http://localhost:1234/ventas/factura/${idCardSeleccionada}`)
+        if (!response1.ok) {
             throw new Error('La solicitud no pudo completarse correctamente');
         }
-    
-        let pedido = await response.json(); // obtenemos el pedido retornado por el controlador
-    
-        // si el estado del pedido es 3, se acepta el pedido y se puede preparar
-        if (pedido.status_pedido === 3) {
-            // se obtiene el contenedor del pedido seleccionado
-            alert("Pedido aceptado")
-            let cardMesa = document.getElementById(`${idCardSeleccionada}`);
-            let cardMesaStatus = cardMesa.lastElementChild;
-            cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
-            // Al aceptarse el pedido se considera (en la vista) que inicia la preparación
+
+        let pedido = await response1.json(); // obtenemos el pedido retornado por el controlador
+        let listaComidas = pedido[0]
+            listaComidas = JSON.parse(listaComidas.consumo)
+        let multilpicador = []
+        listaComidas.forEach(comida => {
+            multilpicador.push(comida.quantity)
+        })    
+
+        let fetchPromises = listaComidas.map(async objetoComida => {
+            let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`)
+            let nombrePlato = await res.json();
+            return nombrePlato[0];
+        })
+
+        let comidas = await Promise.all(fetchPromises); // array con los objetos comidas
+        
+        let ingredientesRequeridos = {}
+        for(let i = 0; i < comidas.length ; i++){
+            let ingredientesParaComida = JSON.parse(comidas[i].ingredientes) // {"2":1}
+            
+            Object.keys(ingredientesParaComida).forEach(idIngredienteRequerido => {
+                if (idIngredienteRequerido in ingredientesRequeridos){
+                    ingredientesRequeridos[idIngredienteRequerido] += parseFloat(parseFloat(ingredientesParaComida[idIngredienteRequerido]) * parseInt(multilpicador[i]))
+                }
+                else{
+                    ingredientesRequeridos[idIngredienteRequerido] = parseFloat(parseFloat(ingredientesParaComida[idIngredienteRequerido]) * parseInt(multilpicador[i]))
+                }
+            })
         }
-        // si el estado del pedido es 2, se rechaza el pedido por falta de recursos
-        else if (pedido.status_pedido === 2) {
+        
+        let fetchPromises1 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
+            let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
+            let ingrediente = await res.json();
+            return ingrediente; // Devuelve el nombre del plato obtenido
+        });
+
+        let ingredientes = await Promise.all(fetchPromises1) // lista con los objetos ingredientes requeridos
+        console.log({ingredientesRequeridos})
+        console.log({ingredientes})
+
+        let bandera = false // bandera para saber si hacen falta ingredientes
+        let valoresIngredientesRequeridos = Object.values(ingredientesRequeridos)
+        for(let i = 0 ; i< ingredientes.length ; i++){
+            if((ingredientes[i].cantidad < valoresIngredientesRequeridos[i])){
+                bandera = true
+                break
+            }
+        }
+
+        if(bandera){
+            console.log("RECHAZADO")
+            const cambio = {status_pedido: 2}
+            const requestOptions = {
+                method: 'PATCH', 
+                headers: {
+                'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(cambio) 
+            };
+
+            const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+            const response = await fetch(API_URL , requestOptions)
+            if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
+
             alert("No se cuenta con los recursos para realizar este pedido");
             let cardMesa = document.getElementById(`${idCardSeleccionada}`);
             let cardMesaStatus = cardMesa.lastElementChild;
             cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
-            // Al rechazarse, Ventas debe manejar el pedido
+            return null
+
         }
+
+        let maquinariaNecesaria = [] // array que guardara los id de las maquinarias necesarias
+        console.log(comidas)
+        for(let i = 0; i < comidas.length ; i++){
+            let maquinariaParaComida = comidas[i].instrumentos.split(",")
+            maquinariaParaComida.forEach(idMaquinariaRequerida => {
+                if(idMaquinariaRequerida in maquinariaNecesaria){
+                    //nada
+                } else{
+                    maquinariaNecesaria.push(idMaquinariaRequerida)
+                }
+            })
+        }
+        
+        let fetchPromises2 = maquinariaNecesaria.map(async idMaquinariaRequerida => {
+            let res = await fetch(`http://localhost:1234/inventario/api/general/${idMaquinariaRequerida}`);
+            let ingrediente = await res.json();
+            return ingrediente; // Devuelve el nombre del plato obtenido
+        });
+
+        let maquinarias = await Promise.all(fetchPromises2) // lista con las maquinarias
+        console.log({maquinariaNecesaria})
+        console.log({maquinarias})
+        let bandera1 = false
+
+        for (let i = 0; i < maquinarias.length; i++) {
+            console.log(maquinarias[i].funciona_estado)
+            if(maquinarias[i].funciona_estado == 0){
+                bandera1 = true
+                break
+            }
+        }
+
+        if(bandera1){
+            console.log("RECHAZADO")
+            const cambio = {status_pedido: 2}
+            const requestOptions = {
+                method: 'PATCH', 
+                headers: {
+                'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(cambio) 
+            };
+
+            const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+            const response = await fetch(API_URL , requestOptions)
+            if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
+
+            alert("No se cuenta con los recursos para realizar este pedido");
+            let cardMesa = document.getElementById(`${idCardSeleccionada}`);
+            let cardMesaStatus = cardMesa.lastElementChild;
+            cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
+            return null
+
+        }
+        
+
+        // si llega este punto hay que descontar los ingredientes de inventario
+
+        ingredientes.forEach(async objetoIngrediente => {
+            console.log("DESCONTADO")
+            let index = ingredientes.indexOf(objetoIngrediente)
+            let cantidadDescontar = valoresIngredientesRequeridos[index]
+            await funcionUpdateIngrediente(objetoIngrediente.id_cocina_bar , cantidadDescontar)
+        })
+
+        // Si se llega a este punto entonces se han cumplido todas las validaciones
+        // Y se cambia el estado de pedido a preparando/aceptado
+
+        const cambio = {status_pedido: 3}
+        const requestOptions = {
+            method: 'PATCH', 
+            headers: {
+            'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(cambio) 
+        };
+
+        const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+        const response = await fetch(API_URL , requestOptions)
+        if (!response.ok) throw new Error('No se pudo actualizar el estado del pedido');
+
+        // si el estado del pedido es 3, se acepta el pedido y se puede preparar
+        console.log("ESTADO DEL PEDIDO: ", pedido[0].status_pedido)
+        // se obtiene el contenedor del pedido seleccionado
+        alert("Pedido aceptado")
+        let cardMesa = document.getElementById(`${idCardSeleccionada}`);
+        let cardMesaStatus = cardMesa.lastElementChild;
+        cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
+        // Al aceptarse el pedido se considera (en la vista) que inicia la preparación
     } catch (error) {
         console.error('Hubo un error al conectarse con la base de datos de ventas:', error);
     }
@@ -175,15 +317,15 @@ pedidosContainers.forEach(container => {
         // Efecto de seleccionado (Para permitir la selección de una sola carta a la vez)
         let otraVezMiDiv = document.querySelectorAll('.order-card');
         otraVezMiDiv.forEach(otraVezOrden => {
-            if (!(otraVezOrden == e.target)){
+            if (!(otraVezOrden == e.currentTarget)){
                 otraVezOrden.classList.remove("clicked")
             }
         })
-        e.target.classList.toggle("clicked") 
+        e.currentTarget.classList.toggle("clicked") 
 
 
         // al id del contenedor que coincide con el id del pedido, se lo asignamos al variable global que guarda los id
-        let idStringCardSeleccionada = e.target.id
+        let idStringCardSeleccionada = e.currentTarget.id
         if (idStringCardSeleccionada == ""){
             vaciarFichaLateralDerecha()
             agregarFuncionDelBotonListo()
@@ -198,14 +340,16 @@ pedidosContainers.forEach(container => {
                 "content-type": "aplication/json"
             }
         })
-        .then( async response => { await response.json()})
-        .then(data => {
+        .then( async response => { 
+           let dato = await response.json()
+            return dato
+        }
+        )
+        .then(async data => {
             // Se muestran los datos del pedido en la carta resumen
-
-            let pedido = data
+            let pedido = data[0]
             /* pedido.consumo sera un string que representara una lista de objetos que seran las comidas pedidas ejemplo '[{"id":2,"quantity":3,"price":10},{"id":8,"quantity":2,"price":10}]' */
             let listaComidas = JSON.parse(pedido.consumo) // aqui tendremos el arreglo de las comidas
-
             let contenedorPedido = document.querySelector(".order-summary")
             contenedorPedido.innerHTML = "" // Se borra el contenido de la carta resumen de pedidos
 
@@ -220,30 +364,40 @@ pedidosContainers.forEach(container => {
             divPedido.innerHTML = "PEDIDO"
             contenedorPedido.appendChild(divPedido) // Se agrega el indicador "PEDIDO"
 
-            listaComidas.forEach( async objetoComida => {
-                // Iteramos el diccionario de pedidos para encontrar sus nombres
+             // Array para almacenar todas las promesas de fetch
+            let fetchPromises = listaComidas.map(async objetoComida => {
+                let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`);
+                let nombrePlato = await res.json();
+                return nombrePlato[0]; // Devuelve el nombre del plato obtenido
+            });
 
-                let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`) // Petición al modelo comidas que retorna al receta
-                let nombrePlato = await res.json()
-                
-                let divItem = document.createElement("div")
-                divItem.className = "order-item" // div que almacena el nombre y cantidad de platos
+            // Ejecutar todas las promesas de fetch simultáneamente
+            let nombresPlatos = await Promise.all(fetchPromises);
 
-                let itemName = document.createElement("span")
-                itemName.className = "item-name"
-                itemName.innerHTML = `${nombrePlato.nombre}` // span con el nombre del plato
+            // Iterar sobre los resultados obtenidos y construir los elementos HTML
+            nombresPlatos.forEach((nombrePlato, index) => {
+                let objetoComida = listaComidas[index];
 
-                let itemDetail = document.createElement("span")
-                itemDetail.className = "item-detail"
-                itemDetail.innerHTML = `x${objetoComida.quantity}` // span con la cantidad del plato
+                let divItem = document.createElement("div");
+                divItem.className = "order-item"; // div que almacena el nombre y cantidad de platos
 
-                divItem.appendChild(itemName)
-                divItem.appendChild(itemDetail)
-                contenedorPedido.appendChild(divItem)
-            })
+                let itemName = document.createElement("span");
+                itemName.className = "item-name";
+                itemName.innerHTML = `${nombrePlato.nombre}`; // span con el nombre del plato
 
-            // se completa el tamaño de la ficha
-            completarTamañoFicha()
+                let itemDetail = document.createElement("span");
+                itemDetail.className = "item-detail";
+                itemDetail.innerHTML = `x${objetoComida.quantity}`; // span con la cantidad del plato
+
+                divItem.appendChild(itemName);
+                divItem.appendChild(itemDetail);
+                contenedorPedido.appendChild(divItem);
+            });
+
+            // Se completa el tamaño de la ficha después de construir los elementos
+            completarTamañoFicha();
+
+            
             // Se agrega el botón listo que (ya que se elimina tmb al inicio del evento)
             let listoButton = document.createElement("button")
             listoButton.className = "order-ready"
@@ -283,26 +437,27 @@ listoButton.addEventListener("click", async function () {
         alert("Pedido invalido para ponerlo en listo")
         return null
     }
-    // Petición al controlador de pedidos que cambia el estado del pedido a listo
-    await fetch(`http://localhost:1234/cocina/pedido-listo?pedido_id=${idPedido}`, {
-            method: "GET",
-            headers: {
-                "content-type": "aplication/json"
-            }
-        })
-    .then(async response => {await response.json()})
-    .then(() => {
-        let cardPedido = document.getElementById(`${idPedido}`)
-        cardPedido.classList.remove("ocupado")
-        let cardPedidoStatus = cardPedido.lastElementChild;
-        cardPedidoStatus.innerHTML = `ID pedido: ${idPedido}<br>Estatus: listo`; // Se muestra el cambio en la view
-        idPedido = ""
 
-        quitarEstatusClickeado()
-    })
-    .catch(e => {
-        console.error(`Error al acceder al pedido.`, e)
-    })
+    const cambio = {status_pedido: 4}
+    const requestOptions = {
+        method: 'PATCH', 
+        headers: {
+        'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(cambio) 
+    };
+
+    const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+    const response = await fetch(API_URL , requestOptions)
+    if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
+    
+    let cardPedido = document.getElementById(`${idPedido}`)
+    cardPedido.classList.remove("ocupado")
+    let cardPedidoStatus = cardPedido.lastElementChild;
+    cardPedidoStatus.innerHTML = `ID pedido: ${idPedido}<br>Estatus: listo`; // Se muestra el cambio en la view
+    idPedido = ""
+    quitarEstatusClickeado()
+        
 })
 }
 agregarFuncionDelBotonListo()
@@ -462,4 +617,64 @@ function completarTamañoFicha(){
     else {
         return null
     }
+    }
+
+    async function funcionUpdateIngrediente(id, canitdadRequerida){
+        // Función que cambia el estado del instrumento seleccionado en la base de datos
+    
+        // Solicitud GET para obtener los atributos del instrumento
+          let instrumentoData = {}
+    
+          const options = {
+            method: 'GET', 
+            headers: {
+            'Content-Type': 'application/json' 
+            }
+        };
+    
+      await fetch(`http://localhost:1234/inventario/api/cocina-bar/${id}` , options)
+      .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          instrumentoData = data
+          instrumentoData.cantidad = instrumentoData.cantidad - canitdadRequerida
+          instrumentoData.fecha_caducidad = instrumentoData.fecha_caducidad.slice(0,-1)
+          console.log(instrumentoData.fecha_caducidad)
+          console.log(typeof instrumentoData.fecha_caducidad)
+          console.log('Se obtuvo el instrumento:', instrumentoData);
+        })
+        .catch(error => {
+          console.error('Fetch error:', error);
+         
+        });
+    
+        // Actualización del instrumento en base de datos
+        const requestOptions = {
+            method: 'PUT', 
+            headers: {
+            'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(instrumentoData) 
+        };
+    
+        // Petición a inventario (habria que importar esta ruta de inventario)
+        await fetch(`http://localhost:1234/inventario/api/cocina-bar/${id}` , requestOptions)
+        .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json(); // Parsear la respuesta JSON si es necesario
+          })
+          .then(data => {
+            console.log('Actualización exitosa:', data); // Manejar la respuesta de éxito
+            
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+           
+          });
     }
