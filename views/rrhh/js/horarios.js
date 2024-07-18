@@ -32,16 +32,14 @@ function llenarTabla(empleados) {
   // Limpia la tabla antes de agregar nuevas filas
   tabla.innerHTML = `
     <tr>
+      <th scope="col" class="encabezado">Cedula</th>
       <th scope="col" class="encabezado">Nombre</th>
       <th scope="col" class="encabezado">Cargo</th>
       <th scope="col" class="encabezado">Hora de Entrada</th>
       <th scope="col" class="encabezado" style="width: 200px;">Hora Salida</th>
     </tr>
     <tr>
-      <th scope="col" class="info"></th>
-      <th scope="col" class="info"></th>
-      <th scope="col" class="info"></th>
-      <th scope="col" class="info"></th>
+
     </tr>
   `;
 
@@ -49,11 +47,13 @@ function llenarTabla(empleados) {
   // Aqui llena la tabla del html
   empleados.forEach(empleado => {
     const fila = document.createElement('tr');
+    console.log("eaml",empleado.puesto)
     fila.innerHTML = `
-      <td>${empleado.nombre}</td>
-      <td>${empleado.cargo}</td>
-      <td>${empleado.horaEntrada}</td>
-      <td>${empleado.horaSalida}</td>
+      <td class="info">${empleado.cedula}</td>
+      <td class="info">${empleado.nombre}</td>
+      <td class="info">${empleado.puesto}</td>
+      <td class="info"> 07:00 AM </td>
+      <td class="info"> 05:00 PM </td>
     `;
     tabla.appendChild(fila);
   });

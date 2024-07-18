@@ -3,7 +3,12 @@ import { EmpleadosModel } from '../models/empleados.js'
 import 'dotenv/config'
 
 export async function validateEmpleado (input, register = true) {
-  var {nombre, clave_usuario} = input
+  var { nombre,
+        clave_usuario,
+        cedula,
+        codigo_empleado,
+        puesto,
+       } = input
   
   if (typeof clave_usuario !== 'string' || clave_usuario.length < 1) {
     return {
@@ -26,5 +31,9 @@ export async function validateEmpleado (input, register = true) {
     }
     clave_usuario = bcrypt.hashSync(clave_usuario, 10)
   }
-  return { success: true, data: { nombre, clave_usuario } }
+  return { success: true, data: {  nombre,
+    clave_usuario,
+    cedula,
+    codigo_empleado,
+    puesto } }
 }

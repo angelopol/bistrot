@@ -4,14 +4,18 @@ export class EmpleadosModel {
     const {
       nombre,
       clave_usuario,
-      cedula
+      cedula,
+      codigo_empleado,
+      puesto,
     } = input;
     //y asi vas agregando todas 
+    console.log(puesto,"es")
+
     try {
       await connection.query(
-        `INSERT INTO empleados (nombre, clave_usuario, cedula)
-          VALUES (?, ?);`,
-        [nombre, clave_usuario, cedula]
+        `INSERT INTO empleados (nombre, clave_usuario, cedula, codigo_empleado, puesto)
+          VALUES (?, ?, ?, ?, ?);`,
+        [nombre, clave_usuario, cedula, codigo_empleado, puesto]
       );
     } catch (e) {
       console.log(e);
@@ -60,9 +64,11 @@ export class EmpleadosModel {
         `UPDATE empleados SET
           nombre = ?,
           clave_usuario = ?,
+          cedula = ?,
+          codigo_empleado = ?,
           -- Agrega otros campos aquí según sea necesario
           WHERE id = ?;`,
-        [nombre, clave_usuario, id]
+        [nombre, clave_usuario, id, cedula, codigo_empleado]
         // Agrega otros campos aquí y arriba
       );
     } catch (e) {
