@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <title>Ventas</title>
+    <title>Gerente</title>
 </head>
 <body>
     
@@ -72,9 +72,7 @@
                 <button class="action-button" id="openModal1">Apertura/Cierre</button>
                 <button class="action-button" id="openModal2">Tasa del dia</button>
                 <button class="action-button" id="openModal3">Presupuestos</button>
-                <button class="action-button" id="openModal4">Eventos/Cotizacion</button>
                 <button class="action-button" id="openModal5">Registros</button>
-                <button class="action-button" id="openModal6">Resumen</button>
 
                 <section id="menu-apertura/cierre visible">
 
@@ -83,9 +81,10 @@
                         <span class="closeBtn" data-modal="modal1">&times;</span>
                         <h2>Apertura y Cierre de caja</h2>
                         <div class="content-center">
+                          <div class="estado-caja"></div>
                           <input class="apertura-cierre" type="number" placeholder="monto de apertura/cierre">
-                          <button class="btn-caja btn-apertura-cierre">Aperturar</button>
-                          <button class="btn-caja">Cerrar</button>
+                          <button class="btn-caja btn-apertura">Aperturar</button>
+                          <button class="btn-caja btn-cierre">Cerrar</button>
                         </div>
                     </div>
                   </div>
@@ -93,7 +92,7 @@
                   <div id="modal2" class="modal">
                     <div class="modal-content">
                         <span class="closeBtn" data-modal="modal2">&times;</span>
-                        <h2>Tasa del dia (Bs)</h2>
+                        <h2>Tasa del dia (Euro)</h2>
                         <div class="content-center">
                           <input class="tasa-dia" type="number" placeholder="ingrese la tasa del dia">
                           <button class="btn-caja btn-tasa-dia">Aceptar</button>
@@ -105,36 +104,49 @@
                     <div class="modal-content">
                         <span class="closeBtn" data-modal="modal3">&times;</span>
                         <h2>Presupuestos</h2>
+                        <form id="presupuestoForm">
+                            <div class="item">
+                                <label for="mesaSalon">Cantidad de mesas de Salón:</label>
+                                <select id="mesaSalon">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
+                            <div class="item">
+                                <label for="mesaTerraza">Cantidad de mesas de Terraza:</label>
+                                <select id="mesaTerraza">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                        </form>
+                        <div id="total">
+                            
+                        </div>
                         <div class="content-center">
-                          <input class="presupuesto" type="number" placeholder="monto del presupuesto">
-                          <button class="btn-caja btn-presupuesto">Añadir</button>
-                          <button class="btn-caja">Editar</button>
-                          <button class="btn-caja">Eliminar</button>
+                            <button class="btn-caja btn-presupuesto" id="calcularBtn">Calcular</button>
                         </div>
                     </div>
+                </div>
+                
+                <div id="modal5" class="modal">
+                  <div class="modal-content">
+                      <span class="closeBtn" data-modal="modal5">&times;</span>
+                      <h2>Registros</h2>
+                      <div class="content-center">
+                        <button class="btn-caja btn-registro">Aceptar</button>
+                      </div>
                   </div>
-
-                  <div id="modal4" class="modal">
-                    <div class="modal-content">
-                        <span class="closeBtn" data-modal="modal4">&times;</span>
-                        <h2>Eventos/Cotizacion </h2>
-                        <p>Contenido del modal</p>
-                        <button class="btn-caja btn-eventos">Añadir</button>
-                        <button class="btn-caja">Editar</button>
-                        <button class="btn-caja">Eliminar</button>
-                    </div>
-                  </div>
-
-                  <div id="modal5" class="modal">
-                    <div class="modal-content">
-                        <span class="closeBtn" data-modal="modal5">&times;</span>
-                        <h2>Registros</h2>
-                        <p>Contenido del modal</p>
-                        <button class="btn-caja btn-resgitro">Actualizar</button>
-                    </div>
-                  </div>
-
-                  <div id="modal6 modal-ingresos-egresos divModal" class="modal"></div>
+                </div>
 
                 </section>
                 </div>

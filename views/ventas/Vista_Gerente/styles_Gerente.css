@@ -303,6 +303,7 @@ main {
     margin: 20px;
     margin-top: 65px;
     
+    
 }
 
 @media (max-width: 991px) {
@@ -325,7 +326,7 @@ main {
     margin: 70px auto 0;
     padding: 18px;
     margin-top: 10px;
-
+    gap: 15px;
 }
 
 
@@ -605,3 +606,4 @@ input[type="number"] {
     height: 40px;
     border-radius: 10px;
 }
+
