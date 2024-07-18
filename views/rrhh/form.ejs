@@ -209,12 +209,41 @@
               <label for="id-number" class="form-label">Cédula</label>
               <input type="text" id="id-number" class="form-input" name="cedula"/>
             </div>
+
+            <script>
+              // validacion cedula, solo permite ingresar numeros, sin espacios
+              // permite ingresar maximo 8 digitos
+              document.getElementById("id-number").addEventListener("input", function () {
+                  var idNumber = this.value;
+                  var idNumberPattern = /^[0-9]*$/;
+                  if (!idNumberPattern.test(idNumber)) {
+                      this.value = idNumber.slice(0, -1);
+                  }
+                  if (this.value.length > 8) {
+                      this.value = idNumber.slice(0, 8);
+                  }
+              });
+            </script>
             
             <div class="form-group">
               <label for="phone" class="form-label">Teléfono</label>
               <input type="tel" id="phone" class="form-input" placeholder="04120201212" name="telefono"/>
             </div>
           </div>
+          <script>
+            // validacion telefono, solo permite ingresar numeros, sin espacios
+            // permite ingresar maximo 11 digitos 
+            document.getElementById("phone").addEventListener("input", function () {
+                var phone = this.value;
+                var phonePattern = /^[0-9]*$/;
+                if (!phonePattern.test(phone)) {
+                    this.value = phone.slice(0, -1);
+                }
+                if (this.value.length > 11) {
+                    this.value = phone.slice(0, 11);
+                }
+            });
+          </script>
           
           <div class="form-group address-group">
             <label for="address" class="form-label">Dirección</label>
