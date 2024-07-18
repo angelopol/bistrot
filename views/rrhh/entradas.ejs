@@ -85,9 +85,17 @@
               <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
             </div>
             <script>
-              // validacion de input de cedula, solo permite numeros, no permite letras ni caracteres especiales
-              document.getElementById('employee-ci').addEventListener('input', function() {
-                this.value = this.value.replace(/[^0-9]/g, '');
+              // validacion cedula, solo permite ingresar numeros, sin espacios
+              // permite ingresar maximo 8 digitos
+              document.getElementById("employee-ci").addEventListener("input", function () {
+                  var idNumber = this.value;
+                  var idNumberPattern = /^[0-9]*$/;
+                  if (!idNumberPattern.test(idNumber)) {
+                      this.value = idNumber.slice(0, -1);
+                  }
+                  if (this.value.length > 8) {
+                      this.value = idNumber.slice(0, 8);
+                  }
               });
             </script>
           </div>
