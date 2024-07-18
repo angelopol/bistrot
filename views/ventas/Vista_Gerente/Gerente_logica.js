@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const monto_cierre = document.querySelector(".apertura-cierre");
     const tasa_del_dia = document.querySelector(".tasa-dia");
     const presupuesto = document.querySelector(".prespuesto");
-
     const registro = document.getElementById("registro");
 
     // seleccionar los botones para gestionar sus eventos de click
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const btn_monto_cierre = document.querySelector(".btn-cierre");
     const btn_tasa_del_dia = document.querySelector(".btn-tasa-dia");
     const btn_presupuesto = document.querySelector(".btn-presupuesto");
-    const registricobtn = document.getElementById("btn-registro");
+    const btn_registro = document.getElementById("btn-registro");
     const estadoCaja = document.querySelector(".estado-caja");
 
     // seleccionas los inputs de vista gerente
@@ -115,29 +114,52 @@ document.addEventListener('DOMContentLoaded', (event) => {
         // Muestra un alert con el dato guardado
         alert('Tasa del día guardada: ' + valorentrada);
     });
+
+    // Función para actualizar la pantalla con las ventas
+    function actualizarVentas() {
+        const ventas = JSON.parse(localStorage.getItem('ventas') || '[]');
+        
+        const ventasDelDia = ventas.filter(venta => venta.fecha === new Date().toLocaleDateString());
+        const ventasDeLaSemana = ventas.filter(venta => {
+            const fechaVenta = new Date(venta.fecha);
+            const fechaActual = new Date();
+            const primerDiaDeLaSemana = new Date(fechaActual.setDate(fechaActual.getDate() - fechaActual.getDay()));
+            return fechaVenta >= primerDiaDeLaSemana;
+        });
+        const ventasDelMes = ventas.filter(venta => {
+            const fechaVenta = new Date(venta.fecha);
+            const fechaActual = new Date();
+            return fechaVenta.getMonth() === fechaActual.getMonth() && fechaVenta.getFullYear() === fechaActual.getFullYear();
+        });
+
+        ventasDia.innerHTML = `<h3>Ventas del Día</h3>${ventasDelDia.map(venta => `<p>${venta.valor}</p>`).join('')}`;
+        ventasSemana.innerHTML = `<h3>Ventas de la Semana</h3>${ventasDeLaSemana.map(venta => `<p>${venta.valor}</p>`).join('')}`;
+                ventasMes.innerHTML = `<h3>Ventas del Mes</h3>${ventasDelMes.map(venta => `<p>${venta.valor}</p>`).join('')}`;
+    }
     
     // Lógica para el botón "Registros"
-    /*registricobtn.addEventListener('click', () => {
-        // Obtén el valor del campo de texto
-        const valorRegistro = registro.value;
+    btn_registro.addEventListener('click', () => {
+        const valorRegistro = registro.value.trim();
 
-        // Verifica si el campo de texto no está vacío
         if (valorRegistro) {
-            // Guarda el valor en localStorage
-            localStorage.setItem('registroValor', valorRegistro);
+            const ventas = JSON.parse(localStorage.getItem('ventas') || '[]');
+            const nuevaVenta = {
+                valor: valorRegistro,
+                fecha: new Date().toLocaleDateString()
+            };
+            ventas.push(nuevaVenta);
+            localStorage.setItem('ventas', JSON.stringify(ventas));
 
-            // Muestra un mensaje de confirmación
             alert('El valor ha sido guardado: ' + valorRegistro);
-
-            // Opcional: Limpia el campo de texto después de guardar
             registro.value = '';
+
+            actualizarVentas();
         } else {
-            // Muestra un mensaje si el campo está vacío
             alert('Por favor, ingresa un valor.');
         }
-            
     });
-*/
+            
+
 });
 
 //Abrir y cerrar modals de gerente
