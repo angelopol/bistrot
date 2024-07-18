@@ -8,6 +8,8 @@
 
 body{
     margin: 0px;
+    overflow-x: hidden;
+    
     
 }
 
@@ -74,7 +76,7 @@ body{
     align-items: center;
     justify-content: center;
     height: 100%;
-    transform: translate(500px, -830px);
+    transform: translate(500px, -630px);
 }
 
 .employee-registration {
@@ -281,3 +283,5 @@ body{
       padding: 16px 20px;
     }
 }
+
+
