@@ -10,6 +10,7 @@ const origen = 'general';
 
 // obtener las mesas que ya han pagado su comida
 const mesas_pagadas_general = JSON.parse(localStorage.getItem('mesas_pagadas_general')) || [];
+console.log(mesas_pagadas_general)
 
 // Obtener los pedidos que se han realizado
 const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
@@ -19,37 +20,51 @@ recorrido_mesas(pedidos_realizados)
 
 
 // actualizacion de las mesas cuando ya pagaron la cuenta
-if (mesas_pagadas_general.length > 0){
 
-    mesas_pagadas_general.forEach(pedidos => {
+function limpiar_mesas_general(){
 
-        tableCards.forEach((mesas,id_mesas) => {
+    if (mesas_pagadas_general.length > 0){
 
-            // estatus pedidos
-            if (pedidos.mesa === String(id_mesas+1)){
-                const tableStatusElement = mesas.querySelector('.table-status');
-                tableStatusElement.textContent = 'DISPONIBLE';
-                mesas_pagadas_general.splice(id_mesas,1)
-            }
-        })
-        
-    })
-
-    pedidos_realizados.forEach(pedidos => {
-
-        tableCards.forEach((mesas,id_mesas) => {
-
-            // estatus pedidos
-            if (pedidos.tableId === String(id_mesas+1)){
-                update_mesas_pagadas(id_mesas+1);
-                pedidos_realizados.splice(id_mesas, 1);
-            }
-        })
-        
-    })
-
+        mesas_pagadas_general.forEach((pedidos, index) => {
     
+            tableCards.forEach((mesas,id_mesas) => {
+    
+                // estatus pedidos
+                if (pedidos.mesa === id_mesas+1){
+                    console.log(index)
+                    const tableStatusElement = mesas.querySelector('.table-status');
+                    tableStatusElement.textContent = 'DISPONIBLE';
+                    mesas_pagadas_general.splice(index,1)
+                    localStorage.setItem('mesas_pagadas_general', JSON.stringify(mesas_pagadas_general))
+                    console.log(mesas_pagadas_general)
+                }
+            })
+            
+        })
+    
+        pedidos_realizados.forEach((pedidos,index) => {
+    
+            tableCards.forEach((mesas,id_mesas) => {
+    
+                // estatus pedidos
+                if (pedidos.tableId === id_mesas+1){
+                    console.log(index)
+                    update_mesas_pagadas(id_mesas+1);
+                    pedidos_realizados.splice(index, 1);
+                    localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+                    console.log(pedidos_realizados)
+                }
+            })
+            
+        })
+    
+        
+    } else {
+        console.log("Todavia no se han pagado mesas, entonces no pueden ser limpiadas")
+    }
+
 }
+
 
 
 // Variable para almacenar el ID de la mesa seleccionada
@@ -408,7 +423,10 @@ async function eliminar_pedido(id_mesa){
 }
 
 // llamamos una funcion una serie de tiempo para ver si (Cocina-bar) hizo una actualizacion en los estatus del pedido
-setInterval(actualizacion_pedidos, 20000); 
+setInterval(actualizacion_pedidos, 10000); 
+
+// llamamos una funcion una serie de tiempo para ver si se pueden limpiar las mesas
+setInterval(limpiar_mesas_general, 5000); 
 
 
 // funcion para actualizar las mesas que ya pagaron su cuenta

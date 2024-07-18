@@ -467,6 +467,7 @@ function PagoCuenta() {
                 }
     
                 guargar_registro_cliente_bd(cliente);
+                limpiar_mesas()
     
                 // Mostrar detalles del pedido (ejemplo de cómo agregar un elemento al pedido)
                 const pedidoItemHTML = `
@@ -491,45 +492,6 @@ function PagoCuenta() {
                 // Limpiar campos del formulario
                 formCliente.reset();
                 formPago.reset();
-    
-                // limpiar las mesas de zona de caja
-    
-                if (document.querySelector("#General").classList.contains("visible")){
-    
-                    mesitas = {
-                        mesa : selectedTableId
-                    }
-    
-                    tableCards.forEach((mesas, mesas_id) => {
-                        
-                        // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
-                        if (selectedTableId === String(mesas_id + 1)) {
-                            const tableStatusElement = mesas.querySelector('.table-status');
-                            tableStatusElement.textContent = 'DISPONIBLE';
-                        }
-                    });
-            
-                    lista_mesas_pagadas_general.push(mesitas)
-                    JSON.parse(localStorage.getItem('mesas_pagadas_general'))
-    
-                } else if (document.querySelector("#Terraza").classList.contains("visible")){
-                    
-                    mesitas = {
-                        mesa : selectedTableId
-                    }
-    
-                    tableCards2.forEach((mesas, mesas_id) => {
-                        
-                        // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
-                        if (selectedTableId === String(mesas_id + 1)) {
-                            const tableStatusElement = mesas.querySelector('.table-status');
-                            tableStatusElement.textContent = 'DISPONIBLE';
-                        }
-                    });
-            
-                    lista_mesas_pagadas_terraza.push(mesitas)
-                    JSON.parse(localStorage.getItem('mesas_pagadas_terraza'))
-                }
             
     
             });
@@ -542,6 +504,51 @@ function PagoCuenta() {
 }
 
 
+// fucntion limpiar mesas una vez que el cliente pague
+function limpiar_mesas(){
+
+    // limpiar las mesas de zona de caja
+    
+    if (document.querySelector("#General").classList.contains("visible")){
+    
+        mesitas = {
+            mesa : selectedTableId
+        }
+
+        tableCards.forEach((mesas, mesas_id) => {
+    
+            // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
+            if (selectedTableId === mesas_id + 1) {
+                
+                const tableStatusElement = mesas.querySelector('.table-status');
+                tableStatusElement.textContent = 'DISPONIBLE';
+            }
+        });
+
+        console.log(mesitas.mesa)
+        lista_mesas_pagadas_general.push(mesitas)
+        localStorage.setItem('mesas_pagadas_general', JSON.stringify(lista_mesas_pagadas_general))
+
+    } else if (document.querySelector("#Terraza").classList.contains("visible")){
+        
+        mesitas = {
+            mesa : selectedTableId
+        }
+
+        tableCards2.forEach((mesas, mesas_id) => {
+            
+            // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
+            if (selectedTableId === mesas_id + 1) {
+                const tableStatusElement = mesas.querySelector('.table-status');
+                tableStatusElement.textContent = 'DISPONIBLE';
+            }
+        });
+
+        lista_mesas_pagadas_terraza.push(mesitas)
+        localStorage.setItem('mesas_pagadas_terraza', JSON.stringify(lista_mesas_pagadas_terraza))
+    }
+
+}
 
 
 // Recorridos de las mesas para la vista de General, Terrazas

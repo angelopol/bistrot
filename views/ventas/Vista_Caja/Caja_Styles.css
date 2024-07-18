@@ -73,7 +73,7 @@ body {
     padding-bottom: 10px;
     flex-direction: column;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     color: #000;
     font-weight: 500;
     line-height: 150%;
@@ -210,9 +210,9 @@ body {
     display: flex;
     flex-direction: row;
     width: 98%;
-    padding: 10px; 
+    padding: 2px; 
     align-items: start;
-    margin-top: 20px;
+    margin-top: 10px;
     justify-content: center;
 }
 
