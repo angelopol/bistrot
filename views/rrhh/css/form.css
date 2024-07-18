@@ -29,6 +29,7 @@
 .form-group {
     display: flex;
     flex-direction: column;
+   
     
     
 
@@ -120,4 +121,11 @@
     .submit-button {
       padding: 16px 20px;
     }
+}
+
+
+
+
+body {
+    overflow-x: hidden;
 }
