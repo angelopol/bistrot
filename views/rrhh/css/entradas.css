@@ -103,12 +103,13 @@ body{
     margin-top: 37px;
     gap: 20px;
     justify-content: space-between;
-    transform: translateX(-100px);
+    transform: translateX(-70px);
 }
   
 .form-group {
     display: flex;
     flex-direction: column;
+    transform: translate(130px, -60px);
     
 
 }
@@ -240,33 +241,6 @@ body{
     margin: auto 0; 
 }
 
-.help-item { 
-    border-radius: 8px; 
-    background-color: rgba(246, 246, 246, 0.96); 
-    display: flex; 
-    margin-top: 8px; 
-    gap: 16px; 
-    padding: 8px 16px; 
-}
-
-.help-icon-wrapper { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    padding: 1px 0; 
-}
-
-.help-icon { 
-    font-family: Inter, sans-serif; 
-    stroke-width: 2px; 
-    border: 2px solid #02676f; 
-    background-color: #fff; 
-    border-radius: 50%; 
-    align-items: center; 
-    width: 22px; 
-    justify-content: center; 
-    height: 22px; 
-}
 @media (max-width: 991px) {
     .page-title,
     .form-row,

@@ -303,12 +303,12 @@ body{
     justify-content: center; 
     border-radius: 50px; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
-    background-color: #0f624a; 
-    text-align: center; 
-    margin: auto 0; 
-    padding: 8px 22px;
+    background-color: #0f624a;
+    padding: 8px 22px; 
+    color: #fff;
     cursor: pointer;
     border: none;
+    transform: translate(-105px, 60px);
 }
 
 a{
@@ -358,7 +358,7 @@ a{
 }
 
 
-.cerrar-modal{
+/* .cerrar-modal{
     background: #0f624a;
     padding: 10px 30px;
     font-size: 17px;
@@ -395,7 +395,7 @@ a{
     background-color: #0f624a;
     color: #fff;
  
-}
+} */
 
 
 
