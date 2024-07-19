@@ -14,3 +14,6 @@ CREATE TABLE IF NOT EXISTS `empleados` (
     PRIMARY KEY (`ID`),
     UNIQUE INDEX `user_UNIQUE` (`user` ASC)
 VISIBLE);
+
+INSERT INTO `empleados` (`user`, `password`, `Nombre`, `cedula`, `Apellido`, `Puesto`, `fecha_contratacion`, `fecha_culminacion`, `Salario`, `Telefono`, `Direccion`) VALUES
+('admin', 'admin', 'admin', '00000000', 'admin', 'Gerente', '2020-01-01', '2020-01-01', 0.00, '0000000000', 'admin');

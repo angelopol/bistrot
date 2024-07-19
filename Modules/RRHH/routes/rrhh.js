@@ -5,6 +5,8 @@ export const createRRHHRouter = () => {
   const RRHHRouter = Router();
   const controlador = new RecursosHumanos();
 
+  RRHHRouter.get('/usuario', controlador.GetUsuario);
+
   // Para los HTML
   RRHHRouter.get('/', controlador.create);
   RRHHRouter.get('/horarios', controlador.horarios);

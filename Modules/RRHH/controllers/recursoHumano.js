@@ -1,38 +1,46 @@
 import connection from "../conexion.js"
 import { logged } from "../../Login/middlewares/logged.js"
+import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class RecursosHumanos {
 
     create = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         res.render('rrhh/rrhh')
     }
     informe = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         res.render('rrhh/informe')
     }
 
     horarios = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         res.render('rrhh/horarios')
     }
 
     form = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         res.render('rrhh/form')
     }
 
     entradas = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         res.render('rrhh/entradas')
     }
 
     ausensias = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         res.render('rrhh/ausensias')
     }
 
     baja = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         res.render('rrhh/baja')
     }
@@ -66,6 +74,7 @@ export class RecursosHumanos {
     }
 
     empleados = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         try {
             const [results, fields] = await connection.query('SELECT * FROM empleados');
@@ -76,6 +85,7 @@ export class RecursosHumanos {
     }
 
     entrada = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         try {
             const [results, fields] = await connection.query('SELECT id, cedula, DATE_FORMAT(hora_entrada, "%Y-%m-%d %H:%i:%s") AS hora_entrada FROM entradas');
@@ -83,5 +93,11 @@ export class RecursosHumanos {
         } catch (err) {
             res.status(500).send(err);
         }
+    }
+
+    GetUsuario = async (req, res) => {
+        var user = logged(req, res)
+        if (!user) return null
+        return res.json(user);
     }
 }  

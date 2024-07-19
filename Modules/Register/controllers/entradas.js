@@ -2,9 +2,11 @@
 import { validateEntrada } from "../schemas/entradas.js";
 import { EntradasModel } from "../models/entradas.js";
 import { logged } from "../../Login/middlewares/logged.js"
+import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class EntradasController {
     registrarEntrada = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         const result = await validateEntrada(req.body);
         console.log(req.body);
@@ -23,6 +25,7 @@ export class EntradasController {
     }
 
     create = async (req, res) => {
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
         res.render('register/entradas');  // Asegúrate de que la ruta y la vista existen
     }
