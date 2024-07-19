@@ -63,9 +63,10 @@ async function actualizarPedidos() {
         let todosContenedores = document.querySelectorAll(".order-card")
         todosContenedores.forEach(contenedor => {
             
-            if (contenedor.innerHTML.includes("pendiente") || contenedor.innerHTML.includes("preparando") || contenedor.innerHTML.includes("rechazado")){
+            if (contenedor.innerHTML.includes("pendiente") || contenedor.innerHTML.includes("preparando") || contenedor.innerHTML.includes("listo")){
                 contenedor.classList.remove("ocupado")
                 contenedor.id = ""
+                contenedor.style = "background-color: "
                 let ultimoTexto = contenedor.lastElementChild
                 ultimoTexto.textContent = "ORDEN"
             }
@@ -78,7 +79,7 @@ async function actualizarPedidos() {
             if(pedido.zona.includes("bar")){
 
                 // si el status_pedido es igual a 1, entonces es una orden pendiente
-                if (pedido.status_pedido == 1 || pedido.status_pedido == 3  || pedido.status_pedido == 2) {
+                if (pedido.status_pedido == 1 || pedido.status_pedido == 3 ) {
 
                     // seleccionamos todas las order-card (los contenedores con los pedidos que se muestrabn en las views)
                     let cardsMesas = document.querySelectorAll(".order-card")
@@ -99,14 +100,26 @@ async function actualizarPedidos() {
                             
                             //Le colocamos el texto al contenedor del pedido
                             if (pedido.status_pedido == 1) {
+
+                                /*
+                                Pendiente (amarillo) #E6C100
+                                Rechazado (rojo) #C84444
+                                Preparando (verde) #1CB44
+                                listo (azul) #00BCC8
+
+                                */
+
+                                cardMesa.style = "background-color: #E6C100"
                                 carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: pendiente`;
                                 break;
                             }
                             else if (pedido.status_pedido == 2) {
+                                cardMesa.style = "background-color: #C84444"
                                 carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: rechazado`;
                                 break;
                             }
                             else if (pedido.status_pedido == 3) {
+                                cardMesa.style = "background-color: #00BCC8"
                                 carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: preparando`;
                                 break;
                             }
@@ -218,6 +231,7 @@ botonProcesar.addEventListener("click" , async () => {
 
             alert("No se cuenta con los recursos para realizar este pedido");
             let cardMesa = document.getElementById(`${idCardSeleccionada}`);
+            cardMesa.style = "background-color: #C84444"
             let cardMesaStatus = cardMesa.lastElementChild;
             cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
             return null
@@ -273,6 +287,7 @@ botonProcesar.addEventListener("click" , async () => {
 
             alert("No se cuenta con los recursos para realizar este pedido");
             let cardMesa = document.getElementById(`${idCardSeleccionada}`);
+            cardMesa.style = "background-color: #C84444"
             let cardMesaStatus = cardMesa.lastElementChild;
             cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
             return null
@@ -310,6 +325,7 @@ botonProcesar.addEventListener("click" , async () => {
         // se obtiene el contenedor del pedido seleccionado
         alert("Pedido aceptado")
         let cardMesa = document.getElementById(`${idCardSeleccionada}`);
+        cardMesa.style = "background-color: #00BCC8"
         let cardMesaStatus = cardMesa.lastElementChild;
         cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
         // Al aceptarse el pedido se considera (en la vista) que inicia la preparación
@@ -467,6 +483,7 @@ listoButton.addEventListener("click", async function () {
     let cardPedido = document.getElementById(`${idPedido}`)
     cardPedido.classList.remove("ocupado")
     let cardPedidoStatus = cardPedido.lastElementChild;
+    cardPedido.style = "background-color: #1CB447"
     cardPedidoStatus.innerHTML = `ID pedido: ${idPedido}<br>Estatus: listo`; // Se muestra el cambio en la view
     idPedido = ""
     quitarEstatusClickeado()
@@ -492,6 +509,7 @@ devolverBoton.addEventListener("click" , async ()=>{
     }
 
     let cardPedido = document.getElementById(`${idPedido}`)
+    cardPedido.style = "background-color: "
     cardPedido.classList.remove("ocupado")
     let cardPedidoStatus = cardPedido.lastElementChild;
     cardPedidoStatus.textContent = `ORDEN`;
@@ -591,6 +609,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
     
                 alert("No se cuenta con los recursos para realizar de nuevo este pedido");
                 let cardMesa = document.getElementById(`${idCardSeleccionada}`);
+                cardMesa.style = "background-color: #C84444"
                 let cardMesaStatus = cardMesa.lastElementChild;
                 cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
                 return null
@@ -646,6 +665,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
     
                 alert("No se cuenta con los recursos para realizar de nuevo este pedido");
                 let cardMesa = document.getElementById(`${idCardSeleccionada}`);
+                cardMesa.style = "background-color: #C84444"
                 let cardMesaStatus = cardMesa.lastElementChild;
                 cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
                 return null
@@ -683,6 +703,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
             // se obtiene el contenedor del pedido seleccionado
             alert("Si se cuenta con los recursos para volver a preparar el pedido");
             let cardMesa = document.getElementById(`${idCardSeleccionada}`);
+            cardMesa.style = "background-color: #00BCC8"
             let cardMesaStatus = cardMesa.lastElementChild;
             cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
             // Al aceptarse el pedido se considera (en la vista) que inicia la preparación
