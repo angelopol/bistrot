@@ -1,4 +1,6 @@
 import { ComidaModel } from '../models/mysql/comida.js'
+const PathUrl = 'http://localhost:1234/'
+
 export class PedidoController {
 
     
@@ -18,7 +20,7 @@ export class PedidoController {
         const {pedido_id} = req.query // sacamos el id del pedido de la url
 
         //Importamos el pedido con su id
-        const response = await fetch(`http://localhost:1234/ventas/factura/${pedido_id}`); /*IMPORTAR MODULO EXTERNO Ventas*/
+        const response = await fetch(PathUrl+`ventas/factura/${pedido_id}`); /*IMPORTAR MODULO EXTERNO Ventas*/
             if (!response.ok){
                 throw new Error('No se pudo obtener el ingrediente');
             }
@@ -65,7 +67,7 @@ export class PedidoController {
         Object.keys(ingredientesRequeridos).forEach(async idIngredienteRequerido => {
 
             // De inventario solicitamos el objeto ingrediente de su tabla cocina_bar
-            const response = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
+            const response = await fetch(PathUrl+`inventario/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
             if (!response.ok){
                 throw new Error('No se pudo obtener el ingrediente');
             }
@@ -90,7 +92,7 @@ export class PedidoController {
                     }
                 };
 
-                await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , options)
+                await fetch(PathUrl+`ventas/factura/${pedido_id}` , options)
                 .then(response => {
                     if (!response.ok){
                         throw new Error('Network response was not ok');
@@ -116,7 +118,7 @@ export class PedidoController {
                 };
 
                 // este es el endpoint de ventas para actualizar la factura 
-                await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
+                await fetch(PathUrl+`ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
                 .then( async response => {
                     if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -133,7 +135,7 @@ export class PedidoController {
                 });
 
                 // con este enpoint obtenemos nuevamente el pedido con su estatus actualizado
-                const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+                const response1 = await fetch(PathUrl+`ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
                 if (!response1.ok){
                     throw new Error('No se pudo obtener el ingrediente');
                 }
@@ -161,7 +163,7 @@ export class PedidoController {
                 instrumentos.forEach(async idInstrumentos => {
 
                     // con este endpoint de inventario obtenemos el instrumento
-                    const response = await fetch(`http://localhost:1234/inventario/api/general/${idInstrumentos}`); /*Importar Modulo externo Inventario*/
+                    const response = await fetch(PathUrl+`inventario/api/general/${idInstrumentos}`); /*Importar Modulo externo Inventario*/
                     if (!response.ok){
                         throw new Error('No se pudo obtener el ingrediente');
                     }
@@ -181,7 +183,7 @@ export class PedidoController {
                             }
                         };
 
-                        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , options)
+                        await fetch(PathUrl+`ventas/factura/${pedido_id}` , options)
                         .then(response => {
                             if (!response.ok){
                                 throw new Error('Network response was not ok');
@@ -207,7 +209,7 @@ export class PedidoController {
                         };
 
                         // este es el endpoint de ventas para actualizar la factura 
-                        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
+                        await fetch(PathUrl+`ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
                         .then( async response => {
                             if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -224,7 +226,7 @@ export class PedidoController {
                         });
 
                         // con este enpoint obtenemos nuevamente el pedido con su estatus actualizado
-                        const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+                        const response1 = await fetch(PathUrl+`ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
                         if (!response1.ok){
                             throw new Error('No se pudo obtener el ingrediente');
                         }
@@ -245,7 +247,7 @@ export class PedidoController {
 
             let ingredienteData = {}
 
-            const response = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
+            const response = await fetch(PathUrl+`inventario/api/cocina-bar/${idIngredienteRequerido}`); /*Importar Modulo externo Inventario*/
             if (!response.ok){
                 throw new Error('No se pudo obtener el ingrediente');
             }
@@ -269,7 +271,7 @@ export class PedidoController {
 
 
             // con este endpoint actualizamos la cantidad del ingrediente en inventario
-            await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}` , requestOptions)
+            await fetch(PathUrl+`inventario/api/cocina-bar/${idIngredienteRequerido}` , requestOptions)
             .then(response => {
                 if (!response.ok) {
                   throw new Error('Network response was not ok');
@@ -298,7 +300,7 @@ export class PedidoController {
             }
         };
 
-        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , options)
+        await fetch(PathUrl+`ventas/factura/${pedido_id}` , options)
         .then(response => {
             if (!response.ok){
                 throw new Error('Network response was not ok');
@@ -324,7 +326,7 @@ export class PedidoController {
         };
 
         // este es el endpoint de ventas para actualizar la factura 
-        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
+        await fetch(PathUrl+`ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
         .then( async response => {
             if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -341,7 +343,7 @@ export class PedidoController {
         });
 
         // con este enpoint obtenemos nuevamente el pedido con su estatus actualizado
-        const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+        const response1 = await fetch(PathUrl+`ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
         if (!response1.ok){
             throw new Error('No se pudo obtener el ingrediente');
         }
@@ -362,7 +364,7 @@ export class PedidoController {
 
        
        //Importamos el pedido con su id
-       const response = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+       const response = await fetch(PathUrl+`ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
        if (!response.ok){
            throw new Error('No se pudo obtener el ingrediente');
        }
@@ -387,7 +389,7 @@ export class PedidoController {
             }
         };
 
-        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , options)
+        await fetch(PathUrl+`ventas/factura/${pedido_id}` , options)
         .then(response => {
             if (!response.ok){
                 throw new Error('Network response was not ok');
@@ -413,7 +415,7 @@ export class PedidoController {
         };
 
         // este es el endpoint de ventas para actualizar la factura 
-        await fetch(`http://localhost:1234/ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
+        await fetch(PathUrl+`ventas/factura/${pedido_id}` , requestOptions) /*IMPORTAR MODULO EXTERNO Ventas*/
         .then( async response => {
             if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -430,7 +432,7 @@ export class PedidoController {
         });
 
         // con este enpoint obtenemos nuevamente el pedido con su estatus actualizado
-        const response1 = await fetch(`http://localhost:1234/ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
+        const response1 = await fetch(PathUrl+`ventas/factura/${pedido_id})`); /*IMPORTAR MODULO EXTERNO Ventas*/
         if (!response1.ok){
             throw new Error('No se pudo obtener el ingrediente');
         }
