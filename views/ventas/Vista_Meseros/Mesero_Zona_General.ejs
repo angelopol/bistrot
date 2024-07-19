@@ -6,14 +6,25 @@
     <title>Zona General</title>
     <link rel="stylesheet" type="text/css" href="/ventas/Vista_Meseros/Zona_General.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        #title-combo {
+            appearance: none;
+            color: white;
+            background-color: #013D1F;
+            border-radius: 2px;
+            padding: 10px;
+            width: 15%;
+            outline: none;
+        }
+    </style>
 </head>
 <body>
     <header class="restaurant-header">
         <h1 class="restaurant-title">BISTROT CHEZ RÉMY</h1>
-        <div class="user-info">
-            <span class="user-name">Gerente0000</span>
-            <img src="/ventas/Vista_Meseros/Assets\iconos\flecha_hacia_abajo_usuario.png" alt="flecha_hacia_abajo" class="flecha_hacia_abajo" />
-        </div>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
     </header>
 
         <div class="Contenido">

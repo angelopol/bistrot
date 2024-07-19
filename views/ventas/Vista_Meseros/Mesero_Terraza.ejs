@@ -7,16 +7,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <title>Mesero Terraza</title>
+    <style>
+      #title-combo {
+          appearance: none;
+          color: white;
+          background-color: #013D1F;
+          border-radius: 2px;
+          padding: 10px;
+          width: 15%;
+          outline: none;
+      }
+  </style>
 </head>
-<body>  
-        <section class="bistrot-container">
-          <header class="header">
-            <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
-            <div class="waiter-info">
-              <span class="waiter-name">Mesero0000</span>
-              <img src="/ventas/Vista_Meseros/Assets\iconos\flecha_hacia_abajo_usuario.png" alt="Waiter icon" class="waiter-icon" />
-            </div>
-          </header>
+<body>
+  <header class="restaurant-header">
+      <h1 class="restaurant-title">BISTROT CHEZ RÉMY</h1>
+      <select id="title-combo">
+          <option selected>Gerente</option>
+          <option>Cerrar Sesion</option>
+      </select>
+  </header>
           <main class="main-content">
             <section class="table-section">
               <div class="table-layout">
