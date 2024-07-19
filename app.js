@@ -5,6 +5,8 @@ import { authenticated } from "./global/middlewares/auth.js"
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
+import path from 'path' 
+import { fileURLToPath } from 'url'
 
 const app = express()
 app.set('view engine', 'ejs')
@@ -26,3 +28,13 @@ app.listen(PORT, () => {
 app.get('/mantenimientos', (req, res) => {
   res.render('mantenimientos/Pagina_principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
 });
+
+app.get('/mantenimientos/Pagina_contacto', (req, res) => {
+  res.render('mantenimientos/Pagina_contacto.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+});
+
+app.get('/mantenimientos/Pagina_reportes', (req, res) => {
+  res.render('mantenimientos/Pagina_reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+});
+
+app.use('/mantenimientos/static/', express.static(('.', 'views', 'mantenimientos', 'public')))

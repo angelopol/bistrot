@@ -2,14 +2,14 @@
 
 <head>
     <title>Mantenimiento</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="public/styles/side.css">
+    <link rel="stylesheet" href="mantenimientos/static/styles/side.css">
+    <link rel="stylesheet" href="mantenimientos/static/styles/styles.css">
+    <link rel="stylesheet" href="mantenimientos/static/styles/styles2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="styles/side.css">
-        <link rel="stylesheet" href="styles/styles.css">
-        <link rel="stylesheet" href="styles/styles2.css">
-        <link rel="shortcut icon" href="resources/icon.jpeg" type="image/x-icon">
+    <link rel="shortcut icon" href="mantenimientos/static/resources/icon.jpeg" type="image/x-icon">
 </head>
 
 <body>
@@ -26,40 +26,40 @@
         <div class="maintenance-content">
 
             <!-- ESTE ES EL SIDEBAR-->
-                <div id="sidebar">
-                    <div class="side inicio">
-                        <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
-                        <p class="side-option">Inicio</p>
-                    </div>
-                    <div class="side ventas">
-                        <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
-                        <p class="side-option">Ventas/Salon</p>
-                    </div>
-                    <div class="side compras">
-                        <img class="side-foto" src="resources/iconos_barra/compras-green.png">
-                        <p class="side-option">Compras</p>
-                    </div>
-                    <div class="side rrhh">
-                        <img class="side-foto" src="resources/iconos_barra/person-green.png">
-                        <p class="side-option">RRHH</p>
-                    </div>
-                    <div class="side inventario">
-                        <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
-                        <p class="side-option">Inventario</p>
-                    </div>
-                    <div class="side mantent">
-                        <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
-                        <p class="side-option">Mantenimiento</p>
-                    </div>
-                    <div class="side cocina">
-                        <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
-                        <p class="side-option">Cocina/Bar</p>
-                    </div>
-                    <div class="side reserv">
-                        <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
-                        <p class="side-option">Reservas</p>
-                    </div>
+            <div id="sidebar">
+                <div class="side inicio">
+                    <img src="mantenimientos/static/resources/iconos_barra/inicio-green.png" class="side-foto">
+                    <p class="side-option">Inicio</p>
                 </div>
+                <div class="side ventas">
+                    <img class="side-foto" src="mantenimientos/static/resources/iconos_barra/ventas-green.png">
+                    <p class="side-option">Ventas/Salon</p>
+                </div>
+                <div class="side compras">
+                    <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+                    <p class="side-option">Compras</p>
+                </div>
+                <div class="side rrhh">
+                    <img class="side-foto" src="resources/iconos_barra/person-green.png">
+                    <p class="side-option">RRHH</p>
+                </div>
+                <div class="side inventario">
+                    <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+                    <p class="side-option">Inventario</p>
+                </div>
+                <div class="side mantent">
+                    <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+                    <p class="side-option">Mantenimiento</p>
+                </div>
+                <div class="side cocina">
+                    <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+                    <p class="side-option">Cocina/Bar</p>
+                </div>
+                <div class="side reserv">
+                    <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+                    <p class="side-option">Reservas</p>
+                </div>
+            </div>
 
             <!--Aqui empieza la cocina para la cosa ingresar tipo Gongzuorenyuan_trabajo personal-->
             <div id="Global_todos">
@@ -86,16 +86,6 @@
                                     <td>Arreglar la cosa</td>
                                     <td>2024-07-01 21:59</td>
                                 </tr>
-                                <% if (contacto) { %>
-                                    <% for (var i = 0; i < contacto.length; i++) { %>
-                                        <tr>
-                                            <td><%= contacto[i].nombre %></td>
-                                            <td><%= contacto[i].servicios %></td>
-                                            <td><%= contacto[i].telefono %></td>
-                                            <td><%= contacto[i].fecha %></td>
-                                        </tr>
-                                    <% } %>
-                                <% } %>
                             </tbody>
                         </table>
                     </div>
@@ -143,7 +133,7 @@
             </div>
         </div>
     </div>
-    <script src="scripts/JSContacto.js"></script>
+    <script src="mantenimientos/static/scripts/JSContacto.js"></script>
 </body>
 
 </html>

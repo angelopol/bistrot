@@ -103,6 +103,28 @@
         <!--</div>-->
     </div>
     <script src="scripts/JSAgregarMantenimiento.js"></script>
+    <script type="module">
+            const button = document.getElementById('AgregrBtn');
+            document.addEventListener('click', e => {
+                
+                const nuevoMantenimiento = {
+                mantenimiento: document.getElementById("mantenimiento"),
+                responsable: document.getElementById("responsable"),
+                inicio: document.getElementById("inicio"),
+                fin: document.getElementById("fin")
+                };
+                fetch('/api/mantenimientos_realizar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(nuevoMantenimiento)
+                })
+                .then(response => response.json())
+                .catch(error => console.error('Error:', error));
+              
+            })
+      </script>
 </body>
 
 </html>
