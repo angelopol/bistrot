@@ -15,11 +15,11 @@ export const createRRHHRouter = () => {
   RRHHRouter.get('/informe', controlador.informe);
   // Para los estilos
   RRHHRouter.get('/assets/style.css', controlador.GetStyle);
-  RRHHRouter.get('/assets/horarios.css', controlador.GetStyle);
-  RRHHRouter.get('/assets/header.css', controlador.GetStyle);
-  RRHHRouter.get('/assets/form.css', controlador.GetStyle);
-  RRHHRouter.get('/assets/entradas.css', controlador.GetStyle);
-  RRHHRouter.get('/assets/ausensias.css', controlador.GetStyle);
+  RRHHRouter.get('/assets/horarios.css', controlador.getStyle);
+  RRHHRouter.get('/assets/header.css', controlador.GetStyles);
+  RRHHRouter.get('/assets/form.css', controlador.getStyles);
+  RRHHRouter.get('/assets/entradas.css', controlador.getStyless);
+  RRHHRouter.get('/assets/ausensias.css', controlador.GetStyless);
 
   // Para los JS
   RRHHRouter.get('/assets/formulario', controlador.formulario);
