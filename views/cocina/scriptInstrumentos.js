@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 // obtenemos el input donde se colocan los id de los intrumentos que se quieren reportar
 const input = document.getElementById('searchInput');
 
@@ -9,7 +12,11 @@ input.addEventListener('input', function () {
     const value = input.value.trim();
     const numericValue = parseFloat(value);
 
+<<<<<<< HEAD
     if (isNaN(numericValue) || numericValue < 1) {
+=======
+    if (isNaN(numericValue) || numericValue < 1 || numericValue > 24) {
+>>>>>>> master
         input.value = ''; // Borra el contenido
     }
 });
@@ -17,17 +24,54 @@ input.addEventListener('input', function () {
 async function funcionBotonReporte(id){
     // Función que cambia el estado del instrumento seleccionado en la base de datos
 
+<<<<<<< HEAD
     // Opciones de la solicitud fetch
     let cambio = {funciona_estado: 0}
+=======
+    // Solicitud GET para obtener los atributos del instrumento
+      let instrumentoData = {}
+
+      const options = {
+        method: 'GET', 
+        headers: {
+        'Content-Type': 'application/json' 
+        }
+    };
+
+  await fetch(`http://localhost:1234/inventario/api/general/${id}` , options)
+  .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      instrumentoData = data
+      instrumentoData.funciona_estado = 0
+      console.log('Se obtuvo el instrumento:', instrumentoData);
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+     
+    });
+
+    // Actualización del instrumento en base de datos
+>>>>>>> master
     const requestOptions = {
         method: 'PUT', 
         headers: {
         'Content-Type': 'application/json' 
         },
+<<<<<<< HEAD
         body: JSON.stringify(cambio) 
     };
 
 
+=======
+        body: JSON.stringify(instrumentoData) 
+    };
+
+>>>>>>> master
     // Petición a inventario (habria que importar esta ruta de inventario)
     await fetch(`http://localhost:1234/inventario/api/general/${id}` , requestOptions)
     .then(response => {
@@ -50,7 +94,11 @@ async function funcionBotonReporte(id){
 async function obtenerObjetosCocina(){
     try {
       // con este endpoint solicitamos a inventario todos los instrumentos que tienen guardados en su tabla de general
+<<<<<<< HEAD
       const response = await fetch(`http://localhost:1234/inventario/api/general`); /*Importar Modulo externo Inventario*/
+=======
+      const response = await fetch(`http://localhost:1234/inventario/api/general`); //Importar Modulo externo Inventario/
+>>>>>>> master
       if (!response.ok){
           throw new Error('No se pudo obtener los objetos de general');
       }
@@ -63,7 +111,11 @@ async function obtenerObjetosCocina(){
               instrumentosCocina.push(objeto);
           }
       }); 
+<<<<<<< HEAD
   
+=======
+      
+>>>>>>> master
       return instrumentosCocina;
   } catch (error) {
       console.error('Hubo un error en el fetch:', error);
@@ -78,7 +130,12 @@ async function actualizarFilas() {
     let tableBody = document.getElementById("tBody")
     tableBody.innerHTML = "" // Se eliminan las filas
     
+<<<<<<< HEAD
     let instrumentos = obtenerObjetosCocina() // esta variable guarda los instrumentos de inventario que pertenecen a cocina
+=======
+    let instrumentos = await obtenerObjetosCocina() // esta variable guarda los instrumentos de inventario que pertenecen a cocina
+    console.log(instrumentos)
+>>>>>>> master
     instrumentos.forEach(instrumento => {
       // Por cada instrumento se agrega una fila al tbody de la tabla
 
@@ -100,7 +157,11 @@ async function actualizarFilas() {
         celdaFunciona.textContent = `Funciona`
       }
       else if (instrumento.funciona_estado == 0) {
+<<<<<<< HEAD
         celdaFunciona.textContent = `No funciona`
+=======
+        celdaFunciona.textContent = "No funciona"
+>>>>>>> master
       }
       // Se agregan las celdas con los datos a la fila
       filaTabla.appendChild(celdaId)
@@ -113,13 +174,21 @@ async function actualizarFilas() {
 
 // agregamos el evento al boton reportar
 let reportarButton = document.querySelector(".report-button")
+<<<<<<< HEAD
 reportarButton.addEventListener("click", function () {
+=======
+reportarButton.addEventListener("click", async function () {
+>>>>>>> master
   if(confirm("Estas seguro que deseas reportar?")){
     // Función que toma el id del input, reporta el fallo del instrumento y muestra los cambios en la view 
 
     let input = document.getElementById("searchInput")
     id = parseInt(input.value)
+<<<<<<< HEAD
     funcionBotonReporte(id)
+=======
+    await funcionBotonReporte(id)
+>>>>>>> master
     actualizarFilas()
     input.value = ""
     alert("Instrumento Resportado")

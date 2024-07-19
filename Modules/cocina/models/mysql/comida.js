@@ -144,10 +144,6 @@ const connection = await mysql.createConnection(config)
         } catch (error) {
             console.error('Error al actualizar la comida:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
-
-
 }

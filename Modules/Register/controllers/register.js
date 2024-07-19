@@ -1,3 +1,4 @@
+
 import { validateEmpleado } from "../schemas/empleados.js"
 import { EmpleadosModel } from "../models/empleados.js"
 
