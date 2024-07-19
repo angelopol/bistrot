@@ -34,15 +34,17 @@ export const createRRHHRouter = () => {
       res.status(500).send(err);
     }
   });
-
+  
   RRHHRouter.get('/entrada', async (req, res) => {
     try {
-      const [results, fields] = await connection.query('SELECT id, cedula, hora_entrada FROM entradas');
+      const [results, fields] = await connection.query('SELECT id, cedula, DATE_FORMAT(hora_entrada, "%Y-%m-%d %H:%i:%s") AS hora_entrada FROM entradas');
       res.json(results);
     } catch (err) {
-      res.status(500).send(err)
+      res.status(500).send(err);
     }
   });
+
+  
 
   // Ruta para registrar empleados
   RRHHRouter.post('/empleados', async (req, res) => {

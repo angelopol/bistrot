@@ -8,7 +8,7 @@ async function createConnection() {
             host: 'localhost' || process.env.DB_HOST,
             user: 'root' || process.env.DB_USERNAME,
             port: 3308 || process.env.DB_PORT,
-            password: 'mcy2004' || process.env.DB_PASSWORD,
+            password: '' || process.env.DB_PASSWORD,
             database: 'rrhh' || process.env.DB_DATABASE, 
         });
         console.log('Connected to the database.');

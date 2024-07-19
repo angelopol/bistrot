@@ -177,7 +177,7 @@ body{
     font-weight: 500; 
     line-height: 150%; 
     transform: translateY(-50px);
-    /*transform: translateX(550px);*/
+    transform: translateX(550px);
 }
 
 .search-input { 
@@ -295,20 +295,22 @@ body{
     font-weight: 500; 
     white-space: nowrap; 
     margin: 30px 35px 0 0; 
-    transform: translate(450px, 150px);
+    transform: translate(550px, 150px);
+}
+.tablainfo {
+    margin-left: 30px;
 }
 
 .action-add { 
     font-family: Inter, sans-serif; 
     justify-content: center; 
-    border-radius: 50px; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
     background-color: #0f624a;
     padding: 8px 22px; 
     color: #fff;
     cursor: pointer;
     border: none;
-    transform: translate(-105px, 60px);
+    
 }
 
 a{
@@ -319,7 +321,6 @@ a{
 .action-view { 
     font-family: Inter, sans-serif; 
     justify-content: center; 
-    border-radius: 50px; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
     background-color: #0f624a;
     padding: 8px 26px; 
@@ -346,14 +347,13 @@ a{
 .action-ES{
     font-family: Inter, sans-serif; 
     justify-content: center; 
-    border-radius: 50px; 
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
     background-color: #0f624a;
     padding: 8px 21px; 
     color: #fff;
     cursor: pointer;
     border: none;
-    transform: translate(-205px, 120px);
+    
 
 }
 

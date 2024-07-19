@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recursos Humanos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="css/header.css">
 </head>
@@ -46,14 +47,8 @@
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dc6e42d71ff47b147816c83b4b0ca04935a942e5800885d2c3605a52a7a5eb51?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reservations icon" class="nav-icon" loading="lazy">
                         <span class="nav-text">Reservas</span>
                     </li>
-                    
-                    
-                    
                 </ul>
             </nav>
-
-
-
 
             <main class="main-section">
                 <div class="content-area">
@@ -66,50 +61,47 @@
                     <div class="results-container">
                         <div class="results-wrapper">
                             <section class="results-table">
-                                <div class="table-container" id="employeeTable">
-                                    <!-- Los datos de los empleados se insertarán aquí -->
-                                    <div class="table-header">
-                                        <span class="header-name">Nombre y Apellido</span>
-                                        <div class="header-details">
-                                          <span>Código</span>
-                                          <span>Cargo</span>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
+                                <table class="table is-striped is-hoverable" id="employeeTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre y Apellido</th>
+                                            <th>Cedula</th>
+                                            <th>Cargo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Los datos de los empleados se insertarán aquí -->
+                                    </tbody>
+                                </table>
                             </section>
                         </div>
                     </div>
                     <div class="table-actions">
-                        <button class="action-add"><a href="form">Agregar</a></button>
-                        <!-- <button class="action-view" id="verEmpleado">Ver</button> -->
-                        <!-- <button class="action-baja" id="eliminarEmpleado"><a href="baja">Eliminar</a></button> -->
-                        <button class="action-ES"><a href="entradas">Registro</a></button>
+                        <button class="button is-link action-ES"><a href="form">Agregar</a></button>
+                        <button class="button is-link action-ES"><a href="entradas">Registro</a></button>
+                        <button class="button is-link action-ES"><a href="http://localhost:1234/rrhh/ausensias">Ausencias</a></button>
+                        <button class="button is-link action-ES"><a href="http://localhost:1234/rrhh/Horarios">Horarios</a></button>
+                        <button class="button is-link action-ES"><a href="http://localhost:1234/rrhh/informe">Informe</a></button>
                     </div>
                 </div>
             </main>
         </div>
     </div>
 
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('http://localhost:1234/rrhh/empleados')
                 .then(response => response.json())
                 .then(data => {
-                    const tableContainer = document.getElementById('employeeTable');
+                    const tableBody = document.querySelector('#employeeTable tbody');
                     data.forEach(employee => {
-                        const row = document.createElement('div');
-                        row.classList.add('table-row');
+                        const row = document.createElement('tr');
                         row.innerHTML = `
-                            <span class="row-name">${employee.nombre} ${employee.apellido}</span>
-                            <span class="row-name">${employee.codigo}</span>
-                            <span class="row-puesto">${employee.puesto}</span>
-                            <button class="action-view" id="verEmpleado">Ver</button>
-
+                            <td>${employee.nombre} ${employee.apellido}</td>
+                            <td>${employee.cedula}</td>
+                            <td>${employee.puesto}</td>
                         `;
-                        tableContainer.appendChild(row);
+                        tableBody.appendChild(row);
                     });
                 })
                 .catch(error => console.error('Error fetching employee data:', error));

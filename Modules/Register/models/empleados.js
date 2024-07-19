@@ -4,6 +4,7 @@ export class EmpleadosModel {
   static async create({ input }) {
     const {
       nombre,
+      apellido,
       clave_usuario,
       cedula,
       codigo_empleado,
@@ -18,9 +19,9 @@ export class EmpleadosModel {
 
     try {
       await connection.query(
-        `INSERT INTO empleados (nombre, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
-        [nombre, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida]
+        `INSERT INTO empleados (nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida]
       );
     } catch (e) {
       console.error('Error creating empleado:', e);  // Imprimir el error completo
@@ -69,6 +70,7 @@ export class EmpleadosModel {
   static async update({ id, input }) {
     const {
       nombre,
+      apellido,
       clave_usuario,
       cedula,
       codigo_empleado,
@@ -96,7 +98,7 @@ export class EmpleadosModel {
           entrada = ?,
           salida = ?
           WHERE id = ?;`,
-        [nombre, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida, id]
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida, id]
       );
     } catch (e) {
       console.error('Error updating empleado:', e);  // Imprimir el error completo
