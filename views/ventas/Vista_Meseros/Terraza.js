@@ -9,43 +9,62 @@ const origen = 'terraza';
 
 // obtener las mesas que ya han pagado su comida
 const mesas_pagadas_terraza = JSON.parse(localStorage.getItem('mesas_pagadas_terraza')) || [];
+console.log(mesas_pagadas_terraza)
 
 // Obtener los pedidos que se han realizado
 const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];
 console.log(pedidos_realizados_t);
 
 // actualizacion de las mesas cuando ya pagaron la cuenta
-if (mesas_pagadas_terraza.length > 0){
 
-    mesas_pagadas_terraza.forEach(pedidos => {
 
-        tableCards.forEach((mesas,id_mesas) => {
+function limpiar_mesas_terraza(){
 
-            // estatus pedidos
-            if (pedidos.mesa === String(id_mesas+1)){
-                const tableStatusElement = mesas.querySelector('.table-status');
-                tableStatusElement.textContent = 'DISPONIBLE';
-                mesas_pagadas_terraza.splice(id_mesas,1)
-            }
-        })
-        
-    })
-
-    pedidos_realizados_t.forEach(pedidos => {
-
-        tableCards.forEach((mesas,id_mesas) => {
-
-            // estatus pedidos
-            if (pedidos.tableId === String(id_mesas+1)){
-                update_mesas_pagadas(id_mesas+1);
-                pedidos_realizados_t.splice(id_mesas, 1);
-            }
-        })
-        
-    })
-
+    console.log(mesas_pagadas_terraza)
+    if (mesas_pagadas_terraza.length > 0){
     
+        pedidos_realizados_t.forEach((pedidos,index) => {
+            
+            mesas_pagadas_terraza.forEach((mesas,id_mesas) => {
+
+                if (parseInt(pedidos.tableId) === mesas.mesa){
+                    
+                    //console.log("cont_pedidos", index)
+                    update_mesas_pagadas(id_mesas+1);
+                    pedidos_realizados_t.splice(index, 1);
+                    localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+                    console.log(pedidos_realizados_t)
+                    return;
+                }
+            })
+            
+        })
+
+        mesas_pagadas_terraza.forEach((pedidos, index) => {
+    
+            tableCards.forEach((mesas,id_mesas) => {
+    
+                // estatus pedidos
+                if (pedidos.mesa === id_mesas+1){
+                    //console.log(index)
+                    const tableStatusElement = mesas.querySelector('.table-status');
+                    tableStatusElement.textContent = 'DISPONIBLE';
+                    alert(`Mesa ${pedidos.mesa} limpiada`)
+                    mesas_pagadas_terraza.splice(index,1)
+                    localStorage.setItem('mesas_pagadas_terraza', JSON.stringify(mesas_pagadas_terraza))
+                    console.log(mesas_pagadas_terraza)
+                    return;
+                }
+            })
+            
+        })
+    
+    } else {
+        console.log("Todavia no se han pagado mesas, entonces no pueden ser limpiadas")
+    }
+
 }
+
 
 
 // actualizacion constante de los estados
@@ -70,7 +89,7 @@ actionButtons.forEach(button => {
                 if (selectedTableId && selectedMesa) {
 
                     // verificamos si su estatus es disponible para tomar su pedido
-                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE"){
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE" || selectedMesaetiqueta.querySelector('.table-status').textContent === "Rechazado"){
                         location.href = `../Vista_Pedidos/pedidos?tableId=${selectedTableId}&origen=${origen}`;
                         return;
                     } else {
@@ -98,7 +117,7 @@ actionButtons.forEach(button => {
                                 return;
 
                             // si es pendiente lo deseleccionada y elimina el pedido de la lista de pedidos realizados
-                            } else if (tableCard.querySelector(".table-status").textContent === "Pendiente"){
+                            } else if (tableCard.querySelector(".table-status").textContent === "Pendiente" || tableCard.querySelector(".table-status").textContent === "Rechazado"){
 
                                 tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
 
@@ -106,7 +125,7 @@ actionButtons.forEach(button => {
 
                                     if (pedido.tableId === String(selectedTableId)){
 
-                                        eliminar_pedido(pedido.tableId) // eliminar el pedido de la base de datos
+                                        eliminar_pedido(parseInt(pedido.tableId)) // eliminar el pedido de la base de datos
                                         pedidos_realizados_t.splice(mesas, 1);
                                         selectedMesa = false;
                                         selectedTableId = null;
@@ -132,7 +151,7 @@ actionButtons.forEach(button => {
                 // Redirigir a la vista caja
                 if (selectedTableId && selectedMesa) {
 
-                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Pendiente"){
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "Listo"){
                         imprimirFactura();
                     }
                     
@@ -150,11 +169,11 @@ function encontrar(mesa_id,pedidos_check) {
   
     for (let i = 0; i < pedidos_check.length; i++) {
         let pedidoActual = pedidos_check[i];
-        if (pedidoActual.tableId === String(mesa_id) && pedidoActual.estatus === 1) {
-          alert('Pedido encontrado');
-          pedido = pedidoActual;
-            
-          break;
+        if (pedidoActual.tableId === String(mesa_id) && pedidoActual.estatus === 4) {
+            alert('Pedido encontrado');
+            pedido = pedidoActual;
+                
+            break;
         }
     }
   
@@ -167,7 +186,7 @@ function imprimirFactura(){
 
     if (selectedTableId !== null && selectedMesa) {
     
-        if (selectedMesaetiqueta.querySelector(".table-status").textContent === 'Pendiente'){
+        if (selectedMesaetiqueta.querySelector(".table-status").textContent === 'Listo'){
             // Seleccionar la mesa correspondiente basado en el índice
             let mesa = document.querySelectorAll('.table-card')[selectedTableId - 1];
             // Obtener el estado de la mesa
@@ -262,13 +281,13 @@ function recorrido_mesas(pedidos_mesas){
                 const tableStatusElement = mesas.querySelector('.table-status');
                 tableStatusElement.textContent = 'Pendiente';
             } else if(pedidos.estatus === 2 && pedidos.tableId === String(id_mesas+1)) {
-                const tableStatusElement = mesas.querySelector('table-status');
+                const tableStatusElement = mesas.querySelector('.table-status');
                 tableStatusElement.textContent = 'Rechazado';
             } else if(pedidos.estatus === 3 && pedidos.tableId === String(id_mesas+1)) {
-                const tableStatusElement = mesas.querySelector('table-status');
+                const tableStatusElement = mesas.querySelector('.table-status');
                 tableStatusElement.textContent = 'Aceptado';
             } else if(pedidos.estatus === 4 && pedidos.tableId === String(id_mesas+1)) {
-                const tableStatusElement = mesas.querySelector('table-status');
+                const tableStatusElement = mesas.querySelector('.table-status');
                 tableStatusElement.textContent = 'Listo';
             }
         })
@@ -333,12 +352,14 @@ function actualizar_mesas(cambio_estatus_mesas){
         cambio_estatus_mesas.forEach(cambios => {
 
             // verificamos si el id de mesas son iguales y sus estatus son difentes
-            if(pedidos.tableId === cambios.id_mesa && pedidos.estatus !== cambios.status){
+            if(parseInt(pedidos.tableId) === cambios.id_mesa && pedidos.estatus !== cambios.status){
                 pedidos.estatus = cambios.status  // se le asigna el nuevo estatus a la mesa
+                
             }
         })
     })
 
+    localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
     recorrido_mesas(pedidos_realizados_t)  // actualizamos lo estatus de la mesas en el front
     
 }
@@ -347,7 +368,7 @@ function actualizar_mesas(cambio_estatus_mesas){
 // funcion para eliminar el pedido de la base de datos
 async function eliminar_pedido(id_mesa){
 
-    const id_eliminar = null;
+    let id_eliminar = null;
 
     try {
         // obtener los pedidos
@@ -370,11 +391,12 @@ async function eliminar_pedido(id_mesa){
                 return;
             }
         })
-        
-
+    
     } catch (error){
         console.log("No se pudo obtener la lista de pedidos");
     }
+
+    
 
     if(id_eliminar !== null){
         try {
@@ -405,13 +427,16 @@ async function eliminar_pedido(id_mesa){
 }
 
 // llamamos una funcion una serie de tiempo para ver si (Cocina-bar) hizo una actualizacion en los estatus del pedido
-setInterval(actualizacion_pedidos, 20000); 
+setInterval(actualizacion_pedidos, 10000); 
+
+// llamamos una funcion una serie de tiempo para ver si la mesa ya pago y asi limpiarla
+setInterval(limpiar_mesas_terraza, 5000); 
 
 
 // funcion para actualizar las mesas que ya pagaron su cuenta
 async function update_mesas_pagadas(id_mesa){
 
-    const id_update = null;
+    let id_update = null;
     const update_mesas = {
         status_pedido : 5
     }

@@ -28,11 +28,8 @@ export class ControllerCaja {
     create_c = async (req, res) => {
         const result = validateCaja(req.body)
 
-        if (result.error){
-        return res.status(400).json({error : JSON.parse(result.error.message)})
-        }
 
-        const new_Venta = await VentasModel.create_caja({ input: result.data })
+        const new_Venta = await VentasModel.create_caja({ input: req.body })
 
         res.status(201).json(new_Venta)
     };

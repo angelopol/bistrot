@@ -34,7 +34,7 @@ export class ControllerSalon {
         return res.status(400).json({error : JSON.parse(result.error.message)})
         }
 
-        const new_registro_salon = await VentasModel.create_salon({ input: result.data })
+        const new_registro_salon = await VentasModel.create_salon({ input: req.body })
 
         res.status(201).json(new_registro_salon)
     };

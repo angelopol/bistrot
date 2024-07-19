@@ -7,7 +7,23 @@ const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || []
 const urlParams = new URLSearchParams(window.location.search);
 
 // obtenemos el origen de la vista que hizo la peticion
-const origen = urlParams.get('origen');
+let origen = urlParams.get('origen');
+
+const tableId = urlParams.get('tableId');
+const orderItems = document.querySelectorAll('.order-item');
+if (origen === 'general' && tableId > 9) {
+    origen = 'bar';
+    let nav_buttons = document.querySelectorAll('.menu-nav-item');
+    nav_buttons.forEach(button => {
+        if (button.id !== 'bebidas' && button.id !== 'vinos' && button.id !== 'tragos') {
+            button.classList.add('invisible');
+        }
+    });
+    const vista_Entradas = document.getElementById('Entradas');
+    vista_Entradas.classList.remove('visible');
+    const vista_Bebidas = document.getElementById('Bebidas');
+    vista_Bebidas.classList.add('visible');
+}
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -129,6 +145,18 @@ function cancelOrder(tipo_button) {
             // Redirige al usuario a la página Mesonero_Zona_General.html
             window.location.href = '/ventas/Vista_Meseros/meseros_terraza';
         }
+    } else if (origen === 'bar'){
+
+        if (tipo_button === "cancelar_pedido"){
+            // Muestra un mensaje de "Pedido cancelado"
+            alert('¡Pedido cancelado!');
+            // Redirige al usuario a la página Mesonero_Zona_General.html
+            window.location.href = '/ventas/Vista_Meseros/meseros_general';
+        } else {
+            // Redirige al usuario a la página Mesonero_Zona_General.html
+            window.location.href = '/ventas/Vista_Meseros/meseros_general';
+        }
+
 
     }
     
@@ -142,12 +170,17 @@ function salir() {
 function placeOrder() {
     // Obtén la información del pedido (elementos, cantidad, total, etc.)
     // Obtener los valores de los parámetros de la URL
+    const tableId = urlParams.get('tableId');
     const orderItems = document.querySelectorAll('.order-item');
+    if(origen === 'general' && tableId > 9){
+        origen='bar';
+    }
+    
     const orderData = {
         items: [],
         total: parseFloat(document.getElementById('total-amount').textContent),
         estatus: 1, // 1 = "Pendiente", 2 = "Rechazado", 3 = "Aceptado", 4 = "Listo"
-        tableId: urlParams.get('tableId'), // Obtén el ID de la mesa seleccionada
+        tableId: tableId, // Obtén el ID de la mesa seleccionada
         zona: origen  // obtnemos la zona donde se hizo el pedido (zona -> General o zona -> Terraza)
     };
 
@@ -159,11 +192,11 @@ function placeOrder() {
         });
     });
     
-    // crear pedido para almacenarlo en la base de datos
-    crear_pedido_base_datos(orderData)
-
+    
+    
     // Envía los datos del pedido al servidor o redirige al usuario a la página de confirmación
     sendOrderToServer(orderData);
+    
 }
 
 function sendOrderToServer(orderData) {
@@ -181,7 +214,12 @@ function sendOrderToServer(orderData) {
 
             // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
             if(pedidos.tableId === orderData.tableId) {
-                pedidos_realizados.splice(cont_posiciones, 1, orderData);
+
+                pedidos_realizados.splice(cont_posiciones, 1, orderData); // se reemplaza en la lista de los pedidos realizados
+
+
+                actualizar_pedido_base_datos(orderData)  // se actualiza el pedido que fue rechazado
+
                 localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
                 console.log(pedidos_realizados);
                 bandera_reemplazo = true;
@@ -192,7 +230,11 @@ function sendOrderToServer(orderData) {
 
         // si en la mesa donde se realiza el pedido todavia no esta registrado se agrega el pedido
         if(!bandera_reemplazo){
-            pedidos_realizados.push(orderData);
+
+            pedidos_realizados.push(orderData); // se agrega a la lista de los pedidos realizados
+
+            crear_pedido_base_datos(orderData) // se crea el pedido
+
             localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
             console.log(pedidos_realizados);
         }
@@ -205,6 +247,9 @@ function sendOrderToServer(orderData) {
             // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
             if(pedidos.tableId === orderData.tableId) {
                 pedidos_realizados_t.splice(cont_posiciones, 1, orderData);
+
+                actualizar_pedido_base_datos(orderData)  // se actualiza el pedido que fue rechazado
+
                 localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
                 console.log(pedidos_realizados_t);
                 bandera_reemplazo = true;
@@ -216,11 +261,46 @@ function sendOrderToServer(orderData) {
         // si en la mesa donde se realiza el pedido todavia no esta registrado se agrega el pedido
         if(!bandera_reemplazo){
             pedidos_realizados_t.push(orderData);
+
+            crear_pedido_base_datos(orderData) // se crea el pedido
+
             localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
             console.log(pedidos_realizados_t);
         }
     }
 
+    else if (origen === 'bar'){
+        
+        // recorremos los pedidos realizados
+        pedidos_realizados.forEach((pedidos,cont_posiciones) => {
+
+            // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
+            if(pedidos.tableId === orderData.tableId) {
+
+                pedidos_realizados.splice(cont_posiciones, 1, orderData); // se reemplaza en la lista de los pedidos realizados
+
+                actualizar_pedido_base_datos(orderData)  // se actualiza el pedido que fue rechazado
+
+                localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+                
+                bandera_reemplazo = true;
+                return;
+            }
+
+        });
+
+        // si en la mesa donde se realiza el pedido todavia no esta registrado se agrega el pedido
+        if(!bandera_reemplazo){
+
+            pedidos_realizados.push(orderData); // se agrega a la lista de los pedidos realizados
+
+            crear_pedido_base_datos(orderData) // se crea el pedido
+
+            localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+            console.log(pedidos_realizados);
+        }
+
+    }
     
     // Muestra un mensaje de éxito
     alert('¡Pedido realizado con éxito! El pedido se ha enviado a la mesa ' + orderData.tableId);
@@ -296,26 +376,25 @@ function updateTotalAmount(priceChange) {
 
 
 // funcion para crear la solicitud a la base de datos
-async function crear_pedido_base_datos({total, items, zona, tableId, estatus}){
+async function crear_pedido_base_datos(orderData){
 
-    console.log("crear")
-    const partialConsumo = cambiar_name_comidas_a_ids(items) 
-    const consumo = JSON.stringify(partialConsumo, null, 2) // convertimos el el objeto a  string con un formato json
-    const iva = total * 1.16
+    const partialConsumo = cambiar_name_comidas_a_ids(orderData.items) 
+    const consumo = JSON.stringify(partialConsumo) // convertimos el el objeto a  string con un formato json
+
     const factura = {
-        monto: total,
-        iva,
-        consumo,
-        status_pedido: estatus,
-        mesa: tableId,
-        zona
+        monto: orderData.total,
+        iva : orderData.total * 1.16,
+        consumo : consumo,
+        status_pedido: orderData.estatus,
+        mesa: parseInt(orderData.tableId),
+        zona : orderData.zona
     }
-    console.log(factura)
+
     // creamos el pedido en nuestra tabla de facturas
 
     const response = await fetch("../factura", {
         method : "POST",
-        headers : { "Content-Type" : "aplication/json" },
+        headers : { "Content-Type" : "application/json" },
         body : JSON.stringify(factura)
     })
     
@@ -326,6 +405,81 @@ async function crear_pedido_base_datos({total, items, zona, tableId, estatus}){
             throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
         }
         return
+    } else {
+        console.log("Respuesta Exitosa")
+    }
+}
+
+
+async function actualizar_pedido_base_datos(orderData){
+
+    let id_cliente = null
+
+    const partialConsumo = cambiar_name_comidas_a_ids(orderData.items) 
+    const consumo = JSON.stringify(partialConsumo) // convertimos el el objeto a  string con un formato json
+
+    const factura = {
+        monto: orderData.total,
+        iva : orderData.total * 1.16,
+        consumo : consumo,
+        status_pedido: 1,
+        mesa: parseInt(orderData.tableId),
+        zona : orderData.zona
+    }
+
+    try {
+        // obtener los pedidos
+        const response = await fetch("../factura");
+
+        if(!response.ok){
+            if (response.status === 404) {
+                console.log("La URL 'http:localhost:1234/ventas/factura' no se encontró.");
+            } else {
+                throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
+            }
+        }
+
+        const pedidos_bd = await response.json(); // se guarda una lista de los pedidos almacenados
+
+        pedidos_bd.forEach(pedido => {
+            if (pedido.mesa === parseInt(orderData.tableId) && pedido.zona === orderData.zona && pedido.status_pedido === 2){
+                id_cliente = pedido.id_cliente
+                return;
+            }
+        })
+    
+    } catch (error){
+        //alert("No se pudo obtener la lista de pedidos");
+        console.log("No se pudo obtener la lista de pedidos");
+    }
+
+    if(id_cliente !== null){
+        try {
+
+            // hacemos el solicitud para eliminar el pedido
+            fetch(`../factura/${id_cliente}`, {
+                method : "PATCH",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify(factura)
+            })
+            .then(response => {
+                if (response.ok) {
+                  console.log('Recurso actualizado correctamente');
+                } else {
+                  console.error('Error al actualizar el recurso');
+                }
+            })
+            .catch(error => {
+                console.error('Error en la solicitud:', error);
+            });
+
+        } catch (error){
+            console.log("No se pudo actualizar el pedido");
+        }
+    } else {
+        console.log("nose encontrar el id del cliente a actualizar")
     }
 }
 

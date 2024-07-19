@@ -77,7 +77,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    width: 70%;
+    width: 100%;
     
 }
 
@@ -192,11 +192,21 @@ body {
     display: flex;
     flex-direction: row;
     width: 99%;
-    padding: 20px; 
-    margin-top: 90px;   
-    align-items: start;
+    padding: 10px; 
+    align-items: center;
     justify-content: center;
 }
+
+.titulos{
+    font-size: 20px;
+    font-weight: 600;
+    width: 200px;
+}
+
+.Tables{
+    width: 70%;
+}
+
 .table-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.6), 0 0 20px 0 rgba(0, 0, 0, 0.6);
@@ -219,7 +229,7 @@ body {
     padding: 20px;
     border: 1px solid #888;
     border-radius: 8px;
-    width: 80%;
+    width: 78%;
     max-width: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: show 0.4s;
@@ -305,4 +315,8 @@ body {
 .cliente-datos {
     margin-top: 20px;
     padding-top: 10px;
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif;
 }

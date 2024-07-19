@@ -496,6 +496,11 @@ body {
     display: block;
 }
 
+.invisible{
+    display: none;
+
+}
+
 h3{
     font-family: 'Montserrat',sans-serif;
 }

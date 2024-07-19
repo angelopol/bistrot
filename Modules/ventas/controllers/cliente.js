@@ -31,11 +31,9 @@ export class ControllerCliente {
     create_cl = async (req, res) => {
         const result = validateCliente(req.body)
 
-        if (result.error){
-        return res.status(400).json({error : JSON.parse(result.error.message)})
-        }
+        console.log(result)
 
-        const new_registro_cliente = await VentasModel.create_cliente({ input: result.data })
+        const new_registro_cliente = await VentasModel.create_cliente({ input: req.body })
 
         res.status(201).json(new_registro_cliente)
     };

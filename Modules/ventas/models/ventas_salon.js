@@ -19,10 +19,6 @@ const connection = await mysql.createConnection(db)
 // } catch (error) {
 //     console.error('Error:', error);
 // }
-await connection.query(
-    "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?);", ['noche', 3, '2024-06-25', '2024-06-27', 28, 50, 14, 47]
-)
-console.log('SE HA CONECTADO A LA BASE DE DATOS!!!')
 
 export class VentasModel {
 
@@ -45,7 +41,7 @@ export class VentasModel {
     static async getForId_caja({id}) {
         try {
             const [ventas] = await connection.query(
-                "SELECT * FROM submodulo_caja WHERE id = ?;" , [id]
+                "SELECT * FROM submodulo_caja WHERE id_empleado = ?;" , [id]
             )
             return ventas
         } catch {
@@ -62,7 +58,7 @@ export class VentasModel {
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?);", [turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos]
+                "INSERT INTO submodulo_caja (turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [turno_horario, tasa_del_dia, apertura, cierre, monto_inicial, monto_final, ingresos, egresos]
             )
         } catch (error) {
             throw new Error("Error creando una venta")
@@ -124,15 +120,13 @@ export class VentasModel {
             values.push(id);
 
             // Consulta SQL para actualizar
-            const query = `UPDATE submodulo_caja SET ${updates.join(', ')} WHERE id = ?`;
+            const query = `UPDATE submodulo_caja SET ${updates.join(', ')} WHERE id_empleado = ?`;
             const [result] = await connection.query(query, values);
             
         } catch (error) {
             console.error('Error al actualizar la venta:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
 
 
@@ -140,7 +134,7 @@ export class VentasModel {
     static async delete_caja({id}) {
         try {
             // Consulta SQL para eliminar la venta por ID
-            const query = "DELETE FROM submodulo_caja WHERE id = ?";
+            const query = "DELETE FROM submodulo_caja WHERE id_empleado = ?";
             const [result] = await connection.query(query, [id]);
 
             if (result.affectedRows > 0) {
@@ -173,7 +167,7 @@ export class VentasModel {
     static async getForId_salon({id}) {
         try {
             const [salon] = await connection.query(
-                "SELECT * FROM submodulo_salon WHERE id = ?;" , [id]
+                "SELECT * FROM submodulo_salon WHERE id_cliente = ?;" , [id]
             )
             return salon
         } catch {
@@ -190,7 +184,7 @@ export class VentasModel {
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_salon (presupuesto, inicio_evento, final_evento, pago_inicial, pago_final) VALUES (?, ?, ?, ?, ?);", [presupuesto, inicio_evento, final_evento, pago_inicial, pago_final]
+                "INSERT INTO submodulo_salon (presupuesto, inicio_evento, final_evento, pago_inicial, pago_final) VALUES (?, ?, ?, ?, ?)", [presupuesto, inicio_evento, final_evento, pago_inicial, pago_final]
             )
         } catch (error) {
             throw new Error("Error creando un registro de salon")
@@ -240,15 +234,13 @@ export class VentasModel {
             values.push(id);
 
             // Consulta SQL para actualizar
-            const query = `UPDATE submodulo_salon SET ${updates.join(', ')} WHERE id = ?`;
+            const query = `UPDATE submodulo_salon SET ${updates.join(', ')} WHERE id_cliente = ?`;
             const [result] = await connection.query(query, values);
             
         } catch (error) {
             console.error('Error al actualizar la venta:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
 
 
@@ -256,7 +248,7 @@ export class VentasModel {
     static async delete_salon({id}) {
         try {
             // Consulta SQL para eliminar la venta por ID
-            const query = "DELETE FROM submodulo_salon WHERE id = ?";
+            const query = "DELETE FROM submodulo_salon WHERE id_cliente = ?";
             const [result] = await connection.query(query, [id]);
 
             if (result.affectedRows > 0) {
@@ -287,7 +279,7 @@ export class VentasModel {
     static async getForId_cliente({id}) {
         try {
             const [cliente] = await connection.query(
-                "SELECT * FROM submodulo_registro_cliente WHERE id = ?;" , [id]
+                "SELECT * FROM submodulo_registro_cliente WHERE id_cliente = ?;" , [id]
             )
             return cliente
         } catch {
@@ -302,13 +294,13 @@ export class VentasModel {
             nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico
         } = input
 
-        try {
+        console.log(input)
+
+        
             await connection.query(
-                "INSERT INTO submodulo_registro_cliente (nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico) VALUES (?, ?, ?, ?, ?, ?);", [nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico]
+                "INSERT INTO submodulo_registro_cliente (nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico) VALUES (?, ?, ?, ?, ?, ?)", [nombre_cliente_empresa, rif_cedula, direccion, tipo_estado, telefono, correo_electronico]
             )
-        } catch (error) {
-            throw new Error("Error creando un registro de cliente")
-        }
+        
         
     }
 
@@ -358,15 +350,13 @@ export class VentasModel {
             values.push(id);
 
             // Consulta SQL para actualizar
-            const query = `UPDATE submodulo_registro_cliente SET ${updates.join(', ')} WHERE id = ?`;
+            const query = `UPDATE submodulo_registro_cliente SET ${updates.join(', ')} WHERE id_cliente = ?`;
             const [result] = await connection.query(query, values);
             
         } catch (error) {
             console.error('Error al actualizar el registro del cliente:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
 
 
@@ -374,7 +364,7 @@ export class VentasModel {
     static async delete_cliente({id}) {
         try {
             // Consulta SQL para eliminar el registro de un cliente por ID
-            const query = "DELETE FROM submodulo_registro_cliente WHERE id = ?";
+            const query = "DELETE FROM submodulo_registro_cliente WHERE id_cliente = ?";
             const [result] = await connection.query(query, [id]);
 
             if (result.affectedRows > 0) {
@@ -404,9 +394,10 @@ export class VentasModel {
 
 
     static async getForId_factura({id}) {
+
         try {
             const [factura] = await connection.query(
-                "SELECT * FROM submodulo_factura WHERE id = ?;" , [id]
+                "SELECT * FROM submodulo_factura WHERE id_cliente = ?;" , [id]
             )
             return factura
         } catch {
@@ -417,6 +408,7 @@ export class VentasModel {
 
 
     static async create_factura({input}) {
+
         const {
             monto, iva, consumo, status_pedido, mesa, zona
         } = input
@@ -478,15 +470,13 @@ export class VentasModel {
             values.push(id);
 
             // Consulta SQL para actualizar
-            const query = `UPDATE submodulo_factura SET ${updates.join(', ')} WHERE id = ?`;
+            const query = `UPDATE submodulo_factura SET ${updates.join(', ')} WHERE id_cliente = ?`;
             const [result] = await connection.query(query, values);
             
         } catch (error) {
             console.error('Error al actualizar el registro de la factura:', error);
             throw error;
-        } finally {
-            await connection.end();
-        }
+        } 
     }
 
 
@@ -494,7 +484,7 @@ export class VentasModel {
     static async delete_factura({id}) {
         try {
             // Consulta SQL para eliminar el registro de un cliente por ID
-            const query = "DELETE FROM submodulo_factura WHERE id = ?";
+            const query = "DELETE FROM submodulo_factura WHERE id_cliente = ?";
             const [result] = await connection.query(query, [id]);
 
             if (result.affectedRows > 0) {
