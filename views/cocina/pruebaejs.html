@@ -200,9 +200,16 @@
             }
         }
         .order-row {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 15px;
+            gap: 10px;
+            background-color: rebeccapurple;
+
+            position: absolute;
+            top: 50px; /* Mueve el div 50px hacia abajo */
+            left: 100px; /* Mueve el div 100px hacia la derecha */
+            width: 200px; /* Ancho inicial */
+            height: 200px; /* Altura inicial */
+            
+            
         }
         @media (max-width: 991px) {
             .order-row {
@@ -222,6 +229,7 @@
             line-height: 150%;
             width: 100%;
             height: 60%;
+            margin-right: 2vh;
 
 
 
@@ -326,11 +334,11 @@
             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
             background-color: #fff;
             display: flex;
-            margin-bottom: 18px;
+            margin-bottom: 50vh;
             width: 100%;
             flex-direction: column;
             padding: 10px 10px 25px;
-           
+            
         }
         @media (max-width: 991px) {
             .order-summary {
@@ -401,7 +409,7 @@
         }
 
         .verdecito:hover {
-    transition: 0.4s;
+    transition: 0.1s;
     background-color: #007b3e !important;
 }
     </style>
@@ -422,12 +430,7 @@
                         <img src="iconos_barra/icono_salida.png" alt="Orders icon" class="orders-icon" onclick="window.location.href = '/cocina/produccion';" />
                         <h2 class="orders-text">ORDENES</h2>
                     </div>
-                    <nav class="order-filters">
-                        <button class="filter-button filter-active">Mesas</button>
-                        <button class="filter-button filter-inactive">Bar</button>
-                        <button class="filter-button filter-inactive">Terraza</button>
-                        <button class="filter-button filter-inactive">Salon</button>
-                    </nav>
+                    
                 </div>
                 <div class="order-grid" id="pedidosMesa">
                     <div class="order-row">
@@ -511,16 +514,7 @@
             </aside>
         </div>
     </main>
-<!--<footer>
-        <div class="footer-content">
-            <p>&copy; 2023 BISTROT CHEZ RÉMY. Todos los derechos reservados.</p>
-            <nav class="footer-nav">
-                <a href="#" class="footer-link">Política de privacidad</a>
-                <a href="#" class="footer-link">Términos de servicio</a>
-                <a href="#" class="footer-link">Contacto</a>
-            </nav>
-        </div>
-    </footer>-->
+
     <script src="/cocina/scriptCocinaAbiertaProduccion.js"></script>
 </body>
 </html>
