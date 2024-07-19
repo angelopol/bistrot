@@ -74,42 +74,45 @@ async function actualizarPedidos() {
 
         // Iterar sobre los pedidos y actualizar los order-card
         pedidos.forEach(pedido => {
+            
+            if(!pedido.zona.includes("bar")){
 
-            // si el status_pedido es igual a 1, entonces es una orden pendiente
-            if (pedido.status_pedido == 1 || pedido.status_pedido == 3  || pedido.status_pedido == 2) {
+                // si el status_pedido es igual a 1, entonces es una orden pendiente
+                if (pedido.status_pedido == 1 || pedido.status_pedido == 3  || pedido.status_pedido == 2) {
 
-                // seleccionamos todas las order-card (los contenedores con los pedidos que se muestrabn en las views)
-                let cardsMesas = document.querySelectorAll(".order-card")
+                    // seleccionamos todas las order-card (los contenedores con los pedidos que se muestrabn en las views)
+                    let cardsMesas = document.querySelectorAll(".order-card")
 
-                // iteramos cada contenedor
-                for (const cardMesa of cardsMesas) {
+                    // iteramos cada contenedor
+                    for (const cardMesa of cardsMesas) {
 
-                    // si el contenedor no esta ocupado por otro pedido
-                    if (!cardMesa.classList.contains("ocupado")) {
+                        // si el contenedor no esta ocupado por otro pedido
+                        if (!cardMesa.classList.contains("ocupado")) {
 
-                        // al id del contenedor le asignamos el id del pedido
-                        cardMesa.id = pedido.id_cliente.toString();
-                        // al contenedor le agregamos la clase de ocupado
-                        cardMesa.classList.add("ocupado");
+                            // al id del contenedor le asignamos el id del pedido
+                            cardMesa.id = pedido.id_cliente.toString();
+                            // al contenedor le agregamos la clase de ocupado
+                            cardMesa.classList.add("ocupado");
 
-                        //seecionamos el ultimo hijo que es el que muestra el texto del pedido en las views
-                        let carMesaStatus = cardMesa.lastElementChild;
-                        
-                        //Le colocamos el texto al contenedor del pedido
-                        if (pedido.status_pedido == 1) {
-                            carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: pendiente`;
-                            break;
+                            //seecionamos el ultimo hijo que es el que muestra el texto del pedido en las views
+                            let carMesaStatus = cardMesa.lastElementChild;
+                            
+                            //Le colocamos el texto al contenedor del pedido
+                            if (pedido.status_pedido == 1) {
+                                carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: pendiente`;
+                                break;
+                            }
+                            else if (pedido.status_pedido == 2) {
+                                carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: rechazado`;
+                                break;
+                            }
+                            else if (pedido.status_pedido == 3) {
+                                carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: preparando`;
+                                break;
+                            }
                         }
-                        else if (pedido.status_pedido == 2) {
-                            carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: rechazado`;
-                            break;
-                        }
-                        else if (pedido.status_pedido == 3) {
-                            carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: preparando`;
-                            break;
-                        }
-                    }
                 }
+            }
             }
         }
         )
