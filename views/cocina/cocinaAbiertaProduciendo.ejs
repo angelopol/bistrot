@@ -102,12 +102,7 @@
             margin-top: 30px;
             transform: scale(0.65) translateY(-30%);
         }
-        @media (max-width: 991px) {
-            .orders-section {
-                width: 100%;
-                margin-top: 40px;
-            }
-        }
+
         .orders-header {
             display: flex;
             width: 100%;
@@ -187,12 +182,11 @@
             background-color: #f5f5f5;
         }
         .order-grid {
-            align-self: end;
             display: flex;
-            margin-top: 66px;
-            width: 745px;
-            max-width: 100%;
             flex-direction: column;
+            width: 40%; /* Ajuste adicional para encoger más */
+            margin-top: 10vh;
+            height: 75%; /* Ajuste adicional para simular translateY(-30%) */
         }
         @media (max-width: 991px) {
             .order-grid {
@@ -200,9 +194,12 @@
             }
         }
         .order-row {
+            gap: 10px;
             display: flex;
-            gap: 30px;
-            margin-bottom: 15px;
+            width:20vh;
+            height: 40vh; 
+            
+            
         }
         @media (max-width: 991px) {
             .order-row {
@@ -222,6 +219,7 @@
             line-height: 150%;
             width: 100%;
             height: 60%;
+            margin-right: 2vh;
 
 
 
@@ -253,7 +251,7 @@
             align-items: center;
             color: #02676f;
             text-align: center;
-            padding: 41px 60px 23px;
+            padding: 41px 41px 20px;
             font: 700 16px;
         }
         @media (max-width: 991px) {
@@ -278,7 +276,7 @@
             font-weight: 500;
             line-height: 150%;
             justify-content: space-between;
-            transform: scale(1.5) translateX(-2%);
+            transform: scale(1.3);
         }
         @media (max-width: 991px) {
             .action-buttons {
@@ -326,11 +324,12 @@
             box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
             background-color: #fff;
             display: flex;
-            margin-bottom: 18px;
+            margin-bottom: 40vh;
             width: 100%;
             flex-direction: column;
             padding: 10px 10px 25px;
-           
+            
+            
         }
         @media (max-width: 991px) {
             .order-summary {
@@ -422,12 +421,7 @@
                         <img src="iconos_barra/icono_salida.png" alt="Orders icon" class="orders-icon" onclick="window.location.href = '/cocina/produccion';" />
                         <h2 class="orders-text">ORDENES</h2>
                     </div>
-                    <nav class="order-filters">
-                        <button class="filter-button filter-active">Mesas</button>
-                        <button class="filter-button filter-inactive">Bar</button>
-                        <button class="filter-button filter-inactive">Terraza</button>
-                        <button class="filter-button filter-inactive">Salon</button>
-                    </nav>
+                    
                 </div>
                 <div class="order-grid" id="pedidosMesa">
                     <div class="order-row">
@@ -511,16 +505,7 @@
             </aside>
         </div>
     </main>
-<!--<footer>
-        <div class="footer-content">
-            <p>&copy; 2023 BISTROT CHEZ RÉMY. Todos los derechos reservados.</p>
-            <nav class="footer-nav">
-                <a href="#" class="footer-link">Política de privacidad</a>
-                <a href="#" class="footer-link">Términos de servicio</a>
-                <a href="#" class="footer-link">Contacto</a>
-            </nav>
-        </div>
-    </footer>-->
+
     <script src="/cocina/scriptCocinaAbiertaProduccion.js"></script>
 </body>
 </html>
