@@ -1,5 +1,4 @@
-
-export const logged = (req, res, home = false) => {
+export const logged = (req, res, home = false, ReturnUser = true) => {
     const {user} = req.session
     if (!user){
         if(!home){
@@ -12,5 +11,5 @@ export const logged = (req, res, home = false) => {
         res.redirect('/login/home')
         return false
     }
-    return user
+    if (ReturnUser) return user
 }
