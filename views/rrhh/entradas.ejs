@@ -45,24 +45,11 @@
             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dc6e42d71ff47b147816c83b4b0ca04935a942e5800885d2c3605a52a7a5eb51?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reservations icon" class="nav-icon" loading="lazy">
             <span class="nav-text">Reservas</span>
           </li>
-          <li class="nav-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9902f1c16af56e6c7ea24d201e76d77657ebc5769994165240feb6861cdfbc7e?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reports icon" class="nav-icon" loading="lazy">
-            <span class="nav-text">Reportes</span>
-          </li>
-          <li class="nav-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/24c6e997e8d79345382a5dec7f629f61217e270de7c0903529b6f377fec8320a?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Settings icon" class="nav-icon" loading="lazy">
-            <span class="nav-text">Configuraciones</span>
-          </li>
-          <li class="help-item">
-            <div class="help-icon-wrapper">
-              <div class="help-icon">?</div>
-            </div>
-            <span class="nav-text">Ayuda</span>
-          </li>
+          
         </ul>
       </nav>
       <main class="registra-entradas">
-        <h1 class="page-title">Entradas de empleados</h1>
+        <h1 class="page-title" style="transform: translateX(-100px);">Entradas de empleados</h1>
         <form class="employee-registration">
           <div class="form-row">
             <div class="form-group">
@@ -71,9 +58,17 @@
               <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
             </div>
             <script>
-              // validacion de input de cedula, solo permite numeros, no permite letras ni caracteres especiales
-              document.getElementById('employee-ci').addEventListener('input', function() {
-                this.value = this.value.replace(/[^0-9]/g, '');
+              // validacion cedula, solo permite ingresar numeros, sin espacios
+              // permite ingresar maximo 8 digitos
+              document.getElementById("employee-ci").addEventListener("input", function () {
+                  var idNumber = this.value;
+                  var idNumberPattern = /^[0-9]*$/;
+                  if (!idNumberPattern.test(idNumber)) {
+                      this.value = idNumber.slice(0, -1);
+                  }
+                  if (this.value.length > 8) {
+                      this.value = idNumber.slice(0, 8);
+                  }
               });
             </script>
           </div>

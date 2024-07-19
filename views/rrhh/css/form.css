@@ -29,14 +29,24 @@
 .form-group {
     display: flex;
     flex-direction: column;
+   
+    
     
 
 }
+
+.address-input{
+    transform: translateX(-100px);
+
+}
+
+
   
 .form-label {
     color: #000;
     font-family: Inter, sans-serif;
     font-weight: 500;
+    
 }
   
 .form-input {
@@ -111,4 +121,9 @@
     .submit-button {
       padding: 16px 20px;
     }
+}
+
+
+body {
+    overflow-x: hidden;
 }
