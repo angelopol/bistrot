@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/ventas/Vista_Pedidos/pedidos_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Pedidos</title>
+</head>
+<body>  
+    <section class="menu-container">
+        <div class="menu-layout">
+        <main class="menu-content">
+            <center><h1 class="menu-title">Menu</h1></center>    
+            <div class="menu-sections">
+            <nav class="menu-nav">
+                
+                <a  id="entradas" href="#entradas" onclick="cambiar('Entradas')" class="menu-nav-item ">Entradas</a>
+                <a  id="principal" href="#principal" onclick="cambiar('Principal')" class="menu-nav-item ">Principal</a>
+                <a  id="vegetariano" href="#vegetariano" onclick="cambiar('Vegetariano')" class="menu-nav-item ">Vegetariano</a>
+                <a  id="infantil" href="#infantil" onclick="cambiar('Infantil')" class="menu-nav-item ">Infantil</a>
+
+                <a  id="postres" href="#postres" onclick="cambiar('Postres')" class="menu-nav-item ">Postres</a>
+                <a  id="bebidas" href="#bebidas" onclick="cambiar('Bebidas')" class="menu-nav-item ">Bebidas</a>
+                <a  id="tragos" href="#Tragos" onclick="cambiar('Tragos')" class="menu-nav-item ">Tragos</a>
+                <a  id="vinos" href="#Vinos" onclick="cambiar('Vinos')" class="menu-nav-item ">Vinos</a>
+                
+            </nav>
+
+
+            <section id="Entradas" class="menu-items visible">
+                <div class="menu-row">
+                    <article id="2" class="menu-item" onclick="addToOrder('Courgette Soup with The Laughing Cow','10','Menu/courgettesoup.jpeg','2')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\courgettesoup.jpeg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Courgette Soup with The Laughing Cow</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$10</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Courgette Soup with The Laughing Cow</h2>
+                                        <h3>Ingredientes:</h3>
+                                        <ul>
+                                            <li>Papa: 0.75kg</li>
+                                            <li>Apio: 0.3kg</li>
+                                            <li>Queso: 0.4kg</li>
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                <article id="1" class="menu-item" onclick="addToOrder('Seasonal Soup with The Laughing Cow and Mixed Herbs','10','Menu/seasonalsoupentrada.jpeg','1')">
+                    <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\seasonalsoupentrada.jpeg" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">Seasonal Soup with The Laughing Cow and Mixed Herbs</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">$10</span>
+                            <button class="button-abrir-modal">
+                                <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                            </button>
+                            <dialog class="modal">
+                                <div class="modal-content">
+                                    <h3>Seasonal Soup with The Laughing Cow and Mixed Herbs</h2>
+                                    <h4>Ingredientes:</h4>
+                                    <ul>
+                                        <li>Queso: 0.25kg</li>
+                                        <li>Tomate: 0.5kg</li>
+                                        <li>Zanahoria: 0.5kg</li>
+                                        <li>Cebolla: 0.25kg</li>
+                                    </ul>
+                                    <button class="button-cerrar-modal">Cerrar</button>
+                                </div>
+                            </dialog>
+                        </div>
+                    </div>
+                </article>
+                </div>
+                <div class="menu-row">
+                    <article id="3" class="menu-item" onclick="addToOrder('Chicken Rillettes with Toast','10','Menu/chickenratatouillemed-scaled.jpg','3')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\chickenratatouillemed-scaled.jpg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Chicken Rillettes with Toast</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$10</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h3>Chicken Rillettes with Toast</h2>
+                                        
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Papa: 1kg</li>
+                                            <li>Pollo: 1kg</li>
+                                            <li>Ajo: 0.1kg</li>
+                                            <li>Cebolla: 0.6kg</li>
+                                            <li>Zanahoria: 0.25kg</li>
+
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    <article id="4" class="menu-item" onclick="addToOrder('Spelt and Mushroom Salad','10','Menu/speltandmushroomSalad.jpeg','4')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\speltandmushroomSalad.jpeg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Spelt and Mushroom Salad</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$10</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h3>Spelt and Mushroom Salad </h3>                                        
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Champiñones: 0.5kg</li>
+                                            <li>Espelta: 0.25kg</li>
+                                            <li>Vinagre: 0.2L</li>
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
+                
+            </section>
+
+
+            <section id="Principal" class="menu-items">
+                <div class="menu-row">
+                    <article id="5" class="menu-item" onclick="addToOrder('Linguine Pasta with Tomato Sauce and Ratatouille','20','Menu/luinguinepasta.png','5')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\luinguinepasta.png" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Linguine Pasta with Tomato Sauce and Ratatouille</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$20</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h3>Linguine Pasta with Tomato Sauce and Ratatouille</h3>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Pasta: 0.5kg</li>
+                                            <li>Tomate: 0.75kg</li>
+                                            <li>Cebolla: 0.3kg</li>
+                                            <li>Berenjena: 0.3kg</li>
+
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    <article id="6" class="menu-item" onclick="addToOrder('Sauted Chicken and Potatoes','20','Menu/sauteed.png','6')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\sauteed.png" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Sauted Chicken and Potatoes</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$20</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h3>Sauted Chicken and Potatoes</h3>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Papa: 0.5kg</li>
+                                            <li>Aceite: 0.3L</li>
+                                            <li>Pollo: 0.5kg</li>
+                                            <li>Cebolla: 0.2kg</li>
+
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="menu-row">
+                    <article id="7" class="menu-item" onclick="addToOrder('Roast cod with tomato sauce','20','Menu/roastcod.jpeg','7')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/roastcod.jpeg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Roast cod with tomato sauce</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$20</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h3>Roast cod with tomato sauce</h3>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Papa: 0.5kg</li>
+                                            <li>Tomate: 0.5kg</li>
+                                            <li>Aceite: 0.25L</li>
+                                            <li>Bacalao: 0.5kg</li>
+
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    <article id="8" class="menu-item" onclick="addToOrder('Roasted Chicken with Herbs','20','Menu/roastchi.jpg','8')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/roastchi.jpg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Roasted Chicken with Herbs</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$20</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h3>Roasted Chicken with Herbs</h3>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Pollo: 1kg</li>
+                                            <li>Cebolla: 0.25kg</li>
+                                            <li>Ajo: 0.25kg</li>
+                                            <li>Berenjena: 0.5kg</li>
+                                            <li>Zanahoria: 0.3kg</li>
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
+                
+                
+            </section>
+
+            <section id="Postres" class="menu-items">
+                <div class="menu-row">
+                <article id="9" class="menu-item" onclick="addToOrder('Chocolate Mousse','15','Menu/Chocolate mouse.jpeg','9')">
+                    <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\Chocolate mouse.jpeg" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">Chocolate Mousse</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">$15</span>
+                            <button class="button-abrir-modal">
+                                <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                            </button>
+                            <dialog class="modal">
+                                <div class="modal-content">
+                                    <h3>Chocolate Mousse</h3>    
+                                    <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Harina: 1kg</li>
+                                            <li>Leche: 0.5l</li>
+                                            <li>Azucar: 1kg</li>
+                                            <li>Chocolate: 0.5kg</li>
+                                            
+                                        </ul>
+                                    <button class="button-cerrar-modal">Cerrar</button>
+                                </div>
+                            </dialog>
+                        </div>
+                    </div>
+                </article>
+                <article id="12" class="menu-item" onclick="addToOrder('Chocolate Cake','15','Menu/chocolatecake.jpg','12')">
+                    <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\chocolatecake.jpg" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">Chocolate Cake</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">$15</span>
+                            <button class="button-abrir-modal">
+                                <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                            </button>
+                            <dialog class="modal">
+                                <div class="modal-content">
+                                    <h3>Chocolate Cake</h3>
+                                    <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Harina: 1kg</li>
+                                            <li>Leche: 0.5l</li>
+                                            <li>Azucar: 1kg</li>
+                                            <li>Chocolate: 0.5kg</li>
+                                            <li>Huevos: 3 unidades</li>
+                                        </ul>
+                                    <button class="button-cerrar-modal">Cerrar</button>
+                                </div>
+                            </dialog>
+                        </div>
+                    </div>
+                </article>
+                </div>
+                <div class="menu-row">
+                    <article id="10" class="menu-item" onclick="addToOrder('Fruit Salad','15','Menu/fruitsalad.png','10')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\fruitsalad.png" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Fruit Salad</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$15</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h3>Fruit Salad</h3>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Fresa: 0.5kg</li>
+                                            <li>Patilla: 0.5kg</li>
+                                            <li>Manzana: 0.5kg</li>
+                                            <li>Banana: 0.5kg</li>
+                                            
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    <article id="11" class="menu-item" onclick="addToOrder('Apple Tart','15','Menu/apple tart.jpg','11')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\apple tart.jpg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Apple Tart</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$15</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h3>Apple Tart</h3>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Harina: 1kg</li>
+                                            <li>Leche: 0.5l</li>
+                                            <li>Azucar: 1kg</li>
+                                            <li>Manzana: 0.5kg</li>
+                                            <li>Huevos: 3 unidades</li>
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
+                
+            </section>
+
+
+            <section id="Tragos" class="menu-items">
+                <div class="menu-row">
+                    <article id="13" class="menu-item" onclick="addToOrder('Mojito','7','Menu/mojito.jpeg','13')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/mojito.jpeg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Mojito</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$7</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Mojito</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Ron: 0.25l</li>
+                                            <li>Limon: 0.25kg</li>
+                                            <li>Azucar: 0.1kg</li>
+                                            
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="14" class="menu-item" onclick="addToOrder('Daiquiri','7','Menu/daiquiri.jpg','14')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\daiquiri.jpg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Daiquiri</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$7</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Daiquiri</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Ron: 0.20l</li>
+                                            <li>Limon: 0.3kg</li>
+                                            <li>Azucar: 0.1kg</li>
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                
+                </div>
+
+                <div class="menu-row">
+
+                    <article id="15" class="menu-item" onclick="addToOrder('Old Fashioned','7','Menu/old fashioned.png','15')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/old fashioned.png" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Old Fashioned</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$7</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Old Fashioned</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Whisky: 0.25l</li>
+                                            <li>Limon: 0.2kg</li>
+                                            <li>Azucar: 0.05kg</li>
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="16" class="menu-item" onclick="addToOrder('Margarita','7','Menu/margarita.jpg','16')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu\margarita.jpg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Margarita</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$7</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Margarita</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>Tequila: 0.25l</li>
+                                            <li>Limon: 0.2kg</li>
+                                            <li>Azucar: 0.05kg</li>
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    
+                </div>
+                
+            </section>
+
+            <section id="Vinos" class="menu-items">
+                <h3>Vinos Rojos</h3>
+                <div class="menu-row">     
+                <article id="17" class="menu-item vinos" onclick="addToOrder('Cuvée Bistrot Chez Rémy','15','Menu/vinorojoFleurderoc.jpeg','17')">
+                    <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/vinorojoFleurderoc.jpeg" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">Cuvée Bistrot Chez Rémy</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">$15</span>
+                            <button class="button-abrir-modal">
+                                <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                            </button>
+                            <dialog class="modal">
+                                <div class="modal-content">
+                                    <h2>Cuvée Bistrot Chez Rémy</h2>
+                                    <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>1 unidad</li>
+                                            
+                                        </ul>
+                                    <button class="button-cerrar-modal">Cerrar</button>
+                                </div>
+                            </dialog>
+                        </div>
+                    </div>
+                </article>
+
+                <article id="18" class="menu-item vinos" onclick="addToOrder('Agneau Rouge','15','Menu/agneau.jpg','18')">
+                    <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/agneau.jpg" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">Agneau Rouge</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">$15</span>
+                            <button class="button-abrir-modal">
+                                <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                            </button>
+                            <dialog class="modal">
+                                <div class="modal-content">
+                                    <h2>Agneau Rouge</h2>
+                                    <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>1 unidad</li>
+                                            
+                                        </ul>
+                                    <button class="button-cerrar-modal">Cerrar</button>
+                                </div>
+                            </dialog>
+                        </div>
+                    </div>
+                </article>
+                </div>
+                <h3>Vinos Blancos</h3>
+                <div class="menu-row">
+
+                    <article  id="19" class="menu-item vinos" onclick="addToOrder('Sancerre AOC','15','    Menu/vino blanco sancerre.jpeg','19')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/vino blanco sancerre.jpeg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Sancerre AOC</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$15</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Sancerre AOC</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>1 unidad</li>
+                                            
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="20" class="menu-item vinos" onclick="addToOrder('Languedoc','15','Menu/languedoc cite de carcassone.jpg','20')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/languedoc cite de carcassone.jpg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Languedoc</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$15</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Languedoc</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>1 unidad</li>
+                                            
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
+                
+            </section>
+<!-- -->
+
+            <section id="Bebidas" class="menu-items" >
+                <div class="menu-row">
+                    <article id="21" class="menu-item" onclick="addToOrder('Coca-Cola Original','5','Menu/cocacola.jpeg','21')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/cocacola.jpeg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Coca-Cola Original</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$5</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Coca-Cola Original</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>1 unidad</li>
+                                            
+                                        </ul>
+                                        
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    <article id="22" class="menu-item" onclick="addToOrder('Coca-Cola Cherry','5','Menu/coca cola cheerry.jpeg','22')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/coca cola cheerry.jpeg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Coca-Cola Cherry</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$5</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Coca-Cola Cherry</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>1 unidad</li>
+                                            
+                                        </ul>
+                                        
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="menu-row">
+                    <article id="23" class="menu-item" onclick="addToOrder('Fanta Orange','5','Menu/fanta orange.jpeg','23')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/fanta orange.jpeg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Fanta Orange</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$5</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Fanta Orange</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>1 unidad</li>
+                                            
+                                        </ul>
+                                        
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    <article id="24" class="menu-item" onclick="addToOrder('Sprite','5','Menu/sprite.jpg','24')">
+                        <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/sprite.jpg" class="menu-item-image" alt="Menu item" />
+                        <div class="menu-item-details">
+                            <h2 class="menu-item-name">Sprite</h2>
+                            <div class="item-information">
+                                <span class="menu-item-price">$5</span>
+                                <button class="button-abrir-modal">
+                                    <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                </button>
+                                <dialog class="modal">
+                                    <div class="modal-content">
+                                        <h2>Sprite</h2>
+                                        <h4>Ingredientes:</h4>
+                                        <ul>
+                                            <li>1 unidad</li>
+                                            
+                                        </ul>
+                                        <button class="button-cerrar-modal">Cerrar</button>
+                                    </div>
+                                </dialog>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
+                    <div class="menu-row">
+                        <article id="25" class="menu-item" onclick="addToOrder('Vittel','5','Menu/vittel.jpeg','25')">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/vittel.jpeg" class="menu-item-image" alt="Menu item" />
+                            <div class="menu-item-details">
+                                <h2 class="menu-item-name">Vittel</h2>
+                                <div class="item-information">
+                                    <span class="menu-item-price">$5</span>
+                                    <button class="button-abrir-modal">
+                                        <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                                    </button>
+                                    <dialog class="modal">
+                                        <div class="modal-content">
+                                            <h2>Vittel</h2>
+                                            <button class="button-cerrar-modal">Cerrar</button>
+                                        </div>
+                                    </dialog>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        </div>
+                
+            </section>
+
+            
+    <section id="Vegetariano" class="menu-items">
+        <div class="menu-row">
+            <article id="26" class="menu-item" onclick="addToOrder('Vegetable Stew with Herby','15','Menu/Vegetable Stew.png','26')">
+                <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/Vegetable Stew.png" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Vegetable Stew with Herby</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$15</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Vegetable Stew with Herby</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Lechuga: 0.5kg</li>
+                                    <li>Tomate: 0.25kg</li>
+                                    <li>Cebolla: 0.25kg</li>
+                                    <li>Pepino: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+            <article id="27" class="menu-item" onclick="addToOrder('Vegetable Vinaigrette','15','Menu/vinaigrette.png','27')">
+                <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/vinaigrette.png" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Vegetable Vinaigrette</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$15</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Vegetable Vinaigrette</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Lechuga: 0.5kg</li>
+                                    <li>Tomate: 0.25kg</li>
+                                    <li>Cebolla: 0.25kg</li>
+                                    <li>Pepino: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="menu-row">
+
+            
+            <article id="28" class="menu-item" onclick="addToOrder('Mixed Greens','15','Menu/mixed.jpg','28')">
+                <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/mixed.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Mixed Greens</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$15</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Mixed Greens</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Lechuga: 0.5kg</li>
+                                    <li>Tomate: 0.25kg</li>
+                                    <li>Cebolla: 0.25kg</li>
+                                    <li>Pepino: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+            <article id="29" class="menu-item" onclick="addToOrder('Tomato Confit','15','Menu/tomatoconfit.jpg','29')">
+                <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/tomatoconfit.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Tomato Confit</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$15</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Tomato Confit</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Tomate: 0.75kg</li>
+                                    <li>Ajo: 0.25kg</li>
+                                    <li>Cebolla: 0.25kg</li>
+                                    <li>Aceite: 0.25L</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>            
+            
+        </div>
+        
+    </section>
+
+    <section id="Infantil" class="menu-items">
+        <div class="menu-row">
+            <article id="30" class="menu-item" onclick="addToOrder('Potatoes with Onion','15','Menu/potatoes.jpg','30')">
+                <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/potatoes.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Potatoes with Onion</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$15</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Potatoes with Onion</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Papa: 0.5kg</li>
+                                    <li>Aceite: 0.3l</li>
+                                    <li>Cebolla: 0.5kg</li>
+                                    <li>Pimenton: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+            <article id="31" class="menu-item" onclick="addToOrder('Linguine Pasta','15','Menu/linguinepastawithtomatosauce.jpeg','31')">
+                <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/linguinepastawithtomatosauce.jpeg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Linguine Pasta</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$15</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Linguine Pasta</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Tomate: 0.5kg</li>
+                                    <li>Pasta: 0.5kg</li>
+                                    <li>Berenjena: 0.25kg</li>
+                                    <li>Cebolla: 0.25kg</li>
+                                    <li>Aceite: 0.25l</li>
+
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="menu-row">
+
+            
+            <article id="32" class="menu-item" onclick="addToOrder('Crushed Potatoes','15','Menu/crushed.jpg','32')">
+                <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/crushed.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">Crushed Potatoes</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$15</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>Crushed Potatoes</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Papa: 0.75kg</li>
+                                    <li>Aceite: 0.25l</li>
+                                    <li>Ajo: 0.25kg</li>
+                                    <li>Cebollin: 0.25kg</li>
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>
+
+            <article id="33" class="menu-item" onclick="addToOrder('French Fries and Ratatouille','15','Menu/frenchfries.jpg','33')">
+                <img loading="lazy" src="/ventas/Vista_Pedidos/Menu/frenchfries.jpg" class="menu-item-image" alt="Menu item" />
+                <div class="menu-item-details">
+                    <h2 class="menu-item-name">French Fries and Ratatouille</h2>
+                    <div class="item-information">
+                        <span class="menu-item-price">$15</span>
+                        <button class="button-abrir-modal">
+                            <img loading="lazy" src="/ventas/Vista_Pedidos/Assets\iconos\barra-de-menus.png" class="more-info-image" alt="Menu item" />
+                        </button>
+                        <dialog class="modal">
+                            <div class="modal-content">
+                                <h2>French Fries and Ratatouille</h2>
+                                <h4>Ingredientes:</h4>
+                                <ul>
+                                    <li>Papa: 0.75kg</li>
+                                    <li>Aceite: 0.25l</li>
+                                    <li>Cebollin: 0.25kg</li>
+                                    <li>Tomate: 0.5kg</li>
+                                    <li>Berenjena: 0.5kg</li>
+                                    <li>Aji: 0.25kg</li>
+                                    
+                                </ul>
+                                <button class="button-cerrar-modal">Cerrar</button>
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+            </article>            
+            
+        </div>
+        
+    </section>
+
+    </div>
+    </main>
+
+        <aside class="order-section">
+            <div class="order-container">
+            <h2 class="order-title">Orden</h2>
+            <p class="order-table">MESA #</p>
+            <div class="order-items" id="order-items">
+
+
+
+            </div>
+            <hr class="order-divider" />
+            <div class="order-total">
+                <span class="total-label">Total</span>
+                <span   id="total-amount" class="total-amount">000000</span>
+            </div>
+            <hr class="order-divider" />
+            <div class="order-actions">
+                <button class="action-button cancel-button">Cancelar</button>
+                <button class="action-button confirm-button">Realizar</button>
+            </div>
+            </div>
+        </aside>
+        </div>
+    </section>
+
+
+
+
+
+    <script src="/ventas/Vista_Pedidos/pedido_logica.js"></script>
+
+
+</body>
+</html>
