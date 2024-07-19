@@ -156,11 +156,6 @@ document.getElementById("submit-button").addEventListener("click", function(even
     return;
   }
 
-  if (startDateObj < new Date()) {
-    alert("La fecha de inicio no puede ser anterior a la fecha actual");
-    return;
-  }
-
   addAbsenceRequest(reason, startDate, endDate);
   modal.style.display = "none"; // Close the modal after submitting the form
 });
@@ -191,6 +186,7 @@ function acceptRequest(reason, startDate, endDate) {
   displayPermissionsInProcess();
   displayAcceptedRequests(); // Update the accepted requests list
   // You can also send the updated request data to a backend server to store it
+  removeRequestFromList(reason, startDate, endDate);
 }
 
 function rejectRequest(reason, startDate, endDate) {
@@ -201,4 +197,20 @@ function rejectRequest(reason, startDate, endDate) {
   });
   displayPermissionsInProcess();
   displayAcceptedRequests(); // Update the accepted requests list
+  removeRequestFromList(reason, startDate, endDate);
+}
+
+function removeRequestFromList(reason, startDate, endDate) {
+  var requestsList = document.getElementById("requests-list");
+  var requests = requestsList.children;
+  for (var i = 0; i < requests.length; i++) {
+    var request = requests[i];
+    var requestReason = request.children[0].textContent.replace("Motivo de ausencia: ", "");
+    var requestStartDate = request.children[1].textContent.replace("Fecha de inicio: ", "");
+    var requestEndDate = request.children[2].textContent.replace("Fecha de fin: ", "");
+    if (requestReason === reason && requestStartDate === startDate && requestEndDate === endDate) {
+      requestsList.removeChild(request);
+      break;
+    }
+  }
 }
