@@ -207,9 +207,17 @@ transform: translateX(-556%) translateY(-348%) scale(0.6);
     border: none;
     color: #fff;
 }
+
+
+.verdecito:hover {
+    transition: 0.4s;
+    background-color: #007b3e !important;
+}
+
 .category-button:first-child {
     margin-top: 0;
 }
+
 .category-button.entradas { background-color: #0f624a; }
 .category-button.platos-fuertes { background-color: #0f624a; }
 .category-button.vegetariano { background-color: #0f624a; }

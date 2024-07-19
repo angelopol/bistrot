@@ -76,7 +76,7 @@ async function actualizarPedidos() {
         // Iterar sobre los pedidos y actualizar los order-card
         pedidos.forEach(pedido => {
             
-            if(!pedido.zona.includes("bar")){
+            if(pedido.zona.includes("bar")){
 
                 // si el status_pedido es igual a 1, entonces es una orden pendiente
                 if (pedido.status_pedido == 1 || pedido.status_pedido == 3 ) {
