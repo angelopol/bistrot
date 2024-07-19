@@ -123,25 +123,6 @@
             window.location.href = '/mesas'; // Cambia a la ruta del servidor
         });
 
-        formulario1.addEventListener('submit',function (event) {
-            let radios = document.getElementsByName('radioboton');
-            let id = null;
-            for (let i = 0; i < radios.length; i++) {
-                if (radios[i].checked) {
-                    id = radios[i].value;
-                    break;
-                }
-            }
-            // como hago para que la id se pase a la vista modificarReserva.ejs
-
-            if (id) {
-                //window.location.href = `/modificar`;
-                formulario1.action = `/modificar/${id}`;
-                
-            } else {
-                alert('Seleccione una reserva para modificar');
-            }
-        });
 
         //boton que elimina un resgistro de la tabla reservas
 

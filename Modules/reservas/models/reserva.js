@@ -6,7 +6,7 @@ const DBConfig = {
   user: 'root' || process.env.DB_USERNAME,
   port: 3306 || process.env.DB_PORT,
   password: '1234' || process.env.DB_PASSWORD,
-  database: 'modulo_reserva' || process.env.DB_DATABASE,
+  database: 'modulo_reservas' || process.env.DB_DATABASE,
 }
 
 const connection = await mysql.createConnection(DBConfig)
