@@ -54,28 +54,25 @@ export class RecursosHumanos {
         res.sendFile(process.cwd() + '/views/rrhh/css/ausensias.css')
     }
 
-
-    Registrar = async (req, res) => {
-        Conexion.query('Inser into empleados value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
-            req.body.cargo, 
-            req.body.FechaInicio,
-            req.body.FechaCulminacion,
-            req.body.salario,
-            req.body.horas,
-            req.body.semana,
-            req.body.nombre,
-            req.body.apellido,
-            req.body.cedula,
-            req.body.tlf,
-            req.body.direccion,
-            req.body.codigo,
-            req.body.clave,
-        ], function (error, results, fields) {
-            res.send(results);
-        });
-    }
-
     formulario = async (req, res) => {
         res.sendFile(process.cwd() + '/views/rrhh/form.ejs')
+    }
+
+    empleados = async (req, res) => {
+        try {
+            const [results, fields] = await connection.query('SELECT * FROM empleados');
+            res.json(results);
+        } catch (err) {
+            res.status(500).send(err);
+        }
+    }
+
+    entrada = async (req, res) => {
+        try {
+            const [results, fields] = await connection.query('SELECT id, cedula, DATE_FORMAT(hora_entrada, "%Y-%m-%d %H:%i:%s") AS hora_entrada FROM entradas');
+            res.json(results);
+        } catch (err) {
+            res.status(500).send(err);
+        }
     }
 }  

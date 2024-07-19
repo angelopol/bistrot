@@ -8,7 +8,6 @@ export const createRegisterRouter = () => {
   const entradasController = new EntradasController();
 
   registerRouter.post('/', registerController.store);
-  registerRouter.get('/', registerController.create);
   registerRouter.post('/entradas', entradasController.registrarEntrada);
   registerRouter.get('/entradas', entradasController.create);
 

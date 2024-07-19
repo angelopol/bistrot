@@ -1,7 +1,7 @@
 // Esta función la puedes usar en cualquier archivo y te trae la lista de entradas
 async function ObtenerEntradas() {
     try {
-      const response = await fetch('http://localhost:1234/rrhh/entrada');
+      const response = await fetch('/rrhh/entrada');
 
       if (!response.ok) {
         throw new Error('Network response was not ok');

@@ -45,7 +45,7 @@ document.getElementById('submit-button').addEventListener('click', function(even
 
     console.log('Datos a enviar:', dataToSend);
 
-    fetch('http://localhost:1234/register', {
+    fetch('/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

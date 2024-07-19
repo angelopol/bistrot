@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recursos Humanos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="/rrhh/assets/style.css">
+    <link rel="stylesheet" href="/rrhh/css/header.css">
 </head>
 <body>
     <header class="header">
@@ -77,11 +77,11 @@
                         </div>
                     </div>
                     <div class="table-actions">
-                        <button class="button is-link action-ES"><a href="form">Agregar</a></button>
-                        <button class="button is-link action-ES"><a href="entradas">Registro</a></button>
-                        <button class="button is-link action-ES"><a href="http://localhost:1234/rrhh/ausensias">Ausencias</a></button>
-                        <button class="button is-link action-ES"><a href="http://localhost:1234/rrhh/Horarios">Horarios</a></button>
-                        <button class="button is-link action-ES"><a href="http://localhost:1234/rrhh/informe">Informe</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/form">Agregar</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/entradas">Registro</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/ausensias">Ausencias</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/Horarios">Horarios</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/informe">Informe</a></button>
                     </div>
                 </div>
             </main>
@@ -90,16 +90,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('http://localhost:1234/rrhh/empleados')
+            fetch('/rrhh/empleados')
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.querySelector('#employeeTable tbody');
                     data.forEach(employee => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
-                            <td>${employee.nombre} ${employee.apellido}</td>
+                            <td>${employee.Nombre} ${employee.Apellido}</td>
                             <td>${employee.cedula}</td>
-                            <td>${employee.puesto}</td>
+                            <td>${employee.Puesto}</td>
                         `;
                         tableBody.appendChild(row);
                     });

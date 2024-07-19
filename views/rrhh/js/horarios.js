@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 //Esta funcion la puedes usar en cualquier archivo y te trae la lista de empleados
 async function ObtenerEmpleados() {
   try {
-  const response = await fetch('http://localhost:1234/rrhh/empleados');
+  const response = await fetch('/rrhh/empleados');
   if (!response.ok) {
       throw new Error('Network response was not ok');
   }
@@ -50,8 +50,8 @@ function llenarTabla(empleados) {
     console.log("eaml",empleado.puesto)
     fila.innerHTML = `
       <td class="info">${empleado.cedula}</td>
-      <td class="info">${empleado.nombre}</td>
-      <td class="info">${empleado.puesto}</td>
+      <td class="info">${empleado.Nombre}</td>
+      <td class="info">${empleado.Puesto}</td>
       <td class="info"> 07:00 AM </td>
       <td class="info"> 05:00 PM </td>
     `;

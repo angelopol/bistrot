@@ -12,16 +12,16 @@ export class EmpleadosModel {
       salario,
       telefono,
       direccion,
-      entrada,
-      salida
+      fecha_contratacion,
+      fecha_culminacion
     } = input;
     console.log('Input:', JSON.stringify(input));  // Depuración de entrada
 
     try {
       await connection.query(
-        `INSERT INTO empleados (nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida)
+        `INSERT INTO empleados (nombre, apellido, password, cedula, user, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
-        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida]
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion]
       );
     } catch (e) {
       console.error('Error creating empleado:', e);  // Imprimir el error completo
@@ -78,8 +78,8 @@ export class EmpleadosModel {
       salario,
       telefono,
       direccion,
-      entrada,
-      salida
+      fecha_contratacion,
+      fecha_culminacion
     } = input;
     console.log('Update Input:', JSON.stringify(input));  // Depuración de entrada
 
@@ -88,17 +88,17 @@ export class EmpleadosModel {
         `UPDATE empleados SET
           nombre = ?,
           apellido = ?,
-          clave_usuario = ?,
+          password = ?,
           cedula = ?,
-          codigo_empleado = ?,
+          user = ?,
           puesto = ?,
           salario = ?,
           telefono = ?,
           direccion = ?,
-          entrada = ?,
-          salida = ?
+          fecha_contratacion = ?,
+          fecha_culminacion = ?
           WHERE id = ?;`,
-        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, entrada, salida, id]
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, id]
       );
     } catch (e) {
       console.error('Error updating empleado:', e);  // Imprimir el error completo

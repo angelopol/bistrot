@@ -49,35 +49,13 @@ function showModal(employeeData) {
   modal.classList.add('revelar');
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // const botonMostrarEmpleado = document.querySelector(".action-view")
 const modal = document.querySelector(".modal");
 const closeModalButton = document.querySelector(".cerrar-modal");
 
-
-
-
-
 async function ObtenerEmpleados() {
   try {
-  const response = await fetch('http://localhost:1234/rrhh/empleados');
+  const response = await fetch('/rrhh/empleados');
   if (!response.ok) {
       throw new Error('Network response was not ok');
   }
@@ -89,7 +67,6 @@ async function ObtenerEmpleados() {
   console.error('Error fetching empleados:', error);
   }
 }
-
 
 function llenarTabla(empleados) {
   const tabla = document.querySelector('.table-container');
@@ -119,15 +96,11 @@ function llenarTabla(empleados) {
     fila.innerHTML = `
       <span>${empleado.nombre}</span>
       <span>${empleado.codigo}</span>
-      <span>${empleado.cargo}</span>
+      <span>${empleado.Puesto}</span>
     `;
     tabla.appendChild(fila);
   });
 }
-
-
-
-
 
 botonMostrarEmpleado.addEventListener("click", function() {
   modal.classList.add("revelar");
@@ -137,55 +110,6 @@ botonMostrarEmpleado.addEventListener("click", function() {
 closeModalButton.addEventListener("click", function() {
   modal.classList.remove("revelar");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const searchInput = document.getElementById('searchInput'); 
 const searchButton = document.querySelector('.search-button'); 
@@ -207,4 +131,3 @@ searchButton.addEventListener('click', function(event) {
   });
 
 });
-
