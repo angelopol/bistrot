@@ -599,7 +599,7 @@ input[type="number"] {
     margin-right: 10px;
 }
 
-.apertura-cierre, .presupuesto {
+.apertura-cierre, .presupuesto, .fecha-apertura-cierre {
     display: block;
     margin: 0 auto;
     width: 200px;
@@ -607,3 +607,41 @@ input[type="number"] {
     border-radius: 10px;
 }
 
+.fecha-apertura-cierre {
+    margin-bottom: 10px;
+    width: 205px;
+}
+
+
+label {
+    font-size: 18px; /* Tamaño de fuente */
+    margin: 5px 0; /* Espaciado vertical entre etiquetas */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+    display: block; /* Asegura que cada etiqueta ocupe toda la línea */
+    text-align: center; /* Centra el texto dentro de la etiqueta */
+}
+
+/* Estilo específico para la etiqueta de Ingresos */
+.ingresos_labels {
+    font-weight: bold; /* Texto en negrita */
+    color: white; /* Color del texto */
+    background-color: green; /* Color de fondo verde */
+    width: 200px; /* Ancho específico */
+    margin: 10px auto; /* Centrar la etiqueta horizontalmente */
+}
+
+/* Estilo específico para la etiqueta de Egresos */
+.egresos_labels {
+    font-weight: bold; /* Texto en negrita */
+    color: white; /* Color del texto */
+    background-color: red; /* Color de fondo rojo */
+    width: 200px; /* Ancho específico */
+    margin: 10px auto; /* Centrar la etiqueta horizontalmente */
+}
+
+/* Efecto al pasar el mouse */
+label:hover {
+    opacity: 0.8; /* Reduce la opacidad al pasar el mouse */
+}

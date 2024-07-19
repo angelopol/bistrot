@@ -82,6 +82,7 @@
                         <h2>Apertura y Cierre de caja</h2>
                         <div class="content-center">
                           <div class="estado-caja"></div>
+                          <input class="fecha-apertura-cierre" type="datetime-local" placeholder="fecha apertura/cierre">
                           <input class="apertura-cierre" type="number" placeholder="monto de apertura/cierre">
                           <button class="btn-caja btn-apertura">Aperturar</button>
                           <button class="btn-caja btn-cierre">Cerrar</button>
@@ -146,9 +147,12 @@
                       <div id="table-container"></div>
 
                       <div class="content-center">
-                        <input type="text" id="registro" placeholder="Ingresa tu dato aquí">
-                        <button class="btn-caja btn-registro">Actualizar</button>
+                        <label>Ingresos</label>
+                        <label class="ingresos_labels"></label>
+                        <label>Egresos</label>
+                        <label class="egresos_labels"></label>
                       </div>
+
                   </div>
                 </div>
 
