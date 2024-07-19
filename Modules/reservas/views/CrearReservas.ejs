@@ -5,43 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear una Reservación</title>
     <link rel="stylesheet" href="CrearReservas.css">
+    <link rel="stylesheet" href="side.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
 </head>
 <body>
-    <div class="heading">
-        <div class="titulo">
-            <h1>BISTROT CHEZ RÉMY</h1>
-        </div>
-        <div class="usuario">
-            <select name="usuario" id="usuario">
-                <option value="gerente0000">gerente0000</option>
-                <option value="gerente0001">gerente0001</option>
-            </select>
-        </div>
-    </div>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
     <div class="pagina">
-        <div class="sidebar">
-            <nav>
-                <ul>
-                    <li><a href="#"><img src="imagenes/icono_inicio.png" alt="Inicio">Inicio</a></li>
-                    <li><a href="#"><img src="imagenes/icono_ventas.png" alt="Ventas/Salón">Ventas/Salón</a></li>
-                    <li><a href="#"><img src="imagenes/icono_compras.png" alt="Compras">Compras</a></li>
-                    <li><a href="#"><img src="imagenes/icono_rrhh.png" alt="RRHH">RRHH</a></li>
-                    <li><a href="#"><img src="imagenes/icono_inventario.png" alt="Inventario">Inventario</a></li>
-                    <li><a href="#"><img src="imagenes/icono_mantenimiento.png" alt="Mantenimiento">Mantenimiento</a></li>
-                    <li><a href="#"><img src="imagenes/icono_cocina.png" alt="Cocina/Bar">Cocina/Bar</a></li>
-                    <li><a href="#"><img src="imagenes/icono_reservas.png" alt="Reservas">Reservas</a></li>
-                    <li><a href="#"><img src="imagenes/icono_reporte.png" alt="Reportes">Reportes</a></li>
-                    <li><a href="#"><img src="imagenes/icono_config.png" alt="Configuraciones">Configuraciones</a></li>
-                    <li><a href="#"><img src="imagenes/icono_ayuda.png" alt="Ayuda">Ayuda</a></li>
-                </ul>
-            </nav>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
         </div>
         <div class="contenido">
             <div class="contenidop">
                 <div class="Reservar">
                     <h2>
-                        <a href="/mesas">
+                        <a class="exit-foto">
                             <img src="imagenes/icono_salida.png" alt="regresar">
                         </a>
                         Reservar
@@ -101,6 +115,18 @@
 
     <script>
 
+        //Exit de la FOto
+        document.getElementsByClassName('exit-foto')[0].addEventListener('click',()=>{
+
+            let asientos_reserv = document.getElementsByClassName('reservado')
+
+            for (let i = 0; i < asientos_reserv.length; i++) {
+                    asientos_reserv[i].classList.remove('reservado')
+            }
+
+            window.location.href = '/mesas'
+        })
+
         //recuperar las mesas seleccionadas y mostrarlas en el campo de numero de mesa
         
         document.addEventListener("DOMContentLoaded", function() {
@@ -117,7 +143,7 @@
                         button.classList.add("selected");
                     }
 
-                    const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button => button.textContent);
+                    const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button);
                     document.getElementById("idmesa").value = selectedButtons.join(", ");
 
                     localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));

@@ -5,37 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesas</title>
     <link rel="stylesheet" href="mesas.css">
+    <link rel="stylesheet" href="side.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
 </head>
 <body>
-    <div class="heading">
-        <div class="titulo">
-            <h1>BISTROT CHEZ RÉMY</h1>
-        </div>
-        <div class="usuario">
-            <select name="usuario" id="usuario">
-                <option value="gerente0000">gerente0000</option>
-                <option value="gerente0001">gerente0001</option>
-            </select>
-        </div>
-    </div>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
     <div class="pagina">
-        <div class="sidebar">
-            <nav>
-                <ul>
-                    <li><a href="#"><img src="imagenes/icono_inicio.png" alt="Inicio">Inicio</a></li>
-                    <li><a href="#"><img src="imagenes/icono_ventas.png" alt="Ventas/Salón">Ventas/Salón</a></li>
-                    <li><a href="#"><img src="imagenes/icono_compras.png" alt="Compras">Compras</a></li>
-                    <li><a href="#"><img src="imagenes/icono_rrhh.png" alt="RRHH">RRHH</a></li>
-                    <li><a href="#"><img src="imagenes/icono_inventario.png" alt="Inventario">Inventario</a></li>
-                    <li><a href="#"><img src="imagenes/icono_mantenimiento.png" alt="Mantenimiento">Mantenimiento</a></li>
-                    <li><a href="#"><img src="imagenes/icono_cocina.png" alt="Cocina/Bar">Cocina/Bar</a></li>
-                    <li><a href="#"><img src="imagenes/icono_reservas.png" alt="Reservas">Reservas</a></li>
-                    <li><a href="#"><img src="imagenes/icono_reporte.png" alt="Reportes">Reportes</a></li>
-                    <li><a href="#"><img src="imagenes/icono_config.png" alt="Configuraciones">Configuraciones</a></li>
-                    <li><a href="#"><img src="imagenes/icono_ayuda.png" alt="Ayuda">Ayuda</a></li>
-                </ul>
-            </nav>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
         </div>
         <div class="contenido">
             <div class="contenidop">
@@ -73,11 +87,11 @@
                 </div>
                 <div class="abajo">
                     <h3>Barra</h3>
-                    <div class="button" data-number="1" data-location="barra">1</div>
-                    <div class="button" data-number="2" data-location="barra">2</div>
-                    <div class="button" data-number="3" data-location="barra">3</div>
-                    <div class="button" data-number="4" data-location="barra">4</div>
-                    <div class="button" data-number="5" data-location="barra">5</div>
+                    <div class="button" data-number="12" data-location="barra">12</div>
+                    <div class="button" data-number="13" data-location="barra">13</div>
+                    <div class="button" data-number="14" data-location="barra">14</div>
+                    <div class="button" data-number="15" data-location="barra">15</div>
+                    <div class="button" data-number="16" data-location="barra">16</div>
                 </div>
             </div>
             <button id="mesa">Seleccionar mesa</button>
@@ -98,7 +112,8 @@
                 document.querySelectorAll(".button").forEach(button => {
                     const number = button.getAttribute("data-number");
                     if (selectedButtons.includes(number)) {
-                        button.classList.add("selected");
+                            button.classList.add("selected");
+                        
                     } else {
                         button.classList.remove("selected");
                     }
@@ -114,13 +129,20 @@
                     const number = this.getAttribute("data-number");
                     const location = this.getAttribute("data-location");
                     if (this.classList.contains("selected")) {
-                        this.classList.remove("selected");
-                        selectedButtons = selectedButtons.filter(btn => btn !== number);
-                        selectedLocations.delete(location);
-                    } else {
-                        this.classList.add("selected");
-                        selectedButtons.push(number);
-                        selectedLocations.add(location);
+                        if(this.classList.contains("reservado")){
+                            alert('Reservado')
+                        }
+                        else{
+                            this.classList.remove("selected");
+                            selectedButtons = selectedButtons.filter(btn => btn !== number);
+                            selectedLocations.delete(location);
+                        }
+
+                    } 
+                    else {
+                            this.classList.add("selected");
+                            selectedButtons.push(number);
+                            selectedLocations.add(location);
                     }
                     localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
                 });
@@ -131,6 +153,12 @@
             mesaButton.addEventListener("click", function() {
                 const selectedNumbers = selectedButtons.join(",");
                 const selectedLocationsArray = Array.from(selectedLocations).join(",");
+
+                let asientos_select = document.getElementsByClassName('selected')
+
+                for (let i = 0; i < asientos_select.length; i++) {
+                    asientos_select[i].classList.add('reservado')
+                }
 
                 // Crear inputs ocultos para mesas y ubicaciones
                 const inputMesas = document.createElement("input");

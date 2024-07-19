@@ -12,7 +12,7 @@ reservasRouter.get('/CrearReservas',reserv.create);
 
 reservasRouter.get('/reservaciones/crear',reserv.create);
 
-reservasRouter.get('/reservaciones/eliminar',reserv.delete);
+reservasRouter.get('/reservaciones/eliminar/:id',reserv.delete);
 
 reservasRouter.get('/reservaciones/:id',reserv.getForId);
 

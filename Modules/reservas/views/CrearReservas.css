@@ -107,6 +107,7 @@ nav ul li a:hover {
     align-items: center;
     padding: 20px;
     flex-grow: 1;
+    width: 80%;
 }
 
 .contenidop {
@@ -145,7 +146,6 @@ form {
   /* Estilos para los grupos de campos */
   .form-group {
     flex: 1 1 calc(40% - 10px); /* Dos columnas, con margen entre ellas */
-    margin-right: 10px;
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
@@ -196,6 +196,10 @@ form {
   }
   
   button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #007981;
+  }
+  
+  button[type="submit"]::before:hover {
+    background-color: #007981;
   }
   

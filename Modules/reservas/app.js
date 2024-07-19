@@ -2,8 +2,8 @@ import express, { json } from 'express' // require -> commonJS
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url';
 import methodOverride from 'method-override'
-import { corsMiddleware } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/cors.js'
-import { authenticated } from 'file:///C:/Users/Usuario/OneDrive/Documentos/curso-github/bistrot/global/middlewares/auth.js'
+import { corsMiddleware } from 'file:///C:/Repositorios/cont/bistrot/global/middlewares/cors.js'
+import { authenticated } from 'file:///C:/Repositorios/cont/bistrot/global/middlewares/auth.js'
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
@@ -61,7 +61,7 @@ import {ReservaController} from './controllers/reserva.js';
     
     app.post('/mesas/CrearReservas/crear',controladorReserva.create);
 
-    app.delete('/eliminar',controladorReserva.delete);
+    app.delete('/eliminar/:id',controladorReserva.delete);
 
     app.post('/modificarr/:id',controladorReserva.update);
 

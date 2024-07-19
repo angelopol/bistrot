@@ -7,37 +7,51 @@
     <link rel="stylesheet" href="mesas.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <link rel="stylesheet" href="reservacion.css">
+    <link rel="stylesheet" href="side.css">
 
 </head>
 <body>
-    <div class="heading">
-        <div class="titulo">
-            <h1>BISTROT CHEZ RÉMY</h1>
-        </div>
-        <div class="usuario">
-            <select name="usuario" id="usuario">
-                <option value="gerente0000">gerente0000</option>
-                <option value="gerente0001">gerente0001</option>
-            </select>
-        </div>
-    </div>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
     <div class="pagina">
-        <div class="sidebar">
-            <nav>
-                <ul>
-                    <li><a href="#"><img src="imagenes/icono_inicio.png" alt="Inicio">Inicio</a></li>
-                    <li><a href="#"><img src="imagenes/icono_ventas.png" alt="Ventas/Salón">Ventas/Salón</a></li>
-                    <li><a href="#"><img src="imagenes/icono_compras.png" alt="Compras">Compras</a></li>
-                    <li><a href="#"><img src="imagenes/icono_rrhh.png" alt="RRHH">RRHH</a></li>
-                    <li><a href="#"><img src="imagenes/icono_inventario.png" alt="Inventario">Inventario</a></li>
-                    <li><a href="#"><img src="imagenes/icono_mantenimiento.png" alt="Mantenimiento">Mantenimiento</a></li>
-                    <li><a href="#"><img src="imagenes/icono_cocina.png" alt="Cocina/Bar">Cocina/Bar</a></li>
-                    <li><a href="#"><img src="imagenes/icono_reservas.png" alt="Reservas">Reservas</a></li>
-                    <li><a href="#"><img src="imagenes/icono_reporte.png" alt="Reportes">Reportes</a></li>
-                    <li><a href="#"><img src="imagenes/icono_config.png" alt="Configuraciones">Configuraciones</a></li>
-                    <li><a href="#"><img src="imagenes/icono_ayuda.png" alt="Ayuda">Ayuda</a></li>
-                </ul>
-            </nav>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
         </div>
         <div class="contenido">
             <div class="contenidop">
@@ -45,72 +59,66 @@
                    <h2>Reservar</h2>
                 </div>
                 <main>
-                <div class="left-side">
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nombre completo</th>
-                                <th>Cédula</th>
-                                <th>Fecha</th>
-                                <th>telefono</th>
-                                <th>Hora</th>
-                                <th>Ubicación</th>
-                                <th></th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-                            
-                                <% if (data) { %>
-                                    <% for (var i = 0; i < data.length; i++) { %>
-                                        <tr>
-                                            <td><%= data[i].nombre %></td>
-                                            <td><%= data[i].ID_cliente %></td>
-                                            <td><%= data[i].fecha %></td>
-                                            <td><%= data[i].telefono %></td>
-                                            <td><%= data[i].hora_inicio %></td>
-                                            <td><%= data[i].ubicacion %></td>
-                                            <td><input type="radio" name="radioboton" value="<%= data[i].ID_cliente %>"></td>
-                        
-                                        </tr>
+                    <div class="left-side">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre completo</th>
+                                    <th>Cédula</th>
+                                    <th>Fecha</th>
+                                    <th>telefono</th>
+                                    <th>Hora</th>
+                                    <th>Ubicación</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>  
+                                    <% if (data) { %>
+                                        <% for (var i = 0; i < data.length; i++) { %>
+                                            <tr id="<%i%>">
+                                                <td><%= data[i].nombre %></td>
+                                                <td><%= data[i].ID_cliente %></td>
+                                                <td><%= data[i].fecha %></td>
+                                                <td><%= data[i].telefono %></td>
+                                                <td><%= data[i].hora_inicio %></td>
+                                                <td><%= data[i].ubicacion %></td>
+                                                <td><input type="radio" name="radioboton" value="<%= data[i].ID_cliente %>"></td>
+                                            </tr>
+                                        <% } %>
                                     <% } %>
-                                <% } %>
-                        </tbody>
-                    </table>
-                 </div>       
-                    <div class="right-side">
-                        <ul>
-                            <li><button class="btn-list reserva">Crear Reserva</button></li>
-                            <form method="POST">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="id" value="ID_DE_LA_RESERVA">
-                                <li>
-                                    <button 
-                                    class="btn-list delete-reserv">
-                                    Eliminar Reserva
-                                    </button>
-                                </li>
-                            </form>
-                            <form id="form1" method="get">
-                                <li><input value="modificar reserva" type="submit" class="btn-list modify-reserv"></li>
-
-                            </form>
-                            
-                        </ul>
-                    </div>
+                            </tbody>
+                        </table>
+                    </div>       
+                        <div class="right-side">
+                            <ul>
+                                <li><button class="btn-list reserva">Crear Reserva</button></li>
+                                <form method="POST">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="id" value="ID_DE_LA_RESERVA">
+                                    <li>
+                                        <button 
+                                        class="btn-list delete-reserv">
+                                        Eliminar Reserva
+                                        </button>
+                                    </li>
+                                </form>
+                                
+                            </ul>
+                        </div>
                 </main>
             </div>
         </div>
     </div>
     <script>
-        
-        
         let botonReserva = document.querySelector('.btn-list.reserva');
         let botonEliminarReserva = document.querySelector('.btn-list.delete-reserv');
-        let formulario1=document.getElementById('form1');
-        let botonModificar = document.querySelector('.btn-list.modify-reserv');  
+        let formulario1=document.getElementById('form1'); 
+
+        function eliminarFila(id) {
+            var fila = document.getElementById(id);
+            fila.remove();
+        }
+
         botonReserva.addEventListener('click', () => {
             window.location.href = '/mesas'; // Cambia a la ruta del servidor
         });
@@ -133,29 +141,25 @@
             } else {
                 alert('Seleccione una reserva para modificar');
             }
-             
         });
 
         //boton que elimina un resgistro de la tabla reservas
 
         botonEliminarReserva.addEventListener('click', e => {
             e.preventDefault();
-            const options = {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            }
+
             let radios = document.getElementsByName('radioboton');
             let id = null;
             for (let i = 0; i < radios.length; i++) {
                 if (radios[i].checked) {
                     id = radios[i].value;
+                    console.log(id);
                     break;
                 }
             }
             if (id) {
-                fetch(`/eliminar`,{
+                eliminarFila(id);
+                /* fetch(`/reservaciones/eliminar/${id}`,{
                     ...options,
                     body: JSON.stringify({id})
                 })
@@ -168,14 +172,12 @@
                         alert('Error al eliminar la reserva');
                     }
                 })
-                console.log("pues nose");
+                console.log("pues nose"); */
             } else {
                 alert('Seleccione una reserva para eliminar');
             }
         });
 
-
-        
     </script>
 </body>
 </html>

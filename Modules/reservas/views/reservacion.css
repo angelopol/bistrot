@@ -1,7 +1,10 @@
-.contenidop {
+.contenido {
     display: flex;
+    width: 60vw;
+    height: 85vh;
     flex-direction: column;
-    
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -10,26 +13,20 @@ h2 a {
   color: inherit; /* Hereda el color del elemento padre */
 }
 
-
-main {
-    display: flex;
-    gap: 10px;
-}
-
 .left-side {
     box-shadow: 0 0 5px rgba(50, 50, 50, 0.1);
-    height: 60vh;
-    width: 45vw;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 40vw;
+    height:40vh;
 }
 
 .right-side {
     box-shadow: 0 0 5px rgba(50, 50, 50, 0.1);
-    height: 55vh;
+    height: 40vh;
     width: 15vw;
     border-radius: 5px;
     display: flex;
@@ -61,114 +58,50 @@ ul {
     background-color: #137b5d;
 }
 
-.date-box {
-    display: flex;
-    gap: 10px;
-}
-
-#fecha {
-    border-radius: 5px;
-    border-color: #DADADA;
-    border-style: solid;
-    padding: 5px;
-}
-
-.list-fecha {
-    height: 60%;
-    border-style: solid;
-    width: 80%;
-    border-radius: 10px;
-    padding: 5px;
-    border-color: #DADADA;
-}
-.container-historial {
-    font-family: Inter, sans-serif;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    gap: 30px;
-}
-  
-  .left-section {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .right-section {
-    width: 50%;
-  }
-  
-  .historial-title {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  table {
-    height: 100%;
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
   th, td {
-    padding: 5px;
     text-align: center;
     border-bottom: 1px solid #ddd;
   }
-  
-  th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    height: 10px;
-  }
-  
-  
-  .calendar {
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .calendar table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .calendar th, .calendar td {
-    text-align: center;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-    width: 14.28%; /* Distribute days evenly */
-  }
-  
-  .calendar th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  .calendar td {
-    height: 30px;
-  }
-  
-  .calendar td.current {
-    background-color: #e0f2f7; /* Highlight current day */
-  }
-  
+
   .button {
     background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.5s;
   }
   
   .button:hover {
     background-color: #45a049;
   }
 
+button {
+  transition: all 0.5s;
+  height: 40px;
+}
 
+button:hover {
+  height: 50px;
+}
 
+table {
+    width:100%;
+    top: 0;
+    border-collapse: collapse;
+}
+
+.left-side {
+  width: 60%;
+  overflow-y: auto;
+}
+
+.contenidop {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+tr {
+    font-size: 0.8rem;
+}
