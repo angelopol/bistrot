@@ -1,10 +1,7 @@
 /* Recordatorio: los pedidos se refieren a los objetos factura de ventas */
 
 document.addEventListener('DOMContentLoaded', function() {
-<<<<<<< HEAD
-=======
     actualizarPedidos()
->>>>>>> master
     const filterButtons = document.querySelectorAll('.filter-button');
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -61,37 +58,6 @@ async function actualizarPedidos() {
         }
         const pedidos = await response.json(); // aqui se guardaria un arreglo de todos los pedidos(facturas) almacenados por ventas
 
-<<<<<<< HEAD
-        // Iterar sobre los pedidos y actualizar los order-card
-        pedidos.forEach(pedido => {
-
-            // si el status_pedido es igual a 1, entonces es una orden pendiente
-            if (pedido.status_pedido == 1) {
-
-                // seleccionamos todas las order-card (los contenedores con los pedidos que se muestrabn en las views)
-                let cardsMesas = document.querySelectorAll(".order-card")
-
-                // iteramos cada contenedor
-                for (const cardMesa of cardsMesas) {
-
-                    // si el contenedor no esta ocupado por otro pedido
-                    if (!cardMesa.classList.contains("ocupado")) {
-
-                        // al id del contenedor le asignamos el id del pedido
-                        cardMesa.id = pedido.id_cliente.toString();
-                        // al contenedor le agregamos la clase de ocupado
-                        cardMesa.classList.add("ocupado");
-
-                        //seecionamos el ultimo hijo que es el que muestra el texto del pedido en las views
-                        let carMesaStatus = cardMesa.lastElementChild;
-                        
-                        //Le colocamos el texto al contenedor del pedido
-                        carMesaStatus.innerHTML = `ID pedido: ${pedido.id_cliente} <br>Estatus: pendiente`;
-                        break; 
-                    }
-                }
-            }
-=======
 
         // este bloque fue el que agregue alfredo 
         let todosContenedores = document.querySelectorAll(".order-card")
@@ -161,7 +127,6 @@ async function actualizarPedidos() {
                 }
             }
             }
->>>>>>> master
         }
         )
     } catch (error) {
@@ -185,36 +150,6 @@ botonProcesar.addEventListener("click" , async () => {
         return null
     }
 
-<<<<<<< HEAD
-    try {
-        let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
-    
-        // hacemos una petición a este endpoint para verificar si se puede procesar el pedido
-        let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`);
-    
-        if (!response.ok) {
-            throw new Error('La solicitud no pudo completarse correctamente');
-        }
-    
-        let pedido = await response.json(); // obtenemos el pedido retornado por el controlador
-    
-        // si el estado del pedido es 3, se acepta el pedido y se puede preparar
-        if (pedido.status_pedido === 3) {
-            // se obtiene el contenedor del pedido seleccionado
-            let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
-            let cardMesaStatus = cardMesa.lastElementChild;
-            cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
-            // Al aceptarse el pedido se considera (en la vista) que inicia la preparación
-        }
-        // si el estado del pedido es 2, se rechaza el pedido por falta de recursos
-        else if (pedido.status_pedido === 2) {
-            alert("No se cuenta con los recursos para realizar este pedido");
-            let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
-            let cardMesaStatus = cardMesa.lastElementChild;
-            cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: Rechazado`;
-            // Al rechazarse, Ventas debe manejar el pedido
-        }
-=======
     let contenedorPedidoAqui = document.getElementById(idPedido)
     if(!contenedorPedidoAqui.innerHTML.includes("pendiente")){
         return alert("Pedido invalido para procesar")
@@ -394,7 +329,6 @@ botonProcesar.addEventListener("click" , async () => {
         let cardMesaStatus = cardMesa.lastElementChild;
         cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
         // Al aceptarse el pedido se considera (en la vista) que inicia la preparación
->>>>>>> master
     } catch (error) {
         console.error('Hubo un error al conectarse con la base de datos de ventas:', error);
     }
@@ -412,21 +346,6 @@ pedidosContainers.forEach(container => {
         // Efecto de seleccionado (Para permitir la selección de una sola carta a la vez)
         let otraVezMiDiv = document.querySelectorAll('.order-card');
         otraVezMiDiv.forEach(otraVezOrden => {
-<<<<<<< HEAD
-            if (!(otraVezOrden == e.target)){
-                otraVezOrden.classList.remove("clicked")
-            }
-        })
-        e.target.classList.toggle("clicked") 
-
-
-        // al id del contenedor que coincide con el id del pedido, se lo asignamos al variable global que guarda los id
-        let idStringCardSeleccionada = e.target.id
-        idPedido = idStringCardSeleccionada // Obtenemos el id del pedido
-
-        // Petición al controlador de mostrar pedido, que retorna los datos del mismo
-        fetch(`http://localhost:1234/comidas/mostrar-pedido?pedido_id=${idPedido}`, {
-=======
             if (!(otraVezOrden == e.currentTarget)){
                 otraVezOrden.classList.remove("clicked")
             }
@@ -445,21 +364,11 @@ pedidosContainers.forEach(container => {
 
         // Petición al controlador de mostrar pedido, que retorna los datos del mismo
         await fetch(`http://localhost:1234/cocina/mostrar-pedido?pedido_id=${idPedido}`, {
->>>>>>> master
             method: "GET",
             headers: {
                 "content-type": "aplication/json"
             }
         })
-<<<<<<< HEAD
-        .then(response => {response.json})
-        .then(data => {
-            // Se muestran los datos del pedido en la carta resumen
-
-            let pedido = data
-            let comidasPedido = JSON.parse(pedido.consumo) // Obtenemos el diccionario con los id de los platos y la cantidad
-
-=======
         .then( async response => { 
            let dato = await response.json()
             return dato
@@ -470,7 +379,6 @@ pedidosContainers.forEach(container => {
             let pedido = data[0]
             /* pedido.consumo sera un string que representara una lista de objetos que seran las comidas pedidas ejemplo '[{"id":2,"quantity":3,"price":10},{"id":8,"quantity":2,"price":10}]' */
             let listaComidas = JSON.parse(pedido.consumo) // aqui tendremos el arreglo de las comidas
->>>>>>> master
             let contenedorPedido = document.querySelector(".order-summary")
             contenedorPedido.innerHTML = "" // Se borra el contenido de la carta resumen de pedidos
 
@@ -485,35 +393,6 @@ pedidosContainers.forEach(container => {
             divPedido.innerHTML = "PEDIDO"
             contenedorPedido.appendChild(divPedido) // Se agrega el indicador "PEDIDO"
 
-<<<<<<< HEAD
-            Object.keys(comidasPedido).forEach(platoId => {
-                // Iteramos el diccionario de pedidos para encontrar sus nombres
-
-                let res = fetch(`http://localhost:1234/comidas/${platoId}`) // Petición al modelo comidas que retorna al receta
-                let nombrePlato = res.json()
-                
-                let divItem = document.createElement("div")
-                divItem.className = "order-item" // div que almacena el nombre y cantidad de platos
-
-                let itemName = document.createElement("span")
-                itemName.className = "item-name"
-                itemName.innerHTML = `${nombrePlato.nombre}` // span con el nombre del plato
-
-                let itemDetail = document.createElement("span")
-                itemDetail.className = "item-detail"
-                itemDetail.innerHTML = `x${comidasPedido[platoId]}` // span con la cantidad del plato
-
-                divItem.appendChild(itemName)
-                divItem.appendChild(itemDetail)
-                contenedorPedido.appendChild(divItem)
-            })
-
-            // Se agrega el botón listo que (ya que se elimina tmb al inicio del evento)
-            let listoButton = document.createElement("button")
-            listoButton.className = "order-ready"
-            listoButton.value = "Listo"
-            contenedorPedido.appendChild(listoButton)
-=======
              // Array para almacenar todas las promesas de fetch
             let fetchPromises = listaComidas.map(async objetoComida => {
                 let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`);
@@ -555,7 +434,6 @@ pedidosContainers.forEach(container => {
             contenedorPedido.appendChild(listoButton)
             // se agrega su funcionalidad 
             agregarFuncionDelBotonListo()
->>>>>>> master
         })
         .catch(e => {
             console.error(`Error al acceder a la base de datos de pedidos (tabla de factura de ventas)`, e)
@@ -564,67 +442,30 @@ pedidosContainers.forEach(container => {
 })
 
 
-<<<<<<< HEAD
-// accedemos al boton listo
-=======
 function agregarFuncionDelBotonListo(){
     // accedemos al boton listo
->>>>>>> master
 const listoButton = document.querySelector(".order-ready")
 
 // le agregamos el evento al boton listo
 listoButton.addEventListener("click", async function () {
     // Evento que cambia el estado del pedido
 
-<<<<<<< HEAD
-    // accedemos al contenedor que contiene el pedido seleccionado
-    let cardSeleccionada = document.getElementById(idPedido.toString())
-=======
     
->>>>>>> master
 
     if (idPedido === ""){
         // Se verifica que haya un pedido seleccionado
         alert("Seleccione un pedido")
         return null
     }
-<<<<<<< HEAD
-    else if (!cardSeleccionada.innerHTML.includes("preparando")){
-=======
 
     // accedemos al contenedor que contiene el pedido seleccionado
     let cardSeleccionada = document.getElementById(idPedido.toString())
 
     if (!cardSeleccionada.innerHTML.includes("preparando")){
->>>>>>> master
         // Se verifica que el pedido no tenga el estatus de rechazado, pendiente o listo
         alert("Pedido invalido para ponerlo en listo")
         return null
     }
-<<<<<<< HEAD
-    // Petición al controlador de pedidos que cambia el estado del pedido a listo
-    fetch(`http://localhost:1234/comidas/pedido-listo?pedido_id=${idPedido}`, {
-            method: "GET",
-            headers: {
-                "content-type": "aplication/json"
-            }
-        })
-    .then(response => {response.json})
-    .then(() => {
-        let cardPedido = document.getElementById(`${idPedido}`)
-        cardPedido.classList.remove("ocupado")
-        let cardPedidoStatus = cardPedido.lastElementChild;
-        cardPedidoStatus.innerHTML = `ID pedido: ${idPedido}<br>Estatus: listo`; // Se muestra el cambio en la view
-        idPedido = ""
-
-        quitarEstatusClickeado()
-        vaciarFichaLateralDerecha()
-    })
-    .catch(e => {
-        console.error(`Error al acceder al pedido.`, e)
-    })
-})
-=======
 
     const cambio = {status_pedido: 4}
     const requestOptions = {
@@ -650,15 +491,10 @@ listoButton.addEventListener("click", async function () {
 })
 }
 agregarFuncionDelBotonListo()
->>>>>>> master
 
 // le agregamos un evento al boton devolver, que sirve para quitar de las vistas las ordenes rechazadas
 let devolverBoton = document.querySelector("#botonDevolver")
 devolverBoton.addEventListener("click" , async ()=>{
-<<<<<<< HEAD
-    console.log("hola")
-=======
->>>>>>> master
     // Evento que elimina de la carta seleccionada un pedido
 
     if (idPedido == ""){
@@ -669,18 +505,6 @@ devolverBoton.addEventListener("click" , async ()=>{
 
     // si el pedido no ha sido rechazado entonces no se puede devolver
     if (!cardSeleccionada.innerHTML.includes("rechazado")){
-<<<<<<< HEAD
-        alert("Solo se pueden devolver pedidos que hayan sido rechazados")
-    }
-
-    let cardPedido = document.getElementById(`${idPedido}`)
-    cardPedido.classList.remove("ocupado")
-    let cardPedidoStatus = cardPedido.lastElementChild;
-    cardPedidoStatus.textContent = ``;
-    idPedido = ""
-    quitarEstatusClickeado()
-    vaciarFichaLateralDerecha()
-=======
         return alert("Solo se pueden devolver pedidos que hayan sido rechazados")
     }
 
@@ -693,7 +517,6 @@ devolverBoton.addEventListener("click" , async ()=>{
     quitarEstatusClickeado()
     vaciarFichaLateralDerecha()
     agregarFuncionDelBotonListo()
->>>>>>> master
 })
 
 
@@ -705,50 +528,15 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
         alert("Seleccione un pedido")
         return null
     }
-<<<<<<< HEAD
-=======
     let contenedorPedidoAqui = document.getElementById(idPedido)
     if(!contenedorPedidoAqui.innerHTML.includes("preparando")){
         return alert("Pedido invalido para procesa de nuevo")
     }
->>>>>>> master
 
     if (confirm("¿Estas seguro que deseas volver a procesar el pedido?")){
     
         try {
             let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
-<<<<<<< HEAD
-        
-            // hacemos una petición a este endpoint para verificar si se puede procesar el pedido
-            let response = await fetch(`http://localhost:1234/comidas/procesar-pedido?pedido_id=${idCardSeleccionada}`);
-        
-            if (!response.ok) {
-                throw new Error('La solicitud no pudo completarse correctamente');
-            }
-        
-            let pedido = await response.json(); // obtenemos el pedido retornado por el controlador
-        
-            // si el estado del pedido es 3, se acepta el pedido y se puede preparar
-            if (pedido.status_pedido === 3) {
-                // se obtiene el contenedor del pedido seleccionado
-                let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
-                let cardMesaStatus = cardMesa.lastElementChild;
-                cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: preparando`;
-                alert("Si se cuenta con los recursos para volver a preparar el pedido");
-            }
-            // si el estado del pedido es 2, se rechaza el pedido por falta de recursos
-            else if (pedido.status_pedido === 2) {
-                alert("No se cuenta con los recursos para realizar de nuevo este pedido");
-                let cardMesa = document.querySelector(`#${idCardSeleccionada}`);
-                let cardMesaStatus = cardMesa.lastElementChild;
-                cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: Rechazado`;
-                // Al rechazarse, Ventas debe manejar el pedido
-            }
-        } catch (error) {
-            console.error('Hubo un problema al procesar el pedido:', error);
-        }
-        
-=======
     
             const response1 = await fetch(`http://localhost:1234/ventas/factura/${idCardSeleccionada}`)
             if (!response1.ok) {
@@ -922,7 +710,6 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
         } catch (error) {
             console.error('Hubo un error al conectarse con la base de datos de ventas:', error);
         }
->>>>>>> master
     }
 })
 
@@ -938,9 +725,6 @@ function quitarEstatusClickeado(){
 // vacia la ficha lateral derecha que muestra la info del pedido
 function vaciarFichaLateralDerecha() {
     let contenedorPedido = document.querySelector(".order-summary")
-<<<<<<< HEAD
-    contenedorPedido.innerHTML = "" // Se borra el contenido de la carta resumen de pedidos
-=======
     contenedorPedido.innerHTML = `<h3 class="order-number">Pedido ID:</h3>
                     <div class="order-type">PEDIDO</div>
                     <div class="order-item">
@@ -971,7 +755,6 @@ function vaciarFichaLateralDerecha() {
     
     /*
     // Se borra el contenido de la carta resumen de pedidos
->>>>>>> master
 
     let elementoH3 = document.createElement("h3")
     elementoH3.className = "order-number"
@@ -983,9 +766,6 @@ function vaciarFichaLateralDerecha() {
     divPedido.className = "order-type"
     divPedido.innerHTML = "PEDIDO"
     contenedorPedido.appendChild(divPedido) // Se agrega el indicador "PEDIDO"
-<<<<<<< HEAD
-}
-=======
 
     */
 }
@@ -1071,4 +851,3 @@ function completarTamañoFicha(){
            
           });
     }
->>>>>>> master

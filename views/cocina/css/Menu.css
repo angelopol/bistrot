@@ -207,11 +207,6 @@ transform: translateX(-556%) translateY(-348%) scale(0.6);
     border: none;
     color: #fff;
 }
-<<<<<<< HEAD
-.category-button:first-child {
-    margin-top: 0;
-}
-=======
 
 
 .verdecito:hover {
@@ -223,7 +218,6 @@ transform: translateX(-556%) translateY(-348%) scale(0.6);
     margin-top: 0;
 }
 
->>>>>>> master
 .category-button.entradas { background-color: #0f624a; }
 .category-button.platos-fuertes { background-color: #0f624a; }
 .category-button.vegetariano { background-color: #0f624a; }
