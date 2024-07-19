@@ -51,7 +51,7 @@ export class ControllerSalon {
 
         const { id } = req.params
 
-        const updated_salon = await VentasModel.update_salon({ id, input: req.body })
+        const updated_salon = await VentasModel.update_salon({ id, input: result.data })
 
         return res.json(updated_salon)
     }

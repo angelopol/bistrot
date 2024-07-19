@@ -20,33 +20,40 @@ console.log(pedidos_realizados_t);
 
 function limpiar_mesas_terraza(){
 
+    console.log(mesas_pagadas_terraza)
     if (mesas_pagadas_terraza.length > 0){
+    
+        pedidos_realizados_t.forEach((pedidos,index) => {
+            
+            mesas_pagadas_terraza.forEach((mesas,id_mesas) => {
 
-        mesas_pagadas_terraza.forEach(pedidos => {
-    
-            tableCards.forEach((mesas,id_mesas) => {
-    
-                // estatus pedidos
-                if (pedidos.mesa === String(id_mesas+1)){
-                    const tableStatusElement = mesas.querySelector('.table-status');
-                    tableStatusElement.textContent = 'DISPONIBLE';
-                    alert("Mesa", id_mid_mesasesa+1, "Limpiada")
-                    mesas_pagadas_terraza.splice(id_mesas,1)
-                    localStorage.setItem('mesas_pagadas_terraza', JSON.stringify(mesas_pagadas_terraza))
+                if (parseInt(pedidos.tableId) === mesas.mesa){
+                    
+                    //console.log("cont_pedidos", index)
+                    update_mesas_pagadas(id_mesas+1);
+                    pedidos_realizados_t.splice(index, 1);
+                    localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+                    console.log(pedidos_realizados_t)
+                    return;
                 }
             })
             
         })
-    
-        pedidos_realizados_t.forEach(pedidos => {
+
+        mesas_pagadas_terraza.forEach((pedidos, index) => {
     
             tableCards.forEach((mesas,id_mesas) => {
     
                 // estatus pedidos
-                if (pedidos.tableId === String(id_mesas+1)){
-                    update_mesas_pagadas(id_mesas+1);
-                    pedidos_realizados_t.splice(id_mesas, 1);
-                    localStorage.setItem('pedidos_t', JSON.stringify(pedidos_realizados_t));
+                if (pedidos.mesa === id_mesas+1){
+                    //console.log(index)
+                    const tableStatusElement = mesas.querySelector('.table-status');
+                    tableStatusElement.textContent = 'DISPONIBLE';
+                    alert(`Mesa ${pedidos.mesa} limpiada`)
+                    mesas_pagadas_terraza.splice(index,1)
+                    localStorage.setItem('mesas_pagadas_terraza', JSON.stringify(mesas_pagadas_terraza))
+                    console.log(mesas_pagadas_terraza)
+                    return;
                 }
             })
             
@@ -420,10 +427,10 @@ async function eliminar_pedido(id_mesa){
 }
 
 // llamamos una funcion una serie de tiempo para ver si (Cocina-bar) hizo una actualizacion en los estatus del pedido
-setInterval(actualizacion_pedidos, 20000); 
+setInterval(actualizacion_pedidos, 10000); 
 
 // llamamos una funcion una serie de tiempo para ver si la mesa ya pago y asi limpiarla
-setInterval(actualizacion_pedidos, 20000); 
+setInterval(limpiar_mesas_terraza, 5000); 
 
 
 // funcion para actualizar las mesas que ya pagaron su cuenta

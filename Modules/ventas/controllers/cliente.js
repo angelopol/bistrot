@@ -50,7 +50,7 @@ export class ControllerCliente {
 
         const { id } = req.params
 
-        const updated_cliente = await VentasModel.update_cliente({ id, input: req.body })
+        const updated_cliente = await VentasModel.update_cliente({ id, input: result.data })
 
         return res.json(updated_cliente)
     }

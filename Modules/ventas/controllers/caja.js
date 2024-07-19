@@ -49,7 +49,7 @@ export class ControllerCaja {
 
         const { id } = req.params
 
-        const updated_Ventas = await VentasModel.update_caja({ id, input: req.body })
+        const updated_Ventas = await VentasModel.update_caja({ id, input: result.data })
 
         return res.json(updated_Ventas)
     }

@@ -101,7 +101,7 @@ function changeTab(tab) {
     });
 
     cambiar(tab === 'tab1' ? 'General' : 'Terraza');
-    //recorrido_mesas(pedidos_realizados, pedidos_realizados_t);
+    recorrido_mesas(pedidos_realizados, pedidos_realizados_t);
 
 
 }
@@ -553,12 +553,16 @@ function limpiar_mesas(){
 
 // Recorridos de las mesas para la vista de General, Terrazas
 function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
+
     // Recorrer las mesas de la vista de terraza
     if (document.querySelector("#Terraza").classList.contains("visible")) {
+        
         pedido_mesas_terraza.forEach(pedidos => {
             tableCards2.forEach((mesas, mesas_id) => {
+                
                 // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
                 if (pedidos.estatus === 4 && pedidos.tableId === String(mesas_id + 1)) {
+                    
                     const tableStatusElement = mesas.querySelector('.table-status');
                     tableStatusElement.textContent = 'Cuenta';
 
@@ -570,10 +574,13 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
 
         // Recorrer la vista de los generales
     } else if (document.querySelector("#General").classList.contains("visible")) { 
+        
         pedidos_mesas_general.forEach(pedidos => { 
             tableCards.forEach((mesas, mesas_id) => {
+                
                 // Verificamos el estatus del pedido, si está listo se coloca el estatus para solicitar cuenta
                 if (pedidos.estatus === 4 && pedidos.tableId === String(mesas_id + 1)) {
+                    
                     const tableStatusElement = mesas.querySelector('.table-status');
                     tableStatusElement.textContent = 'Cuenta';
                 } else {
@@ -585,7 +592,7 @@ function recorrido_mesas(pedidos_mesas_general, pedido_mesas_terraza) {
 }
 
 // llamamos una funcion una serie de tiempo para ver si hizo una actualizacion en los estatus del pedido
-setInterval(recorrido_mesas(pedidos_realizados, pedidos_realizados_t), 20000); 
+setInterval(recorrido_mesas(pedidos_realizados, pedidos_realizados_t), 10000); 
 
 
 // funcion para guardar el registro del cliente en la base de datos

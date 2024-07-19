@@ -10,7 +10,6 @@ const origen = 'general';
 
 // obtener las mesas que ya han pagado su comida
 const mesas_pagadas_general = JSON.parse(localStorage.getItem('mesas_pagadas_general')) || [];
-console.log(mesas_pagadas_general)
 
 // Obtener los pedidos que se han realizado
 const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];
@@ -23,7 +22,25 @@ recorrido_mesas(pedidos_realizados)
 
 function limpiar_mesas_general(){
 
+    console.log(mesas_pagadas_general)
     if (mesas_pagadas_general.length > 0){
+    
+        pedidos_realizados.forEach((pedidos,index) => {
+            
+            mesas_pagadas_general.forEach((mesas,id_mesas) => {
+
+                
+                if (parseInt(pedidos.tableId) === mesas.mesa){
+                    
+                    update_mesas_pagadas(mesas.mesa);
+                    pedidos_realizados.splice(index, 1);
+                    localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
+                    console.log(pedidos_realizados)
+                    return;
+                }
+            })
+            
+        })
 
         mesas_pagadas_general.forEach((pedidos, index) => {
     
@@ -34,25 +51,11 @@ function limpiar_mesas_general(){
                     console.log(index)
                     const tableStatusElement = mesas.querySelector('.table-status');
                     tableStatusElement.textContent = 'DISPONIBLE';
+                    alert(`Mesa ${pedidos.mesa} limpiada`)
                     mesas_pagadas_general.splice(index,1)
                     localStorage.setItem('mesas_pagadas_general', JSON.stringify(mesas_pagadas_general))
                     console.log(mesas_pagadas_general)
-                }
-            })
-            
-        })
-    
-        pedidos_realizados.forEach((pedidos,index) => {
-    
-            tableCards.forEach((mesas,id_mesas) => {
-    
-                // estatus pedidos
-                if (pedidos.tableId === id_mesas+1){
-                    console.log(index)
-                    update_mesas_pagadas(id_mesas+1);
-                    pedidos_realizados.splice(index, 1);
-                    localStorage.setItem('pedidos', JSON.stringify(pedidos_realizados));
-                    console.log(pedidos_realizados)
+                    return;
                 }
             })
             
