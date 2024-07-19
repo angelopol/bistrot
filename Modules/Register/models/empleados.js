@@ -1,43 +1,46 @@
 import connection from "../../RRHH/conexion.js";
+
 export class EmpleadosModel {
   static async create({ input }) {
-    const {
-      nombre,
-      clave_usuario,
-      cedula,
-      codigo_empleado,
-      puesto,
-    } = input;
-    //y asi vas agregando todas 
-    console.log(puesto,"es")
+    const { nombre, clave_usuario, cedula, codigo_empleado, puesto, apellido } = input;
+    console.log('Input:', JSON.stringify(input));  // Depuración de entrada
 
     try {
       await connection.query(
-        `INSERT INTO empleados (nombre, clave_usuario, cedula, codigo_empleado, puesto)
-          VALUES (?, ?, ?, ?, ?);`,
-        [nombre, clave_usuario, cedula, codigo_empleado, puesto]
+        `INSERT INTO empleados (nombre, clave_usuario, cedula, codigo_empleado, puesto, apellido)
+         VALUES (?, ?, ?, ?, ?, ?);`,
+        [nombre, clave_usuario, cedula, codigo_empleado, puesto, apellido]
       );
     } catch (e) {
-      console.log(e);
+      console.error('Error creating empleado:', e);  // Imprimir el error completo
       throw new Error('Error creating empleado');
     }
   }
 
   static async find({ nombre }) {
-    const [rows] = await connection.query(
-      `SELECT * FROM empleados WHERE nombre = ?;`,
-      [nombre]
-    );
-    return rows[0];
+    try {
+      const [rows] = await connection.query(
+        `SELECT * FROM empleados WHERE nombre = ?;`,
+        [nombre]
+      );
+      return rows[0];
+    } catch (e) {
+      console.error('Error finding empleado:', e);  // Imprimir el error completo
+      throw new Error('Error finding empleado');
+    }
   }
 
   static async unique({ nombre }) {
-    const [rows] = await connection.query(
-      `SELECT nombre FROM empleados WHERE nombre = ?;`,
-      [nombre]
-    );
-    if (rows.length > 0) return false;
-    return true;
+    try {
+      const [rows] = await connection.query(
+        `SELECT nombre FROM empleados WHERE nombre = ?;`,
+        [nombre]
+      );
+      return rows.length === 0;
+    } catch (e) {
+      console.error('Error checking uniqueness of empleado:', e);  // Imprimir el error completo
+      throw new Error('Error checking uniqueness of empleado');
+    }
   }
 
   static async delete({ id }) {
@@ -47,32 +50,29 @@ export class EmpleadosModel {
         [id]
       );
     } catch (e) {
-      console.log(e);
+      console.error('Error deleting empleado:', e);  // Imprimir el error completo
       throw new Error('Error deleting empleado');
     }
   }
 
   static async update({ id, input }) {
-    const {
-      nombre,
-      clave_usuario,
-      // Agrega otros campos aquí y arriba
-    } = input;
+    const { nombre, clave_usuario, cedula, codigo_empleado, puesto } = input;
+    console.log('Update Input:', JSON.stringify(input));  // Depuración de entrada
 
     try {
       await connection.query(
         `UPDATE empleados SET
           nombre = ?,
+          apellido = ?,
           clave_usuario = ?,
           cedula = ?,
           codigo_empleado = ?,
-          -- Agrega otros campos aquí según sea necesario
+          puesto = ?,
           WHERE id = ?;`,
-        [nombre, clave_usuario, id, cedula, codigo_empleado]
-        // Agrega otros campos aquí y arriba
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, id]
       );
     } catch (e) {
-      console.log(e);
+      console.error('Error updating empleado:', e);  // Imprimir el error completo
       throw new Error('Error updating empleado');
     }
   }

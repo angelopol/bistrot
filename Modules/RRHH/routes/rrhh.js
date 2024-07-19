@@ -12,6 +12,7 @@ export const createRRHHRouter = () => {
   RRHHRouter.get('/form', controlador.form);
   RRHHRouter.get('/entradas', controlador.entradas);
   RRHHRouter.get('/ausensias', controlador.ausensias);
+  RRHHRouter.get('/baja', controlador.baja);
 
   // Para los estilos
   RRHHRouter.get('/assets/style.css', controlador.GetStyle);

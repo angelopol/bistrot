@@ -50,16 +50,6 @@
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9902f1c16af56e6c7ea24d201e76d77657ebc5769994165240feb6861cdfbc7e?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reports icon" class="nav-icon" loading="lazy">
                         <span class="nav-text">Reportes</span>
                     </li>
-                    <li class="nav-item">
-                        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/24c6e997e8d79345382a5dec7f629f61217e270de7c0903529b6f377fec8320a?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Settings icon" class="nav-icon" loading="lazy">
-                        <span class="nav-text">Configuraciones</span>
-                    </li>
-                    <li class="help-item">
-                        <div class="help-icon-wrapper">
-                            <div class="help-icon">?</div>
-                        </div>
-                        <span class="nav-text">Ayuda</span>
-                    </li>
                 </ul>
             </nav>
 
@@ -79,24 +69,31 @@
                             <section class="results-table">
                                 <div class="table-container" id="employeeTable">
                                     <!-- Los datos de los empleados se insertarán aquí -->
-
-
-
-
-                                    <div class="table-actions">
-                                        <button class="action-add"><a href="form"> Agregar empleado</a></button>
-                                        <button class="action-view" id="verEmpleado">Ver</button>
-                                        <button class="action-view" id="eliminarEmpleado">Baja de empleado</button>
-                                        <button class="action-view"><a href="entradas"> Registro de llegada y salida </a></button>
+                                    <div class="table-header">
+                                        <span class="header-name">Nombre y Apellido</span>
+                                        <div class="header-details">
+                                          <span>Código</span>
+                                          <span>Cargo</span>
+                                        </div>
                                     </div>
+                                    
                                 </div>
                             </section>
                         </div>
+                    </div>
+                    <div class="table-actions">
+                        <button class="action-add"><a href="form">Agregar</a></button>
+                        <!-- <button class="action-view" id="verEmpleado">Ver</button> -->
+                        <button class="action-baja" id="eliminarEmpleado"><a href="baja">Eliminar</a></button>
+                        <button class="action-ES"><a href="entradas">Registro</a></button>
                     </div>
                 </div>
             </main>
         </div>
     </div>
+
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('http://localhost:1234/rrhh/empleados')
@@ -107,11 +104,11 @@
                         const row = document.createElement('div');
                         row.classList.add('table-row');
                         row.innerHTML = `
-                            <span class="row-id">${employee.id}</span>
                             <span class="row-name">${employee.nombre} ${employee.apellido}</span>
+                            <span class="row-name">${employee.codigo}</span>
                             <span class="row-puesto">${employee.puesto}</span>
-                            <span class="row-telefono">${employee.telefono}</span>
-                            <span class="row-direccion">${employee.direccion}</span>
+                            <button class="action-view" id="verEmpleado">Ver</button>
+
                         `;
                         tableContainer.appendChild(row);
                     });
