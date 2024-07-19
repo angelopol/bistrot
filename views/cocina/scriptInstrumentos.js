@@ -8,7 +8,7 @@ input.addEventListener('input', function () {
     const value = input.value.trim();
     const numericValue = parseFloat(value);
 
-    if (isNaN(numericValue) || numericValue < 1) {
+    if (isNaN(numericValue) || numericValue < 1 || numericValue > 24) {
         input.value = ''; // Borra el contenido
     }
 });

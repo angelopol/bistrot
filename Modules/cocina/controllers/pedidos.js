@@ -110,7 +110,7 @@ export class PedidoController {
 
                 //actualizacmos el pedido en base de datos
                 const requestOptions = {
-                    method: 'PUT', 
+                    method: 'PATCH', 
                     headers: {
                     'Content-Type': 'application/json' 
                     },
@@ -201,7 +201,7 @@ export class PedidoController {
 
                         //actualizacmos el pedido en base de datos
                         const requestOptions = {
-                            method: 'PUT', 
+                            method: 'PATCH', 
                             headers: {
                             'Content-Type': 'application/json' 
                             },
@@ -318,7 +318,7 @@ export class PedidoController {
 
         //actualizacmos el pedido en base de datos
         const requestOptions = {
-            method: 'PUT', 
+            method: 'PATCH', 
             headers: {
             'Content-Type': 'application/json' 
             },
@@ -407,7 +407,7 @@ export class PedidoController {
 
         //actualizacmos el pedido en base de datos
         const requestOptions = {
-            method: 'PUT', 
+            method: 'PATCH', 
             headers: {
             'Content-Type': 'application/json' 
             },

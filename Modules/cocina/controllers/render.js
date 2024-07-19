@@ -6,6 +6,9 @@ export class RenderController{
     renderCocinaAbierta = async (req, res) => {
         res.render("cocina/cocinaAbiertaProduciendo");
     }
+    renderBarAbierto = async (req, res) => {
+        res.render("cocina/BarAbiertoProduciendo")
+    }
     renderInstrumentos = async (req, res) => {
         res.render("cocina/instrumentos");
     }

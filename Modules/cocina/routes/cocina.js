@@ -32,6 +32,7 @@ export const createCocinaRouter = () => {
     // Renderizado de vistas??
     cocinaRouter.get("/produccion", renderController.renderProduccion)
     cocinaRouter.get("/cocinaAbiertaProduciendo", renderController.renderCocinaAbierta)
+    cocinaRouter.get("/BarAbiertoProduciendo", renderController.renderBarAbierto)
     cocinaRouter.get("/instrumentos", renderController.renderInstrumentos)
     cocinaRouter.get("/menu", renderController.renderEntradas)
     cocinaRouter.get("/Entradas", renderController.renderEntradas)
