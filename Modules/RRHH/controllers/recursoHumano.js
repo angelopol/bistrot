@@ -26,6 +26,10 @@ export class RecursosHumanos {
         res.render('rrhh/ausensias')
     }
 
+    baja = async (req, res) => {
+        res.render('rrhh/baja')
+    }
+
     GetStyle = async (req, res) => {
         res.sendFile(process.cwd() + '/views/rrhh/css/styles.css')
     }

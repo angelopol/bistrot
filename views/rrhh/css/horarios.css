@@ -1,6 +1,7 @@
-h2{
+.listaEmpleados{
     padding-left: 30px;
     font-family: sans-serif;
+    font-size: 40px;
 }
 
 
@@ -25,7 +26,6 @@ h2{
 .lista{
     margin: 20px;
     padding:20px;
-    border: 1px solid #000;
     border-radius: 10px;
     height: 250px;
     transform: translate(150px, 50px);

@@ -68,24 +68,31 @@
                             <section class="results-table">
                                 <div class="table-container" id="employeeTable">
                                     <!-- Los datos de los empleados se insertarán aquí -->
-
-
-
-
-                                    <div class="table-actions">
-                                        <button class="action-add"><a href="form"> Agregar empleado</a></button>
-                                        <button class="action-view" id="verEmpleado">Ver</button>
-                                        <button class="action-view" id="eliminarEmpleado">Baja de empleado</button>
-                                        <button class="action-view"><a href="entradas"> Registro de llegada y salida </a></button>
+                                    <div class="table-header">
+                                        <span class="header-name">Nombre y Apellido</span>
+                                        <div class="header-details">
+                                          <span>Código</span>
+                                          <span>Cargo</span>
+                                        </div>
                                     </div>
+                                    
                                 </div>
                             </section>
                         </div>
+                    </div>
+                    <div class="table-actions">
+                        <button class="action-add"><a href="form">Agregar</a></button>
+                        <!-- <button class="action-view" id="verEmpleado">Ver</button> -->
+                        <button class="action-baja" id="eliminarEmpleado"><a href="baja">Eliminar</a></button>
+                        <button class="action-ES"><a href="entradas">Registro</a></button>
                     </div>
                 </div>
             </main>
         </div>
     </div>
+
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('http://localhost:1234/rrhh/empleados')
@@ -96,11 +103,11 @@
                         const row = document.createElement('div');
                         row.classList.add('table-row');
                         row.innerHTML = `
-                            <span class="row-id">${employee.id}</span>
                             <span class="row-name">${employee.nombre} ${employee.apellido}</span>
+                            <span class="row-name">${employee.codigo}</span>
                             <span class="row-puesto">${employee.puesto}</span>
-                            <span class="row-telefono">${employee.telefono}</span>
-                            <span class="row-direccion">${employee.direccion}</span>
+                            <button class="action-view" id="verEmpleado">Ver</button>
+
                         `;
                         tableContainer.appendChild(row);
                     });

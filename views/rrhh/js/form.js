@@ -3,7 +3,7 @@ document.getElementById('submit-button').addEventListener('click', function(even
 
     const formData = {
       cedula: document.getElementById('id-number').value,
-      codigoEmpleado: document.getElementById('employee-code').value,
+      codigo_empleado: document.getElementById('employee-code').value,
       nombre: document.getElementById('first-name').value,
       apellido: document.getElementById('last-name').value,
       direccion: document.getElementById('address').value,
@@ -39,7 +39,7 @@ document.getElementById('submit-button').addEventListener('click', function(even
       fecha_culminacion: formData.fecha_culminacion,
       horas: formData.horas,
       cedula: formData.cedula,
-      codigo_empleado: formData.codigoEmpleado,
+      codigo_empleado: formData.codigo_empleado,
       clave_usuario: formData.clave_usuario
     };
 

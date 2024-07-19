@@ -85,6 +85,7 @@ export class EmpleadosModel {
       await connection.query(
         `UPDATE empleados SET
           nombre = ?,
+          apellido = ?,
           clave_usuario = ?,
           cedula = ?,
           codigo_empleado = ?,
