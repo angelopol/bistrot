@@ -14,12 +14,13 @@ var chart = new Chart(miCanvas,{
             {
                 label:"Ventas de la semana",
                 backgroundColor:"#0F624A",
-                data:[10,30,25,30,23,10,6]
+                data:[12,15,20,21,23,30,13]
             }
         ]
     }
 });
 
+let suma = 0;
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -61,11 +62,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let egresos = 0;  // egresos del restaurante
 
     // obtenemos los ingresos del dia de todas las ventas
-    const ingresos_de_las_ventas = obtener_ingresos_totales_ivas() // obtenemos los ingresos del dia
-
+    let ingresos_de_las_ventas =  0;// obtenemos los ingresos del dia
+    obtener_ingresos_totales_ivas()
     btn_monto_apertura.addEventListener("click", () => {
         // obtenemos el valor del campo de texto
-        
         valorInput_apertura = input_monto_apertura.value;
         fecha_apertura = input_fecha_apertura.value;
 
@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     
 
     btn_monto_cierre.addEventListener("click", () => {
+        
 
         if(valorentrada !== null && fecha_apertura !== null && valorInput_apertura !== null && ingresos_de_las_ventas !== null){
     
@@ -105,7 +106,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             alert("Fecha: " + fecha_cierre);
             estadoCaja.innerHTML = `<h3>Estado de la caja: ${estado}</h3>`;
 
-            console.log(ingresos_de_las_ventas)
             crear_caja(valorentrada,fecha_apertura,fecha_cierre,valorInput_apertura,ingresos_de_las_ventas,egresos)
 
             if(input_monto_apertura.style.display === "none"){
@@ -143,52 +143,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         alert('Tasa del día guardada: ' + valorentrada);
     });
 
-    // Función para actualizar la pantalla con las ventas
-
-    /*
-    function actualizarVentas() {
-        const ventas = JSON.parse(localStorage.getItem('ventas') || '[]');
-        
-        const ventasDelDia = ventas.filter(venta => venta.fecha === new Date().toLocaleDateString());
-        const ventasDeLaSemana = ventas.filter(venta => {
-            const fechaVenta = new Date(venta.fecha);
-            const fechaActual = new Date();
-            const primerDiaDeLaSemana = new Date(fechaActual.setDate(fechaActual.getDate() - fechaActual.getDay()));
-            return fechaVenta >= primerDiaDeLaSemana;
-        });
-        const ventasDelMes = ventas.filter(venta => {
-            const fechaVenta = new Date(venta.fecha);
-            const fechaActual = new Date();
-            return fechaVenta.getMonth() === fechaActual.getMonth() && fechaVenta.getFullYear() === fechaActual.getFullYear();
-        });
-
-        ventasDia.innerHTML = `<h3>Ventas del Día</h3>${ventasDelDia.map(venta => `<p>${venta.valor}</p>`).join('')}`;
-        ventasSemana.innerHTML = `<h3>Ventas de la Semana</h3>${ventasDeLaSemana.map(venta => `<p>${venta.valor}</p>`).join('')}`;
-        ventasMes.innerHTML = `<h3>Ventas del Mes</h3>${ventasDelMes.map(venta => `<p>${venta.valor}</p>`).join('')}`;
-    }
-    
-    // Lógica para el botón "Registros"
-    btn_registro.addEventListener('click', () => {
-        const valorRegistro = registro.value.trim();
-
-        if (valorRegistro) {
-            const ventas = JSON.parse(localStorage.getItem('ventas') || '[]');
-            const nuevaVenta = {
-                valor: valorRegistro,
-                fecha: new Date().toLocaleDateString()
-            };
-            ventas.push(nuevaVenta);
-            localStorage.setItem('ventas', JSON.stringify(ventas));
-
-            alert('El valor ha sido guardado: ' + valorRegistro);
-            registro.value = '';
-
-            actualizarVentas();
-        } else {
-            alert('Por favor, ingresa un valor.');
-        }
-    });
-    */
 
 });
 
@@ -242,7 +196,7 @@ async function obtener_ingresos_totales_ivas(){
 
             // vamos a obtener las ventas que tenga el status 5 ya que eso significa que ya el cliente pago
             if (pedido.status_pedido === 5){
-                alert("Hola")
+                
                 ingresos.push(parseFloat(pedido.iva))
             }
             
@@ -255,9 +209,9 @@ async function obtener_ingresos_totales_ivas(){
     }
 
     // retornamos los ingresos totales
-    suma = sumarElementos(ingresos)
-    console.log(suma)
-    return suma;
+    ingresos_de_las_ventas = sumarElementos(ingresos)
+    console.log(ingresos_de_las_ventas)
+    
 }
 
 

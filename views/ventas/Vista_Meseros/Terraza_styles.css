@@ -431,3 +431,37 @@ body {
     margin-top: 20px;
     padding-top: 10px;
 }
+
+
+.restaurant-header {
+    background-color: #013D1F;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 15vh;
+}
+
+#title {
+    font-family: 'Montserrat';
+    font-size: 1.4rem;
+    margin-right: 45%;
+}
+
+#title-combo {
+    appearance: none;
+    color: white;
+    background-color: #013D1F;
+    border-radius: 2px;
+    padding: 10px;
+    width: 15%;
+    outline: none;
+}
+
+.orders-icon{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
+}

@@ -296,14 +296,18 @@ main {
     box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
 }
 
-
+.opciones-mesas {
+    width: 55px; /* Ancho del select */
+    padding: 10px; /* Espaciado interno */
+    border: 2px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Color de fondo */
+    color: #333; /* Color del texto */
+    font-size: 15px; /* Tamaño de la fuente */
+}
 
 .sidebar-right {
     width: 25%;
-    margin: 20px;
-    margin-top: 65px;
-    
-    
 }
 
 @media (max-width: 991px) {
@@ -323,10 +327,9 @@ main {
     color: #fff;
     font-weight: 500;
     line-height: 150%;
-    margin: 70px auto 0;
+    margin: 10px;
     padding: 18px;
-    margin-top: 10px;
-    gap: 15px;
+    gap: 5px;
 }
 
 
@@ -437,6 +440,12 @@ main {
     cursor: pointer;
     border-width: 0.5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
 }
 
 @media (max-width: 991px) {

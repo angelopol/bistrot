@@ -72,7 +72,9 @@
                 <button class="action-button" id="openModal1">Apertura/Cierre</button>
                 <button class="action-button" id="openModal2">Tasa del dia</button>
                 <button class="action-button" id="openModal3">Presupuestos</button>
-                <button class="action-button" id="openModal5">Registros</button>
+                <a target="_self" href="/ventas/Vista_Caja/caja" class="action-button">Caja</a>
+                <a target="_self" href="/ventas/Vista_Meseros/meseros_general" class="action-button">Mesero Salon</a>
+                <a target="_self" href="/ventas/Vista_Meseros/meseros_terraza" class="action-button">Mesero Terraza</a>
 
                 <section id="menu-apertura/cierre visible">
 
@@ -108,7 +110,7 @@
                         <form id="presupuestoForm">
                             <div class="item">
                                 <label for="mesaSalon">Cantidad de mesas de Salón:</label>
-                                <select id="mesaSalon">
+                                <select id="mesaSalon" class="opciones-mesas">
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -123,7 +125,7 @@
                             </div>
                             <div class="item">
                                 <label for="mesaTerraza">Cantidad de mesas de Terraza:</label>
-                                <select id="mesaTerraza">
+                                <select id="mesaTerraza" class="opciones-mesas">
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -137,31 +139,7 @@
                             <button class="btn-caja btn-presupuesto" id="calcularBtn">Calcular</button>
                         </div>
                     </div>
-                </div>
-                
-                <div id="modal5" class="modal">
-                  <div class="modal-content">
-                      <span class="closeBtn" data-modal="modal5">&times;</span>
-                      <h2>Registros</h2>
-
-                      <div id="table-container"></div>
-
-                      <div class="content-center">
-                        <label>Ingresos</label>
-                        <label class="ingresos_labels"></label>
-                        <label>Egresos</label>
-                        <label class="egresos_labels"></label>
-                      </div>
-
-                  </div>
-                </div>
-
-                <div id="ventas-container">
-                  <h2>Ventas del Día, Semana y Mes</h2>
-                  <div id="ventas-dia"></div>
-                  <div id="ventas-semana"></div>
-                  <div id="ventas-mes"></div>
-                </div>
+                </div> 
 
                 </section>
                 </div>

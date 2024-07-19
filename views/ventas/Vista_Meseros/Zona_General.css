@@ -30,6 +30,22 @@ body {
     box-sizing: border-box;
 }
 
+.main-content {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 20px;
+    overflow-x: hidden; 
+}
+
+.orders-icon{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
+}
+
 
 .restaurant-title {
     letter-spacing: -1%;
@@ -198,7 +214,7 @@ body {
 }
 
 .titulos{
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
     width: 200px;
 }
