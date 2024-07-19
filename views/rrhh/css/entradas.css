@@ -8,6 +8,10 @@
 
 body{
     margin: 0px;
+    overflow: hidden;
+
+    
+    
 }
 
 .header { 
@@ -73,7 +77,7 @@ body{
     align-items: center;
     justify-content: center;
     height: 100%;
-    transform: translate(500px, -830px);
+    transform: translate(500px, -630px);
 }
 
 .employee-registration {
@@ -99,11 +103,13 @@ body{
     margin-top: 37px;
     gap: 20px;
     justify-content: space-between;
+    transform: translateX(-100px);
 }
   
 .form-group {
     display: flex;
     flex-direction: column;
+    
 
 }
   
@@ -278,3 +284,5 @@ body{
       padding: 16px 20px;
     }
 }
+
+
