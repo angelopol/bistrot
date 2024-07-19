@@ -29,7 +29,7 @@ const validacion_reserva = z.object({
         invalid_type_error: 'La ubicación debe ser un string'
     }).max(50, {message: 'La ubicación debe tener menos de 50 caracteres'}),
 
-    idmesa:z.string().regex(/^\d+$/)
+    idmesa:z.string()
 
 
 })

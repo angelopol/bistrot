@@ -79,7 +79,7 @@
                     </div>
                     <div class="form-group">
                         <label for="idmesa">Número de mesa:</label>
-                        <input type="text" id="idmesa" name="idmesa" >
+                        <input type="text" id="idmesa" name="idmesa" readonly>
                     </div>
                     <div class="form-group">
                         <label for="idtelefono">Teléfono:</label>
@@ -100,6 +100,9 @@
     </div>
 
     <script>
+
+        //recuperar las mesas seleccionadas y mostrarlas en el campo de numero de mesa
+        
         document.addEventListener("DOMContentLoaded", function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById("fecha").setAttribute("min", today);
@@ -116,6 +119,24 @@
 
                     const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button => button.textContent);
                     document.getElementById("idmesa").value = selectedButtons.join(", ");
+
+                    localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
+                });
+            });
+
+            //funcion que recupera las zona seleccionadas y las muestra en el campo de zona
+
+            
+            buttons.forEach(button => {
+                button.addEventListener("click", function() {
+                    if (button.classList.contains("selected")) {
+                        button.classList.remove("selected");
+                    } else {
+                        button.classList.add("selected");
+                    }
+
+                    const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button => button.textContent);
+                    document.getElementById("zona").value = selectedButtons.join(", ");
 
                     localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
                 });
@@ -278,6 +299,8 @@
                         document.getElementById("hora_fin").setCustomValidity("");
                     }
                 }
+
+            
 
 
             

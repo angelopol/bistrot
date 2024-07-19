@@ -55,74 +55,107 @@
                 <div class="arriba">
                     <div class="interior">
                         <h3>Interior</h3>
-                        <div class="button" data-number="1">1</div>
-                        <div class="button" data-number="2">2</div>
-                        <div class="button" data-number="3">3</div>
-                        <div class="button" data-number="4">4</div>
-                        <div class="button" data-number="5">5</div>
-                        <div class="button" data-number="6">6</div>
-                        <div class="button" data-number="7">7</div>
-                        <div class="button" data-number="8">8</div>
-                        <div class="button" data-number="9">9</div>
+                        <div class="button" data-number="1" data-location="interior">1</div>
+                        <div class="button" data-number="2" data-location="interior">2</div>
+                        <div class="button" data-number="3" data-location="interior">3</div>
+                        <div class="button" data-number="4" data-location="interior">4</div>
+                        <div class="button" data-number="5" data-location="interior">5</div>
+                        <div class="button" data-number="6" data-location="interior">6</div>
+                        <div class="button" data-number="7" data-location="interior">7</div>
+                        <div class="button" data-number="8" data-location="interior">8</div>
+                        <div class="button" data-number="9" data-location="interior">9</div>
                     </div>
                     <div class="exterior">
                         <h3>Exterior</h3>
-                        <div class="button" data-number="10">10</div>
-                        <div class="button" data-number="11">11</div>
+                        <div class="button" data-number="10" data-location="exterior">10</div>
+                        <div class="button" data-number="11" data-location="exterior">11</div>
                     </div>
                 </div>
                 <div class="abajo">
                     <h3>Barra</h3>
-                    <div class="button" data-number="1">1</div>
-                    <div class="button" data-number="2">2</div>
-                    <div class="button" data-number="3">3</div>
-                    <div class="button" data-number="4">4</div>
-                    <div class="button" data-number="5">5</div>
+                    <div class="button" data-number="1" data-location="barra">1</div>
+                    <div class="button" data-number="2" data-location="barra">2</div>
+                    <div class="button" data-number="3" data-location="barra">3</div>
+                    <div class="button" data-number="4" data-location="barra">4</div>
+                    <div class="button" data-number="5" data-location="barra">5</div>
                 </div>
             </div>
             <button id="mesa">Seleccionar mesa</button>
+            <div id="mesas-container"></div>
         </div>
     </div>
 
     <script>
-
-        const mesas = document.getElementById("mesa");
-        mesas.addEventListener("click", function() {
-            window.location.href = "/CrearReservas";
-        });
         document.addEventListener("DOMContentLoaded", function() {
+            // Array para almacenar los números de mesa seleccionados
+            let selectedButtons = JSON.parse(localStorage.getItem("selectedButtons")) || [];
+            
+            // Set para almacenar las ubicaciones seleccionadas (interior, exterior, barra)
+            let selectedLocations = new Set();
 
-            //funcion que permite seleccionar varias mesas
-            const buttons = document.querySelectorAll(".button");
-            buttons.forEach(button => {
-                button.addEventListener("click", function() {
-                    if (button.classList.contains("selected")) {
-                        button.classList.remove("selected");
-                    } else {
+            // Función para actualizar la visualización de las mesas seleccionadas
+            function updateSelectedButtons() {
+                document.querySelectorAll(".button").forEach(button => {
+                    const number = button.getAttribute("data-number");
+                    if (selectedButtons.includes(number)) {
                         button.classList.add("selected");
+                    } else {
+                        button.classList.remove("selected");
                     }
                 });
-            });
-            //funcion que manda los numeros de las mesas seleccionadas y los manda al campo de numero de mesa de la vista CrearReservas
-            const mesas = document.getElementById("mesa");
-            mesas.addEventListener("click", function() {
-                const selectedButtons = document.querySelectorAll(".selected");
-                const selectedNumbers = [];
-                selectedButtons.forEach(selectedButton => {
-                    selectedNumbers.push(selectedButton.dataset.number);
+            }
+
+            // Cargar la selección almacenada al cargar la página
+            updateSelectedButtons();
+
+            // Añadir evento de clic a todos los botones de mesa
+            document.querySelectorAll(".button").forEach(button => {
+                button.addEventListener("click", function() {
+                    const number = this.getAttribute("data-number");
+                    const location = this.getAttribute("data-location");
+                    if (this.classList.contains("selected")) {
+                        this.classList.remove("selected");
+                        selectedButtons = selectedButtons.filter(btn => btn !== number);
+                        selectedLocations.delete(location);
+                    } else {
+                        this.classList.add("selected");
+                        selectedButtons.push(number);
+                        selectedLocations.add(location);
+                    }
+                    localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
                 });
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = "mesas";
-                input.value = selectedNumbers.join(",");
-                document.body.appendChild(input);
             });
-            
-            
-            
+
+            // Añadir evento al botón "Seleccionar mesas"
+            const mesaButton = document.getElementById("mesa");
+            mesaButton.addEventListener("click", function() {
+                const selectedNumbers = selectedButtons.join(",");
+                const selectedLocationsArray = Array.from(selectedLocations).join(",");
+
+                // Crear inputs ocultos para mesas y ubicaciones
+                const inputMesas = document.createElement("input");
+                inputMesas.type = "hidden";
+                inputMesas.name = "mesas";
+                inputMesas.value = selectedNumbers;
+
+                const inputLocations = document.createElement("input");
+                inputLocations.type = "hidden";
+                inputLocations.name = "zonas";
+                inputLocations.value = selectedLocationsArray;
+
+                // Adjuntar los inputs al elemento contenedor de mesas
+                const mesasContainer = document.getElementById("mesas-container");
+                mesasContainer.innerHTML = ""; // Limpiar contenido anterior si existe
+                mesasContainer.appendChild(inputMesas);
+                mesasContainer.appendChild(inputLocations);
+
+                console.log("Mesas seleccionadas:", selectedNumbers);
+                console.log("Zonas seleccionadas:", selectedLocationsArray);
+                
+                // Puedes realizar más acciones aquí, como enviar los datos a través de AJAX o redirigir
+                window.location.href = "/CrearReservas";
+            });
         });
     </script>
 </body>
 </html>
-
-

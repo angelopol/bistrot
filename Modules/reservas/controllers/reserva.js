@@ -33,7 +33,6 @@ export class ReservaController{
     }
         
     delete = async(req, res) =>{
-        console.log("progra web sueltame el brazooooo")
         const { id } = req.params
         const validacion = await ReservaModel.eliminar({id})
         
