@@ -12,14 +12,14 @@ export const createRRHHRouter = () => {
   RRHHRouter.get('/form', controlador.form);
   RRHHRouter.get('/entradas', controlador.entradas);
   RRHHRouter.get('/ausensias', controlador.ausensias);
-
+  RRHHRouter.get('/informe', controlador.informe);
   // Para los estilos
   RRHHRouter.get('/assets/style.css', controlador.GetStyle);
-  RRHHRouter.get('/assets/horarios.css', controlador.getStyle);
-  RRHHRouter.get('/assets/header.css', controlador.GetStyles);
-  RRHHRouter.get('/assets/form.css', controlador.getStyles);
-  RRHHRouter.get('/assets/entradas.css', controlador.getStyless);
-  RRHHRouter.get('/assets/ausensias.css', controlador.GetStyless);
+  RRHHRouter.get('/assets/horarios.css', controlador.GetStyle);
+  RRHHRouter.get('/assets/header.css', controlador.GetStyle);
+  RRHHRouter.get('/assets/form.css', controlador.GetStyle);
+  RRHHRouter.get('/assets/entradas.css', controlador.GetStyle);
+  RRHHRouter.get('/assets/ausensias.css', controlador.GetStyle);
 
   // Para los JS
   RRHHRouter.get('/assets/formulario', controlador.formulario);
@@ -33,7 +33,16 @@ export const createRRHHRouter = () => {
     } catch (err) {
       res.status(500).send(err);
     }
-  }); 
+  });
+
+  RRHHRouter.get('/entrada', async (req, res) => {
+    try {
+      const [results, fields] = await connection.query('SELECT id, cedula, hora_entrada FROM entradas');
+      res.json(results);
+    } catch (err) {
+      res.status(500).send(err)
+    }
+  });
 
   // Ruta para registrar empleados
   RRHHRouter.post('/empleados', async (req, res) => {

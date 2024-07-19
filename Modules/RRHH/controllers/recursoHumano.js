@@ -6,6 +6,9 @@ export class RecursosHumanos {
     create = async (req, res) => {
         res.render('rrhh/rrhh')
     }
+    informe = async (req, res) => {
+        res.render('rrhh/informe')
+    }
 
     horarios = async (req, res) => {
         res.render('rrhh/horarios')
