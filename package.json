@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start:mysql": "node --watch server-with-mysql.js",
-    "start:local": "node --watch server-with-local.js",
+    "start:local": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,12 +18,14 @@
     "cors": "2.8.5",
     "dotenv": "16.3.1",
     "ejs": "^3.1.10",
-    "express": "^4.18.2",
+    "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
     "mongodb": "^5.9.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.10.1",
+    "nodemon": "^3.1.4",
+    "yup": "^1.4.0",
     "zod": "^3.23.8"
   }
 }

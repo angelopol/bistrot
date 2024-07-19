@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/rrhh/assets/form.css">
+    <link rel="stylesheet" href="/rrhh/assets/style.css">
+    <title>Recursos Humanos</title>
+</head>
+<body>
+
+  <header class="header">
+    <h1 class="restaurant-name">BISTROT CHEZ RÉMY</h1>
+  </header>
+  
+  <div class="content-wrapper">
+    <div class="main-content">
+      <nav class="sidebar">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8aeb03e907893948abf056ea4cd71ca94895e19e6380045d3aaff552cb4b4116?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Home icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Inicio</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/07a7b3b0c82f76b259051b3c06e22579ada99c42b0bac25e83773ec5c9c15edc?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Sales icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Ventas/Salon</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a0fc2e002b9d26adb97ce39f9f1705d7df3e9a386ef4cbb45dc7f6a8bcff7895?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Purchases icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Compras</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/4b28cd707f6670c8eb27c51e2dc84c517381eb9a1292c051fdec16cfb5e5375b?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="HR icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">RRHH</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d06c0ce42016c9edd479c3398d1198fd645e2097b5d85e2d6008e6a588a30072?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Inventory icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Inventario</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-text">Mantenimiento</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/65420d7b2fa9eda8e903f8608c86b007d3391d54045913100876705c1962068d?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Kitchen icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Cocina/Bar</span>
+          </li>
+          <li class="nav-item">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dc6e42d71ff47b147816c83b4b0ca04935a942e5800885d2c3605a52a7a5eb51?apiKey=73f26e45aadd4c6daebacd128a11da2a&" alt="Reservations icon" class="nav-icon" loading="lazy">
+            <span class="nav-text">Reservas</span>
+          </li>
+          
+        </ul>
+      </nav>
+    
+      <main class="employee-registration">
+        <h1 class="page-title">Registro de Empleado</h1>
+        
+        <form id="employee-form" method="POST" action="">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cargo" class="form-label">Cargo</label>
+              <select class="form-input dropdown text" id="cargo" name="cargo">
+                <option value="" disabled selected>Seleccione un Cargo</option>
+                <option value="Gerente">Gerente</option>
+                <option value="Cajero">Cajero</option>
+                <option value="Cocinero">Cocinero</option>
+                <option value="Mesero">Mesero</option>
+                <option value="Bartender">Bartender</option>
+                <option value="Limpieza">Limpieza</option>
+              </select>      
+            </div>
+            
+            <div class="form-group">
+              <label for="start-date" class="form-label">Fecha inicio</label>
+              <input type="date" id="start-date" class="form-input" name="fecha_contratacion"/>
+            </div>
+
+            <script>
+              // validacion de que la fecha de inicio pueda ser la fecha actual o una fecha futura
+              // no se permite ingresar una fecha pasada
+              document.getElementById("start-date").addEventListener("input", function () {
+                  var today = new Date().toISOString().split('T')[0];
+                  if (this.value < today) {
+                      alert("La fecha de inicio no puede ser una fecha pasada");
+                      this.value = "";
+                  }
+              });
+          </script>
+           
+            <div class="form-group">
+              <label for="end-date" class="form-label">Fecha culminación</label>
+              <input type="date" id="end-date" class="form-input" name="fecha_culminacion"/>
+            </div>
+
+            <script>
+              // fecha de culminacion no puede ser menor a la fecha de inicio
+              document.getElementById("end-date").addEventListener("input", function () {
+                  var startDate = document.getElementById("start-date").value;
+                  if (this.value < startDate) {
+                      alert("La fecha de culminación no puede ser menor a la fecha de inicio");
+                      this.value = "";
+                  }
+              });
+
+              // si el usuario intenta meter primero la fecha de culminacion y luego la fecha de inicio, si la fecha de inicio es mayor a la fecha de culminacion, la fecha de culminacion se resetea
+              document.getElementById("start-date").addEventListener("input", function () {
+                  var endDate = document.getElementById("end-date").value;
+                  if (this.value > endDate) {
+                      document.getElementById("end-date").value = "";
+                  }
+              });
+            </script>
+
+            
+      
+            <div class="form-group">
+              <label for="salary" class="form-label">Salario (euros)</label>
+              <input type="number" id="salary" class="form-input" placeholder="000,00" step="0.01" name="salario"/>
+            </div>
+          </div>
+
+          <script>
+            // validacion salario no puede ser negativo
+            // no permite ingresar nada que no sea numeros, puntos y comas
+            // permite ingresar varios puntos
+
+            document.getElementById("salary").addEventListener("input", function () {
+                var salary = this.value;
+                var salaryPattern = /^[0-9.,]*$/;
+                if (!salaryPattern.test(salary)) {
+                    this.value = salary.slice(0, -1);
+                }
+                if (this.value < 0) {
+                    alert("El salario no puede ser negativo");
+                    this.value = "";
+                }
+            });
+          </script>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hours" class="form-label">Horas</label>
+              <select id="hours" class="form-input dropdown" name="horas">
+                <option value="" disabled selected>Seleccione una hora</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+          </div>
+
+          
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name" class="form-label">Nombre</label>
+              <input type="text" id="first-name" class="form-input" name="nombre"/>
+            </div>
+            <script>
+              //validar que el nombre y apellido no contengan números
+              // que si el usuario ingrese un numero, no se refleje en el input
+              // solo se permite ingresar letras y espacios   
+              document.getElementById("first-name").addEventListener("input", function () {
+                  var name = this.value;
+                  var namePattern = /^[a-zA-Z\s]*$/;
+                  if (!namePattern.test(name)) {
+                      this.value = name.slice(0, -1);
+                  }
+              });
+          </script>
+            
+            <div class="form-group">
+              <label for="last-name" class="form-label">Apellido</label>
+              <input type="text" id="last-name" class="form-input" name="apellido"/>
+            </div>
+            <script>
+              //validar que el nombre y apellido no contengan números
+              // que si el usuario ingrese un numero, no se refleje en el input
+              // solo se permite ingresar letras y espacios   
+              document.getElementById("last-name").addEventListener("input", function () {
+                  var name = this.value;
+                  var namePattern = /^[a-zA-Z\s]*$/;
+                  if (!namePattern.test(name)) {
+                      this.value = name.slice(0, -1);
+                  }
+              });
+          </script>
+      
+            <div class="form-group">
+              <label for="id-number" class="form-label">Cédula</label>
+              <input type="text" id="id-number" class="form-input" name="cedula"/>
+            </div>
+
+            <script>
+              // validacion cedula, solo permite ingresar numeros, sin espacios
+              // permite ingresar maximo 8 digitos
+              document.getElementById("id-number").addEventListener("input", function () {
+                  var idNumber = this.value;
+                  var idNumberPattern = /^[0-9]*$/;
+                  if (!idNumberPattern.test(idNumber)) {
+                      this.value = idNumber.slice(0, -1);
+                  }
+                  if (this.value.length > 8) {
+                      this.value = idNumber.slice(0, 8);
+                  }
+              });
+            </script>
+            
+            <div class="form-group">
+              <label for="phone" class="form-label">Teléfono</label>
+              <input type="tel" id="phone" class="form-input" placeholder="04120201212" name="telefono"/>
+            </div>
+          </div>
+          <script>
+            // validacion telefono, solo permite ingresar numeros, sin espacios
+            // permite ingresar maximo 11 digitos 
+            document.getElementById("phone").addEventListener("input", function () {
+                var phone = this.value;
+                var phonePattern = /^[0-9]*$/;
+                if (!phonePattern.test(phone)) {
+                    this.value = phone.slice(0, -1);
+                }
+                if (this.value.length > 11) {
+                    this.value = phone.slice(0, 11);
+                }
+            });
+          </script>
+          
+          <div class="form-group address-group">
+            <label for="address" class="form-label" style="transform: translateX(-100px);">Dirección</label>
+            <input type="text" id="address" class="form-input address-input" placeholder="Mañongo, cerca del CC Sambil calle 13" name="direccion"/>
+          </div>
+
+          <script>
+            // validar la direccion de residencia 
+            
+            // no me permita ingresar caracteres especiales, solamente la , y el espacio
+            document.getElementById("address").addEventListener("input", function () {
+                var address = this.value;
+                var addressPattern = /^[a-zA-Z0-9\s,ñÑ]*$/;
+                if (!addressPattern.test(address)) {
+                    this.value = address.slice(0, -1);
+                }
+            });
+        </script>
+
+      
+          <div class="form-row">
+            <div class="form-group">
+              <label for="employee-code" class="form-label">Código de empleado</label>
+              <input type="text" id="employee-code" class="form-input" placeholder="M0000" name="codigo_empleado"/>
+            </div>
+
+            <script>
+              // validacion de codigo de empleado
+              // primero se ingresa una letra (representa el cargo) y luego numeros
+              document.getElementById("employee-code").addEventListener("input", function () {
+                  var employeeCode = this.value;
+                  var employeeCodePattern = /^[a-zA-Z][0-9]*$/;
+                  if (!employeeCodePattern.test(employeeCode)) {
+                      this.value = employeeCode.slice(0, -1);
+                  }
+                  if (this.value.length > 5) {
+                      this.value = employeeCode.slice(0, 5);
+                  }
+              });
+            </script>
+            
+            <div class="form-group">
+              <label for="user-password" class="form-label">Clave de Usuario</label>
+              <input type="password" id="user-password" class="form-input" placeholder="********" name="clave_usuario"/>
+            </div>
+
+            <script>
+              // validacion de la clave de usuario, maximo 8 caracteres
+              // solo numeros, no permite ni espacios ni otros caracteres
+              document.getElementById("user-password").addEventListener("input", function () {
+                  var password = this.value;
+                  var passwordPattern = /^[0-9]*$/;
+                  if (!passwordPattern.test(password)) {
+                      this.value = password.slice(0, -1);
+                  }
+                  if (this.value.length > 8) {
+                      this.value = password.slice(0, 8);
+                  }
+              });
+            </script>
+          </div>
+          <button type="submit" id="submit-button" style="transform: translateY(-30px);">Registrar</button>
+        </form>
+      </main>      
+    </div>
+  </div>
+  <script type="text/javascript" src="/rrhh/js/form.js">
+    
+  </script>
+   
+</body>
+</html>
