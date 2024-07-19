@@ -1,9 +1,11 @@
 // controllers/entradas.js
 import { validateEntrada } from "../schemas/entradas.js";
 import { EntradasModel } from "../models/entradas.js";
+import { logged } from "../../Login/middlewares/logged.js"
 
 export class EntradasController {
     registrarEntrada = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const result = await validateEntrada(req.body);
         console.log(req.body);
 
@@ -21,6 +23,7 @@ export class EntradasController {
     }
 
     create = async (req, res) => {
+        if (logged(req, res, false, false)) return
         res.render('register/entradas');  // Asegúrate de que la ruta y la vista existen
     }
 }

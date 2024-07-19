@@ -42,6 +42,14 @@ export class EmpleadosModel {
     }
   }
 
+  static async findUser ({ user }) {
+    const [rows] = await connection.query(
+      `SELECT * FROM empleados WHERE user = ?;`,
+      [user]
+    )
+    return rows[0]
+  }
+
   static async unique({ nombre }) {
     try {
       const [rows] = await connection.query(

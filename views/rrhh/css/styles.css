@@ -8,15 +8,6 @@ body{
     margin: 0px;
 }
 
-.header { 
-    background-color: #013d1f;
-    display: flex;
-    color: #fff;
-    line-height: 150%; 
-    padding: 34px 55px; 
-}
-
-
 
 .restaurant-name { 
     letter-spacing: -0.24px; 
@@ -63,15 +54,6 @@ body{
     gap: 20px; 
     display: flex; 
 }
-
-.sidebar { 
-    display: flex; 
-    flex-direction: column; 
-    line-height: normal; 
-    width: 23%; 
-    margin-left: 0; 
-}
-
 .nav-menu { 
     background-color: rgba(237, 237, 237, 0.93);
     display: flex; 
