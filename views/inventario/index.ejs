@@ -8,68 +8,54 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="/inventario/css/styles/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="/inventario/resources/icon.jpeg" type="image/x-icon">
 </head>
 
 <body>
-  <header class="restaurant-header">
-    <h1 class="restaurant-nombre">BISTROT CHEZ RÉMY</h1>
-    <div class="user-info">
-      <span class="username">Gerente0000</span>
-      <img src="/inventario/css/img/flecha_hacia_abajo_usuario.png" alt="flecha_hacia_abajo_usuario"
-        class="flecha_hacia_abajo_usuarior" />
-    </div>
+  <header>
+    <h1 id="title">BISTROT CHEZ RÉMY</h1>
+    <select id="title-combo">
+      <option selected>Gerente</option>
+      <option>Cerrar Sesion</option>
+    </select>
   </header>
 
   <main class="main-content">
     <div class="content-wrapper">
-      <nav class="sidebar">
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_inicio.png" alt="Inicio icon" class="sidebar-icon" />
-          <span class="sidebar-text">Inicio</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_ventas.png" alt="Ventas icon" class="sidebar-icon" />
-          <span class="sidebar-text">Ventas/Salon</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_compras.png" alt="Compras icon" class="sidebar-icon" />
-          <span class="sidebar-text">Compras</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_rrhh.png" alt="RRHH icon" class="sidebar-icon" />
-          <span class="sidebar-text">RRHH</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_inventario.png" alt="inventario icon" class="sidebar-icon" />
-          <span class="sidebar-text">Inventario</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_mantenimiento.png" alt="Mantenimiento icon" class="sidebar-icon" />
-          <span class="sidebar-text">Mantenimiento</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_cocina.png" alt="Cocina icon" class="sidebar-icon" />
-          <span class="sidebar-text">Cocina/Bar</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_reservas.png" alt="Reservas icon" class="sidebar-icon" />
-          <span class="sidebar-text">Reservas</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_reporte.png" alt="Reportes icon" class="sidebar-icon" />
-          <span class="sidebar-text">Reportes</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_config.png" alt="Configuraciones icon" class="sidebar-icon" />
-          <span class="sidebar-text">Configuraciones</span>
-        </a>
-        <a href="#" class="sidebar-item">
-          <img src="/inventario/css/img/icono_ayuda.png" alt="Ayuda icon" class="sidebar-icon" />
-          <span class="sidebar-text">Ayuda</span>
-        </a>
-      </nav>
+      <div id="sidebar">
+        <div class="side inicio">
+          <img src="/inventario/resources/iconos_barra/inicio-green.png" class="side-foto">
+          <p class="side-option">Inicio</p>
+        </div>
+        <div class="side ventas">
+          <img class="side-foto" src="/inventario/resources/iconos_barra/ventas-green.png">
+          <p class="side-option">Ventas/Salon</p>
+        </div>
+        <div class="side compras">
+          <img class="side-foto" src="/inventario/resources/iconos_barra/compras-green.png">
+          <p class="side-option">Compras</p>
+        </div>
+        <div class="side rrhh">
+          <img class="side-foto" src="/inventario/resources/iconos_barra/person-green.png">
+          <p class="side-option">RRHH</p>
+        </div>
+        <div class="side inventario">
+          <img class="side-foto" src="/inventario/resources/iconos_barra/inventario-green.png">
+          <p class="side-option">Inventario</p>
+        </div>
+        <div class="side mantent">
+          <img class="side-foto" src="/inventario/resources/iconos_barra/mantenimiento-green.png">
+          <p class="side-option">Mantenimiento</p>
+        </div>
+        <div class="side cocina">
+          <img class="side-foto" src="/inventario/resources/iconos_barra/cocina-green.png">
+          <p class="side-option">Cocina/Bar</p>
+        </div>
+        <div class="side reserv">
+          <img class="side-foto" src="/inventario/resources/iconos_barra/reservas-green.png">
+          <p class="side-option">Reservas</p>
+        </div>
+      </div>
 
       <section class="main-section">
         <div class="titulo-modulo">
@@ -145,7 +131,7 @@
                         <div class="main-column">
                           <div class="order-details">
                             <div class="search-container">
-                              <form class="search-bar">
+                              <form id="search-form" class="search-bar">
                                 <div class="search-input">
                                   <label for="order-id" class="search-label">ID Orden</label>
                                   <input type="text" id="order-id" class="search-field" aria-label="ID Orden">
@@ -159,26 +145,26 @@
                               <span class="header-item">Proveedor</span>
                               <span class="header-item">Cantidad</span>
                             </div>
-                            <div class="order-row"></div>
+                            <div id="order-row" class="order-row"></div>
                           </div>
                         </div>
                         <div class="side-column">
                           <div class="quantity-section">
                             <div class="quantity-header">Cantidad recibida</div>
                             <div class="quantity-input">
-                              <input type="number" class="quantity-field" aria-label="Cantidad recibida">
+                              <input type="number" id="received-quantity" class="quantity-field"
+                                aria-label="Cantidad recibida">
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <label for="observations" class="observations-label">Observaciones</label>
-                    <textarea id="observations" class="observations-field" aria-label="Observaciones"></textarea>
+                    <textarea id="observations-txt" class="observations-field" aria-label="Observaciones"></textarea>
                     <button class="action-btn2" id="comentarCambios">Finalizar recepción</button>
                   </section>
                   <div class="form-row">
                     <button class="search-button" id="cancelButtonEditar">Cancelar</button>
-
                   </div>
                   <div class="espacio"></div>
                 </div>
@@ -186,6 +172,7 @@
             </div>
           </div>
         </div>
+
 
         <!-- Ajuste div -->
         <div id="ajusteDiv" class="registro">
