@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static('views'));
 app.use(methodOverride('_method'));
-app.set('views', process.cwd() + '/views');
+app.set('views', process.cwd() + '/views/');
 
 routes({ app });
 
