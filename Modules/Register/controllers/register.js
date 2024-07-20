@@ -6,8 +6,6 @@ import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class RegisterController {
     store = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
-        if (logged(req, res, false, false)) return
         const result = await validateEmpleado(req.body)
         console.log(req.body)
     

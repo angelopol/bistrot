@@ -10,7 +10,6 @@ export class ControllerCliente {
 
     // obtener todo los registros de la tabla de cliente
     getAll_cl = async (req, res) => {
-        if (logged(req, res, false, false)) return
         const registros_clientes = await VentasModel.getAll_cliente({})
         if (registros_clientes) return res.json(registros_clientes)
         res.status(404).json({ message: 'registros de los clientes  not found' })
@@ -20,7 +19,6 @@ export class ControllerCliente {
 
     // obtener un registro de la tabla de cliente por id
     getById_cl = async (req, res) => {
-        if (logged(req, res, false, false)) return
         const { id } = req.params
         const registro_cliente = await VentasModel.getForId_cliente({ id })
         if (registro_cliente) return res.json(registro_cliente)
@@ -31,7 +29,6 @@ export class ControllerCliente {
     
     // crearun registro la tabla de cliente
     create_cl = async (req, res) => {
-        if (logged(req, res, false, false)) return
         const result = validateCliente(req.body)
 
         console.log(result)
@@ -45,7 +42,6 @@ export class ControllerCliente {
 
     // actualiza un registro de la tabla cliente por id
     update_cl = async (req, res) => {
-        if (logged(req, res, false, false)) return
         const result = validatePartialCliente(req.body)
 
         if (!result.success) {
@@ -63,7 +59,6 @@ export class ControllerCliente {
 
     // elimina un registro de la tabla de cliente por id
     delete_cl = async (req, res) => {
-        if (logged(req, res, false, false)) return
         const { id } = req.params
 
         const result = await VentasModel.delete_cliente({ id })

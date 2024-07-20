@@ -74,8 +74,6 @@ export class RecursosHumanos {
     }
 
     empleados = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
-        if (logged(req, res, false, false)) return
         try {
             const [results, fields] = await connection.query('SELECT * FROM empleados');
             res.json(results);
@@ -85,8 +83,6 @@ export class RecursosHumanos {
     }
 
     entrada = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
-        if (logged(req, res, false, false)) return
         try {
             const [results, fields] = await connection.query('SELECT id, cedula, DATE_FORMAT(hora_entrada, "%Y-%m-%d %H:%i:%s") AS hora_entrada FROM entradas');
             res.json(results);

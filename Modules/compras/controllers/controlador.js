@@ -203,8 +203,6 @@ export class ProveedorController{
     }
 
     getById = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
-        if (logged(req, res, false, false)) return
         const {id} =req.params
 
         const proveedor = await ProveedoresModel.buscar({ id })
@@ -262,8 +260,6 @@ export class SolicitudController{
         res.redirect('/compras-index')
     }
     delete = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
-        if (logged(req, res, false, false)) return
         //Lo deje aqui  
         const {id} = req.params
         console.log(id)
@@ -273,8 +269,6 @@ export class SolicitudController{
     }
 
     getById = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
-        if (logged(req, res, false, false)) return
         const {id} =req.params
 
         const solicitud = await SolicitudModel.buscar({ id })

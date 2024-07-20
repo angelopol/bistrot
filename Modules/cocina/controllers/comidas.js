@@ -6,8 +6,6 @@ import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class ComidaController{
     getAll = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'Cocinero')) return
-        if (logged(req, res, false, false)) return
         const { tipo_comida } = req.query
         const {tipo_bebida} = req.query
         const comidas = await ComidaModel.getAll({tipo_comida , tipo_bebida})
@@ -16,8 +14,6 @@ export class ComidaController{
     }
 
     getForId = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'Cocinero')) return
-        if (logged(req, res, false, false)) return
         const { id } = req.params
         const comida = await ComidaModel.getForId({id})
         if (comida) return res.json(comida)
@@ -25,8 +21,6 @@ export class ComidaController{
     }
 
     create = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'Cocinero')) return
-        if (logged(req, res, false, false)) return
         const result = validateComida(req.body)
   
         if (!result.success) {
@@ -39,8 +33,6 @@ export class ComidaController{
     }
         
     delete = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'Cocinero')) return
-        if (logged(req, res, false, false)) return
         const { id } = req.params
         const condicion = await ComidaModel.delete({id})
       
@@ -52,8 +44,6 @@ export class ComidaController{
     }    
 
     update = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'Cocinero')) return
-        if (logged(req, res, false, false)) return
         const result = validatePartialComida(req.body)
         if (!result.success) {
           return res.status(400).json({ error: JSON.parse(result.error.message) })
