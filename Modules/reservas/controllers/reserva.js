@@ -1,6 +1,8 @@
 import { ReservaModel } from '../models/reserva.js'
 import { validarMesas } from '../schemes/validacion_mesas.js'
 import { validar_reserva } from '../schemes/validacion_reserva.js'
+import { logged } from "../../Login/middlewares/logged.js"
+import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class ReservaController{
      getAll = async(req, res) =>{
@@ -21,7 +23,8 @@ export class ReservaController{
     }
 
     create=async (req, res)=> {
-        
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Reservaciones')) return
         const result = validar_reserva(req.body)
         if (!result.success) {
             return res.status(400).json({ error: JSON.parse(result.error.message) })
@@ -33,6 +36,8 @@ export class ReservaController{
     }
         
     delete = async(req, res) =>{
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Reservaciones')) return
         const { id } = req.params
         const validacion = await ReservaModel.eliminar({id})
         
@@ -44,6 +49,8 @@ export class ReservaController{
         }    
 
     update = async (req, res) =>{
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Reservaciones')) return
         console.log(req.params)
         const { id } = req.params;
         const input = req.body; 
@@ -52,6 +59,8 @@ export class ReservaController{
     }
 
     getModificar = async (req, res) =>{
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Reservaciones')) return
         const { id } = req.params;
         res.render('reservas/modificarReserva', { data: id }); 
     }
