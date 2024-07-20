@@ -7,19 +7,21 @@ export const createMantenimientoRouter = () => {
    
   /*Rutas de los documentos HTML/EJS*/ 
 
-
+  MantenimientoRouter.get('/', (req, res) => {
+    res.render('mantenimientos/Pagina_principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  });
   
-  MantenimientoRouter.get('/', (req, res) =>{
-    res.render('Pagina_principal');
+  MantenimientoRouter.get('/Pagina_contacto', (req, res) => {
+    res.render('mantenimientos/Pagina_contacto.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-
-  MantenimientoRouter.get('/Pagina_contacto.ejs', (req, res) =>{
-    res.render('Pagina_contacto', contacto);
+  MantenimientoRouter.get('/Pagina_agregarMantenimiento', (req, res) => {
+    res.render('mantenimientos/Pagina_agregarMantenimiento.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-
-  MantenimientoRouter.get('/Pagina_reportes.ejs', (req, res) =>{
-    res.render('Pagina_reportes');
+  
+  MantenimientoRouter.get('/Pagina_reportes', (req, res) => {
+    res.render('mantenimientos/Pagina_reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
+  
 
 
   /*Rutas de los documentos de estilo*/

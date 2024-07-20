@@ -19,5 +19,5 @@ export const routes = ({app}) => {
     app.use('/ventas', createVentasRouter())
     app.use('/compras', createComprasRouter())
     app.use('/cocina', createCocinaRouter())
-    app.use('/mantenimiento', createMantenimientoRouter())
+    app.use('/mantenimientos', createMantenimientoRouter())
 }

@@ -1,45 +1,29 @@
-import express, { json } from 'express'
+import express, { json } from 'express' // require -> commonJS
 import { corsMiddleware } from './global/middlewares/cors.js'
 import { routes } from './global/routes/routes.js'
 import { authenticated } from "./global/middlewares/auth.js"
+import methodOverride from 'method-override'
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
+import path from 'path'
 import 'dotenv/config'
-import path from 'path' 
-import { fileURLToPath } from 'url'
 
 const app = express()
 app.set('view engine', 'ejs')
 app.use(json())
+app.use(express.json()); //agregue esto para que me pudiera devolver lo de compras en formato json
 app.use(cookieParser())
 app.use(corsMiddleware())
-app.use((req, res, next) => {authenticated(req, res, next)})
+app.use((req, res, next) => { authenticated(req, res, next) })
 app.disable('x-powered-by')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(express.static('views'));
+app.use(methodOverride('_method'));
 
-routes({ app })
+routes({ app });
 
-const PORT = process.env.PORT ?? 3306
+const PORT = process.env.PORT ?? 1234;
 app.listen(PORT, () => {
-  console.log(`server listening on port http://localhost:${PORT}`)
-})
-
-app.get('/mantenimientos', (req, res) => {
-  res.render('mantenimientos/Pagina_principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  console.log(`server listening on port http://localhost:${PORT}`);
 });
-
-app.get('/mantenimientos/Pagina_contacto', (req, res) => {
-  res.render('mantenimientos/Pagina_contacto.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
-});
-app.get('/mantenimientos/Pagina_agregarMantenimiento', (req, res) => {
-  res.render('mantenimientos/Pagina_agregarMantenimiento.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
-});
-
-app.get('/mantenimientos/Pagina_reportes', (req, res) => {
-  res.render('mantenimientos/Pagina_reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
-});
-
-//app.use('/mantenimientos/static', express.static(('.', 'views', 'mantenimientos', 'public')))
-
-app.use(express.static('views'))
