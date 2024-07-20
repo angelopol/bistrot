@@ -5,8 +5,8 @@ const DBConfig = {
     host: '127.0.0.1' || process.env.DB_HOST,
     user: 'root' || process.env.DB_USERNAME,
     port: 3306 || process.env.DB_PORT,
-    password: '8888AAaa!' || process.env.DB_PASSWORD,
-    database: 'bistrot' || process.env.DB_DATABASE,
+    password: 'root1234' || process.env.DB_PASSWORD,
+    database: 'mantenimiento' || process.env.DB_DATABASE,
 }
 
 const Conexion = await mysql.createConnection(DBConfig)
@@ -44,7 +44,7 @@ export const createMantenimientoApi = (MantenimientoRouter) => {
             req.params.id
         ], function (error, results, fields) {
             res.send(results);
-        });   
+        });
     });
 
     MantenimientoRouter.get('/api/contactos', (req, res)=>{

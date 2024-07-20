@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 
 routes({ app })
 
-const PORT = process.env.PORT ?? 1234
+const PORT = process.env.PORT ?? 3306
 app.listen(PORT, () => {
   console.log(`server listening on port http://localhost:${PORT}`)
 })
@@ -37,4 +37,6 @@ app.get('/mantenimientos/Pagina_reportes', (req, res) => {
   res.render('mantenimientos/Pagina_reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
 });
 
-app.use('/mantenimientos/static/', express.static(('.', 'views', 'mantenimientos', 'public')))
+//app.use('/mantenimientos/static', express.static(('.', 'views', 'mantenimientos', 'public')))
+
+app.use(express.static('views'))

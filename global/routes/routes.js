@@ -7,7 +7,7 @@ import { createInventarioRouter } from '../../Modules/Inventario/routes/inventar
 import { createVentasRouter } from '../../Modules/ventas/routes/ventas.js'
 import { createComprasRouter } from '../../Modules/compras/routes/compras.js'
 import { createCocinaRouter } from '../../Modules/cocina/routes/cocina.js'
-import { createMantenimientoRouter } from '../../Modules/mantenimiento/routes/mantenimiento.js'
+import { createMantenimientoRouter } from '../../views/mantenimientos/routes/mantenimiento.js'
 
 export const routes = ({app}) => {
     app.use('/movies', createMovieRouter())

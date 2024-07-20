@@ -43,12 +43,17 @@ main {
     display: flex;
 }
 
+a{
+    text-decoration: none;
+}
 #sidebar {
     background-color: #EDEDED;
+    padding: 0px 10px;
     height: 85vh;
     width: 15vw;
     display: flex;
     flex-direction: column;
+    margin-left: -8dvw;
 }
 
 .side {
@@ -71,7 +76,7 @@ main {
 }
 
 .side:hover {
-    padding: 15px 8px;
+    transform: scale(1.05);
     background-color: #02676F10;
 }
 
