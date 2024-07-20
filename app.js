@@ -10,9 +10,10 @@ import 'dotenv/config'
 const app = express()
 app.set('view engine', 'ejs')
 app.use(json())
+app.use(express.json()); //agregue esto para que me pudiera devolver lo de compras en formato json
 app.use(cookieParser())
 app.use(corsMiddleware())
-app.use((req, res, next) => {authenticated(req, res, next)})
+app.use((req, res, next) => { authenticated(req, res, next) })
 app.disable('x-powered-by')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -25,3 +26,4 @@ const PORT = process.env.PORT ?? 1234
 app.listen(PORT, () => {
   console.log(`server listening on port http://localhost:${PORT}`)
 })
+

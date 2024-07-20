@@ -162,7 +162,7 @@ function generateTableCocina() {
 }
 
 function generateTableGeneral(tipo) {
-    var url = PathUrl+`api/general`; // URL de la API para general sin filtro
+    var url = PathUrl + `api/general`; // URL de la API para general sin filtro
 
     $('#tablaGeneral').DataTable({
         "language": {
@@ -237,15 +237,29 @@ document.addEventListener('DOMContentLoaded', function () {
     const card = document.getElementById('cardd');
     const cancelButtonEditar = document.getElementById('cancelButtonEditar');
 
-    //Ajustes
+    // Ajustes
     const openAjusteBtn = document.getElementById('showAjustesBtn');
     const closeCardButton2 = document.getElementById('closeAjusteButton');
     const ajusteDiv = document.getElementById('ajusteDiv');
     const cardAjustes = document.getElementById('cardd');
 
+    // Registro
+    const showRegistroBtn = document.getElementById('showRegistroBtn');
+    const closeRegistroButton = document.getElementById('closeRegistroButton');
+    const registroDiv = document.getElementById('registroDiv');
+
+    function closeAll() {
+        cardContainer.classList.remove('show');
+        card.classList.remove('show');
+        ajusteDiv.classList.remove('show');
+        cardAjustes.classList.remove('show');
+        registroDiv.classList.remove('show');
+    }
+
     // ------- Edición ---------
     // Mostrar div de edición
     openEditarBtn.addEventListener('click', function () {
+        closeAll();
         cardContainer.classList.add('show');
         card.classList.add('show');
     });
@@ -263,13 +277,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     //------------Ajuste------------
-    // Mostrar div de edición
+    // Mostrar div de ajuste
     openAjusteBtn.addEventListener('click', function () {
+        closeAll();
         ajusteDiv.classList.add('show');
         cardAjustes.classList.add('show');
     });
 
-    // Ocultar div de edición
+    // Ocultar div de ajuste
     closeCardButton2.addEventListener('click', function () {
         ajusteDiv.classList.remove('show');
         cardAjustes.classList.remove('show');
@@ -278,28 +293,21 @@ document.addEventListener('DOMContentLoaded', function () {
     //--------Registro-----------
 
     // Mostrar el registro
-    document.getElementById('showRegistroBtn').addEventListener('click', function () {
-        document.getElementById('registroDiv').classList.add('show');
+    showRegistroBtn.addEventListener('click', function () {
+        closeAll();
+        registroDiv.classList.add('show');
     });
 
     // Cerrar el registro
-    document.getElementById('closeRegistroButton').addEventListener('click', function () {
-        document.getElementById('registroDiv').classList.remove('show');
+    closeRegistroButton.addEventListener('click', function () {
+        registroDiv.classList.remove('show');
     });
-
-
-    /*
-    // Siguiente (puedes agregar lógica adicional aquí si es necesario)
-    ConfirmarAgregarBtn.addEventListener('click', function () {
-        // Aquí puedes agregar la lógica para manejar el botón "Siguiente"
-        console.log('Siguiente paso en el proceso de agregar');
-    });
-    */
 });
+
 
 // tabla registros
 function generateTableRegistros() {
-    var url = PathUrl+'api/registros'; // URL de la API para registros
+    var url = PathUrl + 'api/registros'; // URL de la API para registros
 
     $('#tablaRegistros').DataTable({
         "language": {
@@ -373,7 +381,7 @@ document.getElementById('searchForm').addEventListener('submit', function (event
     // URL de la API basada en el tipo de tabla y el ID del producto
     let apiUrl = '';
     if (tableType === 'cocina-bar' || tableType === 'general') {
-        apiUrl = PathUrl+`api/${tableType}/${productId}`;
+        apiUrl = PathUrl + `api/${tableType}/${productId}`;
     } else {
         alert('Tabla seleccionada no válida');
         return;
@@ -416,7 +424,7 @@ document.getElementById('finalizarAjuste').addEventListener('click', function ()
     }
 
     let productName = '';
-    fetch(PathUrl+`api/${tableType}/${productId}`)
+    fetch(PathUrl + `api/${tableType}/${productId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al obtener información del producto');
@@ -429,7 +437,7 @@ document.getElementById('finalizarAjuste').addEventListener('click', function ()
             // URL de la API para el ajuste
             let apiUrl = '';
             if (tableType === 'cocina-bar' || tableType === 'general') {
-                apiUrl = PathUrl+`api/${tableType}/${adjustmentType}/${productId}`;
+                apiUrl = PathUrl + `api/${tableType}/${adjustmentType}/${productId}`;
             } else {
                 alert('Tabla seleccionada no válida');
                 return;
@@ -472,46 +480,100 @@ document.getElementById('finalizarAjuste').addEventListener('click', function ()
         });
 });
 
-/*
-// Importar la conexión a la base de datos
-const connection = require('../../../Modules/Inventario/models/conexion');
+document.getElementById('search-form').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-// Definir la función verificarInventario
-function verificarInventario(callback) {
-    // Consulta para verificar la tabla cocina_bar
-    const queryCocinaBar = `
-      SELECT id_cocina_bar AS id, nombre, cantidad
-      FROM cocina_bar
-      WHERE cantidad <= 10;
-    `;
+    const orderId = document.getElementById('order-id').value;
 
-    // Consulta para verificar la tabla general
-    const queryGeneral = `
-      SELECT id_general AS id, nombre, cantidad
-      FROM general
-      WHERE cantidad <= 10;
-    `;
+    try {
+        const response = await fetch(`http://localhost:1234/compras-index/historial/${orderId}`);
 
-    connection.query(queryCocinaBar, (err, resultsCocinaBar) => {
-        if (err) throw err;
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
 
-        connection.query(queryGeneral, (err, resultsGeneral) => {
-            if (err) throw err;
+        const data = await response.json();
+        console.log(data);
 
-            // Concatenar resultados de ambas tablas
-            const lowStockItems = [...resultsCocinaBar, ...resultsGeneral];
+        // Actualiza los campos con los datos
+        document.querySelector('.order-row').innerHTML = `
+            <span class="order-item">${new Date(data.FECHA).toLocaleDateString()}</span>
+            <span class="order-item">${data.Producto}</span>
+            <span class="order-item">${data.Nombre_Proveedor}</span>
+            <span class="order-item">${data.Cantidad}</span>
+        `;
 
-            // Agregar cantidad base para pedir
-            const pedidos = lowStockItems.map(item => ({
-                id: item.id,
-                nombre: item.nombre,
-                cantidad_a_pedir: 20
-            }));
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
 
-            callback(pedidos);
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    const finalizeButton = document.getElementById('comentarCambios');
+
+    finalizeButton.addEventListener('click', async () => {
+        try {
+            const orderId = document.getElementById('order-id').value;
+            const receivedQuantity = document.getElementById('received-quantity').value;
+            const observations = document.getElementById('observations-txt') ? document.getElementById('observations-txt').value : '';
+            const productName = document.querySelector('.order-item:nth-child(2)') ? document.querySelector('.order-item:nth-child(2)').textContent : ''; // Manejo de campo opcional
+
+            if (!productName || !receivedQuantity) {
+                alert('Por favor, ingrese el nombre del producto y la cantidad recibida.');
+                return;
+            }
+
+            let response = await fetch(`http://localhost:1234/inventario/api/modulo-compras/cocina-bar/agregar/${productName}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cantidad: receivedQuantity, observaciones: observations })
+            });
+
+            console.log('Response from cocina_bar:', response.status, await response.text());
+
+            if (response.status === 404) {
+                response = await fetch(`http://localhost:1234/inventario/api/modulo-compras/general/agregar/${productName}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cantidad: receivedQuantity, observaciones: observations })
+                });
+
+                console.log('Response from general:', response.status, await response.text());
+
+                if (response.status === 404) {
+                    // si no encuentra en ninguna tabla crear nuevo producto
+                    response = await fetch('http://localhost:1234/inventario/api/modulo-compras/cocina-bar/nuevo', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            nombre: productName,
+                            categoria: 'cocina',
+                            cantidad: receivedQuantity,
+                            area: 'almacen',
+                            unidad: 'unidad',
+                            fecha_caducidad: new Date(),
+                            observaciones: observations
+                        })
+                    });
+
+                    console.log('Response from nuevo:', response.status, await response.text());
+                }
+
+                if (response.ok) {
+                    alert('Producto creado y cantidad agregada correctamente.');
+                    location.reload();
+                } else {
+                    alert('Error al agregar el producto.');
+                }
+            } else if (response.ok) {
+                alert('Cantidad agregada correctamente.');
+                location.reload();
+            } else {
+                alert('Error al agregar la cantidad.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert(`Hubo un problema con la recepción de la orden: ${error.message}`);
+        }
     });
-}
-
-module.exports = verificarInventario;
-*/
+});

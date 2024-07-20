@@ -1,10 +1,10 @@
 -- EJECUTEN ESTO EN MYSQL PRIMERO 
 
 -- Crear base de datos
-CREATE DATABASE inventario;
+CREATE DATABASE bistrot;
 
 -- Seleccionar base de datos
-USE inventario;
+USE bistrot;
 
 -- Crear tablas
 CREATE TABLE submodulo_inventario (

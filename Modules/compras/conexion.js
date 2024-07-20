@@ -11,8 +11,8 @@ async function createConnection() {
             password: process.env.DB_PASSWORD || 'Samp1203*',
             database: process.env.DB_DATABASE || 'bistrot',
         });
-        console.log('Connected to the database.');
-    } catch (error) { 
+        console.log('Connected to the database compra.');
+    } catch (error) {
         console.error('Error connecting to the database:', error);
     }
     return connection;
