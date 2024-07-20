@@ -68,6 +68,21 @@ export class HistorialController {
 
         //Aqui puedes colocar la vista que quieres que se vea en inventario
     }
+
+    //Metodo de obtener por ID (INVENTARIO)
+    getById = async (req,res)=>{
+        const {id} = req.params
+        
+        if(id === undefined){
+            //Aqui deben colocar la pagina donde quieren que los lleve si no existe el id
+            //res.redirect('/compras-index/prov')
+        }else{
+            //Este es el registro de la orden de compra que se obtuvo por su id
+            const orden = await HistorialModel.obtener({id})
+            //Aqui deben colocar la pagina donde quieren que los lleve y le pueden pasar de parametro orden 
+            //res.redirect('/compras-index/prov')
+        }
+    }
 }
 
 export class ProductoController{
