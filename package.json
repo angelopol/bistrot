@@ -1,7 +1,7 @@
 {
   "name": "clase-3",
   "version": "1.0.0",
-  "description": "",
+  "description": "- Install Node JS from [NodeJS download web page](https://nodejs.org/en/download)\r ### Libraries (Install not required)\r - Install EJS (Motor de plantillas) using **npm install ejs**\r - Install JWT using **npm install jsonwebtoken**\r - Install cookie-parser using **npm install cookie-parser**\r - Install bcrypt using **npm install bcrypt**\r - Install express using **npm install express --save**\r - Install MySQL2 using **npm install --save mysql2**",
   "main": "app.js",
   "type": "module",
   "scripts": {
