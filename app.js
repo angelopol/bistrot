@@ -3,7 +3,6 @@ import { corsMiddleware } from './global/middlewares/cors.js'
 import { routes } from './global/routes/routes.js'
 import { authenticated } from "./global/middlewares/auth.js"
 import methodOverride from 'method-override'
-import methodOverride from 'method-override'
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 import 'dotenv/config'
