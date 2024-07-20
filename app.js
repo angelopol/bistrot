@@ -5,6 +5,7 @@ import { authenticated } from "./global/middlewares/auth.js"
 import methodOverride from 'method-override'
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
+import path from 'path'
 import 'dotenv/config'
 
 const app = express()
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static('views'));
 app.use(methodOverride('_method'));
+app.set('views', process.cwd() + '/views');
 
 routes({ app });
 
