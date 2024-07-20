@@ -12,8 +12,8 @@ import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class HistorialController {
     getAllData2 = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const requisicion = await SolicitudModel.getReq()
         const proveedores = await ProveedoresModel.listar()
 
@@ -21,8 +21,8 @@ export class HistorialController {
     }
 
     create = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const{
             id,
             nombreP,
@@ -45,23 +45,23 @@ export class HistorialController {
     }
 
     getAll = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const ordenes = await HistorialModel.listar()
         res.render('compras/index',{data: ordenes});
     }
 
     delete = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         await HistorialModel.eliminar()
         
         res.redirect('/compras-index')
     }
     //metodo del controlador que permite actualizar el estatus de recibido
     update = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         //Asegurate que el id que agregues a la ruta se llame "id"
         const {id} = req.params
         await HistorialModel.actualizar({id})
@@ -73,16 +73,16 @@ export class HistorialController {
 export class ProductoController{
     //renderizando dos paginas en un controlador y fallaba 
     getAll1 = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const productos = await ProductoModel.listar()
         res.render('compras/productos',{data: productos})
     }
 
     //metodo en el que llamo a varios modelos para mostrar en la pagina de solicitudes
     getAllData = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const productos = await ProductoModel.listar()
         const nombres = await ProductoModel.getNombre()
         const requisicion = await SolicitudModel.getReq()
@@ -93,8 +93,8 @@ export class ProductoController{
 
 
     create = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const result = ValidarProducto(req.body)
         console.log(result)
         if (!result.success) {
@@ -108,8 +108,8 @@ export class ProductoController{
 
     }
     update = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         //me falta agregar las validaciones
         const result = ValidarProducto(req.body)
         const {id} = req.params
@@ -129,8 +129,8 @@ export class ProductoController{
 
     //Metodo para borrar un producto
     delete = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         //Lo deje aqui  
         const {nombre} = req.params
         await ProductoModel.eliminar({nombre})
@@ -142,8 +142,8 @@ export class ProductoController{
 
 export class ProveedorController{
     create = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const result = ValidarProv(req.body)
         //console.log(result.success)
         //console.log(result.data)
@@ -159,8 +159,8 @@ export class ProveedorController{
 
     }
     update = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const result = ValidarProv(req.body)
         const {id} = req.params
         //console.log(result)
@@ -176,8 +176,8 @@ export class ProveedorController{
 
     }
     delete = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         //Lo deje aqui 
         const {nombre} = req.params
         //console.log(nombre)
@@ -193,8 +193,8 @@ export class ProveedorController{
     }
 
     getByName = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         console.log(req.params)
         const proveedor = await ProveedoresModel.filtrar({nombre: req.params})
 
@@ -212,8 +212,8 @@ export class ProveedorController{
     
 
     getAll = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const proveedores = await ProveedoresModel.listar()
         
         
@@ -225,8 +225,8 @@ export class ProveedorController{
 
 export class SolicitudController{
     create = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const result = ValidarSolicitudes(req.body)
         //console.log(result)
         if(!result.success){
@@ -238,8 +238,8 @@ export class SolicitudController{
 
     }
     update = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const {id_req} = req.body
         
         if(id_req === undefined){
@@ -253,8 +253,8 @@ export class SolicitudController{
 
     }
     updateCompra = async (req,res)=>{
-        if (!await VerifyCargo(req, res, 'Compras')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Compras')) return
         const {id} = req.params
         await SolicitudModel.modificarCompra({id})
         res.redirect('/compras-index')

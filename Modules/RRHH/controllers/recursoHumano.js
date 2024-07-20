@@ -5,43 +5,43 @@ import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 export class RecursosHumanos {
 
     create = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         res.render('rrhh/rrhh')
     }
     informe = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         res.render('rrhh/informe')
     }
 
     horarios = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         res.render('rrhh/horarios')
     }
 
     form = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         res.render('rrhh/form')
     }
 
     entradas = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         res.render('rrhh/entradas')
     }
 
     ausensias = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         res.render('rrhh/ausensias')
     }
 
     baja = async (req, res) => {
-        if (!await VerifyCargo(req, res, 'RRHH')) return
         if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'RRHH')) return
         res.render('rrhh/baja')
     }
 
