@@ -589,3 +589,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+async function verificarInventario() {
+    try {
+        // Verificar cantidades en la tabla cocina_bar
+        let response = await fetch(`http://localhost:3000/api/cocina-bar`);
+        let cocinaBarData = await response.json();
+
+        // Verificar cantidades en la tabla general
+        response = await fetch(`http://localhost:3000/api/general`);
+        let generalData = await response.json();
+
+        // Unir los datos de ambas tablas
+        const productos = [...cocinaBarData, ...generalData];
+
+        for (const producto of productos) {
+            if (producto.cantidad < 10) {
+                const solicitud = {
+                    depar: 'cocina', // departamento que realiza la solicitud
+                    id_emp: 1, // ID del empleado que realiza la solicitud, ajustar según corresponda
+                    cant: 50,
+                    nombre_producto: producto.nombre,
+                    fecha: new Date(),
+                    detalle: 'Solicitud automática por cantidad baja'
+                };
+
+                // Enviar solicitud de compra
+                await fetch('http://localhost:3000/api/soli', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(solicitud)
+                });
+
+                console.log(`Solicitud enviada para ${producto.nombre}`);
+            }
+        }
+    } catch (error) {
+        console.error('Error al verificar el inventario:', error);
+    }
+}
+
+// Ejecutar la verificación cada 1 segundo (1000 ms)
+setInterval(verificarInventario, 1000);
+
+// Ejecutar la función de verificación inmediatamente al cargar el script
+verificarInventario();
