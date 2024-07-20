@@ -3,11 +3,11 @@ import 'dotenv/config'
 //import {promisify} from 'util';
 
 const db = {
-    host: "localhost",
-    user: "root",
-    port: 3306,
-    password: "$0p0rt3",
-    database: "bistrot",
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    port: process.env.DB_PORT || 3306,
+    password: process.env.DB_PASSWORD || '$0p0rt3',
+    database: process.env.DB_DATABASE || 'bistrot', 
 };
 
 
