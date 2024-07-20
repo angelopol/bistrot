@@ -1,5 +1,6 @@
 import {VentasModel} from '../models/ventas_salon.js';
 import {validateFactura, validatePartialFactura} from '../schemas/factura.js';
+import { logged } from "../../Login/middlewares/logged.js"
 
 export class ControllerFactura {
 
@@ -7,6 +8,7 @@ export class ControllerFactura {
 
     // obtener todo los registros de la tabla de factura
     getAll_f = async (req, res) => {
+        if (logged(req, res, false, false)) return
         try{
             const registros_facturas = await VentasModel.getAll_factura({})
             if (registros_facturas) return res.json(registros_facturas)
@@ -22,6 +24,7 @@ export class ControllerFactura {
 
     // obtener un registro de la tabla de factura por id
     getById_f = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const { id } = req.params
         const registro_factura = await VentasModel.getForId_factura({ id })
         if (registro_factura) return res.json(registro_factura)
@@ -31,6 +34,7 @@ export class ControllerFactura {
 
     // crea un registros de la tabla de factura
     create_f = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const result = validateFactura(req.body)
         
         console.log(result.data)
@@ -42,6 +46,7 @@ export class ControllerFactura {
 
     // actualiza un registro de la tabla de factura por id
     update_f = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const result = validatePartialFactura(req.body)
 
         if (!result.success) {
@@ -59,6 +64,7 @@ export class ControllerFactura {
 
     // elimina un registro de la tabla de factura por id
     delete_f = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const { id } = req.params
 
         const result = await VentasModel.delete_factura({ id })

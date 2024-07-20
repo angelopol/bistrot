@@ -1,5 +1,6 @@
 import {VentasModel} from '../models/ventas_salon.js';
 import {validateCaja, validatePartialCaja} from '../schemas/caja.js';
+import { logged } from "../../Login/middlewares/logged.js"
 
 export class ControllerCaja {
 
@@ -7,7 +8,7 @@ export class ControllerCaja {
 
     // obtener todo los registros de la tabla de caja
     getAll_c = async (req, res) => {
-
+        if (logged(req, res, false, false)) return
         const registro_ventas = await VentasModel.getAll_caja({})
         if (registro_ventas) return res.json(registro_ventas)
         res.status(404).json({ message: 'registro de ventas not found' })
@@ -16,6 +17,7 @@ export class ControllerCaja {
 
     // obtiene un registro especifico de la caja, buscandolo por id
     getById_c = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const { id } = req.params
         const ventas = await VentasModel.getForId_caja({ id })
         if (ventas) return res.json(ventas)
@@ -26,6 +28,7 @@ export class ControllerCaja {
 
     // crea un registro de caja
     create_c = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const result = validateCaja(req.body)
 
 
@@ -38,6 +41,7 @@ export class ControllerCaja {
 
     // actualiza el registro de caja, buscandolo por id
     update_c = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const result = validatePartialCaja(req.body)
 
         if (!result.success) {
@@ -55,6 +59,7 @@ export class ControllerCaja {
 
     // elimina el registro de caja, buscandolo por id
     delete_c = async (req, res) => {
+        if (logged(req, res, false, false)) return
         const { id } = req.params
 
         const result = await VentasModel.delete_caja({ id })

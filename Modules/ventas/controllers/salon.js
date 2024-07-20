@@ -1,6 +1,6 @@
 import {VentasModel} from '../models/ventas_salon.js';
 import {validateSalon, validatePartialSalon} from '../schemas/salon.js';
-
+import { logged } from "../../Login/middlewares/logged.js"
 
 export class ControllerSalon {
 
@@ -9,6 +9,7 @@ export class ControllerSalon {
 
     // obtener todo los registros de la tabla de salon
     getAll_s = async (req, res) => {
+      if (logged(req, res, false, false)) return
         const registro_salon = await VentasModel.getAll_salon({})
         if (registro_salon) return res.json(registro_salon)
         res.status(404).json({ message: 'registros de salon not found' })
@@ -18,6 +19,7 @@ export class ControllerSalon {
 
     // obtiene un registro de la tabla de salon, por id
     getById_s = async (req, res) => {
+      if (logged(req, res, false, false)) return
         const { id } = req.params
         const salon = await VentasModel.getForId_salon({ id })
         if (salon) return res.json(salon)
@@ -28,6 +30,7 @@ export class ControllerSalon {
 
     // crea un registro de salon
     create_s = async (req, res) => {
+      if (logged(req, res, false, false)) return
         const result = validateSalon(req.body)
 
         if (result.error){
@@ -43,6 +46,7 @@ export class ControllerSalon {
 
     // actualiza los registros de la tabla de salon por id
     update_s = async (req, res) => {
+      if (logged(req, res, false, false)) return
         const result = validatePartialSalon(req.body)
 
         if (!result.success) {
@@ -60,6 +64,7 @@ export class ControllerSalon {
 
     // elimina un registro de la tabla de salon, por id
     delete_s = async (req, res) => {
+      if (logged(req, res, false, false)) return
         const { id } = req.params
 
         const result = await VentasModel.delete_salon({ id })
