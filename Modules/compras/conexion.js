@@ -6,7 +6,7 @@ async function createConnection() {
     try {
         connection = await mysql.createConnection({
             host: process.env.DB_HOST || '127.0.0.1',
-            user: process.env.DB_USERNAME || 'root',
+            user: process.env.DB_USER || 'root',
             port: process.env.DB_PORT || 3306,
             password: process.env.DB_PASSWORD || 'Samp1203*',
             database: process.env.DB_DATABASE || 'bistrot',

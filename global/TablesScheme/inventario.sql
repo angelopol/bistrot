@@ -1,5 +1,3 @@
-use bistrot;
-
 CREATE TABLE submodulo_inventario (
     id_submodulo_inventario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
