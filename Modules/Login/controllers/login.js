@@ -1,9 +1,7 @@
 
 import { EmpleadosModel } from "../../Register/models/empleados.js"
-import { validateEmpleado } from "../../Register/schemas/empleados.js"
 import { logged } from "../middlewares/logged.js"
 import jwt from 'jsonwebtoken'
-import bycrypt from 'bcrypt'
 import 'dotenv/config'
 import { alert } from "../../../global/helpers/alert.js"
 import { validateLogin } from "../../Register/schemas/empleados.js"
