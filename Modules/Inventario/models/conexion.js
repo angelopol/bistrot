@@ -5,9 +5,9 @@ async function createConnection() {
     let connection;
     try {
         connection = await mysql.createConnection({
-            host: '127.0.0.1' || process.env.DB_HOST,
-            user: 'root' || process.env.DB_USERNAME,
-            port: 3306 || process.env.DB_PORT,
+            host: process.env.DB_HOST || '127.0.0.1',
+            user: process.env.DB_USERNAME || 'root',
+            port: process.env.DB_PORT || 3306,
             password: process.env.DB_PASSWORD || '',
             database: process.env.DB_DATABASE || 'bistrot',
         });
