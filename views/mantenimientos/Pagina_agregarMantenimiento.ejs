@@ -122,24 +122,28 @@
     <script src="scripts/JSAgregarMantenimiento.js"></script>
     <script type="module">
             const button = document.getElementById('AgregrBtn');
-            document.addEventListener('submit', e => {
+            document.addEventListener('submit',async e => {
                 e.preventDefault()
+                const API_URL = '/api/mantenimientos_realizar'
                 const nuevoMantenimiento = {
                 mantenimiento: document.getElementById("mantenimiento"),
                 responsable: document.getElementById("responsable"),
                 inicio: document.getElementById("inicio"),
                 fin: document.getElementById("fin"),
                 };
-                fetch('/api/mantenimientos_realizar', {
+                const options = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(nuevoMantenimiento)
-                })
-                .then(response => response.json())
-                .catch(error => console.error('Error:', error));
-                alert({nuevoMantenimiento})
+                }
+                const response = await fetch(API_URL, options)
+                const data = response.json()
+                if (response.status !== 200) {
+                console.error(data.message)
+                }
+                alert('Mantenimiento agregado')
             })
       </script>
 </body>
