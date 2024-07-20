@@ -5,9 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start:mysql": "node --watch server-with-mysql.js",
-    "start:local": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

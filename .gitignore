@@ -1,5 +1,1 @@
 .env.production
-
-.node_modules
-.env
-.vercel
