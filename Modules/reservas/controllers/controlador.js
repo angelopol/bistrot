@@ -1,28 +1,28 @@
 import { validarMesas } from "../schemes/validacion_mesas.js";
 import { ReservaController } from "./reserva.js";
+import { ReservaModel } from '../models/reserva.js'
 
 export class InventarioMesasController{
     mostrarReserva = async (req,res)=>{
-        let rese= new ReservaController();
-        let reservas= await rese.getAll(req,res);
-        res.render('reservacion',{data: reservas})
+        const reservas = await ReservaModel.listarReservas()
+        res.render('reservas/reservacion',{data: reservas})
     }
     mostrarBar = async (req,res)=>{
-        res.render('bar',{data: null})
+        res.render('reservas/bar',{data: null})
     }
     mostrarCrearReservas = async (req,res)=>{
-        res.render('CrearReservas',{data: null})
+        res.render('reservas/CrearReservas',{data: null})
     }
     mostrarMesas = async (req,res)=>{
-        res.render('mesas',{data: null})
+        res.render('reservas/mesas',{data: null})
     }
     mostrarCrearEvento = async (req,res)=>{
-        res.render('CrearEvento',{data: null})
+        res.render('reservas/CrearEvento',{data: null})
     }
     mostrarReporte = async (req,res)=>{
-        res.render('Reporte',{data: null})
+        res.render('reservas/Reporte',{data: null})
     }
     mostrarModificar = async (req,res)=>{
-        res.render('modificarReserva',{data: null})
+        res.render('reservas/modificarReserva',{data: null})
     }
 }

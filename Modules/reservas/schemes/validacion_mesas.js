@@ -20,5 +20,3 @@ const validacion_Inventario_Mesas = z.object({
 export function validarMesas(datos) {
     return validacion_Inventario_Mesas.safeParse(datos);
 }
-    
-    

@@ -6,7 +6,7 @@ export class ReservaController{
      getAll = async(req, res) =>{
         const reservas = await ReservaModel.listarReservas()
         if (reservas) {
-            return reservas
+            return res.json(reservas)
         }
         res.status(404).json({ message: 'No hay reservas de mesas en la base de datos' })
     }
@@ -29,7 +29,7 @@ export class ReservaController{
         const input = result.data
         const { idmesa,fecha, personas, hora_inicio, hora_fin, nombre, cedula, idtelefono, iddescripcion,zona} = input;
         const nueva_reserva = await ReservaModel.create(input)
-        res.redirect('/')
+        res.redirect('/reservas')
     }
         
     delete = async(req, res) =>{
@@ -40,7 +40,7 @@ export class ReservaController{
           return res.status(404).json({ message: 'No se encontró la reserva de mesas' })
         }
       
-        res.redirect('/')
+        res.redirect('/reservas')
         }    
 
     update = async (req, res) =>{
@@ -48,12 +48,12 @@ export class ReservaController{
         const { id } = req.params;
         const input = req.body; 
         const response = await ReservaModel.modificar({ id, ...input });
-        res.redirect('/')
+        res.redirect('/reservas')
     }
 
     getModificar = async (req, res) =>{
         const { id } = req.params;
-        res.render('modificarReserva', { data: id }); 
+        res.render('reservas/modificarReserva', { data: id }); 
     }
 
 }
