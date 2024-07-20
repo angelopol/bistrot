@@ -493,20 +493,26 @@ document.getElementById('search-form').addEventListener('submit', async function
         }
 
         const data = await response.json();
-        console.log(data);
 
-        // Actualiza los campos con los datos
-        document.querySelector('.order-row').innerHTML = `
-            <span class="order-item">${new Date(data.FECHA).toLocaleDateString()}</span>
-            <span class="order-item">${data.Producto}</span>
-            <span class="order-item">${data.Nombre_Proveedor}</span>
-            <span class="order-item">${data.Cantidad}</span>
-        `;
+        if (data.Recibido) {
+            // Si la orden ya fue recibida
+            alert('Esta orden de compra ya ha sido recibida.');
+        } else {
+            // Si la orden no ha sido recibida, muestra los datos
+            console.log(data);
 
+            document.querySelector('.order-row').innerHTML = `
+                <span class="order-item">${new Date(data.FECHA).toLocaleDateString()}</span>
+                <span class="order-item">${data.Producto}</span>
+                <span class="order-item">${data.Nombre_Proveedor}</span>
+                <span class="order-item">${data.Cantidad}</span>
+            `;
+        }
     } catch (error) {
         console.error('Error:', error);
     }
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const finalizeButton = document.getElementById('comentarCambios');
@@ -561,12 +567,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     alert('Producto creado y cantidad agregada correctamente.');
+                    await fetch(`http://localhost:1234/compras-index/historial-actualizar/${orderId}`, {
+                        method: 'PATCH'
+                    });
                     location.reload();
                 } else {
                     alert('Error al agregar el producto.');
                 }
             } else if (response.ok) {
                 alert('Cantidad agregada correctamente.');
+                await fetch(`http://localhost:1234/compras-index/historial-actualizar/${orderId}`, {
+                    method: 'PATCH'
+                });
                 location.reload();
             } else {
                 alert('Error al agregar la cantidad.');
