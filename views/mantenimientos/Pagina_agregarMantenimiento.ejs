@@ -25,39 +25,55 @@
         <!--<div class="maintenance-content">-->
             <!-- ESTE ES EL SIDEBAR-->
             <div id="sidebar">
-                <div class="side inicio">
-                    <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+                <div class="inicio">
+                  <a class="side" href="">
+                    <img src="../mantenimientos/static/resources/iconos_barra/inicio-green.png" class="side-foto">
                     <p class="side-option">Inicio</p>
+                  </a>
                 </div>
-                <div class="side ventas">
-                    <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+                <div class="ventas">
+                  <a class="side" href="">
+                    <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/ventas-green.png">
                     <p class="side-option">Ventas/Salon</p>
+                  </a>
                 </div>
-                <div class="side compras">
-                    <img class="side-foto" src="resources/iconos_barra/compras-green.png">
-                    <p class="side-option">Compras</p>
+                <div class="compras">
+                  <a class="side" href="">
+                  <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/compras-green.png">
+                  <p class="side-option">Compras</p>
+                </a>
                 </div>
-                <div class="side rrhh">
-                    <img class="side-foto" src="resources/iconos_barra/person-green.png">
-                    <p class="side-option">RRHH</p>
+                <div class="rrhh">
+                  <a class="side" href="">
+                  <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/person-green.png">
+                  <p class="side-option">RRHH</p>
+                </a>
                 </div>
-                <div class="side inventario">
-                    <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
-                    <p class="side-option">Inventario</p>
+                <div class="inventario">
+                  <a class="side" href="">
+                  <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/inventario-green.png">
+                  <p class="side-option">Inventario</p>
+                </a>
                 </div>
-                <div class="side mantent">
-                    <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
-                    <p class="side-option">Mantenimiento</p>
+                <div class="mantent">
+                  <a class="side" href="">
+                  <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/mantenimiento-green.png">
+                  <p class="side-option">Mantenimiento</p>
+                </a>
                 </div>
-                <div class="side cocina">
-                    <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
-                    <p class="side-option">Cocina/Bar</p>
+                <div class="cocina">
+                  <a class="side" href="">
+                  <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/cocina-green.png">
+                  <p class="side-option">Cocina/Bar</p>
+                </a>
                 </div>
-                <div class="side reserv">
-                    <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
-                    <p class="side-option">Reservas</p>
+                <div class="reserv">
+                  <a class="side" href="">
+                  <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/reservas-green.png">
+                  <p class="side-option">Reservas</p>
+                </a>
                 </div>
-            </div>
+              </div>
 
             <!--Aqui empieza la cocina para la cosa ingresar tipo Gongzuorenyuan_trabajo personal-->
             <div id="Global_todos">
@@ -69,7 +85,8 @@
                 <div id="Recipiente_div">
                     <div id="tipo_formulario" class="scroll-table" style="display: block;">
                         <div id="Agregar_mas_trabajador" style="display: block;">
-                            <form id="formulario_agregar" action="api/mantenimientos_realizar" method="post">
+                            <form id="formulario_agregar" 
+                            action="api/mantenimientos_realizar" method="post">
                                 <div class="Ingreso_Inf_Trabajador">
                                     <label for="mantenimiento">Mantenimiento:</label>
                                     <input type="text" id="mantenimiento" name="mantenimiento" required>
@@ -105,15 +122,15 @@
     <script src="scripts/JSAgregarMantenimiento.js"></script>
     <script type="module">
             const button = document.getElementById('AgregrBtn');
-            document.addEventListener('click', e => {
-                
+            document.addEventListener('submit', e => {
+                e.preventDefault()
                 const nuevoMantenimiento = {
                 mantenimiento: document.getElementById("mantenimiento"),
                 responsable: document.getElementById("responsable"),
                 inicio: document.getElementById("inicio"),
-                fin: document.getElementById("fin")
+                fin: document.getElementById("fin"),
                 };
-                fetch('/api/mantenimientos_realizar', {
+                const responfetch('/api/mantenimientos_realizar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -122,7 +139,7 @@
                 })
                 .then(response => response.json())
                 .catch(error => console.error('Error:', error));
-              
+                alert({nuevoMantenimiento})
             })
       </script>
 </body>

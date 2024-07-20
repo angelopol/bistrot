@@ -30,59 +30,59 @@
   <!-- CONTENEDOR DE TODO EL RESTO DEL SITIO WEB-->
 
   <div class="content-wrapper">
+    <div id="sidebar">
+      <div class="inicio">
+        <a class="side" href="">
+          <img src="../mantenimientos/static/resources/iconos_barra/inicio-green.png" class="side-foto">
+          <p class="side-option">Inicio</p>
+        </a>
+      </div>
+      <div class="ventas">
+        <a class="side" href="">
+          <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/ventas-green.png">
+          <p class="side-option">Ventas/Salon</p>
+        </a>
+      </div>
+      <div class="compras">
+        <a class="side" href="">
+        <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/compras-green.png">
+        <p class="side-option">Compras</p>
+      </a>
+      </div>
+      <div class="rrhh">
+        <a class="side" href="">
+        <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/person-green.png">
+        <p class="side-option">RRHH</p>
+      </a>
+      </div>
+      <div class="inventario">
+        <a class="side" href="">
+        <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/inventario-green.png">
+        <p class="side-option">Inventario</p>
+      </a>
+      </div>
+      <div class="mantent">
+        <a class="side" href="">
+        <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/mantenimiento-green.png">
+        <p class="side-option">Mantenimiento</p>
+      </a>
+      </div>
+      <div class="cocina">
+        <a class="side" href="">
+        <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/cocina-green.png">
+        <p class="side-option">Cocina/Bar</p>
+      </a>
+      </div>
+      <div class="reserv">
+        <a class="side" href="">
+        <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/reservas-green.png">
+        <p class="side-option">Reservas</p>
+      </a>
+      </div>
+    </div>
     <div class="maintenance-content">
 
       <!-- ESTE ES EL SIDEBAR-->
-      <div id="sidebar">
-        <div class="inicio">
-          <a class="side" href="">
-            <img src="../mantenimientos/static/resources/iconos_barra/inicio-green.png" class="side-foto">
-            <p class="side-option">Inicio</p>
-          </a>
-        </div>
-        <div class="ventas">
-          <a class="side" href="">
-            <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/ventas-green.png">
-            <p class="side-option">Ventas/Salon</p>
-          </a>
-        </div>
-        <div class="compras">
-          <a class="side" href="">
-          <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/compras-green.png">
-          <p class="side-option">Compras</p>
-        </a>
-        </div>
-        <div class="rrhh">
-          <a class="side" href="">
-          <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/person-green.png">
-          <p class="side-option">RRHH</p>
-        </a>
-        </div>
-        <div class="inventario">
-          <a class="side" href="">
-          <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/inventario-green.png">
-          <p class="side-option">Inventario</p>
-        </a>
-        </div>
-        <div class="mantent">
-          <a class="side" href="">
-          <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/mantenimiento-green.png">
-          <p class="side-option">Mantenimiento</p>
-        </a>
-        </div>
-        <div class="cocina">
-          <a class="side" href="">
-          <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/cocina-green.png">
-          <p class="side-option">Cocina/Bar</p>
-        </a>
-        </div>
-        <div class="reserv">
-          <a class="side" href="">
-          <img class="side-foto" src="../mantenimientos/static/resources/iconos_barra/reservas-green.png">
-          <p class="side-option">Reservas</p>
-        </a>
-        </div>
-      </div>
       <!--SECCION PRINCIPAL DEL PROGRAMA-->
       <div class="principal-pag1">
 
@@ -92,12 +92,16 @@
 
         <div class="container-botones-principales">
           <h1>Mantenimiento</h1>
-          <div class="card" id="Page_contactos">
+          <a href="/mantenimientos/Pagina_contacto.ejs">
+            <div class="card" id="">
             <i class="fas fa-user"></i>
-          </div>
-          <div class="card" id="Page_reportes">
+            </div>
+          </a>
+          <a href="/mantenimientos/Pagina_reportes.ejs">
+          <div class="card" id="">
             <i class="fas fa-envelope"></i>
           </div>
+          </a>
         </div>
 
         <!--CONTENEDOR DEL HISTORIAL-->
@@ -114,9 +118,11 @@
                     <th>Fin</th>
                   </tr>
                   <tr>
-                    
                   </tr>
                 </table>
+                <a href="/mantenimientos/Pagina_agregarMantenimiento">
+                  <button class="button" >Agendar Mantenimiento</button>
+                </a>
               </div>
             </div>
           </div>
@@ -139,7 +145,7 @@
           <script type="module">
 
             //Agregar ruta completa ej: http://localhost:1234/api/mantenimientos_realizar
-            fetch('/api/mantenimientos_realizar', {
+            fetch('http://localhost:1234/api/mantenimientos_realizar', {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json'

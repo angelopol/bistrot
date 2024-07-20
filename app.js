@@ -32,6 +32,9 @@ app.get('/mantenimientos', (req, res) => {
 app.get('/mantenimientos/Pagina_contacto', (req, res) => {
   res.render('mantenimientos/Pagina_contacto.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
 });
+app.get('/mantenimientos/Pagina_agregarMantenimiento', (req, res) => {
+  res.render('mantenimientos/Pagina_agregarMantenimiento.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+});
 
 app.get('/mantenimientos/Pagina_reportes', (req, res) => {
   res.render('mantenimientos/Pagina_reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });

@@ -27,7 +27,7 @@ fetch(`/api/mantenimientos_realizar/${mantenimientoId}`, {
 const nuevoMantenimiento = {
     mantenimiento: 'Revisión del sistema de calefacción',
     responsable: 'Juan Pérez',
-    inicio: '2024-07-20',
+    inicio: '2024-07-20', 
     fin: '2024-07-21'
 };
 

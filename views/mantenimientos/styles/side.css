@@ -47,13 +47,13 @@ a {
     text-decoration: none;
 }
 #sidebar {
-    background-color: #EDEDED;
-    padding: 0px 10px;
+    background-color: #F6F6F6;
     height: 85vh;
     width: 15vw;
     display: flex;
     flex-direction: column;
-    margin-left: -20dvw;
+    padding-left: 12px;
+    margin-left: -2dvw;
 }
 
 .side {
@@ -61,7 +61,6 @@ a {
     font-size: 0.8rem;
     color:#013D1F;
     cursor: pointer;
-    margin: 5px;
     padding: 8px;
     border-radius: 5px;
     background-color: #F6F6F6;
