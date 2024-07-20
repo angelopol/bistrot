@@ -150,6 +150,51 @@
                 });
             });
 
+            //funcion que valide que un numero de telefono tenga 11 digitos, si es un numero y si los primeros 4 digitos son: 0412, 0414, 0416, 0424, 0426
+
+            document.getElementById("idtelefono").addEventListener("input", function(event) {
+                const telefono = event.target.value;
+                if (telefono.length !== 11) {
+                    event.target.setCustomValidity("El número de teléfono debe tener 11 dígitos.");
+                } else if (isNaN(telefono)) {
+                    event.target.setCustomValidity("El número de teléfono debe contener solo números.");
+                } else if (!["0412", "0414", "0416", "0424", "0426"].includes(telefono.slice(0, 4))) {
+                    event.target.setCustomValidity("El número de teléfono debe comenzar con 0412, 0414, 0416, 0424 o 0426.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
+
+            //funcion que valida si el campo de nombre y apellido tiene al menos 2 palabras y si solo contiene letras
+
+            document.getElementById("nombre").addEventListener("input", function(event) {
+                const nombre = event.target.value;
+                if (nombre.split(" ").length < 2) {
+                    event.target.setCustomValidity("El nombre y apellido deben contener al menos 2 palabras.");
+                } else if (!/^[a-zA-Z\s]+$/.test(nombre)) {
+                    event.target.setCustomValidity("El nombre y apellido solo pueden contener letras.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
+
+            //funcion que valida si una cedula tiene de 7 a 8 digitos, si es un numero y si el primer numero no es 0 y que sea menor a 35 millones
+
+            document.getElementById("cedula").addEventListener("input", function(event) {
+                const cedula = event.target.value;
+                if (cedula.length < 7 || cedula.length > 8) {
+                    event.target.setCustomValidity("La cédula debe tener entre 7 y 8 dígitos.");
+                } else if (isNaN(cedula)) {
+                    event.target.setCustomValidity("La cédula debe contener solo números.");
+                } else if (cedula[0] === "0") {
+                    event.target.setCustomValidity("La cédula no puede empezar con 0.");
+                } else if (cedula > 35000000) {
+                    event.target.setCustomValidity("La cédula no puede ser mayor a 35 millones.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
+
             //funcion que recupera las zona seleccionadas y las muestra en el campo de zona
 
             
