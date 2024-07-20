@@ -48,12 +48,6 @@ export async function validateLogin (input, register = true) {
       error: 'La contraseña es requerida.'
     }
   }
-  if (password.length < 8) {
-    return {
-      success: false,
-      error: 'La longitud de la contraseña es muy corta.'
-    }
-  }
   if (register) {
     if (!await EmpleadosModel.unique({ user })) {
       return {
