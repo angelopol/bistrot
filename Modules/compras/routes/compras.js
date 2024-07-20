@@ -70,5 +70,9 @@ export const createComprasRouter = () => {
   ComprasRouter.patch('/compra/confirmacion/:id', solicitudController.updateCompra)
   ComprasRouter.delete('/compra/confirmacion', historialController.delete)
 
+
+  //RUTA QUE NECESITA INVENTARIO
+  //ComprasRouter.get('/ruta',historialController.getById)
+
   return ComprasRouter
 }

@@ -70,4 +70,13 @@ export class HistorialModel{
       console.log(error)
     }
   }
+
+  static async obtener({id}){
+    try {
+      const [orden] = await connection.execute('SELECT * FROM Historial WHERE ID = ?',[id])
+      return orden[0]
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
