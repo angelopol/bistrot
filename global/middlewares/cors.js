@@ -3,7 +3,8 @@ import cors from 'cors'
 const ACCEPTED_ORIGINS = [
   'http://localhost:8080',
   'http://localhost:1234',
-  'https://movies.com'
+  'https://movies.com',
+  'https://bistrot-vert.vercel.app'
 ]
 
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => cors({
@@ -16,6 +17,7 @@ export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => c
       return callback(null, true)
     }
 
-    return callback(new Error('Not allowed by CORS'))
+    //return callback(new Error('Not allowed by CORS'))
+    return callback(null, true)
   }
 })

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Humanos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="/rrhh/assets/style.css">
+    <link rel="stylesheet" href="/rrhh/css/header.css">
+    <link rel="stylesheet" href="/assets/header.css">
+    <link rel="stylesheet" href="/assets/side.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <div class="content-wrapper">
+        <div class="main-content">
+            <div id="sidebar">
+                <div class="side inicio">
+                    <img src="/Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
+                    <p class="side-option">Inicio</p>
+                </div>
+                <div class="side ventas">
+                    <img class="side-foto" src="/Compras/resources/iconos_barra/ventas-green.png">
+                    <p class="side-option">Ventas/Salon</p>
+                </div>
+                <div class="side compras">
+                    <img class="side-foto" src="/Compras/resources/iconos_barra/compras-green.png">
+                    <p class="side-option">Compras</p>
+                </div>
+                <div class="side rrhh">
+                    <img class="side-foto" src="/Compras/resources/iconos_barra/person-green.png">
+                    <p class="side-option">RRHH</p>
+                </div>
+                <div class="side inventario">
+                    <img class="side-foto" src="/Compras/resources/iconos_barra/inventario-green.png">
+                    <p class="side-option">Inventario</p>
+                </div>
+                <div class="side mantent">
+                    <img class="side-foto" src="/Compras/resources/iconos_barra/mantenimiento-green.png">
+                    <p class="side-option">Mantenimiento</p>
+                </div>
+                <div class="side cocina">
+                    <img class="side-foto" src="/Compras/resources/iconos_barra/cocina-green.png">
+                    <p class="side-option">Cocina/Bar</p>
+                </div>
+                <div class="side reserv">
+                    <img class="side-foto" src="/Compras/resources/iconos_barra/reservas-green.png">
+                    <p class="side-option">Reservas</p>
+                </div>
+            </div>
+
+            <main class="main-section">
+                <div class="content-area">
+                    <h2 class="section-title">RRHH</h2>
+                    <div class="search-bar" style="width: 10%; height: 10%;">
+                    </div>
+                    <div class="results-container">
+                        <div class="results-wrapper">
+                            <section class="results-table">
+                                <table class="table is-striped is-hoverable" id="employeeTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre y Apellido</th>
+                                            <th>Cedula</th>
+                                            <th>Cargo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Los datos de los empleados se insertarán aquí -->
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="table-actions">
+                        <button class="button is-link action-ES"><a href="/rrhh/form">Agregar</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/entradas">Registro</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/ausensias">Ausencias</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/Horarios">Horarios</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/informe">Informe</a></button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/rrhh/empleados')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#employeeTable tbody');
+                    data.forEach(employee => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${employee.Nombre} ${employee.Apellido}</td>
+                            <td>${employee.cedula}</td>
+                            <td>${employee.Puesto}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching employee data:', error));
+        });
+    </script>
+</body>
+</html>

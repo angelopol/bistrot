@@ -1,4 +1,3 @@
-
 -- creando la tabla
 CREATE TABLE comida (
 	id INT AUTO_INCREMENT PRIMARY KEY, -- id unico de la comida
@@ -26,7 +25,7 @@ INSERT INTO comida (nombre , tipo_comida , tipo_bebida , instrumentos , ingredie
 ('Daiquiri' , null , "trago" , '20' , '{"25":0.20,"26":0.3,"18":0.10}'),
 ('Old Fashioned' , null , "trago" , '21' , '{"27":0.25,"26":0.2,"18":0.05}'),
 ('Margarita' , null , "trago" , '22' , '{"28":0.25,"26":0.2,"18":0.05}'),
-('Cuvée Bistrot Chez Rémy' , null , "vino rojo" , "19" , '{29:1.0}'),
+('Cuvée Bistrot Chez Rémy' , null , "vino rojo" , "19" , '{"29":1.0}'),
 ('Agneau Rouge' , null , "vino rojo" , "20" , '{"30":1.0}'),
 ('Sancerre AOC' , null , "vino blanco" , "21" , '{"31":1.0}'),
 ('Languedoc' , null , "vino blanco" , "22" , '{"32":1.0}'),

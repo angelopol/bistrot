@@ -6,6 +6,9 @@
     <title>BISTROT CHEZ RÉMY - Menu</title>
     <link rel="stylesheet" href="css/Menu.css">
     <link rel="stylesheet" href="css/side.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
 </head>
 
 <body>
@@ -119,20 +122,23 @@
         const slides = document.querySelectorAll('.carousel-inner .card');
         const totalSlides = slides.length;
         const slidesPerView = 1; // 2 filas x 2 columnas
+        window.onload = function(params) {
+            document.querySelector('.next').addEventListener('click', () => {
+                if (currentSlide < totalSlides - slidesPerView) {
+                    currentSlide += slidesPerView;
+                    updateCarousel();
+                }
+            });
+            document.querySelector('.prev').addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide -= slidesPerView;
+                    updateCarousel();
+                }
+            });
+        }
+        
 
-        document.querySelector('.next').addEventListener('click', () => {
-            if (currentSlide < totalSlides - slidesPerView) {
-                currentSlide += slidesPerView;
-                updateCarousel();
-            }
-        });
-
-        document.querySelector('.prev').addEventListener('click', () => {
-            if (currentSlide > 0) {
-                currentSlide -= slidesPerView;
-                updateCarousel();
-            }
-        });
+        
 
         function updateCarousel() {
             const carousel = document.querySelector('.carousel-inner');
@@ -162,11 +168,11 @@
 			}
 			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
 			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
+			// var socket = new WebSocket(address);
+			// socket.onmessage = function (msg) {
+			// 	if (msg.data == 'reload') window.location.reload();
+			// 	else if (msg.data == 'refreshcss') refreshCSS();
+			// };
 			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
 				console.log('Live reload enabled.');
 				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);

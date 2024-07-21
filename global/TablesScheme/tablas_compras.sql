@@ -1,5 +1,5 @@
 -- Tabla del historial de compras (Tabla que fue actualizada)
-CREATE TABLE `bistrot`.`Historial` (
+CREATE TABLE `Historial` (
     `ID` INT NOT NULL AUTO_INCREMENT, -- Identificación de las compras
     `FECHA` DATETIME NOT NULL, -- Fecha General
     -- `Factura` VARCHAR(200) NOT NULL, -- Factura de la compra
@@ -14,7 +14,7 @@ CREATE TABLE `bistrot`.`Historial` (
     UNIQUE (`ID`, `FECHA`)
 );
 
-CREATE TABLE `bistrot`.`ProductoCompras` (
+CREATE TABLE `ProductoCompras` (
     `ID_Producto` INT NOT NULL AUTO_INCREMENT, -- ID del Producto
     -- `ID_Proveedor` INT NOT NULL, -- ID del proveedor
     `NombreP` VARCHAR(200) NOT NULL, -- Nombre del producto
@@ -27,7 +27,7 @@ CREATE TABLE `bistrot`.`ProductoCompras` (
 );
 
 -- Tabla de los proveedores de las compras del restaurante
-CREATE TABLE `bistrot`.`Proveedores` (
+CREATE TABLE `Proveedores` (
 	`RIF` VARCHAR(200) CHARACTER SET utf8 NOT NULL, -- RIF
     `Nombre_Empresa` VARCHAR(200) CHARACTER SET utf8 NOT NULL, -- Nombre de la empresa
     `Dire_Fiscal` TEXT(255), -- Dirección Fiscal
@@ -42,7 +42,7 @@ CREATE TABLE `bistrot`.`Proveedores` (
 
 
 -- Tabla de las solicitudes de las compras
-CREATE TABLE `bistrot`.`Solicitudes` (
+CREATE TABLE `Solicitudes` (
 	`ID_Requisicion` INT NOT NULL AUTO_INCREMENT, -- Identificación de la requisición
     `Departamento` VARCHAR(200) NOT NULL, -- Departamento
     `ID_Empleado` INT NOT NULL , -- ID de los empleados

@@ -1,6 +1,8 @@
 import { ComidaModel } from '../models/mysql/comida.js'
 //import { ComidaModel } from "../models/local-file-system/comida.js"
 import { validateComida, validatePartialComida } from '../schemas/comidas.js'
+import { logged } from "../../Login/middlewares/logged.js"
+import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class ComidaController{
     getAll = async (req, res) => {

@@ -1,0 +1,6 @@
+Mejora:
+los iconos de cuadrados -> Arregle algo en css, revisa por el archivo de css
+titulo tambien, cuidado aqui hice position absolute, no es bueno practica, pero sirve para mover cualquier lugar
+
+container-historial ubicalo en css, este donde modifica el tabla
+container tambien
