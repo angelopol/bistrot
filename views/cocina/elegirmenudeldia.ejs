@@ -80,5 +80,21 @@
             </div>
         </div>
     </main>
+    <script>
+
+    //dentro del if meteras un array donde meteras todos los bichos que se iran seleccionado, me imagino, te dejo cooking
+    document.getElementById('tabla-platos').onclick = function(){
+        if(contadora <= 3){
+            const filaSeleccionada = event.target.closest('tbody tr');
+        filaSeleccionada.style.background = "#007b3e"        
+        filaSeleccionada.style.color = "#ffffff"
+        contadora += 1
+
+        }}
+
+    var contadora = 0;
+     
+      </script>   
 </body>
+
 </html>
