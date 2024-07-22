@@ -207,7 +207,7 @@ const botonConfirmar = document.getElementById("btn-send")
 botonConfirmar.addEventListener("click", async function () {
     for (let platoID in menuDia) {
         const cambios = {
-            "seleccionado": 1
+            "seleccionada": 1
         }
         const options = {
             method: 'PATCH', 
@@ -216,7 +216,7 @@ botonConfirmar.addEventListener("click", async function () {
             },
             body: JSON.stringify(cambios)
         };
-        await fetch(`http://localhost:1234/cocina/comida/${platoID}`, options)
+        await fetch(`http://localhost:1234/cocina/comida/${menuDia[platoID]}`, options)
         .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -225,10 +225,10 @@ botonConfirmar.addEventListener("click", async function () {
           })
         .then(data => {
             comidas = data
-            console.log(`El plato de ID ${platoID} ha sido agregado al menú del día`)
+            console.log(`El plato de ID ${menuDia[platoID]} ha sido agregado al menú del día`)
         })
         .catch(error => {
-            console.error("Error al obtener las recetas: ", error)
+            console.error("Error al agregar la receta al menu del dia: ", error)
         })
     }
 })

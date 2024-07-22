@@ -36,7 +36,7 @@ const comidaSchema = z.object({
   }, {
     message: 'Ingredientes debe ser un objeto en formato JSON con claves numéricas y valores numéricos (enteros o floats).'
   }),
-  seleccionada: z.boolean()
+  seleccionada: z.number().int()
 })
 export function validateComida (input) {
   return comidaSchema.safeParse(input) // esto es un objeto que tiene tres propiedades. success que es un booleano , data que contiene los datos del esquema y error que contiene los errores si los hay
