@@ -1,6 +1,8 @@
 import { ComidaModel } from '../models/mysql/comida.js'
 //import { ComidaModel } from "../models/local-file-system/comida.js"
 import { validateComida, validatePartialComida } from '../schemas/comidas.js'
+import { logged } from "../../Login/middlewares/logged.js"
+import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class ComidaController{
     getAll = async (req, res) => {
@@ -19,7 +21,9 @@ export class ComidaController{
     }
 
     create = async (req, res) => {
+        console.log("hola")
         const result = validateComida(req.body)
+        console.log(result)
   
         if (!result.success) {
         // 422 Unprocessable Entity

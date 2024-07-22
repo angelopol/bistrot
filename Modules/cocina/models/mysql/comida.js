@@ -1,11 +1,12 @@
 import mysql from "mysql2/promise"
+import 'dotenv/config'
 
 const config = {
-    host: "localhost",
-    user: "root",
-    port: 3306,
-    password: "$0p0rt3",
-    database: "bistrot",
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    port: process.env.DB_PORT || 3306,
+    password: process.env.DB_PASSWORD || '$0p0rt3',
+    database: process.env.DB_DATABASE || 'bistrot', 
 }
 
 const connection = await mysql.createConnection(config)
@@ -49,16 +50,20 @@ const connection = await mysql.createConnection(config)
             tipo_comida,
             tipo_bebida,
             instrumentos,
-            ingredientes
+            ingredientes,
+            seleccionada
         } = input
+
         try {
             await connection.query(
-                "INSERT INTO comida (nombre , tipo_comida, tipo_bebida , instrumentos , ingredientes) VALUES (?,?,?,?,?);", [nombre , tipo_comida, tipo_bebida , instrumentos , ingredientes]
+                "INSERT INTO comida (nombre , tipo_comida, tipo_bebida , instrumentos , ingredientes, seleccionada) VALUES (?,?,?,?,?,?);", [nombre , tipo_comida, tipo_bebida , instrumentos , ingredientes , seleccionada]
             )
             const [comida] = await connection.query("SELECT * FROM comida WHERE id = LAST_INSERT_ID()");
             return comida
         } catch (error) {
+            console.log(error)
             throw new Error("Error creando una comida")
+            
         }
         
     }
@@ -88,7 +93,8 @@ const connection = await mysql.createConnection(config)
             tipo_comida,
             tipo_bebida,
             instrumentos,
-            ingredientes
+            ingredientes,
+            seleccionada
         } = input;
 
         try {
@@ -115,6 +121,10 @@ const connection = await mysql.createConnection(config)
             if (ingredientes) {
                 updates.push("ingredientes = ?");
                 values.push(ingredientes);
+            }
+            if (seleccionada== false || seleccionada == true) {
+                updates.push("seleccionada = ?");
+                values.push(seleccionada);
             }
 
             // Comprobar si hay campos para actualizar

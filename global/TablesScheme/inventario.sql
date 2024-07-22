@@ -1,12 +1,3 @@
--- EJECUTEN ESTO EN MYSQL PRIMERO 
-
--- Crear base de datos
-CREATE DATABASE inventario;
-
--- Seleccionar base de datos
-USE inventario;
-
--- Crear tablas
 CREATE TABLE submodulo_inventario (
     id_submodulo_inventario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -119,7 +110,7 @@ INSERT INTO general (nombre, tipo, categoria, funciona_estado, fecha_mantenimien
 ('Coctelera C', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5),
 ('Coctelera D', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5),
 ('Batidora A', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5),
-('Batidora B', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5);
+('Batidora B', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5),
 
 -- Desde aqui son inventados
 -- Maquinaria

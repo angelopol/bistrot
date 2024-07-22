@@ -1,0 +1,338 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden; 
+      
+}
+
+.restaurant-title, .Contenido {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+
+}
+
+
+.restaurant-header {
+    background-color: #013D1F;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    color: #fff;
+    line-height: 150%;
+    padding: 34px 5%;
+    box-sizing: border-box;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 20px;
+    overflow-x: hidden; 
+}
+
+.orders-icon{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
+}
+
+
+.restaurant-title {
+    letter-spacing: -1%;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+    font-size: 24px;
+}
+
+.user-info {
+    border-radius: 8px;
+    border: 1px solid #fff;
+    background-color: #013d1f;
+    display: flex;
+    gap: 16px;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 8px 16px;
+}
+
+
+.selected {
+
+    transition: transform 0.3s ease;
+    transform: translateY(-7px);
+
+}
+
+.user-name {
+
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.user-icon {
+    width: 24px;
+    height: 24px;
+}
+
+
+.table-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    
+}
+
+.table-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.3), 0 0 15px 0 rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    display: flex;
+    padding-bottom: 10px;
+    flex-direction: column;
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+    line-height: 150%;
+    width: 16%;
+    max-width: 16%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table-header {
+    background-color: #178566;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px ;
+}
+
+
+.table-icon {
+    width: 16px;
+    height: 16px;
+}
+.table-number {
+    margin: auto 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    gap: 5px    ;
+}
+
+
+.table-info {
+    align-self: center;
+    display: flex;
+    gap: 5px;
+}
+
+
+.table-name {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.table-status {
+    font-family: Montserrat, sans-serif;
+    align-self: center;
+}
+
+.action-panel {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+
+    color: #fff;
+    font-weight: 600;
+    line-height: 150%;
+    width: 100%;
+    
+    gap: 16px;
+}
+
+
+
+.action-button {
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: #178566;
+    font-size: 16px;
+    margin-top: 5px;
+    padding: 16px;
+    cursor: po'Montserrat';
+    width: 70%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 22%;
+    gap: 20px;
+}
+
+.Salida{margin: 40px;}
+
+.Contenido{
+    overflow-x: hidden; 
+    display: flex;
+    flex-direction: row;
+    width: 99%;
+    padding: 10px; 
+    align-items: center;
+    justify-content: center;
+}
+
+.titulos{
+    font-size: 17px;
+    font-weight: 600;
+    width: 200px;
+}
+
+.Tables{
+    width: 70%;
+}
+
+.table-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.6), 0 0 20px 0 rgba(0, 0, 0, 0.6);
+}
+
+.action-button:hover{   
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.modal-content {
+    background-color: #ffffff;
+    text-align: center;
+    align-content: center;
+    color: #000;
+    margin: auto;
+    margin-top: 0px;
+    
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    width: 78%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: show 0.4s;
+    overflow-x: hidden; 
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-x: hidden; 
+}
+
+.closeBtn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para la factura */
+.factura-divider {
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+.factura-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.factura-item .item-nombre {
+    flex: 2;
+}
+
+.factura-item .item-cantidad {
+    flex: 1;
+    text-align: center;
+}
+
+.factura-item .item-precio {
+    flex: 1;
+    text-align: right;
+}
+
+.button-cerrar-modal {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #178566;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-cerrar-modal:hover {
+    background-color: #178566;
+}
+
+.factura-item {
+    margin-bottom: 10px;
+    
+    padding-bottom: 5px;
+}
+
+.cliente-datos {
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif;
+}

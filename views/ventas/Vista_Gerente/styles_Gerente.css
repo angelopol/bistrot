@@ -1,0 +1,656 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Krona-One";
+    src: url("../resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
+    font-weight: 500;
+}
+
+
+*{
+    font-family: 'Montserrat',sans-serif;   
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    overflow: hidden;
+}
+
+
+
+header {
+    background-color: #013D1F;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 15vh;
+}
+
+#title {
+    font-family: 'Montserrat';
+    font-size: 1.4rem;
+    margin-right: 45%;
+}
+
+#title-combo {
+    appearance: none;
+    color: white;
+    background-color: #013D1F;
+    border-radius: 2px;
+    padding: 10px;
+    width: 15%;
+    outline: none;
+}
+
+main {
+    display: flex;
+}
+
+#sidebar {
+    margin: 0;
+    
+    background-color: #EDEDED;
+    height: 85vh;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.side {
+    font-family: 'Montserrat-Medium';
+    font-size: 0.8rem;
+    color:#013D1F;
+    cursor: pointer;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #F6F6F6;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.side-foto {
+    width: 15%;
+    margin: 0px 10%;
+}
+
+.side:hover {
+    padding: 15px 8px;
+    background-color: #02676F10;
+}
+
+.inicio {
+    margin-top: 20%;
+}
+
+#principal {
+    width: 85vw;
+}
+
+.restaurant-header {
+    background-color: #013d1f;
+    display: flex;
+    width: 91.8%;
+    gap: 20px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 150%;
+    padding: 30px 55px;
+}
+
+@media (max-width: 991px) {
+    .bistrot-header {
+    max-width: 100%;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    }
+}
+
+.restaurant-title {
+    letter-spacing: 1%;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+    font-size: 24px;
+}
+
+.user-info {
+    border-radius: var(--sds-size-radius-200);
+    border: 1px solid #fff;
+    background-color: #013d1f;
+    display: flex;
+    gap: 16px;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 8px 16px;
+}
+
+@media (max-width: 991px) {
+    .user-info {
+    white-space: initial;
+    }
+}
+
+.user-name {
+    font-family: 'Montserrat', sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.flecha_hacia_abajo {
+    aspect-ratio: 1;
+    width: 24px;
+}
+
+.main-content {
+    width: 100%
+}
+
+@media (max-width: 991px) {
+    .main-content {
+    max-width: 100%;
+    }
+}
+
+.content-wrapper {
+    display: flex;
+    flex:1;
+    gap: 20px;
+}
+
+@media (max-width: 991px) {
+    .content-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    }
+}
+
+
+
+@media (max-width: 991px) {
+    .sidebar {
+    width: 100%;
+    margin-top: 40px;
+    }
+}
+
+.sidebar-item {
+    border-radius: var(--sds-size-radius-200);
+    background-color: #f6f6f6;
+    display: flex;
+    gap: 16px;
+    padding: 8px 16px;
+    margin-top: 8px;
+}
+
+.sidebar-icon {
+    aspect-ratio: 1;
+    width: 20px;
+    fill: #02676f;
+    margin: auto 0;
+}
+
+.sidebar-text {
+    font-family: 'Montserrat', sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.help-item {
+    display: flex;
+    align-items: center;
+}
+
+.help-icon {
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid #02676f;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-section {
+    margin-left: 40px;
+    margin-top: 0px;
+    margin-right: 40px;
+    display: flex;
+    flex: 1;
+}
+
+@media (max-width: 991px) {
+    .main-section {
+    width: 100%;
+    margin-top: 40px;
+    }
+}
+
+.content-area {
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+    margin-top: 30px;
+    
+}
+
+@media (max-width: 991px) {
+    .content-area {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    }
+}
+
+.sales-section {
+    width: 100%;
+    margin: 0 0;
+    padding: 10px;
+}
+
+.chart {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 991px) {
+    .sales-section {
+    width: 100%;
+    margin-top: 27px;
+    }
+}
+
+.sales-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+    color: #0F624A;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    letter-spacing: -0.68px;
+    line-height: 110%;
+    padding: 0 20px;
+}
+
+.sales-chart {
+    aspect-ratio: 0;
+    width: 100%;
+    
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
+}
+
+.opciones-mesas {
+    width: 55px; /* Ancho del select */
+    padding: 10px; /* Espaciado interno */
+    border: 2px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Color de fondo */
+    color: #333; /* Color del texto */
+    font-size: 15px; /* Tamaño de la fuente */
+}
+
+.sidebar-right {
+    width: 25%;
+}
+
+@media (max-width: 991px) {
+    .sidebar-right {
+    width: 100%;
+    }
+}
+
+.action-panel {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 150%;
+    margin: 10px;
+    padding: 18px;
+    gap: 5px;
+}
+
+
+.dropbtn {
+    background-color: white; 
+    color: gray;
+    padding: 12px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+/* Contenedor del dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    align-items: safe;
+    
+}
+.dropdown-arrow {
+    margin-left: 10px;
+    width: 16px;
+    height: 16px;
+    filter: invert(0) brightness(0); /* Cambia la imagen a negro */
+}
+/* Contenido del dropdown (oculto por defecto) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+    
+/* Links dentro del dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Cambiar color de los links al pasar el ratón */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    
+}
+
+/* Mostrar el contenido del dropdown al hacer clic en el botón */
+.dropdown.show .dropdown-content {
+    display: block;
+    
+}
+
+
+@media (max-width: 991px) {
+    .action-panel {
+    margin-top: 40px;
+    padding: 0 20px;
+    }
+}
+
+.panel-title {
+    color: #0F624A;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+
+.dropdown {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    display: flex;
+    margin-top: 10px;
+    gap: 16px;
+    color: #828282;
+    font-weight: 400;
+    padding: 8px 16px;
+}
+
+.dropdown-text {
+    font-family: 'Montserrat', sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.action-button {
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: #0F624A;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 16px;
+    padding: 12px 24px;
+    color: #fff;
+    cursor: pointer;
+    border-width: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+    .action-button {
+    padding: 10px 20px;
+    }
+}
+
+.stats-container {
+    display: flex;
+    gap: 10px;
+    margin: 10px;
+    width: 96%;
+    align-items: center;
+
+  }
+
+.stats-card {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font: 600 16px/1.5 'Montserrat', sans-serif;
+    color: #000;
+    width: 100%;
+    padding: 14px;
+}
+
+.stats-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #0F624A;
+    font-weight: 800;
+}
+
+.stats-value {
+    letter-spacing: -0.4px;
+    margin-top: 0px;
+    margin-bottom: 18px;
+    font: 600 30px/1.1 'Montserrat', sans-serif;
+}
+
+.stats-change {
+    color: #828282;
+    font: 500 16px/1.5 'Montserrat', sans-serif;
+    margin-top: 0px;
+}
+
+@media (max-width: 991px) {
+    .stats-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+}
+
+    .stats-card {
+      max-width: 100%;
+      margin-top: 32px;
+      padding: 0 20px;
+    }
+
+    .stats-title,
+    .stats-value,
+    .stats-change {
+      max-width: 100%;
+    }
+}
+
+.action-button:hover{
+    background-color: #02686fcc;
+    
+    transition: background-color 0.3s, color 0.3s;
+    border-color: rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px -6px rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #ffffff;
+    text-align: center;
+    align-content: center;
+    color: #000;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: show 0.4s;
+    
+}
+
+@keyframes show {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.closeBtn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-caja {
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: #0F624A;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 16px;
+    padding: 12px 24px;
+    color: #fff;
+    cursor: pointer;
+    border-width: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Esto es para quitar los spin en los inputs de type number*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+
+.tasa-dia {
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.apertura-cierre, .presupuesto, .fecha-apertura-cierre {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.fecha-apertura-cierre {
+    margin-bottom: 10px;
+    width: 205px;
+}
+
+
+label {
+    font-size: 18px; /* Tamaño de fuente */
+    margin: 5px 0; /* Espaciado vertical entre etiquetas */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave para el fondo */
+    display: block; /* Asegura que cada etiqueta ocupe toda la línea */
+    text-align: center; /* Centra el texto dentro de la etiqueta */
+}
+
+/* Estilo específico para la etiqueta de Ingresos */
+.ingresos_labels {
+    font-weight: bold; /* Texto en negrita */
+    color: white; /* Color del texto */
+    background-color: green; /* Color de fondo verde */
+    width: 200px; /* Ancho específico */
+    margin: 10px auto; /* Centrar la etiqueta horizontalmente */
+}
+
+/* Estilo específico para la etiqueta de Egresos */
+.egresos_labels {
+    font-weight: bold; /* Texto en negrita */
+    color: white; /* Color del texto */
+    background-color: red; /* Color de fondo rojo */
+    width: 200px; /* Ancho específico */
+    margin: 10px auto; /* Centrar la etiqueta horizontalmente */
+}
+
+/* Efecto al pasar el mouse */
+label:hover {
+    opacity: 0.8; /* Reduce la opacidad al pasar el mouse */
+}

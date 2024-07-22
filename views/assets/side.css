@@ -1,0 +1,31 @@
+#sidebar {
+    background-color: #EDEDED;
+    height: 85vh;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.side {
+    font-family: 'Montserrat-Medium';
+    font-size: 0.8rem;
+    color:#013D1F;
+    cursor: pointer;
+    margin: 5px;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #F6F6F6;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.side-foto {
+    margin: 0px 10%;
+    width: 15%;
+}
+
+.side:hover {
+    padding: 15px 8px;
+    background-color: #02676F10;
+}
