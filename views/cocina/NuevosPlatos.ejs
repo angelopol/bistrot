@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot</title>
+    <link rel="stylesheet" href="css/side.css">
+    <link rel="stylesheet" href="css/platos.css">
+    <link rel="stylesheet" href="css/Menu.css">
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div class="content-box">
+            <div class="title-box">
+                <img id="btn-exit" src="iconos_barra/icono_salida.png" onclick="window.location.href= '/cocina/produccion';" alt="">
+                <h2>Menu</h2>
+            </div>
+            <div class="subtitle-box">
+                <h3>Recetas</h3>
+            </div>
+            <div class="menu-box">
+                <div class="box-btns">
+                    <button class="nav-btns verdecito" id="elegir-menu" onclick="window.location.href = '/cocina/elegirmenudeldia';">Elegir Menu del Dia</button>
+                    <button class="nav-btns verdecito" id="menu-day"  onclick="window.location.href = '/cocina/creadordefichasplato';">Menu Del dia</button>
+                    <button class="nav-btns verdecito" id="create-plato"  onclick="window.location.href = '/cocina/Menudeldia';">Crear nuevo plato</button>
+                    <button class="nav-btns"style="background-color: white; color: #0f624a;  box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618)" id="new-plato" onclick="window.location.href = '/cocina/NuevosPlatos';">Nuevos Platos</button>
+                </div>
+                <div class="box-table">
+                    <table id="tabla-platos">
+                        <thead>
+                            <tr class="table-header">
+                                <th class="header-cell">Id</th>
+                                <th class="header-cell">Nombre</th>
+                                <th class="header-cell">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-row">
+                                <td class="row-cell">1</td>
+                                <td class="row-cell-name">sopa de calabacin de la vaca que rie </td>
+                                <td class="row-cell">entradas</td></tr>
+                                <tr class="table-row"><td class="row-cell">2</td
+                                    ><td class="row-cell-name">Cocina B</td><td class="row-cell">entradas</td>
+                                </tr><tr class="table-row"><td class="row-cell">3</td>
+                                    <td class="row-cell-name">Cocina C</td><td class="row-cell">entradas</td>
+                                </tr><tr class="table-row"><td class="row-cell">4</td><td class="row-cell-name">Cocina D</td>
+                                    <td class="row-cell">entradas</td></tr><tr class="table-row"><td class="row-cell">5</td>
+                                        <td class="row-cell-name">Horno A</td><td class="row-cell">Plato fuerte</td></tr>
+                                        <tr class="table-row"><td class="row-cell">6</td><td class="row-cell-name">Horno B</td>
+                                            <td class="row-cell">Plato fuerte</td></tr><tr class="table-row"><td class="row-cell">7</td>
+                                                <td class="row-cell-name">Horno C</td><td class="row-cell">Plato fuerte</td></tr>
+                                                <tr class="table-row"><td class="row-cell">8</td><td class="row-cell-name">Horno D</td>
+                                                    <td class="row-cell">Plato fuerte</td></tr><tr class="table-row"><td class="row-cell">9</td>
+                                                        <td class="row-cell-name">Sarten A</td><td class="row-cell">Postres</td></tr>
+                                                        <tr class="table-row"><td class="row-cell">10</td><td class="row-cell-name">Sarten B</td><td class="row-cell">Postres</td></tr><tr class="table-row"><td class="row-cell">11</td><td class="row-cell-name">Sarten C</td><td class="row-cell">Postres</td></tr><tr class="table-row"><td class="row-cell">12</td><td class="row-cell-name">Colador A</td><td class="row-cell">Postres</td></tr><tr class="table-row"><td class="row-cell">13</td><td class="row-cell-name">Colador B</td><td class="row-cell">menu de niños</td></tr><tr class="table-row"><td class="row-cell">14</td><td class="row-cell-name">Olla A</td><td class="row-cell">menu de niños</td></tr><tr class="table-row"><td class="row-cell">15</td><td class="row-cell-name">Olla B</td><td class="row-cell">menu de niños</td></tr><tr class="table-row"><td class="row-cell">16</td><td class="row-cell-name">Olla C</td><td class="row-cell">menu de niños</td></tr><tr class="table-row"><td class="row-cell">17</td><td class="row-cell-name">Nevera A</td><td class="row-cell">vegetariano</td></tr><tr class="table-row"><td class="row-cell">18</td><td class="row-cell-name">Nevera B</td><td class="row-cell">vegetariano</td>
+                
+                </div>
+                </div>
+                </table>
+                </div>
+                <div class="plato-box">
+                    <h3>Plato</h3>
+                    <img id="img-plato" src="Newfolder/mixdeverduras.jpg" alt="">
+                    <label>Nombre</label>
+                    <input id="input-name" readonly type="text">
+                    <label>Ingredientes</label>
+                    <textarea id="input-ingre" readonly></textarea>
+                    <div class="btns-plato">
+                        <button class="btns verdecito" id="btn-add">Agregar</button>
+                        <button class="btns verdecito" id="btn-send">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
