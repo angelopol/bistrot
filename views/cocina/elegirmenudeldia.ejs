@@ -41,7 +41,7 @@
                                 <th class="header-cell">Estado</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody">
                             <tr class="table-row">
                                 <td class="row-cell">1</td>
                                 <td class="row-cell-name">sopa de calabacin de la vaca que rie </td>
@@ -69,7 +69,7 @@
                     <h3>Plato</h3>
                     <img id="img-plato" src="Newfolder/mixdeverduras.jpg" alt="">
                     <label>Nombre</label>
-                    <input id="input-name" readonly type="text">
+                    <textarea id="input-name"></textarea>
                     <label>Ingredientes</label>
                     <textarea id="input-ingre" readonly></textarea>
                     <div class="btns-plato">
@@ -80,21 +80,6 @@
             </div>
         </div>
     </main>
-    <script>
-
-    //dentro del if meteras un array donde meteras todos los bichos que se iran seleccionado, me imagino, te dejo cooking
-    document.getElementById('tabla-platos').onclick = function(){
-        if(contadora <= 3){
-            const filaSeleccionada = event.target.closest('tbody tr');
-        filaSeleccionada.style.background = "#007b3e"        
-        filaSeleccionada.style.color = "#ffffff"
-        contadora += 1
-
-        }}
-
-    var contadora = 0;
-     
-      </script>   
+    <script src="/cocina/scriptCrearMenuDia.js" defer></script>
 </body>
-
 </html>

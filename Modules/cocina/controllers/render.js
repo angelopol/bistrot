@@ -53,8 +53,19 @@ export class RenderController{
         if (!await VerifyCargo(req, res, 'Cocinero')) return
         res.render("cocina/Bebidas");
     }
+    renderElegirMenu = async (req, res) => {
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Cocinero')) return
+        res.render("cocina/elegirmenudeldia");
+    }
 
-    renderCSS = async (req, res) => {
+    renderMenuCSS = async (req, res) => {
         res.sendFile(process.cwd() + '/views/cocina/css/Menu.css');
+    }
+    renderSideCSS = async (req, res) => {
+        res.sendFile(process.cwd() + '/views/cocina/css/side.css');
+    }
+    renderPlatosCSS = async (req, res) => {
+        res.sendFile(process.cwd() + '/views/cocina/css/platos.css');
     }
 }

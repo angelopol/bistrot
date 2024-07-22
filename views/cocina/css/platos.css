@@ -140,3 +140,8 @@ tr:hover {
     color:white;
 
 }
+
+.clicked {
+    background: #007b3e;    
+    color: #ffffff;
+}
