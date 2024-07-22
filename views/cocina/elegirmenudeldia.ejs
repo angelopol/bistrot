@@ -31,6 +31,7 @@
                     <button class="nav-btns verdecito" id="menu-day"  onclick="window.location.href = '/cocina/Menudeldia';">Menu Del dia</button>
                     <button class="nav-btns verdecito" id="create-plato"  onclick="window.location.href = '/cocina/creadordefichasplato';">Crear nuevo plato</button>
                     <button class="nav-btns verdecito" id="new-plato" onclick="window.location.href = '/cocina/NuevosPlatos';">Nuevos Platos</button>
+                    <botton class="nav-btns azulito"  style ="background-color: #02676F; color: white;">Reiniciar dia</botton>
                 </div>
                 <div class="box-table">
                     <table id="tabla-platos">
@@ -63,13 +64,16 @@
                 
                 </div>
                 </div>
+                
                 </table>
+                
                 </div>
+               
                 <div class="plato-box">
                     <h3>Plato</h3>
                     <img id="img-plato" src="Newfolder/mixdeverduras.jpg" alt="">
                     <label>Nombre</label>
-                    <textarea id="input-name"></textarea>
+                    <textarea id="input-name" readonly></textarea>
                     <label>Ingredientes</label>
                     <textarea id="input-ingre" readonly></textarea>
                     <div class="btns-plato">

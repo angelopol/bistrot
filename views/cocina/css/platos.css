@@ -71,6 +71,9 @@ main {
     background-color: #0F624A;
     padding: 15px;
     font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -144,4 +147,11 @@ tr:hover {
 .clicked {
     background: #007b3e;    
     color: #ffffff;
+}
+
+.azulito:hover {
+    background:#00919b  !important; 
+    color: white;
+    transition: 0.4s ease;
+    
 }
