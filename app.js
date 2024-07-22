@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(express.static('views'));
 app.use(methodOverride('_method'));
-
 routes({ app });
 
 const PORT = process.env.PORT ?? 1234;

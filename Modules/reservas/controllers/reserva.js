@@ -21,7 +21,7 @@ export class ReservaController{
     }
 
     create=async (req, res)=> {
-        
+        console.log(req.body)
         const result = validar_reserva(req.body)
         if (!result.success) {
             return res.status(400).json({ error: JSON.parse(result.error.message) })

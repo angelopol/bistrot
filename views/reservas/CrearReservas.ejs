@@ -69,7 +69,7 @@
                 <form id="reserva-form" action="/reservas/mesas/CrearReservas/crear" method="POST">
                     <div class="form-group">
                         <label for="fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha" required>
+                        <input type="date" id="fecha" name="fecha" readonly>
                     </div>
                     <div class="form-group">
                         <label for="personas">Cantidad de personas:</label>
@@ -92,7 +92,7 @@
                         <input type="text" id="cedula" name="cedula" required>
                     </div>
                     <div class="form-group">
-                        <label for="idmesa">Número de mesa:</label>
+                        <label for="idmesa">Número(s) de mesa:</label>
                         <input type="text" id="idmesa" name="idmesa" readonly>
                     </div>
                     <div class="form-group">
@@ -104,9 +104,10 @@
                         <input type="text" id="iddescripcion" name="iddescripcion" required>
                     </div>
                     <div class="form-group">
-                        <label for="zona">Zona:</label>
-                        <input type="text" id="zona" name="zona" >
+                        <label for="iddescripcion">Zona:</label>
+                        <input type="text" id="idzona" name="idzona" required>
                     </div>
+                    
                     <button type="submit">Registrar Reserva</button>
                 </form>
             </div>
@@ -132,24 +133,50 @@
         document.addEventListener("DOMContentLoaded", function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById("fecha").setAttribute("min", today);
+            const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats')) || {};
+            const reservedSeats = JSON.parse(localStorage.getItem('reservedSeats')) || {};
+            console.log("Loaded selectedSeats from sessionStorage:", selectedSeats);
+            console.log("Loaded reservedSeats from localStorage:", reservedSeats);
 
-            //funcion que recupera las mesas seleccionadas y las muestra en el campo de numero de mesa
-            const buttons = document.querySelectorAll(".button");
-            buttons.forEach(button => {
-                button.addEventListener("click", function() {
-                    if (button.classList.contains("selected")) {
-                        button.classList.remove("selected");
-                    } else {
-                        button.classList.add("selected");
+            document.getElementById('reserva-form').addEventListener('submit', (event) => {
+                const selectedDate = document.getElementById('fecha').value;
+                console.log("Selected date:", selectedDate);
+
+                if (selectedDate && selectedSeats[selectedDate]) {
+                    console.log("Selected seats for date:", selectedSeats[selectedDate]);
+                    if (!reservedSeats[selectedDate]) {
+                        reservedSeats[selectedDate] = {};
                     }
-
-                    const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button);
-                    document.getElementById("idmesa").value = selectedButtons.join(", ");
-
-                    localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
-                });
+                    selectedSeats[selectedDate].forEach(seatId => {
+                        reservedSeats[selectedDate][seatId] = true;
+                    });
+                    localStorage.setItem('reservedSeats', JSON.stringify(reservedSeats));
+                    sessionStorage.removeItem('selectedSeats');
+                    alert('Reserva exitosa');
+                } else {
+                    event.preventDefault();
+                    alert('Selecciona al menos una mesa');
+                }
             });
 
+            //funcion que recibe la fecha seleccionada y se imprime en el campo de la fecha
+
+            const reservationDateInput = document.getElementById('fecha');
+            reservationDateInput.value = JSON.parse(localStorage.getItem('selectedDate')) || today;
+            const idMesaInput=document.getElementById('idmesa');
+
+            
+                function updateSelectedSeats() {
+            const selectedDate = reservationDateInput.value;
+            if (selectedSeats[selectedDate]) {
+                idMesaInput.value = selectedSeats[selectedDate].join(', ');
+            } else {
+                idMesaInput.value = '';
+            }
+            }
+            updateSelectedSeats();
+
+            
             //funcion que valide que un numero de telefono tenga 11 digitos, si es un numero y si los primeros 4 digitos son: 0412, 0414, 0416, 0424, 0426
 
             document.getElementById("idtelefono").addEventListener("input", function(event) {
@@ -195,60 +222,7 @@
                 }
             });
 
-            //funcion que recupera las zona seleccionadas y las muestra en el campo de zona
 
-            
-            buttons.forEach(button => {
-                button.addEventListener("click", function() {
-                    if (button.classList.contains("selected")) {
-                        button.classList.remove("selected");
-                    } else {
-                        button.classList.add("selected");
-                    }
-
-                    const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button => button.textContent);
-                    document.getElementById("zona").value = selectedButtons.join(", ");
-
-                    localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
-                });
-            });
-
-            // Recuperar la selección de mesas almacenada
-            const selectedButtons = JSON.parse(localStorage.getItem("selectedButtons")) || [];
-
-            // Mostrar las mesas seleccionadas en el campo de número de mesa
-            document.getElementById("idmesa").value = selectedButtons.join(", ");
-
-            document.getElementById("reserva-form").addEventListener("submit", function(event) {
-                const horaInicio = document.getElementById("hora_inicio").value;
-                const horaFin = document.getElementById("hora_fin").value;
-
-                if (!validarHorarioRestaurante(horaInicio, horaFin)) {
-                    alert("El restaurante solo acepta reservas entre las 7:00 AM y las 9:00 PM.");
-                    event.preventDefault();
-                }
-                //condicional que valida si el campo de numero de mesa esta vacio
-                else if (document.getElementById("idmesa").value == "") {
-                    alert("Debe seleccionar al menos una mesa.");
-                    event.preventDefault();
-                }
-                
-            });
-
-            //funcion que valida si una cedula tiene de 7 a 8 digitos, si es un numero y si el primer numero no es 0
-
-            document.getElementById("cedula").addEventListener("input", function(event) {
-                const cedula = event.target.value;
-                if (cedula.length < 7 || cedula.length > 8) {
-                    event.target.setCustomValidity("La cédula debe tener entre 7 y 8 dígitos.");
-                } else if (isNaN(cedula)) {
-                    event.target.setCustomValidity("La cédula debe contener solo números.");
-                } else if (cedula[0] === "0") {
-                    event.target.setCustomValidity("La cédula no puede empezar con 0.");
-                } else {
-                    event.target.setCustomValidity("");
-                }
-            });
 
             //funcion que valida si el campo de nombre y apellido tiene al menos 2 palabras y si solo contiene letras
 
@@ -316,14 +290,8 @@
                 }
                 }
 
-                //...
 
-                document.getElementById("reserva-form").addEventListener("submit", function(event) {
-                if (!document.getElementById("hora_inicio").checkValidity() || !document.getElementById("hora_fin").checkValidity()) {
-                    event.preventDefault();
-                }
-                });
-            
+                
             
             function validarHorarioRestaurante(horaInicio, horaFin) {
                 const horarioInicioRestaurante = 7;

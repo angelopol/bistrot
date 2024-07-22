@@ -25,4 +25,7 @@ export class InventarioMesasController{
     mostrarModificar = async (req,res)=>{
         res.render('reservas/modificarReserva',{data: null})
     }
+    mostrarReporteCocina = async (req,res)=>{
+        res.render('reservas/ReporteCocina',{data: null})
+    }
 }

@@ -68,21 +68,21 @@
                                     <th>Fecha</th>
                                     <th>telefono</th>
                                     <th>Hora</th>
-                                    <th>Ubicación</th>
+                                    <th>reserva</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>  
                                     <% if (data) { %>
                                         <% for (var i = 0; i < data.length; i++) { %>
-                                            <tr id="<%= data[i].ID_cliente %>">
+                                            <tr id="<%= data[i].numero_reserva %>">
                                                 <td><%= data[i].nombre %></td>
                                                 <td><%= data[i].ID_cliente %></td>
                                                 <td><%= data[i].fecha %></td>
                                                 <td><%= data[i].telefono %></td>
                                                 <td><%= data[i].hora_inicio %></td>
-                                                <td><%= data[i].ubicacion %></td>
-                                                <td><input type="radio" name="radioboton" value="<%= data[i].ID_cliente %>"></td>
+                                                <td><%= data[i].numero_reserva %></td>
+                                                <td><input type="radio" name="radioboton" value="<%= data[i].numero_reserva %>"></td>
                                             </tr>
                                         <% } %>
                                     <% } %>
@@ -92,16 +92,10 @@
                         <div class="right-side">
                             <ul>
                                 <li><button class="btn-list reserva">Crear Reserva</button></li>
-                                <form method="POST">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="id" value="ID_DE_LA_RESERVA">
-                                    <li>
-                                        <button 
-                                        class="btn-list delete-reserv">
-                                        Eliminar Reserva
-                                        </button>
-                                    </li>
-                                </form>
+                                
+                                <li><button class="btn-list reportesRRHH">Reportes a RRHH</button></li>
+                                <li><button class="btn-list reportesVentas">Reportes a ventas</button></li>
+                                <li><button class="btn-list reportesInventario">Reportes a inventario</button></li>
                                 
                             </ul>
                         </div>
@@ -113,6 +107,7 @@
         let botonReserva = document.querySelector('.btn-list.reserva');
         let botonEliminarReserva = document.querySelector('.btn-list.delete-reserv');
         let formulario1=document.getElementById('form1'); 
+        let botonReportes = document.querySelector('.btn-list.reportesRRHH');
 
         function eliminarFila(id) {
             var fila = document.getElementById(id);
@@ -121,6 +116,11 @@
 
         botonReserva.addEventListener('click', () => {
             window.location.href = '/reservas/mesas'; // Cambia a la ruta del servidor
+        });
+
+        //boton que lleva a la vista de reportes
+        botonReportes.addEventListener('click', () => {
+            window.location.href = '/reservas/reportes'; // Cambia a la ruta del servidor
         });
 
 

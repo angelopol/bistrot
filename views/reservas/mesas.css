@@ -25,6 +25,25 @@ body {
         width: 15px; /* Ajusta el tamaño según tus necesidades */
         height: auto;
     }
+    label{
+        text-decoration: none;
+        font-size: 15px;
+        color: #02676F;
+    }
+
+.form-group label {
+    margin-top: 4px;
+    margin-right: 10px;
+}
+
+.form-group input{
+    width: 175px;
+    
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+
+}
 
 select{
     background-color: #0A3D2F;
@@ -133,7 +152,7 @@ nav ul li a:hover {
 
 .distribucion {
     width:50%;
-    height: 60vh;
+    height: 65vh;
     gap: 50px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -223,11 +242,19 @@ nav ul li a:hover {
     margin-bottom: 100px;
 }
 
-
+.form-group {
+    justify-content: center;
+    display: flex;
+    margin-top: 19px;
+}
 
 
 
 .interior div:hover, .exterior div:hover {
+    background-color: #45a049;
+}
+
+.abajo div:hover, .exterior div:hover {
     background-color: #45a049;
 }
 

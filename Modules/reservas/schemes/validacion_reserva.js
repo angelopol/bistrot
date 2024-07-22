@@ -25,7 +25,7 @@ const validacion_reserva = z.object({
     hora_fin: z.string({required_error: 'La hora de fin es requerida',
         invalid_type_error: 'La hora de fin debe ser un string'
     }).max(50, {message: 'La hora de fin debe tener menos de 50 caracteres'}),
-    zona: z.string({required_error: 'La ubicación es requerida',
+    idzona: z.string({required_error: 'La ubicación es requerida',
         invalid_type_error: 'La ubicación debe ser un string'
     }).max(50, {message: 'La ubicación debe tener menos de 50 caracteres'}),
 

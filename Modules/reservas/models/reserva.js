@@ -2,11 +2,11 @@ import mysql from 'mysql2/promise'
 import 'dotenv/config'
 
 const DBConfig = {
-  host: process.env.DB_HOST || '127.0.0.1',
-  user: process.env.DB_USERNAME || 'root',
-  port: process.env.DB_PORT || 3306,
-  password: process.env.DB_PASSWORD || '1234',
-  database: process.env.DB_DATABASE || 'modulo_reservas',
+  host: '127.0.0.1' || process.env.DB_HOST ,
+  user:'root' || process.env.DB_USERNAME,
+  port: 3306 || process.env.DB_PORT ,
+  password: '1234' || process.env.DB_PASSWORD ,
+  database: 'bistrot' || process.env.DB_DATABASE,
 }
 
 const connection = await mysql.createConnection(DBConfig)
@@ -23,16 +23,17 @@ export class ReservaModel {
         idtelefono,
         nombre,
         idmesa,
-        zona  // Asegúrate de que este nombre coincida con el esperado
+        idzona  // Asegúrate de que este nombre coincida con el esperado
       } = input;
 
       
   
       try {
+        console.log("hola desde el modelo")
         await connection.query(
-          `INSERT INTO reserva (ID_mesa,cantidad_personas, ID_cliente, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, apellido, ubicacion)
-           VALUES (?,?,?,?,?,?,?,?,?, ?,?);`,
-          [idmesa,personas,cedula, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre.split(" ")[0], nombre.split(" ")[1], zona]
+          `INSERT INTO reserva (ID_mesa,cantidad_personas, ID_cliente, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, ubicacion)
+           VALUES (?,?,?,?,?,?,?,?,?, ?);`,
+          [idmesa,personas,cedula, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre, idzona]
       );
       } catch (e) {
         console.log(e);

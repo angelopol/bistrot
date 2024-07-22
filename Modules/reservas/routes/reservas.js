@@ -32,6 +32,8 @@ export const createReservasRouter = () => {
         res.sendFile(path.join(__dirname, 'views/mesas.css'))
     });
 
+    reservasRouter.get('/reportes',controladorInventario.mostrarReporte);
+
     reservasRouter.get('/CrearReservas',controladorInventario.mostrarCrearReservas);
 
     reservasRouter.get('/css/crearReservas.css',(req,res)=>{
