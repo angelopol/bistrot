@@ -58,6 +58,21 @@ export class RenderController{
         if (!await VerifyCargo(req, res, 'Cocinero')) return
         res.render("cocina/elegirmenudeldia");
     }
+    renderMenuDia = async (req, res) => {
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Cocinero')) return
+        res.render("cocina/Menudeldia");
+    }
+    renderCrearPlato = async (req, res) => {
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Cocinero')) return
+        res.render("cocina/creadordefichasplato");
+    }
+    renderNuevosPlatos = async (req, res) => {
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Cocinero')) return
+        res.render("cocina/NuevosPlatos");
+    }
 
     renderMenuCSS = async (req, res) => {
         res.sendFile(process.cwd() + '/views/cocina/css/Menu.css');
