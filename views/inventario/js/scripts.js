@@ -593,35 +593,42 @@ document.addEventListener('DOMContentLoaded', () => {
 async function verificarInventario() {
     try {
         // Verificar cantidades en la tabla cocina_bar
-        let response = await fetch(`http://localhost:3000/api/cocina-bar`);
+        let response = await fetch(`http://localhost:1234/inventario/api/cocina-bar`);
         let cocinaBarData = await response.json();
 
         // Verificar cantidades en la tabla general
-        response = await fetch(`http://localhost:3000/api/general`);
+        response = await fetch(`http://localhost:1234/inventario/api/general`);
         let generalData = await response.json();
 
         // Unir los datos de ambas tablas
-        const productos = [...cocinaBarData, ...generalData];
+        const productos = [...cocinaBarData];
 
         for (const producto of productos) {
             if (producto.cantidad < 10) {
+                console.log(producto.nombre)
+                console.log(typeof producto.nombre)
                 const solicitud = {
                     depar: 'cocina', // departamento que realiza la solicitud
-                    id_emp: 1, // ID del empleado que realiza la solicitud, ajustar según corresponda
-                    cant: 50,
+                    id_emp: "1", // ID del empleado que realiza la solicitud, ajustar según corresponda
+                    cant: "50",
                     nombre_producto: producto.nombre,
                     fecha: new Date(),
-                    detalle: 'Solicitud automática por cantidad baja'
+                    detalle: 'Solicitud automatica por cantidad baja' // ESTA VAINA SIN ACENTOS
                 };
 
                 // Enviar solicitud de compra
-                await fetch('http://localhost:3000/api/soli', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(solicitud)
-                });
-
-                console.log(`Solicitud enviada para ${producto.nombre}`);
+                try{
+                    await fetch('http://localhost:1234/compras-index/soli', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(solicitud)
+                    });
+    
+                    console.log(`Solicitud enviada para ${producto.nombre}`);
+                }
+                catch(e){
+                    console.log("error: ", e)
+                }
             }
         }
     } catch (error) {

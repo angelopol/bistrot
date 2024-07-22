@@ -260,7 +260,8 @@ export class SolicitudController{
         if (logged(req, res, false, false)) return
         if (!await VerifyCargo(req, res, 'Compras')) return
         const result = ValidarSolicitudes(req.body)
-        //console.log(result)
+        console.log(req.body)
+        console.log(result)
         if (!result.success) {
             res.redirect('/compras-index/soli');
         } else {
