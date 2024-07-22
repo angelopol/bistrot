@@ -1,0 +1,135 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Krona-One";
+    src: url("../resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
+    font-weight: 500;
+}
+
+* {
+    margin: 0;
+    font-family: 'Montserrat-Medium';
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.content-box {
+    color: #02676F;
+    width: 80%;
+    box-shadow: 0px 1px 32.5px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+
+#btn-exit {
+    width: 20%;
+    cursor: pointer;
+}
+
+.title-box {
+    display: flex;
+    gap: 5px;
+}
+
+.subtitle-box h3 {
+    color: gray;
+    font-size: 0.8rem;
+}
+
+.menu-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+}
+
+.box-btns {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.nav-btns {
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    background-color: #0F624A;
+    padding: 15px;
+    font-size: 0.8rem;
+}
+
+
+
+.nav-btns:hover {
+    background-color: #02676F;
+}
+
+.box-table {
+    overflow-y: auto;
+    height: 40vh;
+}
+
+table {
+    border-spacing: 5px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: #02676F30;
+
+}
+
+.plato-box {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 1px 32.5px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    gap: 5px;
+    border-radius: 10px;
+}
+
+.plato-box input, textarea {
+    resize: none;
+    outline: none;
+    border-radius: 5px;
+    border: #02676F 1px solid;
+    padding: 5px;
+}
+
+.btns-plato {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btns-plato button {
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    background-color: #0F624A;
+    padding: 10px;
+    font-size: 0.8rem;
+}
+
+#img-plato {
+
+    width: 25vh;
+    margin-left: 1vh;
+}
