@@ -95,19 +95,19 @@ async function cargarPlatos() {
     
     for (const comida of comidas) {
         const row = document.createElement("tr")
-        row.className = "table-row" // CLASE FICTICIA
+        row.className = "table-row" 
         row.id = `${comida.id}`
 
         let celdaId = document.createElement("td") 
-        celdaId.className = "row-cell" // CLASE FICTICIA
+        celdaId.className = "row-cell"
         celdaId.textContent = `${comida.id}`
 
         let celdaNombre = document.createElement("td") 
-        celdaNombre.className = "row-cell-name" // CLASE FICTICIA
+        celdaNombre.className = "row-cell-name" 
         celdaNombre.textContent = `${comida.nombre}`
 
         let celdaTipo = document.createElement("td") 
-        celdaTipo.className = "row-cell" // CLASE FICTICIA
+        celdaTipo.className = "row-cell"
 
         if (comida.tipo_comida) {
             celdaTipo.textContent = `${comida.tipo_comida}`
@@ -121,7 +121,7 @@ async function cargarPlatos() {
         row.addEventListener("click", async function (e) {
             
         
-            let filas = document.querySelectorAll('.table-row');  // CLASE FICTICIA
+            let filas = document.querySelectorAll('.table-row'); 
             filas.forEach(filaAux => {
                 if (!(filaAux == e.currentTarget)){
                     filaAux.classList.remove("clicked")
