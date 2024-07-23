@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="/rrhh/assets/style.css">
+    <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="/assets/header.css">
     <link rel="stylesheet" href="/assets/side.css">
     <link rel="icon" href="/assets/favicon.ico">
@@ -60,10 +60,18 @@
         </div>
 
     
-      <main class="employee-registration">
-        <img src="css/img/icono_salida.png" class="icono" onclick="window.location.href ='/rrhh'">
-            
-        <h2 class="page-title">Registro de Empleado</h2>
+      <main class="content-area">
+        <h1 class="page-title">Recursos Humanos</h1>
+                    
+                    <div class="table-actions">
+                        <button class="action-button on"><a href="/rrhh/form">Agregar</a></button>
+                        <button class="action-button"><a href="/rrhh/entradas">Registro</a></button>
+                        <button class="action-button"><a href="/rrhh/ausensias">Ausencias</a></button>
+                        <button class="action-button"><a href="/rrhh/Horarios">Horarios</a></button>
+                        <button class="action-button"><a href="/rrhh/informe">Informe</a></button>
+                        <button class="action-button"><a href="/rrhh/solicitudes">Solicitudes</a></button>
+
+                    </div>
         
       <form id="employee-form" method="POST" action="">
          <!-- Primera fila de campos -->

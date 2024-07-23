@@ -193,6 +193,7 @@ document.getElementById('submit-button').addEventListener('click', function(even
         alert('Empleado registrado exitosamente');
         // Limpiar el formulario
         document.getElementById('employee-form').reset();
+        window.location = "/rrhh"
       }
     })
     .catch(error => {

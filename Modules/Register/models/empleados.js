@@ -84,7 +84,6 @@ export class EmpleadosModel {
   }
 
   static async update(input) {
-    console.log("to Update",input)
     const formatDateForSubmission = (dateString) => {
       const date = new Date(dateString);
       return date.toISOString().split('T')[0]; // Format YYYY-MM-DD

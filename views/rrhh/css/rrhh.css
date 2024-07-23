@@ -12,12 +12,7 @@
     object-fit: cover;
 }
 
-.content-area {
-    background: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+
 
 .section-title {
     font-family: 'Montserrat-Bold';
@@ -66,31 +61,7 @@
     background-color: #f1f1f1;
 }
 
-/* Table actions styles */
-.table-actions {
-    text-align: center;
-    margin-top: 20px;
-    padding: 12.5px 0px;
-}
 
-
-.button {
-
-        font-family: 'Montserrat', sans-serif;
-        justify-content: center;
-        border-radius: 8px;
-        border: none;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        background-color: #0F624A;
-        font-size: 16px;
-        font-weight: bold;
-        margin-top: 16px;
-        padding: 12px 24px;
-        color: #fff;
-        cursor: pointer;
-        border-width: 0.5px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
 .button:hover {
     background-color: #005c2e;
@@ -181,32 +152,6 @@
     }
 }
 
-
-.action-button {
-    font-family: 'Montserrat', sans-serif;
-    justify-content: center;
-    border-radius: 8px;
-    border: none;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    background-color: #0F624A;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 16px;
-    padding: 12px 24px;
-    color: #fff;
-    cursor: pointer;
-    border-width: 0.5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.page-title {
-    color: #02676F;
-    letter-spacing: -0.68px;
-    align-self: stretch;
-    font: 600 34px/1.1 Inter, sans-serif;
-    padding: 20px 0px;
-
-}
 
 .button.is-info{
     font-family: 'Montserrat', sans-serif;
