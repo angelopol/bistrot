@@ -11,6 +11,14 @@
     font-family: 'Montserrat-Medium';
 }
 
+#title-mantent{
+    text-decoration: none;
+    font-family: 'Montserrat-Medium';
+    font-size: 24px;
+    color: #02676F;
+
+}
+
 input{
     display: block;
     border-radius: 10px;

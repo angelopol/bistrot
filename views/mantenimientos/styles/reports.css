@@ -29,6 +29,14 @@
     font-family: 'Montserrat-Medium';
 }
 
+#title-mantent{
+    text-decoration: none;
+    font-family: 'Montserrat-Medium';
+    font-size: 24px;
+    color: #02676F;
+
+}
+
 .title-box {
     display: flex;
     align-items: center;
@@ -125,6 +133,12 @@ table thead tr {
     transition: all 0.5s;
 }
 
+.reportButton{
+    text-decoration: none;
+    font-family: 'Montserrat-Medium';
+    font-size: 20px;
+    color: #ffffff;
+}
 #btn-agendar {
     text-align: center;
 }
