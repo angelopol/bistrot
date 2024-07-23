@@ -177,7 +177,7 @@ form {
   }
   
   .form-group textarea {
-    resize: vertical; /* Permitir redimensionamiento vertical */
+    resize: none; /* Permitir redimensionamiento vertical */
   }
   
   /* Estilos para el botón */

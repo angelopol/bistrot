@@ -126,6 +126,11 @@ nav ul li a:hover {
     margin-bottom: 20px;
 }
 
+textarea {
+    resize: none; /* Evita que el textarea sea redimensionable */
+
+}
+
 
 
 
@@ -175,10 +180,7 @@ form {
     box-sizing: border-box;
     margin: 0 auto; /* Centra horizontalmente */
   }
-  
-  .form-group textarea {
-    resize: vertical; /* Permitir redimensionamiento vertical */
-  }
+
   
   /* Estilos para el botón */
   button[type="submit"] {

@@ -39,12 +39,12 @@ export const createReservasRouter = () => {
     reservasRouter.get('/css/crearReservas.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/CrearReservas.css'))
     });
+
+    reservasRouter.get('/reportesCocina',controladorInventario.mostrarReporteCocina);
     
     reservasRouter.post('/mesas/CrearReservas/crear',controladorReserva.create);
 
-    reservasRouter.delete('/eliminar/:id',controladorReserva.delete);
-
-    reservasRouter.post('/modificar/:id',controladorReserva.update);
+    reservasRouter.post('/modificar',controladorReserva.update);
 
 
     return reservasRouter

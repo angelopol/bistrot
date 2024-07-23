@@ -222,7 +222,17 @@
                 }
             });
 
+            //funcion que limita la cantidad de personas a 4 si se selecciona una mesa
 
+            document.getElementById("personas").addEventListener("input", function(event) {
+                const personas = event.target.value;
+                const selectedDate = document.getElementById('fecha').value;
+                if (selectedSeats[selectedDate] && selectedSeats[selectedDate].length > 0 && personas > 4) {
+                    event.target.setCustomValidity("Solo se permiten 4 personas por mesa.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
 
             //funcion que valida si el campo de nombre y apellido tiene al menos 2 palabras y si solo contiene letras
 

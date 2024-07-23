@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte</title>
+    <link rel="stylesheet" href="/reservas/ReporteCocina.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="/reservas/side.css">
+</head>
+<body>
+    <div class="heading">
+        <div class="titulo">
+            <h1>BISTROT CHEZ RÉMY</h1>
+        </div>
+        <div class="usuario">
+            <select name="usuario" id="usuario">
+                <option value="gerente0000">gerente0000</option>
+                <option value="gerente0001">gerente0001</option>
+            </select>
+        </div>
+    </div>
+    <div class="pagina">
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="/reservas/resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+        <div class="contenido">
+            <div class="contenidop">
+                <div class="Reservar">
+                    <h2>
+                        <a href="/reservas">
+                          <img src="/reservas/imagenes/icono_salida.png" alt="regresar">
+                        </a>
+                        Reservar
+                      </h2>
+                </div>
+                <div class="seccion">
+                    <h2>Reporte a cocina</h2>
+                </div>
+            </div>
+        
+            <div class="distribucion">
+                <form action="tu_script_para_procesar_el_formulario.php" method="POST">
+                    <div class="form-group">
+                        <label for="codigo_empleado">Cantidad de platos:</label>
+                        <input type="text" id="cantidad_platos" name="cantidad_plato" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cargo">Preferencias:</label>
+                        <input type="text" id="preferencias" name="preferencias" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hora">Hora:</label>
+                        <input type="time" id="hora" name="hora" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo">Tipo:</label>
+                        <input type="text" id="tipo" name="tipo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo">numero de reserva:</label>
+                        <input type="text" id="numero_reserva" name="numero_reserva" required>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit">Enviar Reporte a cocina</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
