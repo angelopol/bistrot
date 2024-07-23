@@ -49,6 +49,7 @@ export const createCocinaRouter = () => {
     cocinaRouter.get("/css/Menu.css", renderController.renderMenuCSS)
     cocinaRouter.get("/css/side.css", renderController.renderPlatosCSS)
     cocinaRouter.get("/css/platos.css", renderController.renderSideCSS)
+    cocinaRouter.get("/css/form.css", renderController.renderFormCSS)
 
     return cocinaRouter
 }

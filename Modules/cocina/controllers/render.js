@@ -83,4 +83,7 @@ export class RenderController{
     renderPlatosCSS = async (req, res) => {
         res.sendFile(process.cwd() + '/views/cocina/css/platos.css');
     }
+    renderFormCSS = async (req, res) => {
+        res.sendFile(process.cwd() + '/views/cocina/css/form.css');
+    }
 }

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISTROT CHEZ RÉMY - Menu</title>
+    <link rel="stylesheet" href="css/Menu.css">
+    <link rel="stylesheet" href="css/side.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+</head>
+<body>
+    <section class="menu-container">
+        <header>
+            <h1 id="title">BISTROT CHEZ RÉMY</h1>
+            <select id="title-combo">
+                <option selected>Gerente</option>
+                <option>Cerrar Sesion</option>
+            </select>
+        </header>
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="menu-header">
+                    <div class="menu-title-container" style="margin-top: 80px">
+                        <h2 class="menu-title">Menu</h2>
+                        <p class="menu-subtitle">RECETAS</p>
+                    </div>
+                </div>
+                <div class="menu-content">
+                    <img src="iconos_barra/icono_salida.png" class="icono" onclick="window.location.href = '/cocina/produccion';" />
+                    <div class="menu-layout">
+                        <nav class="menu-categories" style="gap: 30px; ">
+                            <button class="category-button entradas verdecito" onclick="window.location.href = '/cocina/Menudia';">Crear Menu Dia</button>
+                            <button class="category-button entradas" onclick="window.location.href = '/cocina/Menudeldia';" id="boton Entradas" style="background-color: #0f624a; color: #fff;">Menu del dia</button>
+                            <button class="category-button agregar" onclick="window.location.href = '/cocina/Agregar';" id="boton Agregar" style="background-color: white; color: #0f624a; box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618)">+ Agregar Receta</button>
+                            <button class="category-button nuevas" onclick="window.location.href = '/cocina/Nuevasrecetas';" id="boton nuevas" style="background-color: #0f624a; color: #fff;">+ Recetas Guardas</button>
+                        </nav>
+
+
+                        <div class="formulario">
+                            <form id="addrecipe-form" method="POST" action="" style="bottom: 30%; left: 50%;">
+                                <article class="image">
+
+                                    <div class="form-row">
+                                        <div id="Proteinas" class="form-group">
+                                            <label for="Proteina" class="form-label">Proteina</label>
+                                            <button type="button" id="addproteina">+ </button>
+                                            <select class="form-input dropdown text" id="Proteina" name="Proteina">
+                                                <option value="" disabled selected>Proteina</option>
+                                                <option value="pollo">Pollo</option>
+                                                <option value="queso">Queso</option>
+                                                <option value="huevo">Huevo</option>
+                                                <option value="bacalao">Bacalao</option>
+                                            </select>
+                                            <input type="number" class="form-input" name="PesoProteina" placeholder="Peso (g)" />
+
+                                        </div>
+                                        <div id="Verduras" class="form-group">
+                                            <label for="Verduras" class="form-label">Verduras</label>
+                                            <button type="button" id="addverduras">+ </button>
+                                            <select class="form-input dropdown text" id="Verduras" name="Verduras">
+                                                <option value="" disabled selected>Verduras</option>
+                                                <option value="tomate">Tomate</option>
+                                                <option value="zanahoria">Zanahoria</option>
+                                                <option value="cebolla">Cebolla</option>
+                                                <option value="papa">Papa</option>
+                                                <option value="apio">Apio</option>
+                                                <option value="ajo">Ajo</option>
+                                                <option value="champiñones">Champiñones</option>
+                                                <option value="berenjena">Berenjena</option>
+                                                <option value="fresa">Fresa</option>
+                                                <option value="patilla">Patilla</option>
+                                                <option value="manzana">Manzana</option>
+                                                <option value="banana">Banana</option>
+                                                <option value="limon">Limon</option>
+                                                <option value="lechuga">Lechuga</option>
+                                                <option value="pepino">Pepino</option>
+                                                <option value="aji">Aji</option>
+                                                <option value="pimenton">Pimenton</option>
+                                                <option value="cebollin">Cebollin</option>
+                                            </select>
+                                            <input type="number" class="form-input" name="PesoVerduras" placeholder="Peso (g)" />
+
+                                        </div>
+                                        <div id="OtroTipo" class="form-group">
+                                            <label for="OtroTipo" class="form-label">Otros</label>
+                                            <button type="button" id="addotrotipo">+ </button>
+                                            <select class="form-input dropdown text" id="OtroTipo" name="OtroTipo">
+                                                <option value="" disabled selected>Otros</option>
+                                                <option value="espelta">Espelta</option>
+                                                <option value="vinagre">Vinagre</option>
+                                                <option value="pasta">Pasta</option>
+                                                <option value="aceite">Aceite</option>
+                                                <option value="harina">Harina</option>
+                                                <option value="leche">Leche</option>
+                                                <option value="azucar">Azucar</option>
+                                                <option value="chocolate">Chocolate</option>
+                                            </select>
+                                            <input type="number" class="form-input" name="PesoOtros" placeholder="Peso (g)" />
+
+                                        </div>
+                                        <div id="Tipo" class="form-group">
+                                            <label for="Tipo" class="form-label">Tipo de Receta</label>
+                                            <select class="form-input dropdown text" id="Tipo" name="Tipo">
+                                                <option value="" disabled selected>Tipo</option>
+                                                <option value="entradas">Entrada</option>
+                                                <option value="platos-fuertes">Platos Fuertes</option>
+                                                <option value="vegetariano">Vegetariano</option>
+                                                <option value="postres">Postres</option>
+                                                <option value="niños">Menu de niños</option>
+                                            </select>
+                                        </div>
+                                        <div id="Instrumentos" class="form-group">
+                                            <label for="Instrumentos" class="form-label">Instrumentos</label>
+                                            <button type="button" id="addinstrumento">+ </button>
+                                            <div class="instrument-group">
+                                                <select class="form-input dropdown text" id="Instrumento" name="Instrumentos">
+                                                    <option value="" disabled selected>Instrumentos</option>
+                                                    <option value="cocinaA">cocinaA</option>
+                                                    <option value="cocinaB">cocinaB</option>
+                                                    <option value="cocinaC">cocinaC</option>
+                                                    <option value="cocinaD">cocinaD</option>
+                                                    <option value="hornoA">hornoA</option>
+                                                    <option value="hornoB">hornoB</option>
+                                                    <option value="hornoC">hornoC</option>
+                                                    <option value="hornoD">hornoD</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="preparacion" class="form-label">Preparacion</label>
+                                            <textarea id="preparacion" class="textarea" rows="10"></textarea>
+                                        </div>
+                                    </div>
+                                </article>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+    <script>
+window.onload = function() {
+    const maxIngredients = 4;
+    let proteinCount = 1;
+    let verdurasCount = 1;
+    let otroTipoCount = 1;
+    let instrumentosCount = 1;
+
+    document.getElementById("addproteina").addEventListener("click", () => {
+        if (proteinCount < maxIngredients) {
+            proteinCount++;
+            document.getElementById("Proteinas").insertAdjacentHTML('beforeend', `
+                <div class="ingredient-group">
+                    <select class="form-input dropdown text" name="Proteina">
+                        <option value="" disabled selected>Proteina</option>
+                        <option value="pollo">Pollo</option>
+                        <option value="queso">Queso</option>
+                        <option value="huevo">Huevo</option>
+                        <option value="bacalao">Bacalao</option>
+                    </select>
+                    <input type="number" class="form-input" name="PesoProteina" placeholder="Peso (g)"  style = "width: 50px"  />
+                    <button type="button" class="remove-button">-</button>
+                </div>
+            `);
+        }
+    });
+
+    document.getElementById("addverduras").addEventListener("click", () => {
+        if (verdurasCount < maxIngredients) {
+            verdurasCount++;
+            document.getElementById("Verduras").insertAdjacentHTML('beforeend', `
+                <div class="ingredient-group">
+                    <select class="form-input dropdown text" name="Verduras">
+                        <option value="" disabled selected>Verduras</option>
+                        <option value="tomate">Tomate</option>
+                        <option value="zanahoria">Zanahoria</option>
+                        <option value="cebolla">Cebolla</option>
+                        <option value="papa">Papa</option>
+                        <option value="apio">Apio</option>
+                        <option value="ajo">Ajo</option>
+                        <option value="champiñones">Champiñones</option>
+                        <option value="berenjena">Berenjena</option>
+                        <option value="fresa">Fresa</option>
+                        <option value="patilla">Patilla</option>
+                        <option value="manzana">Manzana</option>
+                        <option value="banana">Banana</option>
+                        <option value="limon">Limon</option>
+                        <option value="lechuga">Lechuga</option>
+                        <option value="pepino">Pepino</option>
+                        <option value="aji">Aji</option>
+                        <option value="pimenton">Pimenton</option>
+                        <option value="cebollin">Cebollin</option>
+                    </select>
+                    <input type="number" class="form-input" name="PesoVerduras" placeholder="Peso (g)" style = "width: 50px" />
+                    <button type="button" class="remove-button">-</button>
+                </div>
+            `);
+        }
+    });
+
+    document.getElementById("addotrotipo").addEventListener("click", () => {
+        if (otroTipoCount < maxIngredients) {
+            otroTipoCount++;
+            document.getElementById("OtroTipo").insertAdjacentHTML('beforeend', `
+                <div class="ingredient-group">
+                    <select class="form-input dropdown text" name="OtroTipo">
+                        <option value="" disabled selected>Otros</option>
+                        <option value="espelta">Espelta</option>
+                        <option value="vinagre">Vinagre</option>
+                        <option value="pasta">Pasta</option>
+                        <option value="aceite">Aceite</option>
+                        <option value="harina">Harina</option>
+                        <option value="leche">Leche</option>
+                        <option value="azucar">Azucar</option>
+                        <option value="chocolate">Chocolate</option>
+                    </select>
+                    <input type="number" class="form-input" name="PesoOtros" placeholder="Peso (g)" style = "width: 50px" />
+                    <button type="button" class="remove-button">-</button>
+                </div>
+            `);
+        }
+    });
+
+    document.getElementById("addinstrumento").addEventListener("click", () => {
+        if (instrumentosCount < maxIngredients) {
+            instrumentosCount++;
+            document.getElementById("Instrumentos").insertAdjacentHTML('beforeend', `
+                <div class="instrument-group">
+                    <select class="form-input dropdown text" name="Instrumentos">
+                        <option value="" disabled selected>Instrumentos</option>
+                        <option value="cocinaA">cocinaA</option>
+                        <option value="cocinaB">cocinaB</option>
+                        <option value="cocinaC">cocinaC</option>
+                        <option value="cocinaD">cocinaD</option>
+                        <option value="hornoA">hornoA</option>
+                        <option value="hornoB">hornoB</option>
+                        <option value="hornoC">hornoC</option>
+                        <option value="hornoD">hornoD</option>
+                    </select>
+                    <button type="button" class="remove-button">-</button>
+                </div>
+            `);
+        }
+    });
+
+    document.addEventListener("click", (event) => {
+        if (event.target.classList.contains("remove-button")) {
+            const ingredientGroup = event.target.closest(".ingredient-group");
+            if (ingredientGroup) {
+                ingredientGroup.remove();
+                proteinCount--;
+                verdurasCount--;
+                otroTipoCount--;
+            } else {
+                const instrumentGroup = event.target.closest(".instrument-group");
+                if (instrumentGroup) {
+                    instrumentGroup.remove();
+                    instrumentosCount--;
+                }
+            }
+        }
+    });
+};
+    </script>
+</body>
+</html>
