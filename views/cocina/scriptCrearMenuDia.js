@@ -197,6 +197,7 @@ botonAgregar.addEventListener("click", async function () {
         fila.classList.remove("clicked")
         comidaID = 0
         console.log(menuDia)
+        alert("Plato agregado correctamente")
     }
     else {
         return alert("No se ha seleccionado ningún plato")
@@ -206,6 +207,7 @@ botonAgregar.addEventListener("click", async function () {
 const botonConfirmar = document.getElementById("btn-send") 
 botonConfirmar.addEventListener("click", async function () {
     for (let platoID in menuDia) {
+        console.log(menuDia)
         const cambios = {
             "seleccionada": 1
         }
@@ -231,4 +233,76 @@ botonConfirmar.addEventListener("click", async function () {
             console.error("Error al agregar la receta al menu del dia: ", error)
         })
     }
+
+    // proceso para hacer las solicitudes a compras
+
+    let fetchPromises = menuDia.map(async idComida => {
+        let res = await fetch(`http://localhost:1234/cocina/comida/${idComida}`)
+        let nombrePlato = await res.json();
+        return nombrePlato[0]; // objeto comida
+    })
+
+    let comidasDia = await Promise.all(fetchPromises); // array con los objetos comidas
+    console.log(comidasDia)
+
+    let ingredientesRequeridos = {}
+        for(let i = 0; i < comidasDia.length ; i++){
+            let ingredientesParaComida = JSON.parse(comidasDia[i].ingredientes) // {"2":1}
+            
+            // la estimacion es que por dia se venda 20 de cada receta, por eso ese numerito magico
+            Object.keys(ingredientesParaComida).forEach(idIngredienteRequerido => {
+                if (idIngredienteRequerido in ingredientesRequeridos){
+                    ingredientesRequeridos[idIngredienteRequerido] += parseFloat(parseFloat(ingredientesParaComida[idIngredienteRequerido]) * 20)
+                }
+                else{
+                    ingredientesRequeridos[idIngredienteRequerido] = parseFloat(parseFloat(ingredientesParaComida[idIngredienteRequerido]) * 20)
+                }
+            })
+    }
+    console.log(ingredientesRequeridos)
+
+    // obtenemos los ingredientes de inventario
+    let fetchPromises1 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
+        let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
+        let ingrediente = await res.json();
+        console.log(ingrediente)
+        return ingrediente; // Devuelve el nombre del plato obtenido
+    });
+
+    let ingredientes = await Promise.all(fetchPromises1) // lista con los objetos ingredientes requeridos
+
+    // hacemos una solitud de los ingredientes faltantes a compras
+
+    Object.keys(ingredientesRequeridos).forEach(async idIngredienteRequerido => {
+        let nombreIngredienteRequerido = ""
+        ingredientes.forEach(ingrediente => {
+            if(ingrediente.id_cocina_bar == idIngredienteRequerido){
+                nombreIngredienteRequerido = ingrediente.nombre
+            }
+        })
+
+        const solicitud = {
+            depar: 'cocina', // departamento que realiza la solicitud
+            id_emp: "1", // ID del empleado que realiza la solicitud, ajustar según corresponda
+            cant: Math.ceil(ingredientesRequeridos[idIngredienteRequerido]).toString(),
+            nombre_producto: nombreIngredienteRequerido,
+            fecha: new Date(),
+            detalle: 'Solicitud para el menu del dia'
+        };
+        // Enviar solicitud de compra
+        try{
+            await fetch('http://localhost:1234/compras-index/soli', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(solicitud)
+            });
+            console.log("solicitud enviada")
+        }
+        catch(e){
+            console.log(`Error: `, e)
+        }
+        
+    })
+
+    alert("Menu del dia creado correctamente")
 })
