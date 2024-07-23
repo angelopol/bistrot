@@ -113,8 +113,7 @@ function cancelOrder(tipo_button) {
     orderItems.forEach(item => {
         const itemId = item.id;
         removeFromOrder(item);
-        const menuItem = document.getElementById(itemId);
-        menuItem.classList.remove('disabled');
+        let menuItem = document.getElementById(itemId);
     });
 
     // Restablece el total del pedido a 0
@@ -327,7 +326,6 @@ function addToOrder(name, price, imageUrl, idCard) {
     orderItem.price = price;
 
     orderItem.innerHTML = `
-        <img loading="lazy" src="/ventas/Vista_Pedidos/${imageUrl}" class="menu-item-image" alt="Ordered item" />
         <div class="order-item-details">
             <h3 class="order-item-name">${name}</h3>
             <div class="order-item-quantity">
@@ -501,6 +499,88 @@ function cambiar_name_comidas_a_ids(consumos){
 
     return consumo_actualizado;
 }
+//Modificar Pedido 
+document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tableId = urlParams.get('tableId');
+    const origen = urlParams.get('origen');
+    
+    let orderData;
+    if (origen === 'general' || origen === 'bar') {
+        orderData = pedidos_realizados.find(pedido => pedido.tableId === tableId);
+    } else if (origen === 'terraza') {
+        orderData = pedidos_realizados_t.find(pedido => pedido.tableId === tableId);
+    }
+    
+    if (orderData) {
+        displayOrder(orderData);
+    } else {
+        alert('No se encontró el pedido para esta mesa.');
+    }
+
+    function displayOrder(orderData) {
+        const orderItemsContainer = document.getElementById('order-items');
+        const totalAmountElement = document.getElementById('total-amount');
+        
+        orderItemsContainer.innerHTML = '';
+        orderData.items.forEach(item => {
+            const orderItem = document.createElement('article');
+            orderItem.className = 'order-item';
+            orderItem.id = item.id;
+            orderItem.price = item.price;
+            orderItem.innerHTML = `
+                <div class="order-item-details">
+                    <h3 class="order-item-name">${item.name}</h3>
+                    <div class="order-item-quantity">
+                        <img loading="lazy" onclick="removeFromOrder(this)" src="/ventas/Vista_Pedidos/Assets/iconos/remover.png" class="quantity-icon" alt="" />
+                        <div class="quantity-controls">
+                            <button class="quantity-button decrease-button" aria-label="Decrease quantity">-</button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button class="quantity-button increase-button" aria-label="Increase quantity">+</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            orderItemsContainer.appendChild(orderItem);
+        });
+        
+        totalAmountElement.textContent = orderData.total.toFixed(2).toString().padStart(6, '0');
+    }
+
+    function guardarCambios() {
+        const orderItems = document.querySelectorAll('.order-item');
+        const totalAmount = parseFloat(document.getElementById('total-amount').textContent);
+        const updatedOrderData = {
+            items: [],
+            total: totalAmount,
+            estatus: 1,
+            tableId: tableId,
+            zona: origen
+        };
+    
+        orderItems.forEach(item => {
+            const itemName = item.querySelector('.item-name').textContent;
+            const itemQuantity = parseInt(item.querySelector('.item-quantity').textContent);
+            const itemPrice = parseFloat(item.querySelector('.item-price').textContent);
+    
+            updatedOrderData.items.push({
+                name: itemName,
+                quantity: itemQuantity,
+                price: itemPrice
+            });
+        });
+    
+        // Aquí puedes enviar updatedOrderData a tu servidor o manejarlo como sea necesario
+        console.log('Order data saved:', updatedOrderData);
+    }
+    
+    document.querySelectorAll('.order-item input, .order-item select').forEach(input => {
+        input.addEventListener('change', () => {
+            guardarCambios(); // Guardar cambios cada vez que se cambia un elemento
+        });
+    });
+      
+});
 
 
 comida = {

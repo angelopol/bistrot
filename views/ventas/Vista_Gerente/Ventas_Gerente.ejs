@@ -6,7 +6,10 @@
     <link rel="stylesheet" type="text/css" href="/ventas/Vista_Gerente/styles_Gerente.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="/ventas/chart.js"></script>
-
+   <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
     <title>Gerente</title>
 </head>
 <body>
@@ -72,6 +75,7 @@
                 <button class="action-button" id="openModal1">Apertura/Cierre</button>
                 <button class="action-button" id="openModal2">Tasa del dia</button>
                 <button class="action-button" id="openModal3">Presupuestos</button>
+                <button class="action-button" id="openModal4">Mantenimiento notificacion</button>
                 <a target="_self" href="/ventas/Vista_Caja/caja" class="action-button">Caja</a>
                 <a target="_self" href="/ventas/Vista_Meseros/meseros_general" class="action-button">Mesero Salon</a>
                 <a target="_self" href="/ventas/Vista_Meseros/meseros_terraza" class="action-button">Mesero Terraza</a>
@@ -140,6 +144,20 @@
                         </div>
                     </div>
                 </div> 
+                <div id="modal4" class="modal">
+                  <div class="modal-content">
+                      <span class="closeBtn" data-modal="modal4">&times;</span>
+                      <h2>Mantenimiento</h2>
+                      <div class="content-center">
+
+                        <form action="">
+
+                        </form>
+                    
+                        <button class="btn-caja btn-mantenimiento-enviar">Enviar</button>
+                      </div>
+                  </div>
+                </div>
 
                 </section>
                 </div>
@@ -150,7 +168,7 @@
       </div>
     </main>
 
-    <script src="/ventas/Vista_Gerente/Gerente_logica.js"></script>
+    <script src="/ventas/Vista_Gerente/Gerente_logica.js" defer></script>
     
 </body>
 </html>

@@ -157,8 +157,23 @@ actionButtons.forEach(button => {
                     
                 } else {
                     alert('Seleccione una mesa primero');
-                }
+                }   ``
                 break;
+            case 'Modificar Pedido':
+                
+                    if (selectedTableId && selectedMesa) {
+                        const statusText = selectedMesaetiqueta.querySelector('.table-status').textContent.trim();
+    
+                        if (statusText === "Pendiente" || statusText === "Listo" || statusText === "Rechazado") {
+                            location.href = `../Vista_Pedidos/pedidos?tableId=${selectedTableId}&origen=${origen}`;
+                        } else {
+                            alert("No se puede modificar el pedido");
+                        }
+                    } else {
+                        alert('Seleccione una mesa primero');
+                    }
+                break;
+            
         }
     });
 });
