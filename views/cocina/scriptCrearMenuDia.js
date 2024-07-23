@@ -310,4 +310,5 @@ botonConfirmar.addEventListener("click", async function () {
     })
 
     alert("Menu del dia creado correctamente y se hacen las solicitudes para que se compren los ingredientes respectivos")
+    window.location.href = '/cocina/Menudeldia';
 })

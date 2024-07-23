@@ -9,7 +9,7 @@ async function obtenerPlatos() {
         'Content-Type': 'application/json' 
         }
     };
-    await fetch(`http://localhost:1234/cocina?tipo_comida:isnull=true&tipo_bebida:isnull=true`, options)
+    await fetch(`/cocina?tipo_comida:isnull=true&tipo_bebida:isnull=true`, options)
     .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -36,7 +36,7 @@ async function obtenerNombreIngredientePorID(id) {
     };
     
     try {
-        const response = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${id}`, options);
+        const response = await fetch(`/inventario/api/cocina-bar/${id}`, options);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -101,7 +101,7 @@ async function cargarPlatos() {
                     'Content-Type': 'application/json' 
                     }
                 };
-                await fetch(`http://localhost:1234/cocina/comida/${e.currentTarget.id}`, options)
+                await fetch(`/cocina/comida/${e.currentTarget.id}`, options)
                 .then(response => {
                     if (!response.ok) {
                     throw new Error('Network response was not ok');

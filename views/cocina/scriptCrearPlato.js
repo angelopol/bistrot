@@ -228,7 +228,7 @@ window.onload = function () {
         console.log({solicitud})
 
         try{
-            await fetch('http://localhost:1234/cocina', {
+            await fetch('/cocina', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(solicitud)

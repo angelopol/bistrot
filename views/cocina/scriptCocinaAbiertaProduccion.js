@@ -52,7 +52,7 @@ async function actualizarPedidos() {
         // Metodo que verifica si hay pedidos "pendientes" por procesar, y se muestran en la view.
 
         // esta ruta hay que importarla de ventas
-        const response = await fetch('http://localhost:1234/ventas/factura'); 
+        const response = await fetch('/ventas/factura'); 
         if (!response.ok) {
             throw new Error('No se pudo obtener la lista de pedidos');
         }
@@ -160,7 +160,7 @@ botonProcesar.addEventListener("click" , async () => {
         let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
 
 
-        const response1 = await fetch(`http://localhost:1234/ventas/factura/${idCardSeleccionada}`)
+        const response1 = await fetch(`/ventas/factura/${idCardSeleccionada}`)
         if (!response1.ok) {
             throw new Error('La solicitud no pudo completarse correctamente');
         }
@@ -174,7 +174,7 @@ botonProcesar.addEventListener("click" , async () => {
         })    
 
         let fetchPromises = listaComidas.map(async objetoComida => {
-            let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`)
+            let res = await fetch(`/cocina/comida/${objetoComida.id}`)
             let nombrePlato = await res.json();
             return nombrePlato[0]; // objeto comida
         })
@@ -196,14 +196,14 @@ botonProcesar.addEventListener("click" , async () => {
         }
         
         let fetchPromises1 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
-            let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
+            let res = await fetch(`/inventario/api/cocina-bar/${idIngredienteRequerido}`);
             let ingrediente = await res.json();
             console.log(ingrediente)
             return ingrediente; // Devuelve el nombre del plato obtenido
         });
 
         let fetchPromises10 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
-            let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
+            let res = await fetch(`/inventario/api/cocina-bar/${idIngredienteRequerido}`);
             let ingrediente = await res.json();
             console.log(ingrediente)
             return ingrediente; // Devuelve el nombre del plato obtenido
@@ -292,7 +292,7 @@ botonProcesar.addEventListener("click" , async () => {
                 body: JSON.stringify(cambio) 
             };
 
-            const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+            const API_URL = `/ventas/factura/${idPedido}`
             const response = await fetch(API_URL , requestOptions)
             if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
 
@@ -324,7 +324,7 @@ botonProcesar.addEventListener("click" , async () => {
                 };
                 // Enviar solicitud de compra
                 try{
-                    await fetch('http://localhost:1234/compras-index/soli', {
+                    await fetch('/compras-index/soli', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(solicitud)
@@ -355,7 +355,7 @@ botonProcesar.addEventListener("click" , async () => {
         }
         
         let fetchPromises2 = maquinariaNecesaria.map(async idMaquinariaRequerida => {
-            let res = await fetch(`http://localhost:1234/inventario/api/general/${idMaquinariaRequerida}`);
+            let res = await fetch(`/inventario/api/general/${idMaquinariaRequerida}`);
             let ingrediente = await res.json();
             return ingrediente; // Devuelve el nombre del plato obtenido
         });
@@ -384,7 +384,7 @@ botonProcesar.addEventListener("click" , async () => {
                 body: JSON.stringify(cambio) 
             };
 
-            const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+            const API_URL = `/ventas/factura/${idPedido}`
             const response = await fetch(API_URL , requestOptions)
             if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
 
@@ -419,7 +419,7 @@ botonProcesar.addEventListener("click" , async () => {
             body: JSON.stringify(cambio) 
         };
 
-        const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+        const API_URL = `/ventas/factura/${idPedido}`
         const response = await fetch(API_URL , requestOptions)
         if (!response.ok) throw new Error('No se pudo actualizar el estado del pedido');
 
@@ -466,7 +466,7 @@ pedidosContainers.forEach(container => {
         idPedido = idStringCardSeleccionada // Obtenemos el id del pedido
 
         // Petición al controlador de mostrar pedido, que retorna los datos del mismo
-        await fetch(`http://localhost:1234/cocina/mostrar-pedido?pedido_id=${idPedido}`, {
+        await fetch(`/cocina/mostrar-pedido?pedido_id=${idPedido}`, {
             method: "GET",
             headers: {
                 "content-type": "aplication/json"
@@ -498,7 +498,7 @@ pedidosContainers.forEach(container => {
 
              // Array para almacenar todas las promesas de fetch
             let fetchPromises = listaComidas.map(async objetoComida => {
-                let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`);
+                let res = await fetch(`/cocina/comida/${objetoComida.id}`);
                 let nombrePlato = await res.json();
                 return nombrePlato[0]; // Devuelve el nombre del plato obtenido
             });
@@ -579,7 +579,7 @@ listoButton.addEventListener("click", async function () {
         body: JSON.stringify(cambio) 
     };
 
-    const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+    const API_URL = `/ventas/factura/${idPedido}`
     const response = await fetch(API_URL , requestOptions)
     if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
     
@@ -641,7 +641,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
         try {
             let idCardSeleccionada = idPedido; // se guarda el id del pedido seleccionado
     
-            const response1 = await fetch(`http://localhost:1234/ventas/factura/${idCardSeleccionada}`)
+            const response1 = await fetch(`/ventas/factura/${idCardSeleccionada}`)
             if (!response1.ok) {
                 throw new Error('La solicitud no pudo completarse correctamente');
             }
@@ -655,7 +655,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
             })    
     
             let fetchPromises = listaComidas.map(async objetoComida => {
-                let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`)
+                let res = await fetch(`/cocina/comida/${objetoComida.id}`)
                 let nombrePlato = await res.json();
                 return nombrePlato[0];
             })
@@ -677,7 +677,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
             }
             
             let fetchPromises1 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
-                let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
+                let res = await fetch(`/inventario/api/cocina-bar/${idIngredienteRequerido}`);
                 let ingrediente = await res.json();
                 return ingrediente; // Devuelve el nombre del plato obtenido
             });
@@ -706,7 +706,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
                     body: JSON.stringify(cambio) 
                 };
     
-                const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+                const API_URL = `/ventas/factura/${idPedido}`
                 const response = await fetch(API_URL , requestOptions)
                 if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
     
@@ -733,7 +733,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
             }
             
             let fetchPromises2 = maquinariaNecesaria.map(async idMaquinariaRequerida => {
-                let res = await fetch(`http://localhost:1234/inventario/api/general/${idMaquinariaRequerida}`);
+                let res = await fetch(`/inventario/api/general/${idMaquinariaRequerida}`);
                 let ingrediente = await res.json();
                 return ingrediente; // Devuelve el nombre del plato obtenido
             });
@@ -762,7 +762,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
                     body: JSON.stringify(cambio) 
                 };
     
-                const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+                const API_URL = `/ventas/factura/${idPedido}`
                 const response = await fetch(API_URL , requestOptions)
                 if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
     
@@ -797,7 +797,7 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
                 body: JSON.stringify(cambio) 
             };
     
-            const API_URL = `http://localhost:1234/ventas/factura/${idPedido}`
+            const API_URL = `/ventas/factura/${idPedido}`
             const response = await fetch(API_URL , requestOptions)
             if (!response.ok) throw new Error('No se pudo actualizar el estado del pedido');
     
@@ -908,7 +908,7 @@ function completarTamañoFicha(){
             }
         };
     
-      await fetch(`http://localhost:1234/inventario/api/cocina-bar/${id}` , options)
+      await fetch(`/inventario/api/cocina-bar/${id}` , options)
       .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -938,7 +938,7 @@ function completarTamañoFicha(){
         };
     
         // Petición a inventario (habria que importar esta ruta de inventario)
-        await fetch(`http://localhost:1234/inventario/api/cocina-bar/${id}` , requestOptions)
+        await fetch(`/inventario/api/cocina-bar/${id}` , requestOptions)
         .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
