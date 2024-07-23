@@ -8,18 +8,18 @@ export const createMantenimientoRouter = () => {
   /*Rutas de los documentos HTML/EJS*/ 
 
   MantenimientoRouter.get('/', (req, res) => {
-    res.render('mantenimientos/Pagina_principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+    res.render('mantenimientos/principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
   
-  MantenimientoRouter.get('/Pagina_contacto', (req, res) => {
-    res.render('mantenimientos/Pagina_contacto.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  MantenimientoRouter.get('/escribirReporte', (req, res) => {
+    res.render('mantenimientos/escribirReporte.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-  MantenimientoRouter.get('/Pagina_agregarMantenimiento', (req, res) => {
-    res.render('mantenimientos/Pagina_agregarMantenimiento.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  MantenimientoRouter.get('/reportes', (req, res) => {
+    res.render('mantenimientos/reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
   
-  MantenimientoRouter.get('/Pagina_reportes', (req, res) => {
-    res.render('mantenimientos/Pagina_reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  MantenimientoRouter.get('/vistaReporte', (req, res) => {
+    res.render('mantenimientos/vistaReporte', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
   
 
@@ -27,7 +27,7 @@ export const createMantenimientoRouter = () => {
   /*Rutas de los documentos de estilo*/
 
 
-  MantenimientoRouter.get('/styles/styles.css', (req, res) =>{
+  MantenimientoRouter.get('/styles/lookReports.css', (req, res) =>{
     res.sendFile(process.cwd() + 'mantenimientos/styles/styles.css');
   });
 

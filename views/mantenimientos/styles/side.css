@@ -43,17 +43,12 @@ main {
     display: flex;
 }
 
-a {
-    text-decoration: none;
-}
 #sidebar {
-    background-color: #F6F6F6;
+    background-color: #EDEDED;
     height: 85vh;
     width: 15vw;
     display: flex;
     flex-direction: column;
-    padding-left: 12px;
-    margin-left: -2dvw;
 }
 
 .side {
@@ -61,6 +56,7 @@ a {
     font-size: 0.8rem;
     color:#013D1F;
     cursor: pointer;
+    margin: 5px;
     padding: 8px;
     border-radius: 5px;
     background-color: #F6F6F6;
@@ -75,14 +71,10 @@ a {
 }
 
 .side:hover {
-    transform: scale(1.05);
+    padding: 15px 8px;
     background-color: #02676F10;
 }
 
 .inicio {
     margin-top: 20%;
-}
-
-#principal {
-    width: 85vw;
 }

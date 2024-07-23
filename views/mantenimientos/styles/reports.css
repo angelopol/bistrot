@@ -1,0 +1,140 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Krona-One";
+    src: url("../resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
+    font-weight: 500;
+}
+
+#principal {
+    color: #02676F;
+    padding: 40px;
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+#principal * {
+    font-family: 'Montserrat-Medium';
+}
+
+.title-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-box img {
+    cursor: pointer;
+    width: 3%;
+}
+
+.title-box h2 {
+    font-size: 1.5rem;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: #02676F;
+}
+table {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+table button {
+    height: 100%;
+    width: 50%;
+    background-color: #0F624A;
+    cursor: pointer;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+
+table button:hover {
+    width: 60%;
+}
+
+table button:active {
+    transform: scale(0.9);
+
+}
+
+
+table thead tr {
+    user-select:none;
+}
+
+.left-side {
+    overflow: auto;
+    box-shadow: 3px 3px 10px #c5c5c5, -4px -4px 11px #ffffff;
+    height: 55vh;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.right-side {
+    width: 20%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5%;
+}
+
+
+.btn-img {
+    width: 20%;
+}
+
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #0F624A;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+#btn-agendar {
+    text-align: center;
+}
+
+.btns:hover {
+    box-shadow: 3px 3px 10px #c5c5c5, -4px -4px 11px #ffffff;
+    padding: 10px 20px;
+}
+
+.btns:active {
+    box-shadow: 3px 3px 10px #c5c5c5, -4px -4px 11px #ffffff;
+    transform: scale(0.9);
+}
