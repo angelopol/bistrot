@@ -122,32 +122,36 @@ window.onload = function () {
             }
         }
     });
+    
+    
+    // Script backend
+    let botonRegistrar = document.querySelector("#submit-button")
+    console.log(botonRegistrar)
+    
+    botonRegistrar.addEventListener("click",()=> {
+        console.log("hola")
+        //"form-input dropdown text"
+        let selectIngredientes = document.querySelectorAll(".form-input.dropdown.text")
+        let nombreIngredientes = []
+        // Tipo o Instrumentos
+        selectIngredientes.forEach(selectIngrediente => {
+            if(selectIngrediente.name !== "Tipo" && selectIngrediente.name !== "Instrumentos") {
+                nombreIngredientes.push(selectIngrediente.value)
+                console.log(selectIngrediente.value)
+            }
+        })
+        
+    
+       // form-input
+       /* 
+       let selectCantidades = document.querySelectorAll(".form-input")
+       let cantidades = []
+       selectCantidades.forEach(selectCantidad => {
+            nombreIngredientes.push(selectIngrediente.value)
+            console.log
+        })
+            */
+    })
+
 };
 
-
-// Script backend
-let botonRegistrar = document.querySelector("#submit-button")
-botonRegistrar.addEventListener("click",async ()=> {
-    console.log("hola")
-    //"form-input dropdown text"
-    let selectIngredientes = document.querySelectorAll(".form-input.dropdown.text")
-    let nombreIngredientes = []
-    // Tipo o Instrumentos
-    selectIngredientes.forEach(selectIngrediente => {
-        if(selectIngrediente.name !== "Tipo" && selectIngrediente.name !== "Instrumento") {
-            nombreIngredientes.push(selectIngrediente.value)
-            console.log(selectIngrediente.value)
-        }
-    })
-    
-
-   // form-input
-   /* 
-   let selectCantidades = document.querySelectorAll(".form-input")
-   let cantidades = []
-   selectCantidades.forEach(selectCantidad => {
-        nombreIngredientes.push(selectIngrediente.value)
-        console.log
-    })
-        */
-})
