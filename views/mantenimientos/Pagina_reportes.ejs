@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <title>Mantenimiento</title>
+    <link rel="stylesheet" href="/mantenimientos/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/mantenimientos/styles/styles2.css">
+    <link rel="stylesheet" href="/mantenimientos/styles/side.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
+</head>
+
+<body>
+    <!-- ESTE ES EL HEADER (BARRA VERDE EN LA PARTE SUPERIOR)-->
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="maintenance-content">
+
+            <!-- ESTE ES EL SIDEBAR-->
+            <div id="sidebar">
+                <div class="side inicio">
+                    <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+                    <p class="side-option">Inicio</p>
+                </div>
+                <div class="side ventas">
+                    <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+                    <p class="side-option">Ventas/Salon</p>
+                </div>
+                <div class="side compras">
+                    <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+                    <p class="side-option">Compras</p>
+                </div>
+                <div class="side rrhh">
+                    <img class="side-foto" src="resources/iconos_barra/person-green.png">
+                    <p class="side-option">RRHH</p>
+                </div>
+                <div class="side inventario">
+                    <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+                    <p class="side-option">Inventario</p>
+                </div>
+                <div class="side mantent">
+                    <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+                    <p class="side-option">Mantenimiento</p>
+                </div>
+                <div class="side cocina">
+                    <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+                    <p class="side-option">Cocina/Bar</p>
+                </div>
+                <div class="side reserv">
+                    <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+                    <p class="side-option">Reservas</p>
+                </div>
+            </div>
+            <!--Reportes-->
+            <div id="Global_todos">
+                <div id="Inicial_logo">
+                    <img src="resources/reportes.png" width="35px" height="30px">
+                    <p>Reportes</p>
+                </div>
+
+                <!--Seccion principal de reportes-->
+                <div id="Recipiente_div">
+                    <div id="formReportes" class="forms" style="display: block;">
+                        <table id="Actual_tabla">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Modulo de destino</th>
+                                <th>Asunto</th>
+                                <th>Informacion</th>
+                            </tr>
+                            <tr>
+                                <td>2024-7-9</td>
+                                <td>13:49</td>
+                                <td>Ventas</td>
+                                <td>Arreglo de mesas</td>
+                                <td><button class="button" onclick="mostrarVista(this)">Ver</button></td>
+                            </tr>
+                            <tr>
+                                <td>2024-7-8</td>
+                                <td>4:34</td>
+                                <td>Cocina</td>
+                                <td>Airfryer funcionando</td>
+                                <td><button class="button" onclick="mostrarVista(this)">Ver</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Seccion ver -->
+                    <div id="vistaReportes" class="forms" >
+                        <label for="asuntoVista">Asunto</label>
+                        <input type="text" disabled="true" class="inputText" id="asuntoVista">
+                        <label for="textAreaVista">Contenido</label>
+                        <textarea id="textAreaVista" disabled="true" class="inputText textArea"></textarea>
+                    </div>
+
+                    <!-- Seccion de redaccion-->
+                    <div id="redaccionReportes" class="forms" style="display: none;"">
+                        <label for="asuntoRedaccion">Asunto</label>
+                        <input type="text" class="inputText" id="asuntoRedaccion">
+                        <label for="textAreaRedaccion">Contenido</label>
+                        <textarea id="textAreaRedaccion" class="inputText textArea"></textarea>
+                        <label for="selectorDestinatario">Destinatario</label>
+                        <select id="selectorDestinatario" class="inputText">
+                            <option value="Inventario">Inventario</option>
+                        </select>
+                    </div>
+
+                    <!-- Botones -->
+                    <div>
+                        <button id="Button_formulario_Inicio" style="display: inline;" onclick="regresar()">Regresar</button>
+                        <button id="Button_formulario_EliminarReporte" style="display: none;">Eliminar Reporte</button>
+                        <button id="Button_formulario_Agregar" style="display: inline;" onclick="redactar()">Redactar</button>
+                        <button id="Button_formulario_Enviar" style="display: none;">Enviar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="/mantenimientos/scripts/JSReporte.js" defer></script>
+</body>
+
+</html>

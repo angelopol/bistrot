@@ -1,0 +1,242 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+h2 a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Hereda el color del elemento padre */
+}
+
+h2, h3 {
+    color: #02676F;
+}
+
+img {
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+    width: 15px; /* Ajusta el tamaño según tus necesidades */
+    height: auto;
+}
+
+select {
+    background-color: #0A3D2F;
+    color: white;
+    width: 175px;
+    height: 35px;
+}
+
+/* Cabecera */
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0A3D2F;
+    color: #ffffff;
+    padding: 0 20px; /* Espacio lateral para el contenido */
+    height: 100px;
+}
+
+.titulo {
+    font-family: 'Montserrat';
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0; /* Quitar márgenes por defecto */
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+}
+
+.usuario select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.pagina {
+    display: flex;
+}
+
+/* Navegación */
+.sidebar {
+    background-color: #EDEDED;
+    padding: 15px;
+    height: 85vh;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 5px 0;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #02676F; /* Puedes cambiar el color del texto según tu preferencia */
+    background-color: #F6F6F6; /* Color de fondo del botón */
+    padding: 10px 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    transition: background-color 0.3s;
+}
+
+nav ul li a img {
+    margin-right: 10px;
+    width: 20px;
+    height: auto;
+}
+
+nav ul li a:hover {
+    background-color: #45a049; /* Color de fondo al pasar el ratón por encima */
+}
+
+/* Contenido */
+.contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.contenidop {
+    margin-top: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Reservar {
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
+.seccion {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.distribucion {
+    width: 100%;
+    max-width: 600px;
+    height: 380px;
+    gap: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arriba {
+    height: 255px;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.interior {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    height: 50%;
+    margin-right: 20px;
+}
+
+.interior h3 {
+    grid-column: span 3;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 35px;
+}
+
+.exterior {
+    height: 100%;
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.exterior h3 {
+    margin-bottom: 30px;
+}
+
+.exterior div {
+    margin-top: 15px;
+}
+
+.interior div, .exterior div, .abajo div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 25px;
+}
+
+.abajo {
+    position: relative;
+    width: 50%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around; /* Centrar horizontalmente los elementos */
+    align-items: center; /* Centrar verticalmente los elementos */
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.abajo h3 {
+    position: absolute;
+    margin-bottom: 100px;
+}
+
+.interior div:hover, .exterior div:hover {
+    background-color: #45a049;
+}
+
+.button.selected {
+    background-color: rgba(255, 0, 0, 0.685);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,1230 @@
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("/views/inventario/resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Krona-One";
+  src: url("/views/inventario/resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
+  font-weight: 500;
+}
+
+* {
+  margin: 0;
+}
+
+#sidebar {
+  font-family: "Montserrat-Medium", sans-serif;
+  font-size: 0.8rem;
+}
+
+
+header {
+  background-color: #013D1F;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 15vh;
+}
+
+#title {
+  font-family: 'Krona-One';
+  font-size: 1.4rem;
+  margin-right: 45%;
+}
+
+#title-combo {
+  appearance: none;
+  color: white;
+  background-color: #013D1F;
+  border-radius: 2px;
+  padding: 10px;
+  width: 15%;
+  outline: none;
+}
+
+main {
+  display: flex;
+}
+
+#sidebar {
+  background-color: #EDEDED;
+  height: 85vh;
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.order-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.order-row span:nth-child(2) {
+  margin-right: 30px;
+}
+
+.order-row span:nth-child(3) {
+  margin-right: 35px;
+}
+
+.order-row span {
+  padding: 5px;
+  border-radius: 4px;
+
+}
+
+.order-row .order-item {
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #333;
+}
+
+.order-header {
+  font-weight: bold;
+  /* Hace que los encabezados sean más prominentes */
+  margin-bottom: 10px;
+  /* Espacio debajo del encabezado */
+}
+
+
+
+.side {
+  font-family: 'Montserrat-Medium';
+  font-size: 0.8rem;
+  color: #013D1F;
+  cursor: pointer;
+  margin: 5px;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #F6F6F6;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.side-option {
+  font-family: "Montserrat-Medium", sans-serif;
+}
+
+.side-foto {
+  width: 15%;
+  margin: 0px 10%;
+}
+
+.side:hover {
+  padding: 15px 8px;
+  background-color: #02676F10;
+}
+
+.inicio {
+  margin-top: 20%;
+}
+
+#principal {
+  width: 85vw;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  /* Asegura que el cuerpo ocupe toda la altura del viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styles */
+.restaurant-header {
+  background-color: #013d1f;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: #fff;
+  width: 100%;
+  font-weight: 400;
+  line-height: 150%;
+  padding: 34px 5%;
+  box-sizing: border-box;
+}
+
+.restaurant-nombre {
+  letter-spacing: -0.24px;
+  flex-grow: 1;
+  margin: auto 0;
+  font-family: 'Krona One';
+  font-weight: lighter;
+  font-size: 24px;
+  color: white;
+  min-width: 0;
+}
+
+.user-info {
+  border-radius: 8px;
+  border: 1px solid #fff;
+  background-color: #013d1f;
+  display: flex;
+  gap: 16px;
+  font-size: 16px;
+  white-space: nowrap;
+  padding: 8px 16px;
+  min-width: 0;
+}
+
+.username {
+  font-family: Inter, sans-serif;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flecha_hacia_abajo_usuarior {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+/* Main content styles */
+.main-content {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  /* Añadir un relleno para separar el contenido del borde */
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* Ajustes para que la sidebar ocupe todo el alto */
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  height: 100%;
+}
+
+.sidebar {
+  width: 256px;
+  background-color: rgba(237, 237, 237, 0.93);
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  color: #02676f;
+  font-weight: 500;
+  line-height: 150%;
+  padding: 72px 9px;
+  position: relative;
+  /* Cambiado de sticky a relative */
+  height: 100%;
+  /* Ocupa toda la altura disponible */
+  overflow-y: auto;
+  /* Añadir scroll vertical cuando sea necesario */
+}
+
+.sidebar-item {
+  border-radius: 8px;
+  background-color: rgba(246, 246, 246, 0.96);
+  display: flex;
+  gap: 16px;
+  padding: 8px 16px;
+  margin-top: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin: auto 0;
+}
+
+.sidebar-text {
+  font-family: Inter, sans-serif;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label {
+  display: inline-block;
+  margin-right: 100px;
+  /* Ejemplo de margen derecho de 10px, ajusta según tus necesidades */
+}
+
+/* Main section styles */
+.main-section {
+  width: 80%;
+  margin-left: 45px;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  color: #000;
+  line-height: 150%;
+  padding: 0 20px;
+}
+
+/*aqui*/
+
+
+
+/*aqui*/
+
+.titulo-modulo {
+  margin-top: 20px;
+  margin-left: 5px;
+  font-family: 'Montserrat', sans-serif;
+  color: #013d1f;
+  font-size: 40px;
+}
+
+.tab-container {
+  border-radius: 12px;
+  border: transparent;
+  background-color: #f8f8f8;
+  align-self: flex-end;
+  display: flex;
+  gap: 9px;
+  font-size: 16px;
+  color: #0F624A;
+  font-weight: 500;
+  white-space: nowrap;
+  line-height: 150%;
+  padding: 8px;
+  margin-bottom: 40px;
+}
+
+button:focus {
+  outline: 1px dotted;
+  outline: 0px;
+}
+
+.tab {
+  font-family: Montserrat, sans-serif;
+  justify-content: center;
+  border-radius: var(--sds-size-radius-200);
+  background-color: #f8f8f8;
+  /* Color de fondo inicial */
+  padding: 8px 16px;
+  color: #0F624A;
+  /* Texto verde por defecto */
+  border: none;
+  cursor: pointer;
+}
+
+.tab-active {
+  background-color: #0F624A;
+  /* Fondo verde para el botón activo */
+  color: #fff;
+  /* Texto blanco para el botón activo */
+  border-radius: 8px;
+}
+
+.tab-inactive {
+  background-color: #f8f8f8;
+  /* Color de fondo blanco para los botones desactivados */
+  color: #0F624A;
+  /* Texto verde para los botones desactivados */
+}
+
+
+.table-actions {
+  display: flex;
+  flex-shrink: 0;
+  /* Evitar que los elementos empujen el contenido */
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 20px 0;
+  /* Añadir un espacio de separación */
+}
+
+.action-buttons {
+  display: flex;
+  gap: 19px;
+  font-size: 16px;
+  color: #02676f;
+  font-weight: 400;
+  white-space: nowrap;
+  line-height: 100%;
+  margin-left: 15px;
+}
+
+.action-btn {
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background-color: #0F624A;
+  padding: 12px;
+  cursor: pointer;
+  width: 120px;
+}
+
+.action-btn:hover {
+  background-color: #025157;
+}
+
+.icon-buttons {
+  display: flex;
+  gap: 6px;
+  margin-right: 20px;
+}
+
+.icon-btn {
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  border: 2px solid #ffffff;
+  background-color: #fff;
+  display: flex;
+  width: 0%;
+  height: 0%;
+}
+
+
+/* Ajustes para DataTables */
+
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: 0.5em;
+  margin-bottom: 0.5em;
+  display: inline-block;
+  width: 500px;
+}
+
+table.table-bordered.dataTable tbody th,
+table.table-bordered.dataTable tbody td {
+  border-bottom-width: 1px;
+}
+
+.table thead th {
+  background-color: #0F624A;
+  color: #fff;
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex: 1 0 100%;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) / -2);
+  margin-left: calc(var(--bs-gutter-x) / -2);
+  border-bottom: 15px;
+}
+
+.paginate_button a {
+  color: #013d1f;
+}
+
+.paginate_button:hover a {
+  color: #025157;
+}
+
+.paginate_button.current {
+  color: #e0e0e0;
+  background-color: #0F624A;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #0F624A;
+  border-color: #0F624A;
+}
+
+.page-link:focus {
+  z-index: 3;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(15, 98, 74, 0.25);
+}
+
+.form-select:focus {
+  border-color: #02676f;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(15, 98, 74, 0.25);
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #02676f;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(15, 98, 74, 0.25);
+}
+
+.medio-div .cardd input[type="text"] {
+  width: 100%;
+  height: 20px;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  /* position: relative; */
+  /* left: 5px; */
+  top: -10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box
+}
+
+/*Div editar*/
+.form-row .buscar-btn {
+  width: 97px;
+  height: 30px;
+  padding: 5px 20px;
+  font-size: 16px;
+  position: relative;
+  left: -10px;
+  top: -8px;
+}
+
+.form-row textarea {
+  width: 103px;
+  position: relative;
+  right: 0;
+  top: -85px;
+  height: 29px;
+  left: 233px;
+}
+
+.ObservacionesMessage {
+  position: relative;
+  left: 10px;
+}
+
+.card-body .form-row {
+  text-align: left;
+  display: inline-block;
+  position: relative;
+  left: -38px;
+}
+
+#historialTabla2 {
+  width: 106px;
+  position: relative;
+  right: -339px;
+  top: -68px;
+  height: 50px;
+}
+
+#otroCampo {
+  width: 113px;
+  left: -138px;
+  top: -21px;
+}
+
+/* Estilo base para el contenedor de la tarjeta */
+.medio-div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 1000px;
+  max-width: 800px;
+  max-height: 600px;
+  background-color: #ffffff00;
+  display: none;
+  padding: 20px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+/* Estilo para la tarjeta */
+.cardd {
+  width: 100%;
+  /* La tarjeta ocupa el ancho completo del contenedor */
+  background-color: #e5e8ef;
+  /* Fondo blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra */
+  border-radius: 10px;
+  /* Bordes redondeados */
+  overflow: hidden;
+  /* Oculta contenido que desborda */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: scale(0);
+  /* Oculto por defecto */
+  opacity: 0;
+  /* Opacidad 0 por defecto */
+  position: relative;
+  /* Relativo para manejar elementos internos */
+}
+
+.card-header {
+  background-color: #013d1f;
+  /* Color de fondo oscuro */
+  color: white;
+  /* Texto blanco */
+  padding: 15px;
+  /* Espaciado interior */
+  display: flex;
+  /* Usa flexbox para alinear elementos */
+  justify-content: space-between;
+  /* Espacia entre elementos */
+  align-items: center;
+  /* Alinea verticalmente */
+}
+
+/* Estilo para el botón de cerrar */
+.close-card-btn {
+  background: none;
+  /* Sin fondo */
+  border: none;
+  /* Sin borde */
+  color: white;
+  /* Color del texto */
+  font-size: 24px;
+  /* Tamaño de la fuente */
+  cursor: pointer;
+  /* Cursor de pointer */
+}
+
+.titulo-icono-editar {
+  top: 30%;
+  display: flex;
+  /* Utiliza flexbox para alinear los elementos en fila */
+  align-items: center;
+  /* Alinea verticalmente el texto e imagen en el centro */
+  gap: 10px;
+  /* Añade espacio entre la imagen y el texto */
+  width: 100%;
+  /* Ajusta el ancho del contenedor */
+  justify-content: space-between;
+  /* Alinea los elementos al principio de la fila */
+}
+
+.card-editar {
+  width: 90%;
+  height: 70%;
+  top: 30%;
+  left: 5%;
+  border-radius: 20px;
+  background: #f5f5f5;
+  position: relative;
+  border: 2px solid #c3c6ce;
+  transition: 0.5s ease-out;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.medio-div.show {
+  display: block;
+  /* Cambia de none a block para mostrar */
+  overflow-y: hidden;
+}
+
+.cardd.show {
+  transform: scale(1);
+  /* Cambia de scale(0) a scale(1) para mostrar */
+  opacity: 1;
+  /* Cambia de opacity 0 a 1 para mostrar */
+}
+
+.card-body {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Si quieres que los elementos se apilen verticalmente */
+  height: 100%;
+  /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
+}
+
+label {
+  font-size: 16px;
+  color: #000000;
+  font-weight: bold;
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+button[type="submit"] {
+  background-color: #0F624A;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #025157;
+}
+
+.card-body .form-row {
+  text-align: left;
+  display: inline-block;
+}
+
+.espacio {
+  position: relative;
+  left: -100px;
+
+  .form-row input[type="text"] {
+    height: 20px;
+    /* o cualquier otro valor que desees */
+  }
+
+  input.prueba4545 {
+
+    width: 50px !important;
+
+  }
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  gap: 15px;
+  /* Espaciado entre filas */
+}
+
+.Select-CategoriaEditar {
+  width: 48%;
+}
+
+.Select-AreaEditar {
+  width: 48%;
+}
+
+.Select-UnidadEditarInsumos {
+  width: 48%;
+}
+
+.Select-FechaEditar {
+  width: 200px;
+  text-align: center;
+}
+
+.Select-CategoriaEditarEquipos {
+  width: 45%;
+}
+
+.Select-FuncionaEditarEquipos {
+  width: 200px;
+}
+
+.Select-UnidadEditarEquipos {
+  width: 45%;
+}
+
+.Select-FechaMantEditarEquipos {
+  width: 200px;
+  text-align: center;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  gap: 15px;
+  /* Espaciado entre filas */
+}
+
+
+.medio-div-commit {
+  position: fixed;
+  /* Cambia a fixed para que se mantenga en la vista */
+  top: 50%;
+  /* Centra verticalmente */
+  left: 50%;
+  /* Centra horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Centra el div completamente */
+  width: 80%;
+  /* Establece el ancho del contenedor */
+  height: 80%;
+  max-width: 800px;
+  max-height: 600px;
+  background-color: #ffffff00;
+  display: none;
+  /* Oculto por defecto */
+  padding: 20px;
+  /* Espaciado interior */
+  z-index: 1000;
+  /* Asegura que esté por encima de otros elementos */
+  overflow-y: auto;
+}
+
+.medio-div-commit.show {
+  display: block;
+  /* Cambia de none a block para mostrar */
+  overflow-y: hidden;
+}
+
+.card3 {
+  width: 100%;
+  /* La tarjeta ocupa el ancho completo del contenedor */
+  background-color: #e5e8ef;
+  /* Fondo blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra */
+  border-radius: 10px;
+  /* Bordes redondeados */
+  overflow: hidden;
+  /* Oculta contenido que desborda */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: scale(0);
+  /* Oculto por defecto */
+  opacity: 0;
+  /* Opacidad 0 por defecto */
+  position: relative;
+  /* Relativo para manejar elementos internos */
+}
+
+.card3.show {
+  transform: scale(1);
+  /* Cambia de scale(0) a scale(1) para mostrar */
+  opacity: 1;
+  /* Cambia de opacity 0 a 1 para mostrar */
+}
+
+.card-bodyCommit {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Si quieres que los elementos se apilen verticalmente */
+  height: 100%;
+  /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
+}
+
+.titulo-icono-commit {
+  top: 30%;
+  display: flex;
+  /* Utiliza flexbox para alinear los elementos en fila */
+  align-items: center;
+  /* Alinea verticalmente el texto e imagen en el centro */
+  gap: 10px;
+  /* Añade espacio entre la imagen y el texto */
+  justify-content: space-between;
+  /* Alinea los elementos al principio de la fila */
+}
+
+.commitMessageContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.card-editarCommit {
+  border-radius: 20px;
+  background: #f5f5f5;
+  position: relative;
+  border: 2px solid #c3c6ce;
+  transition: 0.5s ease-out;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.commitMessageContainer.show {
+  display: block;
+}
+
+/*div de registro */
+.registro {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  max-width: 95%;
+  max-height: 70%;
+  background-color: #b7000000;
+  display: none;
+  padding: 20px;
+  z-index: 1000;
+  overflow-y: auto;
+  width: 70%;
+}
+
+.cardReg {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Sombra */
+  border-radius: 10px;
+  /* Bordes redondeados */
+  overflow: hidden;
+  /* Oculta contenido que desborda */
+  position: relative;
+  /* Relativo para manejar elementos internos */
+}
+
+.card-reg-header {
+  background-color: #013d1f;
+  /* Color de fondo oscuro */
+  color: white;
+  /* Texto blanco */
+  padding: 15px;
+  /* Espaciado interior */
+  display: flex;
+  /* Usa flexbox para alinear elementos */
+  justify-content: space-between;
+  /* Espacia entre elementos */
+  align-items: center;
+  /* Alinea verticalmente */
+}
+
+.card-body-reg {
+  padding: 20px;
+  display: flex;
+  background-color: #e5e8ef;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* Si quieres que los elementos se apilen verticalmente */
+  height: 100%;
+  /* Asegúrate de que el contenedor tenga una altura para centrar verticalmente */
+}
+
+.card-titulo-reg {
+  top: 30%;
+  display: flex;
+  /* Utiliza flexbox para alinear los elementos en fila */
+  align-items: center;
+  /* Alinea verticalmente el texto e imagen en el centro */
+  gap: 10px;
+  /* Añade espacio entre la imagen y el texto */
+  width: 100%;
+  /* Ajusta el ancho del contenedor */
+  justify-content: space-between;
+  /* Alinea los elementos al principio de la fila */
+}
+
+.prueba {
+  width: 70%;
+  height: 70%;
+  top: 30%;
+  left: 15%;
+  border-radius: 20px;
+  background: #f5f5f5;
+  position: relative;
+  border: 2px solid #c3c6ce;
+  transition: 0.5s ease-out;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Clase para mostrar el div de registro */
+.show {
+  display: block;
+}
+
+/*Agregar*/
+.medio-div-Agregar {
+  display: none;
+  /* Oculto por defecto */
+}
+
+/*Div recepcion*/
+.order-reception {
+  display: flex;
+  max-width: 585px;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.order-content {
+  width: 100%;
+}
+
+.order-layout {
+  gap: 20px;
+  display: flex;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 75%;
+  margin-left: 0px;
+}
+
+.order-details {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  font-weight: 400;
+}
+
+.search-container {
+  display: flex;
+  margin-left: 12px;
+  width: 257px;
+  max-width: 100%;
+  flex-direction: column;
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  margin-top: 51px;
+
+  font-size: 13px;
+  justify-content: space-between;
+}
+
+.search-input {
+  display: flex;
+  flex-direction: column;
+  color: #1e1e1e;
+  position: relative;
+  left: -5%
+}
+
+.search-label {
+  font-family: Inter, sans-serif;
+}
+
+.search-field {
+  margin-top: 2.9px;
+  width: 150px;
+  padding: 4px;
+  font: 400 13px Inter, sans-serif;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;/
+}
+
+.search-button {
+  position: relative;
+  left: 22%;
+  border: none;
+  width: 150px;
+  padding: 4px;
+  font: 400 13px Inter, sans-serif;
+  border-radius: 8px;
+  background-color: #0F624A;
+  color: #fff;
+  white-space: nowrap;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 40px;
+}
+
+.order-header {
+  background-color: #0F624A;
+  margin-bottom: 5px;
+  display: flex;
+  margin-top: 27px;
+  gap: 15px;
+  font-size: 15px;
+  color: #fff;
+  white-space: nowrap;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+.header-item {
+  font-family: Inter, sans-serif;
+}
+
+.order-row {
+  border-radius: 4px;
+  background-color: #e6e6e6;
+  z-index: 10;
+  margin-top: -12px;
+  height: 100%;
+}
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 25%;
+  margin-left: 20px;
+}
+
+.quantity-section {
+  display: flex;
+  margin-top: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.quantity-header {
+  background-color: #0F624A;
+  z-index: 10;
+  color: #fff;
+  justify-content: center;
+  padding: 9px 13px;
+  font: 400 13px Inter, sans-serif;
+}
+
+.quantity-input {
+  border-radius: 4px;
+  background-color: #e6e6e6;
+  display: flex;
+  margin-top: -12px;
+  flex-direction: column;
+  padding: 26px 29px 16px;
+}
+
+.quantity-field {
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.observations-label {
+  color: #1e1e1e;
+  margin-top: 5%;
+  width: 100%;
+  font-family: Inter, sans-serif;
+}
+
+.observations-field {
+  min-height: 62px;
+  margin-top: 7px;
+  width: 100%;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.finish-button {
+  border-radius: 4px;
+  background-color: #013d1f;
+  align-self: center;
+  margin-top: 21px;
+  color: #fff;
+  justify-content: center;
+  padding: 8px 12px;
+  font: 400 13px Inter, sans-serif;
+}
+
+.action-btn2 {
+  position: relative;
+  left: 25%;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background-color: #0F624A;
+  padding: 6px;
+  cursor: pointer;
+  width: 50%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.action-btn2:hover {
+  background-color: #025157;
+}
+
+/*Ajustes div*/
+.dropboxTabla {
+  width: 150px;
+  /* Ajusta este valor al ancho deseado */
+  padding: 4px;
+  /* Ajusta el padding según tus necesidades */
+  font: 400 13px Inter, sans-serif;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  /* Puedes ajustar el estilo del borde si es necesario */
+  border-radius: 4px;
+  /* Ajusta el radio del borde si quieres esquinas redondeadas */
+  box-sizing: border-box;
+  /* Asegura que el padding no aumente el tamaño del select */
+}
+
+.order-header2 {
+  background-color: #0F624A;
+  margin-bottom: 5px;
+  display: flex;
+  margin-top: 27px;
+  gap: 15px;
+  font-size: 15px;
+  color: #fff;
+  white-space: nowrap;
+  justify-content: space-between;
+  padding: 10px 15px;
+  width: 500px;
+}
+
+.order-row2 {
+  background-color: #e6e6e6;
+  justify-content: space-between;
+  z-index: 10;
+  height: 100%;
+  width: 500px;
+}
+
+.quantity-input2 {
+  display: flex;
+  border-radius: 4px;
+  background-color: #e6e6e6;
+  display: flex;
+  margin-top: -12px;
+  padding: 26px 29px 16px;
+  justify-content: space-between;
+  gap: 3%;
+}
+
+.dropboxTabla2 {
+  width: 30%;
+  padding: 2px;
+  font: 400 13px Inter, sans-serif;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.quantity-field2 {
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 17%;
+}

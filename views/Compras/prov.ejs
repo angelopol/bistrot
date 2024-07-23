@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot - Compras</title>
+    <link rel="stylesheet" href="/Compras/css/side.css">
+    <link rel="stylesheet" href="/Compras/css/prov.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="/Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+
+        <div id="principal">
+            <div class="box-title-prov">
+                <img class="title-exit" src="/Compras/resources/Icono-Back.svg" alt="Icono - Exit">
+                <h2 id="title-prov">Proveedores</h2>
+            </div>
+            <div class="dashboard">
+                <div class="left-side">
+                    <table id="tabla-prov">
+                        <h3 id="title-table">Proveedores</h3>
+                        <thead>
+                          <tr>
+                            <th class="prov-clase">Empresa</th>
+                            <th class="prov-clase">RIF</th>
+                            <th class="prov-clase">Producto</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tabla-prov-body">
+                            <% if (data) { %>
+                                <% for (var i = 0; i < data.length; i++) { %>
+                                    <tr>
+                                        <td><%= data[i].Nombre_Empresa %></td>
+                                        <td><%= data[i].RIF %></td>
+                                        <td><%= data[i].Productos_Proveedor %></td>
+                                        <td style="display:none"><%= data[i].Correo %></td>
+                                        <td style="display:none"><%= data[i].Nombre_Responsa %></td>
+                                        <td style="display:none"><%= data[i].Tlf %></td>
+                                        <td style="display:none"><%= data[i].Dire_Fiscal %></td>
+                                        <td style="display:none"><%= data[i].Precio_udcompra %></td>
+                                    </tr>
+                                <% } %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="right-side">
+                    <div class="prov-details">
+                        <h3 id="title-detaile-prov">Detalles</h3>
+                        <form action="/prov/:nombre" method="post" id="delete-form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <select id="select-prov">
+                                <option disabled selected>Proveedor</option>
+                                <% if (data) { %>
+                                    <% for (var i = 0; i < data.length; i++) { %>
+                                        <option value="<%= data[i].Nombre_Empresa %>" ><%= data[i].Nombre_Empresa %></option>
+                                    <% } %>
+                                    
+                                <% } %>
+                            </select>
+                            <input id="delete-prov-btn" type="submit" value="Eliminar">
+                        </form>
+                    </div>
+                    
+                    <div id="horizontal-divider"></div>
+                    <div class="data">
+                        
+                        <form action="/prov" method="post" id="form1" class="form-data">
+                            <input type="hidden" name="_method" value="PATCH">
+                            <div class="data-box-title">
+                                <h3 id="data-title">Datos del Proveedor</h3>
+                                
+                                <input type="submit" id="data-title-btn" value="Agregar">
+                                <input type="submit" id="data-title-modi" value="Modificar">
+                            </div>
+                            <input placeholder="Nombre de la Empresa" class="input-data name-prov" type="text" name="nombre_empresa"  maxlength="50">
+                            <input maxlength="9" placeholder="RIF" class="input-data rif-prov" type="text" name="rif">
+                            <input placeholder="Direccion Fiscal" class="input-data dir-prov" type="text" name="Dire_Fiscal">
+                            <input placeholder="Correo" class="input-data correo-prov" type="text" name="Correo" maxlength="50">
+                            <input placeholder="Nombre del Responsable" class="input-data resp-prov" type="text" name="nombre_responsa", maxlength="50">
+                            <input maxlength="11" placeholder="Telefono" class="input-data tlf-prov" type="text" name="Tlf">
+                            <input placeholder="Producto" class="input-data prod-prov" type="text" name="ProveedorProd", maxlength="30">
+                            <input maxlength="30" placeholder="Precio por ud.Compra" class="input-data pre-prov" type="text" name="precio">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> 
+    <script src="/Compras/js/prov.js" defer></script>
+</body>
+</html>

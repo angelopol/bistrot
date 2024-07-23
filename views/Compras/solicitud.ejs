@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot - Compras</title>
+    <link rel="stylesheet" href="/Compras/css/side.css">
+    <link rel="stylesheet" href="/Compras/css/solicitud.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="/Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+
+        <div id="principal">
+            <div class="box-title-prov">
+                <img class="title-exit" src="/Compras/resources/Icono-Back.svg" alt="Icono - Exit">
+                <h2 id="title-prov">Requisiciones</h2>
+            </div>
+            <div class="dashboard">
+                <div class="left-side">
+                    <div class="tabla-content">
+                    <table id="tabla-prod">
+                        <h3 id="title-table">Productos</h3>
+                        <thead>
+                          <tr>
+                            <th class="comp-clase">ID</th>
+                            <th class="comp-clase">Producto</th>
+                            <th class="comp-clase">uds. Compra</th>
+                            <th class="comp-clase">uds. Consumo</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tabla-prov-body">
+                            <% if (data) { %>
+                                <% for (var i = 0; i < data.length; i++) { %>
+                                    <tr>
+                                        <td><%= data[i].ID_Producto %></td>
+                                        <td><%= data[i].NombreP %></td>
+                                        <td><%= data[i].Unidades %></td>
+                                        <td><%= data[i].Consumo %></td>
+                                    </tr>
+                                <% } %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="tabla-content">
+                    <table id="tabla-soli">
+                        <h3 id="title-table">Requisiciones</h3>
+                        <thead>
+                          <tr>
+                            <th class="registro-clase">ID</th>
+                            <th class="registro-clase">Producto</th>
+                            <th class="registro-clase">Cantidad</th>
+                          </tr>
+                        </thead>
+                        <tbody id="tabla-soli-body">
+                            <% if (data2) { %>
+                                
+                                <% for (var i = 0; i < data2.length; i++) { %>
+                                    <% if (data2[i].Aprobada == 0) { %>
+                                        <tr>
+                                            <td><%= data2[i].ID_Requisicion %></td>
+                                            <td><%= data2[i].Nombre_Producto %></td>
+                                            <td><%= data2[i].Cantidad %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <h3 id="subtitle-comp">Proceso de Solicitud</h3>
+                    <p class="help-comp">Seleccione el producto y su cantidad dependiendo de su unidad</p>
+
+                    <form action="/compras-index/soli" method="post">
+                        <div class="box-producto">
+                            <select id="select-prod" name="nombre_producto">
+                                <option disabled selected >Producto</option>
+                                <% if (data1) { %>
+                                    <% data1.forEach(data1 => { %>
+                                        <option value="<%= data1.NombreP %>" ><%= data1.NombreP %></option>
+                                    <% }); %>
+                                <% } %>
+                            </select>
+                            <input id="input-cant" placeholder="Cantidad" type="text" name="cant" maxlength="3" >
+                        </div>
+                        <div class="content-other">
+                            <select id="select-depa" name="depar">
+                                <option disabled selected>Departamento</option>
+                                <option>Ventas/Salon</option>
+                                <option>Compras</option>
+                                <option>Inventario</option>
+                                <option>Mantenimiento</option>
+                                <option>Cocina</option>
+                            </select>
+                            <input id="input-id" placeholder="ID Empleado" type="text" name="id_emp" maxlength="2">
+                        </div>
+                        
+                            <textarea placeholder="Descripcion" class="input-data desc" name="detalle"></textarea>
+                        
+                        <input type="submit" id="btn-enviar" value="Enviar">
+                    </form>
+
+                    <h3 id="subtitle-pen">Pendientes</h3>
+                    <form action="/soli/:id" method="post" id="update-form">
+                        <input type="hidden" name="_method" value="PATCH">
+                        <select id="select-soli" name="id_req">
+                            <option disabled selected>Seleccione el ID de la requisicion</option>
+                            <% if (data2) { %>
+                                <% data2.forEach(data2 => { %>
+                                    <% if (data2.Aprobada == 0) { %>
+                                        <option value="<%= data2.ID_Requisicion %>" ><%= data2.ID_Requisicion %></option>
+                                    <% } %>
+                                <% }); %>
+                            <% } %>
+                        </select>
+                        <div class="btns-acep">
+                            <input type="submit" id="btn-enviar" value="Aceptar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/Compras/js/solicitud.js" defer></script>
+</body>
+</html>

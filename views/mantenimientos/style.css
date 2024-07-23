@@ -1,0 +1,494 @@
+body{
+    margin: 0;
+}
+
+.main-container{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column; 
+}
+
+.header{
+    background-color: #013d1f;
+    display: flex;
+    max-width: 100%;
+    gap: 20px;
+    color: #fff;
+    font-weight: 400;
+    line-height: 150%;
+    padding: 34px 55px;
+}
+
+.restaurant-name {
+    letter-spacing: -0.24px;
+    flex-grow: 1;
+    flex-basis: auto;
+    margin: auto 0;
+    font: 24px Krona One, sans-serif;
+}
+
+.user-info {
+    border-radius: 8px;
+    border: 1px solid #fff;
+    background-color: #013d1f;
+    display: flex; gap: 16px;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 8px 16px;
+    margin-right: 80px;
+}
+
+.user-name {
+    font-family: Inter, sans-serif;
+    flex: 1; overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-icon {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 24px;
+}
+
+.content-wrapper{
+    display: flex;
+}
+
+.container {
+    background-color: #828282;
+    padding: 20px 50px;
+    margin-bottom: 30px;
+}
+
+.principal-pag1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 75px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 200px;
+    margin: 0;
+}
+
+.nav-menu {
+    background-color: rgba(237, 237, 237, 0.93);
+    display: flex; width: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 16px;
+    color: #02676f;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 150%;
+    margin: 0 auto;
+    padding: 10px 8px;
+}
+
+.nav-item {
+    border-radius: 8px;
+    background-color: rgba(246, 246, 246, 0.96);
+    display: flex; gap: 16px;
+    padding: 8px 16px; margin-top:
+    8px;
+}
+
+.nav-text {
+    font-family: Inter, sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav-icon {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 20px;
+    fill: #02676f;
+    margin: auto 0;
+}
+
+.help-item {
+    border-radius: 8px;
+    background-color: rgba(246, 246, 246, 0.96);
+    display: flex;
+    margin-top: 8px;
+    gap: 16px;
+    padding: 8px 16px;
+}
+
+.help-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1px 0;
+}
+
+.help-icon {
+    font-family: Inter, sans-serif;
+    stroke-width: 2px;
+    border: 2px solid #02676f;
+    background-color: #fff;
+    border-radius: 50%;
+    align-items: center;
+    width: 22px;
+    justify-content: center;
+    height: 22px;
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 81%;
+    margin-left: 20px;
+}
+
+.section-header {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 33% 33% 33% ;
+    max-width: 100%;
+    height: 300px;
+    background-color: #02676f; 
+}
+
+.section-title {
+    grid-row: 1 / 3;
+    grid-column: 1 / 1;
+    color: #000;
+    letter-spacing: -0.68px;
+    font: 600 34px/110% Inter, sans-serif;
+    }
+
+.botones {
+    grid-column: 2 / 2;
+}
+
+/*DISEÑO DEL TITULO Y BOTONES */
+.container-botones-principales {
+    display: inline;
+    font-family: Inter, sans-serif;
+    margin: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.215);
+    text-align: center;
+    display: inline;
+    height: 700px;
+    width: 150px;
+    margin-left: 3em;
+}
+
+.card i {
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+/*TITULO*/
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    display: inline;
+}
+
+
+/*DISEÑO DEL HISTORIAL Y CALENDARIO*/
+
+.container{
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 50px;
+}
+
+.container-historial {
+    font-family: Inter, sans-serif;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 30px;
+    font-size: 10px;
+}
+
+.left-section {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+  
+.right-section {
+    width: 50%;
+  }
+  
+.historial-title {
+    font-weight: bold;
+    font-size: 24px;
+}
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .calendar {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .calendar table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar th, .calendar td {
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    width: 14.28%; /* Distribute days evenly */
+  }
+  
+  .calendar th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .calendar td {
+    height: 30px;
+  }
+  
+  .calendar td.current {
+    background-color: #e0f2f7; /* Highlight current day */
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+
+/*FIN*/
+
+.action-buttons {
+    align-self: center;
+    margin-top: 0;
+    width: 586px;
+    max-width: 100%;
+}
+.button-container {
+    gap: 20px;
+    display: flex;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;    
+    width: 50%;
+    margin-left: 0;
+}
+
+.action-button {
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex; flex-grow: 1;
+    flex-direction: column;
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 150%;
+    width: 100%;
+    padding: 22px 48px;
+}
+
+.button-icon {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 30px;
+    align-self: center;
+}
+
+.button-text {
+    font-family: Inter, sans-serif;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.maintenance-section {
+    background-color: #d9d9d9;
+    margin-top: 20px;
+    padding: 40px 40px;
+    width: 100%;
+    display: flex;
+}
+
+/*Contenido de la pagina*/
+.maintenance-content {
+    gap: 20px;
+    display: flex;
+    width: 85vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.maintenance-list {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 70%;
+    margin-left: 0;
+}
+
+.maintenance-table {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.04);
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 16px;
+    line-height: 150%;
+    width: 100%;
+    padding: 27px;
+}
+
+.table-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    font-weight: 600;
+}
+
+.header-content {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-title {
+    color: #000;
+    font-family: Inter, sans-serif;
+}
+
+.header-labels {
+    display: flex;
+    margin-top: 28px;
+    gap: 20px;
+    color: #828282;
+    white-space: nowrap;
+    justify-content: space-between;
+}
+
+.label {
+    font-family: Inter, sans-serif;
+}
+
+.date-label, .status-label {
+    color: #828282;
+    text-align: right;
+    font-family: Inter, sans-serif;
+    margin-top: 40px;
+    flex-grow: 1;
+    flex-basis: auto;
+}
+
+.table-row {
+    border-top: 1px solid #e0e0e0;
+    display: flex; width: 100%;
+    gap: 20px; color: #000;
+    justify-content: space-between;
+    padding: 14px 63px 14px 0;
+}
+
+.row-name {
+    font-family: Inter, sans-serif;
+    font-weight: 500;
+    margin: auto 0;
+}
+
+.row-details {
+    display: flex;
+    gap: 20px;
+    font-weight: 400;
+    text-align: right;
+    justify-content: space-between;
+}
+
+.row-type, .row-status {
+    font-family: Inter, sans-serif;
+}
+
+.calendar-section {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 30%;
+    margin-left: 20px;
+}
+
+.calendar-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    text-align: center;
+    line-height: 24px;
+}
+
+.calendar-widget, .schedule-button {
+    font-family: Inter, sans-serif;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    background-color: #fff; padding: 68px 48px;
+    margin-left: 20px;
+}
+
+.schedule-button {
+    margin-top: 24px;
+    padding: 43px 48px;
+}
+.scroll-table {
+    overflow-y: auto;
+    max-height: 200px; /* ajusta el alto máximo según tus necesidades */
+}
