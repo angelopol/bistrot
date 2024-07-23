@@ -71,7 +71,7 @@
             </div>
         
             <div class="distribucion">
-                <form action="tu_script_para_procesar_el_formulario.php" method="POST">
+                <form action="" method="POST">
                     <div class="form-group">
                         <label for="codigo_empleado">Empleado:</label>
                         <input type="text" id="codigo_empleado" name="codigo_empleado" required>
@@ -111,10 +111,58 @@
                         <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
                     </div>
 
-                    <button type="submit">Enviar Reporte</button>
+                    <button id="submit" type="submit">Enviar Reporte</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function () {
+            document.getElementById("submit").addEventListener("clicl", () =>{
+            // Data que debe ir en el body
+            const dataToSend = {
+                ID_Empleado: 1,
+                Fecha_Registro : "2024-05-22",
+                Fecha_Ingreso: "2024-01-22",
+                Cargo: "Prueba",
+                Motivo: "Prueba",
+                Modulo: "RRHH"
+            };
+
+            // Función para registrar una solicitud
+            const registrarSolicitud = async (data) => {
+                try {
+                    // Realizar la solicitud HTTP con fetch
+                    const response = await fetch('/register/solicitar', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    // Convertir la respuesta a JSON
+                    const result = await response.json();
+
+                    // Manejo de errores en la respuesta
+                    if (result.error) {
+                        console.error(`Error al registrar solicitud: ${result.error.nombre}`);
+                        alert(`Error al registrar solicitud: ${result.error.nombre}`);
+                    } else {
+                        // Mensaje de éxito
+                        alert('Solicitud registrada exitosamente');
+                        // Aquí puedes limpiar el formulario si es necesario
+                    }
+                } catch (error) {
+                    // Manejo de errores de red o problemas en la solicitud
+                    console.error('Hubo un error al registrar la solicitud', error);
+                    alert('Hubo un error al registrar la solicitud');
+                }
+            };
+
+                
+            }) 
+        } 
+    </script>
 </body>
 </html>
