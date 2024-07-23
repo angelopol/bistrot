@@ -15,12 +15,12 @@ window.onload = function () {
                 <div class="ingredient-group">
                     <select class="form-input dropdown text" name="Proteina">
                         <option value="" disabled selected>Proteina</option>
-                        <option value="pollo">Pollo</option>
-                        <option value="queso">Queso</option>
-                        <option value="huevo">Huevo</option>
-                        <option value="bacalao">Bacalao</option>
+                                                <option value="7">Pollo</option>
+                                                <option value="1">Queso</option>
+                                                <option value="24">Huevo</option>
+                                                <option value="15">Bacalao</option>
                     </select>
-                    <input type="number" class="form-input" name="PesoProteina" placeholder="Peso (g)"  style = "width: 50px"  />
+                    <input type="number" class="form-input" name="PesoProteina" placeholder="Cantidad"  style = "width: 50px"  />
                     <button type="button" class="remove-button">-</button>
                 </div>
             `);
@@ -34,26 +34,26 @@ window.onload = function () {
                 <div class="ingredient-group">
                     <select class="form-input dropdown text" name="Verduras">
                         <option value="" disabled selected>Verduras</option>
-                        <option value="tomate">Tomate</option>
-                        <option value="zanahoria">Zanahoria</option>
-                        <option value="cebolla">Cebolla</option>
-                        <option value="papa">Papa</option>
-                        <option value="apio">Apio</option>
-                        <option value="ajo">Ajo</option>
-                        <option value="champiñones">Champiñones</option>
-                        <option value="berenjena">Berenjena</option>
-                        <option value="fresa">Fresa</option>
-                        <option value="patilla">Patilla</option>
-                        <option value="manzana">Manzana</option>
-                        <option value="banana">Banana</option>
-                        <option value="limon">Limon</option>
-                        <option value="lechuga">Lechuga</option>
-                        <option value="pepino">Pepino</option>
-                        <option value="aji">Aji</option>
-                        <option value="pimenton">Pimenton</option>
-                        <option value="cebollin">Cebollin</option>
+                                                <option value="2">Tomate</option>
+                                                <option value="3">Zanahoria</option>
+                                                <option value="4">Cebolla</option>
+                                                <option value="5">Papa</option>
+                                                <option value="6">Apio</option>
+                                                <option value="8">Ajo</option>
+                                                <option value="9">Champiñones</option>
+                                                <option value="13">Berenjena</option>
+                                                <option value="20">Fresa</option>
+                                                <option value="21">Patilla</option>
+                                                <option value="22">Manzana</option>
+                                                <option value="23">Banana</option>
+                                                <option value="26">Limon</option>
+                                                <option value="38">Lechuga</option>
+                                                <option value="39">Pepino</option>
+                                                <option value="40">Aji</option>
+                                                <option value="41">Pimenton</option>
+                                                <option value="42">Cebollin</option>
                     </select>
-                    <input type="number" class="form-input" name="PesoVerduras" placeholder="Peso (g)" style = "width: 50px" />
+                    <input type="number" class="form-input" name="PesoVerduras" placeholder="Cantidad" style = "width: 50px" />
                     <button type="button" class="remove-button">-</button>
                 </div>
             `);
@@ -67,16 +67,16 @@ window.onload = function () {
                 <div class="ingredient-group">
                     <select class="form-input dropdown text" name="OtroTipo">
                         <option value="" disabled selected>Otros</option>
-                        <option value="espelta">Espelta</option>
-                        <option value="vinagre">Vinagre</option>
-                        <option value="pasta">Pasta</option>
-                        <option value="aceite">Aceite</option>
-                        <option value="harina">Harina</option>
-                        <option value="leche">Leche</option>
-                        <option value="azucar">Azucar</option>
-                        <option value="chocolate">Chocolate</option>
+                                                <option value="10">Espelta</option>
+                                                <option value="11">Vinagre</option>
+                                                <option value="12">Pasta</option>
+                                                <option value="14">Aceite</option>
+                                                <option value="16">Harina</option>
+                                                <option value="17">Leche</option>
+                                                <option value="18">Azucar</option>
+                                                <option value="19">Chocolate</option>
                     </select>
-                    <input type="number" class="form-input" name="PesoOtros" placeholder="Peso (g)" style = "width: 50px" />
+                    <input type="number" class="form-input" name="PesoOtros" placeholder="Cantidad" style = "width: 50px" />
                     <button type="button" class="remove-button">-</button>
                 </div>
             `);
@@ -90,14 +90,30 @@ window.onload = function () {
                 <div class="instrument-group">
                     <select class="form-input dropdown text" name="Instrumentos">
                         <option value="" disabled selected>Instrumentos</option>
-                        <option value="cocinaA">cocinaA</option>
-                        <option value="cocinaB">cocinaB</option>
-                        <option value="cocinaC">cocinaC</option>
-                        <option value="cocinaD">cocinaD</option>
-                        <option value="hornoA">hornoA</option>
-                        <option value="hornoB">hornoB</option>
-                        <option value="hornoC">hornoC</option>
-                        <option value="hornoD">hornoD</option>
+                                                    <option value="1">cocinaA</option>
+                                                    <option value="2">cocinaB</option>
+                                                    <option value="3">cocinaC</option>
+                                                    <option value="4">cocinaD</option>
+                                                    <option value="5">hornoA</option>
+                                                    <option value="6">hornoB</option>
+                                                    <option value="7">hornoC</option>
+                                                    <option value="8">hornoD</option>
+                                                    <option value="9">SartenA</option>
+                                                    <option value="10">SartenB</option>
+                                                    <option value="11">SartenC</option>
+                                                    <option value="12">ColadorA</option>
+                                                    <option value="13">ColadorB</option>
+                                                    <option value="14">OllaA</option>
+                                                    <option value="15">OllaB</option>
+                                                    <option value="16">OllaC</option>
+                                                    <option value="17">NeveraA</option>
+                                                    <option value="18">NeveraB</option>
+                                                    <option value="19">CocteleraA</option>
+                                                    <option value="20">CocteleraB</option>
+                                                    <option value="21">CocteleraC</option>
+                                                    <option value="22">CocteleraD</option>
+                                                    <option value="23">BatidoraA</option>
+                                                    <option value="24">BatidoraB</option>
                     </select>
                     <button type="button" class="remove-button">-</button>
                 </div>
@@ -128,7 +144,18 @@ window.onload = function () {
     let botonRegistrar = document.querySelector("#submit-button")
     console.log(botonRegistrar)
     
-    botonRegistrar.addEventListener("click",()=> {
+    botonRegistrar.addEventListener("click",async ()=> {
+        // validaciones 
+        let comprobacionProteina = document.querySelector("#Proteina")
+        let comprobacionVerdura = document.querySelector("#Verdura")
+        let comprobacionOtro = document.querySelector("#OtroTipoX")
+        let comprobacionTipo = document.querySelector("#TipoX")
+        let comprobacionInstrumento = document.querySelector("#Instrumento")
+        let comprobacionNombre = document.querySelector("#preparacion")
+        if(comprobacionProteina.value == "" || comprobacionVerdura.value == "" || comprobacionOtro.value == "" || comprobacionTipo.value == "" || comprobacionInstrumento.value == "" || comprobacionNombre.value == ""){
+            return alert("No deje campos sin seleccionar")
+        }
+
         //"form-input dropdown text"
         let selectIngredientes = document.querySelectorAll(".form-input.dropdown.text")
         let nombreIngredientes = []
@@ -155,9 +182,67 @@ window.onload = function () {
 
         console.log(nombreIngredientes)
         console.log(cantidades)
+
+        let ingredientes = crearFormatoJSON(nombreIngredientes , cantidades) // {"12":21,"25":32,"34":47}
+
+        // sacamos el tipo de comida
+        let selectTipos = document.querySelectorAll(".form-input")
+        let tipoComida = null
+        selectTipos.forEach(selectTipo => {
+            if(selectTipo.name == "Tipo"){
+                tipoComida = selectTipo.value
+            }
+        })
+        
+        console.log(tipoComida)
+
+        // sacamos los intumentos 
+        let selectInstrumentos = document.querySelectorAll(".form-input")
+        let instrumentosLista = []
+        selectInstrumentos.forEach(selectInstrumento => {
+            if(selectInstrumento.name == "Instrumentos"){
+                instrumentosLista.push(selectInstrumento.value)
+            }
+        })
+
+        let instrumentosString = instrumentosLista.join(",")
+        
+        // estado de seleccionada por defecto en false
+        let seleccionada = 0
+
+        // sacamos el nombre
+        let nombre = document.querySelector("#preparacion").value
+
+        // hacemos la solicitud a nuestro endpoint para crear la nueva comida
+
+        console.log(ingredientes)
+        const solicitud = {
+            nombre: nombre,
+            tipo_comida: tipoComida,
+            tipo_bebida: null,
+            instrumentos: instrumentosString,
+            ingredientes: ingredientes,
+            seleccionada: 0
+        }
+
+        console.log({solicitud})
+
+        try{
+            await fetch('http://localhost:1234/cocina', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(solicitud)
+            });
+            console.log("Comida creada")
+        }
+        catch(e){
+            console.log(`Error: `, e)
+        }
+        alert("Comida creada correctamente")
+        location.reload(true)
     })
 
-
+    
     
 };
 
@@ -171,7 +256,7 @@ function crearFormatoJSON(arr1, arr2) {
     // Iterar sobre los arreglos
     for (let i = 0; i < arr1.length; i++) {
         const key = arr1[i];
-        const value = parseInt(arr2[i]); // Parsear el valor para asegurarse de que sea numérico si es posible
+        const value = parseFloat(arr2[i]); // Parsear el valor para asegurarse de que sea numérico si es posible
         objetoJSON[key] = value;
     }
     return JSON.stringify(objetoJSON);
@@ -182,4 +267,5 @@ function crearFormatoJSON(arr1, arr2) {
 const arr1 = ["12", "25", "34"];
 const arr2 = ["21", "32", "47"];
 const resultado = crearFormatoJSON(arr1, arr2);
-console.log(resultado); // Output: '{"1":2,"2":3,"3":4}'¿{"12":21,"25":32,"34":47}
+console.log(resultado); // Output: '{"1":2,"2":3,"3":4}'¿
+
