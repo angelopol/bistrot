@@ -47,7 +47,7 @@ export class ReservaController{
         console.log(req.params)
         const { id } = req.params;
         const input = req.body; 
-        const response = await ReservaModel.modificar({ id, ...input });
+        const response = await ReservaModel.modificarCocina({ id, ...input });
         res.redirect('/reservas')
     }
 

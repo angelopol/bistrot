@@ -44,7 +44,7 @@ export const createReservasRouter = () => {
     
     reservasRouter.post('/mesas/CrearReservas/crear',controladorReserva.create);
 
-    reservasRouter.post('/modificar',controladorReserva.update);
+    reservasRouter.post('/reservas/reportesCocina/:id',controladorReserva.update);
 
 
     return reservasRouter

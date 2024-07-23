@@ -129,7 +129,14 @@
         }
 
         botonReportesCocina.addEventListener('click', () => {
-            window.location.href = '/reservas/reportesCocina'; // Cambia a la ruta del servidor
+            // Obtener el valor del radio button seleccionado
+            const selectedRadio = document.querySelector('input[name="radioboton"]:checked');
+            if (selectedRadio) {
+                const numeroReserva = selectedRadio.value;
+                window.location.href = `/reservas/reportesCocina/${numeroReserva}`; // Cambia a la ruta del servidor
+            } else {
+                alert('Debe seleccionar una reserva');
+            }
         });
 
         botonReserva.addEventListener('click', () => {
@@ -141,39 +148,6 @@
             window.location.href = '/reservas/reportes'; // Cambia a la ruta del servidor
         });
 
-        //boton que elimina un resgistro de la tabla reservas
-        botonEliminarReserva.addEventListener('click', e => {
-            e.preventDefault();
-
-            let radios = document.getElementsByName('radioboton');
-            let id = null;
-            for (let i = 0; i < radios.length; i++) {
-                if (radios[i].checked) {
-                    id = radios[i].value;
-                    console.log(id);
-                    break;
-                }
-            }
-            if (id) {
-                eliminarFila(id);
-                /* fetch(`/reservaciones/eliminar/${id}`,{
-                    ...options,
-                    body: JSON.stringify({id})
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        alert('Reserva eliminada');
-                        window.location.reload();
-                    } else {
-                        alert('Error al eliminar la reserva');
-                    }
-                })
-                console.log("pues nose"); */
-            } else {
-                alert('Seleccione una reserva para eliminar');
-            }
-        });
 
     </script>
 </body>

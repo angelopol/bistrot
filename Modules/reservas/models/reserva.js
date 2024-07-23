@@ -91,4 +91,19 @@ export class ReservaModel {
           throw new Error('Error updating reserva')
         }
     }
+
+    static async modificarCocina (cedulaC, modi) {
+      const {
+      } = modi
+  
+      try {
+        await connection.query(
+          'UPDATE reserva SET fecha = ?, hora_inicio = ?, hora_fin = ?, descripcion = ? WHERE ID_cliente = ?',
+          [fecha, hora_inicio, hora_fin, iddescripcion, cedulaC]
+        )
+      } catch (e) {
+        console.log(e)
+        throw new Error('Error updating reserva')
+      }
+  }
 }
