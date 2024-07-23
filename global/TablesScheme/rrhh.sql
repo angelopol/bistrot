@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS empleados (
     Salario decimal(10,2) DEFAULT NULL,
     Telefono varchar(15) DEFAULT NULL,
     Direccion varchar(100) DEFAULT NULL,
+    experiencia_laboral varchar(100) DEFAULT NULL,
     PRIMARY KEY (ID),
     UNIQUE INDEX user_UNIQUE (user)
 );
