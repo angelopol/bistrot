@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS empleados (
     Salario decimal(10,2) DEFAULT NULL,
     Telefono varchar(15) DEFAULT NULL,
     Direccion varchar(100) DEFAULT NULL,
+    experiencia_laboral varchar(100) DEFAULT NULL,
     PRIMARY KEY (ID),
     UNIQUE INDEX user_UNIQUE (user)
 );
@@ -64,8 +65,8 @@ CREATE TABLE IF NOT EXISTS empleados (
 -- Estructura de tabla para la tabla solicitudes
 --
 
-DROP TABLE IF EXISTS solicitudes;
-CREATE TABLE IF NOT EXISTS solicitudes (
+DROP TABLE IF EXISTS rrhh_solicitudes;
+CREATE TABLE IF NOT EXISTS rrhh_solicitudes (
   ID int(11) NOT NULL AUTO_INCREMENT,
   ID_Empleado int(11) DEFAULT NULL,
   Fecha_Registro date DEFAULT NULL,

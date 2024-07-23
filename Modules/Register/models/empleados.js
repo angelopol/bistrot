@@ -13,14 +13,15 @@ export class EmpleadosModel {
       telefono,
       direccion,
       fecha_contratacion,
+      experiencia_laboral,
       fecha_culminacion
     } = input;
 
     try {
       await connection.query(
-        `INSERT INTO empleados (nombre, apellido, password, cedula, user, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
-        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion]
+        `INSERT INTO empleados (nombre, apellido, password, cedula, user, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, experiencia_laboral)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, experiencia_laboral]
       );
     } catch (e) {
       console.error('Error creating empleado:', e);  // Imprimir el error completo
@@ -126,8 +127,8 @@ export class EmpleadosModel {
   static async getSolicitudes() {
     try {
         const [rows] = await connection.query(
-            `SELECT solicitudes.*, empleados.nombre FROM solicitudes
-                left join empleados on solicitudes.ID_Empleado = empleados.ID`
+            `SELECT rrhh_solicitudes.*, empleados.nombre FROM rrhh_solicitudes
+                left join empleados on rrhh_solicitudes.ID_Empleado = empleados.ID`
         );
         return rows;
     } catch (e) {
@@ -148,7 +149,7 @@ export class EmpleadosModel {
 
     try {
       await connection.query(
-        `INSERT INTO solicitudes (ID_Empleado, Fecha_Registro, Fecha, motivo, Cargo, Modulo)
+        `INSERT INTO rrhh_solicitudes (ID_Empleado, Fecha_Registro, Fecha, motivo, Cargo, Modulo)
          VALUES (?, ?, ?, ?, ?);`,
         [ID_Empleado, Fecha_Registro, Fecha, Motivo, Cargo, Modulo]
       );
@@ -161,7 +162,7 @@ export class EmpleadosModel {
     try {
         // Ejecuta la consulta SQL para actualizar el estado de la solicitud
         const [results] = await connection.query(
-            `UPDATE solicitudes 
+            `UPDATE rrhh_solicitudes 
             SET estado = ? 
             WHERE ID = ?`,
             [newEstado, ID]
