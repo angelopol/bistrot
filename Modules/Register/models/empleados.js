@@ -13,14 +13,15 @@ export class EmpleadosModel {
       telefono,
       direccion,
       fecha_contratacion,
+      experiencia_laboral,
       fecha_culminacion
     } = input;
 
     try {
       await connection.query(
-        `INSERT INTO empleados (nombre, apellido, password, cedula, user, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
-        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion]
+        `INSERT INTO empleados (nombre, apellido, password, cedula, user, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, experiencia_laboral)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, experiencia_laboral]
       );
     } catch (e) {
       console.error('Error creating empleado:', e);  // Imprimir el error completo

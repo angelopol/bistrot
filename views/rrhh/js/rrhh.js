@@ -120,6 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="field">
+                <label class="label">Experiencia Laboral:</label>
+                <div class="control">
+                    <input class="input" type="text" value="${currentEmployee.experiencia_laboral}" disabled>
+                </div>
+            </div>
+            <div class="field">
                 <label class="label">Fecha de Contratacion:</label>
                 <div class="control">
                     <input class="input" type="text" value="${formatDate(currentEmployee.fecha_contratacion)}" disabled>

@@ -145,7 +145,9 @@ document.getElementById('submit-button').addEventListener('click', function(even
       salario: document.getElementById('salary').value,
       horas: document.getElementById('hours').value,
       telefono: document.getElementById('phone').value,
-      clave_usuario: document.getElementById('user-password').value
+      clave_usuario: document.getElementById('user-password').value,
+      experiencia_laboral: document.getElementById('experiencia_laboral').value
+
     };
 
     const validateForm = (data) => {
@@ -172,7 +174,8 @@ document.getElementById('submit-button').addEventListener('click', function(even
       horas: formData.horas,
       cedula: formData.cedula,
       codigo_empleado: formData.codigo_empleado,
-      clave_usuario: formData.clave_usuario
+      clave_usuario: formData.clave_usuario,
+      experiencia_laboral: formData.experiencia_laboral
     };
 
     fetch('/register', {
