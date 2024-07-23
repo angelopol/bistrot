@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="/rrhh/assets/style.css">
+    <link rel="stylesheet" href="/assets/header.css">
+    <link rel="stylesheet" href="/assets/side.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
+    <title>Recursos Humanos</title>
+</head>
+<body>
+
+  <header>
+    <h1 id="title">BISTROT CHEZ RÉMY</h1>
+    <select id="title-combo">
+        <option selected>Gerente</option>
+        <option>Cerrar Sesion</option>
+    </select>
+</header>
+<div class="content-wrapper">
+    <div class="main-content">
+      <div id="sidebar" bis_skin_checked="1" style="height: 100vh;">
+            <div class="side inicio">
+                <img src="/Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+
+    
+      <main class="employee-registration">
+        <img src="css/img/icono_salida.png" class="icono" onclick="window.location.href ='/rrhh'">
+            
+        <h2 class="page-title">Registro de Empleado</h2>
+        
+      <form id="employee-form" method="POST" action="">
+         <!-- Primera fila de campos -->
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="first-name" class="form-label">Nombre</label>
+                  <input type="text" id="first-name" class="form-input" name="nombre"/>
+              </div>
+              
+              <div class="form-group">
+                  <label for="last-name" class="form-label">Apellido</label>
+                  <input type="text" id="last-name" class="form-input" name="apellido"/>
+              </div>
+
+              <div class="form-group">
+                  <label for="id-number" class="form-label">Cédula</label>
+                  <input type="text" id="id-number" class="form-input" name="cedula"/>
+              </div>
+
+              
+          </div>
+          <!-- Primera fila de campos -->
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="cargo" class="form-label">Cargo</label>
+                  <select class="form-input dropdown" id="cargo" name="cargo">
+                      <option value="" disabled selected>Seleccione un Cargo</option>
+                      <option value="Gerente">Gerente</option>
+                      <option value="Cajero">Cajero</option>
+                      <option value="Compras">Compras</option>
+                      <option value="Cocinero">Cocinero</option>
+                      <option value="Reservaciones">Reservaciones</option>
+                      <option value="RRHH">RRHH</option>
+                      <option value="Mantenimiento">Mantenimiento</option>
+                      <option value="Inventario">Inventario</option>
+                  </select>
+              </div>
+              
+              <div class="form-group">
+                  <label for="start-date" class="form-label">Fecha inicio</label>
+                  <input type="date" id="start-date" class="form-input" name="fecha_contratacion"/>
+              </div>
+
+              <div class="form-group">
+                  <label for="end-date" class="form-label">Fecha culminación</label>
+                  <input type="date" id="end-date" class="form-input" name="fecha_culminacion"/>
+              </div>
+          </div>
+          <!-- Cuarta fila de campos -->
+          <div class="form-group address-group">
+            <label for="experiencia_laboral" class="form-label">Experiencia Laboral</label>
+            <input type="text" id="experiencia_laboral" class="form-input address-input" placeholder="Experiencia Laboral " name="exp"/>
+        </div>
+
+          <!-- Segunda fila de campos -->
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="hours" class="form-label">Horas</label>
+                  <select id="hours" class="form-input dropdown" name="horas">
+                      <option value="" disabled selected>Seleccione una hora</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="salary" class="form-label">Salario (Bolivares)</label>
+                <input type="number" id="salary" class="form-input" placeholder="000,00" step="0.01" name="salario"/>
+            </div>
+          </div>
+
+         
+
+          <!-- Cuarta fila de campos -->
+          <div class="form-group address-group">
+              <label for="address" class="form-label">Dirección</label>
+              <input type="text" id="address" class="form-input address-input" placeholder="Mañongo, cerca del CC Sambil calle 13" name="direccion"/>
+          </div>
+
+
+          <!-- Quinta fila de campos -->
+          <div class="form-row">
+              <div class="form-group">
+                <label for="phone" class="form-label">Teléfono</label>
+                <input type="tel" id="phone" class="form-input" placeholder="04120201212" name="telefono"/>
+            </div>
+
+              <div class="form-group">
+                  <label for="user-password" class="form-label">Clave de Usuario</label>
+                  <input type="password" id="user-password" class="form-input" placeholder="********" name="clave_usuario"/>
+              </div>
+          </div>
+
+          <button id="submit-button">Registrar</button>
+      </form>
+
+      </main>      
+    </div>
+  </div>
+  <script type="text/javascript" src="/rrhh/js/form.js" defer>
+    
+  </script>
+   
+</body>
+</html>

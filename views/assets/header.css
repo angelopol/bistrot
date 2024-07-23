@@ -1,0 +1,36 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("/Compras/resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Krona-One";
+    src: url("/Compras/resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
+    font-weight: 500;
+}
+
+header {
+    background-color: #013D1F;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 15vh;
+}
+
+#title {
+    font-family: 'Krona-One';
+    font-size: 1.4rem;
+    margin-right: 45%;
+}
+
+#title-combo {
+    appearance: none;
+    color: white;
+    background-color: #013D1F;
+    border-radius: 2px;
+    padding: 10px;
+    width: 15%;
+    outline: none;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/rrhh/assets/entradas.css">
+    <link rel="stylesheet" href="/assets/header.css">
+    <link rel="stylesheet" href="/assets/side.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
+    <title>Recursos Humanos</title>
+</head>
+<body>
+  <header>
+    <h1 id="title">BISTROT CHEZ RÉMY</h1>
+    <select id="title-combo">
+        <option selected>Gerente</option>
+        <option>Cerrar Sesion</option>
+    </select>
+</header>
+<div class="content-wrapper">
+    <div class="main-content">
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="/Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="/Compras/resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+
+      <main class="registra-entradas content-area">
+        <img src="css/img/icono_salida.png" class="icono" onclick="window.location.href ='/rrhh'"> </a></button><h1 class="page-title" >Registrar Entrada / Salida</h1>
+            <form class="employee-registration">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="employee-ci" class="form-label">Cédula de identidad</label>
+                        <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <button type="button" class="submit-button" id="submit-button">Registrar</button>
+                    <button type="button" class="submit-button" onclick="window.location.href = '/rrhh/informe'">Informe</button>
+                </div>
+            </form>
+      </main>
+    </div>
+  </div>
+  <script src="/rrhh/js/entradas.js" defer></script>
+</body>
+</html>

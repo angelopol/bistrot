@@ -1,0 +1,87 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Absence and Permit Management</title>
+	<link rel="stylesheet" href="/rrhh/assets/ausensias.css">
+    <link rel="stylesheet" href="/rrhh/assets/style.css">
+    <link rel="icon" href="/assets/favicon.ico">
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="header">
+            <h2>Gestión de Ausencias y Permisos</h2>
+        </div>
+            
+        <div class="panel">
+            <img src="css/img/icono_salida.png" class="icono" onclick="window.location.href ='/rrhh'">  </a></button><h3>Solicitar Ausencia</h3>
+            <p>Generar una nueva solicitud de ausencia</p>
+            <button class="button" id="new-request-button">Solicitar ausencia</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Solicitar Ausencia</h2>
+                    <form id="absence-form">
+                        <label for="reason">Motivo de ausencia:</label>
+                        <textarea id="reason" name="reason" placeholder="Describa el motivo de su ausencia"></textarea>
+                        <br><br>
+                        <label for="start-date">Fecha de inicio:</label>
+                        <input type="date" id="start-date" name="start-date">
+                        <br><br>
+                        <label for="end-date">Fecha de fin:</label>
+                        <input type="date" id="end-date" name="end-date">
+                        <br><br>
+                        <button type="submit" class="button" id="submit-button">Enviar solicitud</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>Aceptar Solicitudes</h3>
+            <p>Aceptar o rechazar solicitudes de ausencia</p>
+            <button class="button" id="accept-button">Aceptar o rechazar solicitudes</button>
+        </div>
+        
+        <div id="accept-reject-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Aceptar o Rechazar Solicitud</h2>
+                <ul id="requests-list">
+                    <!-- List items will be dynamically added here -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>Registro de Ausencias</h3>
+            <p>Ver peticiones de ausencia</p>
+            <button class="button" id="view-registry-button">Ver registro</button>
+            <div id="registry-panel" class="modal">
+                <div class="modal-content">
+                    <h2>Registro de Ausencias</h2>
+                    <ul id="accepted-requests-list">
+                        <!-- Lista de solicitudes aceptadas se llenará dinámicamente -->
+                    </ul>
+                    <ul id="rejected-requests-list"></ul>
+                        <!-- List of rejected requests will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="permissions-in-process" class="panel">
+            <h2>Permisos en Proceso</h2>
+            <ul id="permissions-list">
+                <!-- List items will be dynamically added here -->
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="/rrhh/js/ausensias.js" defer></script>
+</body>
+</html>

@@ -1,33 +1,36 @@
+
 import { EmpleadosModel } from "../../Register/models/empleados.js"
-import { validateEmpleado } from "../../Register/schemas/empleados.js"
 import { logged } from "../middlewares/logged.js"
 import jwt from 'jsonwebtoken'
-import bycrypt from 'bcrypt'
 import 'dotenv/config'
+import { alert } from "../../../global/helpers/alert.js"
+import { validateLogin } from "../../Register/schemas/empleados.js"
 
 export class LoginController {
   home = async (req, res) => {
     var user = logged(req, res)
     if (!user) return
-    res.render('Login/home', user)
+    res.render('Home/index', user)
   }
 
   show = async (req, res) => {
     if (!logged(req, res, true)) return
-    res.render('Login/login')
+    res.render('Login/loging')
   }
 
   login = async (req, res) => {
     if (!logged(req, res, true)) return
     
-    const result = await validateEmpleado(req.body, false)
+    const result = await validateLogin(req.body, false)
     if (!result.success) {
-      return res.status(400).json({ error: JSON.parse(result.error.message) })
+      return res.send(alert(result.error, '/login'))
     }
-    var user = await EmpleadosModel.find({ user: result.data.user })
-    const isValid = await bycrypt.compare(result.data.password, user.password)
-    if (!isValid){
-      return res.status(400).json({ message: 'Invalid password' })
+    var user = await EmpleadosModel.findUser({ user: result.data.user })
+    if (user == null){
+      return res.send(alert("Usuario no encontrado.", '/login'))
+    }
+    if (result.data.password != user.password){
+      return res.send(alert("Contraseña incorrecta.", '/login'))
     }
     user = {
       user: user.user

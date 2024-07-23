@@ -1,0 +1,126 @@
+@font-face {
+    font-family: "Montserrat-Medium";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url("../resources/Fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 800;
+}
+
+body {
+    overflow: hidden;
+}
+
+#principal {
+    font-family: 'Montserrat-Medium';
+    color: #02676F;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    height: 85vh;
+    width: 75vw;
+}
+
+.box-title-prov {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat-Bold';
+}
+
+#title-prov{
+    font-size: 1.5rem;
+}
+
+.dashboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 80%;
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+#form1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40%;
+}
+
+.confirmacion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    gap: 10px;
+}
+
+#btn-regis {
+    padding: 15px;
+    width: 40%;
+    background-color: #0F624A;
+    color: white;
+    font-family: 'Montserrat-Bold';
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.foto-cart{
+    width: 50%;
+}
+
+.confirmation-message {
+    font-size: 1.1rem;
+}
+
+.form-section p {
+    font-family: 'Montserrat-Regular';
+}
+
+#order-number {
+    font-size: 0.5rem;
+}
+
+#btn-cancel {
+    padding: 15px;
+    width: 40%;
+    background-color: white;
+    color: #0F624A;
+    font-family: 'Montserrat-Bold';
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border-color: #0F624A;
+    border-width: 3px;
+    border-style: solid;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+#btn-regis:hover, #btn-cancel:hover {
+    width: 50%;
+}
+
+#btn-regis:active, #btn-cancel:active {
+    transform: scale(0.90);
+}

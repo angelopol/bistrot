@@ -1,0 +1,77 @@
+.listaEmpleados{
+    padding-left: 30px;
+    font-family: sans-serif;
+    font-size: 40px;
+}
+
+
+.encabezado{
+    background-color:#013D1F; 
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 23px;
+    padding: 15px;
+    border: 1px solid #000;
+}
+
+
+.info{
+    background-color:#ffffff; 
+    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    padding: 15px;
+    border: 1px solid #000;
+}
+
+.lista{
+    /* margin: 20px;
+    padding:20px;
+    border-radius: 10px;
+    height: 250px;
+    transform: translate(150px, -50px); */
+}
+.submit-button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    flex: 1 1 45%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.regresar {
+    position: absolute; 
+    display: block; 
+    margin: 20px auto; 
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    background-color: #0F624A;
+    padding: 12px;
+    cursor: pointer;
+    transform: translate(255px, 110px);
+}
+
+
+table{
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+
+.listaEmpleados{
+    color: #02676F;
+    letter-spacing: -0.68px;
+    align-self: stretch;
+    font: 600 34px/1.1 Inter, sans-serif;
+    padding: 20px 0px;
+}

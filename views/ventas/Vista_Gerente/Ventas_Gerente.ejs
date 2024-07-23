@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/ventas/Vista_Gerente/styles_Gerente.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="/ventas/chart.js"></script>
+   <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
+    <title>Gerente</title>
+</head>
+<body>
+    
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    
+    <main class="main-content">
+      <div class="content-wrapper">
+        <div id="sidebar">
+          <div class="side inicio">
+              <img src="/ventas/Vista_Gerente/resources/iconos_barra/inicio-green.png" class="side-foto">
+              <p class="side-option">Inicio</p>
+          </div>
+          <div class="side ventas">
+              <img class="side-foto" src="/ventas/Vista_Gerente/resources/iconos_barra/ventas-green.png">
+              <p class="side-option">Ventas/Salon</p>
+          </div>
+          <div class="side compras">
+              <img class="side-foto" src="/ventas/Vista_Gerente/resources/iconos_barra/compras-green.png">
+              <p class="side-option">Compras</p>
+          </div>
+          <div class="side rrhh">
+              <img class="side-foto" src="/ventas/Vista_Gerente/resources/iconos_barra/person-green.png">
+              <p class="side-option">RRHH</p>
+          </div>
+          <div class="side inventario">
+              <img class="side-foto" src="/ventas/Vista_Gerente/resources/iconos_barra/inventario-green.png">
+              <p class="side-option">Inventario</p>
+          </div>
+          <div class="side mantent">
+              <img class="side-foto" src="/ventas/Vista_Gerente/resources/iconos_barra/mantenimiento-green.png">
+              <p class="side-option">Mantenimiento</p>
+          </div>
+          <div class="side cocina">
+              <img class="side-foto" src="/ventas/Vista_Gerente/resources/iconos_barra/cocina-green.png">
+              <p class="side-option">Cocina/Bar</p>
+          </div>
+          <div class="side reserv">
+              <img class="side-foto" src="/ventas/Vista_Gerente/resources/iconos_barra/reservas-green.png">
+              <p class="side-option">Reservas</p>
+          </div>
+      </div>
+
+    
+        <section class="main-section">
+          <div class="content-area">
+            <div class="sales-section">
+              <h2 class="sales-title">Ventas</h2>
+              <div class="chart">
+                <canvas id="myChart" width="200" height="100"></canvas>
+              </div>
+            </div>
+    
+            <aside class="sidebar-right">
+              <div class="action-panel">
+                
+                <button class="action-button" id="openModal1">Apertura/Cierre</button>
+                <button class="action-button" id="openModal2">Tasa del dia</button>
+                <button class="action-button" id="openModal3">Presupuestos</button>
+                <a target="_self" href="/ventas/Vista_Caja/caja" class="action-button">Caja</a>
+                <a target="_self" href="/ventas/Vista_Meseros/meseros_general" class="action-button">Mesero Salon</a>
+                <a target="_self" href="/ventas/Vista_Meseros/meseros_terraza" class="action-button">Mesero Terraza</a>
+
+                <section id="menu-apertura/cierre visible">
+
+                  <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <span class="closeBtn" data-modal="modal1">&times;</span>
+                        <h2>Apertura y Cierre de caja</h2>
+                        <div class="content-center">
+                          <div class="estado-caja"></div>
+                          <input class="fecha-apertura-cierre" type="datetime-local" placeholder="fecha apertura/cierre">
+                          <input class="apertura-cierre" type="number" placeholder="monto de apertura/cierre">
+                          <button class="btn-caja btn-apertura">Aperturar</button>
+                          <button class="btn-caja btn-cierre">Cerrar</button>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div id="modal2" class="modal">
+                    <div class="modal-content">
+                        <span class="closeBtn" data-modal="modal2">&times;</span>
+                        <h2>Tasa del dia (Euro)</h2>
+                        <div class="content-center">
+                          <input class="tasa-dia" type="number" placeholder="ingrese la tasa del dia">
+                          <button class="btn-caja btn-tasa-dia">Aceptar</button>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div id="modal3" class="modal">
+                    <div class="modal-content">
+                        <span class="closeBtn" data-modal="modal3">&times;</span>
+                        <h2>Presupuestos</h2>
+                        <form id="presupuestoForm">
+                            <div class="item">
+                                <label for="mesaSalon">Cantidad de mesas de Salón:</label>
+                                <select id="mesaSalon" class="opciones-mesas">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
+                            <div class="item">
+                                <label for="mesaTerraza">Cantidad de mesas de Terraza:</label>
+                                <select id="mesaTerraza" class="opciones-mesas">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                        </form>
+                        <div id="total">
+                            
+                        </div>
+                        <div class="content-center">
+                            <button class="btn-caja btn-presupuesto" id="calcularBtn">Calcular</button>
+                        </div>
+                    </div>
+                </div> 
+
+                </section>
+                </div>
+              </div>  
+            </aside>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="/ventas/Vista_Gerente/Gerente_logica.js" defer></script>
+    
+</body>
+</html>

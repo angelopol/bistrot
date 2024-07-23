@@ -1,36 +1,48 @@
-import mysql from 'mysql2/promise'
-import 'dotenv/config'
-
-const DBConfig = {
-  host: '127.0.0.1' || process.env.DB_HOST,
-  user: 'root' || process.env.DB_USERNAME,
-  port: 3306 || process.env.DB_PORT,
-  password: '1234' || process.env.DB_PASSWORD,
-  database: 'bistrot' || process.env.DB_DATABASE,
-}
-
-const connection = await mysql.createConnection(DBConfig)
+import connection from "../../RRHH/conexion.js";
 
 export class EmpleadosModel {
-  static async create ({ input }) {
+  static async create({ input }) {
     const {
-      user,
-      password,
-    } = input
+      nombre,
+      apellido,
+      clave_usuario,
+      cedula,
+      codigo_empleado,
+      puesto,
+      salario,
+      telefono,
+      direccion,
+      fecha_contratacion,
+      experiencia_laboral,
+      fecha_culminacion
+    } = input;
 
     try {
       await connection.query(
-        `INSERT INTO empleados (user, password)
-          VALUES (?, ?);`,
-        [user, password]
-      )
+        `INSERT INTO empleados (nombre, apellido, password, cedula, user, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, experiencia_laboral)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, experiencia_laboral]
+      );
     } catch (e) {
-      console.log(e)
-      throw new Error('Error creating empleado')
+      console.error('Error creating empleado:', e);  // Imprimir el error completo
+      throw new Error(`Error creating empleado: ${e.message}`);
     }
   }
 
-  static async find ({ user }) {
+  static async find({ nombre }) {
+    try {
+      const [rows] = await connection.query(
+        `SELECT * FROM empleados WHERE nombre = ?;`,
+        [nombre]
+      );
+      return rows[0];
+    } catch (e) {
+      console.error('Error finding empleado:', e);  // Imprimir el error completo
+      throw new Error(`Error finding empleado: ${e.message}`);
+    }
+  }
+
+  static async findUser ({ user }) {
     const [rows] = await connection.query(
       `SELECT * FROM empleados WHERE user = ?;`,
       [user]
@@ -38,18 +50,133 @@ export class EmpleadosModel {
     return rows[0]
   }
 
-  static async unique ({ user }) {
-    const [rows] = await connection.query(
-      `SELECT user FROM empleados WHERE user = ?;`,
-      [user]
-    )
-    if (rows.length > 0) return false
-    return true
+  static async unique(cedula) {
+    try {
+        const [rows] = await connection.query(
+            `SELECT nombre FROM empleados WHERE cedula = ?;`,
+            [cedula]
+        );
+
+        // Si no se encontraron filas, el nombre es único
+        if (rows.length !== 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (e) {
+        console.error('Error checking uniqueness of empleado:', e);  // Imprimir el error completo
+        throw new Error(`Error checking uniqueness of empleado: ${e.message}`);
+    }
+}
+
+
+  static async delete(input) {
+    const { id } = input
+    try {
+      await connection.query(
+        `DELETE FROM empleados WHERE user = ?;`,
+        [id]
+      );
+    } catch (e) {
+      console.error('Error deleting empleado:', e);  // Imprimir el error completo
+      throw new Error(`Error deleting empleado: ${e.message}`);
+    }
   }
 
-  static async delete ({ id }) {
+  static async update(input) {
+    console.log(input)
+    const formatDateForSubmission = (dateString) => {
+      const date = new Date(dateString);
+      return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
+    };
+    const {
+      nombre,
+      apellido,
+      cedula,
+      user,
+      cargo,
+      salario,
+      telefono,
+      direccion,
+      fecha_contratacion,
+      fecha_culminacion
+    } = input;
+
+    try {
+      await connection.query(
+        `UPDATE empleados SET
+          nombre = ?,
+          apellido = ?,
+          cedula = ?,
+          puesto = ?,
+          salario = ?,
+          telefono = ?,
+          direccion = ?,
+          fecha_contratacion = ?,
+          fecha_culminacion = ?
+          WHERE user = ?;`,
+        [nombre, apellido, cedula, cargo, salario, telefono, direccion, formatDateForSubmission(fecha_contratacion), formatDateForSubmission(fecha_culminacion), user]
+      );
+    } catch (e) {
+      console.error('Error updating empleado:', e);  // Imprimir el error completo
+      throw new Error(`Error updating empleado: ${e.message}`);
+    }
+    
+  }
+  //Solicitudes
+  static async getSolicitudes() {
+    try {
+        const [rows] = await connection.query(
+            `SELECT rrhh_solicitudes.*, empleados.nombre FROM rrhh_solicitudes
+                left join empleados on rrhh_solicitudes.ID_Empleado = empleados.ID`
+        );
+        return rows;
+    } catch (e) {
+        console.error('Error finding solicitudes:', e);  // Imprimir el error completo
+        throw new Error(`Error finding solicitudes: ${e.message}`);
+    }
+}
+
+  static async createSolicitud({ input }) {
+    const {
+      ID_Empleado,
+      Fecha,
+      Fecha_Registro,
+      Cargo,
+      Motivo,
+      Modulo,
+    } = input;
+
+    try {
+      await connection.query(
+        `INSERT INTO rrhh_solicitudes (ID_Empleado, Fecha_Registro, Fecha, motivo, Cargo, Modulo)
+         VALUES (?, ?, ?, ?, ?);`,
+        [ID_Empleado, Fecha_Registro, Fecha, Motivo, Cargo, Modulo]
+      );
+    } catch (e) {
+      throw new Error(`Error creando solicitud: ${e.message}`);
+    }
+  }
+  // Actualiza el estado de una solicitud
+  static async updateEstado(ID, newEstado) {
+    try {
+        // Ejecuta la consulta SQL para actualizar el estado de la solicitud
+        const [results] = await connection.query(
+            `UPDATE rrhh_solicitudes 
+            SET estado = ? 
+            WHERE ID = ?`,
+            [newEstado, ID]
+        );
+
+        // Puedes manejar el resultado aquí si es necesario, por ejemplo, comprobando el número de filas afectadas
+        if (results.affectedRows === 0) {
+            throw new Error('No se encontró la solicitud para actualizar.');
+        }
+    } catch (e) {
+        // Lanza un error si ocurre algún problema durante la actualización
+        throw new Error(`Error actualizando el estado de la solicitud: ${e.message}`);
+    }
   }
 
-  static async update ({ id, input }) {
-  }
+
 }

@@ -1,0 +1,322 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.main-container {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurant-name {
+    letter-spacing: -0.24px;
+    flex-grow: 1;
+    margin: auto 0;
+    font: 24px 'Krona One', sans-serif;
+    color: #fff;
+}
+
+.user-info {
+    border-radius: 8px;
+    border: 1px solid #fff;
+    background-color: #013d1f;
+    display: flex;
+    gap: 16px;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 8px 16px;
+}
+
+.username {
+    font-family: 'Inter', sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.user-icon {
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: 24px;
+    cursor: pointer;
+}
+
+.content-wrapper {
+    width: 100%;
+}
+
+.nav-menu {
+    background-color: rgba(237, 237, 237, 0.93);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    font-size: 16px;
+    color: #02676f;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding: 72px 9px;
+}
+
+.nav-item {
+    border-radius: 8px;
+    background-color: rgba(246, 246, 246, 0.96);
+    display: flex;
+    gap: 16px;
+    padding: 8px 16px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background-color: #0f624a;
+    color: #fff;
+}
+
+.nav-text {
+    font-family: 'Inter', sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav-icon {
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: 20px;
+    fill: #02676f;
+    margin: auto 0;
+}
+
+/* Estilos del formulario */
+.registra-entradas {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translate(500px, -630px);
+}
+.content-area {
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.employee-registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1.5;
+    width: 100%;
+}
+
+.page-title {
+    color: #02676F;
+    letter-spacing: -0.68px;
+    align-self: stretch;
+    font: 600 34px/1.1 Inter, sans-serif;
+    padding: 20px 0px;
+}
+
+/* .form-row {
+    display: flex;
+    margin-top: 37px;
+    gap: 20px;
+    justify-content: space-between;
+    align-self: stretch;
+    transform: translateX(-70px);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    transform: translate(130px, -60px);
+}
+
+.form-label {
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-input {
+    font-family: 'Inter', sans-serif;
+    border-radius: var(--sds-size-radius-200);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(224, 224, 224, 1);
+    background-color: #fff;
+    color: #828282;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dropdown {
+    display: flex;
+    gap: 16px;
+}
+
+.dropdown-text {
+    font-family: 'Inter', sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-icon {
+    aspect-ratio: 1;
+    width: 24px;
+}
+
+.address-input {
+    width: 100%;
+    max-width: 810px;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: #3a9b0c;
+    color: #fff;
+    padding: 12px 29px;
+    font: 500 20px 'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    width: 50%;
+    margin-top: 37px;
+}
+
+.submit-button:hover {
+    background-color: #2e7d0a;
+} */
+
+/* Estilo de las filas del formulario */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+/* Estilo de los grupos de formulario */
+.form-group {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* Estilo de las etiquetas del formulario */
+.form-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo de los inputs del formulario */
+.form-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+    .submit-button {
+        font-family: 'Montserrat', sans-serif;
+        justify-content: center;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: #0F624A;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 16px;
+        padding: 12px 24px;
+        color: #fff;
+        cursor: pointer;
+        border-width: 0.5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+
+/* Estilo de los botones */
+.submit-button {
+
+        font-family: 'Montserrat', sans-serif;
+        justify-content: center;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: #0F624A;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 16px;
+        padding: 12px 24px;
+        color: #fff;
+        cursor: pointer;
+        border-width: 0.5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      
+}
+
+/* Cambiar color al pasar el mouse sobre los botones */
+.submit-button:hover {
+    background-color: #005c2e;
+}
+
+/* Centrar los botones */
+.form-row:last-child {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.error {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+@media (max-width: 991px) {
+    .page-title,
+    .form-row,
+    .form-input,
+    .address-input,
+    .submit-button {
+        max-width: 100%;
+    }
+
+    .form-row {
+        flex-wrap: wrap;
+    }
+
+    .submit-button {
+        padding: 16px 20px;
+    }
+}
