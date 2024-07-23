@@ -1,14 +1,14 @@
-
-  
 .form-row {
     align-self: stretch;
     display: flex;
     margin-top: 37px;
     gap: 20px;
     justify-content: space-between;
-
-    margin-left: 80px;
+    margin-left: 40px;
     margin-top: -100px;
+    width: 60vh;
+    height: 25vh;
+
 }
   
 .form-group {
@@ -129,4 +129,3 @@ body {
 
 
 }
-
