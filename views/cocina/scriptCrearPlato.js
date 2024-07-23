@@ -129,7 +129,6 @@ window.onload = function () {
     console.log(botonRegistrar)
     
     botonRegistrar.addEventListener("click",()=> {
-        console.log("hola")
         //"form-input dropdown text"
         let selectIngredientes = document.querySelectorAll(".form-input.dropdown.text")
         let nombreIngredientes = []
@@ -137,21 +136,50 @@ window.onload = function () {
         selectIngredientes.forEach(selectIngrediente => {
             if(selectIngrediente.name !== "Tipo" && selectIngrediente.name !== "Instrumentos") {
                 nombreIngredientes.push(selectIngrediente.value)
+                console.log(typeof selectIngrediente.value)
                 console.log(selectIngrediente.value)
             }
         })
-        
     
        // form-input
-       /* 
+       
        let selectCantidades = document.querySelectorAll(".form-input")
        let cantidades = []
        selectCantidades.forEach(selectCantidad => {
-            nombreIngredientes.push(selectIngrediente.value)
-            console.log
+            if(selectCantidad.type == "number"){
+            cantidades.push(selectCantidad.value)
+            console.log(selectCantidad.value)
+            console.log(typeof selectCantidad.value)
+            }
         })
-            */
+
+        console.log(nombreIngredientes)
+        console.log(cantidades)
     })
 
+
+    
 };
 
+function crearFormatoJSON(arr1, arr2) {
+    // Verificar que ambos arreglos tengan la misma longitud
+    if (arr1.length !== arr2.length) {
+        throw new Error('Los arreglos deben tener la misma longitud');
+    }
+
+    const objetoJSON = {};
+    // Iterar sobre los arreglos
+    for (let i = 0; i < arr1.length; i++) {
+        const key = arr1[i];
+        const value = parseInt(arr2[i]); // Parsear el valor para asegurarse de que sea numérico si es posible
+        objetoJSON[key] = value;
+    }
+    return JSON.stringify(objetoJSON);
+}
+
+
+// Ejemplo de uso:
+const arr1 = ["12", "25", "34"];
+const arr2 = ["21", "32", "47"];
+const resultado = crearFormatoJSON(arr1, arr2);
+console.log(resultado); // Output: '{"1":2,"2":3,"3":4}'¿{"12":21,"25":32,"34":47}
