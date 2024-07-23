@@ -14,7 +14,7 @@ export const validateEntrada = async ({ cedula }) => {
         );
 
         if (rows.length > 0) {
-    return { success: true };
+            return { success: true };
         } else {
             return { success: false, message: 'Cédula no encontrada' };
         }

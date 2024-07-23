@@ -1,22 +1,139 @@
-.employee-registration {
+/* Reseteo de márgenes y rellenos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+  }
+  
+  /* Estilo general del formulario */
+  #employee-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilo de las filas */
+  .form-row {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo de los grupos de campos */
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  /* Etiquetas */
+  .form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  /* Campos de entrada */
+  .form-input {
+    width: 100%;
+    padding: 10px;
     font-size: 16px;
-    line-height: 1.5;
-    padding-bottom: 30px;
-    transform: translate(190px, -30px);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* Estilo de los campos desplegables */
+  .form-input.dropdown {
+    background-color: #fff;
+  }
+  
+  /* Placeholder de los campos */
+  .form-input::placeholder {
+    color: #aaa;
+  }
+  
+  /* Estilo del botón de envío */
+  #submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  #submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilo para la dirección */
+  .address-group {
+    margin-top: 20px;
+  }
+  
+  /* Estilo del campo de dirección para asegurar buen ajuste */
+  .address-input {
+    height: 80px;
+    padding: 10px;
+  }
+  
+  /* Estilo de los selectores */
+  .form-input.dropdown {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+  
+  /* Espaciado y alineación */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Estilos adicionales para el formulario en pantallas pequeñas */
+  @media (max-width: 600px) {
+    .form-row {
+      flex-direction: column;
+    }
+  
+    .form-group {
+      min-width: 100%;
+    }
+  }
+  
+#sidebar {
+    height: 100vh;
+}
+.submit-button{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1 1 45%;
+  text-align: center;
+  text-decoration: none;
 }
   
 .page-title {
-    color: #000;
-    text-align: center;
+    color: #02676F;
     letter-spacing: -0.68px;
     align-self: stretch;
     font: 600 34px/1.1 Inter, sans-serif;
-    transform: translate(-100px, 20px);
+    padding: 20px 0px;
 }
-  
+/*  
 .form-row {
     align-self: stretch;
     display: flex;
@@ -126,4 +243,4 @@
 
 body {
     overflow-x: hidden;
-}
+} */

@@ -1,5 +1,6 @@
 import { EmpleadosModel } from '../models/empleados.js'
 import 'dotenv/config'
+import bcrypt from 'bcrypt'; 
 
 export async function validateEmpleado (input, register = true) {
   var { nombre,
@@ -12,20 +13,21 @@ export async function validateEmpleado (input, register = true) {
   if (typeof clave_usuario !== 'string' || clave_usuario.length < 1) {
     return {
       success: false,
-      error: new Error(JSON.stringify({ nombre: 'clave_usuario is required' }))
+      error: new Error(JSON.stringify({ nombre: 'Ingrese una contraseña valida' }))
     }
   }
   if (clave_usuario.length < 8) {
     return {
       success: false,
-      error: new Error(JSON.stringify({ nombre: 'clave_usuario lenght is too short' }))
+      error: new Error(JSON.stringify({ nombre: 'La contraseña debe contener mas de 8 caracteres' }))
     }
   }
   if (register) {
-    if (!await EmpleadosModel.unique({ nombre })) {
+    console.log(!await EmpleadosModel.unique( cedula ))
+    if (await EmpleadosModel.unique( cedula )) {
       return {
         success: false,
-        error: new Error(JSON.stringify({ nombre: 'nombre already exists' }))
+        error: new Error(JSON.stringify({ nombre: 'El empleado ingresado ya esta registrado' }))
       }
     }
     clave_usuario = bcrypt.hashSync(clave_usuario, 10)

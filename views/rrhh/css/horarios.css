@@ -24,11 +24,24 @@
 }
 
 .lista{
-    margin: 20px;
+    /* margin: 20px;
     padding:20px;
     border-radius: 10px;
     height: 250px;
-    transform: translate(150px, -50px);
+    transform: translate(150px, -50px); */
+}
+.submit-button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    flex: 1 1 45%;
+    text-align: center;
+    text-decoration: none;
 }
 
 .regresar {

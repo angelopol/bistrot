@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="/rrhh/assets/style.css">
     <link rel="stylesheet" href="/rrhh/css/header.css">
+    <link rel="stylesheet" href="/rrhh/css/rrhh.css">
     <link rel="stylesheet" href="/assets/header.css">
     <link rel="stylesheet" href="/assets/side.css">
     <link rel="icon" href="/assets/favicon.ico">
@@ -58,21 +59,55 @@
                     <p class="side-option">Reservas</p>
                 </div>
             </div>
+           <!-- Modal de Detalles del Empleado -->
+            <div class="modal" id="employeeModal">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Detalles del Empleado</p>
+                        <button class="delete" aria-label="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <div class="employee-details">
+                            <img id="employeeImage" src="" alt="Employee Image" class="employee-image">
+                            <div id="modalContent"></div>
+                        </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button" id="editButton">Modificar</button>
+                        <button class="button" id="saveButton" style="display: none;">Guardar</button>
+                        <button class="button" id="closeModal">Cerrar</button>
+                    </footer>
+                </div>
+            </div>
 
             <main class="main-section">
                 <div class="content-area">
-                    <h2 class="section-title">RRHH</h2>
-                    <div class="search-bar" style="width: 10%; height: 10%;">
+                    <h1 class="section-title">Recursos Humanos</h1>
+                    
+                    <div class="table-actions">
+                        <button class="button is-link action-ES"><a href="/rrhh/form">Agregar</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/entradas">Registro</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/ausensias">Ausencias</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/Horarios">Horarios</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/informe">Informe</a></button>
+                        <button class="button is-link action-ES"><a href="/rrhh/solicitudes">Solicitudes</a></button>
+
+                    </div>
+                    <div class="search-bar">
+                        <p>Busqueda
+                        <input type="text" id="searchInput" style="width: 250px;" placeholder="Buscar por nombre, cédula o cargo"></p>
                     </div>
                     <div class="results-container">
                         <div class="results-wrapper">
                             <section class="results-table">
-                                <table class="table is-striped is-hoverable" id="employeeTable">
+                                <table class="table table-striped table-bordered dataTable no-footer" id="employeeTable">
                                     <thead>
-                                        <tr>
+                                        <tr class="rowH">
                                             <th>Nombre y Apellido</th>
                                             <th>Cedula</th>
                                             <th>Cargo</th>
+                                            <th>Detalles</th> <!-- Nueva columna -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,36 +117,15 @@
                             </section>
                         </div>
                     </div>
-                    <div class="table-actions">
-                        <button class="button is-link action-ES"><a href="/rrhh/form">Agregar</a></button>
-                        <button class="button is-link action-ES"><a href="/rrhh/entradas">Registro</a></button>
-                        <button class="button is-link action-ES"><a href="/rrhh/ausensias">Ausencias</a></button>
-                        <button class="button is-link action-ES"><a href="/rrhh/Horarios">Horarios</a></button>
-                        <button class="button is-link action-ES"><a href="/rrhh/informe">Informe</a></button>
-                    </div>
+                   
                 </div>
+                
             </main>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/rrhh/empleados')
-                .then(response => response.json())
-                .then(data => {
-                    const tableBody = document.querySelector('#employeeTable tbody');
-                    data.forEach(employee => {
-                        const row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${employee.Nombre} ${employee.Apellido}</td>
-                            <td>${employee.cedula}</td>
-                            <td>${employee.Puesto}</td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                })
-                .catch(error => console.error('Error fetching employee data:', error));
-        });
+    <script type="text/javascript" src="./js/rrhh.js">
     </script>
+    
 </body>
 </html>

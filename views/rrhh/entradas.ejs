@@ -57,36 +57,20 @@
             </div>
         </div>
 
-      <main class="registra-entradas">
-        <h1 class="page-title" style="transform: translateY(-100px);">Entradas de empleados</h1>
-        <form class="employee-registration">
-          <div class="form-row">
-            <div class="form-group">
-            <div class="form-group">
-              <label for="employee-ci" class="form-label">Cédula de identidad</label>
-              <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
-            </div>
-            <script>
-              // validacion cedula, solo permite ingresar numeros, sin espacios
-              // permite ingresar maximo 8 digitos
-              document.getElementById("employee-ci").addEventListener("input", function () {
-                  var idNumber = this.value;
-                  var idNumberPattern = /^[0-9]*$/;
-                  if (!idNumberPattern.test(idNumber)) {
-                      this.value = idNumber.slice(0, -1);
-                  }
-                  if (this.value.length > 8) {
-                      this.value = idNumber.slice(0, 8);
-                  }
-              });
-            </script>
-          </div>
-          
-          <div class="form-row">
-            <button type="button" class="submit-button" id="submit-button">Registrar</button>
-            <button type="button" class="submit-button" onclick="window.location.href = '/rrhh/informe'">Informe</button>
-          </div>
-        </form>
+      <main class="registra-entradas content-area">
+        <button type="button" class="submit-button"> <a style="text-decoration: none;" href="/rrhh">Back </a></button><h1 class="page-title" >Registrar Entrada / Salida</h1>
+            <form class="employee-registration">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="employee-ci" class="form-label">Cédula de identidad</label>
+                        <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <button type="button" class="submit-button" id="submit-button">Registrar</button>
+                    <button type="button" class="submit-button" onclick="window.location.href = '/rrhh/informe'">Informe</button>
+                </div>
+            </form>
       </main>
     </div>
   </div>

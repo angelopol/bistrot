@@ -45,6 +45,19 @@ body{
     width: 24px; 
     cursor: pointer;
 }
+.submit-button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    flex: 1 1 45%;
+    text-align: center;
+    text-decoration: none;
+}
 
 .content-wrapper { 
     width: 100%; 
@@ -125,14 +138,11 @@ body{
     height: 22px; 
 }
 
-.main-section { 
-    display: flex; 
-    line-height: normal; 
+ .main-section { 
     width: 77%; 
-    margin-left: 20px; 
-    transform: translateY(-50px);
-}
 
+}
+/*
 .content-area { 
     display: flex; 
     flex-direction: column; 
@@ -281,7 +291,7 @@ body{
 }
 .tablainfo {
     margin-left: 30px;
-}
+} */
 
 .action-add { 
     font-family: Inter, sans-serif; 

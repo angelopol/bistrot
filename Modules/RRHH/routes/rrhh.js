@@ -14,6 +14,8 @@ export const createRRHHRouter = () => {
   RRHHRouter.get('/entradas', controlador.entradas);
   RRHHRouter.get('/ausensias', controlador.ausensias);
   RRHHRouter.get('/informe', controlador.informe);
+  RRHHRouter.get('/solicitudes', controlador.solicitudes);
+
   // Para los estilos
   RRHHRouter.get('/assets/style.css', controlador.GetStyle);
   RRHHRouter.get('/assets/horarios.css', controlador.getStyle);

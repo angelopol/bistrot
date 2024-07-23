@@ -18,7 +18,6 @@ async function ObtenerEmpleados() {
       throw new Error('Network response was not ok');
   }
   const empleados = await response.json();
-  console.log(empleados)
 
   llenarTabla(empleados);
   } catch (error) {
@@ -47,7 +46,6 @@ function llenarTabla(empleados) {
   // Aqui llena la tabla del html
   empleados.forEach(empleado => {
     const fila = document.createElement('tr');
-    console.log("eaml",empleado.puesto)
     fila.innerHTML = `
       <td class="info">${empleado.cedula}</td>
       <td class="info">${empleado.Nombre}</td>
