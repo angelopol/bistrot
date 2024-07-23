@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS empleados (
 -- Estructura de tabla para la tabla solicitudes
 --
 
-DROP TABLE IF EXISTS solicitudes;
-CREATE TABLE IF NOT EXISTS solicitudes (
+DROP TABLE IF EXISTS rrhh_solicitudes;
+CREATE TABLE IF NOT EXISTS rrhh_solicitudes (
   ID int(11) NOT NULL AUTO_INCREMENT,
   ID_Empleado int(11) DEFAULT NULL,
   Fecha_Registro date DEFAULT NULL,
