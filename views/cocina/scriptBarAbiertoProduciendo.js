@@ -167,7 +167,7 @@ botonProcesar.addEventListener("click" , async () => {
 
         let pedido = await response1.json(); // obtenemos el pedido retornado por el controlador
         let listaComidas = pedido[0]
-            listaComidas = JSON.parse(listaComidas.consumo)
+        listaComidas = JSON.parse(listaComidas.consumo) // [{"id": 2, "quantity": 3},{"id": 3, "quantity": 3}]
         let multilpicador = []
         listaComidas.forEach(comida => {
             multilpicador.push(comida.quantity)
@@ -176,7 +176,7 @@ botonProcesar.addEventListener("click" , async () => {
         let fetchPromises = listaComidas.map(async objetoComida => {
             let res = await fetch(`http://localhost:1234/cocina/comida/${objetoComida.id}`)
             let nombrePlato = await res.json();
-            return nombrePlato[0];
+            return nombrePlato[0]; // objeto comida
         })
 
         let comidas = await Promise.all(fetchPromises); // array con los objetos comidas
@@ -198,24 +198,91 @@ botonProcesar.addEventListener("click" , async () => {
         let fetchPromises1 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
             let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
             let ingrediente = await res.json();
+            console.log(ingrediente)
+            return ingrediente; // Devuelve el nombre del plato obtenido
+        });
+
+        let fetchPromises10 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
+            let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
+            let ingrediente = await res.json();
+            console.log(ingrediente)
             return ingrediente; // Devuelve el nombre del plato obtenido
         });
 
         let ingredientes = await Promise.all(fetchPromises1) // lista con los objetos ingredientes requeridos
-        console.log({ingredientesRequeridos})
+
+        console.log({ingredientes})
+        let ingredientesCalculo = await Promise.all(fetchPromises10)
+
+        let contadorComidasHacer = [] // contador de las comidas que se pueden hacer
+
+        for(let i= 0; i<comidas.length ; i++){
+            let contador = 0 // contador de las comidas que se pueden hacer
+            let ingredientesParaComida = JSON.parse(comidas[i].ingredientes) // {"2":1}
+            for(let j = 0; j < multilpicador[i] ; j++){
+                let bandera = false // bandera para chechar si se puede hacer una unidad de esta comida
+                Object.keys(ingredientesParaComida).forEach(idIngredienteRequerido => {
+                    ingredientesCalculo.forEach(objetoIngrediente => {
+                        if(objetoIngrediente.id_cocina_bar == idIngredienteRequerido){
+                            if(objetoIngrediente.id_cocina_bar == "6"){
+                                console.log(objetoIngrediente.cantidad)
+                                console.log(ingredientesParaComida[idIngredienteRequerido])
+                                console.log(objetoIngrediente.cantidad - ingredientesParaComida[idIngredienteRequerido] )
+                            }
+                            if(objetoIngrediente.cantidad - ingredientesParaComida[idIngredienteRequerido]  < 0){
+                                bandera = true
+                            }
+                            else{
+                                objetoIngrediente.cantidad -= ingredientesParaComida[idIngredienteRequerido]
+                            }
+                        }
+                    })
+                })
+                if(!bandera){
+                    contador+= 1
+                }
+            }
+            console.log("holaAquiVale")
+            contadorComidasHacer.push(contador)
+        }
+
         console.log({ingredientes})
 
+        console.log({contadorComidasHacer})
+
         let bandera = false // bandera para saber si hacen falta ingredientes
-        let valoresIngredientesRequeridos = Object.values(ingredientesRequeridos)
+        let valoresIngredientesRequeridos = Object.values(ingredientesRequeridos) // lista con los valores requeridos [2,5,67]
+
+        
+        let ingredientesFaltantes = []
+        console.log({ingredientesRequeridos})
+        console.log({ingredientes})
+        console.log("Hola")
         for(let i = 0 ; i< ingredientes.length ; i++){
+            console.log(ingredientes[i].cantidad)
+            console.log(valoresIngredientesRequeridos[i])
             if((ingredientes[i].cantidad < valoresIngredientesRequeridos[i])){
+                let cosa = {id: ingredientes[i].id_cocina_bar , cantidad: valoresIngredientesRequeridos[i]-ingredientes[i].cantidad}
+                ingredientesFaltantes.push(cosa)
                 bandera = true
-                break
             }
         }
 
+
         if(bandera){
             console.log("RECHAZADO")
+            console.log({ingredientesFaltantes}) // diccionario con los id de los ingredientes faltantes y su respectiva cantidad que falta
+            // alfredo aqui esta la variable que guarda cuanto de cada comida se puede hacer, eso dice la cantidad que se puede hacer por comida en el orden de 
+            // contadorComidasHacer ---> esta es la variable
+
+            let aviso = "Se pueden hacer los siguientes platos:\n"
+            for (let index = 0; index < comidas.length; index++){
+                aviso += `${comidas[index].nombre}: ${contadorComidasHacer[index]}\n`
+            }
+            console.log(aviso)
+            
+            /*HACERLO PARA CUANDO VENTAS HAGA ESE NUEVO ATRIBUTO */
+            // const cambio = {status_pedido: 2, detalle_rechazo: aviso}
             const cambio = {status_pedido: 2}
             const requestOptions = {
                 method: 'PATCH', 
@@ -229,11 +296,47 @@ botonProcesar.addEventListener("click" , async () => {
             const response = await fetch(API_URL , requestOptions)
             if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
 
-            alert("No se cuenta con los recursos para realizar este pedido");
+            alert("No se cuenta con los ingredientes suficientes para realizar este pedido");
             let cardMesa = document.getElementById(`${idCardSeleccionada}`);
             cardMesa.style = "background-color: #C84444"
             let cardMesaStatus = cardMesa.lastElementChild;
             cardMesaStatus.innerHTML = `ID pedido: ${idCardSeleccionada} <br>Estatus: rechazado`;
+
+
+            // hacemos una solitud de los ingredientes faltantes a compras
+
+            ingredientesFaltantes.forEach(async objetoIngredienteFaltante => {
+                let nombreIngredienteFaltante = ""
+                ingredientes.forEach(ingrediente => {
+                    if(ingrediente.id_cocina_bar == objetoIngredienteFaltante.id){
+                        nombreIngredienteFaltante = ingrediente.nombre
+                    }
+                })
+                console.log(objetoIngredienteFaltante.cantidad)
+                console.log(nombreIngredienteFaltante)
+                const solicitud = {
+                    depar: 'cocina', // departamento que realiza la solicitud
+                    id_emp: "1", // ID del empleado que realiza la solicitud, ajustar según corresponda
+                    cant: Math.ceil(objetoIngredienteFaltante.cantidad).toString(),
+                    nombre_producto: nombreIngredienteFaltante,
+                    fecha: new Date(),
+                    detalle: 'Solicitud por falta de insumo para producior un pedido'
+                };
+                // Enviar solicitud de compra
+                try{
+                    await fetch('http://localhost:1234/compras-index/soli', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(solicitud)
+                    });
+                    console.log("solicitud enviada")
+                }
+                catch(e){
+                    console.log(`Error: `, e)
+                }
+                
+            })
+
             return null
 
         }
@@ -285,7 +388,7 @@ botonProcesar.addEventListener("click" , async () => {
             const response = await fetch(API_URL , requestOptions)
             if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
 
-            alert("No se cuenta con los recursos para realizar este pedido");
+            alert("No se cuenta con los instrumentos para realizar este pedido");
             let cardMesa = document.getElementById(`${idCardSeleccionada}`);
             cardMesa.style = "background-color: #C84444"
             let cardMesaStatus = cardMesa.lastElementChild;

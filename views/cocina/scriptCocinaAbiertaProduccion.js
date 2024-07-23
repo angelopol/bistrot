@@ -296,7 +296,7 @@ botonProcesar.addEventListener("click" , async () => {
             const response = await fetch(API_URL , requestOptions)
             if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
 
-            alert("No se cuenta con los recursos para realizar este pedido");
+            alert("No se cuenta con los ingredientes suficientes para realizar este pedido");
             let cardMesa = document.getElementById(`${idCardSeleccionada}`);
             cardMesa.style = "background-color: #C84444"
             let cardMesaStatus = cardMesa.lastElementChild;
@@ -388,7 +388,7 @@ botonProcesar.addEventListener("click" , async () => {
             const response = await fetch(API_URL , requestOptions)
             if (!response.ok) throw new Error('No se pudo obtener el ingrediente');
 
-            alert("No se cuenta con los recursos para realizar este pedido");
+            alert("No se cuenta con los instrumentos para realizar este pedido");
             let cardMesa = document.getElementById(`${idCardSeleccionada}`);
             cardMesa.style = "background-color: #C84444"
             let cardMesaStatus = cardMesa.lastElementChild;

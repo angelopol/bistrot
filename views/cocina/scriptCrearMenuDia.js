@@ -46,7 +46,7 @@ async function obtenerPlatos() {
         'Content-Type': 'application/json' 
         }
     };
-    await fetch(`http://localhost:1234/cocina?tipo_comida:isnull=true&tipo_bebida:isnull=true`, options)
+    await fetch(`/cocina?tipo_comida:isnull=true&tipo_bebida:isnull=true`, options)
     .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -73,7 +73,7 @@ async function obtenerNombreIngredientePorID(id) {
     };
     
     try {
-        const response = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${id}`, options);
+        const response = await fetch(`/inventario/api/cocina-bar/${id}`, options);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -137,7 +137,7 @@ async function cargarPlatos() {
                 'Content-Type': 'application/json' 
                 }
             };
-            await fetch(`http://localhost:1234/cocina/comida/${e.currentTarget.id}`, options)
+            await fetch(`/cocina/comida/${e.currentTarget.id}`, options)
             .then(response => {
                 if (!response.ok) {
                   throw new Error('Network response was not ok');
@@ -223,7 +223,7 @@ botonConfirmar.addEventListener("click", async function () {
             },
             body: JSON.stringify(cambios)
         };
-        await fetch(`http://localhost:1234/cocina/comida/${menuDia[platoID]}`, options)
+        await fetch(`/cocina/comida/${menuDia[platoID]}`, options)
         .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -242,7 +242,7 @@ botonConfirmar.addEventListener("click", async function () {
     // proceso para hacer las solicitudes a compras
 
     let fetchPromises = menuDia.map(async idComida => {
-        let res = await fetch(`http://localhost:1234/cocina/comida/${idComida}`)
+        let res = await fetch(`/cocina/comida/${idComida}`)
         let nombrePlato = await res.json();
         return nombrePlato[0]; // objeto comida
     })
@@ -268,7 +268,7 @@ botonConfirmar.addEventListener("click", async function () {
 
     // obtenemos los ingredientes de inventario
     let fetchPromises1 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
-        let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
+        let res = await fetch(`/inventario/api/cocina-bar/${idIngredienteRequerido}`);
         let ingrediente = await res.json();
         console.log(ingrediente)
         return ingrediente; // Devuelve el nombre del plato obtenido
@@ -296,7 +296,7 @@ botonConfirmar.addEventListener("click", async function () {
         };
         // Enviar solicitud de compra
         try{
-            await fetch('http://localhost:1234/compras-index/soli', {
+            await fetch('/compras-index/soli', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(solicitud)
@@ -309,5 +309,5 @@ botonConfirmar.addEventListener("click", async function () {
         
     })
 
-    alert("Menu del dia creado correctamente")
+    alert("Menu del dia creado correctamente y se hacen las solicitudes para que se compren los ingredientes respectivos")
 })
