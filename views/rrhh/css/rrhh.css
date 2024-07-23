@@ -24,7 +24,7 @@
     font-size: 2rem;
     margin-bottom: 20px;
     font-weight: bold;
-    color: #02676F;
+    color: #000000;
 }
 
 /* Search bar styles */
@@ -75,21 +75,25 @@
 
 
 .button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+
+        font-family: 'Montserrat', sans-serif;
+        justify-content: center;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: #0F624A;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 16px;
+        padding: 12px 24px;
+        color: #fff;
+        cursor: pointer;
+        border-width: 0.5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: #005c2e;
 }
 
 .button.is-link a {
@@ -102,11 +106,13 @@
 }
 
 .action-ES {
-    background-color: #28a745;
+    background-color: #005c2e;
+
+    
 }
 
 .action-ES:hover {
-    background-color: #218838;
+    background-color: #005c2e;
 }
 
 /* Estilos base para el modal */
@@ -173,4 +179,48 @@
         opacity: 0;
         transform: scale(0.8);
     }
+}
+
+
+.action-button {
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: #0F624A;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 16px;
+    padding: 12px 24px;
+    color: #fff;
+    cursor: pointer;
+    border-width: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.page-title {
+    color: #02676F;
+    letter-spacing: -0.68px;
+    align-self: stretch;
+    font: 600 34px/1.1 Inter, sans-serif;
+    padding: 20px 0px;
+
+}
+
+.button.is-info{
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: #0F624A;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 16px;
+    padding: 12px 24px;
+    color: #fff;
+    cursor: pointer;
+    border-width: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

@@ -32,7 +32,7 @@ body {
 }
 
 .header {
-    background-color: #006b36;
+    background-color: #0F624A;
     color: #ffffff;
     padding: 20px;
     border-radius: 12px 12px 0 0;
@@ -57,14 +57,23 @@ body {
 }
 
 .button {
-    background-color: #006b36;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    
+        font-family: 'Montserrat', sans-serif;
+        justify-content: center;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: #0F624A;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 16px;
+        padding: 12px 24px;
+        color: #fff;
+        cursor: pointer;
+        border-width: 0.5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
 
 .button:hover {
     background-color: #005c2e;

@@ -6,8 +6,9 @@
 
 
 .encabezado{
-    background-color:#01994d; 
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color:#013D1F; 
+    color: white;
+    font-family: 'Montserrat', sans-serif;
     font-size: 23px;
     padding: 15px;
     border: 1px solid #000;
@@ -15,9 +16,9 @@
 
 
 .info{
-    background-color:#00c261; 
+    background-color:#ffffff; 
     font-family: sans-serif;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     padding: 15px;
     border: 1px solid #000;
@@ -67,3 +68,10 @@ th, td {
     padding: 10px;
 }
 
+.listaEmpleados{
+    color: #02676F;
+    letter-spacing: -0.68px;
+    align-self: stretch;
+    font: 600 34px/1.1 Inter, sans-serif;
+    padding: 20px 0px;
+}

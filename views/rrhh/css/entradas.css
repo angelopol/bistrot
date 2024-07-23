@@ -121,11 +121,11 @@ body {
 }
 
 .page-title {
-    color: #000;
-    text-align: center;
+    color: #02676F;
     letter-spacing: -0.68px;
     align-self: stretch;
-    font: 600 34px/1.1 'Inter', sans-serif;
+    font: 600 34px/1.1 Inter, sans-serif;
+    padding: 20px 0px;
 }
 
 /* .form-row {
@@ -240,38 +240,49 @@ body {
     border-radius: 4px;
     font-size: 16px;
 }
-.submit-button{
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    margin: 5px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    flex: 1 1 45%;
-    text-align: center;
-    text-decoration: none;
-}
+
+    .submit-button {
+        font-family: 'Montserrat', sans-serif;
+        justify-content: center;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: #0F624A;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 16px;
+        padding: 12px 24px;
+        color: #fff;
+        cursor: pointer;
+        border-width: 0.5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
 
 /* Estilo de los botones */
 .submit-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    margin: 5px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    flex: 1 1 45%;
-    text-align: center;
-    text-decoration: none;
+
+        font-family: 'Montserrat', sans-serif;
+        justify-content: center;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: #0F624A;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 16px;
+        padding: 12px 24px;
+        color: #fff;
+        cursor: pointer;
+        border-width: 0.5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      
 }
 
 /* Cambiar color al pasar el mouse sobre los botones */
 .submit-button:hover {
-    background-color: #45a049;
+    background-color: #005c2e;
 }
 
 /* Centrar los botones */

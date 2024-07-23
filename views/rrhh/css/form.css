@@ -59,20 +59,24 @@
   
   /* Estilo del botón de envío */
   #submit-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    border-radius: 8px;
     border: none;
-    border-radius: 4px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: #0F624A;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 16px;
+    padding: 12px 24px;
+    color: #fff;
     cursor: pointer;
-    margin-top: 10px;
+    border-width: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   #submit-button:hover {
-    background-color: #0056b3;
+    background-color: #005c2e;
   }
   
   /* Estilo para la dirección */
@@ -113,17 +117,20 @@
     height: 100vh;
 }
 .submit-button{
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  margin: 5px 0;
+  font-family: 'Montserrat', sans-serif;
+  justify-content: center;
+  border-radius: 8px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: #0F624A;
   font-size: 16px;
-  flex: 1 1 45%;
-  text-align: center;
-  text-decoration: none;
+  font-weight: bold;
+  margin-top: 16px;
+  padding: 12px 24px;
+  color: #fff;
+  cursor: pointer;
+  border-width: 0.5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
   
 .page-title {
