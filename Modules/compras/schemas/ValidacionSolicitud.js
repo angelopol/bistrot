@@ -8,9 +8,9 @@ const SolicitudSchema = z.object({
 
     cant: z.string().regex(/^[0-9]+$/),
 
-    nombre_producto: z.string().max(200).regex(/^[a-zA-Z\s]+$/),
+    nombre_producto: z.string().max(200),
 
-    detalle: z.string().max(255).regex(/^[a-zA-Z\s]+$/)
+    detalle: z.string().max(255)
 })
 export function ValidarSolicitudes(input){
     return SolicitudSchema.safeParse(input)
