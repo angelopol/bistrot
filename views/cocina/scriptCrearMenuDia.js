@@ -157,8 +157,13 @@ async function cargarPlatos() {
             const verIngredientes = document.getElementById("input-ingre")
     
             for (const idReceta in imagenes) {
-                if (comidaID === idReceta) {
-                    imagen.src = imagenes[idReceta]
+                if (comidaID < 34) {
+                    if (comidaID === idReceta) {
+                        imagen.src = imagenes[idReceta]
+                    }
+                }
+                else if (comidaID > 33) {
+                    imagen.src = "NewFolder/elkikequerie.jpeg"
                 }
             }
     
