@@ -466,7 +466,7 @@ pedidosContainers.forEach(container => {
         idPedido = idStringCardSeleccionada // Obtenemos el id del pedido
 
         // Petición al controlador de mostrar pedido, que retorna los datos del mismo
-        await fetch(`/cocina/mostrar-pedido?pedido_id=${idPedido}`, {
+        await fetch(`/ventas/factura/${idPedido}`, {
             method: "GET",
             headers: {
                 "content-type": "aplication/json"
