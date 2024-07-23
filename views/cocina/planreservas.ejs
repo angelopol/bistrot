@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="css/platos.css">
     <link rel="stylesheet" href="css/Menu.css">
 </head>
+<style>
+
+    #input-ingre {
+        height: 33vh;
+    overflow-y: scroll;
+    }
+</style>
 <body>
     <header>
         <h1 id="title">BISTROT CHEZ RÉMY</h1>
@@ -27,22 +34,24 @@
             </div>
             <div class="menu-box">
                 <div class="box-btns">
-                    <button class="nav-btns verdecito"  onclick="window.location.href = '/cocina/planreservas';" >Plan de <br>produccion de reservas</button>
-                    <button class="nav-btns verdecito" id="elegir-menu" onclick="window.location.href = '/cocina/elegirmenudeldia';">Elegir Menu del Dia</button>
+                    <button class="nav-btns verdecito"  onclick="window.location.href = '/cocina/planreservas';"style="background-color: white; color: #0f624a;  box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618)" >Plan de <br>produccion de reservas</button>
+                    <button class="nav-btns" id="elegir-menu" onclick="window.location.href = '/cocina/elegirmenudeldia';">Elegir Menu del Dia</button>
                     <button class="nav-btns verdecito" id="menu-day"  onclick="window.location.href = '/cocina/Menudeldia';">Menu Del dia</button>
                     <button class="nav-btns verdecito" id="create-plato"  onclick="window.location.href = '/cocina/creadordefichasplato';">Crear nuevo plato</button>
-                    <button class="nav-btns"style="background-color: white; color: #0f624a;  box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618)" id="new-plato" onclick="window.location.href = '/cocina/NuevosPlatos';">Nuevos Platos</button>
+                    <button class="nav-btns verdecito" id="new-plato" onclick="window.location.href = '/cocina/NuevosPlatos';">Nuevos Platos</button>
+                    <botton class="nav-btns azulito"  style ="background-color: #02676F; color: white;">Reiniciar dia</botton>
+
                 </div>
                 <div class="box-table">
                     <table id="tabla-platos">
                         <thead>
                             <tr class="table-header">
                                 <th class="header-cell">Id</th>
-                                <th class="header-cell">Nombre</th>
-                                <th class="header-cell">Estado</th>
+                                <th class="header-cell">Fecha</th>
+                                <th class="header-cell">Tipo</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody">
                             <tr class="table-row">
                                 <td class="row-cell">1</td>
                                 <td class="row-cell-name">sopa de calabacin de la vaca que rie </td>
@@ -67,19 +76,17 @@
                 </table>
                 </div>
                 <div class="plato-box">
-                    <h3>Plato</h3>
-                    <img id="img-plato" src="Newfolder/mixdeverduras.jpg" alt="">
-                    <label>Nombre</label>
-                    <input id="input-name" readonly type="text">
-                    <label>Ingredientes</label>
+                    <h3>Produccion</h3>
+                    <label>platos</label>
                     <textarea id="input-ingre" readonly></textarea>
-                    <div class="btns-plato">
+                  <!--  <div class="btns-plato">
                         <button class="btns verdecito" id="btn-add">Agregar</button>
                         <button class="btns verdecito" id="btn-send">Enviar</button>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
     </main>
+    <script src="/cocina/scriptCrearMenuDia.js" defer></script>
 </body>
 </html>
