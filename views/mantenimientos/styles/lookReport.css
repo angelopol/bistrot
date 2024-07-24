@@ -1,0 +1,40 @@
+#principal {
+    color: #02676F;
+    padding: 40px;
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+
+#principal * {
+    font-family: 'Montserrat-Medium';
+}
+
+#principal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 75vw;
+}
+
+.title-box img {
+    cursor: pointer;
+    width: 3%;
+}
+
+.title-box h2 {
+    font-size: 1.5rem;
+}
+
+#contenido{
+    padding: 3vw;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px #c5c5c5, -4px -4px 11px #ffffff;
+}

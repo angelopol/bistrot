@@ -152,7 +152,6 @@ reportarButton.addEventListener("click", async function () {
     return null
   }
 })
-
 // agregamos el evento al boton reportar arreglo
 let reportarButtonArreglo = document.querySelector("#botonArreglo")
 reportarButtonArreglo.addEventListener("click", async function () {

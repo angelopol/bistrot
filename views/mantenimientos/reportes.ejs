@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bistrot</title>
-    <link rel="stylesheet" href="side.css">
-    <!--Vincular otro CSS para su modulo-->
+    <link rel="stylesheet" href="styles/side.css">
+    <link rel="stylesheet" href="styles/reports.css">
     <link rel="shortcut icon" href="resources/icon.jpeg" type="image/x-icon">
 </head>
 <body>
@@ -17,7 +17,6 @@
         </select>
     </header>
     <main>
-        <!--No cambiar ningun elemento en CSS de la sidebar-->
         <div id="sidebar">
             <div class="side inicio">
                 <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
@@ -54,9 +53,36 @@
         </div>
 
         <div id="principal">
-            <!--Poner Su codigo aqui normalmente-->
-        </div>
+            <div class="title-box">
+                
+                <img src="static/Icono-Back.svg" alt="Exit-btn">
+                <a id="title-mantent" href="/mantenimientos">Reportes</a>
+            </div>
+            <div class="content">
+                <div class="left-side">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Modulo de Destino</th>
+                                    <th>Asunto</th>
+                                    <th>Informacion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                </div>
+                <div class="right-side">
+                    <div class="btns" id="btn-contact">
+                        <img class="btn-img" src="static/mensaje.png" alt="">
+                        <a href="/mantenimientos/escribirReporte" class="reportButton">Redactar</a>
+                    </div>
+                </div>
+            </div>
 
+        </div>
     </main>
 </body>
 </html>
