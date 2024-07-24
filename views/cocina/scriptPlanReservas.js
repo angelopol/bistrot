@@ -55,7 +55,7 @@ async function cargarPlatos() {
     tbody.innerHTML = ""
     
     for (const reserva of reservas) {
-        if (reserva.preferencias !== "") {
+        if (reserva.preferencias != "") {
             const row = document.createElement("tr")
             row.className = "table-row" 
             row.id = `${reserva.numero_reserva}`
@@ -71,7 +71,7 @@ async function cargarPlatos() {
             let celdaTipo = document.createElement("td") 
             celdaTipo.className = "row-cell" 
     
-            let numeroMesas = (reserva.ID_mesa).split(", ")
+            let numeroMesas = (reserva.ID_mesa.toString()).split(", ")
     
             if (numeroMesas.length === 16) {
                 celdaTipo.textContent = `Completa`
@@ -99,6 +99,9 @@ async function cargarPlatos() {
                         reserva = reservaAux
                         break
                     }
+                }
+                if (reserva.preferencias == null){
+                    return alert("No se han seleccionado platos para esta reserva")
                 }
                 const platos = JSON.parse(reserva.preferencias)
                 const platosDetalles = document.getElementById("input-ingre")

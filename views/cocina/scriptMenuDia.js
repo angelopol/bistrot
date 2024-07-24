@@ -27,12 +27,11 @@ async function obtenerPlatos() {
 
 async function cargarPlatos() {
     const comidas = await obtenerPlatos()
-
     const tbody = document.getElementById("tbody")
     tbody.innerHTML = ""
     
     for (const comida of comidas) {
-        if (comida.seleccionada === 1) {
+        if (comida.seleccionada == 1) {
             const row = document.createElement("tr")
             row.className = "table-row" 
             row.id = `${comida.id}`
@@ -62,4 +61,4 @@ async function cargarPlatos() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", cargarPlatos()) // Solo se cargan una vez
+cargarPlatos()

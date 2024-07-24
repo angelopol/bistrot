@@ -1,6 +1,6 @@
 import { ComidaModel } from '../models/mysql/comida.js'
 import { logged } from "../../Login/middlewares/logged.js"
-const PathUrl = 'http://localhost:1234/'
+const PathUrl = '/'
 
 export class PedidoController {
 
