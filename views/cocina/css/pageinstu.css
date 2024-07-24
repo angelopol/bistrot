@@ -49,7 +49,7 @@ table {
     justify-content: center;
     align-items: center;
     height: 50%;
-    gap: 20px;
+    gap: 10px;
 }
 
 .left-side * {
@@ -73,7 +73,7 @@ table {
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.5s;
-    width: 100%;
+    width: 80%;
 }
 
 .left-side button:hover {
@@ -98,4 +98,8 @@ table {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 100%;
+}
+
+.rojito:hover {
+    background-color: rgb(246, 54, 54) !important;
 }
