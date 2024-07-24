@@ -13,5 +13,7 @@ asunto varchar(100) not null,
 descripcion varchar (700) not null, 
 origen varchar(45),
 destino varchar (45),
+fecha date,
+hora time,
 Primary Key (id_contacto)
 );
