@@ -590,6 +590,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+const solicitudEnviada = {}; //Objeto para rastrear solicitudes enviadas por producto
+
 async function verificarInventario() {
     try {
         let response = await fetch(`http://localhost:3000/api/cocina-bar`);
@@ -598,48 +600,72 @@ async function verificarInventario() {
         const now = new Date();
 
         for (const producto of cocinaBarData) {
+            const productoId = producto.id_cocina_bar;
+
+            //Inicializa el estado de las alertas si no está presente
+            if (!solicitudEnviada[productoId]) {
+                solicitudEnviada[productoId] = {
+                    caducidad: false,
+                    stockBajo: false
+                };
+            }
 
             if (producto.fecha_caducidad && new Date(producto.fecha_caducidad) < now) {
-                await fetch(`http://localhost:3000/api/cocina-bar/fecha/${producto.id_cocina_bar}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        observaciones: 'Producto vencido y desechado'
-                    })
-                });
-                const solicitud = {
-                    depar: 'Inventario',
-                    id_emp: '1',
-                    cant: '50',
-                    nombre_producto: producto.nombre,
-                    fecha: new Date(),
-                    detalle: 'Solicitud automatica por producto vencido'
-                };
+                if (!solicitudEnviada[productoId].caducidad) {
+                    await fetch(`http://localhost:3000/api/cocina-bar/fecha/${productoId}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            observaciones: 'Producto vencido y desechado'
+                        })
+                    });
 
-                await fetch('http://localhost:3000/compras-index/soli', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(solicitud)
-                });
+                    const solicitud = {
+                        depar: 'Inventario',
+                        id_emp: '1',
+                        cant: '50',
+                        nombre_producto: producto.nombre,
+                        fecha: new Date(),
+                        detalle: 'Solicitud automatica por producto vencido'
+                    };
 
-                console.log(`Solicitud enviada para producto vencido: ${producto.nombre}`);
+                    await fetch('http://localhost:3000/compras-index/soli', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(solicitud)
+                    });
+
+                    //Marca la solicitud de caducidad como enviada
+                    solicitudEnviada[productoId].caducidad = true;
+
+                    console.log(`Solicitud enviada para producto vencido: ${producto.nombre}`);
+                }
             } else if (producto.cantidad < 10) {
-                const solicitud = {
-                    depar: 'Inventario',
-                    id_emp: '1',
-                    cant: '50',
-                    nombre_producto: producto.nombre,
-                    fecha: new Date(),
-                    detalle: 'Solicitud automatica por cantidad baja'
-                };
+                if (!solicitudEnviada[productoId].stockBajo) {
+                    const solicitud = {
+                        depar: 'Inventario',
+                        id_emp: '1',
+                        cant: '50',
+                        nombre_producto: producto.nombre,
+                        fecha: new Date(),
+                        detalle: 'Solicitud automatica por cantidad baja'
+                    };
 
-                await fetch('http://localhost:3000/compras-index/soli', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(solicitud)
-                });
+                    await fetch('http://localhost:3000/compras-index/soli', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(solicitud)
+                    });
 
-                console.log(`Solicitud enviada para ${producto.nombre}`);
+                    //Marca la solicitud de stock bajo como enviada
+                    solicitudEnviada[productoId].stockBajo = true;
+
+                    console.log(`Solicitud enviada para ${producto.nombre}`);
+                }
+            } else {
+                //Resetea las alertas si las condiciones ya no se cumplen
+                solicitudEnviada[productoId].caducidad = false;
+                solicitudEnviada[productoId].stockBajo = false;
             }
         }
     } catch (error) {
