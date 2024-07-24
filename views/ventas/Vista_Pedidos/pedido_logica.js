@@ -585,11 +585,11 @@ comida = {
 
 async function mostrar_platos_del_dia() {
     try {
-        const response = await fetch("http://localhost:1234/cocina/");
+        const response = await fetch("/cocina/");
         
         if (!response.ok) {
             if (response.status === 404) {
-                console.log("La URL 'http://localhost:1234/cocina/' no se encontró.");
+                console.log("La URL '../cocina/' no se encontró.");
             } else {
                 throw new Error("Error en la solicitud");
             }
