@@ -651,15 +651,15 @@ async function verificarInventario() {
             } else if (producto.cantidad < 10) {
                 if (!solicitudEnviada[productoId].stockBajo) {
                     const solicitud = {
-                        depar: producto.depar || 'cocina', // departamento que realiza la solicitud
-                        id_emp: 1, // ID del empleado que realiza la solicitud, ajustar según corresponda
-                        cant: 50,
+                        depar: 'Inventario',
+                        id_emp: '1',
+                        cant: '50',
                         nombre_producto: producto.nombre,
                         fecha: new Date(),
                         detalle: 'Solicitud automatica por cantidad baja'
                     };
 
-                    await fetch('http://localhost:3000/api/soli', {
+                    await fetch('http://localhost:3000/api/soli', { //Verificar sino con 'http://localhost:3000/compras-index/soli'
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(solicitud)
