@@ -1,12 +1,8 @@
 # Correciones #
 - bcrypt package installed
-![alt text](image.png)
-![alt text](image-1.png)
 - Sopa de temporada ":" removed
 - Bar exit button distorsionado
-![alt text](image-2.png)
 - Cocina exit button distorsionado
-![alt text](image-2.png)
 - Cocina font size updated
 - Recetas label in menus del dia removed
 - Menu distorsion removed
