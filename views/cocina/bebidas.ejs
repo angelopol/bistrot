@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BISTROT CHEZ RÉMY - Menu</title>
+    <link rel="stylesheet" href="css/Menu.css">
+    <link rel="stylesheet" href="css/side.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+</head>
+
+<body>
+    <section class="menu-container">
+        <header>
+            <h1 id="title">BISTROT CHEZ RÉMY</h1>
+            <select id="title-combo">
+                <option selected>Gerente</option>
+                <option>Cerrar Sesion</option>
+            </select>
+        </header>
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="menu-header">
+                    <div class="menu-title-container">
+                        <h2 class="menu-title">Menu</h2>
+                        <p class="menu-subtitle">RECETAS</p>
+                    </div>
+            
+                </div>
+                <div class="menu-content">
+            <img src="iconos_barra/icono_salida.png" class="icono" onclick= "window.location.href = '/cocina/produccion';" />
+
+                    <div class="menu-layout">
+                        <nav class="menu-categories">
+                            
+                            <button class="category-button entradas verdecito" onclick="window.location.href = '/cocina/Entradas';" id = "boton Entradas" >Entradas</button>
+                            <button class="category-button platos-fuertes verdecito" onclick="window.location.href = '/cocina/PlatosFuertes';" id = "boton Entradas">Platos Fuertes</button>
+                            <button class="category-button vegetariano verdecito" onclick="window.location.href = '/cocina/Vegetariano';" id = "boton Vegetariano" >Vegetariano</button>
+                            <button class="category-button postres verdecito" onclick="window.location.href = '/cocina/Postres';" id = "boton Postres" style="background-color: #0f624a; color: #fff; "">Postres</button>
+                            <button class="category-button menu-ninos verdecito" onclick="window.location.href = '/cocina/infantil';" id = "boton infantil">Menu de niños</button>
+                            <button class="category-button bebidas" onclick="window.location.href = '/cocina/Bebidas';" id = "boton Bebidas" style="background-color: white; color: #0f624a;  box-shadow: 0px 0px 3px rgba(1, 95, 6, 0.618)">Bebidas</button>
+
+                        </nav>
+                        <section class="menu-items">
+                <div class="items-container">
+                    <div class="carousel-container"  id = "containerdebebidas">
+                        <button class="prev" >&#10094;</button>
+                        <div class="carousel">
+                            <div class="carousel-inner" >
+                                <div class="card">
+                                    <img src="Newfolder/13.jpg" alt="Product 1" >
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/123.jpg" alt="Product 2">
+
+                                </div>
+
+
+                                <div class="card">
+                                    <img src="Newfolder/23.jpg" alt="Product 5">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/44.jpg" alt="Product 6">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/55.jpg" alt="Product 3">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/66.jpg" alt="Product 4">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/77.jpg" alt="Product 3">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/88.jpg" alt="Product 4">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/99.jpg" alt="Product 3">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/10.jpg" alt="Product 4">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/111.jpg" alt="Product 3">
+
+                                </div>
+                                <div class="card">
+                                    <img src="Newfolder/122.jpg" alt="Product 4">
+
+                                </div>
+
+
+                                
+                            </div>
+                        </div>
+                        <button class="next">&#10095;</button>
+                    </div>
+                </div>
+              </section>
+ </div>
+          </div>
+        </div>
+      </div>
+      </main>
+    </div>
+       
+     
+   
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-inner .card');
+        const totalSlides = slides.length;
+        const slidesPerView = 1; // 2 filas x 2 columnas
+        window.onload = function(params) {
+            document.querySelector('.next').addEventListener('click', () => {
+                if (currentSlide < totalSlides - slidesPerView) {
+                    currentSlide += slidesPerView;
+                    updateCarousel();
+                }
+            });
+            document.querySelector('.prev').addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide -= slidesPerView;
+                    updateCarousel();
+                }
+            });
+        }
+        
+
+        
+
+        function updateCarousel() {
+            const carousel = document.querySelector('.carousel-inner');
+            const offset = (currentSlide / slidesPerView) * 8.33;
+            carousel.style.transform = `translateX(-${offset}%)`;
+        }
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			// var socket = new WebSocket(address);
+			// socket.onmessage = function (msg) {
+			// 	if (msg.data == 'reload') window.location.reload();
+			// 	else if (msg.data == 'refreshcss') refreshCSS();
+			// };
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
