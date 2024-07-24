@@ -120,3 +120,105 @@ async function cargarPlatos() {
 }
 
 document.addEventListener("DOMContentLoaded", cargarPlatos()) // Solo se cargan una vez
+
+let botonIngredientes = document.querySelector("#btnIngredientes")
+botonIngredientes.addEventListener("click", async ()=> {
+    if(reservaID == ""){
+        return alert("Seleccione una reserva")
+    }
+    let reservas = await obtenerReservas()
+    let reserva = null
+    reservas.forEach(objetoReserva => {
+        if(objetoReserva.numero_reserva == reservaID){
+            reserva = objetoReserva
+        }
+    })
+    let numeroMesas = reserva.ID_mesa.split(",")
+    if(numeroMesas.length > 16){
+        return alert("Solo se compran ingredientes con reservas individuales")
+    }
+
+    // Hacemos que las recetas que haya reservado el comensal se carguen en el menu del dia
+    let preferencias = JSON.parse(reserva.preferencias)
+    let idPlatos = Object.keys(preferencias) // lista con los id de los platos seleccionados
+    let cantidadesPlatos = Object.values(preferencias)
+
+    for (let platoID in idPlatos) {
+        const cambios = {
+            "seleccionada": 1
+        }
+        const options = {
+            method: 'PATCH', 
+            headers: {
+            'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(cambios)
+        };
+        await fetch(`/cocina/comida/${idPlatos[platoID]}`, options)
+        .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json(); 
+          })
+        .then(data => {
+            console.log(`El plato de ID ${idPlatos[platoID]} ha sido agregado al menú del día`)
+        })
+        .catch(error => {
+            console.error("Error al agregar la receta al menu del dia: ", error)
+        })
+    }
+
+    // obtenemos las comidas
+
+    let fetchPromises = idPlatos.map(async idPlato => {
+        let res = await fetch(`/cocina/comida/${idPlato}`)
+        let nombrePlato = await res.json();
+        return nombrePlato[0]; // objeto comida
+    })
+
+    let comidas = await Promise.all(fetchPromises); // array con los objetos comidas
+
+    let ingredientesRequeridos = {}
+        for(let i = 0; i < comidas.length ; i++){
+            let ingredientesParaComida = JSON.parse(comidas[i].ingredientes) // {"2":1}
+            
+            Object.keys(ingredientesParaComida).forEach(idIngredienteRequerido => {
+                if (idIngredienteRequerido in ingredientesRequeridos){
+                    ingredientesRequeridos[idIngredienteRequerido] += parseFloat(parseFloat(ingredientesParaComida[idIngredienteRequerido]) * parseInt(cantidadesPlatos[i]))
+                }
+                else{
+                    ingredientesRequeridos[idIngredienteRequerido] = parseFloat(parseFloat(ingredientesParaComida[idIngredienteRequerido]) * parseInt(cantidadesPlatos[i]))
+                }
+            })
+    }
+    
+    Object.keys(ingredientesRequeridos).forEach(async idIngredienteRequerido => {
+        let nombreIngrediente = ""
+        let ingrediente = await fetch(`/inventario/api/cocina-bar/${idIngredienteRequerido}`)
+        ingrediente = await ingrediente.json()
+        nombreIngrediente = ingrediente.nombre
+        const solicitud = {
+            depar: 'cocina', // departamento que realiza la solicitud
+            id_emp: "1", // ID del empleado que realiza la solicitud, ajustar según corresponda
+            cant: Math.ceil(ingredientesRequeridos[idIngredienteRequerido]).toString(),
+            nombre_producto: nombreIngrediente,
+            fecha: new Date(),
+            detalle: 'Solicitud por falta de insumo para producior un pedido'
+        };
+        // Enviar solicitud de compra
+        try{
+            await fetch('/compras-index/soli', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(solicitud)
+            });
+            console.log("solicitud enviada")
+        }
+        catch(e){
+            console.log(`Error: `, e)
+        }
+    })
+
+    alert("Solicitud para comprar los ingredientes para la reserva enviada correctamente")
+})
