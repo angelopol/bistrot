@@ -1,6 +1,5 @@
 import {VentasModel} from '../models/ventas_salon.js';
 import {validateFactura, validatePartialFactura} from '../schemas/factura.js';
-import { logged } from "../../Login/middlewares/logged.js"
 
 export class ControllerFactura {
 

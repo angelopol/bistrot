@@ -283,7 +283,10 @@ botonProcesar.addEventListener("click" , async () => {
             
             /*HACERLO PARA CUANDO VENTAS HAGA ESE NUEVO ATRIBUTO */
             // const cambio = {status_pedido: 2, detalle_rechazo: aviso}
-            const cambio = {status_pedido: 2}
+            const cambio = {
+                status_pedido: 2,
+                detalles: aviso
+            }
             const requestOptions = {
                 method: 'PATCH', 
                 headers: {
@@ -697,7 +700,18 @@ botonHacerNuevo.addEventListener("click" , async ()=> {
     
             if(bandera){
                 console.log("RECHAZADO")
-                const cambio = {status_pedido: 2}
+                let aviso = "Se pueden hacer los siguientes platos:\n"
+                for (let index = 0; index < comidas.length; index++){
+                    aviso += `${comidas[index].nombre}: ${contadorComidasHacer[index]}\n`
+                }
+                console.log(aviso)
+                
+                /*HACERLO PARA CUANDO VENTAS HAGA ESE NUEVO ATRIBUTO */
+                // const cambio = {status_pedido: 2, detalle_rechazo: aviso}
+                const cambio = {
+                    status_pedido: 2,
+                    detalles: aviso
+                }
                 const requestOptions = {
                     method: 'PATCH', 
                     headers: {

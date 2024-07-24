@@ -1,6 +1,6 @@
 import {VentasModel} from '../models/ventas_salon.js';
 import {validateSalon, validatePartialSalon} from '../schemas/salon.js';
-import { logged } from "../../Login/middlewares/logged.js"
+
 
 export class ControllerSalon {
 

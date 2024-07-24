@@ -1,35 +1,23 @@
-import { logged } from "../../Login/middlewares/logged.js"
-import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 //Renderizado de Vistas
 export class RenderController{
 
     //Paginas 
     renderGerente= async(req,res)=>{
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Cajero')) return
         res.render('ventas/Vista_Gerente/Ventas_Gerente')
     }
 
     renderMeserosGeneral= async(req,res)=>{
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Cajero')) return
         res.render('ventas/Vista_Meseros/Mesero_Zona_General')
     }
 
     renderMeserosTerraza= async(req,res)=>{
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Cajero')) return
         res.render('ventas/Vista_Meseros/Mesero_Terraza')
     }
     renderCaja= async(req,res)=>{
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Cajero')) return
         res.render('ventas/Vista_Caja/Caja')
     }
 
     renderPedidos= async(req,res)=>{
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Cajero')) return
         res.render('ventas/Vista_Pedidos/pedidos')
     }
 
