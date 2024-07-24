@@ -26,6 +26,11 @@ export class RecursosHumanos {
         if (!await VerifyCargo(req, res, 'RRHH')) return
         res.render('rrhh/form')
     }
+    solicitudes = async (req, res) => {
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'RRHH')) return
+        res.render('rrhh/solicitudes')
+    }
 
     entradas = async (req, res) => {
         if (logged(req, res, false, false)) return
@@ -83,13 +88,23 @@ export class RecursosHumanos {
     }
 
     entrada = async (req, res) => {
+        const { fecha } = req.query; // Extrae la fecha de los parámetros de la consulta
         try {
-            const [results, fields] = await connection.query('SELECT id, cedula, DATE_FORMAT(hora_entrada, "%Y-%m-%d %H:%i:%s") AS hora_entrada FROM entradas');
+            // Asegúrate de que la fecha esté en el formato correcto
+            const [results, fields] = await connection.query(`
+                SELECT entradas.cedula, empleados.nombre , 
+                    MIN(DATE_FORMAT(entradas.hora_entrada, "%H:%i:%s")) AS primer_marcaje, 
+                    MAX(DATE_FORMAT(entradas.hora_entrada, "%H:%i:%s")) AS ultimo_marcaje 
+                FROM entradas 
+                left join empleados on entradas.cedula = empleados.cedula
+                WHERE DATE(hora_entrada) = ? 
+                GROUP BY cedula, nombre`, [fecha]);
             res.json(results);
         } catch (err) {
             res.status(500).send(err);
         }
     }
+    
 
     GetUsuario = async (req, res) => {
         var user = logged(req, res)
