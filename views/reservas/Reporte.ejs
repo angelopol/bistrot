@@ -6,10 +6,7 @@
     <title>Reporte</title>
     <link rel="stylesheet" href="/reservas/Reporte.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
-    <link rel="icon" href="/assets/favicon.ico">
-    <script src="/assets/logout.js" defer></script>
-    <script src="/assets/user.js" defer></script>
-    <script src="/assets/side.js" defer></script>
+    <link rel="stylesheet" href="/reservas/side.css">
 </head>
 <body>
     <div class="heading">
@@ -26,35 +23,35 @@
     <div class="pagina">
         <div id="sidebar">
             <div class="side inicio">
-                <img src="/Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
+                <img src="/reservas/resources/iconos_barra/inicio-green.png" class="side-foto">
                 <p class="side-option">Inicio</p>
             </div>
             <div class="side ventas">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/ventas-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/ventas-green.png">
                 <p class="side-option">Ventas/Salon</p>
             </div>
             <div class="side compras">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/compras-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/compras-green.png">
                 <p class="side-option">Compras</p>
             </div>
             <div class="side rrhh">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/person-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/person-green.png">
                 <p class="side-option">RRHH</p>
             </div>
             <div class="side inventario">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/inventario-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/inventario-green.png">
                 <p class="side-option">Inventario</p>
             </div>
             <div class="side mantent">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/mantenimiento-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/mantenimiento-green.png">
                 <p class="side-option">Mantenimiento</p>
             </div>
             <div class="side cocina">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/cocina-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/cocina-green.png">
                 <p class="side-option">Cocina/Bar</p>
             </div>
             <div class="side reserv">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/reservas-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/reservas-green.png">
                 <p class="side-option">Reservas</p>
             </div>
         </div>
@@ -69,12 +66,12 @@
                       </h2>
                 </div>
                 <div class="seccion">
-                    <h2>Reporte</h2>
+                    <h2>Reporte a RRHH</h2>
                 </div>
             </div>
         
             <div class="distribucion">
-                <form action="tu_script_para_procesar_el_formulario.php" method="POST">
+                <form action="" method="POST">
                     <div class="form-group">
                         <label for="codigo_empleado">Empleado:</label>
                         <input type="text" id="codigo_empleado" name="codigo_empleado" required>
@@ -114,10 +111,58 @@
                         <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
                     </div>
 
-                    <button type="submit">Enviar Reporte</button>
+                    <button id="submit" type="submit">Enviar Reporte</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        window.onload = function () {
+            document.getElementById("submit").addEventListener("click", () =>{
+            
+            const dataToSend = {
+                ID_Empleado: document.getElementById("codigo_empleado").value ,
+                Fecha_Registro : document.getElementById("fecha").value,
+                Fecha_Ingreso: document.getElementById("fecha").value,
+                Cargo: document.getElementById("cargo").value,
+                Motivo: document.getElementById("descripcion").value,
+                Modulo: "Reserva"
+            };
+
+            // Función para registrar una solicitud
+            const registrarSolicitud = async (data) => {
+                try {
+                    // Realizar la solicitud HTTP con fetch
+                    const response = await fetch('/register/solicitar', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    // Convertir la respuesta a JSON
+                    const result = await response.json();
+
+                    // Manejo de errores en la respuesta
+                    if (result.error) {
+                        console.error(`Error al registrar solicitud: ${result.error.nombre}`);
+                        alert(`Error al registrar solicitud: ${result.error.nombre}`);
+                    } else {
+                        // Mensaje de éxito
+                        alert('Solicitud registrada exitosamente');
+                        // Aquí puedes limpiar el formulario si es necesario
+                    }
+                } catch (error) {
+                    // Manejo de errores de red o problemas en la solicitud
+                    console.error('Hubo un error al registrar la solicitud', error);
+                    alert('Hubo un error al registrar la solicitud');
+                }
+            };
+
+                
+            }) 
+        } 
+    </script>
 </body>
 </html>

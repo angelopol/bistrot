@@ -13,7 +13,7 @@ input.addEventListener('input', function () {
     }
 });
 
-async function funcionBotonReporte(id){
+async function funcionBotonReporte(id , status){
     // Función que cambia el estado del instrumento seleccionado en la base de datos
 
     // Solicitud GET para obtener los atributos del instrumento
@@ -26,7 +26,7 @@ async function funcionBotonReporte(id){
         }
     };
 
-  await fetch(`http://localhost:1234/inventario/api/general/${id}` , options)
+  await fetch(`/inventario/api/general/${id}` , options)
   .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -35,7 +35,7 @@ async function funcionBotonReporte(id){
     })
     .then(data => {
       instrumentoData = data
-      instrumentoData.funciona_estado = 0
+      instrumentoData.funciona_estado = status
       console.log('Se obtuvo el instrumento:', instrumentoData);
     })
     .catch(error => {
@@ -53,7 +53,7 @@ async function funcionBotonReporte(id){
     };
 
     // Petición a inventario (habria que importar esta ruta de inventario)
-    await fetch(`http://localhost:1234/inventario/api/general/${id}` , requestOptions)
+    await fetch(`/inventario/api/general/${id}` , requestOptions)
     .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -74,7 +74,7 @@ async function funcionBotonReporte(id){
 async function obtenerObjetosCocina(){
     try {
       // con este endpoint solicitamos a inventario todos los instrumentos que tienen guardados en su tabla de general
-      const response = await fetch(`http://localhost:1234/inventario/api/general`); //Importar Modulo externo Inventario/
+      const response = await fetch(`/inventario/api/general`); //Importar Modulo externo Inventario/
       if (!response.ok){
           throw new Error('No se pudo obtener los objetos de general');
       }
@@ -136,21 +136,42 @@ async function actualizarFilas() {
     })
 }
 
-// agregamos el evento al boton reportar
-let reportarButton = document.querySelector(".report-button")
+// agregamos el evento al boton reportar falla
+let reportarButton = document.querySelector("#botonFalla")
 reportarButton.addEventListener("click", async function () {
   if(confirm("Estas seguro que deseas reportar?")){
     // Función que toma el id del input, reporta el fallo del instrumento y muestra los cambios en la view 
 
     let input = document.getElementById("searchInput")
     id = parseInt(input.value)
-    await funcionBotonReporte(id)
+    await funcionBotonReporte(id, 0)
     actualizarFilas()
     input.value = ""
     alert("Instrumento Resportado")
   } else {
     return null
   }
+})
+// agregamos el evento al boton reportar arreglo
+let reportarButtonArreglo = document.querySelector("#botonArreglo")
+reportarButtonArreglo.addEventListener("click", async function () {
+  if(confirm("Estas seguro que deseas reportar?")){
+    // Función que toma el id del input, reporta el fallo del instrumento y muestra los cambios en la view 
+
+    let input = document.getElementById("searchInput")
+    id = parseInt(input.value)
+    await funcionBotonReporte(id, 1)
+    actualizarFilas()
+    input.value = ""
+    alert("Instrumento Resportado")
+  } else {
+    return null
+  }
+})
+
+let buttonSolicitar = document.querySelector("#botonSolicitud")
+buttonSolicitar.addEventListener("click",()=>{
+  window.location.href = '/mantenimientos/escribirReporte';
 })
 
 document.addEventListener('DOMContentLoaded', function() {

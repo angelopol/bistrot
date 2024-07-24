@@ -17,10 +17,10 @@ var imagenes = { // Diccionario feo que guarda las rutas de la imagen del cada p
     "14": "NewFolder/daiquiri de fresa.webp",
     "15": "NewFolder/old fashioned.png",
     "16": "NewFolder/margarita.jpg",
-    "17": "NewFolder/sopadecalabacin.jpg",
-    "18": "NewFolder/sopadecalabacin.jpg",
-    "19": "NewFolder/sopadecalabacin.jpg",
-    "20": "NewFolder/sopadecalabacin.jpg",
+    "17": "Newfolder/vinorojoFleurderoc.jpeg",
+    "18": "Newfolder/agneaurouge.png",
+    "19": "Newfolder/vino blanco sancerre.jpeg",
+    "20": "Newfolder/languedoc cite de carcassone.jpg",
     "21": "NewFolder/cocacola.jpeg",
     "22": "NewFolder/coca cola cheerry.jpeg",
     "23": "NewFolder/fanta orange.jpeg",
@@ -46,7 +46,7 @@ async function obtenerPlatos() {
         'Content-Type': 'application/json' 
         }
     };
-    await fetch(`http://localhost:1234/cocina?tipo_comida:isnull=true&tipo_bebida:isnull=true`, options)
+    await fetch(`/cocina?tipo_comida:isnull=true&tipo_bebida:isnull=true`, options)
     .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -73,7 +73,7 @@ async function obtenerNombreIngredientePorID(id) {
     };
     
     try {
-        const response = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${id}`, options);
+        const response = await fetch(`/inventario/api/cocina-bar/${id}`, options);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -137,7 +137,7 @@ async function cargarPlatos() {
                 'Content-Type': 'application/json' 
                 }
             };
-            await fetch(`http://localhost:1234/cocina/comida/${e.currentTarget.id}`, options)
+            await fetch(`/cocina/comida/${e.currentTarget.id}`, options)
             .then(response => {
                 if (!response.ok) {
                   throw new Error('Network response was not ok');
@@ -223,7 +223,7 @@ botonConfirmar.addEventListener("click", async function () {
             },
             body: JSON.stringify(cambios)
         };
-        await fetch(`http://localhost:1234/cocina/comida/${menuDia[platoID]}`, options)
+        await fetch(`/cocina/comida/${menuDia[platoID]}`, options)
         .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok');
@@ -242,7 +242,7 @@ botonConfirmar.addEventListener("click", async function () {
     // proceso para hacer las solicitudes a compras
 
     let fetchPromises = menuDia.map(async idComida => {
-        let res = await fetch(`http://localhost:1234/cocina/comida/${idComida}`)
+        let res = await fetch(`/cocina/comida/${idComida}`)
         let nombrePlato = await res.json();
         return nombrePlato[0]; // objeto comida
     })
@@ -268,7 +268,7 @@ botonConfirmar.addEventListener("click", async function () {
 
     // obtenemos los ingredientes de inventario
     let fetchPromises1 = Object.keys(ingredientesRequeridos).map(async idIngredienteRequerido => {
-        let res = await fetch(`http://localhost:1234/inventario/api/cocina-bar/${idIngredienteRequerido}`);
+        let res = await fetch(`/inventario/api/cocina-bar/${idIngredienteRequerido}`);
         let ingrediente = await res.json();
         console.log(ingrediente)
         return ingrediente; // Devuelve el nombre del plato obtenido
@@ -296,7 +296,7 @@ botonConfirmar.addEventListener("click", async function () {
         };
         // Enviar solicitud de compra
         try{
-            await fetch('http://localhost:1234/compras-index/soli', {
+            await fetch('/compras-index/soli', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(solicitud)
@@ -309,5 +309,50 @@ botonConfirmar.addEventListener("click", async function () {
         
     })
 
-    alert("Menu del dia creado correctamente")
+    alert("Menu del dia creado correctamente y se hacen las solicitudes para que se compren los ingredientes respectivos")
+    window.location.href = '/cocina/Menudeldia';
+})
+
+const botonCerrarMenu = document.getElementById("cerrar-menu")
+botonCerrarMenu.addEventListener("click", async function () {
+    if (confirm("Está seguro que desea cerrar el menú del día?")) {
+        const comidas = await obtenerPlatos()
+        const comidasDia = []
+        for (let comida of comidas) {
+            if (comida.seleccionada == 1) {
+                comidasDia.push(comida)
+            }
+        }
+        if (comidasDia.length == 0) {
+            return alert("Error al cerrar el menú del día, todavía no se ha creado.")
+        }
+    
+        for (let comida of comidasDia) {
+            const cambios = {
+                "seleccionada": 0
+            }
+            const options = {
+                method: 'PATCH', 
+                headers: {
+                'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(cambios)
+            };
+            console.log(typeof(comida.id))
+            await fetch(`/cocina/comida/${comida.id}`, options)
+            .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json(); 
+              })
+            .then(data => {
+                console.log(`El plato de ID ${comida.id} ha sido eliminado del menú del día`)
+            })
+            .catch(error => {
+                console.error("Error al eliminar la receta del menu del dia: ", error)
+            })
+        }
+        alert("Se ha cerrado el menú del día")
+    }
 })

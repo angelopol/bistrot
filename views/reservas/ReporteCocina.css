@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ffffff;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 
@@ -12,6 +12,7 @@ h2 a {
     text-decoration: none; /* Elimina el subrayado */
     color: inherit; /* Hereda el color del elemento padre */
   }
+
   
 
 h2, h3 {
@@ -104,6 +105,7 @@ nav ul li a:hover {
 .contenido {
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
     align-items: center;
     padding: 20px;
     flex-grow: 1;
@@ -125,6 +127,12 @@ nav ul li a:hover {
     text-align: center;
     margin-bottom: 20px;
 }
+
+textarea {
+    resize: none; /* Evita que el textarea sea redimensionable */
+
+}
+
 
 
 
@@ -175,10 +183,7 @@ form {
     box-sizing: border-box;
     margin: 0 auto; /* Centra horizontalmente */
   }
-  
-  .form-group textarea {
-    resize: none; /* Permitir redimensionamiento vertical */
-  }
+
   
   /* Estilos para el botón */
   button[type="submit"] {
@@ -191,8 +196,31 @@ form {
     transition: background-color 0.3s;
     width: 100%;
   }
+  #agregarPreferencias{
+    background-color: #0F624A;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #agregarPreferencias:hover{
+    background-color: #137b5d;
+    
+  }
+
+  #hora{
+    margin-bottom: 5px;
+  }
   
   button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #137b5d;
+  }
+  #reserva-form{
+    margin-bottom: 10px;
   }
   

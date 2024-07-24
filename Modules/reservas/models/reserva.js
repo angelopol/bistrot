@@ -2,11 +2,11 @@ import mysql from 'mysql2/promise'
 import 'dotenv/config'
 
 const DBConfig = {
-  host: process.env.DB_HOST || '127.0.0.1',
+  host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
   port: process.env.DB_PORT || 3306,
-  password: process.env.DB_PASSWORD || '1234',
-  database: process.env.DB_DATABASE || 'modulo_reservas',
+  password: process.env.DB_PASSWORD || '$0p0rt3',
+  database: process.env.DB_DATABASE || 'bistrot', 
 }
 
 const connection = await mysql.createConnection(DBConfig)
@@ -23,16 +23,19 @@ export class ReservaModel {
         idtelefono,
         nombre,
         idmesa,
-        zona  // Asegúrate de que este nombre coincida con el esperado
+        idzona,
+        stringPreferencias,
+          // Asegúrate de que este nombre coincida con el esperado
       } = input;
 
       
   
       try {
+        console.log("hola desde el modelo")
         await connection.query(
-          `INSERT INTO reserva (ID_mesa,cantidad_personas, ID_cliente, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, apellido, ubicacion)
-           VALUES (?,?,?,?,?,?,?,?,?, ?,?);`,
-          [idmesa,personas,cedula, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre.split(" ")[0], nombre.split(" ")[1], zona]
+          `INSERT INTO reserva (ID_mesa,cantidad_personas, ID_cliente, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, ubicacion, preferencias)
+           VALUES (?,?,?,?,?,?,?,?,?, ?, ?);`,
+          [idmesa,personas,cedula, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre, idzona, stringPreferencias]
       );
       } catch (e) {
         console.log(e);
@@ -90,4 +93,19 @@ export class ReservaModel {
           throw new Error('Error updating reserva')
         }
     }
+
+    static async modificarCocina (cedulaC, modi) {
+      const {
+      } = modi
+  
+      try {
+        await connection.query(
+          'UPDATE reserva SET fecha = ?, hora_inicio = ?, hora_fin = ?, descripcion = ? WHERE ID_cliente = ?',
+          [fecha, hora_inicio, hora_fin, iddescripcion, cedulaC]
+        )
+      } catch (e) {
+        console.log(e)
+        throw new Error('Error updating reserva')
+      }
+  }
 }

@@ -7,7 +7,7 @@ async function obtenerPlatos() {
         'Content-Type': 'application/json' 
         }
     };
-    await fetch(`http://localhost:1234/cocina?tipo_comida:isnull=true&tipo_bebida:isnull=true`, options)
+    await fetch(`/cocina?tipo_comida:isnull=true&tipo_bebida:isnull=true`, options)
     .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

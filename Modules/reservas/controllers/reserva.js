@@ -1,8 +1,6 @@
 import { ReservaModel } from '../models/reserva.js'
 import { validarMesas } from '../schemes/validacion_mesas.js'
 import { validar_reserva } from '../schemes/validacion_reserva.js'
-import { logged } from "../../Login/middlewares/logged.js"
-import { VerifyCargo } from "../../Register/middlewares/cargo.js"
 
 export class ReservaController{
      getAll = async(req, res) =>{
@@ -23,21 +21,20 @@ export class ReservaController{
     }
 
     create=async (req, res)=> {
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Reservaciones')) return
+        console.log(req.body)
         const result = validar_reserva(req.body)
         if (!result.success) {
             return res.status(400).json({ error: JSON.parse(result.error.message) })
         }
         const input = result.data
-        const { idmesa,fecha, personas, hora_inicio, hora_fin, nombre, cedula, idtelefono, iddescripcion,zona} = input;
+        
+        const { idmesa,fecha, personas, hora_inicio, hora_fin, nombre, cedula, idtelefono, iddescripcion,zona,stringPreferencias} = input;
         const nueva_reserva = await ReservaModel.create(input)
+        
         res.redirect('/reservas')
     }
         
     delete = async(req, res) =>{
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Reservaciones')) return
         const { id } = req.params
         const validacion = await ReservaModel.eliminar({id})
         
@@ -49,18 +46,14 @@ export class ReservaController{
         }    
 
     update = async (req, res) =>{
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Reservaciones')) return
         console.log(req.params)
         const { id } = req.params;
         const input = req.body; 
-        const response = await ReservaModel.modificar({ id, ...input });
+        const response = await ReservaModel.modificarCocina({ id, ...input });
         res.redirect('/reservas')
     }
 
     getModificar = async (req, res) =>{
-        if (logged(req, res, false, false)) return
-        if (!await VerifyCargo(req, res, 'Reservaciones')) return
         const { id } = req.params;
         res.render('reservas/modificarReserva', { data: id }); 
     }
