@@ -98,7 +98,8 @@
                     <div class="button" id="16" data-location="barra">16</div>
                 </div>
             </div>
-            <button id="mesa">Seleccionar mesa</button>
+            <button id="local">Reservar todo el local</button>
+            <button id="mesa">Seleccionar mesa(s)</button>
             <div id="mesas-container"></div>
         </div>
     </div>
@@ -108,6 +109,7 @@
             const seats= document.querySelectorAll('.button');
             const reservationDateInput = document.getElementById('fecha');
             const today = new Date().toISOString().split('T')[0];
+            const local = document.getElementById('local');
             document.getElementById("fecha").setAttribute("min", today);
              
             let reservedSeats = JSON.parse(localStorage.getItem('reservedSeats')) || {};
@@ -166,6 +168,24 @@
                     }
                     
                 });
+            });
+
+            local.addEventListener('click', ()=>{
+                const selectedDate = reservationDateInput.value;
+                if (!selectedDate){
+                    alert('Selecciona una fecha');
+                    return;
+                }
+                if (confirm('¿Estás seguro que deseas reservar todo el local?')){
+                    selectedSeats[selectedDate] = [];
+                    seats.forEach(seat=>{
+                        if(!seat.classList.contains('reservado')){
+                            seat.classList.add('selected');
+                            selectedSeats[selectedDate].push(seat.id);
+                        }
+                    });
+                    sessionStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
+                }
             });
 
             window.addEventListener('load', ()=>{

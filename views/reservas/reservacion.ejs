@@ -93,8 +93,7 @@
                         <ul>
                             <li><button class="btn-list reserva">Crear Reserva</button></li>
                             <li><button class="btn-list reportesRRHH">Reportes a RRHH</button></li>
-                            <li><button class="btn-list reportesCocina">Reportes a cocina</button></li>
-                            <li><button class="btn-list reportesInventario">Reportes a inventario</button></li>
+                            
                         </ul>
                     </div>
                 </main>
@@ -103,41 +102,10 @@
     </div>
     <script>
         let botonReserva = document.querySelector('.btn-list.reserva');
-        let botonEliminarReserva = document.querySelector('.btn-list.delete-reserv');
-        let formulario1 = document.getElementById('form1');
+        
         let botonReportes = document.querySelector('.btn-list.reportesRRHH');
-        let botonReportesCocina = document.querySelector('.btn-list.reportesCocina');
 
         const rows = document.querySelectorAll("tbody tr");
-
-        rows.forEach(row => {
-            const dateCell = row.cells[2]; // Assuming the date is in the 3rd column (index 2)
-            const date = new Date(dateCell.textContent.trim());
-
-            const formattedDate = date.toLocaleDateString('es-VE', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit'
-            });
-
-            dateCell.textContent = formattedDate;
-        });
-
-        function eliminarFila(id) {
-            var fila = document.getElementById(id);
-            fila.remove();
-        }
-
-        botonReportesCocina.addEventListener('click', () => {
-            // Obtener el valor del radio button seleccionado
-            const selectedRadio = document.querySelector('input[name="radioboton"]:checked');
-            if (selectedRadio) {
-                localStorage.setItem('reserva', selectedRadio.value);
-                window.location.href = `/reservas/reportesCocina`; 
-            } else {
-                alert('Debe seleccionar una reserva');
-            }
-        });
 
         botonReserva.addEventListener('click', () => {
             window.location.href = '/reservas/mesas'; // Cambia a la ruta del servidor
@@ -181,7 +149,7 @@ h2 a {
 
 .right-side {
     box-shadow: 0 0 5px rgba(50, 50, 50, 0.1);
-    height: 45vh;
+    height: 30vh;
     width: 15vw;
     border-radius: 5px;
     display: flex;

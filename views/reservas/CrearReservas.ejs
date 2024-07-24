@@ -110,7 +110,7 @@
 
                     <div class="form-group">
                         <label for="personas">Cantidad de platos:</label>
-                        <input type="number" id="platos" name="platos" min="1" required>
+                        <input type="number" id="platos" name="platos" min="1">
                     </div>
                     
 
@@ -206,14 +206,23 @@
                 e.preventDefault
                 cantidadPlatos = document.querySelector('#platos').value;
                 preferencias = document.querySelector('#Preferencias').value;
-                // variable que guarda la cantidad de platos y las preferencias en formato: {"5":7,"6":3,"1":4}
-                dataToSend[preferencias] = parseInt(cantidadPlatos); // Convertir cantidadPlatos a número
-                // Convertir dataToSend a JSON
-                cadena = JSON.stringify(dataToSend);
-                document.querySelector('#platos').value = '';
-                document.querySelector('#Preferencias').value = '';
-                document.querySelector('#stringPreferencias').value = cadena;
-                console.log(document.querySelector('#stringPreferencias').value);
+                if (cantidadPlatos === '' || preferencias === '') {
+                    alert('Debes seleccionar una preferencia y la cantidad de platos');
+                    return;
+                }
+                else{
+                    // variable que guarda la cantidad de platos y las preferencias en formato: {"5":7,"6":3,"1":4}
+                    dataToSend[preferencias] = parseInt(cantidadPlatos); // Convertir cantidadPlatos a número
+                    // Convertir dataToSend a JSON
+                    cadena = JSON.stringify(dataToSend);
+                    document.querySelector('#platos').value = '';
+                    document.querySelector('#Preferencias').value = '';
+                    document.querySelector('#stringPreferencias').value = cadena;
+                    console.log(document.querySelector('#stringPreferencias').value);
+                    alert('Preferencia agregada');
+
+                }
+                
                 
             });
 
@@ -333,8 +342,8 @@
                     document.getElementById("hora_inicio").setCustomValidity("La hora de inicio debe ser menor que la hora de fin.");
                 } else if (horaFinInt - horaInicioInt < 0.5) {
                     document.getElementById("hora_inicio").setCustomValidity("La reserva debe tener una duración mínima de 30 minutos.");
-                } else if (horaFinInt - horaInicioInt > 4) {
-                    document.getElementById("hora_inicio").setCustomValidity("La reserva no puede durar más de 4 horas.");
+                } else if (horaFinInt - horaInicioInt > 12) {
+                    document.getElementById("hora_inicio").setCustomValidity("La reserva no puede durar más de 12 horas.");
                 } else {
                     document.getElementById("hora_inicio").setCustomValidity("");
                     document.getElementById("hora_fin").setCustomValidity("");

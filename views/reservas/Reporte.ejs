@@ -119,14 +119,14 @@
     <script>
         window.onload = function () {
             document.getElementById("submit").addEventListener("click", () =>{
-            // Data que debe ir en el body
+            
             const dataToSend = {
-                ID_Empleado: 1,
-                Fecha_Registro : "2024-05-22",
-                Fecha_Ingreso: "2024-01-22",
-                Cargo: "Prueba",
-                Motivo: "Prueba",
-                Modulo: "RRHH"
+                ID_Empleado: document.getElementById("codigo_empleado").value ,
+                Fecha_Registro : document.getElementById("fecha").value,
+                Fecha_Ingreso: document.getElementById("fecha").value,
+                Cargo: document.getElementById("cargo").value,
+                Motivo: document.getElementById("descripcion").value,
+                Modulo: "Reserva"
             };
 
             // Función para registrar una solicitud
