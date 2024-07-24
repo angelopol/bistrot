@@ -40,6 +40,7 @@ export class RegisterController {
     //Solicitudes
     solicitar = async (req, res) => {
         if (logged(req, res, false, false)) return
+        console.log("ruta ok",req.body)
         try {
             await EmpleadosModel.createSolicitud({ input: req.body })
             res.status(200).json({ message: 'Entrada registrada exitosamente' });
@@ -65,10 +66,9 @@ export class RegisterController {
         // Obtén los parámetros necesarios de la solicitud
         const { id } = req.body; // ID de la solicitud que se va a actualizar
         const { estado } = req.body; // Nuevo estado
-    
         try {
             // Verifica si el estado es válido
-            if (![0, 1, 2].includes(estado)) {
+            if (!["0", "1", "2", 0 ,1 ,2].includes(estado)) {
                 return res.status(400).json({ error: 'Estado inválido' });
             }
     

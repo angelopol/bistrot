@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS rrhh_solicitudes (
   Fecha_Registro date DEFAULT NULL,
   Fecha date DEFAULT NULL,
   motivo varchar(100) DEFAULT NULL,
+  Cargo varchar(100) DEFAULT NULL,
   Modulo varchar(100) NOT NULL,
   Estado int(2) default 0,
   PRIMARY KEY (ID),

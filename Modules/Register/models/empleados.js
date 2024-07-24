@@ -84,7 +84,6 @@ export class EmpleadosModel {
   }
 
   static async update(input) {
-    console.log(input)
     const formatDateForSubmission = (dateString) => {
       const date = new Date(dateString);
       return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
@@ -150,7 +149,7 @@ export class EmpleadosModel {
     try {
       await connection.query(
         `INSERT INTO rrhh_solicitudes (ID_Empleado, Fecha_Registro, Fecha, motivo, Cargo, Modulo)
-         VALUES (?, ?, ?, ?, ?);`,
+         VALUES (?, ?, ?, ?, ?, ?);`,
         [ID_Empleado, Fecha_Registro, Fecha, Motivo, Cargo, Modulo]
       );
     } catch (e) {
