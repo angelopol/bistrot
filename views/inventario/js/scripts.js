@@ -590,17 +590,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const solicitudEnviada = {}; //Objeto para rastrear solicitudes enviadas por producto
+const solicitudEnviada = {}; // Objeto para rastrear solicitudes enviadas por producto
 
 async function verificarInventario() {
     try {
+        //Verificar cantidades en la tabla cocina_bar
         let response = await fetch(`http://localhost:3000/api/cocina-bar`);
         let cocinaBarData = await response.json();
 
+        //Verificar cantidades en la tabla general
+        response = await fetch(`http://localhost:3000/api/general`);
+        let generalData = await response.json();
+
+        //Unir los datos de ambas tablas
+        const productos = [...cocinaBarData, ...generalData];
+
         const now = new Date();
 
-        for (const producto of cocinaBarData) {
-            const productoId = producto.id_cocina_bar;
+        for (const producto of productos) {
+            const productoId = producto.id || producto.id_cocina_bar || producto.id_general;
 
             //Inicializa el estado de las alertas si no está presente
             if (!solicitudEnviada[productoId]) {
@@ -643,15 +651,15 @@ async function verificarInventario() {
             } else if (producto.cantidad < 10) {
                 if (!solicitudEnviada[productoId].stockBajo) {
                     const solicitud = {
-                        depar: 'Inventario',
-                        id_emp: '1',
-                        cant: '50',
+                        depar: producto.depar || 'cocina', // departamento que realiza la solicitud
+                        id_emp: 1, // ID del empleado que realiza la solicitud, ajustar según corresponda
+                        cant: 50,
                         nombre_producto: producto.nombre,
                         fecha: new Date(),
                         detalle: 'Solicitud automatica por cantidad baja'
                     };
 
-                    await fetch('http://localhost:3000/compras-index/soli', {
+                    await fetch('http://localhost:3000/api/soli', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(solicitud)
@@ -673,5 +681,8 @@ async function verificarInventario() {
     }
 }
 
+//Ejecutar la verificación cada 1 segundo (1000 ms)
 setInterval(verificarInventario, 1000);
+
+//Ejecutar la función de verificación inmediatamente al cargar el script
 verificarInventario();
