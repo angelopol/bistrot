@@ -54,6 +54,13 @@ export class RenderController{
         res.render("cocina/Bebidas");
     }
 
+    renderSolpersonal = async (req, res) => {
+        if (logged(req, res, false, false)) return
+        if (!await VerifyCargo(req, res, 'Cocinero')) return
+        res.render("cocina/solpersonal");
+    }
+
+
     renderCSS = async (req, res) => {
         res.sendFile(process.cwd() + '/views/cocina/css/Menu.css');
     }

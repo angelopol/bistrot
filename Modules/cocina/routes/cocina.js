@@ -41,6 +41,7 @@ export const createCocinaRouter = () => {
     cocinaRouter.get("/Postres", renderController.renderPostres)
     cocinaRouter.get("/infantil", renderController.renderInfantil)
     cocinaRouter.get("/Bebidas", renderController.renderBebidas)
+    cocinaRouter.get("/solpersonal", renderController.renderSolpersonal)
 
     cocinaRouter.get("/css/Menu.css", renderController.renderCSS)
 
