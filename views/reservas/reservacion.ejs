@@ -132,8 +132,8 @@
             // Obtener el valor del radio button seleccionado
             const selectedRadio = document.querySelector('input[name="radioboton"]:checked');
             if (selectedRadio) {
-                const numeroReserva = selectedRadio.value;
-                window.location.href = `/reservas/reportesCocina/${numeroReserva}`; // Cambia a la ruta del servidor
+                localStorage.setItem('reserva', selectedRadio.value);
+                window.location.href = `/reservas/reportesCocina`; 
             } else {
                 alert('Debe seleccionar una reserva');
             }

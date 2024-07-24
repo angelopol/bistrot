@@ -71,43 +71,32 @@
             </div>
         
             <div class="distribucion">
-                <form  method="POST">
+                <form action="/reservas/reportesCocina/1"  method="POST">
                     <div class="form-group">
-                        <label for="codigo_empleado">Cantidad de platos:</label>
-                        <input type="text" id="cantidad_platos" name="cantidad_plato" required>
+                        <label for="personas">Cantidad de platos:</label>
+                        <input type="number" id="platos" name="platos" min="1" required>
                     </div>
 
                     <div class="form-group">
                         <label for="cargo">Preferencias:</label>
-                        <input type="text" id="preferencias" name="preferencias" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="hora">Hora:</label>
-                        <input type="time" id="hora" name="hora" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="tipo">Tipo:</label>
-                        <input type="text" id="tipo" name="tipo" required>
+                        <% if (comidas) { %>
+                            <select name="Preferencias" id="Preferencias">
+                                <% for (let i = 0; i < comidas.length; i++) { %>
+                                    <option value="<%= i + 1 %>">
+                                        <%= comidas[i].nombre %>
+                                    </option>
+                                <% } %>
+                            </select>
+                        <% } %>
                     </div>
 
                     <div class="form-group">
                         <label for="tipo">numero de reserva:</label>
-                        <input type="text" id="numero_reserva" name="numero_reserva" required>
+                        <input type="text" id="numero_reserva" name="numero_reserva" readonly>
                     </div>
 
                     
-
-                    <div class="form-group">
-                        <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-                    </div>
+                    <button id="agregarPreferencias">Agregar preferencias</button>
 
                     <button type="submit">Enviar Reporte a cocina</button>
                 </form>
@@ -117,13 +106,36 @@
     <script>
 
         //recuperar el boton del formulario
-        const boton = document.querySelector('button');
+        const botonSubmit = document.querySelector('button');
+        const botonAgregarPreferencias = document.querySelector('#agregarPreferencias');
+        //campo de numero de reserva
+        const numeroReserva = document.querySelector('#numero_reserva');
+        let cadena = '';
+        let dataToSend = {};
+        document.querySelector("#numero_reserva").value=localStorage.getItem("reserva");
+        
 
         //agregar un evento al boton
 
-        boton.addEventListener('click', (e) => {
-            
+        botonAgregarPreferencias.addEventListener('click', (e) => {
+            e.preventDefault
+            cantidadPlatos = document.querySelector('#platos').value;
+            preferencias = document.querySelector('#Preferencias').value;
+            // variable que guarda la cantidad de platos y las preferencias en formato: {"5":7,"6":3,"1":4}
+            dataToSend[preferencias] = parseInt(cantidadPlatos); // Convertir cantidadPlatos a número
+    
+            // Convertir dataToSend a JSON
+            cadena = JSON.stringify(dataToSend);
+
+            console.log(cadena);
+            document.querySelector('#platos').value = '';
+            document.querySelector('#Preferencias').value = '';
+
         });
+
+        //agregar un evento al boton
+
+        
         
     </script>
 </body>

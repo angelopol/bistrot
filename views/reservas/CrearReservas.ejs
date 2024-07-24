@@ -107,7 +107,30 @@
                         <label for="iddescripcion">Zona:</label>
                         <input type="text" id="idzona" name="idzona" required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="personas">Cantidad de platos:</label>
+                        <input type="number" id="platos" name="platos" min="1" required>
+                    </div>
                     
+
+                    <div class="form-group">
+                        <label for="cargo">Preferencias:</label>
+                        <% if (comidas) { %>
+                            <select name="Preferencias" id="Preferencias">
+                                <% for (let i = 0; i < comidas.length; i++) { %>
+                                    <option value="<%= i + 1 %>">
+                                        <%= comidas[i].nombre %>
+                                    </option>
+                                <% } %>
+                            </select>
+                        <% } %>
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <input id="stringPreferencias" name="stringPreferencias" readonly>
+                    </div>
+                    
+                    <button id="agregarPreferencias">Agregar preferencias</button>
                     <button type="submit">Registrar Reserva</button>
                 </form>
             </div>
@@ -131,12 +154,15 @@
         //recuperar las mesas seleccionadas y mostrarlas en el campo de numero de mesa
         
         document.addEventListener("DOMContentLoaded", function() {
+            var cadena = ""
+            let dataToSend = {};
             const today = new Date().toISOString().split('T')[0];
             document.getElementById("fecha").setAttribute("min", today);
             const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats')) || {};
             const reservedSeats = JSON.parse(localStorage.getItem('reservedSeats')) || {};
             console.log("Loaded selectedSeats from sessionStorage:", selectedSeats);
             console.log("Loaded reservedSeats from localStorage:", reservedSeats);
+            const agregarPreferencias = document.getElementById('agregarPreferencias');
 
             document.getElementById('reserva-form').addEventListener('submit', (event) => {
                 const selectedDate = document.getElementById('fecha').value;
@@ -175,6 +201,21 @@
             }
             }
             updateSelectedSeats();
+
+            agregarPreferencias.addEventListener('click', (e) => {
+                e.preventDefault
+                cantidadPlatos = document.querySelector('#platos').value;
+                preferencias = document.querySelector('#Preferencias').value;
+                // variable que guarda la cantidad de platos y las preferencias en formato: {"5":7,"6":3,"1":4}
+                dataToSend[preferencias] = parseInt(cantidadPlatos); // Convertir cantidadPlatos a número
+                // Convertir dataToSend a JSON
+                cadena = JSON.stringify(dataToSend);
+                document.querySelector('#platos').value = '';
+                document.querySelector('#Preferencias').value = '';
+                document.querySelector('#stringPreferencias').value = cadena;
+                console.log(document.querySelector('#stringPreferencias').value);
+                
+            });
 
             
             //funcion que valide que un numero de telefono tenga 11 digitos, si es un numero y si los primeros 4 digitos son: 0412, 0414, 0416, 0424, 0426

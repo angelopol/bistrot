@@ -8,10 +8,10 @@ CREATE TABLE `mesas` (
 
 CREATE TABLE `reserva` (
   `numero_reserva` int NOT NULL AUTO_INCREMENT,
-  `ID_mesa` varchar(45) NOT NULL DEFAULT '0',
+  `ID_mesa` varchar(255) NOT NULL DEFAULT '0',
   `confirmado` tinyint DEFAULT NULL,
   `cantidad_personas` int NOT NULL,
-  `ID_cliente` int NOT NULL ,
+  `ID_cliente` int NOT NULL,
   `fecha` datetime NOT NULL,
   `hora_inicio` time NOT NULL,
   `hora_fin` time NOT NULL,
@@ -19,5 +19,6 @@ CREATE TABLE `reserva` (
   `telefono` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `ubicacion` varchar(500) NOT NULL,
+  `preferencias` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`numero_reserva`)
-) 
+)

@@ -28,6 +28,9 @@ const validacion_reserva = z.object({
     idzona: z.string({required_error: 'La ubicación es requerida',
         invalid_type_error: 'La ubicación debe ser un string'
     }).max(50, {message: 'La ubicación debe tener menos de 50 caracteres'}),
+    stringPreferencias: z.string({required_error: 'Las preferencias son requeridas',
+        invalid_type_error: 'Las preferencias deben ser un string'
+    }).max(500, {message: 'Las preferencias deben tener menos de 500 caracteres'}),
 
     idmesa:z.string()
 

@@ -27,8 +27,10 @@ export class ReservaController{
             return res.status(400).json({ error: JSON.parse(result.error.message) })
         }
         const input = result.data
-        const { idmesa,fecha, personas, hora_inicio, hora_fin, nombre, cedula, idtelefono, iddescripcion,zona} = input;
+        
+        const { idmesa,fecha, personas, hora_inicio, hora_fin, nombre, cedula, idtelefono, iddescripcion,zona,stringPreferencias} = input;
         const nueva_reserva = await ReservaModel.create(input)
+        
         res.redirect('/reservas')
     }
         

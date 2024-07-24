@@ -9,6 +9,8 @@ export const createReservasRouter = () => {
 
     reservasRouter.get('/',controladorInventario.mostrarReserva);
 
+    reservasRouter.get('/obtener-reservas', controladorReserva.getAll)
+
     reservasRouter.get('/css/reservas.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/reservacion.css'))
     });
