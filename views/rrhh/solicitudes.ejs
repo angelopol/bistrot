@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recursos Humanos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="/rrhh/assets/style.css">
     <link rel="stylesheet" href="/rrhh/css/header.css">
     <link rel="stylesheet" href="/rrhh/css/rrhh.css">
@@ -60,8 +59,18 @@
                 </div>
             </div>
 
-            <main class="main-section">
-                <img src="css/img/icono_salida.png" class="icono" onclick="window.location.href ='/rrhh'"> </a></button>
+            <main class="content-area">
+                <h1 class="page-title">Recursos Humanos</h1>
+                
+                <div class="table-actions">
+                    <button class="action-button"><a href="/rrhh/form">Agregar</a></button>
+                    <button class="action-button"><a href="/rrhh/entradas">Registro</a></button>
+                    <button class="action-button"><a href="/rrhh/ausensias">Ausencias</a></button>
+                    <button class="action-button"><a href="/rrhh/Horarios">Horarios</a></button>
+                    <button class="action-button"><a href="/rrhh/informe">Informe</a></button>
+                    <button class="action-button on"><a href="/rrhh/solicitudes">Solicitudes</a></button>
+
+                </div>
                 <div class="table-container">
                     <table id="solicitudesTable" class="table is-striped">
                         <thead>

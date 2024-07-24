@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/rrhh/assets/horarios.css">
         <link rel="stylesheet" href="/rrhh/assets/style.css">
+        <link rel="stylesheet" href="/rrhh/assets/horarios.css">
         <link rel="stylesheet" href="/assets/header.css">
     <link rel="stylesheet" href="/assets/side.css">
     <link rel="icon" href="/assets/favicon.ico">
@@ -57,18 +57,25 @@
                         <p class="side-option">Reservas</p>
                     </div>
                 </div>
-    
-
-                <div class="lista">
-                    <img src="css/img/icono_salida.png" class="icono" onclick="window.location.href ='/rrhh'"> </a></button><h2 class="listaEmpleados">Horario</h3>
-                    <div>
-                        <table class="table table-striped table-hover">
-                            
-                            <tbody>
-                            </tbody>
-                          </table>
-                    </div>
-                </div>
+                <main class="content-area">
+                    <h1 class="page-title">Recursos Humanos</h1>
+                                <div class="table-actions">
+                                    <button class="action-button"><a href="/rrhh/form">Agregar</a></button>
+                                    <button class="action-button"><a href="/rrhh/entradas">Registro</a></button>
+                                    <button class="action-button"><a href="/rrhh/ausensias">Ausencias</a></button>
+                                    <button class="action-button on"><a href="/rrhh/Horarios">Horarios</a></button>
+                                    <button class="action-button"><a href="/rrhh/informe">Informe</a></button>
+                                    <button class="action-button"><a href="/rrhh/solicitudes">Solicitudes</a></button>
+                                </div>
+                                <div class="lista">
+                                    <div>
+                                        <table class="table table-striped table-hover">
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                </main>
             </div>
         </div>
         <script type="text/javascript" src="/rrhh/js/horarios.js" defer>

@@ -89,7 +89,7 @@ export class EmpleadosModel {
       return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
     };
     const {
-      nombre,
+      Nombre,
       apellido,
       cedula,
       user,
@@ -98,7 +98,8 @@ export class EmpleadosModel {
       telefono,
       direccion,
       fecha_contratacion,
-      fecha_culminacion
+      fecha_culminacion,
+      experiencia_laboral
     } = input;
 
     try {
@@ -112,9 +113,10 @@ export class EmpleadosModel {
           telefono = ?,
           direccion = ?,
           fecha_contratacion = ?,
-          fecha_culminacion = ?
+          fecha_culminacion = ?,
+          experiencia_laboral = ?
           WHERE user = ?;`,
-        [nombre, apellido, cedula, cargo, salario, telefono, direccion, formatDateForSubmission(fecha_contratacion), formatDateForSubmission(fecha_culminacion), user]
+        [Nombre, apellido, cedula, cargo, salario, telefono, direccion, formatDateForSubmission(fecha_contratacion), formatDateForSubmission(fecha_culminacion), experiencia_laboral, user]
       );
     } catch (e) {
       console.error('Error updating empleado:', e);  // Imprimir el error completo
