@@ -415,7 +415,7 @@ export class VentasModel {
 
         try {
             await connection.query(
-                "INSERT INTO submodulo_factura (monto, iva, consumo,status_pedido, mesa, zona) VALUES (?, ?, ?, ?, ?, ?)", [monto, iva, consumo, status_pedido, mesa, zona]
+                "INSERT INTO submodulo_factura (monto, iva, consumo,status_pedido, mesa, zona,detalles) VALUES (?, ?, ?, ?, ?, ?,?)", [monto, iva, consumo, status_pedido, mesa, zona,""]
             )
             console.log('SE HA CONECTADO A LA BASE DE DATOS!!!')
         } catch (error) {
@@ -428,7 +428,7 @@ export class VentasModel {
 
     static async update_factura({id , input}) {
         const {
-            monto, iva, consumo, status_pedido, mesa, zona
+            monto, iva, consumo, status_pedido, mesa, zona,detalles
         } = input;
 
         try {
@@ -459,6 +459,10 @@ export class VentasModel {
             if (zona) {
                 updates.push("zona = ?");
                 values.push(zona);
+            }
+            if (detalles) {
+                updates.push("detalles = ?");
+                values.push(detalles);
             }
 
             // Comprobar si hay campos para actualizar

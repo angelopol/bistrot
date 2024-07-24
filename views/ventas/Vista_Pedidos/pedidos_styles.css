@@ -309,13 +309,14 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
+    justify-content: center;
+    text-align: center;
     
-    margin: auto 0;
 }
 
 .order-item-name {
     color: #000;
-    font: 12px 'Montserrat', sans-serif;
+    font: 14px 'Montserrat', sans-serif;
 }
 
 .order-item-description {
