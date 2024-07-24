@@ -26,7 +26,7 @@ h2 a {
 
 .right-side {
     box-shadow: 0 0 5px rgba(50, 50, 50, 0.1);
-    height: 40vh;
+    height: 45vh;
     width: 15vw;
     border-radius: 5px;
     display: flex;
@@ -87,6 +87,7 @@ button:hover {
 
 table {
     width:100%;
+    height: 100%;
     top: 0;
     border-collapse: collapse;
 }
@@ -104,4 +105,74 @@ table {
 
 tr {
     font-size: 0.8rem;
+    padding: 0 20px;
+    color: #0F624A;
+
+}
+
+table thead tr {
+  
+  margin: 20%;
+  background-color: #0F624A30;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+table button {
+  height: 100%;
+  width: 50%;
+  background-color: #0F624A;
+  cursor: pointer;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+
+table button:hover {
+  width: 60%;
+}
+
+table button:active {
+  transform: scale(0.9);
+
+}
+
+
+table thead tr {
+  user-select:none;
+}
+
+.left-side {
+  overflow: auto;
+  box-shadow: 3px 3px 10px #c5c5c5, -4px -4px 11px #ffffff;
+  height: 50vh;
+  border-radius: 10px;
+  width: 100%;
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  padding: 5px;
+  border-radius: 2px;
+  
+  border: 1px solid #0F624A;
+}
+
+input[type="radio"]:checked {
+  background-color: #0F624A;
+  
+  
 }

@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="/reservas/CrearReservas.css">
     <link rel="stylesheet" href="/reservas/side.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
-    <script src="/assets/logout.js" defer></script>
-    <script src="/assets/user.js" defer></script>
-    <script src="/assets/side.js" defer></script>
 </head>
 <body>
     <header>
@@ -22,35 +19,35 @@
     <div class="pagina">
         <div id="sidebar">
             <div class="side inicio">
-                <img src="/Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
+                <img src="/reservas/resources/iconos_barra/inicio-green.png" class="side-foto">
                 <p class="side-option">Inicio</p>
             </div>
             <div class="side ventas">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/ventas-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/ventas-green.png">
                 <p class="side-option">Ventas/Salon</p>
             </div>
             <div class="side compras">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/compras-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/compras-green.png">
                 <p class="side-option">Compras</p>
             </div>
             <div class="side rrhh">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/person-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/person-green.png">
                 <p class="side-option">RRHH</p>
             </div>
             <div class="side inventario">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/inventario-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/inventario-green.png">
                 <p class="side-option">Inventario</p>
             </div>
             <div class="side mantent">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/mantenimiento-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/mantenimiento-green.png">
                 <p class="side-option">Mantenimiento</p>
             </div>
             <div class="side cocina">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/cocina-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/cocina-green.png">
                 <p class="side-option">Cocina/Bar</p>
             </div>
             <div class="side reserv">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/reservas-green.png">
+                <img class="side-foto" src="/reservas/resources/iconos_barra/reservas-green.png">
                 <p class="side-option">Reservas</p>
             </div>
         </div>
@@ -72,7 +69,7 @@
                 <form id="reserva-form" action="/reservas/mesas/CrearReservas/crear" method="POST">
                     <div class="form-group">
                         <label for="fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha" required>
+                        <input type="date" id="fecha" name="fecha" readonly>
                     </div>
                     <div class="form-group">
                         <label for="personas">Cantidad de personas:</label>
@@ -95,7 +92,7 @@
                         <input type="text" id="cedula" name="cedula" required>
                     </div>
                     <div class="form-group">
-                        <label for="idmesa">Número de mesa:</label>
+                        <label for="idmesa">Número(s) de mesa:</label>
                         <input type="text" id="idmesa" name="idmesa" readonly>
                     </div>
                     <div class="form-group">
@@ -107,9 +104,33 @@
                         <input type="text" id="iddescripcion" name="iddescripcion" required>
                     </div>
                     <div class="form-group">
-                        <label for="zona">Zona:</label>
-                        <input type="text" id="zona" name="zona" >
+                        <label for="iddescripcion">Zona:</label>
+                        <input type="text" id="idzona" name="idzona" required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="personas">Cantidad de platos:</label>
+                        <input type="number" id="platos" name="platos" min="1" required>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label for="cargo">Preferencias:</label>
+                        <% if (comidas) { %>
+                            <select name="Preferencias" id="Preferencias">
+                                <% for (let i = 0; i < comidas.length; i++) { %>
+                                    <option value="<%= i + 1 %>">
+                                        <%= comidas[i].nombre %>
+                                    </option>
+                                <% } %>
+                            </select>
+                        <% } %>
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <input id="stringPreferencias" name="stringPreferencias" readonly>
+                    </div>
+                    
+                    <button id="agregarPreferencias">Agregar preferencias</button>
                     <button type="submit">Registrar Reserva</button>
                 </form>
             </div>
@@ -133,26 +154,70 @@
         //recuperar las mesas seleccionadas y mostrarlas en el campo de numero de mesa
         
         document.addEventListener("DOMContentLoaded", function() {
+            var cadena = ""
+            let dataToSend = {};
             const today = new Date().toISOString().split('T')[0];
             document.getElementById("fecha").setAttribute("min", today);
+            const selectedSeats = JSON.parse(sessionStorage.getItem('selectedSeats')) || {};
+            const reservedSeats = JSON.parse(localStorage.getItem('reservedSeats')) || {};
+            console.log("Loaded selectedSeats from sessionStorage:", selectedSeats);
+            console.log("Loaded reservedSeats from localStorage:", reservedSeats);
+            const agregarPreferencias = document.getElementById('agregarPreferencias');
 
-            //funcion que recupera las mesas seleccionadas y las muestra en el campo de numero de mesa
-            const buttons = document.querySelectorAll(".button");
-            buttons.forEach(button => {
-                button.addEventListener("click", function() {
-                    if (button.classList.contains("selected")) {
-                        button.classList.remove("selected");
-                    } else {
-                        button.classList.add("selected");
+            document.getElementById('reserva-form').addEventListener('submit', (event) => {
+                const selectedDate = document.getElementById('fecha').value;
+                console.log("Selected date:", selectedDate);
+
+                if (selectedDate && selectedSeats[selectedDate]) {
+                    console.log("Selected seats for date:", selectedSeats[selectedDate]);
+                    if (!reservedSeats[selectedDate]) {
+                        reservedSeats[selectedDate] = {};
                     }
-
-                    const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button);
-                    document.getElementById("idmesa").value = selectedButtons.join(", ");
-
-                    localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
-                });
+                    selectedSeats[selectedDate].forEach(seatId => {
+                        reservedSeats[selectedDate][seatId] = true;
+                    });
+                    localStorage.setItem('reservedSeats', JSON.stringify(reservedSeats));
+                    sessionStorage.removeItem('selectedSeats');
+                    alert('Reserva exitosa');
+                } else {
+                    event.preventDefault();
+                    alert('Selecciona al menos una mesa');
+                }
             });
 
+            //funcion que recibe la fecha seleccionada y se imprime en el campo de la fecha
+
+            const reservationDateInput = document.getElementById('fecha');
+            reservationDateInput.value = JSON.parse(localStorage.getItem('selectedDate')) || today;
+            const idMesaInput=document.getElementById('idmesa');
+
+            
+                function updateSelectedSeats() {
+            const selectedDate = reservationDateInput.value;
+            if (selectedSeats[selectedDate]) {
+                idMesaInput.value = selectedSeats[selectedDate].join(', ');
+            } else {
+                idMesaInput.value = '';
+            }
+            }
+            updateSelectedSeats();
+
+            agregarPreferencias.addEventListener('click', (e) => {
+                e.preventDefault
+                cantidadPlatos = document.querySelector('#platos').value;
+                preferencias = document.querySelector('#Preferencias').value;
+                // variable que guarda la cantidad de platos y las preferencias en formato: {"5":7,"6":3,"1":4}
+                dataToSend[preferencias] = parseInt(cantidadPlatos); // Convertir cantidadPlatos a número
+                // Convertir dataToSend a JSON
+                cadena = JSON.stringify(dataToSend);
+                document.querySelector('#platos').value = '';
+                document.querySelector('#Preferencias').value = '';
+                document.querySelector('#stringPreferencias').value = cadena;
+                console.log(document.querySelector('#stringPreferencias').value);
+                
+            });
+
+            
             //funcion que valide que un numero de telefono tenga 11 digitos, si es un numero y si los primeros 4 digitos son: 0412, 0414, 0416, 0424, 0426
 
             document.getElementById("idtelefono").addEventListener("input", function(event) {
@@ -198,56 +263,13 @@
                 }
             });
 
-            //funcion que recupera las zona seleccionadas y las muestra en el campo de zona
+            //funcion que limita la cantidad de personas a 4 si se selecciona una mesa
 
-            
-            buttons.forEach(button => {
-                button.addEventListener("click", function() {
-                    if (button.classList.contains("selected")) {
-                        button.classList.remove("selected");
-                    } else {
-                        button.classList.add("selected");
-                    }
-
-                    const selectedButtons = Array.from(document.querySelectorAll(".button.selected")).map(button => button.textContent);
-                    document.getElementById("zona").value = selectedButtons.join(", ");
-
-                    localStorage.setItem("selectedButtons", JSON.stringify(selectedButtons));
-                });
-            });
-
-            // Recuperar la selección de mesas almacenada
-            const selectedButtons = JSON.parse(localStorage.getItem("selectedButtons")) || [];
-
-            // Mostrar las mesas seleccionadas en el campo de número de mesa
-            document.getElementById("idmesa").value = selectedButtons.join(", ");
-
-            document.getElementById("reserva-form").addEventListener("submit", function(event) {
-                const horaInicio = document.getElementById("hora_inicio").value;
-                const horaFin = document.getElementById("hora_fin").value;
-
-                if (!validarHorarioRestaurante(horaInicio, horaFin)) {
-                    alert("El restaurante solo acepta reservas entre las 7:00 AM y las 9:00 PM.");
-                    event.preventDefault();
-                }
-                //condicional que valida si el campo de numero de mesa esta vacio
-                else if (document.getElementById("idmesa").value == "") {
-                    alert("Debe seleccionar al menos una mesa.");
-                    event.preventDefault();
-                }
-                
-            });
-
-            //funcion que valida si una cedula tiene de 7 a 8 digitos, si es un numero y si el primer numero no es 0
-
-            document.getElementById("cedula").addEventListener("input", function(event) {
-                const cedula = event.target.value;
-                if (cedula.length < 7 || cedula.length > 8) {
-                    event.target.setCustomValidity("La cédula debe tener entre 7 y 8 dígitos.");
-                } else if (isNaN(cedula)) {
-                    event.target.setCustomValidity("La cédula debe contener solo números.");
-                } else if (cedula[0] === "0") {
-                    event.target.setCustomValidity("La cédula no puede empezar con 0.");
+            document.getElementById("personas").addEventListener("input", function(event) {
+                const personas = event.target.value;
+                const selectedDate = document.getElementById('fecha').value;
+                if (selectedSeats[selectedDate] && selectedSeats[selectedDate].length > 0 && personas > 4) {
+                    event.target.setCustomValidity("Solo se permiten 4 personas por mesa.");
                 } else {
                     event.target.setCustomValidity("");
                 }
@@ -319,14 +341,8 @@
                 }
                 }
 
-                //...
 
-                document.getElementById("reserva-form").addEventListener("submit", function(event) {
-                if (!document.getElementById("hora_inicio").checkValidity() || !document.getElementById("hora_fin").checkValidity()) {
-                    event.preventDefault();
-                }
-                });
-            
+                
             
             function validarHorarioRestaurante(horaInicio, horaFin) {
                 const horarioInicioRestaurante = 7;

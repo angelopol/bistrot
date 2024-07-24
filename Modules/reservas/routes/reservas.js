@@ -9,6 +9,8 @@ export const createReservasRouter = () => {
 
     reservasRouter.get('/',controladorInventario.mostrarReserva);
 
+    reservasRouter.get('/obtener-reservas', controladorReserva.getAll)
+
     reservasRouter.get('/css/reservas.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/reservacion.css'))
     });
@@ -32,17 +34,19 @@ export const createReservasRouter = () => {
         res.sendFile(path.join(__dirname, 'views/mesas.css'))
     });
 
+    reservasRouter.get('/reportes',controladorInventario.mostrarReporte);
+
     reservasRouter.get('/CrearReservas',controladorInventario.mostrarCrearReservas);
 
     reservasRouter.get('/css/crearReservas.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/CrearReservas.css'))
     });
+
+    reservasRouter.get('/reportesCocina',controladorInventario.mostrarReporteCocina);
     
     reservasRouter.post('/mesas/CrearReservas/crear',controladorReserva.create);
 
-    reservasRouter.delete('/eliminar/:id',controladorReserva.delete);
-
-    reservasRouter.post('/modificar/:id',controladorReserva.update);
+    reservasRouter.post('/reservas/reportesCocina/:id',controladorReserva.update);
 
 
     return reservasRouter
