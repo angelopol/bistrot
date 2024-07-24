@@ -1,27 +1,30 @@
 import { Router } from 'express';
-import { createMantenimientoApi } from './api.js';
+//import { createMantenimientoApi } from './api.js';
+import { 
+  getMantenimientos,
+  getMantenimientoID,
+  postMantenimiento,
+  getContactos,
+  getContactosID,
+  postContactos,
+  deleteContactos,
+  deleteMantenimiento,
+  }
+  from './controller.js'
 
 export const createMantenimientoRouter = () => {
   const MantenimientoRouter = Router();
-  const c = createMantenimientoApi(MantenimientoRouter);
 
   // rutas de las api de mantenimiento
 
-  MantenimientoRouter.get('/mantenimientos_realizar', c)
-
-  MantenimientoRouter.get('/mantenimientos_realizar/:id', c)
-
-  MantenimientoRouter.post('/mantenimientos_realizar', c)
- 
-  MantenimientoRouter.delete('/mantenimientos_realizar/:id', c)
-
-  MantenimientoRouter.get('/contactos', c)
-
-  MantenimientoRouter.get('/contactos/:id', c)
-
-  MantenimientoRouter.post('/contactos', c)
-
-  MantenimientoRouter.delete('/contactos/:id', c)
+  MantenimientoRouter.get('/api/mantenimientos_realizar', getMantenimientos);
+  MantenimientoRouter.get('/api/mantenimientos_realizar/:id', getMantenimientoID);
+  MantenimientoRouter.post('/mantenimientos_realizar', postMantenimiento)
+  MantenimientoRouter.delete('/mantenimientos_realizar/:id', deleteMantenimiento)
+  MantenimientoRouter.get('/contactos', getContactos)
+  MantenimientoRouter.get('/contactos/:id', getContactosID)
+  MantenimientoRouter.post('/contactos', postContactos)
+  MantenimientoRouter.delete('/contactos/:id', deleteContactos)
 
   /*Rutas de los documentos HTML/EJS*/ 
 

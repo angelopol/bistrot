@@ -77,7 +77,7 @@
                         <a href="/mantenimientos/reportes">Reportes</a>
                     </div>
                     <div class="btns" id="btn-agendar">
-                        <a href="#modal1">Agendar Mantenimiento</a>
+                        <a href="/mantenimientos/agendar">Agendar Mantenimiento</a>
                     </div>
                 </div>
             </div>
@@ -90,15 +90,113 @@
             <h2>Agendar</h2>
             <hr>
             <form>
-                <input type="text" placeholder="Descripcion">
-                <input type="text" placeholder="Responsable">
+                <input type="text" class="descripcion" placeholder="Descripcion">
+                <input type="text" class="Responsable" placeholder="Responsable">
                 <label for="inicio-mantenimiento" class="label">Fecha de Inicio</label>
-                <input type="date" id="inicio-mantenimiento">
+                <input type="date" class="inicio_mantenimiento" id="inicio-mantenimiento">
                 <label for="final-mantenimiento" class="label">Fecha de Finalizacion</label>
-                <input type="date" id="final-mantenimiento">
+                <input type="date" class="final_mantenimiento" id="final-mantenimiento">
                 <button class="btns" id="btn-modal">Agendar</button>
             </form>
-        </div>
+        </div> 
     </div>
+
+    <script>
+
+        // Función para obtener los datos y llenar la tabla
+        async function obtenerDatos() {
+            try {
+                const response = await fetch("http://localhost:1234/mantenimientos/api/mantenimientos_realizar");
+
+                // Verifica si la respuesta es correcta
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        console.log("La URL 'http://localhost:1234/mantenimientos/api/mantenimientos_realizar' no se encontró.");
+                    } else {
+                        throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
+                    }
+                }
+
+                // Convierte la respuesta a JSON
+                const mantenimiento_realizar = await response.json();
+
+                // Llama a la función para llenar la tabla
+                llenarTabla(mantenimiento_realizar);
+
+            } catch (error) {
+                console.error("Error al obtener los datos:", error);
+            }
+        }
+
+        // Función para llenar la tabla con los datos
+        function llenarTabla(data) {
+            const tbody = document.querySelector("table tbody");
+            tbody.innerHTML = ""; // Limpia el contenido previo
+
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.descripcion_corta}</td>
+                    <td>${item.responsable}</td>
+                    <td>${item.fecha_inicio}</td>
+                    <td>${item.fecha_final}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+
+        // seleccionamos el boton de enviar el formulario
+        const boton_enviar_formulario = document.querySelector(".btns");
+
+        // agregamos un evento de click al boton al enviar
+        boton_enviar_formulario.addEventListener("click", guardar_datos_formulario);
+
+
+        // creamos una funcion para guardar los datos en el formulario
+        async function guardar_datos_formulario() {
+
+            // obtener las entrada de texto del formulario
+            descripcion = document.querySelector(".Descripcion").value
+            responsable = document.querySelector(".Responsable").value
+            inicio_mantenimiento = document.querySelector(".inicio_mantenimiento").value
+            final_mantenimiento =  document.querySelector(".final_mantenimiento").value
+
+            try {
+
+                const bodyData = {
+                    descripcion: descripcion,
+                    responsable: responsable,
+                    inicio_mantenimiento: inicio_mantenimiento,
+                    final_mantenimiento: final_mantenimiento
+                };
+
+                const response = await fetch("http://localhost:1234/mantenimientos/api/mantenimientos_realizar", {
+                    method : "POST",
+                    headers : { "Content-Type" : "application/json" },
+                    body : JSON.stringify(bodyData)
+                });
+
+                // Verifica si la respuesta es correcta
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        console.log("La URL 'http://localhost:1234/mantenimientos/api/mantenimientos_realizar' no se encontró.");
+                    } else {
+                        throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
+                    }
+                }
+
+            } catch (error) {
+                console.error("Error al obtener los datos:", error);
+            }
+        }
+
+
+
+        // Llama a la función para obtener los datos al cargar la página
+        document.addEventListener("DOMContentLoaded", obtenerDatos);
+
+
+    </script>
 </body>
 </html>
