@@ -1,133 +1,245 @@
-// Agrega un evento de clic al botón "Ver" para cada fila de la tabla de empleados
-document.querySelectorAll('.table-row').forEach(row => {
-  const viewButton = row.querySelector('.action-view');
-  viewButton.addEventListener('click', function() {
-    const employeeId = row.dataset.employeeId; // Asigna un atributo data-employee-id a cada fila de la tabla
-    const employeeData = empleados.find(employee => employee.id === employeeId);
-    showModal(employeeData);
-  });
-});
-
-// Función para mostrar el modal con la información del empleado
-function showModal(employeeData) {
-  const modal = document.querySelector('.modal');
-  modal.innerHTML = `
-    <header>
-      <h2 class="employee-id">${employeeData.codigo}</h2>
-      <h1 class="employee-name">${employeeData.nombre} ${employeeData.apellido}</h1>
-    </header>
-    <section class="info-row">
-      <span class="info-label">Fecha de inicio</span>
-      <span class="info-value">${employeeData.fecha_inicio}</span>
-    </section>
-    <section class="info-row">
-      <span class="info-label">Fecha de culminación</span>
-      <span class="info-value">${employeeData.fecha_culminacion}</span>
-    </section>
-    <section class="info-row">
-      <span class="info-label">Horario</span>
-      <span class="info-value">${employeeData.horario}</span>
-    </section>
-    <section class="info-row">
-      <span class="info-label">Salario</span>
-      <span class="info-value">${employeeData.salario}</span>
-    </section>
-    <section class="info-row">
-      <span class="info-label">Inasistencias</span>
-      <span class="info-value">${employeeData.inasistencias}</span>
-    </section>
-    <section class="info-row">
-      <span class="info-label">Teléfono</span>
-      <span class="info-value">${employeeData.telefono}</span>
-    </section>
-    <section class="info-row">
-      <span class="info-label">Dirección</span>
-      <span class="info-value">${employeeData.direccion}</span>
-    </section>
-    <button class="cerrar-modal">Cerrar</button>
-  `;
-  modal.classList.add('revelar');
-}
-
-// const botonMostrarEmpleado = document.querySelector(".action-view")
-const modal = document.querySelector(".modal");
-const closeModalButton = document.querySelector(".cerrar-modal");
-
-async function ObtenerEmpleados() {
-  try {
-  const response = await fetch('/rrhh/empleados');
-  if (!response.ok) {
-      throw new Error('Network response was not ok');
-  }
-  const empleados = await response.json();
-  console.log(empleados)
-
-  llenarTabla(empleados);
-  } catch (error) {
-  console.error('Error fetching empleados:', error);
-  }
-}
-
-function llenarTabla(empleados) {
-  const tabla = document.querySelector('.table-container');
-
-  // Limpia la tabla antes de agregar nuevas filas
-  tabla.innerHTML = `
-    <div class="table-header">
-      <span class="header-name">Nombre y Apellido</span>
-      <div class="header-details">
-        <span>Código</span>
-        <span>Cargo</span>
-      </div>
-    </div>
-    <div class="table-row" id="row-1">
-      <span class="row-name"></span>
-      <div class="row-details">
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  `;
-
-  // Itera sobre los empleados y agrega una fila por cada uno
-  // Aqui llena la tabla del html
-  empleados.forEach(empleado => {
-    const fila = document.createElement('span');
-    fila.innerHTML = `
-      <span>${empleado.nombre}</span>
-      <span>${empleado.codigo}</span>
-      <span>${empleado.Puesto}</span>
-    `;
-    tabla.appendChild(fila);
-  });
-}
-
-botonMostrarEmpleado.addEventListener("click", function() {
-  modal.classList.add("revelar");
-});
-
-
-closeModalButton.addEventListener("click", function() {
-  modal.classList.remove("revelar");
-});
-
-const searchInput = document.getElementById('searchInput'); 
-const searchButton = document.querySelector('.search-button'); 
-const tableRows = document.querySelectorAll('.table-row'); 
-
-searchButton.addEventListener('click', function(event) {
-  event.preventDefault(); 
-  const searchTerm = searchInput.value.toLowerCase(); 
-
-  tableRows.forEach(row => {
-    const employeeName = row.querySelector('.row-name').textContent.toLowerCase(); 
-    const employeeCode = row.querySelector('.row-details span:first-child').textContent; 
-
-    if (employeeName.includes(searchTerm) || employeeCode.includes(searchTerm)) {
-      row.style.display = 'flex'; 
-    } else {
-      row.style.display = 'none'; 
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const tableBody = document.querySelector('#employeeTable tbody');
+    const modal = document.getElementById('employeeModal');
+    const modalContent = document.getElementById('modalContent');
+    const employeeImage = document.getElementById('employeeImage');
+    const editButton = document.getElementById('editButton');
+    const saveButton = document.getElementById('saveButton');
+    let currentEmployee = null;
+    const closeModal = document.getElementById('closeModal');
+    let employees = [];  // Array para almacenar los datos de los empleados
+  
+    if (!searchInput || !tableBody || !modal || !modalContent || !employeeImage || !editButton || !saveButton || !closeModal) {
+      console.error('One or more elements are not found in the DOM');
+      return;
     }
+  
+    // Función para cargar los datos de los empleados
+    const loadEmployees = () => {
+        fetch('/rrhh/empleados')
+            .then(response => response.json())
+            .then(data => {
+                employees = data;
+                renderTable(employees);
+            })
+            .catch(error => console.error('Error fetching employee data:', error));
+    };
+  
+    const eliminar = (id) => {
+      fetch('/register/eliminar', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(id)
+        }) 
+        .then(data => {
+          if (data.error) {
+            alert(`Error al eliminar empleado: ${data.error.nombre}`);
+          } else {
+            alert('Empleado eliminado exitosamente');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Hubo un error al elimiar el empleado');
+        });
+    }
+  
+    // Función para renderizar la tabla
+    const renderTable = (data) => {
+        tableBody.innerHTML = '';  // Limpiar el contenido actual de la tabla
+        data.forEach(employee => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${employee.Nombre} ${employee.Apellido}</td>
+                <td>${employee.cedula}</td>
+                <td>${employee.Puesto}</td>
+                <td>
+                  <button class="button is-info show-details" data-id="${employee.cedula}">Ver Detalles</button>
+                  <button class="button is-info delete-emp" data-id="${employee.user}">Despedir</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+  
+        // Añadir evento a los botones de detalles
+        document.querySelectorAll('.show-details').forEach(button => {
+            button.addEventListener('click', function() {
+                const employeeId = this.getAttribute('data-id');
+                showEmployeeDetails(employeeId);
+            });
+        });
+        document.querySelectorAll('.delete-emp').forEach(button => {
+          button.addEventListener('click', function() {
+              const employeeId = this.getAttribute('data-id');
+              if(employeeId != 'admin'){
+                  eliminar({id : employeeId});
+                  loadEmployees();
+              }else alert("Accion no permitida")
+          });
+        });
+    };
+  
+    const formatDate = (dateString) => {
+      const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+      const date = new Date(dateString);
+      return date.toLocaleDateString('es-ES', options);
+    };
+    
+    const formatDateForSubmission = (dateString) => {
+      const parts = dateString.split('/');
+      return `${parts[2]}-${parts[1]}-${parts[0]}`; // Asumiendo que el formato es DD/MM/YYYY
+    };
+  
+    // Función para mostrar detalles del empleado
+    const showEmployeeDetails = (id) => {
+      currentEmployee = employees.find(emp => emp.cedula === id);
+      if (currentEmployee) {
+          employeeImage.src = currentEmployee.image || './css/img/employee.png'; // Ruta de la imagen del empleado o imagen por defecto
+          modalContent.innerHTML = `
+              <h2>${currentEmployee.Nombre} ${currentEmployee.Apellido}</h2>
+              <div class="field">
+                  <label class="label">Cedula:</label>
+                  <div class="control">
+                      <input class="input" type="text" value="${currentEmployee.cedula}" disabled>
+                  </div>
+              </div>
+              <div class="field">
+                  <label class="label">Cargo:</label>
+                  <div class="control">
+                      <input class="input" type="text" value="${currentEmployee.Puesto}" disabled>
+                  </div>
+              </div>
+              <div class="field">
+                  <label class="label">Telefono:</label>
+                  <div class="control">
+                      <input class="input" type="text" value="${currentEmployee.Telefono}" disabled>
+                  </div>
+              </div>
+              <div class="field">
+                  <label class="label">Direccion:</label>
+                  <div class="control">
+                      <input class="input" type="text" value="${currentEmployee.Direccion}" disabled>
+                  </div>
+              </div>
+              <div class="field">
+                  <label class="label">Experiencia Laboral:</label>
+                  <div class="control">
+                      <input class="input" type="text" value="${currentEmployee.experiencia_laboral}" disabled>
+                  </div>
+              </div>
+              <div class="field">
+                  <label class="label">Fecha de Contratacion:</label>
+                  <div class="control">
+                      <input class="input" type="text" value="${formatDate(currentEmployee.fecha_contratacion)}" disabled>
+                  </div>
+              </div>
+              <div class="field">
+                  <label class="label">Fecha de Culminacion:</label>
+                  <div class="control">
+                      <input class="input" type="text" value="${formatDate(currentEmployee.fecha_culminacion)}" disabled>
+                  </div>
+              </div>
+              <div class="field">
+                  <label class="label">Salario:</label>
+                  <div class="control">
+                      <input class="input" type="text" value="${currentEmployee.Salario}" disabled>
+                  </div>
+              </div>
+          `;
+          modal.classList.add('is-active');
+      }
+    };
+  
+    // Enable editing of fields
+    editButton.addEventListener('click', () => {
+      const inputs = modalContent.querySelectorAll('input');
+      inputs.forEach(input => input.disabled = false);
+      saveButton.style.display = 'inline-block';
+      editButton.style.display = 'none';
+    });
+  
+    // Save changes
+    saveButton.addEventListener('click', () => {
+      const inputs = modalContent.querySelectorAll('input');
+      const updatedEmployee = { ...currentEmployee };
+      
+      inputs.forEach(input => {
+          const label = input.closest('.field').querySelector('.label').textContent.replace(':', '').trim().toLowerCase().replace(/ /g, '_');
+          const key = label === 'fecha_de_contratacion' || label === 'fecha_de_culminacion' ? label.replace('de_', '') : label;
+          if (key === 'fecha_contratacion' || key === 'fecha_culminacion') {
+              updatedEmployee[key] = formatDateForSubmission(input.value);
+          } else {
+              updatedEmployee[key] = input.value;
+          }
+      });
+  
+      // Save the updated employee data (here you should send it to the server)
+      fetch(`/register/modificar`, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedEmployee)
+      })
+      .then(response => response.json())
+      .then(data => {
+          // Update local data
+          const index = employees.findIndex(emp => emp.cedula === currentEmployee.cedula);
+          employees[index] = updatedEmployee;
+          modal.classList.remove('is-active');
+          loadEmployees();
+      })
+      .catch(error => console.error('Error updating employee data:', error));
+      saveButton.style.display = 'none';
+      editButton.style.display = 'inline-block';
+    });
+  
+    // Función para filtrar los datos
+    const filterTable = () => {
+        const searchText = searchInput.value.toLowerCase();
+        const filteredEmployees = employees.filter(employee => {
+            const fullName = `${employee.Nombre.toLowerCase()} ${employee.Apellido.toLowerCase()}`;
+            return fullName.includes(searchText) || 
+                   employee.cedula.toLowerCase().includes(searchText) || 
+                   employee.Puesto.toLowerCase().includes(searchText);
+        });
+        renderTable(filteredEmployees);
+    };
+  
+    // Cargar los empleados al inicio
+    loadEmployees();
+  
+    // Agregar un evento para filtrar la tabla al escribir en el campo de búsqueda
+    searchInput.addEventListener('input', filterTable);
+  
+    // Cerrar el modal
+    closeModal.addEventListener('click', () => {
+          saveButton.style.display = 'none';
+          editButton.style.display = 'inline-block';
+        modal.classList.remove('is-active');
+        modal.classList.add('fade-out'); // Añadir clase de salida para animación
+        setTimeout(() => {
+            modal.classList.remove('fade-out');
+        }, 300); // Tiempo de duración de la animación de salida
+    });
+  
+    document.querySelectorAll('.delete').forEach(deleteButton => {
+      deleteButton.addEventListener('click', () => {
+          saveButton.style.display = 'none';
+          editButton.style.display = 'inline-block';
+          modal.classList.remove('is-active');
+      });
+    });
+  
+    document.querySelectorAll('.modal-background').forEach(background => {
+      background.addEventListener('click', () => {
+          saveButton.style.display = 'none';
+          editButton.style.display = 'inline-block';
+          modal.classList.remove('is-active');
+      });
+    });
   });
-
-});
+  

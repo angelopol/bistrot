@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/rrhh/css/styles.css">
     <link rel="stylesheet" href="/rrhh/assets/entradas.css">
     <link rel="stylesheet" href="/assets/header.css">
     <link rel="stylesheet" href="/assets/side.css">
@@ -57,36 +58,30 @@
             </div>
         </div>
 
-      <main class="registra-entradas">
-        <h1 class="page-title" style="transform: translateY(-100px);">Entradas de empleados</h1>
-        <form class="employee-registration">
-          <div class="form-row">
-            <div class="form-group">
-            <div class="form-group">
-              <label for="employee-ci" class="form-label">Cédula de identidad</label>
-              <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
-            </div>
-            <script>
-              // validacion cedula, solo permite ingresar numeros, sin espacios
-              // permite ingresar maximo 8 digitos
-              document.getElementById("employee-ci").addEventListener("input", function () {
-                  var idNumber = this.value;
-                  var idNumberPattern = /^[0-9]*$/;
-                  if (!idNumberPattern.test(idNumber)) {
-                      this.value = idNumber.slice(0, -1);
-                  }
-                  if (this.value.length > 8) {
-                      this.value = idNumber.slice(0, 8);
-                  }
-              });
-            </script>
-          </div>
-          
-          <div class="form-row">
-            <button type="button" class="submit-button" id="submit-button">Registrar</button>
-            <button type="button" class="submit-button" onclick="window.location.href = '/rrhh/informe'">Informe</button>
-          </div>
-        </form>
+        <main class="content-area">
+            <h1 class="page-title">Recursos Humanos</h1>
+                    
+                    <div class="table-actions">
+                        <button class="action-button"><a href="/rrhh/form">Agregar</a></button>
+                        <button class="action-button on"><a href="/rrhh/entradas">Registro</a></button>
+                        <button class="action-button"><a href="/rrhh/ausensias">Ausencias</a></button>
+                        <button class="action-button"><a href="/rrhh/Horarios">Horarios</a></button>
+                        <button class="action-button"><a href="/rrhh/informe">Informe</a></button>
+                        <button class="action-button"><a href="/rrhh/solicitudes">Solicitudes</a></button>
+
+                    </div>    
+            <form class="employee-registration">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="employee-ci" class="form-label">Cédula de identidad</label>
+                        <input type="text" id="employee-ci" class="form-input" placeholder="Cédula de identidad" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <button type="button" class="submit-button" id="submit-button">Registrar</button>
+                    <button type="button" class="submit-button" onclick="window.location.href = '/rrhh/informe'">Informe</button>
+                </div>
+            </form>
       </main>
     </div>
   </div>

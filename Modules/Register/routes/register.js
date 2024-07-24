@@ -7,9 +7,19 @@ export const createRegisterRouter = () => {
   const registerController = new RegisterController();
   const entradasController = new EntradasController();
 
-  registerRouter.post('/', registerController.store);
+  //Entradas
   registerRouter.post('/entradas', entradasController.registrarEntrada);
   registerRouter.get('/entradas', entradasController.create);
+  //Registro
+  registerRouter.post('/', registerController.store);
+  registerRouter.delete('/eliminar', registerController.delete);
+  registerRouter.put('/modificar', registerController.update);
+  //Solicitudes
+  registerRouter.get('/solicitudes', registerController.solicitudes);
+  registerRouter.post('/solicitar', registerController.solicitar);
+  registerRouter.put('/solicitudes/estado', registerController.updateEstado);
+
+
 
   return registerRouter;
 }

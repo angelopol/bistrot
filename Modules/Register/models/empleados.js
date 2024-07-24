@@ -13,15 +13,15 @@ export class EmpleadosModel {
       telefono,
       direccion,
       fecha_contratacion,
+      experiencia_laboral,
       fecha_culminacion
     } = input;
-    console.log('Input:', JSON.stringify(input));  // Depuración de entrada
 
     try {
       await connection.query(
-        `INSERT INTO empleados (nombre, apellido, password, cedula, user, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
-        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion]
+        `INSERT INTO empleados (nombre, apellido, password, cedula, user, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, experiencia_laboral)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, experiencia_laboral]
       );
     } catch (e) {
       console.error('Error creating empleado:', e);  // Imprimir el error completo
@@ -50,23 +50,31 @@ export class EmpleadosModel {
     return rows[0]
   }
 
-  static async unique({ nombre }) {
+  static async unique(cedula) {
     try {
-      const [rows] = await connection.query(
-        `SELECT nombre FROM empleados WHERE nombre = ?;`,
-        [nombre]
-      );
-      return rows.length === 0;
-    } catch (e) {
-      console.error('Error checking uniqueness of empleado:', e);  // Imprimir el error completo
-      throw new Error(`Error checking uniqueness of empleado: ${e.message}`);
-    }
-  }
+        const [rows] = await connection.query(
+            `SELECT nombre FROM empleados WHERE cedula = ?;`,
+            [cedula]
+        );
 
-  static async delete({ id }) {
+        // Si no se encontraron filas, el nombre es único
+        if (rows.length !== 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (e) {
+        console.error('Error checking uniqueness of empleado:', e);  // Imprimir el error completo
+        throw new Error(`Error checking uniqueness of empleado: ${e.message}`);
+    }
+}
+
+
+  static async delete(input) {
+    const { id } = input
     try {
       await connection.query(
-        `DELETE FROM empleados WHERE id = ?;`,
+        `DELETE FROM empleados WHERE user = ?;`,
         [id]
       );
     } catch (e) {
@@ -75,42 +83,101 @@ export class EmpleadosModel {
     }
   }
 
-  static async update({ id, input }) {
+  static async update(input) {
+    const formatDateForSubmission = (dateString) => {
+      const date = new Date(dateString);
+      return date.toISOString().split('T')[0]; // Format YYYY-MM-DD
+    };
     const {
-      nombre,
+      Nombre,
       apellido,
-      clave_usuario,
       cedula,
-      codigo_empleado,
-      puesto,
+      user,
+      cargo,
       salario,
       telefono,
       direccion,
       fecha_contratacion,
-      fecha_culminacion
+      fecha_culminacion,
+      experiencia_laboral
     } = input;
-    console.log('Update Input:', JSON.stringify(input));  // Depuración de entrada
 
     try {
       await connection.query(
         `UPDATE empleados SET
           nombre = ?,
           apellido = ?,
-          password = ?,
           cedula = ?,
-          user = ?,
           puesto = ?,
           salario = ?,
           telefono = ?,
           direccion = ?,
           fecha_contratacion = ?,
-          fecha_culminacion = ?
-          WHERE id = ?;`,
-        [nombre, apellido, clave_usuario, cedula, codigo_empleado, puesto, salario, telefono, direccion, fecha_contratacion, fecha_culminacion, id]
+          fecha_culminacion = ?,
+          experiencia_laboral = ?
+          WHERE user = ?;`,
+        [Nombre, apellido, cedula, cargo, salario, telefono, direccion, formatDateForSubmission(fecha_contratacion), formatDateForSubmission(fecha_culminacion), experiencia_laboral, user]
       );
     } catch (e) {
       console.error('Error updating empleado:', e);  // Imprimir el error completo
       throw new Error(`Error updating empleado: ${e.message}`);
     }
+    
   }
+  //Solicitudes
+  static async getSolicitudes() {
+    try {
+        const [rows] = await connection.query(
+            `SELECT rrhh_solicitudes.*, empleados.nombre FROM rrhh_solicitudes
+                left join empleados on rrhh_solicitudes.ID_Empleado = empleados.ID`
+        );
+        return rows;
+    } catch (e) {
+        console.error('Error finding solicitudes:', e);  // Imprimir el error completo
+        throw new Error(`Error finding solicitudes: ${e.message}`);
+    }
+}
+
+  static async createSolicitud({ input }) {
+    const {
+      ID_Empleado,
+      Fecha,
+      Fecha_Registro,
+      Cargo,
+      Motivo,
+      Modulo,
+    } = input;
+
+    try {
+      await connection.query(
+        `INSERT INTO rrhh_solicitudes (ID_Empleado, Fecha_Registro, Fecha, motivo, Cargo, Modulo)
+         VALUES (?, ?, ?, ?, ?, ?);`,
+        [ID_Empleado, Fecha_Registro, Fecha, Motivo, Cargo, Modulo]
+      );
+    } catch (e) {
+      throw new Error(`Error creando solicitud: ${e.message}`);
+    }
+  }
+  // Actualiza el estado de una solicitud
+  static async updateEstado(ID, newEstado) {
+    try {
+        // Ejecuta la consulta SQL para actualizar el estado de la solicitud
+        const [results] = await connection.query(
+            `UPDATE rrhh_solicitudes 
+            SET estado = ? 
+            WHERE ID = ?`,
+            [newEstado, ID]
+        );
+
+        // Puedes manejar el resultado aquí si es necesario, por ejemplo, comprobando el número de filas afectadas
+        if (results.affectedRows === 0) {
+            throw new Error('No se encontró la solicitud para actualizar.');
+        }
+    } catch (e) {
+        // Lanza un error si ocurre algún problema durante la actualización
+        throw new Error(`Error actualizando el estado de la solicitud: ${e.message}`);
+    }
+  }
+
+
 }

@@ -1,129 +1,136 @@
-.employee-registration {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 16px;
-    line-height: 1.5;
-    padding-bottom: 30px;
-    transform: translate(190px, -30px);
-}
-  
-.page-title {
-    color: #000;
-    text-align: center;
-    letter-spacing: -0.68px;
-    align-self: stretch;
-    font: 600 34px/1.1 Inter, sans-serif;
-    transform: translate(-100px, 20px);
-}
-  
-.form-row {
-    align-self: stretch;
-    display: flex;
-    margin-top: 37px;
-    gap: 20px;
-    justify-content: space-between;
-    transform: translateX(-100px);
-}
-  
-.form-group {
-    display: flex;
-    flex-direction: column;
-   
-    
-    
-
-}
-
-.address-input{
-    transform: translateX(-100px);
-
-}
-
-
-  
-.form-label {
-    color: #000;
+/* Reseteo de márgenes y rellenos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Inter, sans-serif;
-    font-weight: 500;
-    
-}
+  }
+
   
-.form-input {
-    font-family: Inter, sans-serif;
-    border-radius: var(--sds-size-radius-200);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(224, 224, 224, 1);
-    background-color: #fff;
-    margin-top: 8px;
-    color: #828282;
-    padding: 12px 16px;
-    cursor: pointer;
-}
+  /* Estilo general del formulario */
+  #employee-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
   
-.dropdown {
+  /* Estilo de las filas */
+  .form-row {
     display: flex;
-    gap: 16px;
-}
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
   
-.dropdown-text {
-    font-family: Inter, sans-serif;
+  /* Estilo de los grupos de campos */
+  .form-group {
     flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+    min-width: 200px;
+  }
   
-.dropdown-icon {
-    aspect-ratio: 1;
-    width: 24px;
-}
+  /* Etiquetas */
+  .form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
   
-.address-input {
+  /* Campos de entrada */
+  .form-input {
     width: 100%;
-    max-width: 810px;
-}
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
   
-#submit-button {
+  /* Estilo de los campos desplegables */
+  .form-input.dropdown {
+    background-color: #fff;
+  }
+  
+  /* Placeholder de los campos */
+  .form-input::placeholder {
+    color: #aaa;
+  }
+  
+  /* Estilo del botón de envío */
+  #submit-button {
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    border-radius: 8px;
     border: none;
-    border-radius: 10px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    background-color: #3a9b0c;
-    margin-top: 37px;
-    width: 80%;
-    height: 50px;
-    max-width: 556px;
+    background-color: #0F624A;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 16px;
+    padding: 12px 24px;
     color: #fff;
-    padding: 16px 32px;
-    font: 500 20px Inter, sans-serif;
     cursor: pointer;
-    position: fixed;
-    transform: translateX(10px);
-    text-align: center;
-}
-
-
-
+    border-width: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
   
-@media (max-width: 991px) {
-    .page-title,
-    .form-row,
-    .form-input,
-    .address-input,
-    .submit-button {
-      max-width: 100%;
-    }
+  #submit-button:hover {
+    background-color: #005c2e;
+  }
   
+  /* Estilo para la dirección */
+  .address-group {
+    margin-top: 20px;
+  }
+  
+  /* Estilo del campo de dirección para asegurar buen ajuste */
+  .address-input {
+    height: 80px;
+    padding: 10px;
+  }
+  
+  /* Estilo de los selectores */
+  .form-input.dropdown {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+  }
+  
+  /* Espaciado y alineación */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Estilos adicionales para el formulario en pantallas pequeñas */
+  @media (max-width: 600px) {
     .form-row {
-      flex-wrap: wrap;
+      flex-direction: column;
     }
   
-    .submit-button {
-      padding: 16px 20px;
+    .form-group {
+      min-width: 100%;
     }
+  }
+  
+#sidebar {
+    height: 100vh;
+}
+.submit-button{
+  font-family: 'Montserrat', sans-serif;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: #0F624A;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 16px;
+  padding: 12px 24px;
+  color: #fff;
+  cursor: pointer;
+  border-width: 0.5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-body {
-    overflow-x: hidden;
-}

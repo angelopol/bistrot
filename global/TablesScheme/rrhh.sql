@@ -39,19 +39,56 @@ COMMIT;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `turnos`
+-- Estructura de tabla para la tabla `empleados`
 --
 
-CREATE TABLE employees (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(255) NOT NULL,
-  last_name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  salary DECIMAL(10,2) NOT NULL,
-  cargo VARCHAR(255) NOT NULL,
-  start_date DATE NOT NULL,
-  end_date DATE NOT NULL,
-  phone VARCHAR(20) NOT NULL,
-  employee_code VARCHAR(10) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL
+CREATE TABLE IF NOT EXISTS empleados (
+    ID int(11) NOT NULL AUTO_INCREMENT,
+    user VARCHAR(500) NOT NULL,
+    password VARCHAR(500) NOT NULL,
+    Nombre varchar(50) DEFAULT NULL,
+    cedula varchar(50) DEFAULT NULL,
+    Apellido varchar(50) DEFAULT NULL,
+    Puesto varchar(50) DEFAULT NULL,
+    fecha_contratacion date DEFAULT NULL,
+    fecha_culminacion date DEFAULT NULL,
+    Salario decimal(10,2) DEFAULT NULL,
+    Telefono varchar(15) DEFAULT NULL,
+    Direccion varchar(100) DEFAULT NULL,
+    experiencia_laboral varchar(100) DEFAULT NULL,
+    PRIMARY KEY (ID),
+    UNIQUE INDEX user_UNIQUE (user)
 );
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla solicitudes
+--
+
+DROP TABLE IF EXISTS rrhh_solicitudes;
+CREATE TABLE IF NOT EXISTS rrhh_solicitudes (
+  ID int(11) NOT NULL AUTO_INCREMENT,
+  ID_Empleado int(11) DEFAULT NULL,
+  Fecha_Registro date DEFAULT NULL,
+  Fecha date DEFAULT NULL,
+  motivo varchar(100) DEFAULT NULL,
+  Cargo varchar(100) DEFAULT NULL,
+  Modulo varchar(100) NOT NULL,
+  Estado int(2) default 0,
+  PRIMARY KEY (ID),
+  KEY ID_Empleado (ID_Empleado)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla entradas
+--
+
+DROP TABLE IF EXISTS entradas;
+CREATE TABLE IF NOT EXISTS entradas (
+  id int NOT NULL AUTO_INCREMENT,
+  cedula varchar(20) NOT NULL,
+  hora_entrada timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY cedula (cedula)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;

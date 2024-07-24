@@ -1,0 +1,171 @@
+
+/* Main section styles */
+.main-section {
+    padding: 20px;
+}
+.employee-image {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+
+
+.section-title {
+    font-family: 'Montserrat-Bold';
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #000000;
+}
+
+/* Search bar styles */
+.search-bar {
+    margin-bottom: 20px;
+}
+
+/* Results container styles */
+.results-container {
+    margin-bottom: 20px;
+}
+
+.results-wrapper {
+    overflow-x: auto;
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+.table.is-striped tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table.is-hoverable tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+.button:hover {
+    background-color: #005c2e;
+}
+
+.button.is-link a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.button.is-link a:hover {
+    color: #fff;
+}
+
+.action-ES {
+    background-color: #005c2e;
+
+    
+}
+
+.action-ES:hover {
+    background-color: #005c2e;
+}
+
+/* Estilos base para el modal */
+.modal {
+    display: none; /* Oculto por defecto */
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Transición suave de opacidad */
+}
+
+/* Cuando el modal está activo, se muestra y se aplica la animación de entrada */
+.modal.is-active {
+    display: flex; /* Mostrar el modal */
+    opacity: 1; /* Opacidad completa */
+    animation: fadeIn 0.3s; /* Animación de entrada */
+}
+
+/* Estilo para el fondo del modal */
+.modal-background {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease; /* Transición suave de opacidad */
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    margin: auto;
+    max-width: 500px;
+    position: relative;
+    transition: transform 0.3s ease; /* Transición suave para el contenido */
+}
+
+/* Botón de cierre del modal */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+/* Animación de entrada del modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animación de salida del modal */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+
+.button.is-info{
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    background-color: #0F624A;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 16px;
+    padding: 12px 24px;
+    color: #fff;
+    cursor: pointer;
+    border-width: 0.5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
