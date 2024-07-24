@@ -21,7 +21,10 @@ export class ComidaController{
     }
 
     create = async (req, res) => {
+        console.log("hola")
         const result = validateComida(req.body)
+        console.log(req.body)
+        console.log(result)
   
         if (!result.success) {
         // 422 Unprocessable Entity

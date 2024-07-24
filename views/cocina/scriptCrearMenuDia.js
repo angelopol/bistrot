@@ -347,12 +347,12 @@ botonCerrarMenu.addEventListener("click", async function () {
                 return response.json(); 
               })
             .then(data => {
-                alert("Se ha cerrado el menú del día")
                 console.log(`El plato de ID ${comida.id} ha sido eliminado del menú del día`)
             })
             .catch(error => {
                 console.error("Error al eliminar la receta del menu del dia: ", error)
             })
         }
+        alert("Se ha cerrado el menú del día")
     }
 })

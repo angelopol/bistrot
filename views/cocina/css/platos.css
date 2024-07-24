@@ -36,6 +36,7 @@ main {
 
 #btn-exit {
     width: 20%;
+    height: 20%;
     cursor: pointer;
 }
 
@@ -70,7 +71,8 @@ main {
     color: #fff;
     background-color: #0F624A;
     padding: 15px;
-    font-size: 0.8rem;
+    font-size: 1.03rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;

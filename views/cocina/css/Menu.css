@@ -28,8 +28,7 @@ body, html {
     }
 }
 .icono{
-
-transform: translateX(-556%) translateY(-348%) scale(0.6);
+    transform: translateX(-556%) translateY(-348%);
 }
 .restaurant-name {
     letter-spacing: -0.24px;
@@ -202,7 +201,7 @@ transform: translateX(-556%) translateY(-348%) scale(0.6);
     margin-top: 20px;
     text-align: center;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
     border: none;
     color: #fff;
