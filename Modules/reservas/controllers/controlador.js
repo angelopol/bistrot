@@ -2,10 +2,15 @@ import { validarMesas } from "../schemes/validacion_mesas.js";
 import { ReservaController } from "./reserva.js";
 import { ReservaModel } from '../models/reserva.js'
 import { ComidaModel } from "../../cocina/models/mysql/comida.js";
+import moment from 'moment'
 
 export class InventarioMesasController{
     mostrarReserva = async (req,res)=>{
+        
         const reservas = await ReservaModel.listarReservas()
+        reservas.forEach(reserva => {
+            reserva.fecha = moment(reserva.fecha).format('YYYY-MM-DD')
+        });
         res.render('reservas/reservacion',{data: reservas,
         })
     }

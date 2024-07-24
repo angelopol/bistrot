@@ -203,7 +203,7 @@
             updateSelectedSeats();
 
             agregarPreferencias.addEventListener('click', (e) => {
-                e.preventDefault
+                e.preventDefault();
                 cantidadPlatos = document.querySelector('#platos').value;
                 preferencias = document.querySelector('#Preferencias').value;
                 if (cantidadPlatos === '' || preferencias === '') {
@@ -219,13 +219,24 @@
                     document.querySelector('#Preferencias').value = '';
                     document.querySelector('#stringPreferencias').value = cadena;
                     console.log(document.querySelector('#stringPreferencias').value);
+                    e.preventDefault();
                     alert('Preferencia agregada');
 
                 }
-                
-                
             });
 
+            //funcion que limita la cantidad de personas a 4 si se selecciona una mesa
+
+            document.getElementById("personas").addEventListener("input", function(event) {
+                const personas = event.target.value;
+                const selectedDate = document.getElementById('fecha').value;
+                console.log(selectedSeats[selectedDate].length);
+                if (selectedSeats[selectedDate] && selectedSeats[selectedDate].length === 1 && personas > 4) {
+                    event.target.setCustomValidity("Solo se permiten 4 personas por mesa.");
+                } else {
+                    event.target.setCustomValidity("");
+                }
+            });
             
             //funcion que valide que un numero de telefono tenga 11 digitos, si es un numero y si los primeros 4 digitos son: 0412, 0414, 0416, 0424, 0426
 
