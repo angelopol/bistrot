@@ -143,6 +143,7 @@
                     alert(`Error al registrar solicitud: ${result.error.nombre}`);
                 } else {
                     alert('Solicitud registrada exitosamente');
+                    location.reload(true)
                 }
             } catch (error) {
                 console.error('Hubo un error al registrar la solicitud', error);
