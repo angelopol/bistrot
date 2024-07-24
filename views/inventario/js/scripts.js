@@ -592,30 +592,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function verificarInventario() {
     try {
-        // Verificar cantidades en la tabla cocina_bar
         let response = await fetch(`http://localhost:3000/api/cocina-bar`);
         let cocinaBarData = await response.json();
 
-        // Verificar cantidades en la tabla general
-        response = await fetch(`http://localhost:3000/api/general`);
-        let generalData = await response.json();
+        const now = new Date();
 
-        // Unir los datos de ambas tablas
-        const productos = [...cocinaBarData, ...generalData];
+        for (const producto of cocinaBarData) {
 
-        for (const producto of productos) {
-            if (producto.cantidad < 10) {
+            if (producto.fecha_caducidad && new Date(producto.fecha_caducidad) < now) {
+                await fetch(`http://localhost:3000/api/cocina-bar/fecha/${producto.id_cocina_bar}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        observaciones: 'Producto vencido y desechado'
+                    })
+                });
                 const solicitud = {
-                    depar: 'cocina', // departamento que realiza la solicitud
-                    id_emp: 1, // ID del empleado que realiza la solicitud, ajustar según corresponda
-                    cant: 50,
+                    depar: 'Inventario',
+                    id_emp: '1',
+                    cant: '50',
                     nombre_producto: producto.nombre,
                     fecha: new Date(),
-                    detalle: 'Solicitud automática por cantidad baja'
+                    detalle: 'Solicitud automatica por producto vencido'
                 };
 
-                // Enviar solicitud de compra
-                await fetch('http://localhost:3000/api/soli', {
+                await fetch('http://localhost:3000/compras-index/soli', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(solicitud)
+                });
+
+                console.log(`Solicitud enviada para producto vencido: ${producto.nombre}`);
+            } else if (producto.cantidad < 10) {
+                const solicitud = {
+                    depar: 'Inventario',
+                    id_emp: '1',
+                    cant: '50',
+                    nombre_producto: producto.nombre,
+                    fecha: new Date(),
+                    detalle: 'Solicitud automatica por cantidad baja'
+                };
+
+                await fetch('http://localhost:3000/compras-index/soli', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(solicitud)
@@ -629,8 +647,5 @@ async function verificarInventario() {
     }
 }
 
-// Ejecutar la verificación cada 1 segundo (1000 ms)
 setInterval(verificarInventario, 1000);
-
-// Ejecutar la función de verificación inmediatamente al cargar el script
 verificarInventario();
