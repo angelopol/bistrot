@@ -7,6 +7,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     height: 100%;
+
 }
 
 
@@ -27,6 +28,8 @@ body {
     padding: 0 20px;
     }
 }
+
+
 
 .menu-layout {
     display: flex;
@@ -112,9 +115,13 @@ body {
 }
 
 .menu-items{
-    width: 75%;
+    width: 100%;
     display: none;
     flex-direction: column;
+    gap: 15px;
+    margin-left: 20vh;
+
+    
 }
 
 @media (max-width: 991px) {
@@ -140,6 +147,7 @@ body {
 
 .menu-item {
     width: 280px;
+
     height: 180px;
     margin-bottom: 6%;
     border-radius: 10px;

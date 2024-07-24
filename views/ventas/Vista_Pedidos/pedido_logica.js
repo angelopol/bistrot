@@ -2,13 +2,13 @@ const PathUrl = "http:localhost:1234/ventas/";
 // definimos la variable para registar los pedidos realizados sino se han realizado se muestra una lista vacia
 const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];  // vista general
 const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];  // vista terraza
+mostrar_platos_del_dia();
 
 // obtenemos el id de la mesa
 const urlParams = new URLSearchParams(window.location.search);
 
 // obtenemos el origen de la vista que hizo la peticion
 let origen = urlParams.get('origen');
-
 const tableId = urlParams.get('tableId');
 const orderItems = document.querySelectorAll('.order-item');
 if (origen === 'general' && tableId > 9) {
@@ -200,7 +200,6 @@ function sendOrderToServer(orderData) {
         pedidos_realizados.forEach((pedidos,cont_posiciones) => {
             // condicional para ver si el id de los pedidos realizados coincide con el pedido actual
             if(pedidos.tableId === orderData.tableId) {
-                alert('holis1');
 
                 pedidos_realizados.splice(cont_posiciones, 1, orderData); // se reemplaza en la lista de los pedidos realizados
 
@@ -373,7 +372,7 @@ async function actualizar_pedido_base_datos(orderData){
 
     const partialConsumo = cambiar_name_comidas_a_ids(orderData.items) 
     const consumo = JSON.stringify(partialConsumo) // convertimos el el objeto a  string con un formato json
-    alert('entrando a actualizar')
+    
     const factura = {
         monto: orderData.total,
         iva : orderData.total * 1.16,
@@ -383,8 +382,7 @@ async function actualizar_pedido_base_datos(orderData){
         zona : orderData.zona,
         detalles:''
     }
-    alert('factura')
-    console.log(factura);
+    
     try {
         // obtener los pedidos
         const response = await fetch("../factura");
@@ -588,3 +586,271 @@ comida = {
 // Eliminar todos los pedidos del localStorage
 //localStorage.removeItem('pedidos');
 //localStorage.removeItem('pedidos_t');
+
+async function mostrar_platos_del_dia() {
+    try {
+        const response = await fetch("http://localhost:1234/cocina/");
+        
+        if (!response.ok) {
+            if (response.status === 404) {
+                console.log("La URL 'http://localhost:1234/cocina/' no se encontró.");
+            } else {
+                throw new Error("Error en la solicitud");
+            }
+            return; // Añadir return aquí para evitar continuar en caso de error
+        }
+        console.log("Respuesta exitosa");
+        const menu_bd = await response.json();
+        
+        menu_bd.forEach(plato => {
+            
+            if (plato.tipo_comida === "entrada") {
+                const Entradas_Container = document.getElementById('Entradas');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '10', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">10€</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Entradas_Container.appendChild(Plato);
+            }
+            else if (plato.tipo_comida === "principal") {
+                const Principal_Container = document.getElementById('Principal');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '20', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">20€</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Principal_Container.appendChild(Plato);
+            }
+            else if (plato.tipo_comida === "postre") {
+                const Postres_Container = document.getElementById('Postres');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '15', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">15$</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Postres_Container.appendChild(Plato);
+            }
+            else if (plato.tipo_bebida === "trago") {
+                const Tragos_Container = document.getElementById('Tragos');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '7', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">7€</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Tragos_Container.appendChild(Plato);
+            }
+
+            else if (plato.tipo_comida === "vegetariano") {
+                const Principal_Container = document.getElementById('Vegetariano');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '15', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">15€</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Principal_Container.appendChild(Plato);
+            }
+
+            else if (plato.tipo_comida === "niño") {
+                const Principal_Container = document.getElementById('Infantil');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '15', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">15€</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Principal_Container.appendChild(Plato);
+            }
+
+            else if (plato.tipo_bebida === "bebida") {
+                const Principal_Container = document.getElementById('Bebidas');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '5', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">5€</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Principal_Container.appendChild(Plato);
+            }
+
+            else if (plato.tipo_bebida === "vino blanco" || plato.tipo_bebida === "vino rojo") {
+                const Principal_Container = document.getElementById('Vinos');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '15', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">15€</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Principal_Container.appendChild(Plato);
+            }
+
+            else if (plato.seleccionada === 1) {
+                const Principal_Container = document.getElementById('MenuDia');
+                const Plato = document.createElement('div');
+                Plato.id = plato.id;
+                Plato.className = 'menu-item';
+                Plato.setAttribute('onclick', `addToOrder('${plato.nombre}', '15', '${obtenerRutaImagen(plato.id)}', '${plato.id}')`);
+        
+                Plato.innerHTML = `
+                    <img loading="lazy" src="${obtenerRutaImagen(plato.id)}" class="menu-item-image" alt="Menu item" />
+                    <div class="menu-item-details">
+                        <h2 class="menu-item-name">${plato.nombre}</h2>
+                        <div class="item-information">
+                            <span class="menu-item-price">15€</span>
+                            <button class="button-abrir-modal">
+                                <img style="margin-left: 8px; width: 18px; height: 18px;" loading="lazy" src="barra-de-menus.png" alt="Menu item" />
+                            </button>
+                        </div>
+                    </div>
+                `;
+        
+                Principal_Container.appendChild(Plato);
+            }
+
+        });
+
+    } catch (error) {
+        console.log("No se pudo actualizar el menu del dia:", error);
+    }
+}
+
+var imagenes = { // Diccionario feo que guarda las rutas de la imagen del cada plato para no tener que hacerlo en base de datos
+    "1": "Menu/seasonalsoupentrada.jpeg",
+    "2": "Menu/sopadecalabacin.jpg",
+    "3": "Menu/panrilletes.jpg",
+    "4": "Menu/speltandmushroomSalad.jpeg",
+    "5": "Menu/respaldodelinguinepasta.jpeg",
+    "6": "Menu/chickenratatouillemed-scaled.jpg",
+    "7": "Menu/OIP.jpeg",
+    "8": "Menu/sauteedchicken.jpeg",
+    "9": "Menu/Chocolate mouse.jpeg",
+    "10": "Menu/fruitsalad.webp",
+    "11": "Menu/apple tart.jpg",
+    "12": "Menu/chocolatecake.jpg",
+    "13": "Menu/mojito.jpeg",
+    "14": "Menu/daiquiri de fresa.webp",
+    "15": "Menu/old fashioned.png",
+    "16": "Menu/margarita.jpg",
+    "17": "Menu/vinorojoFleurderoc.jpeg",
+    "18": "Menu/agneaurouge.png",
+    "19": "Menu/vino blanco sancerre.jpeg",
+    "20": "Menu/languedoc cite de carcassone.jpg",
+    "21": "Menu/cocacola.jpeg",
+    "22": "Menu/coca cola cheerry.jpeg",
+    "23": "Menu/fanta orange.jpeg",
+    "24": "Menu/sprite.jpg",
+    "25": "Menu/vittel.jpeg",
+    "26": "Menu/guiso.jpg",
+    "27": "Menu/vegetalesvonagreta.jpeg",
+    "28": "Menu/mixdeverduras.jpg",
+    "29": "Menu/tomateconfitado.jpeg",
+    "30": "Menu/patats.jpeg",
+    "31": "Menu/linguinipastaconratatouille.jpeg",
+    "32": "Menu/pure.jpeg",
+    "33": "Menu/Screenshot_15-7-2024_102959_www.bing.com.jpeg"
+}
+
+function obtenerRutaImagen(platoId) {
+    return imagenes[platoId] || "Ruta no encontrada";
+}
