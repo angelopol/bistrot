@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bistrot</title>
-    <link rel="stylesheet" href="/mantenimientos/styles/side.css">
-    <link rel="stylesheet" href="/mantenimientos/styles/agendar.css">
+    <link rel="stylesheet" href="styles/side.css">
+    <link rel="stylesheet" href="styles/agendar.css">
     <!--Vincular otro CSS para su modulo-->
-    <link rel="icon" href="/assets/favicon.ico">
-    <script src="/assets/logout.js" defer></script>
-    <script src="/assets/user.js" defer></script>
-    <script src="/assets/side.js" defer></script>
+    <link rel="shortcut icon" href="resources/icon.jpeg" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -95,13 +92,13 @@
                                 <option value="martillos">Martillos</option>
                                 <option value="cuchillas_cortadores">Cuchillas y cortadores</option>
                             </optgroup>
-                            <optgroup label="Herramientas Electricas">
+                            <optgroup label="Herramientas Eléctricas">
                                 <option value="taladros_brocas">Taladros y brocas</option>
                                 <option value="sierra_electrica">Sierra eléctrica</option>
                                 <option value="multimetro">Multímetro</option>
                                 <option value="soldador_electrico">Soldador eléctrico</option>
                             </optgroup>
-                            <optgroup label="Equipos de Limpieza y Desinfeccion">
+                            <optgroup label="Equipos de Limpieza y Desinfección">
                                 <option value="aspiradoras">Aspiradoras</option>
                                 <option value="trapeadores_cubetas">Trapeadores y cubetas</option>
                                 <option value="escobas_recogedores">Escobas y recogedores</option>
@@ -180,56 +177,5 @@
         </div>
 
     </main>
-
-    <script>
-
-
-        // seleccionamos el boton de enviar el formulario
-        const boton_enviar_formulario = document.querySelector(".btns");
-
-        // agregamos un evento de click al boton al enviar
-        boton_enviar_formulario.addEventListener("click", guardar_datos_formulario);
-
- 
-        // creamos una funcion para guardar los datos en el formulario
-        async function guardar_datos_formulario() {
-
-            // obtener las entrada de texto del formulario
-            descripcion = document.querySelector(".Descripcion").value
-            responsable = document.querySelector(".Responsable").value
-            inicio_mantenimiento = document.querySelector(".inicio_mantenimiento").value
-            final_mantenimiento =  document.querySelector(".final_mantenimiento").value
-
-            try {
-
-                const bodyData = {
-                    descripcion: descripcion,
-                    responsable: responsable,
-                    inicio_mantenimiento: inicio_mantenimiento,
-                    final_mantenimiento: final_mantenimiento
-                };
-
-                const response = await fetch("/mantenimientos/api/mantenimientos_realizar", {
-                    method : "POST",
-                    headers : { "Content-Type" : "application/json" },
-                    body : JSON.stringify(bodyData)
-                });
-
-                // Verifica si la respuesta es correcta
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        console.log("La URL '/mantenimientos/api/mantenimientos_realizar' no se encontró.");
-                    } else {
-                        throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
-                    }
-                }
-
-            } catch (error) {
-                console.error("Error al obtener los datos:", error);
-            }
-        }
-
-
-    </script>
 </body>
 </html>
