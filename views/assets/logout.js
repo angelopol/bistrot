@@ -1,7 +1,9 @@
-const body = document.querySelector('body');
-body.innerHTML += `
-    <form id="logout-form" action="/login/logout" method="POST" hidden></form>
-`;
+const body = document.querySelector('header');
+if (body != null) {
+    body.innerHTML += `
+        <form id="logout-form" action="/login/logout" method="POST" hidden></form>
+    `;
+}
 
 const selectTitle = document.getElementById('title-combo');
 if (selectTitle != null){

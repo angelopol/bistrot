@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bistrot</title>
-    <link rel="stylesheet" href="styles/side.css">
-    <link rel="stylesheet" href="styles/agendar.css">
+    <link rel="stylesheet" href="/mantenimientos/styles/side.css">
+    <link rel="stylesheet" href="/mantenimientos/styles/agendar.css">
     <!--Vincular otro CSS para su modulo-->
-    <link rel="shortcut icon" href="resources/icon.jpeg" type="image/x-icon">
+    <link rel="icon" href="/assets/favicon.ico">
+    <script src="/assets/logout.js" defer></script>
+    <script src="/assets/user.js" defer></script>
+    <script src="/assets/side.js" defer></script>
 </head>
 <body>
     <header>
@@ -206,7 +209,7 @@
                     final_mantenimiento: final_mantenimiento
                 };
 
-                const response = await fetch("http://localhost:1234/mantenimientos/api/mantenimientos_realizar", {
+                const response = await fetch("/mantenimientos/api/mantenimientos_realizar", {
                     method : "POST",
                     headers : { "Content-Type" : "application/json" },
                     body : JSON.stringify(bodyData)
@@ -215,7 +218,7 @@
                 // Verifica si la respuesta es correcta
                 if (!response.ok) {
                     if (response.status === 404) {
-                        console.log("La URL 'http://localhost:1234/mantenimientos/api/mantenimientos_realizar' no se encontró.");
+                        console.log("La URL '/mantenimientos/api/mantenimientos_realizar' no se encontró.");
                     } else {
                         throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
                     }

@@ -7,8 +7,10 @@ fetch('/rrhh/usuario')
 })
 .then(data => {
     const selectTitle = document.getElementById('title-combo');
-    if (selectTitle && selectTitle.options && selectTitle.options.length > 0) {
-        selectTitle.options[0].text = data.user;
+    if (selectTitle != null) {
+        if (selectTitle && selectTitle.options && selectTitle.options.length > 0) {
+            selectTitle.options[0].text = data.user;
+        }
     }
 })
 .catch(error => {
