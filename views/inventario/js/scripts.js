@@ -1,4 +1,4 @@
-const PathUrl = 'http://localhost:1234/inventario/';
+const PathUrl = '/inventario/';
 
 document.addEventListener('DOMContentLoaded', (event) => {
     changeTab('insumos'); // Inicializa con la primera pestaña activa
@@ -486,7 +486,7 @@ document.getElementById('search-form').addEventListener('submit', async function
     const orderId = document.getElementById('order-id').value;
 
     try {
-        const response = await fetch(`http://localhost:1234/compras-index/historial/${orderId}`);
+        const response = await fetch(`/compras-index/historial/${orderId}`);
 
         if (!response.ok) {
             throw new Error('Error al obtener los datos');
@@ -529,7 +529,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            let response = await fetch(`http://localhost:1234/inventario/api/modulo-compras/cocina-bar/agregar/${productName}`, {
+            let response = await fetch(`/inventario/api/modulo-compras/cocina-bar/agregar/${productName}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ cantidad: receivedQuantity, observaciones: observations })
@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Response from cocina_bar:', response.status, await response.text());
 
             if (response.status === 404) {
-                response = await fetch(`http://localhost:1234/inventario/api/modulo-compras/general/agregar/${productName}`, {
+                response = await fetch(`/inventario/api/modulo-compras/general/agregar/${productName}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ cantidad: receivedQuantity, observaciones: observations })
@@ -548,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.status === 404) {
                     // si no encuentra en ninguna tabla crear nuevo producto
-                    response = await fetch('http://localhost:1234/inventario/api/modulo-compras/cocina-bar/nuevo', {
+                    response = await fetch('/inventario/api/modulo-compras/cocina-bar/nuevo', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     alert('Producto creado y cantidad agregada correctamente.');
-                    await fetch(`http://localhost:1234/compras-index/historial-actualizar/${orderId}`, {
+                    await fetch(`/compras-index/historial-actualizar/${orderId}`, {
                         method: 'PATCH'
                     });
                     location.reload();
@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } else if (response.ok) {
                 alert('Cantidad agregada correctamente.');
-                await fetch(`http://localhost:1234/compras-index/historial-actualizar/${orderId}`, {
+                await fetch(`/compras-index/historial-actualizar/${orderId}`, {
                     method: 'PATCH'
                 });
                 location.reload();
@@ -595,15 +595,15 @@ const solicitudEnviada = {}; // Objeto para rastrear solicitudes enviadas por pr
 async function verificarInventario() {
     try {
         //Verificar cantidades en la tabla cocina_bar
-        let response = await fetch(`http://localhost:3000/api/cocina-bar`);
+        let response = await fetch(`/inventario/api/cocina-bar`);
         let cocinaBarData = await response.json();
 
         //Verificar cantidades en la tabla general
-        response = await fetch(`http://localhost:3000/api/general`);
+        response = await fetch(`/inventario/api/general`);
         let generalData = await response.json();
 
         //Unir los datos de ambas tablas
-        const productos = [...cocinaBarData, ...generalData];
+        const productos = [...cocinaBarData];
 
         const now = new Date();
 
@@ -620,7 +620,7 @@ async function verificarInventario() {
 
             if (producto.fecha_caducidad && new Date(producto.fecha_caducidad) < now) {
                 if (!solicitudEnviada[productoId].caducidad) {
-                    await fetch(`http://localhost:3000/api/cocina-bar/fecha/${productoId}`, {
+                    await fetch(`/inventario/api/cocina-bar/fecha/${productoId}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -637,7 +637,7 @@ async function verificarInventario() {
                         detalle: 'Solicitud automatica por producto vencido'
                     };
 
-                    await fetch('http://localhost:3000/compras-index/soli', {
+                    await fetch('/compras-index/soli', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(solicitud)
@@ -659,7 +659,7 @@ async function verificarInventario() {
                         detalle: 'Solicitud automatica por cantidad baja'
                     };
 
-                    await fetch('http://localhost:3000/api/soli', { //Verificar sino con 'http://localhost:3000/compras-index/soli'
+                    await fetch('/compras-index/soli', { //Verificar sino con 'http://localhost:3000/compras-index/soli'
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(solicitud)
