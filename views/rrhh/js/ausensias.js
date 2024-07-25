@@ -56,6 +56,7 @@ function displayAcceptedRequest(request) {
   `;
   acceptedRequestsList.innerHTML += requestHTML;
 }
+
 // When the user clicks anywhere outside of the registry panel, close it
 registryPanel.addEventListener("click", function(event) {
   if (event.target === registryPanel) {
@@ -164,16 +165,18 @@ function populateRequestsList() {
   var requestsList = document.getElementById("requests-list");
   requestsList.innerHTML = ""; // Clear the list
   absenceRequests.forEach(function(request) {
-    var requestHTML = `
-      <li>
-        <p><strong>Motivo de ausencia:</strong> ${request.reason}</p>
-        <p><strong>Fecha de inicio:</strong> ${request.startDate}</p>
-        <p><strong>Fecha de fin:</strong> ${request.endDate}</p>
-        <button class="button" onclick="acceptRequest('${request.reason}', '${request.startDate}', '${request.endDate}')">Aceptar</button>
-        <button class="button" onclick="rejectRequest('${request.reason}', '${request.startDate}', '${request.endDate}')">Rechazar</button>
-      </li>
-    `;
-    requestsList.innerHTML += requestHTML;
+    if (request.status === "En Proceso") {
+      var requestHTML = `
+        <li>
+          <p><strong>Motivo de ausencia:</strong> ${request.reason}</p>
+          <p><strong>Fecha de inicio:</strong> ${request.startDate}</p>
+          <p><strong>Fecha de fin:</strong> ${request.endDate}</p>
+          <button class="button" onclick="acceptRequest('${request.reason}', '${request.startDate}', '${request.endDate}')">Aceptar</button>
+          <button class="button" onclick="rejectRequest('${request.reason}', '${request.startDate}', '${request.endDate}')">Rechazar</button>
+        </li>
+      `;
+      requestsList.innerHTML += requestHTML;
+    }
   });
 }
 
@@ -185,8 +188,8 @@ function acceptRequest(reason, startDate, endDate) {
   });
   displayPermissionsInProcess();
   displayAcceptedRequests(); // Update the accepted requests list
-  // You can also send the updated request data to a backend server to store it
   removeRequestFromList(reason, startDate, endDate);
+  acceptRejectModal.style.display = "none";
 }
 
 function rejectRequest(reason, startDate, endDate) {
@@ -198,6 +201,7 @@ function rejectRequest(reason, startDate, endDate) {
   displayPermissionsInProcess();
   displayAcceptedRequests(); // Update the accepted requests list
   removeRequestFromList(reason, startDate, endDate);
+  acceptRejectModal.style.display = "none";
 }
 
 function removeRequestFromList(reason, startDate, endDate) {
@@ -211,6 +215,6 @@ function removeRequestFromList(reason, startDate, endDate) {
     if (requestReason === reason && requestStartDate === startDate && requestEndDate === endDate) {
       requestsList.removeChild(request);
       break;
-    }
-  }
+    }
+  }
 }
