@@ -110,7 +110,6 @@
         const $destino = $('destino')
         const API_URL = 'http://localhost:1234/mantenimientos/mantenimientos_realizar'
         const $form = $('form')
-        const notification = "<div>Se ha añadido un reporte</div>"
         const data = {
             asunto: $asunto.value,
             contenido: $contenido.value,
@@ -127,8 +126,8 @@
         try{
             $form.addEventListener('submit', async e => {
                 e.preventDefault()
-                $('notification').innerHTML = notification
                 const response = await fetch(API_URL, options)
+                const json = await response.json()
                 $('notification').textContent = 'Reporte enviado'
             })
         }
