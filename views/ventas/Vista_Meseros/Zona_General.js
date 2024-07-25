@@ -511,3 +511,23 @@ async function update_mesas_pagadas(id_mesa){
         console.log("No se encontro el id a actualizar")
     }
 }
+
+// codigo ale 
+
+let botonDetalles = document.querySelector("#botonDetalles")
+botonDetalles.addEventListener("click",async ()=> {
+    if(selectedTableId == null){
+        return alert("selecciona una mesa")
+    }
+    let res = await fetch("/ventas/factura")
+    let pedidos = await res.json()
+    console.log(pedidos)
+    let pedidoMesa = null
+    pedidos.forEach(pedido => {
+        if(parseInt(pedido.mesa) == selectedTableId){
+            pedidoMesa = pedido
+        }
+    })
+
+    alert(`Mesa ${selectedTableId}\n`+pedidoMesa.detalles)
+})
