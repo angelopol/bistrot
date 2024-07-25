@@ -87,8 +87,8 @@ actionButtons.forEach(button => {
                 // Abrir pedidos.html y pasar el ID de la mesa seleccionada
                 if (selectedTableId && selectedMesa) {
 
-                    // verificamos si su estatus es disponible para tomar su pedido
-                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE" || selectedMesaetiqueta.querySelector('.table-status').textContent === "Rechazado"){
+                    // verificamos si su estatus es disponible, reservado o rechazado para tomar su pedido
+                    if (selectedMesaetiqueta.querySelector('.table-status').textContent === "DISPONIBLE" || selectedMesaetiqueta.querySelector('.table-status').textContent === "Rechazado" || selectedMesaetiqueta.querySelector('.table-status').textContent === "Reservado") {
                         location.href = `../Vista_Pedidos/pedidos?tableId=${selectedTableId}&origen=${origen}`;
                         return;
                     } else {
@@ -108,8 +108,8 @@ actionButtons.forEach(button => {
                         // vemos si coinciden en id
                         if(String(mesa+1) === String(selectedTableId)){
 
-                            // si el estatus es disponible solamente lo deseleccionada
-                            if (tableCard.querySelector(".table-status").textContent === "DISPONIBLE"){
+                            // si el estatus es disponible o reservado solamente lo deseleccionada
+                            if (tableCard.querySelector(".table-status").textContent === "DISPONIBLE" || tableCard.querySelector(".table-status").textContent === "Reservado"){
                                 tableCard.classList.remove('selected'); // Quitar la clase 'selected' al eliminar pedido
                                 selectedMesa = false;
                                 selectedTableId = null;
@@ -421,9 +421,9 @@ async function eliminar_pedido(id_mesa){
             })
             .then(response => {
                 if (response.ok) {
-                  console.log('Recurso eliminado correctamente');
+                    console.log('Recurso eliminado correctamente');
                 } else {
-                  console.error('Error al eliminar el recurso');
+                    console.error('Error al eliminar el recurso');
                 }
             })
             .catch(error => {
@@ -512,22 +512,3 @@ async function update_mesas_pagadas(id_mesa){
     }
 }
 
-// codigo ale 
-
-let botonDetalles = document.querySelector("#botonDetalles")
-botonDetalles.addEventListener("click",async ()=> {
-    if(selectedTableId == null){
-        return alert("selecciona una mesa")
-    }
-    let res = await fetch("/ventas/factura")
-    let pedidos = await res.json()
-    console.log(pedidos)
-    let pedidoMesa = null
-    pedidos.forEach(pedido => {
-        if(parseInt(pedido.mesa) == selectedTableId){
-            pedidoMesa = pedido
-        }
-    })
-
-    alert(`Mesa ${selectedTableId}\n`+pedidoMesa.detalles)
-})
