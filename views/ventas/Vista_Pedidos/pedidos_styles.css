@@ -56,7 +56,9 @@ body {
 .menu-sections {
     align-items: start;
     display: flex;
+    flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 
 @media (max-width: 991px) {
@@ -68,12 +70,15 @@ body {
 }
 
 .menu-nav {
-    width: 25%;
+    width: 100%;
+    justify-content: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     font-size: 22px;
     color: #fff;
     font-weight: 700;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 991px) {
@@ -115,11 +120,10 @@ body {
 }
 
 .menu-items{
-    width: 100%;
+    flex: 1;
     display: none;
     flex-direction: column;
     gap: 15px;
-    margin-left: 20vh;
 
     
 }
@@ -502,7 +506,14 @@ body {
 }
 
 .visible{
-    display: block;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    
 }
 
 .invisible{

@@ -1,4 +1,4 @@
-const PathUrl = "http:localhost:1234/ventas/";
+const PathUrl = "/ventas/";
 // definimos la variable para registar los pedidos realizados sino se han realizado se muestra una lista vacia
 const pedidos_realizados = JSON.parse(localStorage.getItem('pedidos')) || [];  // vista general
 const pedidos_realizados_t = JSON.parse(localStorage.getItem('pedidos_t')) || [];  // vista terraza
@@ -11,19 +11,23 @@ const urlParams = new URLSearchParams(window.location.search);
 let origen = urlParams.get('origen');
 const tableId = urlParams.get('tableId');
 const orderItems = document.querySelectorAll('.order-item');
-if (origen === 'general' && tableId > 9) {
-    origen = 'bar';
-    let nav_buttons = document.querySelectorAll('.menu-nav-item');
-    nav_buttons.forEach(button => {
-        if (button.id !== 'bebidas' && button.id !== 'vinos' && button.id !== 'tragos') {
-            button.classList.add('invisible');
-        }
-    });
-    const vista_Entradas = document.getElementById('Entradas');
-    vista_Entradas.classList.remove('visible');
-    const vista_Bebidas = document.getElementById('Bebidas');
-    vista_Bebidas.classList.add('visible');
-}
+    if (origen === 'general' && tableId > 9) {
+        origen = 'bar';
+        let nav_buttons = document.querySelectorAll('.menu-nav-item');
+        nav_buttons.forEach(button => {
+            if (button.id !== 'bebidas' && button.id !== 'vinos' && button.id !== 'tragos') {
+                button.classList.add('invisible');
+            }
+        });
+        const vista_Entradas = document.getElementById('MenuDia');
+        vista_Entradas.classList.remove('visible');
+        const vista_Bebidas = document.getElementById('Bebidas');
+        vista_Bebidas.classList.add('visible');
+        
+    }else if ((origen === 'general' && tableId <9)|| origen === 'terraza') {
+        let nav_buttons = document.getElementById('botones_categorias');
+        nav_buttons.style.display = 'none';
+    }
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
