@@ -90,8 +90,8 @@
             <h2>Agendar</h2>
             <hr>
             <form>
-                <input type="text" placeholder="Descripcion">
-                <input type="text" placeholder="Responsable">
+                <input type="text" placeholder="Descripcion" id="descripcion">
+                <input type="text" placeholder="Responsable" id="responsable">
                 <label for="inicio-mantenimiento" class="label">Fecha de Inicio</label>
                 <input type="date" id="inicio-mantenimiento">
                 <label for="final-mantenimiento" class="label">Fecha de Finalizacion</label>
@@ -100,5 +100,95 @@
             </form>
         </div>
     </div>
+    <script>
+        
+        // Función para obtener los datos y llenar la tabla
+        async function obtenerDatos() {
+            try {
+                const response = await fetch('http://localhost:1234/mantenimientos/mantenimientos_realizar')
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        console.log("La URL 'http://localhost:1234/mantenimientos/mantenimientos_realizar' no se encontró.");
+                    } else {
+                        throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
+                    }
+                }
+
+                // Convierte la respuesta a JSON
+                const mantenimiento_realizar = await response.json();
+                console.log(mantenimiento_realizar)
+                // Llama a la función para llenar la tabla
+                llenarTabla(mantenimiento_realizar);
+
+            } catch (error) {
+                console.error("Error al obtener los datos:", error);
+            }
+        }
+        function llenarTabla(data) {
+            const tbody = document.querySelector("tbody");
+            tbody.innerHTML = ""; // Limpia el contenido previo
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.descripcion_corta}</td>
+                    <td>${item.responsable}</td>
+                    <td>${item.fecha_inicio}</td>
+                    <td>${item.fecha_final}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // seleccionamos el boton de enviar el formulario
+        const boton_enviar_formulario = document.getElementById("btn-modal")
+
+        // agregamos un evento de click al boton al enviar
+        boton_enviar_formulario.addEventListener("click", guardar_datos_formulario);
+
+
+        // creamos una funcion para guardar los datos en el formulario
+        async function guardar_datos_formulario() {
+
+            // obtener las entrada de texto del formulario
+            const descripcion = document.getElementById("descripcion").value
+            const responsable = document.getElementById("responsable").value
+            const inicio_mantenimiento = document.getElementById("inicio-mantenimiento").value
+            const final_mantenimiento =  document.getElementById("final-mantenimiento").value
+
+            try {
+                const bodyData = {
+                    descripcion: descripcion,
+                    responsable: responsable,
+                    inicio_mantenimiento: inicio_mantenimiento,
+                    final_mantenimiento: final_mantenimiento
+                };
+
+                const response = await fetch("http://localhost:1234/mantenimientos/mantenimientos_realizar", {
+                    method : "POST",
+                    headers : { "Content-Type" : "application/json"},
+                    body : JSON.stringify(bodyData)
+                });
+
+                // Verifica si la respuesta es correcta
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        console.log("La URL 'http://localhost:1234/mantenimientos/mantenimientos_realizar' no se encontró.");
+                    } else {
+                        throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);
+                    }
+                }
+
+            } catch (error) {
+                console.error("Error al obtener los datos:", error);
+            }
+        }
+
+
+
+        // Llama a la función para obtener los datos al cargar la página
+        document.addEventListener("DOMContentLoaded", obtenerDatos);
+
+
+    </script>
 </body>
 </html>

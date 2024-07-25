@@ -1,19 +1,18 @@
-create table if not exists mantenimientos_realizar(
-id_mantenimiento int not null,
-descripcion_corta varchar(45) not null,
-responsable varchar(45),
-fecha_inicio datetime,
-fecha_final datetime,
-PRIMARY KEY(id_mantenimiento)
-) ;
+CREATE TABLE if NOT EXISTS mantenimientos_realizar(
+    'id_mantenimiento' INT NOT NULL,
+    'descripcion_corta' VARCHAR(200) NOT NULL,
+    'responsable' VARCHAR(200),
+    'fecha_inicio' DATETIME,
+    'fecha_final' DATETIME,
+    PRIMARY KEY('id_mantenimiento')
+);
 
-create table if not exists reporte(
-id_reporte int not null,
-asunto varchar(100) not null,
-descripcion varchar (700) not null, 
-origen varchar(45),
-destino varchar (45),
-fecha date,
-hora time,
-Primary Key (id_contacto)
+CREATE TABLE if NOT EXISTS reporte(
+    'id_reporte' INT NOT NULL,
+    'asunto' VARCHAR(200) NOT NULL,
+    'descripcion' VARCHAR(700) NOT NULL, 
+    'origen' VARCHAR(200),
+    'destino' VARCHAR (200),
+    'fecha' TIMESTAMP,
+    Primary Key ('id_reporte')
 );

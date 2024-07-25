@@ -1,29 +1,28 @@
 import { Router } from 'express';
-import { createMantenimientoApi } from './api.js';
+import { 
+  getMantenimientos, 
+  getMantenimientoID, 
+  postMantenimiento, 
+  deleteMantenimiento, 
+  getContactos, 
+  getContactoID, 
+  postContacto, 
+  deleteContacto 
+} 
+from './controller.js'
 
 export const createMantenimientoRouter = () => {
   const MantenimientoRouter = Router();
-  const c = createMantenimientoApi(MantenimientoRouter);
+  MantenimientoRouter.get('/mantenimientos_realizar', getMantenimientos)
+  MantenimientoRouter.get('/mantenimientos_realizar/:id', getMantenimientoID)
+  MantenimientoRouter.post('/mantenimientos_realizar', postMantenimiento)
+  MantenimientoRouter.delete('/mantenimientos_realizar/:id', deleteMantenimiento)
+  MantenimientoRouter.get('/contactos', getContactos)
+  MantenimientoRouter.get('/contactos/:id', getContactoID)
+  MantenimientoRouter.post('/contactos', postContacto)
+  MantenimientoRouter.delete('/contactos/:id', deleteContacto)
 
-  // rutas de las api de mantenimiento
-
-  MantenimientoRouter.get('/mantenimientos_realizar', c)
-
-  MantenimientoRouter.get('/mantenimientos_realizar/:id', c)
-
-  MantenimientoRouter.post('/mantenimientos_realizar', c)
- 
-  MantenimientoRouter.delete('/mantenimientos_realizar/:id', c)
-
-  MantenimientoRouter.get('/contactos', c)
-
-  MantenimientoRouter.get('/contactos/:id', c)
-
-  MantenimientoRouter.post('/contactos', c)
-
-  MantenimientoRouter.delete('/contactos/:id', c)
-
-  /*Rutas de los documentos HTML/EJS*/ 
+  // #region Rutas EJS
 
   MantenimientoRouter.get('/', (_req, res) => {
     res.render('mantenimientos/principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
@@ -38,7 +37,7 @@ export const createMantenimientoRouter = () => {
     res.render('mantenimientos/reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
   MantenimientoRouter.get('/vistaReporte', (_req, res) => {
-    res.render('mantenimientos/vistaReporte', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+    res.render('mantenimientos/vistaReporte.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
   MantenimientoRouter.get('/icon.jpeg', (_req, res) =>{
     res.sendFile(process.cwd() + 'resources/icon.jpeg');

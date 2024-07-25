@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistrot</title>
+    <link rel="stylesheet" href="styles/side.css">
+    <link rel="stylesheet" href="styles/agendar.css">
+    <!--Vincular otro CSS para su modulo-->
+    <link rel="shortcut icon" href="resources/icon.jpeg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1 id="title">BISTROT CHEZ RÉMY</h1>
+        <select id="title-combo">
+            <option selected>Gerente</option>
+            <option>Cerrar Sesion</option>
+        </select>
+    </header>
+    <main>
+        <!--No cambiar ningun elemento en CSS de la sidebar-->
+        <div id="sidebar">
+            <div class="side inicio">
+                <img src="resources/iconos_barra/inicio-green.png" class="side-foto">
+                <p class="side-option">Inicio</p>
+            </div>
+            <div class="side ventas">
+                <img class="side-foto" src="resources/iconos_barra/ventas-green.png">
+                <p class="side-option">Ventas/Salon</p>
+            </div>
+            <div class="side compras">
+                <img class="side-foto" src="resources/iconos_barra/compras-green.png">
+                <p class="side-option">Compras</p>
+            </div>
+            <div class="side rrhh">
+                <img class="side-foto" src="resources/iconos_barra/person-green.png">
+                <p class="side-option">RRHH</p>
+            </div>
+            <div class="side inventario">
+                <img class="side-foto" src="resources/iconos_barra/inventario-green.png">
+                <p class="side-option">Inventario</p>
+            </div>
+            <div class="side mantent">
+                <img class="side-foto" src="resources/iconos_barra/mantenimiento-green.png">
+                <p class="side-option">Mantenimiento</p>
+            </div>
+            <div class="side cocina">
+                <img class="side-foto" src="resources/iconos_barra/cocina-green.png">
+                <p class="side-option">Cocina/Bar</p>
+            </div>
+            <div class="side reserv">
+                <img class="side-foto" src="resources/iconos_barra/reservas-green.png">
+                <p class="side-option">Reservas</p>
+            </div>
+        </div>
+
+        <div id="principal">
+            <div class="title-box">
+                
+                <img src="static/Icono-Back.svg" alt="Exit-btn">
+                <h2 id="title-mantent">Agendar mantenimiento</h2>
+            </div>
+
+            <form>
+                <input type="text" placeholder="Descripcion">
+                <input type="text" placeholder="Responsable">
+                <label for="inicio-mantenimiento" class="label">Fecha de Inicio</label>
+                <input type="date" id="inicio-mantenimiento">
+                <label for="final-mantenimiento" class="label">Fecha de Finalizacion</label>
+                <input type="date" id="final-mantenimiento">
+
+                <div id="botones">
+                    <button class="btn">Agendar</button>
+                    <button class="btn"><a href="#modal1">Solicitar Implementos</a></button>
+                    <button class="btn">Solicitar Personal</button>
+                </div>
+
+                <div id="modal1" class="modalmask">
+                    <div id="modalbox">
+                        <a href="#close" title="Close" class="close">X</a>
+                        <h2>Implementos</h2>
+                        <hr>
+                        <div class="div-modal">
+                        <label>Herramientas:</label>
+                        <select id="herramientas" multiple="true">
+                            <optgroup label="Herramientas Manuales">
+                                <option value="destornilladores_planos">Destornilladores (planos)</option>
+                                <option value="destornilladores_estrella">Destornilladores (de estrella)</option>
+                                <option value="llaves_inglesas">Llaves inglesas</option>
+                                <option value="llaves_ajustables">Llaves ajustables</option>
+                                <option value="alicates_tenazas">Alicates y tenazas</option>
+                                <option value="martillos">Martillos</option>
+                                <option value="cuchillas_cortadores">Cuchillas y cortadores</option>
+                            </optgroup>
+                            <optgroup label="Herramientas Eléctricas">
+                                <option value="taladros_brocas">Taladros y brocas</option>
+                                <option value="sierra_electrica">Sierra eléctrica</option>
+                                <option value="multimetro">Multímetro</option>
+                                <option value="soldador_electrico">Soldador eléctrico</option>
+                            </optgroup>
+                            <optgroup label="Equipos de Limpieza y Desinfección">
+                                <option value="aspiradoras">Aspiradoras</option>
+                                <option value="trapeadores_cubetas">Trapeadores y cubetas</option>
+                                <option value="escobas_recogedores">Escobas y recogedores</option>
+                                <option value="limpiadores_vapor">Limpiadores a vapor</option>
+                                <option value="desinfectantes_detergentes">Desinfectantes y detergentes</option>
+                            </optgroup>
+                            <optgroup label="Equipos de Seguridad">
+                                <option value="guantes_trabajo">Guantes de trabajo</option>
+                                <option value="gafas_proteccion">Gafas de protección</option>
+                                <option value="mascarillas">Mascarillas</option>
+                                <option value="cascos">Cascos</option>
+                                <option value="ropa_proteccion">Ropa de protección</option>
+                            </optgroup>
+                        </select>
+
+                        <label>Materiales de reemplazo:</label>
+                        <select id="reemplazo" multiple="true">
+                            <optgroup label="Piezas de Repuesto">
+                                <option value="bombillas_tubos_fluorescentes">Bombillas y tubos fluorescentes</option>
+                                <option value="fusibles_disyuntores">Fusibles y disyuntores</option>
+                                <option value="juntas_empaques">Juntas y empaques</option>
+                                <option value="filtros_agua_aire">Filtros de agua y aire</option>
+                                <option value="valvulas_grifos">Válvulas y grifos</option>
+                            </optgroup>
+                            <optgroup label="Materiales de Construcción">
+                                <option value="cables_electricos_conectores">Cables eléctricos y conectores</option>
+                                <option value="tuberias_conexiones">Tuberías y conexiones</option>
+                                <option value="pintura_pinceles">Pintura y pinceles</option>
+                                <option value="selladores_siliconas">Selladores y siliconas</option>
+                                <option value="clavos_tornillos_pernos">Clavos, tornillos y pernos</option>
+                            </optgroup>
+                        </select>
+                        </div>
+
+                        <div class="div-modal">
+                        <label>Suministros de limpieza:</label>
+                        <select id="limpieza" multiple="true">
+                            <optgroup label="Productos Químicos">
+                                <option value="desengrasantes">Desengrasantes</option>
+                                <option value="limpiadores_multiusos">Limpiadores multiusos</option>
+                                <option value="desinfectantes">Desinfectantes</option>
+                                <option value="productos_pulir_acero_inoxidable">Productos para pulir acero inoxidable</option>
+                                <option value="limpiavidrios">Limpiavidrios</option>
+                            </optgroup>
+                            <optgroup label="Accesorios de Limpieza">
+                                <option value="panos_microfibra">Paños de microfibra</option>
+                                <option value="cepillos">Cepillos</option>
+                                <option value="esponjas_estropajos">Esponjas y estropajos</option>
+                                <option value="bolsas_basura">Bolsas de basura</option>
+                                <option value="papel_toalla">Papel toalla</option>
+                            </optgroup>
+                        </select>
+
+                        <label>Equipos especializados:</label>
+                        <select id="equipos" multiple="true">
+                            <optgroup label="Equipos de Cocina">
+                                <option value="hornos">Hornos</option>
+                                <option value="estufas">Estufas</option>
+                                <option value="refrigeradores_congeladores">Refrigeradores y congeladores</option>
+                                <option value="fritadoras">Fritadoras</option>
+                                <option value="lavavajillas">Lavavajillas</option>
+                            </optgroup>
+                            <optgroup label="Equipos de Ventilación y Aire Acondicionado">
+                                <option value="extractores_aire">Extractores de aire</option>
+                                <option value="filtros_aire">Filtros de aire</option>
+                                <option value="termostatos">Termostatos</option>
+                            </optgroup>
+                        </select>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+    </main>
+</body>
+</html>
