@@ -1,26 +1,30 @@
 import { Router } from 'express';
+//import { createMantenimientoApi } from './api.js';
 import { 
-  getMantenimientos, 
-  getMantenimientoID, 
-  postMantenimiento, 
-  deleteMantenimiento, 
-  getContactos, 
-  getContactoID, 
-  postContacto, 
-  deleteContacto 
-} 
-from './controller.js'
+  getMantenimientos,
+  getMantenimientoID,
+  postMantenimiento,
+  getContactos,
+  getContactosID,
+  postContactos,
+  deleteContactos,
+  deleteMantenimiento,
+  }
+  from './controller.js'
 
 export const createMantenimientoRouter = () => {
   const MantenimientoRouter = Router();
-  MantenimientoRouter.get('/mantenimientos_realizar', getMantenimientos)
-  MantenimientoRouter.get('/mantenimientos_realizar/:id', getMantenimientoID)
+
+  // rutas de las api de mantenimiento
+
+  MantenimientoRouter.get('/api/mantenimientos_realizar', getMantenimientos);
+  MantenimientoRouter.get('/api/mantenimientos_realizar/:id', getMantenimientoID);
   MantenimientoRouter.post('/mantenimientos_realizar', postMantenimiento)
   MantenimientoRouter.delete('/mantenimientos_realizar/:id', deleteMantenimiento)
   MantenimientoRouter.get('/contactos', getContactos)
-  MantenimientoRouter.get('/contactos/:id', getContactoID)
-  MantenimientoRouter.post('/contactos', postContacto)
-  MantenimientoRouter.delete('/contactos/:id', deleteContacto)
+  MantenimientoRouter.get('/contactos/:id', getContactosID)
+  MantenimientoRouter.post('/contactos', postContactos)
+  MantenimientoRouter.delete('/contactos/:id', deleteContactos)
 
   // #region Rutas EJS
 
