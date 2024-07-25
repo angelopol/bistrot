@@ -13,7 +13,8 @@ const schema_factura = z.object({
         return ['general', 'terraza'].includes(zona_pedido);
     }, {
         message: 'La zona debe de ser un string y estar entre (general y terraza)'
-    } ), 
+    } ),
+    detalles : z.string()
 });
 
 

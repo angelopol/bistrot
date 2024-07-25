@@ -54,6 +54,8 @@ export const createVentasRouter = () => {
 
   VentasRouter.get("/Vista_Pedidos/pedidos", renderController.renderPedidos)
 
+  VentasRouter.get("/solpersonal", renderController.renderSolpersonal)
+
   //Estilos
   VentasRouter.get("/Vista_Gerente/styles_Gerente.css", renderController.stylesGerente)
   VentasRouter.get("/Vista_Meseros/Zona_General.css", renderController.stylesMeserosGeneral)

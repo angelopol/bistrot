@@ -1,6 +1,5 @@
 import {VentasModel} from '../models/ventas_salon.js';
 import {validateCaja, validatePartialCaja} from '../schemas/caja.js';
-import { logged } from "../../Login/middlewares/logged.js"
 
 export class ControllerCaja {
 
@@ -8,6 +7,7 @@ export class ControllerCaja {
 
     // obtener todo los registros de la tabla de caja
     getAll_c = async (req, res) => {
+
         const registro_ventas = await VentasModel.getAll_caja({})
         if (registro_ventas) return res.json(registro_ventas)
         res.status(404).json({ message: 'registro de ventas not found' })
