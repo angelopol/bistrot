@@ -77,16 +77,13 @@ export class ReservaModel {
         }
     }
     static async modificar (cedulaC, modi) {
-        const {fecha,
-        hora_inicio,
-        hora_fin,
-        iddescripcion, 
+        const {
         } = modi
     
         try {
           await connection.query(
             'UPDATE reserva SET fecha = ?, hora_inicio = ?, hora_fin = ?, descripcion = ? WHERE ID_cliente = ?',
-            [fecha, hora_inicio, hora_fin, iddescripcion, cedulaC]
+            []
           )
         } catch (e) {
           console.log(e)
@@ -94,18 +91,19 @@ export class ReservaModel {
         }
     }
 
-    static async modificarCocina (cedulaC, modi) {
+    static async modificarConfirmado (idReserva, modi) {
       const {
+        confirmado
       } = modi
   
       try {
         await connection.query(
-          'UPDATE reserva SET fecha = ?, hora_inicio = ?, hora_fin = ?, descripcion = ? WHERE ID_cliente = ?',
-          [fecha, hora_inicio, hora_fin, iddescripcion, cedulaC]
+          'UPDATE reserva SET confirmado = ? WHERE ID_reserva = ?',
+          [confirmado, idReserva]
         )
       } catch (e) {
         console.log(e)
         throw new Error('Error updating reserva')
       }
-  }
+    }
 }
