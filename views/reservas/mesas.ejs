@@ -164,7 +164,11 @@
                     
                     }
                     else{
-                        alert('Esta mesa ya esta reservada');
+                        if (confirm('Esta mesa ya esta reservada, ¿desea eliminar la reserva?')){
+                            reservedSeats[selectedDate][seat.id] = false;
+                            localStorage.setItem('reservedSeats', JSON.stringify(reservedSeats));
+                            updateSeats(selectedDate);
+                        }
                     }
                     
                 });

@@ -3,7 +3,7 @@ import {ReservaController} from '../controllers/reserva.js';
 import { InventarioMesasController } from '../controllers/controlador.js';
 
 export const createReservasRouter = () => {
-    const reservasRouter = Router();
+    const reservasRouter = Router()
     const controladorReserva= new ReservaController();
     const controladorInventario= new InventarioMesasController();
 
@@ -39,6 +39,8 @@ export const createReservasRouter = () => {
     reservasRouter.get('/css/crearReservas.css',(req,res)=>{
         res.sendFile(path.join(__dirname, 'views/CrearReservas.css'))
     });
+
+    reservasRouter.get('/obtener-reservas',controladorReserva.getAll);
 
     reservasRouter.get('/reportesCocina',controladorInventario.mostrarReporteCocina);
     

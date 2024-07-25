@@ -283,17 +283,7 @@
                 }
             });
 
-            //funcion que limita la cantidad de personas a 4 si se selecciona una mesa
-
-            document.getElementById("personas").addEventListener("input", function(event) {
-                const personas = event.target.value;
-                const selectedDate = document.getElementById('fecha').value;
-                if (selectedSeats[selectedDate] && selectedSeats[selectedDate].length > 0 && personas > 4) {
-                    event.target.setCustomValidity("Solo se permiten 4 personas por mesa.");
-                } else {
-                    event.target.setCustomValidity("");
-                }
-            });
+            
 
             //funcion que valida si el campo de nombre y apellido tiene al menos 2 palabras y si solo contiene letras
 
@@ -347,14 +337,14 @@
                 if (horaInicioInt < 7) {
                     document.getElementById("hora_inicio").setCustomValidity("La hora de inicio debe ser mayor o igual a 7 am.");
                     
-                } else if (horaFinInt > 21) {
+                } else if (horaFinInt > 22) {
                     document.getElementById("hora_fin").setCustomValidity("La hora de fin debe ser menor o igual a 9 pm.");
                 } else if (horaInicioInt >= horaFinInt) {
                     document.getElementById("hora_inicio").setCustomValidity("La hora de inicio debe ser menor que la hora de fin.");
                 } else if (horaFinInt - horaInicioInt < 0.5) {
                     document.getElementById("hora_inicio").setCustomValidity("La reserva debe tener una duración mínima de 30 minutos.");
-                } else if (horaFinInt - horaInicioInt > 12) {
-                    document.getElementById("hora_inicio").setCustomValidity("La reserva no puede durar más de 12 horas.");
+                } else if (horaFinInt - horaInicioInt > 10) {
+                    document.getElementById("hora_inicio").setCustomValidity("La reserva no puede durar más de 10 horas.");
                 } else {
                     document.getElementById("hora_inicio").setCustomValidity("");
                     document.getElementById("hora_fin").setCustomValidity("");
