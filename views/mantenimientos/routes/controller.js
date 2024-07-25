@@ -32,7 +32,7 @@ export const getContactos = async (_req, res) => {
   db.query(query, (error, results, fields) => res.send(results));
 }
 
-export const getContactoID = async (req, res) => {
+export const getContactosID = async (req, res) => {
   const query = 'SELECT * FROM contactos WHERE id = ?';
   db.query(query, [req.params.id], (error, results, fields) => {
         results 
@@ -41,7 +41,7 @@ export const getContactoID = async (req, res) => {
       })
     }
 
-export const postContacto = async (req, res)=> {
+export const postContactos = async (req, res)=> {
     const query = 'INSERT INTO contactos (nombre,servicio,telefono,correo) VALUES (?,?,?,?)';
     const { mantenimiento, responsable, inicio, fin } = req.body;
     const data = [mantenimiento, responsable, inicio, fin];
@@ -54,7 +54,7 @@ export const deleteMantenimiento = async (req, res)=>{
   db.query(query, [id], (error, results, fields) => res.send(results));
 }
 
-export const deleteContacto = async (req, res)=> {
+export const deleteContactos = async (req, res)=> {
     const query = 'DELETE FROM contactos WHERE id = ?';
     const { id } = req.params;
     db.query(query, [id], (error, results, fields) => res.send(results));
