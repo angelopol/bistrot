@@ -156,6 +156,18 @@ window.onload = function () {
             return alert("No deje campos sin seleccionar")
         }
 
+        let banderaDuran = false
+        let vainaParaValidar = document.querySelectorAll(".form-input")
+        vainaParaValidar.forEach(cosa => {
+            if(cosa.value == ""){
+                banderaDuran = true
+            }
+        })
+        if(banderaDuran){
+            alert("Campo sin seleccionar")
+            return null
+        }
+
         //"form-input dropdown text"
         let selectIngredientes = document.querySelectorAll(".form-input.dropdown.text")
         let nombreIngredientes = []

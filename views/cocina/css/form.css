@@ -2,13 +2,12 @@
     align-self: stretch;
     display: flex;
     margin-top: 37px;
-    gap: 20px;
+    gap: 5vh;
     justify-content: space-between;
     margin-left: 40px;
     margin-top: -100px;
-    width: 60vh;
+    width: 70vh;
     height: 25vh;
-
 }
   
 .form-group {
