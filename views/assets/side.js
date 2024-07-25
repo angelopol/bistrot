@@ -20,7 +20,7 @@ sidebar.addEventListener('click', function(e) {
             window.location.href = '/inventario';
             break;
         case 'mantent':
-            window.location.href = '/mantenimiento';
+            window.location.href = '/mantenimientos';
             break;
         case 'cocina':
             window.location.href = '/cocina/produccion';
