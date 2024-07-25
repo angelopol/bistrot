@@ -5,11 +5,11 @@ async function createConnection() {
     let connection;
     try {
         connection = await mysql.createConnection({
-            host: process.env.DB_HOST || 'localhost',
-            user: process.env.DB_USER || 'root',
+            host: process.env.DB_HOST || '127.0.0.1',
+            user: process.env.DB_USERNAME || 'root',
             port: process.env.DB_PORT || 3306,
-            password: process.env.DB_PASSWORD || '$0p0rt3',
-            database: process.env.DB_DATABASE || 'bistrot', 
+            password: process.env.DB_PASSWORD || '',
+            database: process.env.DB_DATABASE || 'bistrot',
         });
         console.log('Connected to the database.');
     } catch (error) {

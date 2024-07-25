@@ -1,12 +1,12 @@
 @font-face {
   font-family: "Montserrat-Medium";
-  src: url("/views/inventario/resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+  src: url("../resources/Fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
   font-weight: 500;
 }
 
 @font-face {
   font-family: "Krona-One";
-  src: url("/views/inventario/resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
+  src: url("../resources/Fonts/Montserrat/KronaOne-Regular.ttf") format("truetype");
   font-weight: 500;
 }
 
@@ -38,7 +38,7 @@ header {
 #title-combo {
   appearance: none;
   color: white;
-  background-color: #013D1F;
+  background-color: transparent;
   border-radius: 2px;
   padding: 10px;
   width: 15%;

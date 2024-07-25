@@ -1,3 +1,5 @@
+
+-- Crear tablas
 CREATE TABLE submodulo_inventario (
     id_submodulo_inventario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -47,7 +49,7 @@ INSERT INTO cocina_bar (nombre, categoria, cantidad, area, unidad, fecha_caducid
 ('papa', 'cocina', 200, 'Refrigerador 2', 'kg', '2024-07-10 00:00:00'),
 ('apio', 'cocina', 25, 'Refrigerador 2', 'kg', '2024-09-25 00:00:00'),
 ('pollo', 'cocina', 40, 'Refrigerador 2', 'kg', '2024-08-15 00:00:00'),
-('ajo', 'cocina', 5, 'Refrigerador 2', 'kg', '2024-07-25 00:00:00'),
+('ajo', 'cocina', 15, 'Refrigerador 2', 'kg', '2024-07-25 00:00:00'),
 ('champiñones', 'cocina', 15, 'Refrigerador 2', 'kg', '2024-10-05 00:00:00'),
 ('espelta', 'cocina', 10, 'Refrigerador 2', 'kg', '2024-12-01 00:00:00'),
 ('vinagre', 'cocina', 20, 'Almacen 1', 'litro', '2025-01-01 00:00:00'),
@@ -110,7 +112,7 @@ INSERT INTO general (nombre, tipo, categoria, funciona_estado, fecha_mantenimien
 ('Coctelera C', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5),
 ('Coctelera D', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5),
 ('Batidora A', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5),
-('Batidora B', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5),
+('Batidora B', 'Equipo', 'Instrumento', 1, NULL, 'Unidad', 5);
 
 -- Desde aqui son inventados
 -- Maquinaria
