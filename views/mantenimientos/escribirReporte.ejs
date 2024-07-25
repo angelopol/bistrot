@@ -54,14 +54,14 @@
             </div>
         </div>
 
-        <div id="principal">
+        <main id="principal">
             <div class="title-box">
                 
                 <img src="static/Icono-Back.svg" alt="Exit-btn">
                 <a href="/mantenimientos/reportes" id="title-mantent">Escribir Reporte</a>
             </div>
 
-            <form>
+            <form id="form">
                 <label for="asunto">Asunto</label>
                 <input type="text" id="asunto">
 
@@ -83,13 +83,59 @@
                         <option value="Mantenimiento">Mantenimiento</option>
                     </select>
                 </div>
-
                 <div id="botones">
                     <button class="btn">Enviar</button>
                 </div>
             </form>
-        </div>
+            <div style="
+                display: fixed;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 50px;
+                background-color: #f0f0f0;
+                border-top: 1px solid #e0e0e0;
+            ">
+                <p id="notification"></p>
+            </div>
+        </main>
 
     </main>
+    <script type="module">
+        const $ = id => document.getElementById(id)
+        const $asunto = $('asunto')
+        const $contenido = $('contenido')
+        const $origen = $('origen')
+        const $destino = $('destino')
+        const API_URL = 'http://localhost:1234/mantenimientos/mantenimientos_realizar'
+        const $form = $('form')
+        const data = {
+            asunto: $asunto.value,
+            contenido: $contenido.value,
+            origen: $origen.value,
+            destino: $destino.value
+        }
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+        try{
+            $form.addEventListener('submit', async e => {
+                e.preventDefault()
+                const response = await fetch(API_URL, options)
+                const json = await response.json()
+                $('notification').textContent = 'Reporte enviado'
+            })
+        }
+        catch(e){
+            console.error(e)
+            $('notification').textContent = 'Error al enviar el reporte'
+            $('notification').style.color = 'red'
+        }
+    </script>
 </body>
 </html>

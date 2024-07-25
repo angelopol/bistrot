@@ -89,7 +89,7 @@
             <a href="#close" title="Close" class="close">X</a>
             <h2>Agendar</h2>
             <hr>
-            <form>
+            <form name="">
                 <input type="text" placeholder="Descripcion" id="descripcion">
                 <input type="text" placeholder="Responsable" id="responsable">
                 <label for="inicio-mantenimiento" class="label">Fecha de Inicio</label>
@@ -182,8 +182,6 @@
                 console.error("Error al obtener los datos:", error);
             }
         }
-
-
 
         // Llama a la función para obtener los datos al cargar la página
         document.addEventListener("DOMContentLoaded", obtenerDatos);
