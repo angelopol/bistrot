@@ -1,48 +1,52 @@
 import { Router } from 'express';
-import { createMantenimientoApi } from './api.js';
+//import { createMantenimientoApi } from './api.js';
+import { 
+  getMantenimientos,
+  getMantenimientoID,
+  postMantenimiento,
+  getContactos,
+  getContactosID,
+  postContactos,
+  deleteContactos,
+  deleteMantenimiento,
+  }
+  from './controller.js'
 
 export const createMantenimientoRouter = () => {
-  var MantenimientoRouter = Router();
-  MantenimientoRouter = createMantenimientoApi(MantenimientoRouter);
-   
+  const MantenimientoRouter = Router();
+
+  // rutas de las api de mantenimiento
+
+  MantenimientoRouter.get('/api/mantenimientos_realizar', getMantenimientos);
+  MantenimientoRouter.get('/api/mantenimientos_realizar/:id', getMantenimientoID);
+  MantenimientoRouter.post('/mantenimientos_realizar', postMantenimiento)
+  MantenimientoRouter.delete('/mantenimientos_realizar/:id', deleteMantenimiento)
+  MantenimientoRouter.get('/contactos', getContactos)
+  MantenimientoRouter.get('/contactos/:id', getContactosID)
+  MantenimientoRouter.post('/contactos', postContactos)
+  MantenimientoRouter.delete('/contactos/:id', deleteContactos)
+
   /*Rutas de los documentos HTML/EJS*/ 
 
-  MantenimientoRouter.get('/', (req, res) => {
-    res.render('mantenimientos/Pagina_principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  MantenimientoRouter.get('/', (_req, res) => {
+    res.render('mantenimientos/principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-  
-  MantenimientoRouter.get('/Pagina_contacto', (req, res) => {
-    res.render('mantenimientos/Pagina_contacto.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  MantenimientoRouter.get('/', (_req, res) => {
+    res.render('mantenimientos/principal.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-  MantenimientoRouter.get('/Pagina_agregarMantenimiento', (req, res) => {
-    res.render('mantenimientos/Pagina_agregarMantenimiento.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  MantenimientoRouter.get('/escribirReporte', (_req, res) => {
+    res.render('mantenimientos/escribirReporte.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-  
-  MantenimientoRouter.get('/Pagina_reportes', (req, res) => {
-    res.render('mantenimientos/Pagina_reportes.ejs', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
+  MantenimientoRouter.get('/reportes', (_req, res) => {
+    res.render('mantenimientos/reportes', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-  
-
-
-  /*Rutas de los documentos de estilo*/
-
-
-  MantenimientoRouter.get('/styles/styles.css', (req, res) =>{
-    res.sendFile(process.cwd() + 'mantenimientos/styles/styles.css');
+  MantenimientoRouter.get('/vistaReporte', (_req, res) => {
+    res.render('mantenimientos/vistaReporte', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-
-  MantenimientoRouter.get('/styles/styles2.css', (req, res) =>{
-    res.sendFile(process.cwd() + 'mantenimientos/styles/styles2.css');
+  MantenimientoRouter.get('/agendar', (_req, res) => {
+    res.render('mantenimientos/agendar', { title: 'Acerca de', message: 'Esta es la página Acerca de.' });
   });
-
-  MantenimientoRouter.get('/styles/side.css', (req, res) =>{
-    res.sendFile(process.cwd() + 'mantenimientos/styles/side.css');
-  });
-
-  /* Ruta de iconos */
-  
-  /* Ruta de icono de la pestaña */
-  MantenimientoRouter.get('/icon.jpeg', (req, res) =>{
+  MantenimientoRouter.get('/icon.jpeg', (_req, res) =>{
     res.sendFile(process.cwd() + 'resources/icon.jpeg');
 });
 

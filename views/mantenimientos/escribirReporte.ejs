@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bistrot</title>
-    <link rel="stylesheet" href="side.css">
+    <link rel="stylesheet" href="styles/side.css">
+    <link rel="stylesheet" href="styles/writeReport.css">
     <!--Vincular otro CSS para su modulo-->
     <link rel="shortcut icon" href="resources/icon.jpeg" type="image/x-icon">
+    <script src="/assets/side.js" defer></script>
 </head>
 <body>
     <header>
@@ -54,7 +56,41 @@
         </div>
 
         <div id="principal">
-            <!--Poner Su codigo aqui normalmente-->
+            <div class="title-box">
+                
+                <img src="static/Icono-Back.svg" alt="Exit-btn">
+                <a href="/mantenimientos/reportes" id="title-mantent">Escribir Reporte</a>
+            </div>
+
+            <form>
+                <label for="asunto">Asunto</label>
+                <input type="text" id="asunto">
+
+                <label for="contenido">Contenido</label>
+                <textarea id="contenido"></textarea>
+
+                <div id="selectores">
+                    <label for="origen">Origen:</label>
+                    <select id="origen">
+                        <option value="Cocina">Cocina</option>
+                        <option value="Ventas">Ventas</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
+                    </select>
+
+                    <label for="destino">  Destino:</label>
+                    <select id="destino">
+                        <option value="Cocina">Cocina</option>
+                        <option value="Ventas">Ventas</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
+                    </select>
+                </div>
+
+                <div id="botones">
+                    <button class="btn">Enviar</button>
+                    <button class="btn">Solicitar Personal</button>
+                    <button class="btn">Solicitar Implementos</button>
+                </div>
+            </form>
         </div>
 
     </main>
