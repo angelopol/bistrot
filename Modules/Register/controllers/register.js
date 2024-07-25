@@ -40,7 +40,6 @@ export class RegisterController {
     //Solicitudes
     solicitar = async (req, res) => {
         if (logged(req, res, false, false)) return
-        console.log("ruta ok",req.body)
         try {
             await EmpleadosModel.createSolicitud({ input: req.body })
             res.status(200).json({ message: 'Entrada registrada exitosamente' });

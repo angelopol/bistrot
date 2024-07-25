@@ -114,6 +114,7 @@
         const fechaini = document.getElementById("fechaini");
         const motivo = document.getElementById("motivo");
 
+
         document.getElementById("submit-button").addEventListener("click", async (e) => {
             e.preventDefault();
 
@@ -121,7 +122,7 @@
             const dataToSend = {
                 ID_Empleado: 1,
                 Fecha_Registro: formattedDate,
-                Fecha_Ingreso: fechaini.value,
+                Fecha: fechaini.value,
                 Cargo: cargo,
                 Motivo: motivo.value,
                 Modulo: 'Cocina'
