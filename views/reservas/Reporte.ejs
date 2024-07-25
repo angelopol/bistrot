@@ -1,123 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte</title>
-    <link rel="stylesheet" href="/reservas/Reporte.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="/rrhh/css/form.css">
+    <link rel="stylesheet" href="/rrhh/assets/style.css">
+    <link rel="stylesheet" href="/assets/header.css">
+    <link rel="stylesheet" href="/assets/side.css">
     <link rel="icon" href="/assets/favicon.ico">
     <script src="/assets/logout.js" defer></script>
     <script src="/assets/user.js" defer></script>
     <script src="/assets/side.js" defer></script>
+    <title>Recursos Humanos</title>
 </head>
+
+<style>
+.content-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.employee-registration {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+</style>
+
 <body>
-    <div class="heading">
-        <div class="titulo">
-            <h1>BISTROT CHEZ RÉMY</h1>
-        </div>
-        <div class="usuario">
-            <select name="usuario" id="usuario">
-                <option value="gerente0000">gerente0000</option>
-                <option value="gerente0001">gerente0001</option>
-            </select>
-        </div>
+  <header>
+    <h1 id="title">BISTROT CHEZ RÉMY</h1>
+    <select id="title-combo">
+        <option selected>Gerente</option>
+        <option>Cerrar Sesion</option>
+    </select>
+</header>
+<div class="content-wrapper">
+    <div class="main-content">
+      <main class="employee-registration">
+        <img  src="iconos_barra/icono_salida.png" class="icono" style=" cursor: pointer;" onclick="window.history.back();">
+        <h2 class="page-title">Solicitud de Personal</h2>
+        <form id="employee-form">
+          <!-- Primera fila de campos -->
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="first-name" class="form-label">Solicitante</label>
+                  <input type="text" id="first-name" class="form-input" name="nombre"/>
+              </div>
+              <div class="form-group">
+                  <label for="last-name" class="form-label">Departamento</label>
+                  <input type="text" id="last-name" class="form-input" name="apellido"/>
+              </div>
+          </div>
+          <!-- Segunda fila de campos -->
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="cargo" class="form-label">Cargo</label>
+                  <select class="form-input dropdown" id="cargo" name="cargo">
+                      <option value="" disabled selected>Seleccione un Cargo</option>
+                      <option value="Gerente">Gerente</option>
+                      <option value="Cajero">Cajero</option>
+                      <option value="Compras">Compras</option>
+                      <option value="Cocinero">Cocinero</option>
+                      <option value="Reservaciones">Reservaciones</option>
+                      <option value="RRHH">RRHH</option>
+                      <option value="Mantenimiento">Mantenimiento</option>
+                      <option value="Inventario">Inventario</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="start-date" class="form-label">Fecha deseada</label>
+                  <input type="date" id="fechaini" class="form-input" name="fecha_contratacion"/>
+              </div>
+          </div>
+          <!-- Campo Motivo -->
+          <div class="form-group address-group">
+            <label for="motivo" class="form-label">Motivo</label>
+            <input type="text" id="motivo" class="form-input address-input" placeholder="Explique brevemente el motivo" name="motivo"/>
+          </div>
+          <button type="button" id="submit-button">Enviar Solicitud</button>
+        </form>
+      </main>      
     </div>
-    <div class="pagina">
-        <div id="sidebar">
-            <div class="side inicio">
-                <img src="/Compras/resources/iconos_barra/inicio-green.png" class="side-foto">
-                <p class="side-option">Inicio</p>
-            </div>
-            <div class="side ventas">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/ventas-green.png">
-                <p class="side-option">Ventas/Salon</p>
-            </div>
-            <div class="side compras">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/compras-green.png">
-                <p class="side-option">Compras</p>
-            </div>
-            <div class="side rrhh">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/person-green.png">
-                <p class="side-option">RRHH</p>
-            </div>
-            <div class="side inventario">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/inventario-green.png">
-                <p class="side-option">Inventario</p>
-            </div>
-            <div class="side mantent">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/mantenimiento-green.png">
-                <p class="side-option">Mantenimiento</p>
-            </div>
-            <div class="side cocina">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/cocina-green.png">
-                <p class="side-option">Cocina/Bar</p>
-            </div>
-            <div class="side reserv">
-                <img class="side-foto" src="/Compras/resources/iconos_barra/reservas-green.png">
-                <p class="side-option">Reservas</p>
-            </div>
-        </div>
-        <div class="contenido">
-            <div class="contenidop">
-                <div class="Reservar">
-                    <h2>
-                        <a href="/reservas">
-                          <img src="/reservas/imagenes/icono_salida.png" alt="regresar">
-                        </a>
-                        Reservar
-                      </h2>
-                </div>
-                <div class="seccion">
-                    <h2>Reporte</h2>
-                </div>
-            </div>
-        
-            <div class="distribucion">
-                <form action="tu_script_para_procesar_el_formulario.php" method="POST">
-                    <div class="form-group">
-                        <label for="codigo_empleado">Empleado:</label>
-                        <input type="text" id="codigo_empleado" name="codigo_empleado" required>
-                    </div>
+  </div>
+  <script>
+    window.onload = function () {
+        const formatDate = (date) => {
+            let d = new Date(date);
+            let month = '' + (d.getMonth() + 1);
+            let day = '' + d.getDate();
+            let year = d.getFullYear();
 
-                    <div class="form-group">
-                        <label for="cargo">Cargo:</label>
-                        <input type="text" id="cargo" name="cargo" required>
-                    </div>
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
 
-                    <div class="form-group">
-                        <label for="fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha" required>
-                    </div>
+            return [year, month, day].join('-');
+        }
 
-                    <div class="form-group">
-                        <label for="hora">Hora:</label>
-                        <input type="time" id="hora" name="hora" required>
-                    </div>
+        const date = new Date();
+        const formattedDate = formatDate(date);
+        const Selectcargo = document.getElementById("cargo");
+        const fechaini = document.getElementById("fechaini");
+        const motivo = document.getElementById("motivo");
 
-                    <div class="form-group">
-                        <label for="tipo">Tipo:</label>
-                        <input type="text" id="tipo" name="tipo" required>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="zona">Zona:</label>
-                        <select id="zona" name="zona" required>
-                            <option value="cocina">Interior</option>
-                            <option value="salon">Exterior</option>
-                            <option value="terraza">Barra</option>
-                        </select>
-                    </div>
+        document.getElementById("submit-button").addEventListener("click", async (e) => {
+            e.preventDefault();
 
-                    <div class="form-group">
-                        <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-                    </div>
+            const cargo = Selectcargo.value;
+            const dataToSend = {
+                ID_Empleado: 1,
+                Fecha_Registro: formattedDate,
+                Fecha: fechaini.value,
+                Cargo: cargo,
+                Motivo: motivo.value,
+                Modulo: 'Cocina'
+            };
 
-                    <button type="submit">Enviar Reporte</button>
-                </form>
-            </div>
-        </div>
-    </div>
+            try {
+                const response = await fetch('/register/solicitar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataToSend)
+                });
+
+                const result = await response.json();
+
+                if (result.error) {
+                    console.error(`Error al registrar solicitud: ${result.error.nombre}`);
+                    alert(`Error al registrar solicitud: ${result.error.nombre}`);
+                } else {
+                    alert('Solicitud registrada exitosamente');
+                    location.reload(true)
+                }
+            } catch (error) {
+                console.error('Hubo un error al registrar la solicitud', error);
+                alert('Hubo un error al registrar la solicitud');
+            }
+        });
+    }
+  </script>
 </body>
 </html>

@@ -23,16 +23,19 @@ export class ReservaModel {
         idtelefono,
         nombre,
         idmesa,
-        zona  // Asegúrate de que este nombre coincida con el esperado
+        idzona,
+        stringPreferencias,
+          // Asegúrate de que este nombre coincida con el esperado
       } = input;
 
       
   
       try {
+        console.log("hola desde el modelo")
         await connection.query(
-          `INSERT INTO reserva (ID_mesa,cantidad_personas, ID_cliente, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, apellido, ubicacion)
-           VALUES (?,?,?,?,?,?,?,?,?, ?,?);`,
-          [idmesa,personas,cedula, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre.split(" ")[0], nombre.split(" ")[1], zona]
+          `INSERT INTO reserva (ID_mesa,cantidad_personas, ID_cliente, fecha, hora_inicio, hora_fin, descripcion, telefono, nombre, ubicacion, preferencias)
+           VALUES (?,?,?,?,?,?,?,?,?, ?, ?);`,
+          [idmesa,personas,cedula, fecha, hora_inicio, hora_fin, iddescripcion, idtelefono, nombre, idzona, stringPreferencias]
       );
       } catch (e) {
         console.log(e);
@@ -90,4 +93,19 @@ export class ReservaModel {
           throw new Error('Error updating reserva')
         }
     }
+
+    static async modificarCocina (cedulaC, modi) {
+      const {
+      } = modi
+  
+      try {
+        await connection.query(
+          'UPDATE reserva SET fecha = ?, hora_inicio = ?, hora_fin = ?, descripcion = ? WHERE ID_cliente = ?',
+          [fecha, hora_inicio, hora_fin, iddescripcion, cedulaC]
+        )
+      } catch (e) {
+        console.log(e)
+        throw new Error('Error updating reserva')
+      }
+  }
 }

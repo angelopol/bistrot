@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ffffff;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 
@@ -109,6 +109,23 @@ nav ul li a:hover {
     flex-grow: 1;
     width: 80%;
 }
+
+#agregarPreferencias{
+    background-color: #0F624A;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #agregarPreferencias:hover{
+    background-color: #137b5d;
+    
+  }
 
 .contenidop {
     margin-top: 10px;
